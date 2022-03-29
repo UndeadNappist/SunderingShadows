@@ -12,7 +12,7 @@ void create()
     feat_name("enruned offhand");
     feat_classes("magus");
     feat_syntax("enruned_offhand");
-    feat_desc("You may expend a point from the arcane pool to scribe a rune of power on an offhand weapon wielded. You can use the hand holding the weapon to cast magus spells and you can use spell combat. The rune lasts 10 minutes per level.");
+    feat_desc("You may expend a point from the arcane pool to scribe a rune of power on an offhand weapon wielded. You can use the hand holding the weapon to cast magus spells and you can use spell combat. The rune lasts 1 minute per level.");
     set_required_for(({ "greater enruned offhand" }));
 }
 

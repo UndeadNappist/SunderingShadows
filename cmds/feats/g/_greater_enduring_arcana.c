@@ -12,7 +12,7 @@ void create()
     feat_name("greater enduring arcana");
     feat_prereq("Enduring Arcana");
     feat_classes("magus");
-    feat_desc("When expending a point from the arcane pool to grant enhancement bonuses or properties to a wielded weapon, the bonuses and properties last for 1 hour per level.");
+    feat_desc("When expending a point from the arcane pool to grant enhancement bonuses or properties to a wielded weapon, the bonuses and properties last for 10 minutes per level.");
     permanent(1);
 }
 

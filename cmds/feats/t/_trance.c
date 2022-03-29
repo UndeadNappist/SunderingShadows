@@ -73,7 +73,7 @@ void execute_feat()
     
     if(!USER_D->spend_pool(caster, 1, "focus"))
     {
-        tell_object(caster, "You must have psionic focus to use combatprescience!");
+        tell_object(caster, "You must have psionic focus to use trance!");
         dest_effect();
         return;
     }

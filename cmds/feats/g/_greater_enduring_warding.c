@@ -12,7 +12,7 @@ void create()
     feat_name("greater enduring warding");
     feat_prereq("Enduring Warding");
     feat_classes("magus");
-    feat_desc("When expending a point from the arcane pool to grant enhancement bonuses or properties to a worn body armor, the bonuses and properties last for 1 hour per level.");
+    feat_desc("When expending a point from the arcane pool to grant enhancement bonuses or properties to a worn body armor, the bonuses and properties last for 10 minutes per level.");
     permanent(1);
 }
 

@@ -12,7 +12,7 @@ void create()
     feat_name("greater enruned great weapon");
     feat_prereq("Enruned Great Weapon");
     feat_classes("magus");
-    feat_desc("The duration of a rune inscribed in the two handed weapon increases to 1 hour per level.");
+    feat_desc("The duration of a rune inscribed in the two handed weapon increases to 10 minutes per level.");
     permanent(1);
 }
 

@@ -273,7 +273,7 @@ int cmd_enhance(string str)
             duration = (int)TP->query_prestige_level("magus") * 60;
         }
         else {
-            duration = 80;
+            duration = 180;
             duration *= (1 + (TP->query_prestige_level("paladin") / 5));
         }
         TP->set_property("armor enhancement timer", duration);
