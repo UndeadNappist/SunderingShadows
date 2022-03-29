@@ -104,7 +104,7 @@ varargs void set_av_spell(int mylevel, int myclevel)
     mylevel = mylevel < 1?1:mylevel;
 
     rclass = SCRL_CLASSES[random(sizeof(SCRL_CLASSES))];
-    rspell = MAGIC_D->query_random_spell(rclass, rspell);
+    rspell = MAGIC_D->query_random_spell(rclass, mylevel);
     if (!rspell) {
         set_spell_name("magic missile");
     } else {
