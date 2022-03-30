@@ -9,7 +9,7 @@ void create()
     feat_category("KiOffense");
     feat_name("perfect self");
     feat_prereq("Monk L20");
-    feat_desc("At 20th level, a monk becomes a magical creature and gains damage reduction both to physical and magical attacks made by a those who choose to face them.");
+    feat_desc("At 20th level, a monk becomes a magical creature and gains damage reduction both to physical and magical attacks made by their opponents.");
     permanent(1);
     set_required_for(({}));
 }
