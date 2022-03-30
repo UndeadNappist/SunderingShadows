@@ -117,7 +117,7 @@ int extra_hit(object ob)
         case 1:
         tell_object(owner, "%^C059%^You cleave " + ename + " %^C059%^with your axe!%^CRST%^");
         tell_object(ob, oname + "%^C059%^ buries their axe deeply into you!%^CRST%^");
-        ob->cause_typed_damage(ob, "torso", extra_damage(ob), "slashing%^CRST%^");
+        ob->cause_typed_damage(ob, "torso", extra_damage(ob), "slashing");
         break;
     }
     
