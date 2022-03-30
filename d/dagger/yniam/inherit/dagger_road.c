@@ -1,5 +1,5 @@
 // Chernobog (3/22/22)
-// Dagger Road Inherit #3
+// Dagger Road Inherit
 
 #include <std.h>
 
