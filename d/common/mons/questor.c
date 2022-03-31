@@ -29,9 +29,8 @@ void create()
     set_property("magic",1);
     set_new_exp(100,"boss");
     set_property("cast and attack",1);
-    set_spells(({"prsimatic burst",
-                    "prismatic burst",}));
-    set_spell_chance(100);
+    set_spells(({"prismatic spray",}));
+    set_spell_chance(200);
     set_property("function and attack", 1);
     set_funcs(({"mercy"}));
     set_func_chance(5);
