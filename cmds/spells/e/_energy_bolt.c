@@ -9,7 +9,7 @@ inherit SPELL;
 
 void dest_effect();
 
-#define MYTYPES ({ "fire", "electricty", "cold", "acid", "sonic", "random" })
+#define MYTYPES ({ "fire", "electricity", "cold", "acid", "sonic", "random" })
 
 void create() {
      ::create();
