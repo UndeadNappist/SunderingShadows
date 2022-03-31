@@ -10,7 +10,7 @@ void create()
     feat_category("Hierophant");
     feat_name("mastery of power");
     feat_prereq("Hierophant L1");
-    feat_desc("Reflecting on her knowledge, hierophant gains extended powers, able to imbue her spells with increased potency. This feats grants additional caster levels to any cast spells.");
+    feat_desc("Reflecting on her knowledge, hierophant gains extended powers, able to imbue her spells with increased potency. This feats grants two additional caster levels to any cast spells from the hierophant's base class.");
     permanent(1);
 }
 
