@@ -17,7 +17,7 @@ void create()
     set_damage_desc("15% evasion chance");
     set_description("This spell allows the caster to take on a translucent, almost gaseous form. "+
     "While active it allows the caster to have a higher chance of avoiding physical attacks as "+
-    "well as providing some protection from non physical attacks.");
+    "well as providing some protection from non physical attacks. This spell typically can not offer protection to those wearing armor.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);

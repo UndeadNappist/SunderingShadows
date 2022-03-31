@@ -19,7 +19,7 @@ void create()
     feat_name("telekinetic hurl");
     feat_prereq("Psion (Kineticist) L2");
     feat_syntax("teleinetic_hurl [TARGET]");
-    feat_desc("The kineticist can spen their Psionic Focus to hurl small objects at their foe, causing bludgeoning damage on a ranged touch attack. If no target is designated, this feat will target your current attacker.");
+    feat_desc("The kineticist can spend their Psionic Focus to hurl small objects at their foe, causing bludgeoning damage on a ranged touch attack. If no target is designated, this feat will target your current attacker.");
     psionic(1);
 }
 
@@ -123,7 +123,7 @@ void execute_attack()
     
     damage = roll_dice(caster->query_prestige_level("psion"), 4);
     
-    tell_object(caster, "%^ORANGE%^Your stone smashes hard into" + target->QCN + " and they scream in pain!%^RESET%^");
+    tell_object(caster, "%^ORANGE%^Your stone smashes hard into " + target->QCN + " and they scream in pain!%^RESET%^");
     tell_object(target, "%^RED%^The stone smashes hard into you and you scream in pain!%^RESET%^");
     tell_room(place, "The stone smashes hard into " + target->QCN + " and they scream in pain!", ({ caster, target }));
     
