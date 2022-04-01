@@ -75,13 +75,15 @@ void create()
 }
 
 void reset(){
-   ::reset();
-   if(!present("torm guard")){
-      new(MON+"guard4")->move(TO);
-   }
-   if(!present("torm tax collector")){
-      new(MON+"tax_collector")->move(TO);
-   }
+    object guard;
+    
+    ::reset();
+    if(!present("torm guard")){
+        guard = new(MON+"guard");
+        guard->move(this_object());
+        guard->set_speed(0);
+    }
+    if(!present("torm tax collector")) new(MON+"tax_collector")->move(this_object());
 }
 
 void init(){
