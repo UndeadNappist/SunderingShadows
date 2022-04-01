@@ -8,7 +8,7 @@ void create(){
 
 set_exits(([
 "northwest" : BONE"18",
-"southeast" : BONE"15",
+"southwest" : BONE"15",
 
 ]));
 

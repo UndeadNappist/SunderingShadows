@@ -7,8 +7,8 @@ void create(){
    ::create();
 
 set_exits(([
-"southwest" : BONE"17",
-"southeast" : BONE"16",
+"southwest" : BONE"16",
+"southeast" : BONE"17",
 
 ]));
 

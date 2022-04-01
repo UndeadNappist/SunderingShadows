@@ -39,6 +39,7 @@ void create()
         "\n%^RESET%^%^ORANGE%^  Watts Baragoff, Arms and Armor of Serakii%^RESET%^%^RESET%^");
     set_property("lore difficulty", 20);
     set_property("id difficulty", 20);
+   set_value(5000);
 
     // Enchantment and Bonuses
     set_property("enchantment", 6);
