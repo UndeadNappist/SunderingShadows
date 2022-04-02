@@ -48,6 +48,8 @@ int freeme()
     ETO->set_tripped(0);
     
     effects = this_player()->query_property("status_effects");
+    if(!pointerp(effects))
+        effects = ({  });
     
     foreach(object eff in effects)
     {
