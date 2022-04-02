@@ -129,21 +129,24 @@ int toss(string str) {
    }
 
    if(ob->query_property("powdered")) return notify_fail("Jeez, isn't once enough for a little while?\n");
+   
+   if(this_player()->query_property("using device"))
+       return notify_fail("You're already busy using something...");
 
    if(!TP->kill_ob(ob,0)) return 1;
 
    tell_room(ETP, "%^BOLD%^%^CYAN%^You see "+TPQCN+" reach into a small bag, from which "+TP->query_subjective()+" pulls a handful of powder and throws it in the air!",({TP}));
    tell_object(TP,"%^BOLD%^%^CYAN%^You reach into the bag and grab a handful of powder and toss it!\n");
 
-   TP->set_paralyzed(2,"%^CYAN%^%^BOLD%^You are busy throwing the dust!%^RESET%^");
+   //TP->set_paralyzed(2,"%^CYAN%^%^BOLD%^You are busy throwing the dust!%^RESET%^");
 
    if(!ob->reflex_save(10 + TP->query_skill("thievery"))) {
      tell_room(ETP,"%^BOLD%^%^CYAN%^The cloud of dust formed by the powder billows toward "+ob->query_cap_name()+", and "+ob->query_subjective()+" tries to avoid the cloud, but is unsuccessful.",ob);
      tell_room(ETP,"%^BOLD%^%^CYAN%^The irritants in the dust quickly effect "+ob->query_cap_name()+"'s eyes causing "+ob->query_objective()+" to become paralyzed with stinging pain.",ob);
      tell_object(ob,"%^BOLD%^%^CYAN%^The dust cloud billows toward you. You try to avoid the cloud but it hit's you full in the face!\n");
      tell_object(ob,"%^BOLD%^%^CYAN%^The irritants in the dust quickly effect your eyes causing you to become paralyzed with stinging pain!\n");
-      ob->set_tripped(roll_dice(1,6), "%^BOLD%^%^YELLOW%^Your eyes are burning and searing with pain!%^RESET%^");
-      ob->set_temporary_blinded(roll_dice(1,6));
+      ob->set_tripped(1 + roll_dice(1,6), "%^BOLD%^%^YELLOW%^Your eyes are burning and searing with pain!%^RESET%^");
+      ob->set_temporary_blinded(1 + roll_dice(1,6));
       ob->set_property("powdered", 1);
       call_out("undo_incap", (ROUND_LENGTH * 12), ob);
    }
@@ -160,7 +163,16 @@ int toss(string str) {
       set_value(1);    // above only fixed value on a toss when already empty
       set("coin type","copper");
    }
+   
+   this_player()->set_property("using device", 1);
+   call_out("reset using", 6, this_player());
+   
    return 1;
+}
+
+void reset_using(object who)
+{
+    who && objectp(who) && who->remove_property("using device");
 }
 
 int undo_incap(object ob) {
