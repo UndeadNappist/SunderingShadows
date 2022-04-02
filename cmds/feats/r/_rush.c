@@ -385,14 +385,15 @@ void miss_mess(object play,object targ) {
 	mystyle = (string)play->query_fighter_style();
 	etp = environment(play);
 
-    if(play->query_property("shapeshifted"))
-    {
+    //if(play->query_property("shapeshifted"))
+    //{
         tell_object(play,"%^BOLD%^%^GREEN%^"+targ->QCN+" dodges to the side at the last instant and you miss, rushing past them!");
         tell_object(targ,"%^BOLD%^%^GREEN%^You dodge to the side at the last instant and "+play->QCN+" misses, rushing past you!");
         tell_room(etp,"%^BOLD%^%^GREEN%^Suddenly "+targ->QCN+" dodges to the side at the last instant and "+play->QCN+" misses, rushing past them!",({play,targ}));
-        return;
-    }
+    //    return;
+    //}
 
+    /*
 	switch(mystyle)
 	{
 	case "peasant":			tell_object(play,"%^BOLD%^%^YELLOW%^You trip as "+
@@ -469,6 +470,7 @@ void miss_mess(object play,object targ) {
 								""+targ->QS+" side-steps the attack and you sprawl "+
 								"on the ground!");
 	}
+    */
 	return;
 }
 
