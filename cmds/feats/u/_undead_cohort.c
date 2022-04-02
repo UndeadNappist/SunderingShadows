@@ -17,8 +17,8 @@ void create()
     
 The Bone Golem can also be customized through several commands, which will allow you to change its description:
 
-  'steed short [DESCRIPTION]' - Changes the short description of the golem.
-  'steed long  [DESCRIPTION]' - Changes the long description of the golem.
+  'golem short [DESCRIPTION]' - Changes the short description of the golem.
+  'golem long  [DESCRIPTION]' - Changes the long description of the golem.
 
   To have the bonded steed follow you, use 'golem follow'.  
   To command the bone golem, use %^ORANGE%^<golem command %^ULINE%^ACTION%^RESET%^ORANGE%^>.%^RESET%^");

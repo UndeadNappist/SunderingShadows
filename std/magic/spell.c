@@ -1866,6 +1866,12 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
             place->set_property("aoe_messages", ({ "%^BOLD%^%^WHITE%^(magical energies surge through the area)%^RESET%^" }));
         }
     }
+    
+    if (query_traveling_aoe_spell())
+    {
+        if(!caster->query_property("travaoe"))
+            caster->set_property("travaoe", 1);
+    }
 
     if (spell_type == "potion") {
         TO->spell_effect(prof);
