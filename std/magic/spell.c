@@ -1804,6 +1804,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     }
 
     if(has_bonus_type()) {
+        this_object()->remove();
         return;
     }
 
