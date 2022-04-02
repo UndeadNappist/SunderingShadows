@@ -100,6 +100,9 @@ int spread(string str)
         TP->send_paralyzed_message("info", TP);
         return 1;
     }
+    
+    if(this_player()->query_property("using device"))
+        return notify_fail("You're already busy using something...");
 
     if (member_array(exit, ETP->query_exits()) == -1) {
         write("That exit does not exist.");
