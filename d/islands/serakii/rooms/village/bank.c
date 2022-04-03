@@ -164,6 +164,11 @@ void create(){
         {
            new(MOBS"serith_guard")->move(TO);
         }
+        if(!present("teller"))
+        {
+           new(MOBS"felix")->move(TO);
+        }		
+		
 }
 
 

@@ -11,9 +11,12 @@ void create(){
    set_exits(([
 
           "north" : TOWN"6",
-          "east" : TOWN"8",
+        "east" : TOWN"8",
+        "south" : TOWN"bank",
+
 
    ]));
+            set_door("double doors",TOWN"bank","south",0);
 
 }
 
