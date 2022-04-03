@@ -12,7 +12,7 @@
 
 inherit FEAT;
 
-#define FEATTIMER 80
+#define FEATTIMER 60
 
 void create()
 {
@@ -21,7 +21,7 @@ void create()
     feat_category("RagePower");
     feat_name("renewed vigor");
     feat_syntax("renewed_vigor");
-    feat_desc("While raging, the barbarian can tap into a well of vigor deep within themselves, healing for 1d8 (+1d8 per 4 barbarian levels) plus their constitution modifier.");
+    feat_desc("While raging, the barbarian can tap into a well of vigor deep within themselves, healing for 20 + 1d8 (+1d8 per 4 barbarian levels) plus their constitution modifier.");
     feat_prereq("Barbarian");
 }
 
@@ -107,7 +107,7 @@ void execute_attack()
     tell_object(caster,"%^BOLD%^%^GREEN%^You tap into some deep well of vigor within you and you feel yoru wounds fade.%^RESET%^");
     tell_room(place,"%^BOLD%^%^GREEN%^"+caster->QCN+" reaches deep down and " + caster->QP + " wounds seem to fade.%^RESET%^",({caster}));
     
-    amount = (1 + caster->query_prestige_level("barbarian") / 4) * roll_dice(1, 8);
+    amount = 20 + (1 + caster->query_prestige_level("barbarian") / 4) * roll_dice(1, 8);
     amount += BONUS_D->query_stat_bonus(caster, "constitution");
     caster->add_hp(amount);
     
