@@ -1297,8 +1297,9 @@ string query_long(string unused)
         }
     }
     /* sub = capitalize(query_subjective()); */
-    /*
+    
     sub = "They";
+    /*
     if (userp(TO)) {
         height = TO->query_player_height();
         if (objectp(shape)) {
