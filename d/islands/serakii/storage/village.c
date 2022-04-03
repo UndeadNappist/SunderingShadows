@@ -1,7 +1,7 @@
 #include <std.h>
 #include "../serakii.h"
 
-inherit CROOM;
+inherit VAULT;
 
 string seas;
 
