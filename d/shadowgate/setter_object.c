@@ -7,7 +7,9 @@ inherit OBJECT;
 
 // Skip to MODULES section to write new module.
 
-string *ROLL_CHAIN = ({"class", "gender", "race", "subrace", "template", "age", "stat_mod", "stats", "height", "weight", "body_type", "hair_color", "eye_color", "language", "alignment", "deity", "class_special"});
+//string *ROLL_CHAIN = ({"class", "gender", "race", "subrace", "template", "age", "stat_mod", "stats", "height", "weight", "body_type", "hair_color", "eye_color", "language", "alignment", "deity", "class_special"});
+
+string *ROLL_CHAIN = ({"class", "gender", "race", "subrace", "template", "age", "stat_mod", "stats", "body_type", "hair_color", "eye_color", "language", "alignment", "deity", "class_special"});
 
 /**
  * @file
@@ -179,6 +181,8 @@ _finalize(){
 
         call_other(TO, "build_" + i);
     }
+    build_height();
+    build_weight();
 
     set_long("%^WHITE%^%^BOLD%^This strange object radiates power the likes of which you have never before
 seen. It seems to be dormant at the time.");
@@ -1183,12 +1187,20 @@ build_stats()
 
 build_height()
 {
-    ETO->set_player_height(char_sheet["height"]);
+    string racefile = "/std/races/" + char_sheet["race"];
+    
+    int minh = racefile->height_base(char_sheet["gender"]);
+    int maxh = minh + racefile->height_mod(char_sheet["gender"]);
+    ETO->set_player_height((minh + maxh) / 2);
 }
 
 build_weight()
 {
-    ETO->set_player_weight(char_sheet["weight"]);
+    string racefile = "/std/races/" + char_sheet["race"];
+
+    int minh = racefile->weight_base(char_sheet["gender"]);
+    int maxh = minh + racefile->weight_mod(char_sheet["gender"]);
+    ETO->set_player_weight(20 + (minh + maxh) / 2);
 }
 
 build_body_type()

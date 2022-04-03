@@ -1297,6 +1297,7 @@ string query_long(string unused)
         }
     }
     /* sub = capitalize(query_subjective()); */
+    /*
     sub = "They";
     if (userp(TO)) {
         height = TO->query_player_height();
@@ -1313,6 +1314,7 @@ string query_long(string unused)
         }
         reg += "%^BOLD%^" + sub + " are approximately " + height + " inches (" + height / 12 + "ft " + height % 12 + "in) tall and " + weight + " pounds.%^RESET%^\n";
     }
+    */
 
     x = ((player_data["general"]["hp"] * 100) / (player_data["general"]["max_hp"]) + 1);
     if (x > 90) {
