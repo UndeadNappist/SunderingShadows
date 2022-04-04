@@ -114,7 +114,7 @@ int smash_fun(string str){
         if(player->query("wailing isle quest") == 5){
             tell_object(player, "%^RESET%^%^CRST%^%^C108%^The files that Mister Brookes mentioned catch your eye and you grab them up quickly. The rest of the paperwork doesn't look useful at all.%^CRST%^\n");
             tell_room(room, "%^RESET%^%^CRST%^%^C108%^"+playername+"%^RESET%^%^CRST%^%^C108%^ grabs up a few files.%^CRST%^", player);
-            taxes = new("/realms/chernobog/areas/wailing_isle/obj/taxes");
+            taxes = new("/d/dagger/islands/wailing_isle/obj/taxes");
             taxes->move(player);
             player->set("wailing isle quest", 6);
         }
@@ -259,7 +259,7 @@ void pick_cabinet(object room, object player, object lockpicks, string playernam
     if(player->query("wailing isle quest") == 5){
         tell_object(player, "%^RESET%^%^CRST%^%^C108%^The files that Mister Brookes mentioned catch your eye and you grab them up quickly. The rest of the paperwork doesn't look useful at all.%^CRST%^");
         tell_room(room, "%^RESET%^%^CRST%^%^C108%^"+playername+"%^RESET%^%^CRST%^%^C108%^ grabs up a few files.%^CRST%^", player);
-        new("/realms/chernobog/areas/wailing_isle/obj/taxes")->move(player);
+        new("/d/dagger/islands/wailing_isle/obj/taxes")->move(player);
         player->set("wailing isle quest", 6);
         player->remove_property("picking cabinet");
         return;
