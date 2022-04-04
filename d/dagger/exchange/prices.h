@@ -2,8 +2,8 @@
 
 
 //LUMBER
-int Lumber_Verbobone = 11000;
-int Lumber_Tharis = 96000;
+int Lumber_Verbobone = 50000;
+int Lumber_Tharis = 120000;
 
 //STONE
 
