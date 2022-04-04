@@ -27,6 +27,6 @@ void create(){
     "A %^C062%^cloaked man%^CRST%^ stands far from the %^C242%^altar%^CRST%^, watching for awhile, taking notes of who comes and goes before %^C245%^disappearing%^CRST%^ himself.",
     "A caravan of merchants laden with %^C241%^ore %^CRST%^and %^C094%^lumber %^CRST%^passes by on the road.",
     "A man walks in. He holds out a %^C214%^contract %^CRST%^and tears it up, resting his forehead on the %^C242%^altar %^CRST%^a moment before leaving.",
-    "A %^C242%^soldier%^CRST%^, wearing the garb of a guard of the Shadow guard enters. She removes her %^C186%^tabbard%^CRST%^, her %^C145%^epaulets%^CRST%^, and anything marking her as a guard. Touching the flat of her %^C241%^blade%^CRST%^ to her forehead she whispers a soft prayer before walking out, %^C191%^armed %^CRST%^and %^C069%^unbound%^CRST%^.",     
+    "A %^C242%^soldier%^CRST%^, wearing indistinct armor enters. She removes her %^C186%^tabbard%^CRST%^, her %^C145%^epaulets%^CRST%^, and anything marking her as a guard. Touching the flat of her %^C241%^blade%^CRST%^ to her forehead she whispers a soft prayer before walking out, %^C191%^armed %^CRST%^and %^C069%^unbound%^CRST%^.",     
     }),0);
 }
