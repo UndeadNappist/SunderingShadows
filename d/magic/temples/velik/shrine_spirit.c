@@ -16,7 +16,7 @@ void create(){
     set_invis();
     set_hidden(1);
 
-    set_emotes(10, ({
+    set_emotes(2, ({
 
     "A sole %^C060%^elven man%^CRST%^ in a %^C094%^robe %^CRST%^walks up and drops a %^C238%^broken shackle%^CRST%^ on the %^C238%^pile%^CRST%^, nodding to the %^C241%^altar %^CRST%^as he does, before silently rejoining the %^C060%^road%^CRST%^.",
     "A small squad of %^C241%^soldiers %^CRST%^enter. They each offer a small prayer before dropping %^C191%^handfuls of coins%^CRST%^ in the %^C060%^box%^CRST%^.",
