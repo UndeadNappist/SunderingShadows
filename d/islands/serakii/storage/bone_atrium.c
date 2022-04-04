@@ -22,7 +22,7 @@ void create() {
 	has_a_clue = 0;
     set_items(([
         ({"wall","walls"}) : "The walls of the tower are pure %^C193%^bleached bone%^CRST%^. It is not a collection of %^C193%^bones %^CRST%^either, it is as if the whole tower is a single %^C193%^bone %^CRST%^that has been carved and polished.",
-        ({"floor","tiles"}) : "The floor is tiled with different %^C245%^shades of stone%^CRST%^, forming a chaotic yet fascinating pattern. It has been placed with care anad obvious craftsmanship.",
+        ({"floor","tiles"}) : "The floor is tiled with different %^C245%^shades of stone%^CRST%^, forming a chaotic yet fascinating pattern. It has been placed with care and obvious craftsmanship.",
         ({"lights","lanterns"}) : "Delicate lanterns made of %^C231%^silver %^CRST%^and %^C086%^glass %^CRST%^hang from the walls and cast a %^C206%^magical pink light%^CRST%^ across the room.",
         ({"plants","pots"}) : "The whole room is packed with pots of %^C034%^plants %^CRST%^in a variety of pot sizes. They range from %^C041%^small flowers%^CRST%^, to %^C058%^giant pots %^CRST%^with %^C028%^ferns %^CRST%^from %^C202%^exotic locales%^CRST%^. Obviously a collector of some love has curated this collection and kept them alive.",
     ]));

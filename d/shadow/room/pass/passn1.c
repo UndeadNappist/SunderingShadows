@@ -27,6 +27,7 @@ MELNMARN
 
     set_exits(([
       "north" : PASSDIR+"pass4",
-      "south" : PASSDIR+"passn2"
+      "south" : PASSDIR+"passn2",
+      "west" : "/d/magic/temples/velik/shrine",
       ]));
 }
