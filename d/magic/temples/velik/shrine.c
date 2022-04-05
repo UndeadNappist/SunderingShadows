@@ -228,7 +228,7 @@ int read_fun(string str,object who){
 
     if((str == "heavy text") || (str == "engraving")){
         tell_object(TP,"%^C187%^you read the text around the stone "+
-        "slab..\n%^CRST%^\n %^C148%^Every freed soul who walks this road bears the name Velik on their lips, the freedom of Velik as their wings, and the strength of Velik in their heart. We will continue to free the slaves, topple the machines of slavery, and end the tryrany of corrupt governments. Stay awhile and shed your chains brother and sister, for tomorrow we fight.%^CRST%^\n");
+        "slab..\n%^CRST%^\n %^C148%^Every freed soul who walks this road bears the name Velik on their lips, the freedom of Velik as their wings, and the strength of Velik in their heart. We will continue to free the slaves, topple the machines of slavery, and end the tyranny of corrupt governments. Stay awhile and shed your chains brother and sister, for tomorrow we fight.%^CRST%^\n");
         tell_room(ETP,"%^C187%^"+TPQCN+" %^C187%^reads the writing.%^RESET%^",TP);
 
        return 1;
