@@ -78,5 +78,6 @@ void open_shop(){
     tell_room(EETO, "Villagers arrive as the market opens.");
     set_smell("default","You smell %^C137%^cooked foods%^CRST%^ all around you.");
     set_listen("default","The sounds of the %^C058%^busy market%^CRST%^ are almost overwhelming.");
+	return;
 }
 
