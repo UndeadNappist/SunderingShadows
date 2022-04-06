@@ -44,7 +44,7 @@ void create() {
 		"%^C055%^organized%^C111%^, though without a keen eye "+
 		"or a guide to their movements, there is more chaos here "+
 		"than organization. The ground is %^C094%^muddy %^C111%^with "+
-		"the recent %^C019%^rains %^C111%^and %^C017%^puddles of "+
+		"the recent %^C019%^rains %^C111%^and %^C019%^puddles of "+
 		"water %^C111%^pool near the %^C246%^tents%^C111%^. Large "+
 		"canvas tents line up on either side of you and look to be "+
 		"for officers and supplies. There are %^C094%^catapults "+

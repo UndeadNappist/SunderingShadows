@@ -24,7 +24,7 @@ void create() {
 }
 
 int preSpell() {
-   if(((int)caster->query_property("slide time")+DELAY) > time()){
+   if(caster->cooldown("slide time")){
       tell_object(caster,"You need to take a moment's rest before you can try that again.");
       return 0;
    }
@@ -67,8 +67,7 @@ void spell_effect(int prof) {
     }
     caster->clear_followers();
     caster->move_player(dest);
-    caster->remove_property("slide time");
-    caster->set_property("slide time",time());
+    caster->add_cooldown("slide time", DELAY);
     if(!caster->query_invis()){
        tell_room(dest,"%^RESET%^%^BLUE%^"+caster->QCN+" steps quite suddenly from a patch of shadow.%^RESET%^",caster);
     }

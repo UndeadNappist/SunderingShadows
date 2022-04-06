@@ -113,7 +113,7 @@ void stuns(object targ)
     if(!load_object("/daemon/saving_throw_d")->do_save(targ, 75, "will") &&
         !targ->query_property("no paralyze")) {
         tell_room(ETO, me + "%^RESET%^%^BLUE%^'s eyes glow an " +
-                  "intense%^BOLD%^%^RED%^ RED %^RESET%^%^BLUE%^hypnotizing"
+                  "intense%^BOLD%^%^RED%^ RED %^RESET%^%^BLUE%^hypnotizing "
                   + targ->query_cap_name() + "!", targ);
 
         tell_object(targ, me + "%^RESET%^%^BLUE%^'s eyes glow an" +
