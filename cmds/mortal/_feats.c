@@ -562,7 +562,7 @@ int cmd_feats(string str)
                 }
                 else
                 {
-                    if(FEATS_D->get_feat_type(this_player(), rfeat) != "bonus")
+                    if(FEATS_D->get_feat_type(this_player(), rfeat) != "racial")
                     {
                         tell_object(this_player(), "%^YELLOW%^Moving %^BLUE%^" + rfeat + "%^YELLOW%^ feat to racial feats.%^RESET%^");
                         num_feats++;
