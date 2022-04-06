@@ -1,6 +1,7 @@
 #include <std.h>
 #include <security.h>
 #include <dirs.h>
+#include <daemons.h>
 #define SAVE_FILE "/daemon/save/saved_maps"
 #define ERROR_LOG "Misc_Errors"
 #define SUCC_LOG "maps_log"
@@ -29,9 +30,15 @@ int low_y();
 int check_user(string name)
 {
     string file;
+    int time_since_last;
     
     file = sprintf("%s/%s/%s", DIR_USERS, name[0..0], name);
     if(file_size(file + ".o") < 0)
+        return 0;
+    
+    time_since_last = time() - USERCALL->user_call(name, "query_quit_time");
+    
+    if(time_since_last > 16536000)
         return 0;
     
     return 1;
