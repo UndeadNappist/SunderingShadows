@@ -32,7 +32,7 @@ void create()
     "It is somewhat alarming that these lances have turned up recently on Eldebaro. Supposedly they "+
     "are wielded by several apparent Knights who have lost their sanity and roam the island. Some stories "+
     "are suggesting that these Knights are the very same ancient order that once served Lysara. Others "+
-    "say that they are the ancestors of those Knights. Whichever story is true, if either, remains a "+
+    "say that they are the descendants of those Knights. Whichever story is true, if either, remains a "+
     "mystery.%^RESET%^");
     
     set_property("lore difficult", 25);
