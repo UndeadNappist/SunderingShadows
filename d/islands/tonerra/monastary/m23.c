@@ -21,7 +21,7 @@ void create(){
 Secrets of time, space, history and the future reside here. Large
 old %^ORANGE%^shelves%^RESET%^ rise high into the ceiling here. %^MAGENTA%^Books%^RESET%^ are stacked neatly
 in some places, thrown in in others. %^BOLD%^Dust%^RESET%^ covers most of the stacks,
-but some of them look as if they are frequently used. The monks must study here. An old %^BOLD%^metal staircase%^RESET%^ twists downward here. Looking up, you see
+but some of them look as if they are frequently used. The monks must study here. An old %^BOLD%^metal staircase%^RESET%^ twists downward here. Looking down, you see
 another level below you.
 OLI
    );

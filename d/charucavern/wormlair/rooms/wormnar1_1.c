@@ -14,5 +14,5 @@ void create()
     set_position(6);
     set_fall_to("wormtun1_1");
     set_climb_exits((["climb": ({OE, 20, 30, 100}), "descend" : ({WROOMS+"wormnar1_2", 20, 10, 100}) ]));
-    set_fall_desc("%^BOLD%^%^RED%^You stumble and fall!^RESET%^");
+    set_fall_desc("%^BOLD%^%^RED%^You stumble and fall!%^RESET%^");
 }
