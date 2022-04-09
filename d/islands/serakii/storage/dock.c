@@ -11,9 +11,9 @@ void create() {
     set_terrain(VILLAGE);
     set_travel(RUTTED_TRACK);
     set_property("indoors",0);
-    set_name("abandoned docks");
+    set_name("busy docks");
     set_property("light",2);
-    set_short("%^RESET%^%^ORANGE%^abandoned docks%^RESET%^");
+    set_short("%^RESET%^%^ORANGE%^busy docks%^RESET%^");
     seas = season(time());
     set_long("blah");
     switch(seas){

@@ -10,7 +10,7 @@ void create()
     ::create();
     set_property("no teleport", 1);
     set_properties((["light" : 2, "indoors" : 1]));
-    set_short("Common Tools Storage");
+    set_short("Serakii market storage");
     set_long("market storage.");
     set_had_players(3);
 }
@@ -55,6 +55,9 @@ void reset()
     }
     if (!present("salad")) {
         new(OBJ"salad")->move(TO);
+    }
+    if (!present("wine")) {
+        new("d/antioch/antioch2/obj/wine_bottle.c")->move(TO);
     }
     if (!present("smoked fish")) {
         new(OBJ"smoked_fish")->move(TO);
