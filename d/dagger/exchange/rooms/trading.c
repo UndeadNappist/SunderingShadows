@@ -146,6 +146,11 @@ int quantity_asked,total;
             case "lumber from tharis":
                type = "Lumber_Tharis";
                total = quantity_asked*Lumber_Tharis;
+            break;           
+			
+			case "lumber from verbobone":
+               type = "Lumber_Verbobone";
+               total = quantity_asked*Lumber_Verbobone;
             break;
 
             case "stone from antioch":
@@ -282,6 +287,10 @@ int total,total2,total3,tax;
         switch(type){
             case "Lumber_Tharis":
                total2 = total*Lumber_Tharis;
+            break;
+			
+			case "Lumber_Verbobone":
+               total2 = total*Lumber_Verbobone;
             break;
 
             case "Stone_Antioch":
