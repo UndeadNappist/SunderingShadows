@@ -4083,7 +4083,7 @@ varargs int mind_immunity_check(object obj, string type)
         return 0;
     }
 
-    roll1 = random(20);
+    roll1 = roll_dice(1,20);
 
     if(roll1 > obj->query_property("mind_immunity"))
     {
