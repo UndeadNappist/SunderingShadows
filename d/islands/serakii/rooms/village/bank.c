@@ -175,7 +175,7 @@ void create(){
 
 string getBankId()
 {
-    return "serith";
+    return "graez";
 }
 
 
