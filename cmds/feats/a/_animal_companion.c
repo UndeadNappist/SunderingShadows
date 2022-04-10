@@ -58,7 +58,6 @@ void create()
   LEVEL  6 - Resistance
   LEVEL  9 - Precise Strikes
   LEVEL 15 - Stalwart
-  LEVEL 21 - Death Ward
 
 The Animal Companion will hide if you use the 'hide_in_shadows' command, allowing you to effectively sneak about with your faithful friend.
 
@@ -195,8 +194,8 @@ void execute_feat()
     companion->set_hd(comp_hd, 14);
     companion->set_attacks_num(2 + class_level / 8);
     companion->set_mlevel("fighter", comp_hd);
-    companion->set_max_hp(500 + ( 25 * comp_hd));
-    companion->set_hp(25 * comp_hd + 500);
+    companion->set_max_hp(50 + ( 25 * comp_hd));
+    companion->set_hp(25 * comp_hd + 50);
     companion->set_alignment(caster->query_alignment());
     companion->set_owner(caster);
 
@@ -228,8 +227,8 @@ void execute_feat()
         companion->set_monster_feats( ({ "evasion", "resistance", "precise strikes" }) );
     if(class_level >= 15)
         companion->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart" }) );
-    if(class_level >= 21)
-        companion->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart", "death ward" }) );
+    //if(class_level >= 21)
+    //    companion->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart", "death ward" }) );
 
     if(caster->query_chosen_animal() == arg)
     {
@@ -256,8 +255,8 @@ void execute_feat()
                 pack_animal->set_hd(comp_hd, 14);
                 pack_animal->set_attacks_num(2 + class_level / 8);
                 pack_animal->set_mlevel("fighter", comp_hd);
-                pack_animal->set_max_hp(500 + (25 * comp_hd));
-                pack_animal->set_hp(25 * comp_hd + 500);
+                pack_animal->set_max_hp(50 + (25 * comp_hd));
+                pack_animal->set_hp(25 * comp_hd + 50);
                 pack_animal->set_alignment(caster->query_alignment());
                 pack_animal->set_owner(caster);
                 pack_animal->set_property("damage resistance", 10);
@@ -288,8 +287,8 @@ void execute_feat()
                     pack_animal->set_monster_feats( ({ "evasion", "resistance", "precise strikes" }) );
                 if(class_level >= 15)
                     pack_animal->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart" }) );
-                if(class_level >= 21)
-                    pack_animal->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart", "death ward" }) );
+                //if(class_level >= 21)
+                //    pack_animal->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart", "death ward" }) );
             }
         }
     }
