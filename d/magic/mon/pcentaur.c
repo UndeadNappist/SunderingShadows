@@ -10,7 +10,9 @@ void create(){
    set_name("phantom centaur");
    set_short("%^RESET%^%^RED%^Shimmering phantom centaur");
    set_id(({"centaur","phantom","phantom centaur","construct"}));
-   set("not living",1);
+   //set("not living",1);
+   set_resistance_percent("negative energy", 100);
+   set_resistance_percent("positive energy", 100);
 
 
 

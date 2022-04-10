@@ -9,7 +9,9 @@ void create(){
 
    set_name("illusion");
    set_short("an illusion");
-   set("not living",1);
+   //set("not living",1);
+   set_resistance_percent("negative energy", 100);
+   set_resistance_percent("positive energy", 100);
    set_long("this is an illusion");
    set_gender("male");
    set_property("no animate",1);

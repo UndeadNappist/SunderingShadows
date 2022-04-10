@@ -9,7 +9,9 @@ void create(){
 
    set_name("phantom soldier");
    set_short("%^RESET%^%^RED%^Shimmering phantom soldier");
-   set("not living",1);
+   //set("not living",1);
+   set_resistance_percent("negative energy", 100);
+   set_resistance_percent("positive energy", 100);
 
    set_id(({"soldier","phantom","phantom soldier","construct","summoned monster"}));
    set_long("%^CYAN%^This shimmering form is a soldier. Translucent in some form, it seems very real in another.");

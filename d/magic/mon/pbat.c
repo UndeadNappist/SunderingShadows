@@ -10,7 +10,7 @@ void create(){
    set_name("phantom bat");
    set_short("%^RESET%^%^RED%^Shimmering phantom bat");
    set_id(({"bat","phantom","phantom bat","construct"}));
-   set("not living",1);
+   //set("not living",1);
 
    set_long(
 @OLI
@@ -21,6 +21,8 @@ OLI
    set_race("bat");
    set_gender("male");
     set_property("no animate",1);
+   set_resistance_percent("negative energy", 100);
+   set_resistance_percent("positive energy", 100);
    set_body_type("fowl");
    set_hd(10,1);
    set_stats("strength",10);
