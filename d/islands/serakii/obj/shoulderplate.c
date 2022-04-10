@@ -32,7 +32,7 @@ void create(){
 " warrior to the host of devas.%^RESET%^");
     set_property("lore difficulty",16);
     set_weight(5);
-    set_limbs(({"neck", "left arm", "right arm"}));
+    set_limbs(({"neck"}));
     set_type("clothing");
         set_value(20000);
     set_ac(2);
