@@ -20,11 +20,11 @@ varargs mixed user_call(string user, string func, mixed arg1, mixed arg2, mixed 
 
 private void restore_user(string user){
     string path;
+    mixed success;
     if(!user_exists(user)) return;
     seteuid(UID_ROOT);
     path = "/adm/save/users/";
     path += user[0..0]+"/";
-    path += user;
-    restore_object(path);
-
+    path += user;    
+    success = catch(restore_object(path));
 }
