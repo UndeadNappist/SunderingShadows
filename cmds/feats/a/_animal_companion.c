@@ -189,8 +189,8 @@ void execute_feat()
     companion->set_hd(comp_hd, 14);
     companion->set_attacks_num(2 + class_level / 8);
     companion->set_mlevel("fighter", comp_hd);
-    companion->set_max_hp(50 + (25 * comp_hd));
-    companion->set_hp(25 * comp_hd + 50);
+    companion->set_max_hp((500 + ( 25 * comp_hd));
+    companion->set_hp(25 * comp_hd + 500);
     companion->set_alignment(caster->query_alignment());
     companion->set_owner(caster);
 
@@ -250,8 +250,8 @@ void execute_feat()
                 pack_animal->set_hd(comp_hd, 14);
                 pack_animal->set_attacks_num(2 + class_level / 8);
                 pack_animal->set_mlevel("fighter", comp_hd);
-                pack_animal->set_max_hp(50 + (25 * comp_hd));
-                pack_animal->set_hp(25 * comp_hd + 50);
+                pack_animal->set_max_hp(500 + (25 * comp_hd));
+                pack_animal->set_hp(25 * comp_hd + 500);
                 pack_animal->set_alignment(caster->query_alignment());
                 pack_animal->set_owner(caster);
                 pack_animal->set_property("damage resistance", 10);

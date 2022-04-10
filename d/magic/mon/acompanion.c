@@ -217,9 +217,10 @@ void heart_beat()
     }
     else
     {
-        add_hp(query_max_hp() / 20);
         bonus = 0;
     }
+    
+    add_hp(query_max_hp() / 20);
 
     if(query_hp() < query_max_hp() / 2 && present("vial", this_object()))
         command("drink vial");
