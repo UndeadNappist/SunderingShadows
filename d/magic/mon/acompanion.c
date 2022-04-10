@@ -82,7 +82,7 @@ str = lower_case(str);
 target = present(str, environment(this_player()));
 
     if(!target || !objectp(target))
-        return;
+        return 1;
 
     tname = target->query_name();
     aname = capitalize(this_object()->query_name());
@@ -99,7 +99,7 @@ target = present(str, environment(this_player()));
   tell_room(room, "%^BOLD%^" + sprintf("%s responds to the whistle and leaps into the air, knocking %s to the ground!", aname, tname));
             target && target->set_tripped(2, "%^WHITE%^You are struggling to regain your footing! %^RESET%^");
 				owner->set_property("sic", 1);
-                owner->add_cooldown("sic", 30);
+                owner->add_cooldown("sic", 48);
   return 1;
 } 
 
@@ -356,9 +356,14 @@ void special_attack(object target)
 void die(object ob)
 {
     //"/daemon/yuck_d"->save_inventory(this_object(), SAVEDIR + "acompanion");
-    owner && tell_object(owner, "%^RED%^Your animal companion screams in agony as it passes from this world!%^RESET%^");
-    owner && owner->remove_property("animal_companion");
-    owner && owner->remove_property("has_elemental");
+    if(owner && objectp(owner))
+    {    
+        tell_object(owner, "%^RED%^Your animal companion screams in agony as it passes from this world!%^RESET%^");
+        owner->add_cooldown("animal companion", 300);
+        owner->remove_property("animal_companion");
+        owner->remove_property("has_elemental");
+    }
+    
     remove();
 }
 

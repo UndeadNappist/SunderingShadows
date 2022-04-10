@@ -58,6 +58,7 @@ void create()
   LEVEL  6 - Resistance
   LEVEL  9 - Precise Strikes
   LEVEL 15 - Stalwart
+  LEVEL 21 - Death Ward
 
 The Animal Companion will hide if you use the 'hide_in_shadows' command, allowing you to effectively sneak about with your faithful friend.
 
@@ -69,6 +70,7 @@ The Animal Companion can also be customized through several commands, which will
   'animal long  [DESCRIPTION]' - Changes the long description of the companion.
 
   To have the animal companion follow you, use 'animal follow'.
+  If you animal companion dies, you'll have to wait for a while before summoning it again.
   To command the animal companion, use %^ORANGE%^<animal command %^ULINE%^ACTION%^RESET%^ORANGE%^>.%^RESET%^");
 
     set_target_required(0);
@@ -126,8 +128,13 @@ void execute_feat()
         tell_object(caster, "You can't summon your animal companion during combat!");
         return;
     }
-
-
+    
+    if(caster->cooldown("animal companion"))
+    {
+        tell_object(caster, "You can't summon your animal companion yet!");
+        return;
+    }
+    
     companion = caster->query_property("animal_companion");
     pack = caster->query_protectors();
     pack = filter_array(pack, (: $1->query_pack_member() :));
@@ -215,6 +222,8 @@ void execute_feat()
         companion->set_monster_feats( ({ "evasion", "resistance", "precise strikes" }) );
     if(class_level >= 15)
         companion->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart" }) );
+    if(class_level >= 21)
+        companion->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart", "death ward" }) );
 
     if(caster->query_chosen_animal() == arg)
     {
@@ -222,7 +231,7 @@ void execute_feat()
         if(FEATS_D->usable_feat(caster, "chosen animal"))
         {
             companion->set_property("damage resistance", 10);
-            companion->set_monster_feats( ({ "toughness", "improved toughness", "evasion", "resistance", "precise strikes", "stalwart", "rapid strikes" }) );
+            companion->set_monster_feats( ({ "toughness", "improved toughness", "evasion", "resistance", "precise strikes", "stalwart", "rapid strikes", "death ward" }) );
             companion->add_attack_bonus(2);
             companion->add_damage_bonus(2);
         }
@@ -273,6 +282,8 @@ void execute_feat()
                     pack_animal->set_monster_feats( ({ "evasion", "resistance", "precise strikes" }) );
                 if(class_level >= 15)
                     pack_animal->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart" }) );
+                if(class_level >= 21)
+                    pack_animal->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart", "death ward" }) );
             }
         }
     }
