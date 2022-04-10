@@ -52,7 +52,7 @@ void create()
     feat_prereq("Druid L1 or Ranger L4");
     feat_classes(({"druid", "ranger"}));
     feat_syntax("animal_companion [TYPE] to summon or animal_companion to dismiss");
-    feat_desc("Summons or dismisses your faithful animal companion. This companion will follow you through thick and thin, will level up with you, and gains several perks as it grows. The TYPE of animal will determine its base stats and natural armor.  The animal companion gains its own feats as follows:
+    feat_desc("Summons or dismisses your faithful animal companion. This companion will follow you through thick and thin, will level up with you, and gains several perks as it grows. The TYPE of animal will determine its base stats and natural armor.  The animal companion levels with the ranger and gains its own feats as follows:
 
   LEVEL  3 - Evasion
   LEVEL  6 - Resistance
@@ -70,7 +70,7 @@ The Animal Companion can also be customized through several commands, which will
   'animal long  [DESCRIPTION]' - Changes the long description of the companion.
 
   To have the animal companion follow you, use 'animal follow'.
-  If you animal companion dies, you'll have to wait for a while before summoning it again.
+  If your animal companion dies, you'll have to wait for a while before summoning it again.
   To command the animal companion, use %^ORANGE%^<animal command %^ULINE%^ACTION%^RESET%^ORANGE%^>.%^RESET%^");
 
     set_target_required(0);
@@ -122,6 +122,12 @@ void execute_feat()
         return;
     }
 
+    if (caster->query_casting())
+    {
+        tell_object(caster, "%^BOLD%^You can't summon your animal companion while you're casting a spell.%^RESET%^");
+        dest_effect();
+        return;
+    }
 
     if(sizeof(caster->query_attackers()))
     {
