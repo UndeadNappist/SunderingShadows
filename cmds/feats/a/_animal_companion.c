@@ -227,8 +227,8 @@ void execute_feat()
         companion->set_monster_feats( ({ "evasion", "resistance", "precise strikes" }) );
     if(class_level >= 15)
         companion->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart" }) );
-    //if(class_level >= 21)
-    //    companion->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart", "death ward" }) );
+    if(class_level >= 21)
+        companion->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart", "death ward" }) );
 
     if(caster->query_chosen_animal() == arg)
     {
@@ -287,8 +287,8 @@ void execute_feat()
                     pack_animal->set_monster_feats( ({ "evasion", "resistance", "precise strikes" }) );
                 if(class_level >= 15)
                     pack_animal->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart" }) );
-                //if(class_level >= 21)
-                //    pack_animal->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart", "death ward" }) );
+                if(class_level >= 21)
+                    pack_animal->set_monster_feats( ({ "evasion", "resistance", "precise strikes", "stalwart", "death ward" }) );
             }
         }
     }
