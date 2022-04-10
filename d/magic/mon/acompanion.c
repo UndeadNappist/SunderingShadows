@@ -360,7 +360,7 @@ void die(object ob)
     if(owner && objectp(owner))
     {    
         tell_object(owner, "%^RED%^Your animal companion screams in agony as it passes from this world!%^RESET%^");
-        owner->add_cooldown("animal companion", 300);
+        owner->add_cooldown("animal companion", 180);
         owner->remove_property("animal_companion");
         owner->remove_property("has_elemental");
     }
