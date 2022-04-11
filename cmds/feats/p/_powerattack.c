@@ -16,7 +16,7 @@ void create()
         + "\nThis feat shift values between attack and damage bonuses."
         + "\nYou can use this feat once and one additional time for every 4 character levels to a max bonus of 5.");
         set_target_required(0);
-    set_required_for(({ "shatter","sunder","rush" }));
+    set_required_for(({ "shatter","sunder" }));
 }
 
 int allow_shifted()
