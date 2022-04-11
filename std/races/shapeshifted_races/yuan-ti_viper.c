@@ -6,7 +6,7 @@ void create(){
     ::create();
     set_attack_limbs( ({ "fangs" }) );
     set_new_damage_type("piercing");
-    set_limbs( ({ "mouth","head","torso","right foreleg","right forepaw","left foreleg","left forepaw","right rear leg","right rear paw","left rear leg","left rear paw","tail" }) );
+    set_limbs( ({ "head","torso","tail" }) );
     set_attack_functions( ([ "fangs" : (:TO,"shape_attack":) ]) );
     set_ac_bonus(0);
     set_base_attack_num(2);
