@@ -149,11 +149,11 @@ tell_object(TP,
 @CIRCE
      %^BOLD%^%^WHITE%^ Price List
 
-\tTiny Tattoo\t%^YELLOW%^10,000 gold
-%^BOLD%^%^WHITE%^\tSmall Tattoo\t%^YELLOW%^15,000 gold
-%^BOLD%^%^WHITE%^\tMedium Tattoo\t%^YELLOW%^20,000 gold
-%^BOLD%^%^WHITE%^\tLarge Tattoo\t%^YELLOW%^25,000 gold
-%^BOLD%^%^WHITE%^\tHuge Tattoo\t%^YELLOW%^30,000 gold
+%^BOLD%^%^WHITE%^     Tiny Tattoo       %^YELLOW%^10,000 gold
+%^BOLD%^%^WHITE%^     Small Tattoo      %^YELLOW%^15,000 gold
+%^BOLD%^%^WHITE%^     Medium Tattoo     %^YELLOW%^20,000 gold
+%^BOLD%^%^WHITE%^     Large Tattoo      %^YELLOW%^25,000 gold
+%^BOLD%^%^WHITE%^     Huge Tattoo       %^YELLOW%^30,000 gold
 
      %^BOLD%^%^WHITE%^%^B_RED%^Tattoo Removals are Three Times the%^RESET%^
      %^BOLD%^%^WHITE%^%^B_RED%^Original Purchase Price%^RESET%^

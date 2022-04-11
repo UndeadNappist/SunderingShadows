@@ -8,7 +8,7 @@ object dragon;
 void create(){
    ::create();
 
-  set_no_clean(1);
+   set_no_clean(1);
    set_name("dragon's home");
    set_short("Dragon' Home");
    set_long("This is the inside of the dormant volcano. The emerald dragon resides here.");
