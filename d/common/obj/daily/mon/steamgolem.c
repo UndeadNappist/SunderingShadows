@@ -130,8 +130,10 @@ void buzz_fun(object targ){
             return;
         }
         else{
+            if(!objectp(targ)) continue;
             tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C124%^"+targ->QCN+" %^RESET%^%^CRST%^%^C124%^is torn apart by the whirling buzz saw!%^CRST%^");
             targ->die();
+            attackers = query_attackers();
             continue;
         }
     }

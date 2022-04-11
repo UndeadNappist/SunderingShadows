@@ -174,8 +174,10 @@ void slam_attack(){
                 return;
             }
         }
+        if(!objectp(targ)) continue;
         tell_room(ETO, "%^RESET%^%^CRST%^%^C124%^With a quick snap of its mouth, it swallows "+targ->query_cap_name()+" %^RESET%^%^CRST%^%^C124%^whole!%^CRST%^");
         targ->die();
+        attackers = query_attackers();
         continue;
     }
     return;
