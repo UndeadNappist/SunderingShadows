@@ -10,7 +10,7 @@ void create()
     feat_category("RagePower");
     feat_name("reckless abandon");
     feat_prereq("Barbarian");
-    feat_desc("While raging, the barbarian gains an additional +1 attack bonus at the cost of an additional -1 penalty to armor class.");
+    feat_desc("While raging, the barbarian gains an additional +2 attack bonus at the cost of an additional -2 penalty to armor class.");
     permanent(1);
 }
 
