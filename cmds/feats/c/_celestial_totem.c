@@ -34,7 +34,7 @@ int prerequisites(object ob)
     FEATS_D->has_feat(ob, "spire totem") ||
     FEATS_D->has_feat(ob, "daemon totem") ||
     FEATS_D->has_feat(ob, "ancestor totem") ||
-    FEATS_D->has_feat(ob, "atavism totem"))
+    FEATS_D->has_feat(ob, "spirit totem"))
     {
         dest_effect();
         return 0;

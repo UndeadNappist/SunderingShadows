@@ -7,6 +7,7 @@ inherit FEAT;
 string rage_class;
 int tireless_rage = 0;
 int spirit_warrior = 0;
+int spirit_totem = 0;
 int unstop = 0;
 
 object* exclude = ({});
@@ -119,6 +120,7 @@ void execute_feat()
     }
 
     caster->set_property("raged", 1);
+            
     caster->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
     caster->set_property("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
     call_out("enable_rage", ROUND_LENGTH);
@@ -171,6 +173,20 @@ void activate_rage(int direction)
         else
             caster->remove_property("darkvision");
     }
+    
+    //SPIRIT TOTEM
+    if(FEATS_D->usable_feat(caster, "spirit totem"))
+    {
+        if(caster->query_property("travaoe"))
+            tell_object(caster, "Spirit totem cannot activate while another traveling AOE spell is active.");
+        else
+        {
+            tell_object(caster, "%^BOLD%^Spirit whisps surround you in a protective swarm!%^RESET%^");
+            spirit_totem = 1;
+            caster->set_property("travaoe", 1);
+        }
+    }
+            
 
     if (direction == -1 && caster->query_hp() > caster->query_max_hp()) {
         caster->set_hp(caster->query_max_hp());
@@ -340,6 +356,28 @@ void execute_attack()
             caster->cause_typed_damage(target, target->return_target_limb(), dam, "slashing");
         }
     }
+    
+    if(spirit_totem && sizeof(attackers))
+    {
+        int splash_damage = roll_dice(clevel / 2 + 1, 6) + BONUS_D->query_stat_bonus(caster, "charisma");
+
+        tell_room(place, "%^CYAN%^BOLD%^The whisps swarm around " + caster->query_cap_name() + ", slamming into " + caster->query_possessive() + " enemies with necrotic energy!%^RESET%^", caster);
+        tell_object(caster, "%^CYAN%^BOLD%^Your whisps slam into your enemies with necrotic energy!%^RESET%^");  
+        
+        foreach(object enemy in attackers)
+        {
+            if(!objectp(enemy))
+                continue;
+            
+            if(environment(enemy) != environment(caster))
+                continue;
+            
+            if(enemy->is_undead())
+                continue;
+            
+            enemy->cause_typed_damage(enemy, "torso", splash_damage, "negative energy");
+        }
+    }   
 
     if (objectp(place)) {
         place->addObjectToCombatCycle(TO, 1);
@@ -356,6 +394,9 @@ void dest_effect()
             caster->remove_property_value("active_feats", ({ TO }));
             caster->remove_property("raged");
             caster->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
+            if(spirit_totem)
+                caster->remove_property("travaoe");
+            
             activate_rage(-1);
         }
     }
