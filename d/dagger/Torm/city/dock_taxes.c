@@ -101,9 +101,6 @@ int smash_fun(string str){
             guard = new(MON"guard");
             guard->move(room);
             guard->force_me("kill "+player->query_name()+"");
-            guard = new(MON"guard");
-            guard->move(room);
-            guard->force_me("kill "+player->query_name()+"");
         }
         return 1;
     }
@@ -122,9 +119,6 @@ int smash_fun(string str){
             tell_object(player, "%^RESET%^%^CRST%^%^C059%^None of this paperwork looks useful at all.%^CRST%^\n");
         }
         tell_room(room, "%^RESET%^%^CRST%^%^C196%^The noise rings out through the office, attracting the attention of a couple guards who come running into the room!%^CRST%^");
-        guard = new(MON"guard");
-        guard->move(room);
-        guard->force_me("kill "+player->query_name()+"");
         guard = new(MON"guard");
         guard->move(room);
         guard->force_me("kill "+player->query_name()+"");
@@ -162,9 +156,6 @@ int pick_fun(string str){
                 guard = new(MON"guard");
                 guard->move(room);
                 guard->force_me("kill "+player->query_name()+"");
-                guard = new(MON"guard");
-                guard->move(room);
-                guard->force_me("kill "+player->query_name()+"");
             }
         }
         call_out("pick_padlock", 3, room, player, lockpicks, playername);
@@ -176,9 +167,6 @@ int pick_fun(string str){
             tell_room(room, "%^RESET%^%^CRST%^%^C108%^"+playername+"%^RESET%^%^CRST%^%^C108%^ kneels down and starts working at the %^C243%^b%^C245%^u%^C247%^ilt-%^C245%^i%^C243%^n l%^C245%^o%^C247%^c%^C245%^k%^C243%^s %^RESET%^%^C108%^of the cabinet.%^CRST%^", player);
             if(present("torm guard")){
                 tell_room(room, "%^RESET%^%^CRST%^%^C196%^The guard and tax collector give each other an incredulous look before drawing weapons and sounding the alarm!%^CRST%^");
-                guard = new(MON"guard");
-                guard->move(room);
-                guard->force_me("kill "+player->query_name()+"");
                 guard = new(MON"guard");
                 guard->move(room);
                 guard->force_me("kill "+player->query_name()+"");
@@ -206,9 +194,6 @@ void pick_padlock(object room, object player, object lockpicks, string playernam
             tell_room(room, "%^RESET%^%^CRST%^%^C124%^"+playername+"%^RESET%^%^CRST%^%^C124%^ lets out a whispered curse.%^CRST%^", player);
             if(present("torm guard")){
                 tell_room(room, "%^RESET%^%^CRST%^%^C196%^The guard and tax collector look around for the source of the noise before drawing weapons and sounding the alarm!%^CRST%^");
-                guard = new(MON"guard");
-                guard->move(room);
-                guard->force_me("kill "+player->query_name()+"");
                 guard = new(MON"guard");
                 guard->move(room);
                 guard->force_me("kill "+player->query_name()+"");
@@ -241,9 +226,6 @@ void pick_cabinet(object room, object player, object lockpicks, string playernam
             tell_room(room, "%^RESET%^%^CRST%^%^C124%^"+playername+"%^RESET%^%^CRST%^%^C124%^ lets out a whispered curse.%^CRST%^", player);
             if(present("torm guard")){
                 tell_room(room, "%^RESET%^%^CRST%^%^C196%^The guard and tax collector look around for the source of the noise before drawing weapons and sounding the alarm!%^CRST%^");
-                guard = new(MON"guard");
-                guard->move(room);
-                guard->force_me("kill "+player->query_name()+"");
                 guard = new(MON"guard");
                 guard->move(room);
                 guard->force_me("kill "+player->query_name()+"");
