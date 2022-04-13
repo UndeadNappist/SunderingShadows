@@ -32,7 +32,7 @@ int scry_check(object target, int power)
     
     block_power = max( ({ room_block, block_power }) );   
    
-    if(block_power > power)
+    if(block_power + 10 > power + roll_dice(1, 20))
         return 0;
     
     return 1;

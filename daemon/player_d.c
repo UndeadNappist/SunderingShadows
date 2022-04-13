@@ -995,6 +995,12 @@ void remove_stun_immunity(object ob)
 }
 
 /*
+  New scrying system handler.
+  
+  -- Tlaloc --
+*/
+
+//This is a spot scry check
 int scry_check(object target, int power)
 {
     object room;
@@ -1011,14 +1017,16 @@ int scry_check(object target, int power)
     if(room->query_property("no scry"))
         return 0;
     
+    if(target->query_property("block scrying"))
+        return 0;
+    
     room_block = room->query_property("scry proof");    
     block_power = target->query_property("scry block power");
     
     block_power = max( ({ room_block, block_power }) );   
    
-    if(block_power > power)
+    if(block_power + 10 > power + roll_dice(1, 20))
         return 0;
     
     return 1;
 }
-*/
