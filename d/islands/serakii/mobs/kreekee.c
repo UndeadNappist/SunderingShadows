@@ -121,7 +121,7 @@ void reply_introductions(string msg, object who){
 
 void reply_incense(string msg, object who){
 	tell_room(ETO,"\n");
-   force_me("say The I make the incense... I leave "+
+   force_me("say I make the incense... I leave "+
 	"the incense where memories are strongest "+
 	"on %^C205%^Serakii%^CRST%^.");
     tell_room(ETO,"%^C224%^The woman gestures to the "+
