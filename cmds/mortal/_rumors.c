@@ -148,6 +148,8 @@ areas = ([
              "/d/player_houses/lizabelle/pearlbar" : "The Pearl Necklace",
              "/d/player_houses/lizabelle/library" : "The Pearl Necklace",
              "/d/player_houses/lizabelle/patio" : "The Pearl Necklace",
+             "/d/islands/serakii/rooms/inn/inn" : "The Rook's Rest Tavern",
+             "/d/islands/serakii/rooms/inn/darts" : "The Rook's Rest Tavern",
              ]);
 
 
