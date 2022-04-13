@@ -994,6 +994,7 @@ void remove_stun_immunity(object ob)
     ob && ob->remove_property("stun_immunity");
 }
 
+/*
 int scry_check(object target, int power)
 {
     object room;
@@ -1020,3 +1021,4 @@ int scry_check(object target, int power)
     
     return 1;
 }
+*/
