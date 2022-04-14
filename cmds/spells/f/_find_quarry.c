@@ -3,14 +3,16 @@
 #include <std.h>
 #include <priest.h>
 
-inherit SPELL;
+inherit "/cmds/spells/c/_clairvoyance";
 
 object dest, myplace;
 
+/*
 int clairvoyance_delay()
 {
     return 60;
 }
+*/
 
 void create()
 {
@@ -26,7 +28,7 @@ void create()
     set_somatic_comp();
 }
 
-
+/*
 int preSpell()
 {
     if(spell_type != "psion" && ((int)caster->query_property("clairvoyance time") + clairvoyance_delay()) > time())
@@ -36,6 +38,7 @@ int preSpell()
     }
     return 1;
 }
+*/
 
 string query_cast_string()
 {
@@ -70,8 +73,9 @@ void spell_effect(int prof)
 
     bonus = caster->query_stats(casting_stat);
     bonus = bonus-10;
-    scrypower = CLEVEL + bonus + query_spell_level(spell_type) * 2;
+    scrypower = clevel + bonus + query_spell_level(spell_type);
 
+    /*
     if(blockobj = present("blockerx111", environment(mytarg)) || blockobj = present("blockerx111",mytarg))
     {
         if(scrypower < blockobj->query_block_power())
@@ -83,15 +87,21 @@ void spell_effect(int prof)
             return 1;
         }
     }
+    */
+    
+    spell_successful();
+    caster->add_cooldown("clairvoyance", 60);
+    
+    if(!mytarg->scry_check(caster, scrypower))
+    {
+        tell_object(caster, "%^BOLD%^RED%^You sense something blocking your scrying attempt!%^RESET%^");
+        dest_effect();
+        return;
+    }
 
     tell_object(CASTER,"%^YELLOW%^A flash of insight reveals "+capitalize(mytarg->QCN)+"'s location:");
-    caster->remove_property("clairvoyance time");
-    caster->set_property("clairvoyance time",time());
+    mytarg->long_look_room(caster, scrypower);
 
-    myplace = environment(mytarg);
-    long_look_room(myplace);
-
-    spell_successful();
     dest_effect();
 }
 
@@ -103,7 +113,7 @@ void dest_effect()
     if(objectp(TO)) TO->remove();
 }
 
-
+/*
 int long_look_room(object dest)
 {
     string file, desc;
@@ -121,9 +131,10 @@ int long_look_room(object dest)
         if(!inv[i]->is_detectable()) continue;
         TO->send_living_name(inv[i]);
     }
-    */
+ 
     return 1;
 }
+
 
 
 int send_living_name(object targ)
@@ -158,3 +169,4 @@ object find_miss(object play, object victim)
     if (avatarp(randobj)) return 0;
     else return randobj;
 }
+*/
