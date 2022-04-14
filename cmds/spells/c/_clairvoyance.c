@@ -169,8 +169,8 @@ int long_look_room(object dest)
         if(!objectp(inv[i])) continue;
         if(inv[i]->query_invis()) continue;
         if(!inv[i]->is_detectable()) continue;
-        if(!PLAYER_D->scry_check(inv[i], scrypower))
-            continue;
+        //if(!PLAYER_D->scry_check(inv[i], scrypower))
+        //    continue;
         TO->send_living_name(inv[i]);
     }
     return 1;
