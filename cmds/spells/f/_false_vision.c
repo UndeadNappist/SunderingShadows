@@ -73,17 +73,21 @@ target->QCN+" as though it were the solid strings of a lute, leaving heavy silen
 "%^RESET%^%^MAGENTA%^ppling chord of notes around "+target->QCN+".");
     }
     target->set_property("spelled",({TO}));
+    /*
     blocker = SCRY_D->add_block_scrying(target);
     if(!objectp(blocker)) {
         tell_object(caster,"%^BOLD%^RED%^Something is wrong that a wiz might want to look at!");
         dest_effect();
         return;
     }
+    */
     cha_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-    caster->set_property("scry block power", cha_bonus + CLEVEL);
-    power = CLEVEL + cha_bonus + random(6);
+    power = clevel + cha_bonus + query_spell_level(spell_type);
+    caster->set_property("false vision", power);
+    /*
     blocker->set_block_power(power);
     blocker->set_bard_damager(CLEVEL);
+    */
     duration = 2 * (int)CLEVEL * ROUND_LENGTH;
     spell_duration = duration;
     set_end_time();
@@ -97,6 +101,7 @@ void dest_effect() {
     if(objectp(target))
     {
         tell_object(target,"%^MAGENTA%^%^BOLD%^You sense the vision protecting you from scrying fades.");
+        target->remove_property("false vision");
     }
     if(objectp(blocker)) blocker->self_destruct();
     ::dest_effect();
