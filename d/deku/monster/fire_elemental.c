@@ -19,7 +19,7 @@ void create()
     "body appears almost human, but all of its features, save for "+
     "its appendages and its glowing eyes are hidden behind the "+
     "flame that engulfs its existence.  Swinging dangerously and "+
-    "with suprising dexterity, from its torso, "+
+    "with surprising dexterity, from its torso, "+
     "are the masses of flame that are its arms and legs, each "+
     "a darker and more violent flame than the rest of its body.  "+
     "This creature stands guard over this place, like a "+

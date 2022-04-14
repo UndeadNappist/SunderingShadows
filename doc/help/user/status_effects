@@ -82,7 +82,7 @@ Creatures with rend take 1d(1+lvl/5) untyped damage for each stack of rend each 
 All core skills, attack bonuses, damage bonuses, and saves are reduced by lvl/12+1. The effect is cumulative but usually won't last for long.
 
 %^CYAN%^Sleeping%^RESET%^
-A sleeping creature functions as if under paralysis, but any attack will %^ORANGE%^<wake>%^RESET%^ them and stop the effect. Sleeping creatures loose their dexterity bonus to armor class.
+A sleeping creature functions as if under paralysis, but any attack will %^ORANGE%^<wake>%^RESET%^ them and stop the effect. Sleeping creatures lose their dexterity bonus to armor class.
 
 %^CYAN%^Unconscious%^RESET%^
 An unconscious creature won't be able to act, attack or respond to any actions. This status can be caused by various external conditions, including drastic loss of health, head damage or even special magical effects. There is no universal way to regain consciousness.

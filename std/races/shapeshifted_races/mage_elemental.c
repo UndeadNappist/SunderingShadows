@@ -91,8 +91,8 @@ int shape_attack(object tp, object target)
     if(!random(10))
     {
         if(!objectp(target)) return;
-        tell_object(target,"%^YELLOW%^The %^RESET%^%^RED%^e%^BOLD%^l%^RESET%^%^GREEN%^e%^BOLD%^m%^RESET%^%^ORANGE%^e%^BOLD%^n%^RESET%^%^CYAN%^t%^BOLD%^a%^RESET%^%^MAGENTA%^l%^WHITE%^%^BOLD%^ %^RESET%^%^YELLOW%^moves pummel you%^RESET%^%^YELLOW%^!");
-        tell_room(ENV(tp),"%^YELLOW%^The %^RESET%^%^RED%^e%^BOLD%^l%^RESET%^%^GREEN%^e%^BOLD%^m%^RESET%^%^ORANGE%^e%^BOLD%^n%^RESET%^%^CYAN%^t%^BOLD%^a%^RESET%^%^MAGENTA%^l%^WHITE%^%^BOLD%^ %^RESET%^%^YELLOW%^moves pummel "+target->QCN+"%^RESET%^%^YELLOW%^!",target);
+        tell_object(target,"%^YELLOW%^The %^RESET%^%^RED%^e%^BOLD%^l%^RESET%^%^GREEN%^e%^BOLD%^m%^RESET%^%^ORANGE%^e%^BOLD%^n%^RESET%^%^CYAN%^t%^BOLD%^a%^RESET%^%^MAGENTA%^l's%^WHITE%^%^BOLD%^ %^RESET%^%^YELLOW%^moves pummel you%^RESET%^%^YELLOW%^!");
+        tell_room(ENV(tp),"%^YELLOW%^The %^RESET%^%^RED%^e%^BOLD%^l%^RESET%^%^GREEN%^e%^BOLD%^m%^RESET%^%^ORANGE%^e%^BOLD%^n%^RESET%^%^CYAN%^t%^BOLD%^a%^RESET%^%^MAGENTA%^l's%^WHITE%^%^BOLD%^ %^RESET%^%^YELLOW%^moves pummel "+target->QCN+"%^RESET%^%^YELLOW%^!",target);
         target->do_damage("torso",random(70)+clevel);
     }
     return roll_dice(2,6);

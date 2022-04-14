@@ -91,11 +91,11 @@ void bite(object targ)
     tlimb = targ->return_target_limb();
     tell_object(targ, "%^BOLD%^%^RED%^The hell hounds leaps at "+
     "you, its teeth gnashing, and latches onto your "+tlimb+
-    ",biting down viciously!%^RESET%^");
+    ", biting down viciously!%^RESET%^");
     tell_room(environment(targ), "%^BOLD%^%^RED%^The hell hound "+
     "leaps at "+targ->query_cap_name()+" and "+
     "latches onto "+targ->query_possessive()+ " " +tlimb +
-    ",biting down viciously!%^RESET%^",({targ}));
+    ", biting down viciously!%^RESET%^",({targ}));
     targ->do_damage(tlimb, dam);
     return;
 }
