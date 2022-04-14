@@ -998,7 +998,7 @@ void remove_stun_immunity(object ob)
   New scrying system handler.
   
   -- Tlaloc --
-*/
+
 
 //This is a spot scry check
 int scry_check(object target, int power)
@@ -1062,3 +1062,4 @@ int long_look_room(object victim, object detector)
     }
     return 1;
 }
+*/
