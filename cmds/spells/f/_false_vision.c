@@ -72,6 +72,7 @@ target->QCN+" as though it were the solid strings of a lute, leaving heavy silen
       tell_object(caster,"%^RESET%^%^MAGENTA%^You gather your strength and cast it out, raising a r%^BOLD%^i"
 "%^RESET%^%^MAGENTA%^ppling chord of notes around "+target->QCN+".");
     }
+    spell_successful();
     target->set_property("spelled",({TO}));
     /*
     blocker = SCRY_D->add_block_scrying(target);
@@ -83,7 +84,7 @@ target->QCN+" as though it were the solid strings of a lute, leaving heavy silen
     */
     cha_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
     power = clevel + cha_bonus + query_spell_level(spell_type);
-    caster->set_property("false vision", power);
+    target->set_property("false vision", power);
     /*
     blocker->set_block_power(power);
     blocker->set_bard_damager(CLEVEL);

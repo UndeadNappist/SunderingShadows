@@ -7,7 +7,7 @@
 //This is a spot scry check
 int scry_check(object scryer, int power)
 {
-    object room;
+    object room, block_spell;
     int block_power, room_block, detect_power, false_vision, result;
     
     if(!objectp(this_object()) || !objectp(scryer) || !power)
@@ -25,23 +25,26 @@ int scry_check(object scryer, int power)
         return 0;
     
     detect_power = this_object()->query_property("scry detect power");
+    false_vision = this_object()->query_property("false vision");
     room_block = room->query_property("scry proof");    
     block_power = this_object()->query_property("scry block power");    
     block_power = max( ({ room_block, block_power }) );
+    
+    
+    result = (false_vision + 10) - (power + roll_dice(1, 20));
+    if(result >= 0)
+    {
+        tell_object(scryer,"%^BOLD%^%^MAGENTA%^Suddenly, horrific images of your worst fears appear before your eyes, and you can't help but to stagger away in fright, losing your concentration!");
+        scryer->cause_typed_damage(scryer, "head", roll_dice(false_vision / 2, 6), "mental");
+        if(result >= 5)
+            scryer->cause_typed_damage(scryer, "head", roll_dice(false_vision, 6), "mental");
+        return 0;
+    }
    
     //Reverse check for detection
     result = (detect_power + roll_dice(1, 20)) - (power + 10);
     if(result >= 0)
     {
-        false_vision = this_object()->query_property("false vision");
-        if(false_vision)
-        {
-            tell_object(scryer,"%^BOLD%^%^MAGENTA%^Suddenly, horrific images of your worst fears appear before your eyes, and you can't help but to stagger away in fright, losing your concentration!");
-            scryer->cause_typed_damage(scryer, "head", roll_dice(false_vision / 2, 6), "mental");
-            if(result >= 5)
-                scryer->cause_typed_damage(scryer, "head", roll_dice(false_vision, 6), "mental");
-            return 0;
-        }
         tell_object(this_object(),"%^BOLD%^MAGENTA%^You detect someone scrying you!%^RESET%^");
         if(result >= 5)
         {
