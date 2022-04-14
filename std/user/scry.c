@@ -37,7 +37,9 @@ int scry_check(object scryer, int power)
         if(false_vision)
         {
             tell_object(scryer,"%^BOLD%^%^MAGENTA%^Suddenly, horrific images of your worst fears appear before your eyes, and you can't help but to stagger away in fright, losing your concentration!");
-            scryer->cause_typed_damage(scryer, "head", roll_dice(false_vision, 6), "mental");
+            scryer->cause_typed_damage(scryer, "head", roll_dice(false_vision / 2, 6), "mental");
+            if(result >= 5)
+                scryer->cause_typed_damage(scryer, "head", roll_dice(false_vision, 6), "mental");
             return 0;
         }
         tell_object(this_object(),"%^BOLD%^MAGENTA%^You detect someone scrying you!%^RESET%^");
@@ -83,8 +85,9 @@ void long_look_room(object detector, int power)
             continue;
         if(ob->is_detectable())
             continue;
-        if(!ob->scry_check(detector, power))
-            continue;
+        if(ob != this_object())
+            if(!ob->scry_check(detector, power))
+                continue;
         tell_object(detector, "%^WHITE%^BOLD%^[S] %^RED%^"+inv[i]->query_short());
     }
     return;

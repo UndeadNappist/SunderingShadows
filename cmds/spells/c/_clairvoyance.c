@@ -3,15 +3,19 @@
 #include <std.h>
 #include <priest.h>
 
+#define COOLDOWN 60
+
 inherit SPELL;
 
 object dest, mytarg, myplace;
 int scrypower;
 
+/*
 int clairvoyance_delay()
 {
     return 60;
 }
+*/
 
 void create()
 {
@@ -21,8 +25,7 @@ void create()
     set_spell_level(([ "mage" : 2, "bard" : 3, "assassin" : 4, "inquisitor" : 3, "warlock" : 1, "magus" : 3 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS clairvoyance on TARGET");
-    set_description("A skilled seer can attempt to gain a brief image of a target. All they will see is a second's "
-        "glimpse of their surroundings, and who else may be nearby. Anti-scrying effects will block this spell.");
+    set_description("With this spell, the caster will attempt to see the target and their immediate surroundings. If the target has a scry blocker active, an opposed roll will be made. If the caster fails the roll, the spell will immediately fail. If they succeed, they will see the target and the room they are in. Anyone else in the area of the target, with sufficient scry protection, can avoid detection on a successful opposed roll against this spell.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
@@ -32,11 +35,18 @@ void create()
 
 int preSpell()
 {
+    if(caster->cooldown("clairvoyance"))
+    {
+        tell_object(caster, "You have to wait a while before using this type of spell again.");
+        return 0;
+    }
+    /*
     if(spell_type != "psion" && ((int)caster->query_property("clairvoyance time") + clairvoyance_delay()) > time())
     {
         tell_object(caster,"You need to take a moment's rest before you can try that again.");
         return 0;
     }
+    */
     return 1;
 }
 
@@ -111,9 +121,11 @@ void spell_effect(int prof)
         return;
     }
 
-    bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-    scrypower = CLEVEL + bonus + random(query_spell_level(spell_type) * 2); //this is here so the vision spell is more powerful
+    scrypower = clevel + BONUS_D->query_stat_bonus(caster, get_casting_stat()) + query_spell_level(spell_type);
+    //bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
+    //scrypower = CLEVEL + bonus + random(query_spell_level(spell_type) * 2); //this is here so the vision spell is more powerful
 
+/*
     if(blockobj = present("blockerx111", environment(mytarg)) || blockobj = present("blockerx111",mytarg))
     {
         //if(!PLAYER_D->scry_check(mytarg, scrypower))
@@ -126,7 +138,17 @@ void spell_effect(int prof)
             return 1;
         }
     }
-
+*/
+    spell_successful();
+    caster->add_cooldown("clairvoyance", COOLDOWN);
+    
+    if(!mytarg->scry_check(caster, scrypower))
+    {
+        tell_object(caster, "%^BOLD%^RED%^You sense something blocking your scrying attempt!%^RESET%^");
+        dest_effect();
+        return;
+    }
+    
     if(spell_type == "psion")
     {
         tell_object(CASTER, "%^ORANGE%^You turn your mind inward, focusing upon "+capitalize(targ)+"'s location.");
@@ -135,14 +157,9 @@ void spell_effect(int prof)
     else
     {
         tell_object(CASTER,"%^YELLOW%^A flash of insight reveals "+capitalize(targ)+"'s location:");
-        caster->remove_property("clairvoyance time");
-        caster->set_property("clairvoyance time",time());
     }
 
-    myplace = environment(mytarg);
-    long_look_room(myplace);
-
-    spell_successful();
+    mytarg->long_look_room(caster, scrypower);
     dest_effect();
 }
 
@@ -154,7 +171,7 @@ void dest_effect()
     if(objectp(TO)) TO->remove();
 }
 
-
+/*
 int long_look_room(object dest)
 {
     string file, desc;
@@ -175,8 +192,9 @@ int long_look_room(object dest)
     }
     return 1;
 }
+*/
 
-
+/*
 int send_living_name(object targ)
 {
     string known, str;
@@ -196,7 +214,7 @@ int send_living_name(object targ)
     known = 0;
     return 1;
 }
-
+*/
 
 object find_miss(object play, object victim)
 {
