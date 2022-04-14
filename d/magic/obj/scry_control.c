@@ -228,6 +228,7 @@ int scry(string str)
             return 1;
         }
 
+        /*
         if (blockobj = present("blockerx111", environment(target)) || blockobj = present("blockerx111", target)) {
             if (TO->query_scry_power() <= blockobj->query_block_power()) {
                 tell_object(ETO, "%^BOLD%^RED%^There appears to be " +
@@ -238,9 +239,23 @@ int scry(string str)
                 return 1;
             }
         }
-
+        */
+        if(!target->scry_check(observer, query_scry_power()))
+        {
+            tell_object(this_player(), "%^BOLD%^RED%^There appears to be interference blocking your scrying attempt!%^RESET%^");
+            dest_me();
+            SCRY_D->stop_scry(this_object(), 1);
+            return 1;
+        }
         if (!objectp(target)) {
             write("%^BOLD%^RED%^You can't get a fix on that!");
+            return 1;
+        }
+        if(!target->scry_check(observer, query_scry_power()))
+        {
+            tell_object(this_player(), "%^BOLD%^RED%^There appears to be interference blocking your scrying attempt!%^RESET%^");
+            dest_me();
+            SCRY_D->stop_scry(this_object(), 1);
             return 1;
         }
     }else if (sscanf(str, "location %s", targ) == 1) {
@@ -250,6 +265,7 @@ int scry(string str)
             return 1;
         }
         target = find_object_or_load(map[targ]);
+        /*
         if (blockobj = present("blockerx111", target)) {
             if (TO->query_scry_power() <= blockobj->query_block_power()) {
                 tell_object(ETO, "%^BOLD%^RED%^There appears to be " +
@@ -259,6 +275,14 @@ int scry(string str)
                 SCRY_D->stop_scry(TO, 0);
                 return 1;
             }
+        }
+        */
+        if(!target->scry_check(observer, query_scry_power()))
+        {
+            tell_object(this_player(), "%^BOLD%^RED%^There appears to be interference blocking your scrying attempt!%^RESET%^");
+            dest_me();
+            SCRY_D->stop_scry(this_object(), 1);
+            return 1;
         }
     }else {
         write("Usage: scry person <name>  OR  "
@@ -342,7 +366,8 @@ int peer(string str)
         return 1;
     }
     write("%^BOLD%^GREEN%^The image zooms out briefly, granting a glance...");
-    scry_object->look_room(environment(scry_object));
+    target->long_look_room(this_player(), query_scry_power());
+    //scry_object->look_room(environment(scry_object));
     return 1;
 }
 
@@ -367,7 +392,8 @@ int look(string str)
     }
     write("%^BOLD%^GREEN%^The image zooms out, giving you a long look around...");
     if (objectp(scry_object)) {
-        scry_object->long_look_room(environment(scry_object));
+        //scry_object->long_look_room(environment(scry_object));
+        target->long_look_room(this_player(), query_scry_power());
     }
     return 1;
 }
@@ -392,7 +418,7 @@ int recognize(string str)
 
 
     ob = present(who, environment(scry_object));
-    if (!objectp(ob)) {
+    if (!objectp(ob) || !ob->scry_check(observer, query_scry_power())) {
         return write("There is no " + who + " in the area you are viewing.\n");
     }
     if (TP->query_blind() || TP->query_blindfolded() || TP->query_unconscious()) {
