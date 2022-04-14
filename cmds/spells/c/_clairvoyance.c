@@ -6,6 +6,7 @@
 inherit SPELL;
 
 object dest, mytarg, myplace;
+int scrypower;
 
 int clairvoyance_delay()
 {
@@ -60,7 +61,7 @@ void spell_effect(int prof)
 {
     string targ, real,*map_keys;
     object mytarg,myplace,blockobj;
-    int matches, i, bonus, scrypower, stop;
+    int matches, i, bonus, stop;
     mapping map;
 
     if(!arg || !stringp(arg))
@@ -167,6 +168,7 @@ int long_look_room(object dest)
         if(!objectp(inv[i])) continue;
         if(inv[i]->query_invis()) continue;
         if(!inv[i]->is_detectable()) continue;
+        if(!PLAYER_D->scry_check(inv[i], scrypower)) continue;
         TO->send_living_name(inv[i]);
     }
     return 1;
