@@ -42,12 +42,18 @@ int scry_check(object target, object scryer, int power)
     result = (detect_power + roll_dice(1, 20)) - (power + 10);
     if(result >= 0)
     {
+        if(target->query_property("false vision"))
+        {
+            tell_object(scryer,"%^BOLD%^%^MAGENTA%^Suddenly, horrific images of your worst fears appear before your eyes, and you can't help but to stagger away in fright, losing your concentration!");
+            scryer->cause_typed_damage(scryer, "head", roll_dice(power, 6), "mental");
+            return 0;
+        }
         tell_object(target,"%^BOLD%^MAGENTA%^You detect someone scrying you!%^RESET%^");
         if(result >= 5)
         {
             tell_object(target,"%^BOLD%^YELLOW%^You get an image of where they are!%^RESET%^");
             long_look_room(scryer, target);
-        }
+        }   
     }
         
     if(block_power + 10 > power + roll_dice(1, 20))
