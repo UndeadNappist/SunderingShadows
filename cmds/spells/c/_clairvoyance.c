@@ -116,6 +116,7 @@ void spell_effect(int prof)
 
     if(blockobj = present("blockerx111", environment(mytarg)) || blockobj = present("blockerx111",mytarg))
     {
+        //if(!PLAYER_D->scry_check(mytarg, scrypower))
         if(scrypower < blockobj->query_block_power())
         {
             tell_object(CASTER, "%^BOLD%^RED%^There appears to be "+
@@ -168,7 +169,8 @@ int long_look_room(object dest)
         if(!objectp(inv[i])) continue;
         if(inv[i]->query_invis()) continue;
         if(!inv[i]->is_detectable()) continue;
-        if(!PLAYER_D->scry_check(inv[i], scrypower)) continue;
+        if(!PLAYER_D->scry_check(inv[i], scrypower))
+            continue;
         TO->send_living_name(inv[i]);
     }
     return 1;
@@ -186,6 +188,7 @@ int send_living_name(object targ)
         message("living_item", "%^CYAN%^BOLD%^[S] %^RED%^"+str,caster);
         return 1;
     }
+    
     if(objectp(caster) && caster->knownAs(targ->query_true_name())) known = caster->knownAs(targ->query_true_name());
     str = targ->getWholeDescriptivePhrase();
     if(known) str = capitalize(known)+", "+str;

@@ -80,6 +80,7 @@ target->QCN+" as though it were the solid strings of a lute, leaving heavy silen
         return;
     }
     cha_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
+    caster->set_property("scry block power", cha_bonus + CLEVEL);
     power = CLEVEL + cha_bonus + random(6);
     blocker->set_block_power(power);
     blocker->set_bard_damager(CLEVEL);

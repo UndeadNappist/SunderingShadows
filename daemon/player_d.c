@@ -1030,3 +1030,35 @@ int scry_check(object target, int power)
     
     return 1;
 }
+
+int long_look_room(object victim, object detector)
+{
+    string file, desc;
+    object *inv, dest;
+    int i,j;
+    
+    if(!objectp(victim))
+        return 0;
+    
+    dest = environment(victim);
+    
+    if(!dest || !objectp(dest))
+        return 0;
+    
+    if(!detector || !objectp(detector))
+        return 0;
+    
+    message("room_description","\n%^YELLOW%^[S] %^RESET%^"+(string)dest->query_short()+"\n", detector);
+    message("room_description","\n%^YELLOW%^[S] %^RESET%^"+(string)dest->query_long()+"\n", detector);
+    inv = all_inventory(dest);
+
+    foreach(object ob in inv)
+    {
+        if(!objectp(ob)) continue;
+        if(ob->query_invis()) continue;
+        if(ob->is_detectable()) continue;
+    	tell_object(target, 
+        tell_object(detector, "%^WHITE%^BOLD%^[S] %^RED%^"+inv[i]->query_short());
+    }
+    return 1;
+}
