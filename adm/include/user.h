@@ -8,4 +8,6 @@ inherit "/std/user/bitflags";
 inherit "/std/user/refs";
 inherit "/std/user/more";
 inherit "/std/user/cooldowns";
-inherit "/std/user/gmcp";
+inherit "/std/user/scry";
+//inherit "/std/user/gmcp";
+

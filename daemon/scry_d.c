@@ -6,6 +6,7 @@
 
 #include <std.h>
 #include <security.h>
+#include <daemons.h>
 
 /*
   New scrying system handler.

@@ -60,6 +60,7 @@
 #define MESSAGING_D          (DIR_DAEMONS+"/messaging_d")
 #define MONSTER_FEAT_D       (DIR_DAEMONS+"/monster_feat_d")
 #define MULTI_D              (DIR_DAEMONS+"/multi_d")
+#define NEW_SCRY_D           (DIR_DAEMONS+"/scry_d")
 #define NEWSSERVER           (DIR_DAEMONS+"/news_d")
 #define NEWS_D               (DIR_DAEMONS+"/news")
 #define NOTIFY_D             (DIR_DAEMONS+"/notify")
