@@ -53,7 +53,9 @@ int preSpell(){
         return 0;
     }
     if(avatarp(caster)) return 1; // let avatars use to follow players regardless of timer.
-    if((int)caster->query_property("remote scrying time")+DELAY > time()){
+    if(caster->cooldown("remote viewing"))
+    {
+    //if((int)caster->query_property("remote scrying time")+DELAY > time()){
         tell_object(caster,"You cannot command a scrying device again so soon.");
         return 0;
     }
@@ -129,6 +131,7 @@ void spell_effect(int prof) {
     caster->set_property("remote scrying",1);
     spell_duration = duration;
     set_end_time();
+    caster->add_cooldown("remote viewing", DELAY);
     call_out("dest_effect",spell_duration);
     return;
 }

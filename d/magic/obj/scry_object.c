@@ -215,6 +215,13 @@ catch_tell(string str)
         TO->remove();
         return;
     }
+    
+    if(userp(previous_object()))
+    {
+        if(!previous_object()->scry_check(observer, query_scry_power()))
+            return;
+    }
+    
     if(!objectp(ETC)) { return; }
 
     people = all_living(ETC);

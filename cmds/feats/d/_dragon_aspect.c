@@ -194,14 +194,14 @@ void execute_attack()
         {
             case "black":
             case "copper":
-            tell_object(caster, "%^GREEN%^BOLD%^You breath a gout of steaming acid at your enemies!%^RESET%^");
+            tell_object(caster, "%^GREEN%^BOLD%^You breathe a gout of steaming acid at your enemies!%^RESET%^");
             tell_room(place, "%^GREEN%^BOLD%^" + my_name + " breathes a gout of steaming acid at their enemies!%^RESET%^", caster);
             dam_type = "acid";
             break;
         
             case "blue":
             case "bronze":
-            tell_object(caster, "%^YELLOW%^BOLD%^You breath great arcs of electricity at your enemies!%^RESET%^");
+            tell_object(caster, "%^YELLOW%^BOLD%^You breathe great arcs of electricity at your enemies!%^RESET%^");
             tell_room(place, "%^YELLOW%^BOLD%^" + my_name + " breathes great arcs of electricity at their enemies!%^RESET%^", caster);
             dam_type = "electricity";
             break;
@@ -209,20 +209,20 @@ void execute_attack()
             case "brass":
             case "red":
             case "gold":
-            tell_object(caster, "%^RED%^BOLD%^You breath great gouts of flame at your enemies!%^RESET%^");
+            tell_object(caster, "%^RED%^BOLD%^You breathe great gouts of flame at your enemies!%^RESET%^");
             tell_room(place, "%^YELLOW%^BOLD%^" + my_name + " breathes great gouts of flame at their enemies!%^RESET%^", caster);
             dam_type = "fire";
             break;
 
             case "green":
-            tell_object(caster, "%^GREEN%^You breath a cloud of poison at your enemies!%^RESET%^");
+            tell_object(caster, "%^GREEN%^You breathe a cloud of poison at your enemies!%^RESET%^");
             tell_room(place, "%^GREEN%^" + my_name + " breathes a cloud of poison at their enemies!%^RESET%^", caster);
             dam_type = "untyped";
             break;
 
             case "white":
             case "silver":
-            tell_object(caster, "%^BLUE%^BOLD%^You breath sheets of ice and snow at your enemies!%^RESET%^");
+            tell_object(caster, "%^BLUE%^BOLD%^You breathe sheets of ice and snow at your enemies!%^RESET%^");
             tell_room(place, "%^BLUE%^BOLD%^" + my_name + " breathes sheets of ice and snow at their enemies!%^RESET%^", caster);
             dam_type = "cold";
             break;
