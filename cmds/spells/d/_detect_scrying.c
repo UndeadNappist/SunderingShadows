@@ -19,13 +19,10 @@ void create()
     set_domains("knowledge");
     set_spell_sphere("divination");
     set_syntax("cast CLASS detect scrying");
-    set_description("By means of this spell, the wizard immediately becomes aware of any attempt to observe him by means of clairvoyance, clairaudience, or magic mirror.  This also reveals the use of crystal balls or other magical scrying devices, provided the attempt is within the area of effect of the spell.  Since the spell is centered on the spellcaster, it moves with him, enabling him to 'sweep' areas for the duration of the spell.\n\nWhen a scrying attempt is detected, the scryer must immediately roll a saving throw.  If this is failed, the appearance and general location of the scryer immediately become known to the wizard who cast this spell. The general location is the room and area where the scryer is located at the time.\n\nThis spell does not protect from scrying, however.  Despite the fact that you have detected the scrying, you cannot end the scrying without casting a spell or using an object that protects from scrying.");
+    set_description("The caster of this spell creates a protective weave around themselves that serves as an alarm, warning the caster when they are being scried through magical or psionic means. Anyone scrying the caster must make an opposed spell check, pitting this spell against their scry spell. If they fail the check, their scry STILL succeeds. However, their scry is detected and the detecting caster is given a warning, showing them the location of the scryer in question. This spell cannot run concurrently with other scry protection spells.");
     set_verbal_comp();
     set_somatic_comp();
     set_peace_needed(1);
-    set_components(([
-                        "mage" : ([ "piece of mirror" : 1, "tiny hearing trumpet" : 1, ]),
-                    ]));
     set_helpful_spell(1);
 }
 

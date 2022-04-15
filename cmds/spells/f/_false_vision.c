@@ -20,14 +20,11 @@ void create() {
     set_spell_sphere("illusion");
     set_domains(({ "illusion", "nightmare" }));
     set_syntax("cast CLASS false vision [on TARGET]");
-    set_description("This illusion is designed to foil the attempts of scrying upon the caster. While active, anyone scrying out the caster will have to contest their strength. Should they succeed, the scrying will continue as normal.If they fail, they will instead be met with a vision designed to touch at their innermost fears, to disrupt their scrying attempt and encourage them not to try again.");
+    set_description("This illusion is designed to foil the attempts of scrying upon the caster. While active, anyone attempting to scry the caster will have to make an opposed roll check, pitting the spells against each other. If the scryer fails the check, they will see a vision of a place out of their nightmares, bringing their greatest fears to light. This vision will cause mental damage to the scryer, and prevent them from seeing their intended target. Unlike detect magic, this spell will not pinpoint the scryer's location, but will warn of any scry failures that trigger the protection. This spell cannot run concurrently with other scry protection spells. This spell will ONLY protect the target, and no one else with them.");
     set_verbal_comp();
     set_somatic_comp();
     set_peace_needed(1);
     set_arg_needed();
-    set_components(([
-     "mage" : ([ "aluminum chaff" : 1, "powdered chalk" : 1, "bitumen" : 1 ]),
-    ]));
     set_helpful_spell(1);
 }
 
