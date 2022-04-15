@@ -26,7 +26,7 @@ int scry_check(object scryer, int power)
     
     detect_power = this_object()->query_property("scry detect power");
     false_vision = this_object()->query_property("false vision");
-    room_block = room->query_property("scry proof");    
+    room_block = max( ({ room->query_property("scry proof"), room->query_property("scry block power") }) );
     block_power = this_object()->query_property("scry block power");    
     block_power = max( ({ room_block, block_power }) );
     
@@ -35,7 +35,7 @@ int scry_check(object scryer, int power)
     if(result >= 0)
     {
         tell_object(scryer,"%^BOLD%^%^MAGENTA%^Suddenly, horrific images of your worst fears appear before your eyes, and you can't help but to stagger away in fright, losing your concentration!");
-        tell_object(this_object(), "Your false vision assaults someone's mind!");
+        tell_object(this_object(), "%^BOLD%^MAGENTA%^Your false vision assaults someone's mind!%^RESET%^");
         scryer->cause_typed_damage(scryer, "head", roll_dice(false_vision / 2, 6), "mental");
         if(result >= 5)
             scryer->cause_typed_damage(scryer, "head", roll_dice(false_vision, 6), "mental");
@@ -53,7 +53,9 @@ int scry_check(object scryer, int power)
             scryer->reverse_look_room(this_object());
         }   
     }
-        
+    
+    //tell_object(find_player("tlaloc"), "BLOCK_POWER : " + block_power);
+    //tell_object(find_player("tlaloc"), "POWER       : " + power);    
     if(block_power + 10 > power + roll_dice(1, 20))
         return 0;
     
