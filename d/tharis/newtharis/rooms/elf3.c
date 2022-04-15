@@ -7,6 +7,6 @@ void create(){
    set_long(::query_long()+"%^RESET%^\n");
    set_exits(([
       "east" : ROOMS"elf4",
-      "west" : ROOMS"elf2",
+      "west" : ROOMS"eastplaza",
    ]));
 }

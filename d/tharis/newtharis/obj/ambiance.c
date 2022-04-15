@@ -45,7 +45,23 @@ void heart_beat() {
    for(i=0;i<sizeof(userobs);i++) {
      if(userp(userobs[i])) playershere++; // playershere = makes it go off less often if there's more players potentially hitting emotes.
    }
-
+   
+   if(strsrch(roomname,"rooms/eastplaza") != -1) {
+     chance = 90*playershere;
+     if(random(chance)) return;
+     switch(random(75)) {
+       case 0..24:
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C244%^One of the %^C241%^sleek black %^C244%^horseless carriage glides along the c%^RESET%^%^C022%^o%^RESET%^%^C249%^b%^C247%^b%^C246%^l%^C245%^e%^C246%^s%^C247%^t%^RESET%^%^C028%^o%^RESET%^%^C250%^n%^C244%^e street toward the %^C241%^tunnel %^C244%^to the south.%^CRST%^");
+       break;
+       case 25..49:
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C136%^A %^RESET%^%^C094%^supply cart %^RESET%^%^C136%^carrying goods from the %^RESET%^%^C058%^docks%^RESET%^%^C136%^ rumbles past, taking the west exit of the roundabout to head toward the city bazaar.%^CRST%^");
+       break;
+       default:
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C123%^A %^C045%^young boy %^RESET%^%^C123%^runs up to one of the %^RESET%^%^C241%^statues%^RESET%^%^C123%^, his %^RESET%^%^C218%^mother %^RESET%^%^C123%^giving chase and scooping him into her arms, %^RESET%^%^C088%^s%^C124%^c%^C160%^o%^C196%^l%^C160%^d%^C124%^i%^C088%^n%^C124%^g %^RESET%^%^C123%^him for running so close to the street.%^CRST%^");
+       break;
+     }
+     return;
+   }
    if(strsrch(roomname,"rooms/east") != -1) {
      chance = 240*playershere;
      if(random(chance)) return;
