@@ -322,7 +322,7 @@ varargs void surface_rumour(string str, string name, int type, string inst){
     return;
   }
   if (strlen(plainstr)<1){
-    tell_object(TP, "%^BOLD%^%^WHITE%^There needs to be some content to a rumour, to make it worth gossipping about. Try again, or enter 'q' to abandon this rumour");
+    tell_object(TP, "%^BOLD%^%^WHITE%^There needs to be some content to a rumour, to make it worth gossiping about. Try again, or enter 'q' to abandon this rumour");
     input_to("surface_rumour",0,name, type);
     return;
   }
@@ -892,11 +892,11 @@ void enter_editor(string str){
     {
       if (TP->query_property("gossipping"))
       {
-        result += "\nYou are currently gossipping at random";
+        result += "\nYou are currently gossiping at random";
       } else
       {    
         report("Query_property('gossipping') is not valid");  
-        result += "\nYou are not currently gossipping";
+        result += "\nYou are not currently gossiping";
       }
     }
     tell_object(TP, result);
@@ -964,7 +964,7 @@ void enter_editor(string str){
       return;
       break;
     }
-    tell_object (TP, "You set about gossipping and casually hearing what stories are " + rum_type);
+    tell_object (TP, "You set about gossiping and casually hearing what stories are " + rum_type);
     if (TP->query_property("tracing")) TP->remove_property("tracing");
     if (TP->query_property("investigating")) TP->remove_property("investigating");
     if (TP->query_property("gossipping")) TP->remove_property("gossipping");
@@ -1216,7 +1216,7 @@ void enter_editor(string str){
     }
     break;
   }
-  tell_object(TP, "I'm sorry, that's not one of your options for gossipping. Please try again. See 'help gossip' for available commands");
+  tell_object(TP, "I'm sorry, that's not one of your options for gossiping. Please try again. See 'help gossip' for available commands");
   return;
 }
 

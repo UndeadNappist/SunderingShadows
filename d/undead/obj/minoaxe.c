@@ -10,16 +10,16 @@ create() {
    set_name("minotaur great axe");
    set_short("%^BOLD%^%^BLACK%^Minotaur Great-Axe%^RESET%^");
    set_obvious_short("%^BOLD%^%^BLACK%^Giant Steel Axe%^RESET%^");
-   set_long("%^BOLD%^%^BLACK%^This great-axe is immense. Even large creatures, such a firbolgs and minotaurs "+
-   "would need two hands two wield this weapon. The %^RESET%^axe head %^BOLD%^%^BLACK%^shaped like a oversized "+
-   "helbart had and at least 3 inches thick. The majority of the %^RESET%^axe head %^BOLD%^%^BLACK%^is made from "+
+   set_long("%^BOLD%^%^BLACK%^This great-axe is immense. Even large creatures, such firbolgs and minotaurs "+
+   "would need two hands to wield this weapon. The %^RESET%^axe head %^BOLD%^%^BLACK%^is shaped like an over-sized "+
+   "halberd head and at least 3 inches thick at the edge. The majority of the %^RESET%^axe head %^BOLD%^%^BLACK%^is made from "+
    "p%^WHITE%^o%^BLACK%^l%^WHITE%^i%^BLACK%^sh%^WHITE%^e%^BLACK%^d st%^WHITE%^ee%^BLACK%^l except for the core "+
    "which is made from %^BLUE%^cold-iron%^BLACK%^. On each side of the axe head, a carving of a "+
-   "%^RESET%^%^ORANGE%^minotaurs head %^BOLD%^%^BLACK%^is seen, with %^RED%^rubies %^BLACK%^for eyes and "+
+   "%^RESET%^%^ORANGE%^minotaur's head %^BOLD%^%^BLACK%^is seen, with %^RED%^rubies %^BLACK%^for eyes and "+
    "%^RESET%^%^MAGENTA%^onyx %^BOLD%^%^BLACK%^for nostrils.%^RESET%^");
    set_lore("This can only be the fabled Labyrinth Great-Axe. This weapon is said to be as old as the "+
-   "Minotaur race itself and granted to the first Minotaur as weapon while guarding a unknown labyrinth. "+
-   "While the weapon is impressive on it's own, it is said to be a terror to behold in the hands of a Minotaur.");
+   "Minotaur race itself and granted to the first Minotaur as a weapon while guarding an unknown labyrinth. "+
+   "While the weapon is impressive on its own, it is said to be a terror to behold in the hands of a Minotaur.");
    set_value(3000);
    set_property("lore difficulty",20);
    set_property("enchantment",3+random(2));
@@ -49,8 +49,8 @@ int wieldit(){
 		return 1;
 		}
 
-		tell_object(ETO,"%^BOLD%^%^BLACK%^You can't help but admire the axes steel edge");
-		tell_room(EETO,"%^BOLD%^%^BLACK%^The axes steel edge glisten sharply as "+ETO->QCN+" wields it",ETO);
+		tell_object(ETO,"%^BOLD%^%^BLACK%^You can't help but admire the axe's steel edge");
+		tell_room(EETO,"%^BOLD%^%^BLACK%^The axe's steel edge glisten sharply as "+ETO->QCN+" wields it",ETO);
 		return 1;
 
 }
