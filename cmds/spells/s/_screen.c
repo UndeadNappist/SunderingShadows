@@ -18,13 +18,7 @@ void create() {
     set_spell_level(([ "mage": 8 ]));
     set_spell_sphere("illusion");
     set_syntax("cast CLASS screen");
-    set_description("Upon casting this spell, the user creates a screen of illusion centered upon himself that makes "
-"scrying attempts difficult.  This spell has a chance to both detect and block scrying attempts, with the chance for "
-"success determined by the level of the priest against the level of the scryer.  The spell is centered upon the caster "
-"and will move with him, allowing him to sweep areas for the duration of the spell.\n\nWhen a scrying attempt is detected"
-", the scryer must immediately roll a saving throw.  If this is failed, the appearance and general location of the scryer "
-"immediately become known to the one who cast this spell.  The general location is the room and area where the scryer "
-"is located at the time.\n\nThis spell can only be cast while at peace.");
+    set_description("Upon casting this spell, the user creates a screen of illusion in the area that makes scrying attempts difficult. This screen will actively attempt to block scry attempts, though it will not warn the caster when attempts fail. This scry blocking spell, unlock other such spells, affects the entire room, and stays in that room. It does not move around with the caster. This can be used to create an area (room) that has temporary scry protection that will protect everyone within.");
     set_verbal_comp();
     set_somatic_comp();
     set_peace_needed(1);
@@ -45,7 +39,22 @@ void spell_effect(int prof) {
    object temp;
 
    ::spell_effect();
-
+   
+    if(caster->query_property("scry detect power") || caster->query_property("scry block power") || caster->query_property("block scrying") || caster->query_property("false vision"))
+    {
+        tell_object(caster, "There is already scry protection magic on you.");
+        dest_effect();
+        return;
+    }
+    
+    if(place->query_property("scry block power") || place->query_property("scry proof"))
+    {
+        tell_object(caster, "This place is already under the effects of scry protection.");
+        dest_effect();
+        return;
+    }
+   
+   /*
    if(temp = caster->query_property("detect scrying")){
       if(!objectp(temp)){
          caster->remove_property("detect scrying");
@@ -56,6 +65,8 @@ void spell_effect(int prof) {
          return;
       }
    }
+   */
+   /*
    if(temp = caster->query_property("block scrying")){
       if(!objectp(temp)){
          caster->remove_property("block scrying");
@@ -66,6 +77,7 @@ void spell_effect(int prof) {
          return;
       }
    }
+   */
    tell_room(place,"%^BOLD%^%^CYAN%^The air around "+caster->QCN+" "+
       "s%^RESET%^%^CYAN%^h%^BOLD%^i%^RESET%^%^CYAN%^m%^BOLD%^m"+
       "%^RESET%^%^CYAN%^e%^BOLD%^r%^RESET%^%^CYAN%^s %^BOLD%^with "+
@@ -75,9 +87,11 @@ void spell_effect(int prof) {
       "%^RESET%^%^CYAN%^e%^BOLD%^r%^RESET%^%^CYAN%^s %^BOLD%^with "+
       "shifting images for a moment before growing still.%^RESET%^");
    wis_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-   power = CLEVEL + wis_bonus + random(6);
+   //power = CLEVEL + wis_bonus + random(6);
+   power = clevel + wis_bonus + query_spell_level(spell_type);
 
    caster->set_property("spelled",({TO}));
+   /*
    detector = SCRY_D->add_detect_scrying(caster);
    if(!objectp(detector)){
       tell_object(caster,"%^BOLD%^RED%^Something is wrong that "+
@@ -96,8 +110,11 @@ void spell_effect(int prof) {
    wis_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
    power = CLEVEL + wis_bonus + random(6);
    blocker->set_block_power(power);
+   */
+   
    spell_successful();
    addSpellToCaster();
+   place->set_property("scry block power", power);
    spell_duration = 6 * (int)CLEVEL * ROUND_LENGTH;
    set_end_time();
    call_out("dest_effect", spell_duration);
@@ -111,8 +128,9 @@ void dest_effect(){
        tell_object(caster,"%^CYAN%^%^BOLD%^The illusion protecting you from scrying fades.%^RESET%^");
        caster->remove_property_value("spelled", ({TO}) );
    }
-   if(objectp(detector)) detector->self_destruct();
-   if(objectp(blocker)) blocker->self_destruct();
+   place->remove_property("scry block power");
+   //if(objectp(detector)) detector->self_destruct();
+   //if(objectp(blocker)) blocker->self_destruct();
 
    ::dest_effect();
    if(objectp(TO)) TO->remove();
