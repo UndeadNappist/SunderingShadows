@@ -49,6 +49,13 @@ void spell_effect(int prof) {
     }
     */
     
+    if(caster->query_property("screen"))
+    {
+        tell_object(caster, "You can only maintain one screen at a time.");
+        dest_effect();
+        return;
+    }
+    
     if(place->query_property("scry block power") || place->query_property("scry proof"))
     {
         tell_object(caster, "This place is already under the effects of scry protection.");
@@ -117,6 +124,7 @@ void spell_effect(int prof) {
    spell_successful();
    addSpellToCaster();
    place->set_property("scry block power", power);
+   caster->set_property("screen", 1);
    spell_duration = 6 * (int)CLEVEL * ROUND_LENGTH;
    set_end_time();
    call_out("dest_effect", spell_duration);
@@ -129,6 +137,7 @@ void dest_effect(){
    {
        tell_object(caster,"%^CYAN%^%^BOLD%^The illusion protecting you from scrying fades.%^RESET%^");
        caster->remove_property_value("spelled", ({TO}) );
+       caster->remove_property("screen");
    }
    place->remove_property("scry block power");
    //if(objectp(detector)) detector->self_destruct();
