@@ -35,6 +35,7 @@ int scry_check(object scryer, int power)
     if(result >= 0)
     {
         tell_object(scryer,"%^BOLD%^%^MAGENTA%^Suddenly, horrific images of your worst fears appear before your eyes, and you can't help but to stagger away in fright, losing your concentration!");
+        tell_object(this_object(), "Your false vision assaults someone's mind!");
         scryer->cause_typed_damage(scryer, "head", roll_dice(false_vision / 2, 6), "mental");
         if(result >= 5)
             scryer->cause_typed_damage(scryer, "head", roll_dice(false_vision, 6), "mental");
@@ -86,12 +87,12 @@ void long_look_room(object detector, int power)
             continue;
         if(ob->query_invis())
             continue;
-        if(ob->is_detectable())
+        if(!ob->is_detectable())
             continue;
         if(ob != this_object())
             if(!ob->scry_check(detector, power))
                 continue;
-        tell_object(detector, "%^WHITE%^BOLD%^[S] %^RED%^"+inv[i]->query_short());
+        tell_object(detector, "%^WHITE%^BOLD%^[S] %^RED%^"+inv[i]->query_title());
     }
     return;
 }
@@ -117,6 +118,7 @@ void reverse_look_room(object detector)
     message("room_description","\n%^YELLOW%^[S] %^RESET%^"+(string)dest->query_short()+"\n", detector);
     message("room_description","\n%^YELLOW%^[S] %^RESET%^"+(string)dest->query_long()+"\n", detector);
     inv = all_inventory(dest);
+    inv = distinct_array(inv);
 
     foreach(object ob in inv)
     {
@@ -124,7 +126,7 @@ void reverse_look_room(object detector)
             continue;
         if(ob->query_invis())
             continue;
-        if(ob->is_detectable())
+        if(!ob->is_detectable())
             continue;
         tell_object(detector, "%^WHITE%^BOLD%^[S] %^RED%^"+inv[i]->query_short());
     }
