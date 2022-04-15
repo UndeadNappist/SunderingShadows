@@ -92,7 +92,7 @@ void long_look_room(object detector, int power)
         if(ob != this_object())
             if(!ob->scry_check(detector, power))
                 continue;
-        tell_object(detector, "%^WHITE%^BOLD%^[S] %^RED%^"+inv[i]->query_title());
+        tell_object(detector, "%^WHITE%^BOLD%^[S] %^RED%^"+ob->query_title());
     }
     return;
 }
@@ -118,7 +118,7 @@ void reverse_look_room(object detector)
     message("room_description","\n%^YELLOW%^[S] %^RESET%^"+(string)dest->query_short()+"\n", detector);
     message("room_description","\n%^YELLOW%^[S] %^RESET%^"+(string)dest->query_long()+"\n", detector);
     inv = all_inventory(dest);
-    inv = distinct_array(inv);
+    //inv = distinct_array(inv);
 
     foreach(object ob in inv)
     {
@@ -128,7 +128,7 @@ void reverse_look_room(object detector)
             continue;
         if(!ob->is_detectable())
             continue;
-        tell_object(detector, "%^WHITE%^BOLD%^[S] %^RED%^"+inv[i]->query_short());
+        tell_object(detector, "%^WHITE%^BOLD%^[S] %^RED%^"+ob->query_short());
     }
     return;
 }
