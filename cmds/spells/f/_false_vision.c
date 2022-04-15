@@ -52,6 +52,13 @@ void spell_effect(int prof) {
         if(objectp(TO)) TO->remove();
         return;
     }
+    if(target->query_property("scry detect power") || target->query_property("scry block power") || target->query_property("block scrying") || target->query_property("false vision"))
+    {
+        tell_object(caster, "There is already scry protection magic on that target.");
+        dest_effect();
+        return;
+    }
+    /*
     if(temp = target->query_property("block scrying")) {
 	if(!objectp(temp)) target->remove_property("block scrying");
 	else {
@@ -60,6 +67,7 @@ void spell_effect(int prof) {
         return;
       }
     }
+    */
 
     tell_room(place,"%^RESET%^%^CYAN%^A chord of four notes r%^BOLD%^i%^RESET%^%^CYAN%^pple through the air around "+
 target->QCN+" as though it were the solid strings of a lute, leaving heavy silence in its wake!",({target,caster}));

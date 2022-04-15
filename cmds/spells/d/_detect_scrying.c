@@ -47,6 +47,7 @@ void spell_effect(int prof)
 
     ::spell_effect();
 
+    /*
     if (temp = caster->query_property("detect scrying")) {
         if (!objectp(temp)) {
             caster->remove_property("detect scrying");
@@ -59,13 +60,21 @@ void spell_effect(int prof)
             return;
         }
     }
+    */
+    if(caster->query_property("scry detect power") || caster->query_property("scry block power") || caster->query_property("block scrying") || caster->query_property("false vision"))
+    {
+        tell_object(caster, "There is already scry protection magic on you.");
+        dest_effect();
+        return;
+    }
     tell_room(place, "%^BOLD%^GREEN%^For a brief moment, the air around " +
               "" + caster->QCN + " shimmers with a magical aura!");
 
     caster->set_property("spelled", ({ TO }));
     bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-    power = clevel + bonus + random(6);
-
+    //power = clevel + bonus + random(6);
+    power = bonus + clevel + query_spell_level(spell_type);
+    /*
     detector = SCRY_D->add_detect_scrying(caster);
     if (!objectp(detector)) {
         tell_object(caster, "%^BOLD%^RED%^Something is wrong that "
@@ -74,6 +83,8 @@ void spell_effect(int prof)
         return;
     }
     detector->set_detect_power(power);
+    */
+    caster->set_property("scry detect power", power);
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 6;
     set_end_time();
     call_out("dest_effect",spell_duration);
@@ -86,6 +97,7 @@ void dest_effect()
     if (objectp(caster)) {
         tell_object(caster, "%^CYAN%^%^BOLD%^The magic detecting scrying fades from around you.%^RESET%^");
         caster->remove_property_value("spelled", ({ TO }));
+        caster->remove_property("scry detect power");
     }
     if (objectp(detector)) {
         detector->self_destruct();
