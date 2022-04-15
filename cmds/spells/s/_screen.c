@@ -40,12 +40,14 @@ void spell_effect(int prof) {
 
    ::spell_effect();
    
+    /*
     if(caster->query_property("scry detect power") || caster->query_property("scry block power") || caster->query_property("block scrying") || caster->query_property("false vision"))
     {
         tell_object(caster, "There is already scry protection magic on you.");
         dest_effect();
         return;
     }
+    */
     
     if(place->query_property("scry block power") || place->query_property("scry proof"))
     {

@@ -19,7 +19,7 @@ void create()
     set_domains("knowledge");
     set_spell_sphere("divination");
     set_syntax("cast CLASS detect scrying");
-    set_description("The caster of this spell creates a protective weave around themselves that serves as an alarm, warning the caster when they are being scried through magical or psionic means. Anyone scrying the caster must make an opposed spell check, pitting this spell against their scry spell. If they fail the check, their scry STILL succeeds. However, their scry is detected and the detecting caster is given a warning, showing them the location of the scryer in question. This spell cannot run concurrently with other scry protection spells.");
+    set_description("The caster of this spell creates a protective weave around themselves that serves as an alarm, warning the caster when they are being scried through magical or psionic means. Anyone scrying the caster must make an opposed spell check, pitting this spell against their scry spell. If they fail the check, their scry STILL succeeds. However, their scry is detected and the detecting caster is given a warning, showing them the location of the scryer in question. This spell cannot run concurrently with other personal scry protection spells, but can be used with things like screen.");
     set_verbal_comp();
     set_somatic_comp();
     set_peace_needed(1);
