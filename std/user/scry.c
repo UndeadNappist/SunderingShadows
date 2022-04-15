@@ -56,7 +56,7 @@ int scry_check(object scryer, int power)
     
     //tell_object(find_player("tlaloc"), "BLOCK_POWER : " + block_power);
     //tell_object(find_player("tlaloc"), "POWER       : " + power);    
-    if(block_power + 10 > power + roll_dice(1, 20))
+    if(block_power + 10 >= power + roll_dice(1, 20))
         return 0;
     
     return 1;
