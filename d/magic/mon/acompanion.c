@@ -346,9 +346,9 @@ void special_attack(object target)
             return;
 
         if(FEATS_D->usable_feat(owner, "silverclaw"))
-            target->cause_typed_damage(target, "torso", attacks[str][0], "silver");
+            target->cause_typed_damage(target, "torso", attacks[str][0] + this_object()->query_damage_bonus(), "silver");
         else
-            target->cause_typed_damage(target, "torso", attacks[str][0], attacks[str][1]);
+            target->cause_typed_damage(target, "torso", attacks[str][0] + this_object()->query_damage_bonus(), attacks[str][1]);
     }
 
     return;
