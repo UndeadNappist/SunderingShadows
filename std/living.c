@@ -1493,11 +1493,14 @@ int query_stats(string stat)
 
 int query_base_stats(string stat)
 {
-    if (!stats || !stats[stat]) {
+    int amt;
+    
+    if (!stats || !stats[stat])
         return 0;
-    } else {
-        return stats[stat];
-    }
+        
+    amt = stats[stat];
+    
+    return amt;
 }
 
 int query_formula()
