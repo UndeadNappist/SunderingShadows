@@ -7,7 +7,7 @@ void create() {
     feat_type("premanent");
     feat_category("Evasion");
     feat_name("evasion");
-    feat_prereq("13 Dexterity, Dodge");
+    feat_prereq("Base Dexterity 13, Dodge");
     feat_desc("This passive feat grants the character the ability to entirely avoid damage from certain spells. Any spell that allows damage to be halved by a successful reflex save will instead cause no damage if the save is made. A failed save will still result in full damage being taken. This feat is only effective in light or no armor.");
     permanent(1);
     set_required_for(({"scramble","spring attack"}));

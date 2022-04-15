@@ -10,7 +10,7 @@ void create()
     feat_type("permanent");
     feat_category("MeleeDamage");
     feat_name("cleave");
-    feat_prereq("Powerattack, Strength 15");
+    feat_prereq("Powerattack, Base Strength 15");
     feat_desc("This feat gives the ability to hit an additional enemy upon a successful hit. This will happen once per round. This feat requires a weapon to function");
     permanent(1);
     set_target_required(0);
@@ -27,7 +27,7 @@ int prerequisites(object ob)
     if (!objectp(ob)) {
         return 0;
     }
-    if (!FEATS_D->has_feat(ob, "powerattack") || ob->query_stats("strength") < 15) {
+    if (!FEATS_D->has_feat(ob, "powerattack") || ob->query_base_stats("strength") < 15) {
         dest_effect();
         return 0;
     }

@@ -49,7 +49,7 @@ int scry_check(object scryer, int power)
         if(result >= 5)
         {
             tell_object(this_object(),"%^BOLD%^YELLOW%^You get an image of where they are!%^RESET%^");
-            reverse_look_room(scryer);
+            scryer->reverse_look_room(this_object());
         }   
     }
         

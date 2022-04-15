@@ -8,7 +8,7 @@ void create()
     feat_type("instant");
     feat_category("TwoHandedWeapons");
     feat_name("sweepingblow");
-    feat_prereq("Strength 13");
+    feat_prereq("Base Strength 13");
     feat_desc("The SweepingBlow feat will send your weapon in a large arc out in front of you, trying to hit any attackers that stand in your way");
     feat_syntax("sweepingblow");
     set_save("reflex");

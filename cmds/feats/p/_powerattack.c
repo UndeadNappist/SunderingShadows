@@ -9,7 +9,7 @@ void create()
     feat_type("instant");
     feat_category("MeleeDamage");
     feat_name("powerattack");
-    feat_prereq("Strength 13");
+    feat_prereq("Base Strength 13");
     feat_syntax("powerattack offensive|defensive|max|min|check");
     feat_desc("The PowerAttack feat allows the character to shift their stance so that their attacks do more damage but it makes their attacks less likely to hit."
         + "\n"

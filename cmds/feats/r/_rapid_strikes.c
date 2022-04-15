@@ -9,7 +9,7 @@ void create()
     feat_type("permanent");
     feat_category("UnarmedCombat");
     feat_name("rapid strikes");
-    feat_prereq("Dexterity 15 or Strength 15");
+    feat_prereq("Base Dexterity 15 or Base Strength 15");
     feat_desc("Rapid strikes is a passive feat that gives an extra attack when fighting unarmed.");
     permanent(1);
     set_required_for(({"improved rapid strikes","unarmed parry","precise strikes"}));

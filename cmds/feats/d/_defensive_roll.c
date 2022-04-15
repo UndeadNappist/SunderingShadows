@@ -7,7 +7,7 @@ void create() {
     feat_type("permanent");
     feat_category("Evasion");
     feat_name("defensive roll");
-    feat_prereq("Dexterity 15, Thief L21 or Monk L21");
+    feat_prereq("Base Dexterity 15, Thief L21 or Monk L21");
     feat_desc("This passive feat grants the character the ability to roll with a blow that would otherwise cause them heavy amounts of damage. A successful attempt will halve the damage taken from the blow.");
     permanent(1);
     set_required_for(({}));

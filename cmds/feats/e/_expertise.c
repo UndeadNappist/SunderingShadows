@@ -9,7 +9,7 @@ void create()
     feat_type("instant");
     feat_category("MeleeAccuracy");
     feat_name("expertise");
-    feat_prereq("Intelligence 13");
+    feat_prereq("Base Intelligence 13");
     feat_syntax("expertise offensive|defensive|min|max|check");
     feat_desc("The Expertise feat will allow the character to shift some of their focus from hitting a target to defending from it, making them more difficult to hit with melee attacks."
         + "\n"
