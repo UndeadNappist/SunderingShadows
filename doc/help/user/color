@@ -36,7 +36,7 @@ You can also use ANSI color codes, using the format of %%%^^^CXXX%%%^^^, where X
 
  %^MAGENTA%^*%^RESET%^ Do not use plain black (%%%^^^BLACK%%%^^^). Plain black will meld into the background of most clients. Don't use it even with background colors as clients may disable background colors.
  %^MAGENTA%^*%^RESET%^ Put a %%%^^^RESET%%%^^^ at the start and end of all your colored works.
- %^MAGENTA%^*%^RESET%^ If you use background color make sure you're using high contrast color. Otherwise many clients just won't see the text you've written. Most terminals default to bright colors for background colors.
+ %^MAGENTA%^*%^RESET%^ These are reserved for staff (immortals, avatars, etc). If you use background color make sure you're using high contrast color. Otherwise many clients just won't see the text you've written. Most terminals default to bright colors for background colors.
 
 
 %^CYAN%^EXAMPLES%^RESET%^
