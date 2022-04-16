@@ -69,25 +69,28 @@ void raise_ghosts(int clevel, int limit, object caster, object controller)
 
         lvl=clevel;
         nummon += lvl;
-        undead->set_property("raised",1);
-        undead->set_property("raised " + undead_to_raise(), 1);
-        undead->set_property("minion",caster);
-        undead->move(environment(caster));
-        undead->serve(caster);
-        undead->set_guild_level("fighter",clevel);
-        undead->set_skill("athletics",clevel);
-        undead->set_skill("perception",clevel);
-        undead->set_level(clevel);
-        undead->set_max_hp(clevel*12+50); //d12
-        undead->set_hp(undead->query_max_hp());
-        undead->set_overall_ac(5-clevel);
-        undead->set_property("spell", TO);
-        undead->set_property("spell_creature", TO);
-        undead->set_property("keep exp",1);
-        undead->set_exp((int)undead->query_hd()*50);
-        caster->set_property("raised", lvl/6);
-        undead->set_property("raised " + undead_to_raise(), lvl / 6);
-        controller->add_monster(undead);
+        if(objectp(caster) && objectp(undead) && objectp(controller))
+        {
+            undead->set_property("raised",1);
+            undead->set_property("raised " + undead_to_raise(), 1);
+            undead->set_property("minion",caster);
+            undead->move(environment(caster));
+            undead->serve(caster);
+            undead->set_guild_level("fighter",clevel);
+            undead->set_skill("athletics",clevel);
+            undead->set_skill("perception",clevel);
+            undead->set_level(clevel);
+            undead->set_max_hp(clevel*12+50); //d12
+            undead->set_hp(undead->query_max_hp());
+            undead->set_overall_ac(5-clevel);
+            undead->set_property("spell", TO);
+            undead->set_property("spell_creature", TO);
+            undead->set_property("keep exp",1);
+            undead->set_exp((int)undead->query_hd()*50);
+            caster->set_property("raised", lvl/6);
+            undead->set_property("raised " + undead_to_raise(), lvl / 6);
+            controller->add_monster(undead);
+        }
 
         i++;
     }
