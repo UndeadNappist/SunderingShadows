@@ -52,7 +52,7 @@ void heart_beat(){
    if(ETO != environment(follower))
       move(environment(follower));
    if(ETO->query_property("no scry")) self_destruct();
-   if(present("blockerx111", ETO)) self_destruct();
+   //if(present("blockerx111", ETO)) self_destruct();
 }
 
 dest_me(){
@@ -68,6 +68,13 @@ catch_tell(string str){
       dest_me();
       return;
    }
+
+    if(userp(previous_object()))
+    {
+        if(!previous_object()->scry_check(caster, query_scry_power()))
+            return;
+    }
+    
    tell_object(caster,"%^BOLD%^Your inner eye reveals:%^RESET%^   "+str);
 
 }

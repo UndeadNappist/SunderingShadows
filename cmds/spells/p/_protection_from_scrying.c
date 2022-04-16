@@ -86,6 +86,7 @@ void spell_effect(int prof) {
         TO->remove();
         return;
     }
+    /*
 	if(temp = target->query_property("block scrying")) {
 		if(!objectp(temp)) {
 			target->remove_property("block scrying");
@@ -96,6 +97,14 @@ void spell_effect(int prof) {
         	return;
         }
     }
+    */
+    if(target->query_property("scry block power"))
+    {
+        tell_object(caster, "There is already scry protection on that.");
+        dest_effect();
+        return;
+    }
+    
     if(target == place)
         tell_room(place,"%^BOLD%^GREEN%^For a brief moment, the air around "+
             "you shimmers with magical static.");
@@ -104,6 +113,7 @@ void spell_effect(int prof) {
             target->query_short()+" shimmers with magical static.");
 
     target->set_property("spelled",({TO}));
+    /*
     blocker = SCRY_D->add_block_scrying(target);
     if(!objectp(blocker)) {
         tell_object(caster,"%^BOLD%^RED%^Something is wrong that "
@@ -111,13 +121,16 @@ void spell_effect(int prof) {
         dest_effect();
         return;
     }
+    */
 
     int_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-    power = CLEVEL + int_bonus + random(6);
-    blocker->set_block_power(power);
+    //power = CLEVEL + int_bonus + random(6);
+    power = clevel + int_bonus + query_spell_level(spell_type);
+    //blocker->set_block_power(power);
 
     duration = 6 * (int)CLEVEL * ROUND_LENGTH;
     addSpellToCaster();
+    target->set_property("scry block power", power);
     spell_duration = duration;
     set_end_time();
     call_out("dest_effect",spell_duration);
@@ -126,7 +139,8 @@ void spell_effect(int prof) {
 
 void dest_effect() {
     if(objectp(target)) target->remove_property_value("spelled", ({TO}) );
-    if(objectp(blocker)) blocker->self_destruct();
+    objectp(target) && target->remove_property("scry block power");
+    //if(objectp(blocker)) blocker->self_destruct();
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }

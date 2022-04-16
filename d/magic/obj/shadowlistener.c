@@ -84,6 +84,12 @@ catch_tell(string str){
       return;
    }
 
+    if(userp(previous_object()))
+    {
+        if(!previous_object()->scry_check(caster, query_scry_power()))
+            return;
+    }
+    
    tell_object(caster,"%^MAGENTA%^Your shadow whispers to you:%^RESET%^   "+str);
 
 }

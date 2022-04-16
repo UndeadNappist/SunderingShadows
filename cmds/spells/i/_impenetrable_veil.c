@@ -25,6 +25,13 @@ int preSpell()
 {
     if (!target) target = caster;
 
+    if(target->query_property("scry detect power") || target->query_property("scry block power") || target->query_property("block scrying") || target->query_property("false vision"))
+    {
+        tell_object(caster, "There is already scry protection magic on that target.");
+        dest_effect();
+        return;
+    }
+    /*
     if(temp = target->query_property("block scrying"))
     {
         if(!objectp(temp))
@@ -38,6 +45,7 @@ int preSpell()
         }
         return 0;
     }
+    */
 
     if(target->query_property("chameleoned"))
     {
@@ -64,12 +72,15 @@ spell_effect()
     tell_room(place,"%^MAGENTA%^"+caster->QCN+" raises an impenetrable veil of magic around "+target->QCN+".%^RESET%^");
     
     bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
+    /*
     power = clevel + bonus + random(6);
     blocker = SCRY_D->add_block_scrying(target);
     blocker->set_block_power(power);
-    
+    */
+    power = clevel + bonus + query_spell_level(spell_type);
     target->set_property("spelled", ({TO}) );
-    target->set_property("block scrying", 1);
+    //target->set_property("block scrying", 1);
+    target->set_property("scry block power", power);
     target->set_property("chameleoned",clevel / 2);
     target->set_property("untrackable", 1);
     spell_duration = 5 * clevel * ROUND_LENGTH;
@@ -87,6 +98,7 @@ void dest_effect()
         target->remove_property("chameleoned");
         target->remove_property("untrackable");
         target->remove_property("block scrying");
+        target->remove_property("scry block power");
         if(objectp(blocker)) blocker->self_destruct();
     }
     ::dest_effect();

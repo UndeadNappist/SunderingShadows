@@ -98,6 +98,11 @@ catch_tell(string str){
         dest_me();
         return;
     }
+    if(userp(previous_object()))
+    {
+        if(!previous_object()->scry_check(caster, query_scry_power()))
+            return;
+    }
     tell_object(caster,"%^BOLD%^%^WHITE%^You see from afar:%^RESET%^   "+str);
 }
 

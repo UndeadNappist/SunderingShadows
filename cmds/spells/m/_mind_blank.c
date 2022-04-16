@@ -40,6 +40,13 @@ int preSpell()
         return 0;
     }
 
+    if(target->query_property("scry block power") || target->query_property("scry detect power"))
+    {
+        tell_object(caster, "%^BOLD%^MAGENTA%^You are already protected by blocking magic!");
+        return 0;
+    }
+    
+    /*
     if(temp = target->query_property("block scrying"))
     {
         if(!objectp(temp))
@@ -53,6 +60,7 @@ int preSpell()
         }
         return 0;
     }
+    */
     return 1;
 }
 
@@ -134,8 +142,9 @@ void spell_effect(int prof)
 
     caster->set_property("spelled",({TO}));
     target->set_property("mind blank",1);
-    blocker = SCRY_D->add_block_scrying(target);
+    //blocker = SCRY_D->add_block_scrying(target);
 
+    /*
     if(!objectp(blocker))
     {
         tell_object(caster,"%^BOLD%^RED%^Something is wrong that "
@@ -143,13 +152,16 @@ void spell_effect(int prof)
         dest_effect();
         return;
     }
+    */
 
     int_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-    power = mylevel + int_bonus + random(6);
-    blocker->set_block_power(power);
+    //power = mylevel + int_bonus + random(6);
+    power = clevel + int_bonus + query_spell_level(spell_type);
+    //blocker->set_block_power(power);
     duration = 5 * mylevel * ROUND_LENGTH;
     spell_successful();
     addSpellToCaster();
+    target->set_property("scry block power", power);
     spell_duration = duration;
     set_end_time();
     call_out("dest_effect",spell_duration);
@@ -161,6 +173,7 @@ void dest_effect() {
     if(objectp(target))
     {
         target->remove_property_value("spelled", ({TO}) );
+        target->remove_property("scry block power");
         if(FLAG)
         {
            target->remove_temporary_feat("unyielding soul");
