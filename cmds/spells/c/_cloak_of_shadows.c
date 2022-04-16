@@ -85,19 +85,29 @@ void targ_vanish()
 // now scry blocking second!
     if(arg == "divination")
     {
+      if(caster->query_property("scry block power"))
+      {
+          tell_object(caster, "You are already under the effects of scry protection.");
+          dest_effect();
+          return;
+      }
       tell_object(caster,"%^CYAN%^The shadows collapse around your form and seep into your skin!%^RESET%^");
       tell_room(place,"%^CYAN%^The shadows collapse around "+caster->QCN+", and seep into "+caster->QP+" skin!%^RESET%^",caster);
       spell_successful();
       addSpellToCaster();
+      /*
       blocker = SCRY_D->add_block_scrying(caster);
       if(!objectp(blocker)) {
         tell_object(caster,"%^BOLD%^RED%^Something is wrong that a wiz might want to look at!");
         dest_effect();
         return;
       }
+      */
       stat_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-      power = CLEVEL + stat_bonus + random(6); // set to match scry power & other block effects
-      blocker->set_block_power(power);
+      //power = CLEVEL + stat_bonus + random(6); // set to match scry power & other block effects
+      //blocker->set_block_power(power);
+      power = clevel + stat_bonus + query_spell_level(spell_type);
+      caster->set_property("scry block power", power);
       caster->set_property("spelled",({TO}));
       caster->set_property("cloak_of_shadows",1);
       duration = 9 * (int)CLEVEL;
@@ -120,6 +130,7 @@ void dest_effect() {
       if(arg == "divination") {
         tell_object(caster,"%^CYAN%^Remnants of d%^BLUE%^a%^CYAN%^rkn%^BLUE%^es%^CYAN%^s finally disperse from your skin.%^RESET%^");
         tell_room(environment(caster),"%^CYAN%^Remnants of d%^BLUE%^a%^CYAN%^rkn%^BLUE%^es%^CYAN%^s finally disperse from "+caster->QCN+"'s skin.%^RESET%^",caster);
+        caster->remove_property("scry block power");
       }
     }
     if(objectp(invisob)) invisob->cancel_inv();
