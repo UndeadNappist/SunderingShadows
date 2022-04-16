@@ -1040,7 +1040,7 @@ int quit()
         if(!objectp(ob))
             continue;
         
-        if(!ob->remove() || (objectp(ob) && strlen(errors = catch(ob->remove()))))
+        if((objectp(ob) && strlen(errors = catch(ob->remove()))))
         {
             log_file("quit", "quit error " + query_name() + ": " + errors + "\n");
             continue;
