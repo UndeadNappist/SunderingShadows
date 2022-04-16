@@ -28,10 +28,11 @@ string query_cast_string() {
 }
 
 void spell_effect(int prof) {
-    int num, wis_bonus, duration;
+    int num, wis_bonus, duration, power;
     object temp;
     ::spell_effect();
 
+    /*
     if(temp = caster->query_property("block scrying")) {
       if(!objectp(temp)) caster->remove_property("block scrying");
       else {
@@ -39,6 +40,13 @@ void spell_effect(int prof) {
         TO->remove();
         return;
       }
+    }
+    */
+    if(caster->query_property("scry block power"))
+    {
+        tell_object(caster, "You are already under the effects of scry protection.");
+        dest_effect();
+        return;
     }
     if(isCivilization(place->query_terrain())) {
         tell_object(caster,"%^GREEN%^You try to draw yourself into the weave of "
@@ -57,6 +65,7 @@ void spell_effect(int prof) {
 "nature around you, hiding yourself among the energies of the wilderness.");
 
     caster->set_property("spelled",({TO}));
+    /*
     blocker = SCRY_D->add_block_scrying(caster);
     if(!objectp(blocker)) {
         tell_object(caster,"Something is wrong that "
@@ -64,9 +73,14 @@ void spell_effect(int prof) {
         dest_effect();
         return;
     }
+    */
     wis_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
+    /*
     blocker->set_block_power(CLEVEL + wis_bonus + random(6));
     blocker->set_ranger_block(1);
+    */
+    power = clevel + wis_bonus + query_spell_level(spell_type);
+    caster->set_property("scry block power", power);
     addSpellToCaster();
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 2;
     set_end_time();
@@ -81,8 +95,9 @@ void dest_effect()
   {
     tell_object(caster,"%^GREEN%^%^BOLD%^Your protection from scrying fades.");
     caster->remove_property_value("spelled", ({TO}) );
+    caster->remove_property("scry block power");
   }
-  if(objectp(blocker)) blocker->self_destruct();
+  //if(objectp(blocker)) blocker->self_destruct();
   ::dest_effect();
   if(objectp(TO)) TO->remove();
 }
