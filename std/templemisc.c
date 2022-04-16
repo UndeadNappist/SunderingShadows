@@ -78,7 +78,7 @@ void heart_beat()
         }
     }
     
-    sizeof(aggressors) && aggressors = filter_array(aggressors, (: $1->query_diety() != diety :));
+    sizeof(aggressors) && aggressors = filter_array(aggressors, (: userp($1) && $1->query_diety() != diety :));
     
     if(!sizeof(aggressors))
         return;
