@@ -1015,7 +1015,7 @@ int quit()
     remove_stat_bonuses();
     save_player( query_name() );
     if(objectp(ETO)) { message("emote",TO->QCN+" has left the game.",ETO); }
-    log_file("player/logon", query_name()+" (quit): "+ctime(time())+"\n");
+    //log_file("player/logon", query_name()+" (quit): "+ctime(time())+"\n");
 
     if(!TO->query("true_quietness"))
     {
