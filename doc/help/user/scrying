@@ -24,7 +24,7 @@ These spells place an invisible listener into the room with the target, picking 
 There are a number of different spells that protect the caster from scrying. There are a few different types:
 
 %^CYAN%^BOLD%^PERSONAL SCRY BLOCKER:%^RESET%^
-%^MAGENTA%^BOLD%^Mind Blank/Impenetrable Veil/Protection From Scrying%^RESET%^
+%^MAGENTA%^BOLD%^Mind Blank/Impenetrable Veil/Protection From Scrying/Mind Veil%^RESET%^
 
 These spells will place a blocker on yourself, which protects only YOU from being scried. This protects extends to scries cast on others which would normally reveal your presence. These protections do NOT alert you to the scry nor the identity of the scrier. These blockers do not stack with each other. These blockers move with the caster.
 

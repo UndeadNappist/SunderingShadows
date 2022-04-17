@@ -63,7 +63,7 @@ void spell_effect(int prof) {
    spell_successful();
    addSpellToCaster();
    caster->set_property("spelled",({TO}));
-   blocker = SCRY_D->add_block_scrying(caster);
+   //blocker = SCRY_D->add_block_scrying(caster);
    if(!objectp(blocker)) {
       tell_object(caster,"%^BOLD%^RED%^Something is wrong that a wiz might want to look at!");
       dest_effect();
@@ -71,8 +71,10 @@ void spell_effect(int prof) {
    }
 //updated by ~Circe~ 9/16/11 to use bonuses properly
    wis_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-   power = CLEVEL + wis_bonus + random(6);
-   blocker->set_block_power(power);
+   //power = CLEVEL + wis_bonus + random(6);
+   power = clevel + wis_bonus + query_spell_level(spell_type);
+   //blocker->set_block_power(power);
+   caster->set_property("scry block power", power);
    caster->set_property("hidden alignment",5);
    if(member_array("unyielding soul",(string*)caster->query_temporary_feats()) == -1) {
       caster->add_temporary_feat("unyielding soul");
@@ -89,6 +91,7 @@ void dest_effect(){
    {
        tell_object(caster,"%^CYAN%^The %^CYAN%^t%^WHITE%^end%^CYAN%^r%^WHITE%^ils%^CYAN%^ of %^CYAN%^f%^WHITE%^i%^CYAN%^l%^WHITE%^my %^WHITE%^e%^CYAN%^n%^CYAN%^e%^WHITE%^rgy%^CYAN%^ flow away from you, leaving you exposed once again.");
        caster->remove_property("hidden alignment");
+       caster->remove_property("scry block power");
        if(feattracker == 1) caster->remove_temporary_feat("unyielding soul");
        caster->remove_property_value("spelled", ({TO}) );
    }
