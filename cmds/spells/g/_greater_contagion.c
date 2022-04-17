@@ -7,6 +7,7 @@ void create() {
     set_spell_name("greater contagion");
     set_spell_level(([ "cleric":5, "druid":5, "mage":5]));
     set_spell_sphere("necromancy");
+    set_domains("plague");
     set_damage_desc("Random disease");
     set_syntax("cast CLASS greater contagion on TARGET");
     set_description("This spell functions as contagion, except the victim cannot overcome the disease without magic. Making the required number of saves will not cure it naturally.");
