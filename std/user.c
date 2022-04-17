@@ -1032,7 +1032,9 @@ int quit()
             inv[x]->unequip();
         }
     }
-    YUCK_D->save_inventory(TO);
+    if(catch(YUCK_D->save_inventory(TO)))
+        tell_object(this_object(), "Inventory save failed.");
+    
     inv=all_inventory(TO);
     
     foreach(object ob in inv)
@@ -1043,6 +1045,7 @@ int quit()
         if((objectp(ob) && strlen(errors = catch(ob->remove()))))
         {
             log_file("quit", "quit error " + query_name() + ": " + errors + "\n");
+            tell_object(this_object(), "Error destroying object : " + ob->query_name() + ".");
             continue;
         }
     }
