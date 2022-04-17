@@ -64,11 +64,13 @@ void spell_effect(int prof) {
    addSpellToCaster();
    caster->set_property("spelled",({TO}));
    //blocker = SCRY_D->add_block_scrying(caster);
+   /*
    if(!objectp(blocker)) {
       tell_object(caster,"%^BOLD%^RED%^Something is wrong that a wiz might want to look at!");
       dest_effect();
       return;
    }
+   */
 //updated by ~Circe~ 9/16/11 to use bonuses properly
    wis_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
    //power = CLEVEL + wis_bonus + random(6);
