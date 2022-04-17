@@ -208,8 +208,8 @@ void save_inventory(object ob, string path)
     for (x = 0; x < sizeof(inv); x++) 
     {
         fname = path+"/ob"+x;
-        if(catch(j = inv[x]->save_me(fname)))
-            log_file("save_inventory", "Failed to save: " + base_name(inv[x]) + "\n");
+        if(j = catch(inv[x]->save_me(fname)))
+            log_file("save_inventory", "Failed to save: " + base_name(inv[x]) + ": " + j + "\n");
         //j=inv[x]->save_me(fname);
         continue;
     }
@@ -220,7 +220,8 @@ void load_inventory(object ob, string path)
 // move all cloned objects to ob
     mapping comps;
     string fname,fn,s1,s2,*files, myname, *myids;
-    int i,j,x,fsize,oldsize,z, flag, weight,internal;
+    int i,x,fsize,oldsize,z, flag, weight,internal;
+    mixed j;
     object tmp, old_tmp,failed;
     object *old,*deep;
     x = 0;
