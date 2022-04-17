@@ -995,7 +995,7 @@ int quit()
                 "You be well now!",
         });
     
-    string errors;
+    mixed errors;
 
     if(catch(break_all_spells()))
         message("environment", "Error breaking spells.", this_object());
