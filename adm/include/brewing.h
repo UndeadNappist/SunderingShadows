@@ -48,7 +48,7 @@
                      "elixir of owls wisdom" : (["value" : 7, "dc" : 29, "materials" : ([ "myrrha" : 2, "cinnamon" : 1, "peryton talon" : 2 ]), "color" : "yellow"]), \
                      "elixir of barkskin" : (["value" : 8, "dc" : 31, "materials" : ([ "catnip" : 3, "parsley" : 1, "patch of demonskin" : 1 ]), "color" : "yellow"]), \
                      "elixir of haste" : (["value" : 10, "dc" : 34, "materials" : ([ "ginger" : 2, "tendril of flame" : 2 ]), "color" : "red"]), \
-                     "elixir of heroism" : (["value" : 12, "dc" : 37, "materials" : ([ "red pepper" : 2, "sage" : 1, "vermilion" : 1, "breath of winter" : 1 ]), "color" : "red"]), \
+                     "elixir of heroism" : (["value" : 12, "dc" : 37, "materials" : ([ "red pepper" : 2, "sage" : 1, "valerian" : 1, "breath of winter" : 1 ]), "color" : "red"]), \
                      "elixir of displacement" : (["value" : 11, "dc" : 38, "materials" : ([ "allspice" : 4, "savory" : 2, "dream fragment" : 1 ]), "color" : "green"]), \
                      "elixir of rejuvenation" : (["value" : 11, "dc" : 41, "materials" : ([ "eucalyptus" : 3, "chamomile" : 1, "eye of newt" : 2 ]), "color" : "green"]), \
                      "elixir of stoneskin" : (["value" : 10, "dc" : 43, "materials" : ([ "clove" : 3, "granite dust" : 2, "living stone" : 2 ]), "color" : "green"]), \
