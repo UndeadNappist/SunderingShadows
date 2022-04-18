@@ -58,6 +58,7 @@ void create()
   LEVEL  6 - Resistance
   LEVEL  9 - Precise Strikes
   LEVEL 15 - Stalwart
+  LEVEL 21 - Death Ward
 
 The Animal Companion will hide if you use the 'hide_in_shadows' command, allowing you to effectively sneak about with your faithful friend.
 
