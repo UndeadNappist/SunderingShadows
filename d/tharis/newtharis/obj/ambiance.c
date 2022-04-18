@@ -51,7 +51,7 @@ void heart_beat() {
      if(random(chance)) return;
      switch(random(75)) {
        case 0..24:
-       tell_room(EETO,"%^RESET%^%^CRST%^%^C244%^One of the %^C241%^sleek black %^C244%^horseless carriage glides along the c%^RESET%^%^C022%^o%^RESET%^%^C249%^b%^C247%^b%^C246%^l%^C245%^e%^C246%^s%^C247%^t%^RESET%^%^C028%^o%^RESET%^%^C250%^n%^C244%^e street toward the %^C241%^tunnel %^C244%^to the south.%^CRST%^");
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C244%^One of the %^C241%^sleek black %^C244%^horseless carriages glides along the c%^RESET%^%^C022%^o%^RESET%^%^C249%^b%^C247%^b%^C246%^l%^C245%^e%^C246%^s%^C247%^t%^RESET%^%^C028%^o%^RESET%^%^C250%^n%^C244%^e street toward the %^C241%^tunnel %^C244%^to the south.%^CRST%^");
        break;
        case 25..49:
        tell_room(EETO,"%^RESET%^%^CRST%^%^C136%^A %^RESET%^%^C094%^supply cart %^RESET%^%^C136%^carrying goods from the %^RESET%^%^C058%^docks%^RESET%^%^C136%^ rumbles past, taking the west exit of the roundabout to head toward the city bazaar.%^CRST%^");
