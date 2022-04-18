@@ -14,7 +14,7 @@ void create(){
   set_short("The God's resting place");
   set_long(
 @DESC
-   %^BOLD%^%^RED%^The God's resting place%^RESET%^
+   %^BOLD%^%^RED%^The God's Resting Place%^RESET%^
 In the middle of this large room is a stone altar.
 On the altar rests a large, wrapped corpse. You can see the
 the care taken with this room. Incense burns, and some torches

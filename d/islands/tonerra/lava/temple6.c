@@ -12,7 +12,7 @@ void create(){
   set_short("A choice offered");
   set_long(
 @DESC
-   %^BOLD%^%^RED%^A choice offered%^RESET%^
+   %^BOLD%^%^RED%^A Choice Offered%^RESET%^
 You see a portal here that looks like the entrance to the
 monestary. Looks as if there is an exit from this place.
 Should you take it or move deeper into the temple?

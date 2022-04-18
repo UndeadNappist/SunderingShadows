@@ -36,7 +36,7 @@ int hit_func(object targ){
         if(!random(10)) {
         tell_object(ETO,"%^BOLD%^%^CYAN%^The motes of light begin to spin faster "+
 "within each link, releasing a %^RED%^f%^ORANGE%^i%^RESET%^%^RED%^e%^YELLOW%^r%^RED%^y "+
-"%^CYAN%^busrt into %^YELLOW%^ "+targ->QCN+".%^RESET%^");
+"%^CYAN%^burst into %^YELLOW%^ "+targ->QCN+".%^RESET%^");
         tell_object(targ,"%^BOLD%^%^CYAN%^Motes of light within %^RED%^"+ETO->QCN+"%^CYAN%^'s"+
 " crystal chain begin to spin faster before releasing a %^RED%^f%^ORANGE%^i%^RESET%^%^RED%^e"+
 "%^YELLOW%^r%^RED%^y %^CYAN%^burst into you!%^RESET%^");

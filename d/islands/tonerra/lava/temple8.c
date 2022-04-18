@@ -13,7 +13,7 @@ void create(){
   set_short("A hidden passageway");
   set_long(
 @DESC
-   %^BOLD%^%^RED%^A hidden passageway%^RESET%^
+   %^BOLD%^%^RED%^A Hidden Passageway%^RESET%^
 This is a small corridor, leading away from the main 
 temple chamber.  The dust of ages lines the floor, 
 covering the remains of a few bodies that are slumped 

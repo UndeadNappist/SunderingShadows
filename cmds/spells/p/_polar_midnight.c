@@ -34,9 +34,11 @@ string query_cast_string()
 void spell_effect(int prof)
 {
     tell_room(place,"%^BOLD%^%^BLACK%^Extreme cold and darkness falls onto the area!");
-    prevlight=place->query_light();
-    if(prevlight>-2)
+    prevlight=place->query_property("light");
+    if(prevlight>-2){
+        place->remove_property("light");
         place->set_light(-2);
+    }
     counter = clevel * 2;
     addSpellToCaster();
     spell_successful();
@@ -84,9 +86,11 @@ void execute_attack()
 void dest_effect() {
     if(objectp(place))
     {
+        place->remove_property("light");
         place->set_light(prevlight);
         tell_object(place,"%^BOLD%^%^BLUE%^The darkness recedes, and the place becomes a bit warmer.%^RESET%^");
     }
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }
+

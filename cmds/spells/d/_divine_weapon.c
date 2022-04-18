@@ -74,7 +74,7 @@ void spell_effect(int prof)
         spell_successful();
         return;
     }else {
-        tell_object(caster, "Error: No weapon matching your god has been found. Pleae, file a bug report.");
+        tell_object(caster, "Error: No weapon matching your god has been found. Please, file a bug report.");
         return;
     }
 }

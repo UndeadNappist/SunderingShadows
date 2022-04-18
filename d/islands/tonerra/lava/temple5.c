@@ -12,7 +12,7 @@ void create(){
   set_short("The guardian's house");
   set_long(
 @DESC
-   %^BOLD%^%^RED%^The guardian's house%^RESET%^
+   %^BOLD%^%^RED%^The Guardian's House%^RESET%^
 This room is the home of the powerful creatures of Ibrandul.
 It would appear that either these creatures have lived a long
 time without thier lord or that he still exists. Yes that is
