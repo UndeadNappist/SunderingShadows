@@ -1330,7 +1330,7 @@ void wizard_interface(object user, string type, string targ)
         }
 
         if ((FEATS_D->usable_feat(caster, "raging healer") && (member_array(spell_name, raging_healer_spells) != -1) && caster->query_property("raged") && roll_dice(1, 20) < 14)) {
-            tell_object(caster,"%^BOLD%^%^RED%^You're so angry you forgot to forget the spell.");
+            tell_object(caster,"%^BOLD%^%^RED%^Your rage preserves the spell in your memory.");
             preserve_in_memory = 1;
         }
     }
