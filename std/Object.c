@@ -497,15 +497,6 @@ mixed query_property(string prop)
             num += 25;
         }
     }
-    
-    if(prop == "flying")
-    {
-        if(this_object()->query_bloodline() == "celestial" && this_object()->query_class_level("sorcerer") > 30)
-            num += 1;
-        
-        if(this_object()->is_deva() || this_object()->query("subrace") == "fey'ri")
-            num += 1;
-    }
 
     if (prop == "empowered") {
         if (FEATS_D->usable_feat(TO, "greater spell power")) {

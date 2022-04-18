@@ -212,14 +212,14 @@ void spell_charges(string str, object ob, string spell, string file)
     charges = atoi(str);
     if (charges < 1) {
         write("You must apply at least one charge to the item.");
-        write("%^YELLOW%^Number of charges (15 max):");
+        write("%^YELLOW%^Number of charges (10 max):");
         write("~q to cancel");
         input_to("spell_charges", 0, ob, spell, file);
         return;
     }
     if (charges > 10) {
-        write("You may only input a maximum of 15 charges to an item.");
-        write("%^YELLOW%^Number of charges (15 max):");
+        write("You may only input a maximum of 10 charges to an item.");
+        write("%^YELLOW%^Number of charges (10 max):");
         write("~q to cancel");
         input_to("spell_charges", 0, ob, spell, file);
         return;
