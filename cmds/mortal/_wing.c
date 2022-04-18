@@ -25,8 +25,8 @@ int cmd_wing(string args)
         return 1;
     }
 
-    if (!(RACE_D->can_fly(TP)||
-          (TP->query_property("flying")))) {
+    if(!RACE_D->can_fly(this_player()) && !this_player()->query_property("flying"))
+    {
         tell_object(TP, "You can not fly.");
         return 1;
     }

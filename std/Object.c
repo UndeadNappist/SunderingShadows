@@ -483,6 +483,8 @@ mixed query_property(string prop)
     object* worn;
     int num, mylevel, scaled, tmpval;
     string subrace, binding;
+    
+    num = 0;
 
     if (!props) {
         props = ([]);

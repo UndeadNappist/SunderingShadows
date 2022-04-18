@@ -9,8 +9,8 @@ void create() {
 int potion_effect(object drinker,int mystrength,string str) {
     object spellob;
     ::potion_effect(drinker,mystrength,str);
-    if(drinker->query_property("rejuvenation")){
-      tell_object(drinker,"%^MAGENTA%^You wait for a few moments, but nothing seems to happen. You realize it's probably because you are already under a similar effect!%^RESET%^");
+    if(member_array("rejuvenation",(string*)drinker->query_temporary_feats()) != -1) {
+      tell_object(drinker,"%^MAGENTA%^You wait for a few moments, but nothing seems to happen. You realize it's probably because you are already regenerating!%^RESET%^");
       return 1;
     }
     spellob=new("/cmds/spells/r/_rejuvenation");
