@@ -12,7 +12,7 @@ void create() {
     set_spell_level(([ "ranger" : 2, "paladin" : 2, "cleric" : 2,"druid" : 2, "mage" : 2 ]));
     set_spell_sphere("alteration");
     set_bonus_type("enhancement");
-    set_syntax("cast CLASS owls wisdom on TARGET");
+    set_syntax("cast CLASS owls wisdom [on TARGET]");
     set_description("This spell allows the caster to infuse their target with the wisdom of an owl, granting them "
 "a +4 enhancement bonus to wisdom.");
     set_verbal_comp();
