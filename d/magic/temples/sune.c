@@ -29,7 +29,7 @@ void create(){
             "in the water.  Deep crimson rose petals float on the waters, infusing"+
 		" the pool with their fragrant aroma.",
 	"statue":"%^BOLD%^A large white marble statue of a radiantly beautiful"+
-		"woman looks out over the temple gardens and sacred pool, one hand "+
+		" woman looks out over the temple gardens and sacred pool, one hand "+
             "extended as if to bless any that approach.",
    ]));
 }

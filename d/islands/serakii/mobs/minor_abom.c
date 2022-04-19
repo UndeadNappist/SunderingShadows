@@ -116,7 +116,7 @@ void stuns(object targ)
                             "%^RESET%^%^RED%^You are entranced by the gurgles!");
         return;
     }else {
-        tell_object(targ, me + "gurgles but you ignore it!");
+        tell_object(targ, me + " gurgles but you ignore it!");
     }
 }
 

@@ -13,7 +13,7 @@ create()
    set_level(20);
    set_class("fighter");
    set_property("undead",1);
-   set_long("This human seems to be trapped inside own head, he stands still as a statue, moving and speaking only when it is required. His eyes are white empty and it is unclear whether he is alive or not. He wears simple black robes.
+   set_long("This human seems to be trapped inside his own head as he stands still as a statue, moving and speaking only when it is required. His eyes are white and seem empty, and it is unclear whether he is alive or not. He wears simple black robes.
 %^BOLD%^<help shop>%^RESET%^ will get you a list of shop commands.\n");
    set_gender("male");
    set_alignment(3);
