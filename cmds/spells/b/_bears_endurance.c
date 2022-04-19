@@ -17,8 +17,7 @@ void create() {
     set_description("This spell allows the caster to infuse their target with the endurance of a bear, granting them a +4 enhancement bonus to constitution.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
-	set_helpful_spell(1);
+    set_helpful_spell(1);
 }
 
 void spell_effect(int prof) {
@@ -29,6 +28,11 @@ void spell_effect(int prof) {
         return;
     }
     if (objectp(place)) place = environment(caster);
+	
+    if(!target)
+    {
+        target = caster;
+    }
     /*
     if((int)target->query_property("augmentation")){
       tell_object(caster,"%^YELLOW%^"+target->QCN+" is already under the influence of a similar spell.");
