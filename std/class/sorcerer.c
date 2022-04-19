@@ -51,19 +51,20 @@ mapping class_featmap(string myspec, object player)
     
     return ([ 1 : ({ "simple weapon proficiency", "spell focus", }), 31 : ({ "blood is power" }) ]);
 }
-
+/*
 string *class_skills(object ob)
 {
     return ({ "academics","perception","influence","spellcraft" });
 }
+*/
 
-string *bloodline_skills(string bloodline)
+string *class_skills(object ob)
 {
     string *skills;
     
     skills = ({ "academics", "perception", "influence", "spellcraft" });
     
-    switch(bloodline)
+    switch(ob->query_bloodline())
     {
         case "abyssal":
         skills += ({ "athletics" });
