@@ -5,12 +5,12 @@
 #define TPWARD_COMMON       35
 #define TPWARD_POOR         25
 
-#define SCRYWARD_LEGENDARY  75
-#define SCRYWARD_EPIC       65
-#define SCRYWARD_RARE       55
-#define SCRYWARD_GOOD       45
-#define SCRYWARD_COMMON     35
-#define SCRYWARD_POOR       25
+#define SCRYWARD_LEGENDARY  83
+#define SCRYWARD_EPIC       73
+#define SCRYWARD_RARE       63
+#define SCRYWARD_GOOD       53
+#define SCRYWARD_COMMON     43
+#define SCRYWARD_POOR       33
 
 #define LOCKS_LEGENDARY     80
 #define LOCKS_EPIC          70
