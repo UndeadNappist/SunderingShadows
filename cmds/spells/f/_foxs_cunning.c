@@ -12,7 +12,7 @@ void create() {
     set_spell_level(([ "bard" : 2, "assassin" : 2, "mage" : 2, "magus" : 2 ]));
     set_spell_sphere("alteration");
     set_bonus_type("enhancement");
-    set_syntax("cast CLASS foxs cunning on TARGET");
+    set_syntax("cast CLASS foxs cunning [on TARGET]");
     set_description("This spell allows the caster to infuse their target with the slyness of a fox, granting them a +4 enhancement bonus to intelligence.");
     set_verbal_comp();
     set_somatic_comp();
