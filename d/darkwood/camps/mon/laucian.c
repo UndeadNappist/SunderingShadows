@@ -108,13 +108,16 @@ void flashit(object targ)
 void kill_evil()
 {
     string race;
+    string subrace;
     object shape;
     race = TP->query_race();
+    subrace = TP->query("subrace");
     if (objectp(shape = TP->query_property("shapeshifted"))) {
         race = (string)shape->query_shape_race();
     }
     if (objectp(shape = TP->query_property("altered"))) {
         race = (string)shape->query_shape_race();
+        subrace = race;
     }
     if (race == "drow" || race == "half-drow" || race == "goblin" || race == "hobgoblin" ||
         race == "orc" || race == "half-orc" || race == "ogre" || race == "half-ogre" ||
@@ -122,7 +125,8 @@ void kill_evil()
         race == "gnoll" ||
         race == "troll" ||
         race == "ratkin" ||
-        race == "wererat") {
+        race == "wererat" ||
+        subrace == "fey'ri" ) {
         force_me("say %^BOLD%^%^GREEN%^Be gone of this village you evil scum!%^RESET%^");
         force_me("kill " + TP->query_name());
         command("parry");
