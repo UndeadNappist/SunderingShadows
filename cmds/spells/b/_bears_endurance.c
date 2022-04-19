@@ -13,7 +13,7 @@ void create() {
     set_spell_level(([ "ranger" : 2, "cleric" : 2,"druid" : 2, "assassin" : 2, "mage" : 2, "magus" : 2 ]));
     set_spell_sphere("alteration");
     set_bonus_type("enhancement");
-    set_syntax("cast CLASS bears endurance on TARGET");
+    set_syntax("cast CLASS bears endurance [on TARGET]");
     set_description("This spell allows the caster to infuse their target with the endurance of a bear, granting them a +4 enhancement bonus to constitution.");
     set_verbal_comp();
     set_somatic_comp();
