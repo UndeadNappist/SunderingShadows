@@ -13,7 +13,7 @@ void create()
     set_spell_level(([ "paladin" : 2, "cleric" : 2,"druid" : 2, "mage" : 2,"paladin":2, "magus" : 2 ]));
     set_spell_sphere("alteration");
     set_bonus_type("enhancement");
-    set_syntax("cast CLASS bulls strength on TARGET");
+    set_syntax("cast CLASS bulls strength [on TARGET]");
     set_description("This spell allows the caster to infuse their target with the strength of a bull, granting a +4 enhancement bonus to strength.");
     set_verbal_comp();
     set_somatic_comp();
