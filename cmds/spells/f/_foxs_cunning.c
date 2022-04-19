@@ -16,7 +16,6 @@ void create() {
     set_description("This spell allows the caster to infuse their target with the slyness of a fox, granting them a +4 enhancement bonus to intelligence.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
     set_helpful_spell(1);
 }
 
