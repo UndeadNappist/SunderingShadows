@@ -15,7 +15,7 @@ void create()
     set_spell_level(([ "mage" : 5, "magus" : 5 ]));
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS cloudkill");
-    set_damage_desc("acid");
+    set_damage_desc("area effect arsenic poison");
     set_description("This spell generates a bank of fog, similar to a fog cloud, except that its vapors are yellowish green and poisonous. For the duration of the spell's effect, the area will be filled with greenish poisonous arsine gas. This gas will instantly kill any enemies that are 1/4 of the casters clevel. Enemies that are less than half the caster's clevel must make a combat death save or die. Any enemies who are not killed inhale the gas, becoming poisoned with arsenic, which causes constitution damage. The longer the victims remain in the area, the more stacks of this poison that will be applied.");
     set_verbal_comp();
     set_somatic_comp();
