@@ -17,8 +17,7 @@ void create() {
 "a +4 enhancement bonus to wisdom.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
-	set_helpful_spell(1);
+    set_helpful_spell(1);
 }
 
 void spell_effect(int prof) {
@@ -27,6 +26,11 @@ void spell_effect(int prof) {
         return;
     }
     if (objectp(place)) place = environment(caster);
+	
+    if(!target)
+    {
+        target = caster;
+    }
 
     if(prof == -100) { // hack for potions. Cuz lib doesn't seem to call reverse spell anymore, and I'm lazy. N, 6/15.
       reverse_spell();
