@@ -17,7 +17,6 @@ void create()
     set_description("This spell allows the caster to infuse their target with the strength of a bull, granting a +4 enhancement bonus to strength.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
     set_helpful_spell(1);
 }
 
@@ -29,6 +28,11 @@ void spell_effect(int prof)
         return;
     }
     if(objectp(place)) place = environment(caster);
+    
+    if(!target)
+    {
+        target = caster;
+    }
 
     /*
     if((int)target->query_property("augmentation"))
