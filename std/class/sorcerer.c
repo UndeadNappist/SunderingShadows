@@ -60,9 +60,10 @@ string *class_skills(object ob)
 
 string *class_skills(object ob)
 {
-    string *skills;
+    string *skills = ({ "academics", "perception", "influence", "spellcraft" });
     
-    skills = ({ "academics", "perception", "influence", "spellcraft" });
+    if(!objectp(ob))
+        return ({  });
     
     switch(ob->query_bloodline())
     {
