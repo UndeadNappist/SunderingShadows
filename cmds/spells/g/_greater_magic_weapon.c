@@ -80,13 +80,13 @@ void spell_effect(int prof)
         dest_effect();
         return;
     }
-    if(!caster->query_funds("gold", 618034))
+    if(!caster->query_funds("gold", 6180))
     {
         tell_object(caster, "You don't have enough money.");
         return;
     }
 
-    caster->use_funds("gold",618034);
+    caster->use_funds("gold",6180);
 
     fob->remove_property("enchantment");
     fob->set_property("enchantment",5);
