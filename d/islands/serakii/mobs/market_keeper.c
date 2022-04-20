@@ -8,9 +8,6 @@
 
 inherit VENDOR;
 
-int is_clocked_in;
-object my_shop;
-
 void create(){
    object ob;
    ::create();
@@ -40,8 +37,8 @@ void create(){
 
    set_property("no bows",1);
    set_spoken("wizish");
-   my_shop =find_object_or_load(VILLAGE"market.c");
-   is_clocked_in = 0;
+
+]
    
    set_storage_room(STORAGE"market_storage");
 
@@ -49,38 +46,3 @@ void create(){
 }
 
 
-
-
-
-void quitting_time(){
-my_shop->close_shop();
-
-return;
-}
-
-
-void start_of_day(){
-my_shop->open_shop();
-
-
-return;
-}
-
-
-
-void heart_beat(){
-    
-    if(query_night() && is_clocked_in == 1){
-	    quitting_time();
-	    is_clocked_in = 0;     
-        force_me("pose baking break");
-
-    }
-
-    if(!query_night() && is_clocked_in == 0){
-      start_of_day();
-      is_clocked_in = 1;
-      force_me("pose helping customers");
-    return;
-    }
-}
