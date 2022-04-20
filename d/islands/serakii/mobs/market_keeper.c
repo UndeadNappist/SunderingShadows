@@ -38,7 +38,7 @@ void create(){
    set_property("no bows",1);
    set_spoken("wizish");
 
-]
+
    
    set_storage_room(STORAGE"market_storage");
 
