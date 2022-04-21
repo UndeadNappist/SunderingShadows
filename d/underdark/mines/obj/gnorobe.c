@@ -69,7 +69,7 @@ int remove_fun(){
    return 1;
 }
 
-int strike_fun(){
+int strike_fun(int damage, object what, object who){
    if(ETO->query_stoneSkinned()) return damage;
    if(!random(5)){
       new("/cmds/spells/s/_stoneskin.c")->use_spell(ETO,ETO,12,100,"mage");
