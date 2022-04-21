@@ -70,7 +70,7 @@ int scry_func(string str) {
 	   return 1;
       }*/
 
-    if((string)ETO->realName(target) != "") { real = lower_case((string)ETO->realName(target)); }
+    if((string)this_player()->realName(target) != "" && this_player(realName(target) != 0) { real = lower_case((string)this_player()->realName(target)); }
     else
     {
 	    tell_object(ETO,"%^BOLD%^RED%^You do not recall a person called "+target+"!%^RESET%^");
@@ -95,12 +95,14 @@ Removing this since real scry doesn't get blocked by invis
         return 0;
     }
 */
-    if(ob->query_property("no scry") || present("blockerx111",ob))
+    
+    //if(ob->query_property("no scry") || present("blockerx111",ob))
+    if(!ob->scry_check(this_player(), 14 + this_player()->query_level()))
     {
         tell_object(ETO,"%^RED%^Your eyes burn with an unholy pain as you try to peer through the eyes of the mask!%^RESET%^\n");
         return 1;
     }
-    if(ob->query_true_invis() || wizardp(ob)) { return 0; }
+    //if(ob->query_true_invis() || wizardp(ob)) { return 0; }
     locale = environment(ob);
     desc = (string)locale->query_long()+"\n";
     inv = all_inventory(locale);

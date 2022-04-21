@@ -49,7 +49,7 @@ You feel the wagon move slightly and lean into it more.
  After becoming thoroughly covered with mud, you feel
 the mud release its hold on the wagon. The driver thanks
  you (not quite sincerely) and then throws a few coins
- into the mud as the wagon drives off.
+ to you as the wagon drives off.
 OLI
 );
 //

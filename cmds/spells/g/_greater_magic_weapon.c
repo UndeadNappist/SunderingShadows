@@ -14,7 +14,7 @@ void create() {
     set_syntax("cast CLASS greater magic weapon on OBJECT");
     set_description("With this spell you can make any non-cursed, non-enchanted weapon +5.
 
-This spell uses 618 034 gp as a material component.");
+This spell uses 6180 gp as a material component.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
@@ -34,7 +34,7 @@ int preSpell()
         return 0;
     }
     fob = present(sfob, caster);
-    if (!caster->query_funds("gold", 618034)) {
+    if (!caster->query_funds("gold", 6180)) {
         tell_object(caster, "You don't have enough money.");
         return 0;
     }
@@ -80,13 +80,13 @@ void spell_effect(int prof)
         dest_effect();
         return;
     }
-    if(!caster->query_funds("gold", 618034))
+    if(!caster->query_funds("gold", 6180))
     {
         tell_object(caster, "You don't have enough money.");
         return;
     }
 
-    caster->use_funds("gold",618034);
+    caster->use_funds("gold",6180);
 
     fob->remove_property("enchantment");
     fob->set_property("enchantment",5);

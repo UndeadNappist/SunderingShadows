@@ -25,6 +25,7 @@ create() {
   set_wc(1,6);
   set_value(5);
   set_type("piercing");
+  set_damage_type("piercing");
   set_property("enchantment",3);
   set_prof_type("small blades");
   set_wield((:TO,"extra_wield":));
