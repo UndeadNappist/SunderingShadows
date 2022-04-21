@@ -38,7 +38,7 @@ void spell_effect(int prof) {
     object ob;
     int i;
     tell_room(place,"%^GREEN%^"+caster->QCN+" chants loudly and throws the emeralds into the air.",caster);
-    tell_object(caster,"%^GREEN%^ you chant loudly and throw the emeralds into the air.");
+    tell_object(caster,"%^GREEN%^You chant loudly and throw the emeralds into the air.");
     tell_room(place,"%^B_GREEN%^The emeralds start to glow and shape themselves.%^RESET%^");
 
     if(!arg||!stringp(arg)) { arg = "soldiers"; }
