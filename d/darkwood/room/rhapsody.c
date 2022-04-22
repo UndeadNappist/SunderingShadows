@@ -68,7 +68,7 @@ void create(){
 
     set_menu( ({"raging tempo","treble clef","languishing lyre","rhapsody",
         "elven steak","pheasant","story stew","sparkling melody","spinach salad",
-        "pretzels","licorice lager","evermeet tea","cocoa","destroyer's draught",
+        "pretzels","licorice lager","evermeet tea","cocoa","destroyers draught",
         "leg of lamb","feywine"}),
         ({"alcoholic","alcoholic","alcoholic","alcoholic","food","food","food",
         "soft drink","food","food","alcoholic","soft drink","soft drink","alcoholic",
@@ -216,7 +216,7 @@ int read(string str){
    }
    if(str == "drinks" || str == "drinks menu"){
       write("The following drinks are served here at the Rhapsody Inn.");
-      write("--------------------------------------------------------------------");
+      write("-----------------------------------------------------------");
       write("Sparkling Melody\t\t\t\t"+get_price("sparkling melody")+" gold");
       write("Rhapsody\t\t\t\t\t"+get_price("rhapsody")+" gold");
       write("Raging Tempo\t\t\t\t\t"+get_price("raging tempo")+" gold");
@@ -225,7 +225,7 @@ int read(string str){
       write("Mug of Licorice Lager\t\t\t\t"+get_price("licorice lager")+" gold");
       write("Evermeet Tea\t\t\t\t\t"+get_price("evermeet tea")+" gold");
       write("Cooked Cocoa\t\t\t\t\t"+get_price("cocoa")+" gold");
-      write("Destroyer's Draught\t\t\t\t"+get_price("destroyers draught")+" gold");
+      write("Destroyers Draught\t\t\t\t"+get_price("destroyers draught")+" gold");
       write("Glass of Feywine\t\t\t\t"+get_price("feywine")+" gold");
       write("Ode to Torment\t\t\t\t\t500 gold");
       write("-----------------------------------------------------------");
