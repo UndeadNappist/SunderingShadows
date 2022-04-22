@@ -101,7 +101,7 @@ int wearme()
 
 int removeme()
 {
-    tell_object(ETO,"%^BLUE%^You feel the power augmented power "+
+    tell_object(ETO,"%^BLUE%^You feel the augmented power "+
     "fade away... leaving you somewhat disconcerted!%^RESET%^");
     return 1;
 }

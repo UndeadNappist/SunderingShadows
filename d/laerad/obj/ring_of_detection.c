@@ -69,7 +69,7 @@ int detect_stuff(string str)
         return 1;
     } 
 
-    new("/cmds/spells/d/_detect_magic.c")->use_spell(TP,0,25,100,"mage");
+    new("/cmds/spells/d/_detect_magic.c")->use_spell(TP,0,25,100,"cantrip");
     charges -= 1;
     return 1;    
 }

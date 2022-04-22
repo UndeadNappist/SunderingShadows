@@ -7,7 +7,7 @@ void create() { ::create(); }
 //fearless in player_d.c
 int *age_brackets() { return ({ 17, 40, 200, 250 }); }
 
-int *restricted_alignments(string subrace) { return ({ 1, 4, 7}); }
+int *restricted_alignments(string subrace) { return ({ 1, 2, 4, 5, 7, 8 }); }
 
 string *restricted_classes(string subrace) {
     return ({ "mage", "magus",  "psion", "psywarrior",  "paladin", "sorcerer", "monk", "warlock", "inquisitor", "cleric"});

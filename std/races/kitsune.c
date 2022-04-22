@@ -14,7 +14,7 @@ int* age_brackets()
 
 int* restricted_alignments(string subrace)
 {
-    return ({ 1, 3, 7, 9});
+    return ({ 1, 2, 3, 4, 7});
 }
 
 string* restricted_classes(string subrace)

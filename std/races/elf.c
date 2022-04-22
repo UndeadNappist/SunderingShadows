@@ -27,7 +27,7 @@ int* restricted_alignments(string subrace)
         return ({ 1, 3, 4, 6, 7, 9 });
     }
     if (subrace == "fey'ri") {
-        return ({ 1, 4, 7 });
+        return ({ 1, 2, 4, 5, 7, 8 });
     }
     if (subrace == "szarkai") {
         return ({ 1, 2, 4, 5, 7, 8 });
