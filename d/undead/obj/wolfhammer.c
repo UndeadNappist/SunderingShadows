@@ -8,7 +8,7 @@ string owner;
 
 create() {
     ::create();
-   set_id(({ "wolfhammer","hammer","wolf hammer","Wolf","Hammer","weapon","wolfhand","wolf hand" }));
+   set_id(({ "wolfhammer","hammer","wolf hammer","Wolf","Hammer","weapon","wolfhand","wolf hand", "wolf's judgment" }));
    set_name("wolfhammer");
    set_short("%^BOLD%^The %^BLACK%^W%^RESET%^o%^BOLD%^%^BLACK%^lf's %^CYAN%^J%^RESET%^%^CYAN%^u%^BOLD%^d%^RESET%^%^CYAN%^g%^BOLD%^m%^RESET%^%^CYAN%^e%^BOLD%^n%^RESET%^%^CYAN%^t%^RESET%^");
    set_obvious_short("%^BOLD%^%^BLACK%^W%^RESET%^o%^BOLD%^%^BLACK%^lfh%^RESET%^ea%^BOLD%^%^BLACK%^d %^CYAN%^Warhammer%^RESET%^");
