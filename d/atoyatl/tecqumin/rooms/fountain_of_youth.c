@@ -191,13 +191,6 @@ void invigorate(object ob)
     }
     quests = ob->query_quests();
 
-    // Small adition, hope Lujke won't mind... Illy.
-    if (ob->is_vampire()) {
-        tell_object(ob, "%^BOLD%^%^GREEN%^You sense your unlife ends here as you drink... You are living again.");
-        ob->delete("vampire");
-        ob->delete("undead");
-    }
-
     if (EVENT_RECORDS_D->completed_event(ob->query_name(), "Supped the fountain of youth", DAY * 300) > 0) {
         tell_object(ob, "%^BOLD%^%^YELLOW%^The %^BOLD%^%^BLUE%^cool water %^BOLD%^%^YELLOW%^"
                     + "washes down your throat, bringing a %^BOLD%^%^CYAN%^refreshing"
