@@ -88,13 +88,16 @@ void spell_effect(int prof)
 
 void dest_effect()
 {
-    foreach(object ob in targets)
+    if(pointerp(targets) && sizeof(targets))
     {
-        if(!objectp(ob))
-            continue;
+        foreach(object ob in targets)
+        {
+            if(!objectp(ob))
+                continue;
         
-        tell_object(ob, "You feel your wounds stop festering.");
-        ob->remove_property("fester");
+            tell_object(ob, "You feel your wounds stop festering.");
+            ob->remove_property("fester");
+        }
     }
     
     ::dest_effect();
