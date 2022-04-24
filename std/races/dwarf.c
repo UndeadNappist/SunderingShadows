@@ -22,7 +22,7 @@ int* restricted_alignments(string subrace)
     }
     switch (subrace) {
     case "duergar":
-    case "gray dwarf": return ({ 1, 4, 7 }); break;
+    case "gray dwarf": return ({ 1, 2, 4, 5, 7, 8 }); break;
 
     default: return ({ 3, 6, 9 }); break;
     }
