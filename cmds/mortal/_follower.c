@@ -30,7 +30,7 @@ int help(){
     follower <name> <command>
     follower <name,name2> <command>
 
-    This command allows you to summon, command, and dismiss your followers or retainers. They will come shortly after you summon them and will obey your every command.  You must use them wisely for if they die then they are lost. You must also learn what to order them to do.  You must RP to learn what is best for each follower.  Retainers are gained every 5 levels, or every 5 days of online time.  The <name> argument can be replaced with <all> and the command will be executed by all the retainers.
+    This command allows you to summon, command, and dismiss your followers or retainers. They will come shortly after you summon them and will obey your every command. You must also learn what to order them to do.  You must RP to learn what is best for each follower. You will gain your first follower at 10 influence, and then receive an additional one for every 5 points gained above that. The <name> argument can be replaced with <all> and the command will be executed by all the retainers.
 OLI
      +
 @OLI
