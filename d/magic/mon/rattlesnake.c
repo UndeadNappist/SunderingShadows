@@ -36,7 +36,7 @@ int poison(object targ){
 	if("daemon/saving_d"->saving_throw(targ, "paralyzation_poison_death",2))
 		return 0;
 	
-	tell_player(targ,"%^BOLD%^%^RED%^You feel the horrid poison filter into your blood. Death is at hand!");
+	tell_player(targ,"%^BOLD%^%^RED%^You feel the horrid poison filter into your blood. Death is at hand!\n");
 	targ->add_poisoning(5);
 	return 10;
 }
