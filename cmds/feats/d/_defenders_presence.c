@@ -49,8 +49,13 @@ int cmd_defenders_presence(string str)
 
 void execute_feat()
 {
+    object obj;
+    
     if (FEATS_D->is_active(caster, "defenders presence")) {
-        tell_object(caster, "Defender's Presence is already active.");
+        //tell_object(caster, "Defender's Presence is already active.");
+        obj = query_active_feat("defenders presence");
+        obj->dest_effect();
+        caster = 0;
         dest_effect();
         return;
     }
