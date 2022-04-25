@@ -22,7 +22,7 @@
    "the faceless one":({"Murder/Deception",({2, 3, 4, 5, 6, 8, 9}),({3, 5, 6, 9})}),\
    "ebolek":({"Plague/Pestilence", ({ 3, 5, 6, 7, 8, 9}), ({ 6, 8, 9 }) }), \
    "mephasm":({"Hellfire/Contracts", ({ 1, 2, 3, 5, 6, 9}), ({2, 3, 6}) }), \
-   "velik":({"Freedom/Revolution", ({ 2, 3, 4, 5, 6, 8, 9 }), ({ 3, 6, 9 }) }), \
+   "velik":({"Freedom/Revolution", ({ 2, 4, 5, 6, 7, 8, 9 }), ({ 5, 7, 8, 9 }) }), \
 ]))
 
 #define PANTHEON DIETIES
