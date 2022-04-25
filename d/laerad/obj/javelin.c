@@ -38,12 +38,17 @@ set_prof_type("spear");
 
 }
 
-int throw_j(object ob) {
+int throw_j(object ob)
+{
+        if(!objectp(ob))
+            return 0;
+        
         tell_object(ob,"%^BOLD%^YELLOW%^"+TPQCN+" hurls a Javelin at "+
            "you, and it strikes you in the chest!");
         tell_room(environment(ob),"%^BOLD%^YELLOW%^"+TPQCN+" hurls a "+
            "Javelin at "+ob->QCN+" and it strikes "+ob->QO+" in "+
            "the chest!",({ob,TP}));
         tell_room(ETP,"%^BOLD%^The Javelin forms into a lightning bolt!");
-        return random(20)+30+TO->remove();
+        ob->cause_typed_damage(ob, "torso", roll_dice(1, 20) + 30, "electricity");
+        return TO->remove();
 }

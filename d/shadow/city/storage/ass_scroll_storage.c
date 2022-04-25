@@ -19,14 +19,14 @@ void reset()
             new("/d/tharis/obj/parchment")->move(TO);
         }
     }
-    for (i = 0; i < roll_dice(5, 20); i++) {
+    for (i = 0; i < roll_dice(4, 6); i++) {
         if (!present("scroll " + i)) {
             scroll = new("/d/magic/safe_scroll");
             scroll->move(TO);
             scroll->set_spell(random(9) + 1);
         }
     }
-    for (i = 0; i < roll_dice(2, 6); i++) {
+    for (i = 0; i < roll_dice(2, 3); i++) {
         if (!present("wand " + i)) {
             wand = new("/d/magic/obj/r_wand");
             wand->move(TO);

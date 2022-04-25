@@ -77,7 +77,7 @@ mapping class_featmap(string myspec, object player) {
                  5 : ({ "indomitable" }),
                  10: ({ "force of personality" }),
                  15: ({ "leadership" }),
-                 31: ({ "deathward" }),
+                 31: ({ "death ward" }),
                ]);
     }
     

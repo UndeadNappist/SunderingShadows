@@ -1,6 +1,6 @@
 #include <std.h>
-//inherit "/std/vendor";
-inherit NPC;
+inherit "/std/vendor";
+//inherit NPC;
 
 create() {
    ::create();
@@ -15,10 +15,11 @@ create() {
    set_race("human");
    add_money("gold", random(500));
    set_body_type("human");
-//   set_storage_room("/d/shadow/city/storage/ass_scroll_storage");
+   set_storage_room("/d/shadow/city/storage/ass_alch_storage");
    set_property("no attack", 1);
    set_hd(19,3);
    set_exp(10);
-//   set_items_allowed("misc");
+   set_items_allowed("misc");
    set_max_hp(query_hp());
 }
+

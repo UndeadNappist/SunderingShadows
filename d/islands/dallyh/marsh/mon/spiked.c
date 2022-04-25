@@ -31,6 +31,7 @@ void create()
     set_gender("female");
     set_property("magic", 1);
     set_race("demon");
+    set_alignment(9);
     set_overall_ac(-50);
     set_property("full attacks", 1);
     set_base_damage_type("bludgeoning");
