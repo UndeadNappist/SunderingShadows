@@ -78,7 +78,7 @@ int raise_player(string verb)
 
             DeadPerson->delete("in_the_afterlife");
             DeadPerson->delete("just_been_pkilled");
-            DeadPerson->delete("no pk");
+            //DeadPerson->delete("no pk");
             DeadPerson->remove_pk_death_flag();
             DeadPerson->remove_property("death_room");
 
