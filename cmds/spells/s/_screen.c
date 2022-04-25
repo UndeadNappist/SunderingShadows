@@ -139,7 +139,7 @@ void dest_effect(){
        caster->remove_property_value("spelled", ({TO}) );
        caster->remove_property("screen");
    }
-   place->remove_property("scry block power");
+   objectp(place) && place->remove_property("scry block power");
    //if(objectp(detector)) detector->self_destruct();
    //if(objectp(blocker)) blocker->self_destruct();
 
