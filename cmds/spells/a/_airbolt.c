@@ -139,7 +139,7 @@ void spell_effect(int prof)
                     tell_object(attackers[i],"%^CYAN%^You avoid some of "+
                         "the gale force winds as they speed by.%^RESET%^");
                     tell_room(environment(attackers[i]),"%^CYAN%^Twisting, "+
-                        ""+attackers[i]->QCN+" avoids the brunct of the "+
+                        ""+attackers[i]->QCN+" avoids the brunt of the "+
                         "winds.%^RESET%^");
                     damage_targ(attackers[i],"torso",dam/2,"force");
                 }
