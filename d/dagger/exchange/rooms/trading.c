@@ -72,7 +72,7 @@ void reset() {
      ob->set_id( ({ "board", getuid(TO)+"_board", "my board" }) );
      ob->set_board_id(geteuid(TO)+"_board");
      ob->set("short", "A small notice board");
-     ob->set("long", "This is a small board with a collection of posts by the merchants, the Dragoons, and the owners of the Merchant Exchange concerning events that have effected prices or may effect prices.\n");
+     ob->set("long", "This is a small board with a collection of posts by the merchants, the Dragoons, and the owners of the Merchant Exchange concerning events that have affected prices or may affect prices.\n");
      ob->set_max_posts(30);
      ob->set_restricted_post();
      ob->set_location(base_name(TO));
