@@ -112,7 +112,8 @@ int paladin(){
         tell_object(player,"You may not wield this weapon!");
         return 0;
     }
-    if((int)player->query_true_align() != 3 && (int)player->query_true_align() != 2 && (int)player->query_true_align() != 5 && (int)player->query_true_align() != 6) {
+    //if((int)player->query_true_align() != 3 && (int)player->query_true_align() != 2 && (int)player->query_true_align() != 5 && (int)player->query_true_align() != 6) {
+    if((int)player->query_true_align() != 3 && (int)player->query_true_align() != 6) {
         tell_object(ETO,"You may not wield this weapon!");
         return 0;
     }
