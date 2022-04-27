@@ -15,7 +15,7 @@ void create()
 
     set_short("%^BOLD%^%^GREEN%^B%^RESET%^%^CYAN%^e%^BOLD%^%^GREEN%^ne%^RESET%^%^CYAN%^a%^BOLD%^%^GREEN%^th %^RESET%^%^CYAN%^A%^BOLD%^%^GREEN%^rched %^RESET%^%^ORANGE%^T%^YELLOW%^r%^RESET%^%^ORANGE%^ees%^RESET%^");
 
-    set_long("%^RESET%^%^CYAN%^You stand beneath the limbs of %^BOLD%^%^GREEN%^mighty trees%^RESET%^%^CYAN%^ which almost seem to bend together to form a kind of %^RESET%^%^ORANGE%^o%^YELLOW%^u%^RESET%^%^ORANGE%^td"
+    set_long("%^RESET%^%^CYAN%^You stand beneath the limbs of %^BOLD%^%^GREEN%^mighty trees%^RESET%^%^CYAN%^ that almost seem to bend together to form a kind of %^RESET%^%^ORANGE%^o%^YELLOW%^u%^RESET%^%^ORANGE%^td"
 	"o%^YELLOW%^o%^RESET%^%^ORANGE%^r h%^YELLOW%^a%^RESET%^%^ORANGE%^ll%^YELLOW%^w%^RESET%^%^ORANGE%^ay%^CYAN%^. The heavy underbrush prevents any kind of passage but the way ahead on a blanket of %^BLUE%^"
 	"p%^GREEN%^i%^BLUE%^n%^GREEN%^e%^CYAN%^ needles. The veiled sky above casts %^BOLD%^%^BLACK%^s%^RESET%^h%^BOLD%^%^BLACK%^a%^RESET%^d%^BOLD%^%^BLACK%^o%^RESET%^w%^BOLD%^%^BLACK%^y%^RESET%^%^CYAN%^ bands"
 	" of %^YELLOW%^light%^RESET%^%^CYAN%^ and %^MAGENTA%^dark%^CYAN%^ obscuring the view. There are gaps here and there, which look out upon a %^RED%^terrifying wood%^CYAN%^, with dark moving shapes. Yet h"
