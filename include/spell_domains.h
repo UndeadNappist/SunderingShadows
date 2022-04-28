@@ -20,4 +20,5 @@
  "ebolek" : ({ "plague", "evil", }), \
  "mephasm" : ({ "evil", "law", }), \
  "velik" : ({ "freedom", "chaos", }), \
+ "eucalia" : ({ "plant", "renewal" }), \
 ]))
