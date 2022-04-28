@@ -85,11 +85,21 @@ void drop_containers()
 
 void save_chest()
 {
+    object *relics;
     /* seteuid(getuid()); */
     if(!objectp(TO))
         return;
     if(!objectp(ETO))
         return;
+    
+    relics = all_inventory(this_object());
+    relics = filter_array(relics, (: $1->id("questob") :));
+    
+    foreach(object ob in relics)
+    {
+        tell_object(caster, "%^RED%^BOLD%^The chest drops your relic!%^RESET%^");
+        ob->drop();
+    }
 
     mkdir("/d/save/summons/"+castname);
     mkdir(fname);
