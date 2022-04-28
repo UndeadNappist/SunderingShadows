@@ -32,6 +32,7 @@ void create(){
     set_exits(([
         "east" : ROOMS"elf3",
         "west" : ROOMS"elf1",
+        "south" : "/d/player_houses/aunuit/tunnel05",
         ]));
 }
 
