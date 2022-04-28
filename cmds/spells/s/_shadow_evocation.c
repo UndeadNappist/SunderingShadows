@@ -79,7 +79,8 @@ int preSpell()
         return 0;
     }
     spell_to_cast->set_shadow_spell(max_level);
-
+    caster->remove_property("spell_casting");
+    caster->set_property("spell_casting", spell_to_cast);
     spell_to_cast->use_spell(TP, sargs, clevel, 100, "mage");
     call_out("dest_effect", 2);
     return 1;

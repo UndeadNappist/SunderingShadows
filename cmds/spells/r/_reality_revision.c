@@ -115,7 +115,8 @@ int preSpell()
     tell_room(place,"%^CYAN%^BOLD%^"+caster->QCN+" %^BOLD%^%^CYAN%^c%^RESET%^%^CYAN%^o%^BOLD%^ncentrates d%^RESET%^%^CYAN%^e%^BOLD%^eply and b%^RESET%^%^CYAN%^e%^BOLD%^nds the v%^RESET%^%^CYAN%^e%^BOLD%^ry f%^RESET%^%^CYAN%^a%^BOLD%^bric of r%^RESET%^%^CYAN%^e%^BOLD%^ality a%^RESET%^%^CYAN%^r%^BOLD%^ound " + caster->query_objective(), ({ caster }));
 
     spell_successful();
-
+    caster->remove_property("spell_casting");
+    caster->set_property("spell_casting", spell_to_cast);
     spell_to_cast->use_spell(TP,sargs,clevel,100,ctype);
     //caster->add_cooldown("reality revision", DELAY);
     return 1;

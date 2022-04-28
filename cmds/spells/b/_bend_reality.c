@@ -100,6 +100,8 @@ int preSpell()
 
     spell_successful();
 
+    caster->remove_property("spell_casting");
+    caster->set_property("spell_casting", spell_to_cast);
     spell_to_cast->use_spell(TP,sargs,clevel,100,ctype);
     call_out("dest_effect", 1);
     return 1;
