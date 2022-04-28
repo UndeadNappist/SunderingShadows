@@ -19,5 +19,32 @@ void create()
     set_hp(10000000);
     set_exp(1);
     set_overall_ac(9);
+    set_func_chance(100);
+    set_funcs(({ "round_cleanup" }));
+}
+
+int do_typed_damage_effects(victim, limb, damage, damage_type){
+    tell_room(ETO, "%^MAGENTA%^Dummy says%^RESET%^: I got hit to " + limb + " for " + damage + " " + damage_type + " damage!");
+    return damage;
+}
+
+void round_cleanup(){
+    object* attackers, target, room;
+    int count, i;
+    
+    room = environment(this_object());
+    attackers = query_attackers();
+    count = sizeof(attackers);
+    
+    if(count == 1) return;
+    for(i = 0; i < count; i++){
+        target = attackers[i];
+        if(userp(target)) continue;
+        tell_room(room, "%^RESET%^%^CRST%^%^C196%^The dummy swings about wildly, cracking "+target->query_cap_name()+"'s head open with a wooden limb.%^CRST%^");
+        target->die();
+        continue;
+    }
+    
+    return;
 }
 
