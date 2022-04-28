@@ -8,7 +8,7 @@
 #define DIETIES (([\
    "ashra":({"Monsters/Nightmares", ({ 2, 3, 5, 6, 8, 9 }), ({ 3, 6, 9 }) }),\
    "edea":({"Hope/Love", ({ 1, 2, 4, 5, 7, 8 }), ({ 1, 4, 7 }) }),\
-   "callamir":({"Luck/Trickery",({1, 4, 5, 7, 8, 9}),({4, 7, 8})}),\
+   "callamir":({"Luck/Trickery",({1, 4, 5, 7, 8 }),({4, 7, 8})}),\
    "cevahir":({"War/Strategy",({1, 2, 3, 4, 5, 6, 7, 8, 9}),({2, 4, 5, 6, 8})}),\
    "jarmila":({"Light/Love",({1, 2, 4, 5, 6, 7, 8}),({1, 4, 5, 7})}),    \
    "khyron":({"Storms/Destruction",({3, 5, 6, 7, 8, 9}),({6, 8, 9})}), \
@@ -23,8 +23,9 @@
    "ebolek":({"Plague/Pestilence", ({ 3, 5, 6, 7, 8, 9}), ({ 6, 8, 9 }) }), \
    "mephasm":({"Hellfire/Contracts", ({ 1, 2, 3, 5, 6, 9}), ({2, 3, 6}) }), \
    "velik":({"Freedom/Revolution", ({ 2, 4, 5, 6, 7, 8, 9 }), ({ 5, 7, 8, 9 }) }), \
+   "eucalia":({"Growth/Serenity", ({ 1, 4, 5, 7, 8 }), ({ 4, 7, 8 }) }),\
 ]))
 
 #define PANTHEON DIETIES
 
-#define PALADIN_GODS ({"jarmila", "kreysneothosies", "nilith", "lord shadow", "kismet", "lysara","cevahir","khyron","seija", "nimnavanon", "ashra", "edea", "ebolek", "velik", "mephasm"})
+#define PALADIN_GODS ({"jarmila", "kreysneothosies", "nilith", "lord shadow", "kismet", "lysara","cevahir","khyron","seija", "nimnavanon", "ashra", "edea", "ebolek", "velik", "mephasm", "eucalia"})
