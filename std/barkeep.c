@@ -252,8 +252,9 @@ int get_price(string str) {
 string *query_menu() { return menu_items; }
 
 void gossipmsg(object targ){
-   if(!present(targ))    return;
-   tell_object(TP, "%^MAGENTA%^You may want to listen for gossip. See %^BOLD%^<help gossip>.%^RESET%^\n");
-   return 1;
+    if(!objectp(targ)) return;
+    if(!present(targ)) return;
+    tell_object(TP, "%^MAGENTA%^You may want to listen for gossip. See %^BOLD%^<help gossip>.%^RESET%^\n");
+    return 1;
 }
 

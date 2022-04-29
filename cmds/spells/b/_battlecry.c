@@ -49,7 +49,7 @@ int spell_effect()
     allies = filter_array(allies, (: environment($1) == $2 :), place);
 
     tell_room(place, color(caster->query_cap_name() + " shouts to the sky, encouraging those around " + caster->query_objective() + " to fight harder!"), caster);
-    tell_object(caster,color("You shout to the sky, encoruaging your allies around you to fight harder!"));
+    tell_object(caster,color("You shout to the sky, encouraging your allies around you to fight harder!"));
 
     foreach(ally in allies)
     {
