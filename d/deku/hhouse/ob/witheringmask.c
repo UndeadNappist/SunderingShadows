@@ -195,7 +195,8 @@ int demand_stalk(string str)
         call_out("eye_failure", 15, 0);
         return 1;
     }
-    if(environment(victim)->query_property("no scry") || present("blockerx111", victim)) 
+    //if(environment(victim)->query_property("no scry") || present("blockerx111", victim))
+    if(!victim->scry_check(this_player(), this_player()->query_level() + 10))
     {
         call_out("eye_failure", 15, 0);
         return 1;
