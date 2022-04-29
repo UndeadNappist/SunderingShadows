@@ -102,4 +102,5 @@
     "/d/laerad/outpost/obj/torm_scalemail", \
     "/d/islands/pirates/obj/newcoat", \
     "/d/islands/pirates/obj/redcoat", \
+    "/d/dagger/derro/obj/Stormrobe", \
 })
