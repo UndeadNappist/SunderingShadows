@@ -43,7 +43,7 @@ int query_size(){
 }
 
 int wear_it(){
-    if(ETO->is_class("mage") || ETO->is_class("warlock") || ETO->is_class("cleric") 
+    if(ETO->is_class("mage") || ETO->is_class("warlock") || ETO->is_class("cleric") || ETO->is_class("oracle") 
 	|| ETO->is_class("psion") || ETO->is_class("sorcerer") || ETO->is_class("druid")) {
 	    
         if((int)ETO->query_highest_level() < 15) { // standard +3 item cap
