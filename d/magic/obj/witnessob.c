@@ -63,11 +63,18 @@ void heart_beat()
        self_destruct();
        return;
    }
+   if(!follower->scry_check(caster, query_scry_power()))
+   {
+       self_destruct();
+       return;
+   }
+   /*
    if(present("blockerx111", follower))
    {
        self_destruct();
        return;
    }
+   */
 }
 
 dest_me(){
@@ -80,6 +87,11 @@ catch_tell(string str){
    if(!objectp(caster)){
       dest_me();
       return;
+   }
+   if(userp(previous_object()))
+   {
+       if(!previous_object()->scry_check(caster, query_scry_power()))
+           return;
    }
    tell_object(caster,"%^BOLD%^%^RED%^You observe:%^RESET%^ "+str);
 }

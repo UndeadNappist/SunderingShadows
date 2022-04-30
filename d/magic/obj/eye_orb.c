@@ -111,6 +111,12 @@ void receive_message(string cl, string str)
     room = environment(caster);
 
     if(!objectp(room)) { return; }
+    
+    if(userp(previous_object()))
+    {
+        if(!previous_object()->scry_check(caster, query_scry_power()))
+            return;
+    }
 
     people = all_living(room);
 

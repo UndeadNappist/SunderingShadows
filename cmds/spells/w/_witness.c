@@ -25,8 +25,10 @@ int preSpell(){
         return 0;
     }
     if(avatarp(caster)) return 1; // let avatars use to follow players regardless of timer.
-    if((int)caster->query_property("remote scrying time")+DELAY > time()){
-        tell_object(caster,"You cannot command your witnessob again so soon.");
+    //if((int)caster->query_property("remote scrying time")+DELAY > time()){
+    if(caster->cooldown("remote scrying"))
+    {
+        tell_object(caster,"You cannot use remote scrying yet.");
         return 0;
     }
     if(caster->query("no pk")){
@@ -49,12 +51,23 @@ void spell_effect(int prof){
                 return;
             }
             bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-            power = clevel + bonus + random(6);
+            //power = clevel + bonus + random(6);
+            power = clevel + bonus + query_spell_level(spell_type);
+            /*
             if(blockobj = present("blockerx111", environment(ob)) || blockobj = present("blockerx111",ob)){
                if(power < blockobj->query_block_power()){
                   tell_object(caster, "Something blocks your attempt!");
                   return;
                }
+            }
+            */
+            caster->add_cooldown("remote scrying", DELAY);
+            
+            if(!ob->scry_check(caster, power))
+            {
+                tell_object(caster, "Something blocks your attempt!");
+                dest_effect();
+                return;
             }
             witnessob = new("/d/magic/obj/witnessob");
             witnessob->set_caster(caster);
@@ -98,8 +111,8 @@ void dest_effect()
     if(objectp(caster)) {
         caster->set_blind(0);
         caster->set_blinded(0);
-        caster->remove_property("remote scrying");
-        caster->remove_property("remote scrying time");
+        //caster->remove_property("remote scrying");
+        //caster->remove_property("remote scrying time");
         caster->set_property("remote scrying time",time());
     }
     ::dest_effect();
