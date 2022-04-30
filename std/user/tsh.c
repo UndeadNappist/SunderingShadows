@@ -212,6 +212,8 @@ string write_prompt()
             prompt = replace_string(prompt, "$P",
                                     "0");
         }
+        
+        prompt = replace_string(prompt, "$EL", strlen(this_player()->query("elementalist")) ? this_player()->query("elementalist") : "none");
         prompt = replace_string(prompt, "$D", path );
         prompt = replace_string(prompt, "$h",
                                  "" + (int)this_player()-> query_hp() );

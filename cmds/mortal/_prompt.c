@@ -60,6 +60,7 @@ Additional codes:
   %^MAGENTA%^$_EW%^WHITE%^ eldritch warfare
   %^MAGENTA%^$_PF%^WHITE%^ psionic focus
   %^MAGENTA%^$_BI%^WHITE%^ bardic inspiration
+  %^MAGENTA%^$EL%^WHITE%^ elementalist
   %^MAGENTA%^$r%^WHITE%^ rage status
   %^MAGENTA%^$E%^WHITE%^ eldritch essence
   %^MAGENTA%^$k%^WHITE%^ available ki
