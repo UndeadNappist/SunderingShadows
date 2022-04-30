@@ -33,8 +33,10 @@ int preSpell(){
         return 0;
     }
     if(avatarp(caster)) return 1; // let avatars use to follow players regardless of timer.
-    if((int)caster->query_property("remote scrying time")+DELAY > time()){
-        tell_object(caster,"You cannot command your shadow again so soon.");
+    //if((int)caster->query_property("remote scrying time")+DELAY > time()){
+    if(caster->cooldown("remote scrying"))
+    {
+        tell_object(caster,"You cannot perform a remote scrying yet.");
         return 0;
     }
     if(caster->query("no pk")){
@@ -58,18 +60,22 @@ void spell_effect(int prof){
 
     if (!arg){
         tell_object(caster,"%^RED%^You leave the shadow here to listen for you.%^RESET%^");
+        caster->add_cooldown("remote scrying", DELAY);
         if(place->query_property("no scry")){
            tell_object(caster,"Something blocks your attempt!");
            return;
         }
         bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-        power = clevel + bonus + random(6);
+        //power = clevel + bonus + random(6);
+        power = clevel + bonus + query_spell_level(spell_type);
+        /*
         if(blockobj = present("blockerx111", place)){
            if(power < blockobj->query_block_power()){
               tell_object(caster,"Something blocks your attempt!");
               return;
            }
         }
+        */
         shadow = new("/d/magic/obj/shadowlistener");
         shadow->set_caster(caster);
         shadow->set_property("spell",TO);
@@ -89,17 +95,31 @@ void spell_effect(int prof){
         if (objectp(ob) && !wizardp(ob)){
             tell_object(caster,"%^BOLD%^%^BLACK%^You carefully and silently"+
 		        " send your shadow off to stand watch on "+arg+".%^RESET%^");
+                
+            /*
             if(environment(ob)->query_property("no scry")){
                 tell_object(caster,"Something blocks your attempt!");
                 return;
             }
+            */
             bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-            power = clevel + bonus + random(6);
+            //power = clevel + bonus + random(6);
+            power = clevel + bonus + query_spell_level(spell_type);
+            /*
             if(blockobj = present("blockerx111", environment(ob)) || blockobj = present("blockerx111",ob)){
                if(power < blockobj->query_block_power()){
                   tell_object(caster, "Something blocks your attempt!");
                   return;
                }
+            }
+            */
+            caster->add_cooldown("remote scrying", DELAY);
+            
+            if(!ob->scry_check(caster, power))
+            {
+                tell_object(caster, "Something blocks your attempt!");
+                dest_effect();
+                return;
             }
             shadow = new("/d/magic/obj/shadowlistener");
             shadow->set_caster(caster);
@@ -123,11 +143,13 @@ void spell_effect(int prof){
 void dest_effect(){
     if (objectp(shadow))
         shadow->dest_me();
+
     if(objectp(caster)) {
       caster->remove_property("remote scrying");
-      caster->remove_property("remote scrying time");
-      caster->set_property("remote scrying time",time());
+      //caster->remove_property("remote scrying time");
+      //caster->set_property("remote scrying time",time());
     }
+    
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }

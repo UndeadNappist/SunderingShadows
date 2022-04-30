@@ -37,7 +37,9 @@ int preSpell(){
         return 0;
     }
     if(avatarp(caster)) return 1; // let avatars use to follow players regardless of timer.
-    if((int)caster->query_property("remote scrying time")+DELAY > time()){
+    //if((int)caster->query_property("remote scrying time")+DELAY > time()){
+    if(caster->cooldown("remote scrying"))
+    {
         tell_object(caster,"You cannot invoke your moon-touched "+
             "sight again so soon.");
         return 0;
@@ -64,6 +66,7 @@ void spell_effect(int prof){
    int bonus,power;
 
    if(!arg){
+      caster->add_cooldown("remote scrying", DELAY);
       tell_object(caster,"%^BOLD%^You send the motes of light "+
          "into this area, leaving them here to watch for you.%^RESET%^");
       if(place->query_property("no scry"))
@@ -73,7 +76,9 @@ void spell_effect(int prof){
          return;
       }
       bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-      power = clevel + bonus + random(6);
+      power = clevel + bonus + query_spell_level(spell_type);
+      //power = clevel + bonus + random(6);
+      /*
       if(blockobj = present("blockerx111", place)){
         if(power < blockobj->query_block_power()){
            tell_object(caster,"Something blocks your attempt!");
@@ -81,6 +86,8 @@ void spell_effect(int prof){
            return;
         }
       }
+      */
+            
       motes = new("/d/magic/obj/silverwatcher");
       motes->set_caster(caster);
       motes->set_property("spell",TO);
@@ -109,12 +116,23 @@ void spell_effect(int prof){
             return;
          }
          bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-         power = clevel + bonus + random(6);
+         //power = clevel + bonus + random(6);
+         power = clevel + bonus + query_spell_level(spell_type);
+         /*
          if(blockobj = present("blockerx111", environment(ob)) || blockobj = present("blockerx111",ob)){
             if(power < blockobj->query_block_power()){
                tell_object(caster, "Something blocks your attempt!");
                return;
             }
+         }
+         */
+         caster->add_cooldown("remote scrying", DELAY);
+            
+         if(!ob->scry_check(caster, power))
+         {
+             tell_object(caster, "Something blocks your attempt!");
+             dest_effect();
+             return;
          }
          motes = new("/d/magic/obj/silverwatcher");
          motes->set_caster(caster);
@@ -140,8 +158,8 @@ void dest_effect(){
         motes->dest_me();
     if(objectp(caster)) {
       caster->remove_property("remote scrying");
-      caster->remove_property("remote scrying time");
-      caster->set_property("remote scrying time",time());
+      //caster->remove_property("remote scrying time");
+      //caster->set_property("remote scrying time",time());
     }
     ::dest_effect();
     if(objectp(TO)) TO->remove();

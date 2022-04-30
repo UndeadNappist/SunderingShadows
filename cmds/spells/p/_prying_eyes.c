@@ -32,7 +32,9 @@ int preSpell(){
         return 0;
     }
     if(avatarp(caster)) return 1; // let avatars use to follow players regardless of timer.
-    if((int)caster->query_property("remote scrying time")+DELAY > time()){
+    //if((int)caster->query_property("remote scrying time")+DELAY > time()){
+    if(caster->cooldown("remote scrying"))
+    {
         tell_object(caster,"You need time to rest before you can try that again.");
         return 0;
     }
@@ -54,6 +56,7 @@ void spell_effect(int prof){
     int bonus,power;
 
     if (!arg){
+        caster->add_cooldown("remote scrying", DELAY);
         tell_object(caster,"%^BOLD%^%^CYAN%^You cast out your concentration to keep watch over this place.%^RESET%^");
         if(place->query_property("no scry")){
            tell_object(caster,"Something blocks your attempt!");
@@ -66,7 +69,8 @@ void spell_effect(int prof){
         eyes->set_property("spell",TO);
         eyes->set_property("spelled", ({TO}) );
         bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-        power = clevel + bonus + random(6);
+        //power = clevel + bonus + random(6);
+        power = clevel + bonus + query_spell_level(spell_type);
         eyes->set_scry_power(power);
         eyes->move(place);
         theName = place->query_short();
@@ -85,6 +89,15 @@ void spell_effect(int prof){
               tell_object(caster,"Something blocks your attempt!");
               return;
             }
+            caster->add_cooldown("remote scrying", DELAY);
+            bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
+            power = clevel + bonus + query_spell_level(spell_type);            
+            if(!ob->scry_check(caster, power))
+            {
+                tell_object(caster, "Something blocks your attempt!");
+                dest_effect();
+                return;
+            }
             eyes = new("/d/magic/obj/pryingeyes");
             eyes->set_caster(caster);
             eyes->set_skill("stealth",clevel);
@@ -92,8 +105,8 @@ void spell_effect(int prof){
             eyes->set_property("spell",TO);
             eyes->set_property("spelled", ({TO}) );
             eyes->set_target(ob);
-            bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-            power = clevel + bonus + random(6);
+            //bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
+            //power = clevel + bonus + random(6);
             eyes->set_scry_power(power);
             eyes->move(environment(ob));
             theName = ob->query_short();
@@ -112,9 +125,9 @@ void dest_effect(){
     if (objectp(eyes)) eyes->dest_me();
     if(objectp(caster)) {
       caster->remove_property("remote scrying");
-      caster->remove_property("remote scrying time");
-      caster->set_property("remote scrying time",time());
-      tell_object(caster,"%^BOLD%^Your concentration on places afar fades.");
+      //caster->remove_property("remote scrying time");
+      //caster->set_property("remote scrying time",time());
+      //tell_object(caster,"%^BOLD%^Your concentration on places afar fades.");
     }
     ::dest_effect();
     if(objectp(TO)) TO->remove();
