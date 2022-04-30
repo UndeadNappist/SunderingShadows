@@ -23,7 +23,7 @@ void create() {
 
 int preSpell() {
    //if(((int)caster->query_property("slide time")+DELAY) > time()){
-   if(caster->cooldown("phase door"))
+   if(caster->cooldown("slide time"))
    {
       tell_object(caster,"You need to take a moment's rest before you can try that again.");
       return 0;
@@ -98,7 +98,7 @@ void spell_effect(int prof) {
   healed = ((roll_dice(6,4))+(mylevel*2)); // equiv to a cure serious
   healed *= -1;
   damage_targ(caster,"torso",healed,"untyped");
-  caster->add_cooldown("phase door", DELAY);
+  caster->add_cooldown("slide time", DELAY);
   //caster->remove_property("slide time");
   //caster->set_property("slide time",time());
 

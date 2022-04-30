@@ -26,6 +26,10 @@ string query_casting_string() {
 }
 
 int preSpell() {
+   if(caster->cooldown("slide time")){
+      tell_object(caster,"You need to take a moment's rest before you can try that again.");
+      return 0;
+   }
    if(!arg) {
        tell_object(caster, "%^BOLD%^%^WHITE%^You must specify what direction you want to flee in!");
        return 0;
@@ -47,6 +51,7 @@ void spell_effect(int prof) {
     tell_object(caster,"%^BOLD%^%^WHITE%^You mumble matching consonants that tumble over each other in rapid succession, and your movements quic%^YELLOW%^k%^WHITE%^en even as the recited words do, your feet carrying you with s%^YELLOW%^p%^WHITE%^eed towards the "+arg+".");
     tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+"'s feet carry "+caster->QO+" with s%^YELLOW%^p%^WHITE%^eed towards "
 "the "+arg+".",caster);
+    caster->add_cooldown("slide time", 180);
     caster->set_property("true moving",arg);
     caster->set_property("running away",1);
     caster->force_me(arg);
