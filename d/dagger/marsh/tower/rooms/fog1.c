@@ -84,7 +84,7 @@ int word_fun(string str) {
         ,ETP,TP);
         TO->add_exit( RPATH "gate","doors" );
         message("users",
-	    "%^BOLD%^%^BLACK%^An ancient evil slowly awakens and casts its eye upon Shadowgate.%^RESET%^"
+	    "%^BOLD%^%^BLACK%^An ancient evil slowly awakens and casts its eye upon Sundering Shadows.%^RESET%^"
         ,users());
         FLAG = 1;
         set_long(
