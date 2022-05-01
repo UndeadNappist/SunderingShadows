@@ -9,6 +9,7 @@ void create(){
     ::create();
     set_exits(([
         "south" : ROOMS"wharf2",
+        "north" : "/d/shadow/virtual/sea/wailing_isle.dock",
         ]));
 }
 
