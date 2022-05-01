@@ -16,7 +16,7 @@ set_exits(([
 "north" : ROAD"2",
 "southwest" : ROAD"3",
 "southeast" : ROAD"4",
-"tent" : "/realms/loki/events/serakii_benefit/rooms/tent",
+// closed off till next event - "tent" : "/realms/loki/events/serakii_benefit/rooms/tent",
 
 
 ]));

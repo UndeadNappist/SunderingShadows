@@ -16,7 +16,7 @@ void create(){
 	set_long("%^RESET%^%^CRST%^%^C058%^Woven with skill, this %^C130%^n%^C136%^e%^C130%^t %^RESET%^%^C058%^is fairly light and yet seems quite durable. You can %^C226%^<%^C220%^cast the net%^C226%^> %^RESET%^%^C058%^into nearby waters.%^CRST%^");
 	set_weight(5);
 	set_value(1000);
-    uses = random(3) + 2;
+    uses = random(5) + 6;
 }
 
 void init(){

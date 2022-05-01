@@ -11,7 +11,7 @@ void create(){
     ::create();
     set_name("bottle of rum");
     set_id(({"bottle", "rum", "bottle of rum", "rum bottle"}));
-    set_short("%^RESET%^%^CRST%^%^C144%^A bottle of %^C130%^rum%^CRST%^");
+    set_short("%^RESET%^%^CRST%^%^C144%^bottle of %^C130%^rum%^CRST%^");
     set_long("%^RESET%^%^CRST%^%^C144%^This is a spiced rum, %^C130%^dark brown %^RESET%^%^C144%^in hue with a sweet, syrupy fragrance and a hint of %^C250%^v%^C255%^ani%^C250%^l%^C255%^l%^C250%^a%^RESET%^%^C144%^. The bottle has accrued a thin layer of dust from storage. It was originally sealed by a cap of %^C196%^c%^C124%^ri%^C196%^ms%^C124%^o%^C196%^n %^C124%^wax%^RESET%^%^C144%^, but all that remains are cracked remnants around the mouth and neck of the bottle, enticing you to take a %^C143%^drink%^RESET%^%^C144%^.%^CRST%^" 
     );
     set_weight(6);
