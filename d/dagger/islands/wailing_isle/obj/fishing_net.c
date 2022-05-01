@@ -54,5 +54,6 @@ int cast_fun(string str){
     net->set_uses(uses);
     net->start_fishing();
     this_object()->remove();
+    return 1;
 }
 

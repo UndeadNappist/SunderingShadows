@@ -3,7 +3,6 @@
 
 #include <std.h>
 #include <objects.h>
-#include "/d/dagger/islands/wailing_isle/defs.h"
 
 inherit DOCK;
 
@@ -39,5 +38,5 @@ void create(){
 }
 
 void reset(){
-    if(!present("ambiance device")) new(MON"ambiance_wharf")->move(this_object());
+    if(!present("ambiance device")) new("/d/dagger/islands/wailing_isle/mon/ambiance_wharf")->move(this_object());
 }

@@ -53,7 +53,7 @@ int gather_fun(string str){
         net->set_uses(uses);
     }
     this_object()->remove();
-    return;
+    return 1;
 }
 
 void start_fishing(){
