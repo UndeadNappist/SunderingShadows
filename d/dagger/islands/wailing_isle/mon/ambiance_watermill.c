@@ -25,7 +25,7 @@ void heart_beat(){
     if(!objectp(room)) return;
     
     if(random(100) < 4){
-        switch(random(8)){
+        switch(random(6)){
             case 0 : 
                 tell_room(room, "%^RESET%^%^CRST%^%^C037%^The old wheel %^C038%^creaks%^C037%^ and %^C038%^groans%^C037%^ as it turns.%^CRST%^");
                 break;

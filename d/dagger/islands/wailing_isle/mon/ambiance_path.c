@@ -25,7 +25,7 @@ void heart_beat(){
     if(!objectp(room)) return;
     
     if(random(100) < 4){
-        switch(random(8)){
+        switch(random(5)){
             case 0 : 
                 tell_room(room, "%^RESET%^%^CRST%^%^C245%^A %^C243%^h%^C244%^e%^C245%^a%^C246%^rt-%^C243%^wr%^C244%^en%^C245%^ch%^C246%^ing %^C243%^w%^C244%^a%^C245%^i%^C246%^l%^C245%^ from the %^C248%^cliffs%^C245%^ overhead %^C059%^e%^C243%^c%^C245%^ho%^C243%^e%^C059%^s%^RESET%^%^C245%^ through the quiet path.%^CRST%^");
                 break;

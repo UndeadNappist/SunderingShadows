@@ -25,7 +25,7 @@ void heart_beat(){
     if(!objectp(room)) return;
     
     if(random(100) < 4){
-        switch(random(8)){
+        switch(random(7)){
             case 0 : 
                 tell_room(room, "%^RESET%^%^CRST%^%^C080%^Light %^C087%^dances%^C080%^ across the surface of the %^C087%^clear water%^C080%^.%^CRST%^");
                 break;
