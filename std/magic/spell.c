@@ -42,6 +42,7 @@ string spell_name,
        casting_stat,
        psyclass,
        aoe_message,
+       heritage,
        *bonus_type;
 
 nosave int FULL_EFFECT = 100;
@@ -432,6 +433,14 @@ void set_domains(mixed str)
         divine_domains = str;
     }
 }
+
+void set_heritage(string str)
+{
+    if(!stringp(str))
+        return;
+    
+    heritage = str;
+}   
 
 void set_cast_string(string str)
 {
@@ -1991,6 +2000,11 @@ string* query_mystery()
 string* query_domains()
 {
     return divine_domains;
+}
+
+string query_heritage()
+{
+    return heritage;
 }
 
 string query_cast_string()
