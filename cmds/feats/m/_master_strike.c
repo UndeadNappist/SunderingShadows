@@ -192,7 +192,7 @@ void execute_attack()
     tell_object(caster, CRAYON_D->color_string("You strike " + ename + " in their most vulnerable spot with incredible ferocity!", "lightning yellow"));
     tell_room(place, sprintf("%s%s strikes %s ferociously in a vulnerable spot!%s", HIR, pname, ename, NOR), ({ caster }));
     
-    sneak = caster->query_class_level("thief") / 2;
+    sneak = caster->query_prestige_level("thief") / 2;
     
     if(FEATS_D->usable_feat(target, "mighty resilience"))
         sneak = 0;
@@ -229,7 +229,7 @@ void execute_attack()
     if(target->is_vulnerable_to(caster))
     {
         damage += roll_dice(sneak, 6);
-        target->set_paralyzed(roll_dice(1, 4), "%^YELLOW%^You are still recovering your senses!%^RESET%^");
+        target->set_paralyzed(roll_dice(1, 4) * 6, "%^YELLOW%^You are still recovering your senses!%^RESET%^");
     }
     
     target->set_property("magic", 1);
