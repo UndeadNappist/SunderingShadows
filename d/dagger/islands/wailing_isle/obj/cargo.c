@@ -10,8 +10,8 @@ int destroyed;
 void create(){
 	::create();
     set_name("pile of cargo");
-	set_id(({"crates", "boxes"}));
-	set_short("%^RESET%^%^CRST%^%^C058%^a large pile of %^C136%^crates %^C058%^and %^C136%^boxes%^CRST%^");
+	set_id(({"crates", "boxes", "cargo"}));
+	set_short("%^RESET%^%^CRST%^%^C058%^a large pile of %^C136%^boxes %^C058%^and %^C136%^crates%^CRST%^");
     set_long((:this_object(), "long_fun":));
 	set_weight(1000000);
 	set_value(0);
@@ -43,7 +43,7 @@ int ignite_fun(string str){
     object cargo, player, room, guard;
     
     if(!str) return 0;
-    if(str != "crates" && str != "boxes") return 0;
+    if(str != "crates" && str != "boxes" && str != "cargo") return 0;
     
     cargo = this_object();
     player = this_player();
