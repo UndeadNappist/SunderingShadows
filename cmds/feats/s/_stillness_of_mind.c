@@ -114,6 +114,13 @@ void execute_feat()
         dest_effect();
         return;
     }
+    if(caster->cooldown("stillness of mind"))
+    {
+        tell_object(caster, "You are not ready to use stillness of mind yet.");
+        dest_effect();
+        return;
+    }
+    /*
     if(caster->query_property("using stillness of mind") > time()+90)
     {
         tell_object(caster, "%^BOLD%^%^CYAN%^You are still recovering, you "+
@@ -121,6 +128,7 @@ void execute_feat()
         dest_effect();
         return;
     }
+    */
     if(!TP->spend_ki(2))
     {
         tell_object(caster, "%^CYAN%^You lack the needed ki to still "+
@@ -140,9 +148,10 @@ void execute_feat()
     //caster->set_paralyzed(0);
 	caster && caster->remove_paralyzed();
     caster && caster->set_tripped(0);
-    delay_messid_msg(90,"%^BOLD%^%^WHITE%^You can %^CYAN%^stillness of mind%^WHITE%^ again.%^RESET%^");
-    caster->remove_property("using stillness of mind");
-    caster->set_property("using stillness of mind", time());
+    caster->add_cooldown("stillness of mind", 90);
+    //delay_messid_msg(90,"%^BOLD%^%^WHITE%^You can %^CYAN%^stillness of mind%^WHITE%^ again.%^RESET%^");
+    //caster->remove_property("using stillness of mind");
+    //caster->set_property("using stillness of mind", time());
     dest_effect();
     return;
 }
