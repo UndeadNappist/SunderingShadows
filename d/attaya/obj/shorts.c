@@ -42,18 +42,18 @@ void create(){
 }
 
 int wearme(){
-   if((string)ETO->query_gender() != "male"){
+   /*if((string)ETO->query_gender() != "male"){
       tell_object(ETO,"%^GREEN%^Try as you might, you just can't fit "+
          "the shorts to your body!");
       return 0;
-   }
+   }*/
    if((int)ETO->query_level() < 30) {
      tell_object(ETO,"The shorts just fall right off of you.");
      return 0;
    }
 
    tell_object(ETO,"%^ORANGE%^You pull on the shorts and lace them tight.");
-   tell_room(EETO,"%^ORANGE%^"+ETOQCN+" pulls on his shorts and lace them tight.",ETO);
+   tell_room(EETO,"%^ORANGE%^"+ETOQCN+" pulls on their shorts and lace them tight.",ETO);
    return 1;
 }
 

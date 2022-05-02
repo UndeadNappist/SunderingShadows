@@ -59,11 +59,11 @@ void init(){
 }
 
 int wearme(){
-   if((string)ETO->query_gender() != "female"){
+   /*if((string)ETO->query_gender() != "female"){
       tell_object(ETO,"Try as you might, you just can't fit "+
          "into the pants!");
       return 0;
-   }
+   }*/
    if((int)ETO->query_highest_level() < 30) {
    tell_object(ETO,"The pants refuse to be worn by one as weak as you!");
          return 0;
@@ -72,7 +72,7 @@ int wearme(){
    tell_object(ETO,"%^BOLD%^%^MAGENTA%^You slip into the tight "+
       "leather pants and notice how nice your legs look.");
    tell_room(EETO,"%^BOLD%^%^MAGENTA%^"+ETOQCN+" slips into the "+
-      "tight leather pants, drawing your eyes briefly to her shapely "+
+      "tight leather pants, drawing your eyes briefly to their shapely "+
       "legs.",ETO);
    return 1;
 }
@@ -89,8 +89,8 @@ int wiggle(string str){
    if(!str){
       tell_object(ETO,"%^MAGENTA%^You wiggle your bottom, giggling as "+
          "you show off your shapely legs.");
-      tell_room(EETO,"%^MAGENTA%^"+ETOQCN+" wiggles her hips, laughing "+
-         "seductively as she shows off her shapely legs.",ETO);
+      tell_room(EETO,"%^MAGENTA%^"+ETOQCN+" wiggles their hips, laughing "+
+         "seductively as they show off their shapely legs.",ETO);
       return 1;
    }
 }
