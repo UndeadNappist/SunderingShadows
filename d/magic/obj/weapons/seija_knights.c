@@ -8,7 +8,7 @@ void create()
     set_name("%^BOLD%^%^BLUE%^Flail of the El%^RED%^e%^BLUE%^m%^YELLOW%^e%^BLUE%^nts%^RESET%^");
     set_short("%^BOLD%^%^WHITE%^cryst%^RESET%^a%^BOLD%^ll%^RESET%^i%^BOLD%^ne fl%^RESET%^a%^BOLD%^il%^RESET%^");
     set_id(({ "flail", "flail of the elements", "weapon" }));
-    set_long("%^RESET%^The entirety of this weapon - the handle, chain, and head - are crafted from fine %^BOLD%^%^WHITE%^crystal%^RESET%^.  Within that crystal the four primordial elements - %^ORANGE%^earth%^RESET%^, %^BOLD%^air%^RESET%^, %^BOLD%^%^RED%^fire%^RESET%^, and %^BOLD%^%^BLUE%^water %^RESET%^- dance and entertwine in perfect harmony.");
+    set_long("%^RESET%^The entirety of this weapon - the handle, chain, and head - are crafted from fine %^BOLD%^%^WHITE%^crystal%^RESET%^.  Within that crystal the four primordial elements - %^ORANGE%^earth%^RESET%^, %^BOLD%^air%^RESET%^, %^BOLD%^%^RED%^fire%^RESET%^, and %^BOLD%^%^BLUE%^water %^RESET%^- dance and intertwine in perfect harmony.");
    set_damage_type("bludgeoning");
     set_value(0);
     set_hit((: TO, "hit_func" :));

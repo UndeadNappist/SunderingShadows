@@ -276,8 +276,8 @@ int claw_attack(object tp, object targ)
 
         case "stun":
 
-            tell_object(tp,"%^ORANGE%^You quickly strike "+targ->QCN+" first with one mightly claw and then the other, knocking "+targ->QO+" senseless!");
-            tell_object(targ,"%^ORANGE%^"+tp->QCN+" quickly strikes you with one mightly claw and then the other, knocking your senseless!");
+            tell_object(tp,"%^ORANGE%^You quickly strike "+targ->QCN+" first with one mighty claw and then the other, knocking "+targ->QO+" senseless!");
+            tell_object(targ,"%^ORANGE%^"+tp->QCN+" quickly strikes you with one mighty claw and then the other, knocking your senseless!");
             tell_room(etp,"%^ORANGE%^"+tp->QCN+" quickly strikes "+targ->QCN+" first with one mighty claw and then the next, knocking "+targ->QO+" senseless!",({tp,targ}));
 
             targ->set_paralyzed(roll_dice(1,dice/2),"%^RESET%^%^YELLOW%^You're struggling to regain your balance!");

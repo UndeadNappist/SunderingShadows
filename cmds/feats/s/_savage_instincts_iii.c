@@ -8,7 +8,7 @@ void create() {
     feat_category("SavageCombat");
     feat_name("savage instincts iii");
     feat_prereq("Savage instincts II, Druid L25");
-    feat_desc("A druid can master the greatest of the instincts ofeach of its combat-based shapeshifts, allowing an extra ability whilefighting.");
+    feat_desc("A druid can master the greatest of the instincts of each of its combat-based shapeshifts, allowing an extra ability while fighting.");
     permanent(1);
 }
 

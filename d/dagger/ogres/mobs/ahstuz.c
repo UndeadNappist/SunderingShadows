@@ -78,7 +78,7 @@ command("wear ring");
     set_emotes(2, ({
 	"%^RED%^Ahstuz raises his arms to the air and roars at the top of his lungs!%^RESET%^",
 	"%^BLUE%^Ahstuz stares deep into your soul.%^RESET%^",
-	"%^BOLD%^%^RED%^Ahstuz dives at you, trying to rip your hear from your shoulders!%^RESET%^",
+	"%^BOLD%^%^RED%^Ahstuz dives at you, trying to rip your head from your shoulders!%^RESET%^",
       }),1);
      ob = new("/d/common/obj/brewing/herb_special_inherit");
      ob->set_herb_name("patch of demonskin");

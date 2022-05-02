@@ -27,7 +27,7 @@ void create()
 
 %^BOLD%^N.B.%^RESET%^ Rage status can be set using prompt. Please see help prompt for more information.
 
-%^BOLD%^See also:%^RESET%^ rage *spells, satus effects, prompt");
+%^BOLD%^See also:%^RESET%^ rage *spells, status effects, prompt");
     allow_blind(1);
 }
 

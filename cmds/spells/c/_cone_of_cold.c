@@ -20,7 +20,7 @@ void create()
     set_description("By casting this spell, you form a massive white cone of icy cold towards your target.  Not only does "
         "this spell increase damage-wise as the caster increases in level, but also, the chance of hitting an unintended target in "
         "addition to the intentional one increases too.  The mage will try to aim the spell at only hostile targets, but this is "
-        "not always possible.");
+        "not always possible. A versatile arcanist can manipulate the base element of this spell.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);

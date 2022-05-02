@@ -8,7 +8,7 @@ void create() {
     feat_category("SavageCombat");
     feat_name("savage instincts i");
     feat_prereq("Druid L5");
-    feat_desc("A druid can master some of the instincts ofeach of its combat-based shapeshifts, allowing an extra ability whilefighting.");
+    feat_desc("A druid can master some of the instincts of each of its combat-based shapeshifts, allowing an extra ability while fighting.");
     permanent(1);
     set_required_for(({"savage instincts ii","savage instincts iii","mastery of fang and claw"}));
 }

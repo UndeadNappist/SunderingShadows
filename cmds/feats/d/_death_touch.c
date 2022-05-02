@@ -194,8 +194,8 @@ void execute_attack()
         myweapon = weapons[0];
     }
 
-    tell_object(caster,"%^BLUE%^A ray of deadly negative energy releases of your finger and hits "+target->QCN+"!");
-    tell_room(place,"%^BLUE%^A ray of death releases of "+caster->QCN+"'s finger and hits "+target->QCN+"!",caster);
+    tell_object(caster,"%^BLUE%^A ray of deadly negative energy releases from your finger and hits "+target->QCN+"!");
+    tell_room(place,"%^BLUE%^A ray of death releases from "+caster->QCN+"'s finger and hits "+target->QCN+"!",caster);
 
     bonusdc = BONUS_D->query_stat_bonus(caster, get_casting_stat());;
     spell_kill(target,caster);

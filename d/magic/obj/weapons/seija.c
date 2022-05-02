@@ -8,7 +8,7 @@ void create()
     set_name("%^BOLD%^%^BLUE%^El%^RED%^e%^BLUE%^m%^YELLOW%^e%^BLUE%^nt%^RESET%^%^ORANGE%^a%^BOLD%^%^BLUE%^l%^WHITE%^i%^BLUE%^st's Sh%^CYAN%^o%^BLUE%^rtst%^RED%^a%^BLUE%^ff%^RESET%^");
     set_short("%^BOLD%^%^BLUE%^shortstaff topped with a tear-drop shaped %^BOLD%^%^WHITE%^c%^RESET%^r%^BOLD%^y%^RESET%^s%^BOLD%^t%^RESET%^a%^BOLD%^l%^RESET%^");
     set_id(({ "staff", "shortstaff", "elementalist's shortstaff", "weapon" }));
-    set_long("%^RESET%^This shortstaff is just under four feet in length and is made fron fine, lightly stained %^RESET%^ORANGE%^ash%^RESET%^.  It is relatively unadorned aside from the tear-drop shaped %^BOLD%^%^WHITE%^c%^RESET%^r%^BOLD%^y%^RESET%^s%^BOLD%^t%^RESET%^a%^BOLD%^l %^RESET%^mounted atop it.  Within that crystal the four primordial elements - %^ORANGE%^earth%^RESET%^, %^BOLD%^air%^RESET%^, %^BOLD%^%^RED%^fire%^RESET%^, and %^BOLD%^%^BLUE%^water %^RESET%^- dance and entertwine in perfect harmony.");
+    set_long("%^RESET%^This shortstaff is just under four feet in length and is made from fine, lightly stained %^RESET%^ORANGE%^ash%^RESET%^.  It is relatively unadorned aside from the tear-drop shaped %^BOLD%^%^WHITE%^c%^RESET%^r%^BOLD%^y%^RESET%^s%^BOLD%^t%^RESET%^a%^BOLD%^l %^RESET%^mounted atop it.  Within that crystal the four primordial elements - %^ORANGE%^earth%^RESET%^, %^BOLD%^air%^RESET%^, %^BOLD%^%^RED%^fire%^RESET%^, and %^BOLD%^%^BLUE%^water %^RESET%^- dance and intertwine in perfect harmony.");
     set_value(0);
     set_damage_type("bludgeoning");
     set_hit((: TO, "hit_func" :));

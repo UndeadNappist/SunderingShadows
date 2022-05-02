@@ -19,7 +19,7 @@ create()
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS polar ray on TARGET");
     set_damage_desc("cold");
-    set_description("A blue-white ray of freezing air and ice springs from the casters hand aimed at her target, freezing them.  A versatile arcanist can manipulate the base element of this spell.");
+    set_description("A blue-white ray of freezing air and ice springs from the casters hand aimed at her target, freezing them. This is a ranged touch attack. A versatile arcanist can manipulate the base element of this spell.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);

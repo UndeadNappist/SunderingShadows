@@ -162,7 +162,7 @@ void fish_haul(object room){
         fish->move(room);
         continue;
     }
-     uses--;
+    uses--;
     return;
 }
 
