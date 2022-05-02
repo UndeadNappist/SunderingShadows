@@ -370,6 +370,7 @@ mapping index_castable_spells(object player, string myclass)
     string* all_spell_names, spellfile, featneeded, domain, pclass;
     int lvl;
     string playerdisc = player->query_discipline();
+    string warlockheritage = player->query("warlock heritage");
     string playerway = player->query("monk way");
     string classfile;
 
@@ -413,6 +414,13 @@ mapping index_castable_spells(object player, string myclass)
                 domain != playerdisc) {
                 continue;
             }
+        }
+        
+        if(pclass == "warlock")
+        {
+            domain = spellIndex[spellfile]["heritage"];
+            if(domain && domain != "me" && domain != warlockheritage)
+                continue;
         }
         
         if(pclass == "cleric" || pclass == "druid")
