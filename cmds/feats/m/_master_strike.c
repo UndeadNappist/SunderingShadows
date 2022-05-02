@@ -203,7 +203,7 @@ void execute_attack()
     else if(target->query_property("fortification 50"))
         sneak /= 2;
     else if(target->query_property("fortification 25"))
-        sneak = (damage * 3) / 4;
+        sneak = (sneak * 3) / 4;
     
     if(FEATS_D->usable_feat(target, "undead graft"))
         sneak /= 2;
@@ -222,14 +222,13 @@ void execute_attack()
     
     weapons = caster->query_wielded();
 
-    damage = roll_dice(damage, 6);
-    damage += sizeof(weapons) ? weapons[0]->query_wc() : caster->query_unarmed_damage();
+    damage = sizeof(weapons) ? weapons[0]->query_wc() : caster->query_unarmed_damage();
     damage += BONUS_D->query_stat_bonus(caster, "dexterity");
     damage += caster->query_damage_bonus();
     
     if(target->is_vulnerable_to(caster))
     {
-        damage += sneak;
+        damage += roll_dice(sneak, 6);
         target->set_paralyzed(roll_dice(1, 4), "%^YELLOW%^You are still recovering your senses!%^RESET%^");
     }
     
