@@ -1,5 +1,7 @@
 #include <std.h>
 #include <daemons.h>
+#include <favored_types.h>
+
 inherit SPELL;
 
 void create(){
@@ -24,7 +26,7 @@ string query_cast_string(){
 }
 
 void spell_effect(int prof){
-    string myloc, *exploded, mydir, terrain;
+    string myloc, *exploded, mydir, terrain, *terrain_types, terrain_header;
     object *peo, *targets;
     int i, j;
 
@@ -58,7 +60,21 @@ void spell_effect(int prof){
       dest_effect();
       return;
     }
-    tell_object(caster, "%^GREEN%^BOLD%^You sense the type of terrain here is : " + environment(caster)->query_terrain() + ".");
+    
+    terrain_types = keys(VALID_TERRAIN);
+    terrain = environment(caster)->query_terrain();
+    
+    foreach(string temp in terrain_types)
+    {
+        if(!strlen(terrain_header) && member_array(terrain, VALID_TERRAIN[temp]) >= 0)
+        {
+            terrain_header = temp;
+            continue;
+        }
+    }
+            
+    //tell_object(caster, "%^GREEN%^BOLD%^You sense the type of terrain here is : " + environment(caster)->query_terrain() + ".");
+    tell_object(caster, "%^GREEN%^BOLD%^You sense the type of terrain here is : " + terrain_header + ".");
     peo = ({});
     peo += users();
     if(member_array(caster,peo) != -1) peo -= ({ caster });
