@@ -30,3 +30,8 @@ int swim_to(string str)
     TP->force_me("look");
     return 1;
 }
+
+void reset(){
+    if(!present("crates")) new("/d/dagger/islands/wailing_isle/obj/cargo")->move(this_object());
+}
+

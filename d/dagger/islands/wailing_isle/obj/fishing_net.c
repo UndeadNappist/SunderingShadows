@@ -53,7 +53,8 @@ int cast_fun(string str){
     net->move(room);
     net->set_uses(uses);
     net->start_fishing();
-    this_object()->remove();
+    this_object()->move("/d/shadowgate/void");
+    //this_object()->remove();
     return 1;
 }
 

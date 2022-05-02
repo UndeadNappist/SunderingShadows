@@ -52,7 +52,8 @@ int gather_fun(string str){
         net->move(player);
         net->set_uses(uses);
     }
-    this_object()->remove();
+    this_object()->move("/d/shadowgate/void");
+    //this_object()->remove();
     return 1;
 }
 
