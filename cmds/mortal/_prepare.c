@@ -160,7 +160,7 @@ int cmd_prepare(string str)
     }
 
     // Ripped from _cast.c, think it should work?
-    if (regexp(str, implode(PLAYER_D->list_classes(), "|") + "|innate|cantrip|deep")) {
+    if (regexp(str, implode(PLAYER_D->list_classes(), "|"))) {
         if (!sscanf(str, "%s %s", myclass, args)) {
             HELP_D->help("prepare");
             return 1;
