@@ -15,8 +15,8 @@ void create(){
     set_weight(4);
     set_value(500);
     set_property("repairtype", ({ "leatherwork" }));
-    set_open_long(""+this_object()->query_long()+"\n%^RESET%^%^CRST%^%^C101%^The satchel is currently open.%^CRST%^\n");
-    set_closed_long(""+this_object()->query_long()+"\n%^RESET%^%^CRST%^%^C101%^The satchel is currently closed.%^CRST%^\n");
+    set_open_long(""+this_object()->query_long()+"\n%^RESET%^%^CRST%^%^C101%^The leather case is currently open.%^CRST%^\n");
+    set_closed_long(""+this_object()->query_long()+"\n%^RESET%^%^CRST%^%^C101%^The leather case is currently closed.%^CRST%^\n");
     set_possible_to_close(1);
 }
 
