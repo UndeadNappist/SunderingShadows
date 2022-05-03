@@ -63,6 +63,7 @@ void dest_effect() {
             "and breaks away, leaving "+caster->QP+" normal skin in its place.",caster);
         caster->set_property("iron body",-1);
         caster->set_property("poison immunity",-1);
+        caster->set_stoneSkinned(0);
 //        caster->set_property("damage resistance",-1*(clevel/4));
         caster->set_property("damage resistance",-15);
         caster->add_ac_bonus(-2);
