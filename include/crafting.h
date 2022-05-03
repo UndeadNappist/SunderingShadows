@@ -51,6 +51,7 @@ LEATHERWORK = ([
                    "medium sheath":(["file":COMMONFILE"sheath/sheath_medium","units":2,"type":"sheath"]),
                    "medium sleeve":(["file":COMMONFILE"sheath/sheath_mstaff","units":2,"type":"sheath"]),
                    "padded":(["file":COMMONFILE"armour/padded","units":2,"type":"armor"]),
+                   "potion case":(["file":COMMONFILE"potion/potion_case","units":2,"type":"container"]),
                    "shield strap":(["file":COMMONFILE"sheath/shieldstrap","units":2,"type":"sheath"]),
                    "small sheath":(["file":COMMONFILE"sheath/sheath_small","units":1,"type":"sheath"]),
 				   "shuriken holster":(["file":COMMONFILE"lrweapon/shurikens","units":1]),

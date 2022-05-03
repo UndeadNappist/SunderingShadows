@@ -228,3 +228,5 @@ string query_short() {
   if (full) return ::query_short();
   else return "A crystal vial";
 }
+
+int is_potion(){ return 1;}
