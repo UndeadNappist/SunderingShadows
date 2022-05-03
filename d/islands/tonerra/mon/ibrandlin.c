@@ -103,7 +103,7 @@ int mouth(object targ)
 
     set_property("magic", 1);
     j = sizeof(attack);
-    tell_room(ETO, "%^RED%^A huge blast of fire belows forth from the maw of the ibrandlin.");
+    tell_room(ETO, "%^RED%^A huge blast of fire bellows forth from the maw of the ibrandlin.");
     for (i = 0; i < j; i++) {
         if (!objectp(attack[i]) || attack[i]->query_true_invis()) {
             continue;

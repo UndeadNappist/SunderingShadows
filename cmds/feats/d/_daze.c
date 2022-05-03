@@ -173,7 +173,7 @@ void execute_attack() {
             tell_object(caster,"%^BOLD%^%^GREEN%^You smack "+target->QCN+" forcefully "
                 "upside the head, sending "+target->QO+" stumbling!");
             tell_object(target,"%^BOLD%^%^GREEN%^"+caster->QCN+" smacks you forcefully "
-                "upside the head, so hard your can't even think straight!");
+                "upside the head, so hard you can't even think straight!");
             tell_room(place,"%^BOLD%^%^GREEN%^"+caster->QCN+" smacks "+target->QCN+
                 " forcefully upside the head, sending "+target->QO+" stumbling!",({target,caster}));
         }
