@@ -144,3 +144,5 @@ void set_hue(string myhue) {
 
 void set_myvar(string str) { myvar = str; }
 string query_myvar() { return myvar; }
+
+int is_potion(){ return 1;}
