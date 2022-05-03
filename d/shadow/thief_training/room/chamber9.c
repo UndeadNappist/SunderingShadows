@@ -28,11 +28,11 @@ void reset(){
 	if(!present("clockwork_puppet",TO)) new(OBJ+"clockwork2")->move(TO);
 	if(!present("thief toolx",TO)) new(OBJ+"thief_tools")->move(TO);
 	if(!puppet){
-		tell_room(ETP,"The puppet snaps to attention, taking a position near the gate.");
+		tell_room(TO,"The puppet snaps to attention, taking a position near the gate.");
 		puppet=1;
 	}
 	if(!trapped){
-		tell_room(ETP,"You hear a faint whirring mechanism from the gate, followed by a faint CLICK.");
+		tell_room(TO,"You hear a faint whirring mechanism from the gate, followed by a faint CLICK.");
 		trapped=1;
 	}
 }

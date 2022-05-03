@@ -22,7 +22,7 @@ void reset(){
 	::reset();
 	if(!present("clockwork_puppet",TO)) new(OBJ+"clockwork2")->move(TO);
 	if(!gate){
-		tell_room(ETP,"%^BOLD%^%^BLACK%^You hear a series of gears shifting as the gate slides closed.%^RESET%^");
+		tell_room(TO,"%^BOLD%^%^BLACK%^You hear a series of gears shifting as the gate slides closed.%^RESET%^");
 		remove_exit("east");
 		gate=1;
 	}
