@@ -74,11 +74,11 @@ void reset() {
         ob->set_mastery_list("crown_and_castle_bar");
         ob->move(TO);
     }
-    /*if(!present("tamir")){ // changed from wiegand when the bar got a 
+    if(!present("tamir")){ // changed from wiegand when the bar got a 
                           // new barkeep, thanks to Cythera.
                           // Lujke November 25/05
        find_object_or_load("/d/darkwood/tabor/mon/wiegand")->move(TO); 
-    }*/
+    }
 }
 
 int read(string str)

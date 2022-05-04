@@ -104,7 +104,7 @@ int buy_map(string str){
 void reset(){
   object ob;
   ::reset();
-  /*if(!present("scribe")){
+  if(!present("scribe")){
     ob = new("/d/shadow/mon/scribe");
     ob->set_name("Merrick the scribe");
     ob->set_short("Merrick, Scribe of Tabor");
@@ -132,6 +132,6 @@ void reset(){
        "%^RESET%^<%^BOLD%^%^CYAN%^draw area%^RESET%^> %^CYAN%^to "+
        "get a map of adventure areas around here.");
     ob->move(TO);
-  }*/
+  }
 }
 
