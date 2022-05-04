@@ -80,7 +80,7 @@ void execute_feat()
     tell_object(target, color(caster->QCN + " lays into you with an epic verbal assault, attempting to break your will to fight."));
     tell_room(place, color(caster->QCN + " lays into " + target->QCN + " with an epic verbal assault, attempting to break " + target->query_possessive() + " will to fight."), ({ caster, target}));
 
-    mod = BONUS_D->query_stat_bonus(caster, "charisma");
+    mod = 5 + BONUS_D->query_stat_bonus(caster, "charisma");
     
     set_save("reflex");
     if(do_save(target, mod))
