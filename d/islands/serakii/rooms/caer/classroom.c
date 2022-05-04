@@ -16,7 +16,7 @@ void create() {
     set_property("light",3);
     set_property("indoors",1);
     set_property("no teleport",1);
-    set_property("no scry",1);
+
 	
     set_name("library classroom");
     set_short("%^C136%^l%^C094%^i%^C136%^br%^C094%^"+
