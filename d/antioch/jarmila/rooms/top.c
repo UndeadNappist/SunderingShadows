@@ -34,7 +34,7 @@ return;
 int func_unbork(){
 tell_room(TO,"%^C216%^The mist clears the area, and you feel "+
 "magic return the area%^CRST%^.");
-remove_propery("no magic");
+remove_property("no magic");
 return;
 }
 
