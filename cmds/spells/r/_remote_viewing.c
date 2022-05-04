@@ -7,7 +7,7 @@
 
 #define CONTROL "/d/magic/obj/mcrystal_ball"
 #define SCRY_D "/daemon/ic_scry_locate_d"
-#define DELAY 300
+#define DELAY 30
 
 inherit SPELL;
 

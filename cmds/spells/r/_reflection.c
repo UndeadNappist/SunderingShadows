@@ -5,7 +5,7 @@ inherit SPELL;
 object reflection,remote,room,control;
 string theName;
 
-#define DELAY 10
+#define DELAY 30
 #define SCRY_D "/daemon/ic_scry_locate_d"
 
 void create()
@@ -28,15 +28,16 @@ When scrying, use %^ORANGE%^<help reflection>%^RESET%^ to read instructions on h
 
 int preSpell()
 {
-    if(caster->query_property("remote scrying"))
+    if(caster->query_property("remote viewing"))
     {
         tell_object(caster,"You are already looking upon someone from afar.");
         return 0;
     }
     if(avatarp(caster)) return 1; // let avatars use to follow players regardless of timer.
-    if(((int)caster->query_property("remote scrying time") + DELAY) > time())
+    //if(((int)caster->query_property("remote scrying time") + DELAY) > time())
+    if(caster->cooldown("remote scrying"))
     {
-        tell_object(caster,"You need more time to prepare before you can peer through the reflection again.");
+        tell_object(caster,"You need more time to prepare before you can peer through the reflection.");
         return 0;
     }
 
@@ -71,13 +72,14 @@ void spell_effect(int prof) {
         dest_effect();
         return;
     }
-
+    caster->add_cooldown("remote viewing", DELAY);
+    
     tell_room(place,"%^BLUE%^You watch quietly as an image begins to appear in the mirror smoth surface of the water.");
     tell_object(caster,"Please type help reflection for instructions on how to use the reflection.");
 
     room = environment(caster);
     bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-    power = clevel + random(6) + bonus;
+    power = clevel + query_spell_level(spell_type) + bonus;
 
     control = new("/d/magic/obj/scry_control.c");
     control->set_observer(caster);

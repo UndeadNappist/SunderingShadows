@@ -72,7 +72,9 @@ int preSpell(){
             return 0;
         }
     }
-    if (caster->query_property("mirror time") + SCRY_DELAY > time()) {
+    //if (caster->query_property("mirror time") + SCRY_DELAY > time()) {
+    if(caster->cooldown("remote viewing"))
+    {
         tell_object(caster,"You're exhausted from your previvous attempt.");
         return 0;
     }
@@ -139,7 +141,8 @@ void spell_effect(int prof) {
 //Bonus stuff by ~Circe~ 6/20/08
 //updated again by ~Circe~ 9/16/11 to use bonuses correctly
       bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-      power = CLEVEL + random(6) + bonus;
+      //power = CLEVEL + random(6) + bonus;
+      power = clevel + bonus + query_spell_level(spell_type);
 //random(6) provides 0-5, allowing for some randomness
     scry_control->set_scry_power(power);
 //End bonus stuff
@@ -154,6 +157,7 @@ void spell_effect(int prof) {
         duration = 60 + (CLEVEL);
     }
     caster->set_property("remote scrying",1);
+    caster->add_cooldown("remove viewing", SCRY_DELAY);
     spell_duration = duration;
     set_end_time();
     call_out("dest_effect",spell_duration);
@@ -163,8 +167,8 @@ void spell_effect(int prof) {
      puppeteer->set_property("mirror counter",1);
      if((int)puppeteer->query_property("mirror counter") > 1){
        if(member_array("retainer",caster->query_id())) {
-         puppeteer->remove_property("mirror time");
-         puppeteer->set_property("mirror time",time());
+         //puppeteer->remove_property("mirror time");
+         //puppeteer->set_property("mirror time",time());
        }
        puppeteer->remove_property("mirror counter");
      }
@@ -177,7 +181,7 @@ void dest_effect()
 {
     if (objectp(caster)) {
         caster->remove_property("remote scrying");
-        set_property("mirror time", time());
+        //set_property("mirror time", time());
     }
     if (objectp(scry_control)) {
         SCRY_D->stop_scry(scry_control, 0);
