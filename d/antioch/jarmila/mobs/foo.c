@@ -95,11 +95,11 @@ void create()
    set_attack_limbs(({"mouth","right claw","left claw"}));
    set_func_chance(30);
    set_stats("strength",25);
-    if(!random(30)) {
+    /*if(!random(30)) {
       ob = new("/d/common/obj/brewing/herb_special_inherit");
       ob->set_herb_name("divine essence");
       ob->move(TO);
-    }
+    }*/
 }
 
 void rushit(object targ)
