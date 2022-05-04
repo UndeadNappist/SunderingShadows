@@ -54,9 +54,9 @@ TABOR
 
 void reset() {
   ::reset();
-   if(!present("hessa"))   // Seif was replaced by Hessa, 
+   /*if(!present("hessa"))   // Seif was replaced by Hessa, 
                            //Courtesy of Cythera. Lujke November 25/05
-      find_object_or_load("/d/darkwood/tabor/mon/seif")->move(TO);
+      find_object_or_load("/d/darkwood/tabor/mon/seif")->move(TO);*/
     if(!present("chessboard")) new(OBJDIR+"tabor_chess")->move(TO);
 }
 
@@ -70,7 +70,8 @@ int read(string str) {
                            //Courtesy of Cythera. Lujke November 25/05
     if (!objectp(ob)){  // This check added due to a bug when someone tried to read the menu
                         // when the bartender wasn't present. Lujke December 31 2005
-      write("The cafe has no staff present to show you the menu!\n");
+      //write("The cafe has no staff present to show you the menu!\n");
+      write("The menus are covered in dried blood.");
       return 1;
     }
 // This section removed when Cythera brought Seif's replacement Hessa to life
