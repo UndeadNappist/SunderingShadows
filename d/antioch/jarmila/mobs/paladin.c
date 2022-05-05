@@ -21,13 +21,13 @@ void create()
 	"de M%^C230%^o%^C229%^ntb%^C230%^a%^C229%^rd, "+
 	"%^C252%^Paladin%^C229%^ of the %^C197%^Rose%^C229%^");
     set_long("%^C229%^Dressed in gleaming heavy armor "+
-	"and resting a wonderous sword on her lap, this "+
+	"and resting a wondrous sword on her lap, this "+
 	"woman is the very image of a paladin. Her equipment "+
-	"is immacutely cared for and her clothing cut to a "+
+	"is immaculately cared for and her clothing cut to a "+
 	"tailor's eye. She has a powerful frame and strong, "+
 	"yet her movements are fluid and graceful as a "+
-	"dancer. Long blonde hair cascades over her shoulderes "+
-	"and frames an extiquisitely beautiful face.%^C229%^");
+	"dancer. Long blonde hair cascades over her shoulders "+
+	"and frames an exquisitely beautiful face.%^C229%^");
    set_race("deva");
     set_gender("female");
     set_body_type("human");
@@ -181,7 +181,7 @@ void do_greeting()
     if(talked==1){speak("Lets do this!");return;}
 	
 	else{
-speak("I am glad you have came. The view is too beautiful to not share.");
+speak("I am glad you have come. The view is too beautiful to not share.");
         tell_room(ETO,"%^C226%^\nThe glow radiates from the paladin%^CRST%^\n");
         speak("Am I not what you expected from your climb?");
         tell_room(ETO,"%^C100%^\nShe chuckles and looks out on the horizon.%^CRST%^\n");

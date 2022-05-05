@@ -73,7 +73,7 @@ int __Read_me(string str)
   %^ORANGE%^<sell boat>%^RESET%^      Will sell boat.
 
 %^CYAN%^Known safe harbors:%^RESET%^
-  %^BOLD%^%^BLUE%^On the Seakrune Sea:%^RESET%^
+  %^BOLD%^%^BLUE%^On the Saakrune Sea:%^RESET%^
   Attaya: 28,43
   Deku: 20,16
   Graez: 8,16

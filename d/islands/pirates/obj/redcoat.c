@@ -11,7 +11,7 @@ void create(){
 	set_long(
          "%^BOLD%^%^RED%^This red coat is disgusting.  It smells of "+
          "spilled food, sweat, rum, and other even less savory smells.  "+
-         "Sweat stains under the arms of the coat have permanantly "+
+         "Sweat stains under the arms of the coat have permanently "+
          "discolored this cotton coat.  The coat looks to have been "+
          "a lightly padded garment of fine quality at one time.  Now "+
          "it seems ruined beyond repair.  You suspect that wearing this "+
@@ -21,7 +21,7 @@ void create(){
 	set_lore(
          "This red coat looks like one that one might find in the city "+
          "of Tharis, made by the tailor Pepe.  The high grade cotton "+
-         "used to construct this coat seems to lead one to belive as if "+
+         "used to construct this coat seems to lead one to believe as if "+
          "it was once a fine quality garment.  Now, it seems infused with "+
          "sweat and other foul odors.  You doubt even soaking this coat "+
          "in perfume would get rid of the smell.");
@@ -42,7 +42,7 @@ int wear_func(){
      return 0;
    }
 	tell_room(EETO,"%^BOLD%^%^GREEN%^"+ETOQCN+" puts on a red coat "+
-         "and you get a wiff of the worst odor you have ever smelled.",ETO);
+         "and you get a whiff of the worst odor you have ever smelled.",ETO);
 	tell_object(ETO,"%^BOLD%^%^GREEN%^You are disgusted by the smell "+
          "of the coat.");
 	return 1;
@@ -64,7 +64,7 @@ int strike_func(int damage, object what, object who){
          ""+ETO->QS+" gets close to you, looking as if "+who->QS+" "+
          "is about ready to vomit.");
 	tell_object(who,"%^BOLD%^%^RED%^What the hell is that smell?!  "+
-         "It smells worse that sour milk, body sweat, rancid meat, "+
+         "It smells worse than sour milk, body sweat, rancid meat, "+
          "and feces combined.  The smell makes you sick at your stomach "+
          "and you can't help but gag! %^GREEN%^Better take a moment to "+
          "calm your stomache before you vomit.");
