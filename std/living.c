@@ -929,7 +929,7 @@ int calculate_healing()
                 write("You feel a wave of nausea that suddenly brings a blanket of darkness.");
                 say(query_cap_name() + " suddenly gets a blank look on " + query_possessive() + " face.");
                 write("You pass out cold into your drink.");
-                say(capitalize(query_subjective()) + " passes out cold, face first into " + query_possessive() + " drink.");
+                say(query_cap_name() + " passes out cold, face first into " + query_possessive() + " drink.");
                 set_unconscious((healing["intox"] - HEALING_FORMULA) / 70 + 1, "You have passed out cold, you're sleeping off part of your drinking binge.");
                 if (query_unconscious() > 8) {
                     set_unconscious(8, "You have passed out cold, you're sleeping off part of your drinking binge.");

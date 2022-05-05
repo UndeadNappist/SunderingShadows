@@ -150,7 +150,7 @@ int fighter_training(object player)
 
 int spell_combat(object player)
 {
-    int damage_mod = 1;
+    int damage_mod = 2;
     if (player->query_class_level("magus") > 7) {
         damage_mod ++;
     }

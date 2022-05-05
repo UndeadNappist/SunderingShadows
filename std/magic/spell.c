@@ -2906,10 +2906,13 @@ void define_base_damage(int adjust)
     if (!wasreflected) {
         if (FEATS_D->is_active(caster, "spell combat") && caster->query_property("magus spell")) {
             int magus, crit_range;
+            /*
             if (caster->is_class("magus") && file_exists("/std/class/magus.c")) {
                 magus = (int)"/std/class/magus.c"->spell_combat(caster);
             }
-            sdamage = roll_dice(2, sdamage / 4) * magus / 2;
+            */
+            //sdamage = roll_dice(2, sdamage / 4) * magus / 2;
+            sdamage = roll_dice(2, sdamage / 4);
 
             if (FEATS_D->usable_feat(caster, "spellstrike") &&
                 !query_aoe_spell() &&
