@@ -97,7 +97,7 @@ void set_for(object myPlayer)
 {
     if(!objectp(myPlayer)) return;
     isSetup = 1;
-    if(member_array((string)myPlayer->query_race(), ({"bugbear", "hobgoblin",
+    if(myPlayer->query("subrace") != "szarkai" && member_array((string)myPlayer->query_race(), ({"bugbear", "hobgoblin",
     "goblin", "gnoll", "orc", "half-drow", "minotaur", "ogre", "ogre-mage", "half-ogre", 
     "kobold", "drow", "troll"})) == -1)
     {
