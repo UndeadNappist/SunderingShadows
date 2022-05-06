@@ -1,5 +1,5 @@
 #include <std.h>
-#define SCRY_D "/daemon/ic_scry_locate_d"
+#include <daemons.h>
 inherit "/d/common/obj/jewelry/ring";
 
 
@@ -118,10 +118,9 @@ void silence_band()
 
     if(dType == "scrying")
     {
-        if(objectp(ETO->query_property("detect scrying") || objectp(detector)))
+        if(ETO->query_property("scry detect power"))
         {
-            ETO->remove_property("detect scrying");
-            if(objectp(detector)) detector->self_destruct();
+            ETO->remove_property("scry detect power");
             tell_object(ETO, "%^BOLD%^%^BLACK%^Suddenly your body tenses before your mind seems to "+
             "almost collapse as your view of the world settles back into the old... your ability to "+
             "detect scrying attempts faded!");
@@ -306,7 +305,7 @@ int check_already_doing()
             }
             break;
         case 4:
-            if(objectp(ETO->query_property("detect scrying")))
+            if(objectp(ETO->query_property("scry detect power")))
             {
                 canDo = 0;
                 msg = "%^BOLD%^%^RED%^You are already attempting to detect scrying attempts!%^RESET%^";
@@ -426,18 +425,8 @@ int detect_func(string what)
         if(!check_can_spend()) return 1;
         if(!check_already_doing()) return 1;
 
-        ETO->remove_property("detect scrying");
-
-        detector = SCRY_D->add_detect_scrying(ETO);
-        if(!objectp(detector))
-        {
-            tell_object(ETO, "Something went wrong with the band attempting to "+
-            "detect scrying.");
-            ActiveAs = 0;
-            isActive = 0;
-            return 1;
-        }
-        detector->set_detect_power(SetLevel + random(SetLevel));
+        ETO->remove_property("scry detect power");
+        ETO->set_property("scry detect power", 10 + SetLevel + max( ({ BONUS_D->query_stat_bonus(ETO, "intelligence"), BONUS_D->query_stat_bonus(ETO, "charisma"), BONUS_D->query_stat_bonus(ETO, "wisdom") }) ));
 
         tell_object(ETO, "%^BOLD%^%^BLACK%^Suddenly your body tenses before your mind seems to "+
         "expand and your view of the world shifts slightly as you begin detecting scrying "+
