@@ -13,7 +13,7 @@ void create()
 {
     ::create();
     set_name("Barliagus the Cataboligne");
-    set_id(({"barliagus the cataboligne","demon","cataboligne","barliagus"}));
+    set_id(({"barliagus the cataboligne","demon","cataboligne","barliagus", "Cataboligne", "Barliagus"}));
     set_short("Barliagus the Cataboligne");
     set_long("Barliagus is a very minor demon. He is considered a member of Catabolignes, "
         "a type of demon that enjoys manipulating human agents. They treat their earthyly "

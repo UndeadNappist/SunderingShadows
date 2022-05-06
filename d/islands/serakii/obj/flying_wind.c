@@ -31,7 +31,7 @@ int hit(object targ){
                         return roll_dice(3,4)+2;
          break;
          case 3:
-            tell_room(environment(query_wieded()),"%^C138%^"+ETOQCN+"%^C138%^ "+
+            tell_room(environment(query_wielded()),"%^C138%^"+ETOQCN+"%^C138%^ "+
                         "turns and slams the wooden shaft against "+targ->QCN+"%^C138%^'s "+
                         "legs, knocking "+targ->QO+"%^C138%^ over!%^CRST%^",({ETO,targ}));
             tell_object(ETO,"%^C138%^With a grin you slam the shaft of your bardiche against "+targ->QCN+"%^C138%^'s legs.%^CRST%^");

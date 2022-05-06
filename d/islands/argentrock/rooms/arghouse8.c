@@ -36,8 +36,8 @@ void create() {
          "afraid that you have awakened anything that lives here.");
     set_string("door","close","The door shuts without a sound.");
     set_string("door","lock","With a 'chin' sound, the door locked.");
-    set_string("door","unlock","You unlock the door with the brown key, "+
-        "some smoke evolves from the key hole.");
+    set_string("door","unlock","You unlock the door with the red key, "+
+        "and some smoke escapes from the key hole.");
     key_avai = 1;
 }
 

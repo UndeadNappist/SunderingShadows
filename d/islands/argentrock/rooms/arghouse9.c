@@ -100,7 +100,7 @@ int sweep_floor(string str) {
                "suddenly you noticed a small cover in the floor!");
             say(TPQCN+" picks up the broom and sweeps off the dust "+
                "into the dustpan.\nAs "+TP->query_subjective()+
-               "sweeps across the floor, "+TP->query_subjective()+" notices something.");
+               " sweeps across the floor, "+TP->query_subjective()+" notices something.");
             remove_search("floor");
             swept = 1;
             return 1;

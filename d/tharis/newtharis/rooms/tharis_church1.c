@@ -85,7 +85,7 @@ void create(){
 				"%^WHITE%^Lining either side of the grand "+
 				"Cathedral are over thirty recessed alcoves.  "+
 				"Within these, story-tall statues of the many "+
-				"gods of %^BLACK%^Shadowgate %^WHITE%^can be "+
+				"gods of the realm can be "+
 				"found.  From %^YELLOW%^benign %^WHITE%^to "+
 				"%^RESET%^%^MAGENTA%^sinister%^BOLD%^%^WHITE%^, "+
 				"it would appear that each and every god is "+

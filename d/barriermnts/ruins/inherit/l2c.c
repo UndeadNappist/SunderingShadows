@@ -20,8 +20,8 @@ void create() {
     set_items(([
       "floor" : "%^ORANGE%^The floor is perfectly level beneath your feet, set with "
 "%^BLACK%^%^BOLD%^dust%^RESET%^%^ORANGE%^-coated tiles.  Covering most of the tiles is a layer of old, "
-"%^RED%^moroon%^ORANGE%^ carpet.%^RESET%^",
-      "carpet" : "%^ORANGE%^A layer of %^RED%^deep moroon%^ORANGE%^ carpet rests over most of the tiles, "
+"%^RED%^maroon%^ORANGE%^ carpet.%^RESET%^",
+      "carpet" : "%^ORANGE%^A layer of %^RED%^deep maroon%^ORANGE%^ carpet rests over most of the tiles, "
 "covering the centre of the floor and up to the door, cushioning your steps.  It looks rather old and is "
 "smudged with grime, but is otherwise undamaged.%^RESET%^",
       ({"walls","wall"}) : "%^ORANGE%^Thick %^BLACK%^%^BOLD%^dirt%^RESET%^%^ORANGE%^ coats the stone "
