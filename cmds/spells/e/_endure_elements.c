@@ -97,6 +97,7 @@ void spell_effect(int prof)
     effect(1);
     spell_successful();
     addSpellToCaster();
+    addSpellToTarget();
 }
 
 void dest_effect()
