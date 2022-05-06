@@ -2411,7 +2411,7 @@ varargs int damage_targ(object victim, string hit_limb, int wound, string damage
         return 1;
     }
 
-    do_spell_damage(victim, hit_limb, wound, damage_type);
+    return do_spell_damage(victim, hit_limb, wound, damage_type);
 }
 
 varargs int do_spell_damage(object victim, string hit_limb, int wound, string damage_type)
@@ -2477,7 +2477,7 @@ varargs int do_spell_damage(object victim, string hit_limb, int wound, string da
         victim->set_toattack(1);
     }
 
-    return 1;
+    return wound;
 }
 
 void define_clevel()

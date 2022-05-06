@@ -162,6 +162,15 @@ mapping query_innate_spells(object player)
         if(olevel >= 10)
             innate_spells += ([ "conjure elemental" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         break;
+        
+        case "lunar":
+        if(olevel >= 21)
+        {
+            innate_spells += ([ "werewolf shape" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+            innate_spells += ([ "weretiger shape" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+            innate_spells += ([ "wererat shape" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
+        }
+        break;
     }
     
     return innate_spells;

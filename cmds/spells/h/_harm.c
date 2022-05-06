@@ -39,7 +39,7 @@ string query_cast_string()
 
 spell_effect(int prof)
 {
-    int rnd;
+    int rnd, wound;
 
     set_helpful_spell(1);
     if(!(target->query_property("negative energy affinity")))
@@ -64,7 +64,22 @@ spell_effect(int prof)
     }
 
     rnd = sdamage * 7/6;
-    damage_targ(target, target->return_target_limb(), rnd, "negative energy");
+    wound = damage_targ(target, target->return_target_limb(), rnd, "negative energy");
+    
+    if(wound > 0)
+    {
+        
+        if(caster->query_mystery() == "lunar" && caster->query_class_level("oracle") >= 31)
+        {
+            set_save("will");
+            if(!do_save(target, 0))
+            {
+                tell_room(room, "The moon assaults " + target->query_cap_name() + "'s mind!", target);
+                tell_object(target, "The pull of the moon assaults your mind!");
+                "/std/effect/status/confused"->apply_effect(ob,clevel/5+1,caster);
+            }
+        }
+    }           
 
     if(query_spell_name()=="harm")
         if(member_array(target,caster->query_attackers())==-1)
