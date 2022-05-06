@@ -98,6 +98,8 @@ void heart_beat(){
 		self_destruct();
 		return;
 	}
+    if(!ETO->scry_check(caster, query_scry_power()))
+        self_destruct();
    observer->use_stamina(3);
    observer->increment_stamina(5);
 }
