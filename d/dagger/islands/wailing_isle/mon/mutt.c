@@ -50,7 +50,7 @@ int pet_fun(string str){
     player = this_player();
     room = environment(player);
     
-    if(fed){
+    if(fed || (player->query("reputation wailing isle") == 50)){
         tell_object(player, "%^RESET%^%^CRST%^%^C194%^You reach down to pet the mutt, and it leans in for some %^C189%^sc%^C188%^ri%^C194%^t%^C188%^ch%^C189%^es%^RESET%^%^C194%^.%^CRST%^");
         tell_room(room, "%^RESET%^%^CRST%^%^C194%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C194%^ reaches down to pet the mutt, and it leans in for some %^C189%^sc%^C188%^ri%^C194%^t%^C188%^ch%^C189%^es%^RESET%^%^C194%^.%^CRST%^", player);
         return 1;
@@ -91,7 +91,7 @@ int feed_fun(string str){
     tell_object(player, "\n%^RESET%^%^CRST%^%^C045%^You have gained "+xp_reward+" XP.%^CRST%^\n");
     
     fed = 1;
-    call_out("hunger_fun", 10);
+    call_out("hunger_fun", 15);
     return 1;
 }
 

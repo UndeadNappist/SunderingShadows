@@ -136,7 +136,7 @@ void reply_fun(string str, object player){
         return;
     }
     
-    if(((strsrch(str,"yes") != -1 ) || (strsrch(str,"sure") != -1 ) || (strsrch(str,"okay") != -1 )) && greeted && offered && !quest && !player->cooldown("Wailing Isle jobs")){
+    if(((strsrch(str,"yes") != -1 ) || (strsrch(str,"Yes") != -1 ) || (strsrch(str,"Sure") != -1 ) || (strsrch(str,"Okay") != -1 ) || (strsrch(str,"sure") != -1 ) || (strsrch(str,"okay") != -1 )) && greeted && offered && !quest && !player->cooldown("Wailing Isle jobs")){
         force_me("emoteat tilly %^RESET%^%^CRST%^%^C109%^$M nods, flashing a smile.%^CRST%^");
         force_me("say Aight, I'll be waitin'. Don't drag yer heels, ye bonnie lass.");
         offered = 0;

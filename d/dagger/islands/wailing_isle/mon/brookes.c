@@ -159,7 +159,7 @@ void reply_fun(string str, object player){
         return;
     }
     
-    if(((strsrch(str,"yes") != -1 ) || (strsrch(str,"sure") != -1 ) || (strsrch(str,"okay") != -1 )) && offered && !quest && !player->cooldown("Wailing Isle jobs") && reputation > 9){
+    if(((strsrch(str,"yes") != -1 ) || (strsrch(str,"Yes") != -1 ) || (strsrch(str,"Sure") != -1 ) || (strsrch(str,"Okay") != -1 ) || (strsrch(str,"sure") != -1 ) || (strsrch(str,"okay") != -1 )) && offered && !quest && !player->cooldown("Wailing Isle jobs") && reputation > 9){
         offered = 0;
         if(choice == 1){
             player->set("wailing isle quest", 5);

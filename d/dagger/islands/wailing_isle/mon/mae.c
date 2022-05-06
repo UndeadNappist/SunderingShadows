@@ -107,7 +107,7 @@ void reply_fun(string str, object player){
         return;
     }
     
-    if(((strsrch(str,"yes") != -1 ) || (strsrch(str,"sure") != -1 ) || (strsrch(str,"okay") != -1 )) && offered && !quest && !player->cooldown("Wailing Isle jobs") && !player->query("wailing isle betrayed mae") && reputation > 9){
+    if(((strsrch(str,"yes") != -1 ) || (strsrch(str,"Yes") != -1 ) || (strsrch(str,"Sure") != -1 ) || (strsrch(str,"Okay") != -1 ) || (strsrch(str,"sure") != -1 ) || (strsrch(str,"okay") != -1 )) && offered && !quest && !player->cooldown("Wailing Isle jobs") && !player->query("wailing isle betrayed mae") && reputation > 9){
         force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M stands up, slapping a hand down on the counter.%^CRST%^");
         force_me("say Don't forget: a crate of rum from the Zephyr.");
         offered = 0;

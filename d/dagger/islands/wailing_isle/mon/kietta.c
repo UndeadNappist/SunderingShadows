@@ -120,7 +120,7 @@ void reply_fun(string str, object player){
         return;
     }
     
-    if(((strsrch(str,"yes") != -1 ) || (strsrch(str,"sure") != -1 ) || (strsrch(str,"okay") != -1 )) && greeted && offered && !quest && !player->cooldown("Wailing Isle jobs")){
+    if(((strsrch(str,"yes") != -1 ) || (strsrch(str,"Yes") != -1 ) || (strsrch(str,"Sure") != -1 ) || (strsrch(str,"Okay") != -1 ) || (strsrch(str,"sure") != -1 ) || (strsrch(str,"okay") != -1 )) && greeted && offered && !quest && !player->cooldown("Wailing Isle jobs")){
         if(choice == 1 ){
             force_me("emoteat kietta %^RESET%^%^CRST%^%^C101%^$M nods, flashing a smile.%^CRST%^");
             force_me("say Dis be good news. May de spirits see you trough and back wit de dust.");
