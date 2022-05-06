@@ -80,6 +80,16 @@ void spell_effect(int prof)
 
     if (sizeof(targets)) {
         int healamnt = calculate_healing();
+        
+        if(spell_type == "oracle")
+        {
+            if(caster->query_mystery() == "life" && caster->query_class_level("oracle") >= 15)
+                healamnt += caster->query_class_level("oracle");
+        
+            if(caster->query_mystery() == "lunar" && caster->query_class_level("oracle") >= 31)
+                healamnt += caster->query_class_level("oracle") / 2;
+        }
+    
         for (i = 0; i < sizeof(targets); i++) {
             if (!objectp(targets[i])) {
                 continue;

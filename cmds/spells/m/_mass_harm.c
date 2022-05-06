@@ -78,7 +78,7 @@ void spell_effect(int prof)
               "of the prayer.", caster);
 
     if (sizeof(targets)) {
-        int healamnt = calculate_healing();
+        int healamnt = calculate_healing(), wound;
         for (i = 0; i < sizeof(targets); i++) {
             if (!objectp(targets[i])) {
                 continue;
@@ -108,7 +108,23 @@ void spell_effect(int prof)
                 tell_object(targets[i], "%^BOLD%^%^BLACK%^A fell " +
                             "wave moves through you, carrying with it the essence of death.");
             }
-            damage_targ(targets[i], targets[i]->return_target_limb(), healamnt, "negative energy");
+            wound = damage_targ(targets[i], targets[i]->return_target_limb(), healamnt, "negative energy");
+
+            if(!help_or_harm && wound > 0 && spell_type == "oracle")
+            {
+        
+                if(caster->query_mystery() == "lunar" && caster->query_class_level("oracle") >= 31)
+                {
+                    set_save("will");
+                    if(!do_save(targets[i], 0))
+                    {
+                        tell_room(place, "%^BOLD%^The pull of the moon assaults " + targets[i]->query_cap_name() + "'s mind!", targets[i]);
+                        tell_object(targets[i], "%^BOLD%^The pull of the moon assaults your mind!");
+                        "/std/effect/status/confused"->apply_effect(targets[i],clevel/5+1,caster);
+                    }
+                    set_save();
+                }
+            }   
 
             if (query_spell_name() == "mass harm") {
                 if (member_array(targets[i], caster->query_attackers()) == -1) {

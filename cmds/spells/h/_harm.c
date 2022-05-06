@@ -66,7 +66,7 @@ spell_effect(int prof)
     rnd = sdamage * 7/6;
     wound = damage_targ(target, target->return_target_limb(), rnd, "negative energy");
     
-    if(wound > 0)
+    if(!help_or_harm && wound > 0 && spell_type == "oracle")
     {
         
         if(caster->query_mystery() == "lunar" && caster->query_class_level("oracle") >= 31)
@@ -74,10 +74,11 @@ spell_effect(int prof)
             set_save("will");
             if(!do_save(target, 0))
             {
-                tell_room(room, "The moon assaults " + target->query_cap_name() + "'s mind!", target);
-                tell_object(target, "The pull of the moon assaults your mind!");
-                "/std/effect/status/confused"->apply_effect(ob,clevel/5+1,caster);
+                tell_room(place, "%^BOLD%^The pull of the moon assaults " + target->query_cap_name() + "'s mind!", target);
+                tell_object(target, "%^BOLD%^The pull of the moon assaults your mind!");
+                "/std/effect/status/confused"->apply_effect(target,clevel/5+1,caster);
             }
+            set_save();
         }
     }           
 
