@@ -12,13 +12,12 @@ void create() {
     set_spell_level(([ "ranger" : 2, "paladin" : 2, "cleric" : 2,"druid" : 2, "mage" : 2 ]));
     set_spell_sphere("alteration");
     set_bonus_type("enhancement");
-    set_syntax("cast CLASS owls wisdom on TARGET");
+    set_syntax("cast CLASS owls wisdom [on TARGET]");
     set_description("This spell allows the caster to infuse their target with the wisdom of an owl, granting them "
 "a +4 enhancement bonus to wisdom.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
-	set_helpful_spell(1);
+    set_helpful_spell(1);
 }
 
 void spell_effect(int prof) {
@@ -27,6 +26,11 @@ void spell_effect(int prof) {
         return;
     }
     if (objectp(place)) place = environment(caster);
+	
+    if(!target)
+    {
+        target = caster;
+    }
 
     if(prof == -100) { // hack for potions. Cuz lib doesn't seem to call reverse spell anymore, and I'm lazy. N, 6/15.
       reverse_spell();
