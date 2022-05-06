@@ -15,9 +15,7 @@ void create()
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS celestial healing [on TARGET]");
     set_damage_desc("fast healing 1");
-    set_description("You anoint a wounded creature with celestial energy, giving it fast healing 1.
-
-%^BOLD%^%^RED%^See also:%^RESET%^ status effects");
+    set_description("You anoint a wounded creature with celestial energy, giving it fast healing 1.\n\n%^BOLD%^%^RED%^See also:%^RESET%^ status effects");
 	set_helpful_spell(1);
 }
 
@@ -54,18 +52,18 @@ void spell_effect()
     }
 
     tell_room(place, "%^BOLD%^%^CYAN%^" + target->QCN + "'s veins glow %^YELLOW%^with celestial energy through the skin.%^RESET%^", target);
-    {
-        int duration = clevel * ROUND_LENGTH * 12;
-        tell_object(target, "%^BOLD%^%^CYAN%^You feel your blood %^YELLOW%^glow%^CYAN%^ with celestial energy, healing your wounds.%^RESET%^");
-        target->set_property("spelled", ({ TO }));
-        target->set_property("fast healing", 1);
-        target->set_property("fast_healing_spell", 1);
-        spell_successful();
-        addSpellToCaster();
-        spell_duration = duration;
-        set_end_time();
-        call_out("dest_effect",spell_duration);
-    }
+    tell_object(target, "%^BOLD%^%^CYAN%^You feel your blood %^YELLOW%^glow%^CYAN%^ with celestial energy, healing your wounds.%^RESET%^");
+    
+    int duration = clevel * ROUND_LENGTH * 12;
+    tell_object(target, "%^BOLD%^%^CYAN%^You feel your blood %^YELLOW%^glow%^CYAN%^ with celestial energy, healing your wounds.%^RESET%^");
+    target->set_property("spelled", ({ TO }));
+    target->set_property("fast healing", 1);
+    target->set_property("fast_healing_spell", 1);
+    spell_successful();
+    addSpellToCaster();
+    spell_duration = duration;
+    set_end_time();
+    call_out("dest_effect",spell_duration);
 }
 
 void dest_effect()
