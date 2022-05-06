@@ -1,14 +1,10 @@
 The world of Sundering Shadows is pantheistic and includes many deities who may be worshipped by mortals.  While any mortal may make offerings to any deity to appease him or her, each mortal is also encouraged to choose a patron who will help guide the mortal's life.  These are the deities and their spheres of influence.
 
-%^YELLOW%^Primordials:%^RESET%^
+%^YELLOW%^Primordials (Greater Deities):%^RESET%^
 %^BOLD%^%^WHITE%^Edea: Hope/Love
   %^BOLD%^%^WHITE%^Domains : creation, renewal, protection, good
 %^BOLD%^%^BLACK%^Ashra: Monsters/Nightmares
   %^BOLD%^%^BLACK%^Domains : nightmare, charm, darkness, evil
-  
-%^YELLOW%^Greater Deities:%^RESET%^
-%^CYAN%^Kismet: Magic/Knowledge
-  %^CYAN%^Domains :%^CYAN%^%^CYAN%^ fate, knowledge, magic, protection
 
 %^YELLOW%^Deities:%^RESET%^
 %^BOLD%^%^BLUE%^Callamir: Luck/Trickery
@@ -19,6 +15,8 @@ The world of Sundering Shadows is pantheistic and includes many deities who may 
   %^BOLD%^%^RED%^Domains :%^RED%^ renewal, sun, fire, good
 %^RED%^Khyron: Storms/Destruction
   %^RED%^Domains : chaos, destruction, fire, suffering
+%^CYAN%^Kismet: Magic/Knowledge
+  %^CYAN%^Domains :%^CYAN%^%^CYAN%^ fate, knowledge, magic, protection
 %^BOLD%^Kreysneothosies: Home/Protection
   %^BOLD%^Domains : good, law, protection, war
 %^BOLD%^%^BLACK%^Lord Shadow: Darkness/Tyranny
