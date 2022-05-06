@@ -12,7 +12,7 @@ void create()
     feat_prereq("Resistance");
     feat_desc("Increased Resistance is a passive feat that when taken will add an additional +2 to all saving throws and +1 to spell resistance.");
     permanent(1);
-    set_required_for(({"improved resistance","death ward","spell reflection"}));
+    set_required_for(({"improved resistance","spell reflection"}));
 }
 
 int allow_shifted() { return 1; }
