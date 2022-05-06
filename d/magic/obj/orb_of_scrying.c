@@ -1,8 +1,10 @@
 #include <std.h>
+#include <daemons.h>
 
 inherit OBJECT;
 
 #define SCRY_D "/daemon/ic_scry_locate_d"
+#define DELAY 30
 
 
 object target,scry_control,*drainees=({});
@@ -53,7 +55,8 @@ void init()
 int lookin(string str)
 {
     string *map_keys,real;
-    int i,matches,num,duration,power,cost;
+    int i,matches,num,duration,power,cost,stat_bonus;
+    object holder;
     mapping map;
     if(ETO->query_property("scrying_orb_drain"))
     {
@@ -74,7 +77,8 @@ int lookin(string str)
         notify_fail("What?\n");
         return 0;
     }
-
+    
+    holder = environment(this_object());
     target = lower_case(str);
 
     if(!stringp(real = (string)ETO->realNameVsProfile(target)))
@@ -82,6 +86,12 @@ int lookin(string str)
         tell_object(ETO,"%^CYAN%^The mist inside of the orb shifts for a moment but then "
             "nothing happens.%^RESET%^");
         return 1;
+    }
+    
+    if(holder->cooldown("remote viewing"))
+    {
+        tell_object(holder, "You need to wait to use the orb again.");
+        return;
     }
 
     target = find_player(real);
@@ -100,7 +110,9 @@ int lookin(string str)
         return 1;
     }
 
-    if(target->query_property("no scry") || target->query_property("block scrying"))
+    stat_bonus = max( ({ BONUS_D->query_stat_bonus(holder, "intelligence"), BONUS_D->query_stat_bonus(holder, "charisma"), BONUS_D->query_stat_bonus(holder, "wisdom") }) );
+    //if(target->query_property("no scry") || target->query_property("block scrying"))
+    if(!target->scry_check(holder, 8 + ETO->query_level() + stat_bonus))
     {
         tell_object(ETO,"%^GREEN%^The mist inside of the orb takes on a sickly green glow and suddenly "
             "the orb flashes a bright light before returning to normal!%^RESET%^");
@@ -122,6 +134,7 @@ int lookin(string str)
     scry_control->set_target(target);
     scry_control->move(environment(target));
     ETO->set_property("scrying_orb_drain",1);
+    holder->add_cooldown("remote viewing", DELAY);
     set_property("active",1);
     drainees += ({ ETO });
     hunger=1;

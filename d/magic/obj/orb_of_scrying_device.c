@@ -59,7 +59,9 @@ void heart_beat(){
       move(environment(follower));
    if(ETO->query_property("no scry")) self_destruct();
    if(follower->query_true_invis()) self_destruct();
-   if(present("blockerx111", ETO)) self_destruct();
+   //if(present("blockerx111", ETO)) self_destruct();
+   if(!ETO->scry_check(caster, query_scry_power()))
+       self_destruct();
 }
 
 dest_me(){
@@ -74,6 +76,12 @@ catch_tell(string str){
       dest_me();
       return;
    }
+   
+    if(userp(previous_object()))
+    {
+        if(!previous_object()->scry_check(caster, query_scry_power()))
+            return;
+    }
 
    tell_room(environment(caster),"%^BOLD%^[S]%^RESET%^" +str);
 
