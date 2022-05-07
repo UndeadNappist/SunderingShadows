@@ -28,10 +28,14 @@ int preSpell(){
          "rebirth or clone spell.%^RESET%^");
       return 0;
    }
-   if((int)caster->query_property("rebirth time")+DELAY > time()){
+
+   //if((int)caster->query_property("rebirth time")+DELAY > time()){
+   if(caster->cooldown("rebirth") || caster->cooldown("clone"))
+   {
       tell_object(caster,"You cannot cast this sort of spell yet.");
       return 0;
    }
+   
    return 1;
 }
 
@@ -55,6 +59,7 @@ void spell_effect(int prof){
       "flesh!%^RESET%^");
    caster->set_property("spelled", ({TO}));
    caster->set_property("rebirth",TO);
+   caster->add_cooldown("clone", DELAY);
    addSpellToCaster();
    spell_successful();
 }

@@ -35,7 +35,9 @@ int preSpell(){
          "rebirth spell.%^RESET%^");
       return 0;
    }
-   if((int)caster->query_property("rebirth time")+DELAY > time()){
+   //if((int)caster->query_property("rebirth time")+DELAY > time()){
+   if(caster->cooldown("rebirth") || caster->cooldown("clone"))
+   {
       tell_object(caster,"You cannot cast rebirth again so soon.");
       return 0;
    }
@@ -62,6 +64,7 @@ void spell_effect(int prof){
       "once more!%^RESET%^");
    caster->set_property("spelled", ({TO}));
    caster->set_property("rebirth",TO);
+   caster->add_cooldown("rebirth", DELAY);
    addSpellToCaster();
    spell_successful();
 }

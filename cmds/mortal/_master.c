@@ -164,7 +164,9 @@ int cmd_master(string args)
                 return 1;
             }
 
-            if (forgettime > time() - 32400) {
+            //if (forgettime > time() - 32400) {
+            if(this_player()->cooldown("master forget"))
+            {
                 write("%^ORANGE%^You can forget a spell %^RED%^%^BOLD%^once per nine hours%^RESET%^%^ORANGE%^.%^RESET%^");
                 return 1;
             }
@@ -172,7 +174,8 @@ int cmd_master(string args)
         if (TP->is_class("warlock")) {
             TP->delete("warlock_blast_type");
         }
-        TP->set("last_master_forget", time());
+        //TP->set("last_master_forget", time());
+        this_player()->add_cooldown("master forget", 32400);
         TP->remove_mastered(myclass, sarg);
         write("%^CYAN%^You have forgotten %^BOLD%^%^WHITE%^" + sarg + "%^RESET%^%^CYAN%^.%^RESET%^");
         return 1;
