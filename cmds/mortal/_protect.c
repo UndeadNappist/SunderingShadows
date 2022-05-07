@@ -69,7 +69,7 @@ protect TARGET
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-He protecc.
+You essentially become a protector of the target, in much the same way a summoned minion protects their summoner.
 
 %^CYAN%^SEE ALSO%^RESET%^
 
