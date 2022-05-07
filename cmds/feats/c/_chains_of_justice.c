@@ -152,7 +152,7 @@ void execute_attack()
     
     caster->add_cooldown("chains of justice", DELAY);
     
-    if(do_save(target, BONUS_D->query_stat_bonus(caster, "wisdom")))
+    if(do_save(target, 5 + BONUS_D->query_stat_bonus(caster, "wisdom")))
     {
         tell_object(target, "%^BOLD%^WHITE%^You manage to resist the chains!%^RESET%^");
         tell_room(place, "%^BOLD%^WHITE%^" + target->query_cap_name() + " manages to resist the chains!%^RESET%^", target);
