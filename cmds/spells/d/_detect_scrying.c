@@ -59,6 +59,7 @@ void spell_effect(int prof)
     }
     */
     if(caster->query_property("scry detect power") || caster->query_property("scry block power") || caster->query_property("block scrying") || caster->query_property("false vision"))
+    //if(caster->query_property("scry detect power") || caster->query_property("false vision"))
     {
         tell_object(caster, "There is already scry protection magic on you.");
         dest_effect();

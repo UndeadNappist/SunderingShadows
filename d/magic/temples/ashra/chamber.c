@@ -8,6 +8,7 @@
 */
 
 #include <std.h>
+#include <player_housing.h>
 
 inherit "/std/templemisc";
 
@@ -36,6 +37,7 @@ void create()
     set_exits(([
        "south" : "/d/magic/temples/ashra/balcony",
     ]));
+    set_property("scry proof", SCRYWARD_LEGENDARY);
 }
 
 void reset()
