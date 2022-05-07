@@ -136,7 +136,7 @@ void judgement_justice(object targ, int direction, int power)
 void judgement_piercing(object targ, int direction, int power)
 {
     targ->set_property("spell penetration", (power / 12 + 1) * direction);
-    //targ->set_property("empowered", (power / 12 + 1) * direction);
+    targ->set_property("judgement_piercing", (power / 12 + 1) * direction);
 }
 
 void judgement_protection(object targ, int direction, int power)
