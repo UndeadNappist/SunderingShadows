@@ -18,7 +18,7 @@
 inherit MONSTER;
 
 object observer, target, control, *already;
-int no_move, ok_to_scry, ready;
+int no_move, ok_to_scry, ready, scry_power;
 
 void self_destruct();
 int look_room(object dest);
@@ -28,6 +28,12 @@ int filter_non_living(object ob);
 int send_living_name(object target);
 void int_based_detection(object place);
 int arithmetic_progression(int num);
+
+int set_scry_power(int x)
+{
+    scry_power = x;
+    return x;
+}
 
 void create()
 {
@@ -98,7 +104,7 @@ void heart_beat(){
 		self_destruct();
 		return;
 	}
-    if(!ETO->scry_check(observer, query_scry_power()))
+    if(!ETO->scry_check(observer, scry_power))
         self_destruct();
    observer->use_stamina(3);
    observer->increment_stamina(5);
@@ -220,7 +226,7 @@ catch_tell(string str)
     
     if(userp(previous_object()))
     {
-        if(!previous_object()->scry_check(observer, query_scry_power()))
+        if(!previous_object()->scry_check(observer, scry_power))
             return;
     }
     

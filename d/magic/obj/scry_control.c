@@ -306,6 +306,7 @@ int scry(string str)
     TP->set_paralyzed(8 * 2, "%^BOLD%^You're concentrating on a remote location...");
     write("%^BOLD%^GREEN%^You concentrate on remote location scrying...");
     ok_to_scry = 1;
+    scry_object->set_scry_power(query_scry_power());
     scry_object->scry_on();
     spellused = 1;
     return 1;
