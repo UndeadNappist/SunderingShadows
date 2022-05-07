@@ -657,7 +657,7 @@ nomask protected int cmd_hook(string cmd)
 {
     string file, verb;
     object shapeshift_restricted_commands;
-    if ((verb = query_verb()) != "quit" && (verb = query_verb()) != "stillness_of_mind" && query_paralyzed()) {
+    if ((verb = query_verb()) != "quit" && (verb = query_verb()) != "second_wind" && (verb = query_verb()) != "stillness_of_mind" && query_paralyzed()) {
         TP->send_paralyzed_message("info", TO);
         //message("my_action", sprintf("%s", (string)this_player()->query_paralyze_message()),
         return 1;
