@@ -2,6 +2,8 @@
 #include "../inherits/area_stuff.h"
 inherit "/d/common/obj/clothing/magerobe";
 
+object owner;
+
 void create()
 {
     ::create();
@@ -83,6 +85,7 @@ void create()
 void init()
 {
     ::init();
+    /*
     if(interactive(ETO))
     {
         if(TO->add_item_owner(ETOQN))
@@ -99,6 +102,7 @@ void init()
             }
         }
     }
+    */
 }
 
 
@@ -112,7 +116,10 @@ int wear_func()
         return 0;
     }
 
-    if(!TO->query_owns_item(ETOQN) && ETO->is_player())
+    if(!owner)
+        owner = ETO;
+    
+    if(ETO != owner)
     {
         tell_object(ETO,"%^BOLD%^%^WHITE%^The robe has been "+
         "bound to the soul of another!%^RESET%^");
