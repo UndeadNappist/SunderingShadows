@@ -24,7 +24,7 @@ The list of judgements to choose from:
 
 %^BOLD%^Justice:%^RESET%^ This judgment spurs the inquisitor to seek justice, gaining a sacred bonus point to attack plus an additional bonus point to attack per every five levels.
 
-%^BOLD%^Piercing:%^RESET%^ This judgment gives the inquisitor great focus and makes his spells more potent. This grants a point of spell penetration, plus an additonal point of spell penetration for every twelve levels.
+%^BOLD%^Piercing:%^RESET%^ This judgment gives the inquisitor great focus and makes his spells more potent at piercing magical defenses. This grants a point of spell penetration, plus an additonal point of spell penetration for every twelve levels. The same bonus is applied to scrying and teleport spells.
 
 %^BOLD%^Protection:%^RESET%^ The inquisitor is surrounded by a protective aura, granting a sacred armor class point plus an additional sacred armor class point per every five levels.
 
