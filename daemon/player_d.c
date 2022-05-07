@@ -771,6 +771,9 @@ int immunity_check(object obj, string type)
     {
         if(obj->query_mystery() == "battle" && obj->query_class_level("oracle") >= 10)
             return 1;
+        
+        if(obj->query_property("confusion_immunity"))
+            return 1;
     }
     break;
     
