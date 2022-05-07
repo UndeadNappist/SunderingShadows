@@ -55,11 +55,10 @@ void reset() {
             ob->move(TO);
         }
     }
-    for(i=0;i<9;i++) { // scroll time!
+    for(i=0;i<18;i++) { // scroll time!
         if(!present("safe scroll 9")) {
         ob = new("/d/magic/safe_scroll");
         ob->set_spell_name(OKSCROLLS[random(sizeof(OKSCROLLS))]);
-        ob->set_clevel(35);
         ob->move(TO);
         }
     }

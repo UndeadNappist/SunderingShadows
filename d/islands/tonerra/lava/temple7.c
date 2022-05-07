@@ -22,12 +22,12 @@ light the area dimly.
 DESC
   );
   set_listen("default","Silence");
-  set_smell("default","Nothing, your senses are strangly dead");
+  set_smell("default","Nothing, your senses are strangely dead");
   set_exits(([
     "out":LAVA+"temple6",
   ]));
   set_items(([
-   "corpse":"This is a finely wrapped corpse. It's preserved marvelously. It's decorated completey except for the face, looking as if it should have a mask or something.",
+   "corpse":"This is a finely wrapped corpse. It's preserved marvelously. It's decorated completely except for the face, looking as if it should have a mask or something.",
    "altar":"This is a stone altar, plainly made but bearing an inscription. You also notice a small draft wafting up from cracks below the altar.",
    "inscription":"It reads: The mask must be worn, the mask has the power, place the mask."
    ]));

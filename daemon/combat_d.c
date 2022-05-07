@@ -94,6 +94,7 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
         }
     }
     MissChance = (int)victim->query_missChance();
+    MissChance += environment(victim)->query_property("concealment");
 
     if(attacker->query_blind() || attacker->light_blind())
     {

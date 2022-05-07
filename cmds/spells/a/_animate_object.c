@@ -33,7 +33,7 @@ void create()
     set_spell_sphere("alteration");
     set_discipline("kineticist");
     set_syntax("cast CLASS animate object on <object> || <room>");
-    set_description("This spell allows you to animate objects and command then.  <command objects to command> will "
+    set_description("This spell allows you to animate objects and command them.  <command objects to command> will "
         "command the object to act as instructed.  Forcing an object to do something will affect your alignment when appropriate"
         ".  If you cast the spell on 'room', you will animate the objects located on the floor of the room (non living).  If you "
         "cast it on a non-living target, that object will become animated.  If you cast it on a living being, items from that "
