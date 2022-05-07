@@ -8,7 +8,7 @@
 int scry_check(object scryer, int power)
 {
     object room, block_spell;
-    int block_power, room_block, detect_power, false_vision, result;
+    int block_power, room_block, detect_power, false_vision, result, piercing;
     
     if(!objectp(this_object()) || !objectp(scryer) || !power)
         return 0;
@@ -29,9 +29,10 @@ int scry_check(object scryer, int power)
     room_block = max( ({ room->query_property("scry proof"), room->query_property("scry block power") }) );
     block_power = this_object()->query_property("scry block power");    
     block_power = max( ({ room_block, block_power }) );
+    piercing = scryer->query_property("judgement_piercing");
     
     //Reverse check for detection
-    result = (detect_power + roll_dice(1, 20)) - (power + 10);
+    result = (detect_power + roll_dice(1, 20)) - (power + 10 + piercing);
     if(result >= 0)
     {
         tell_object(this_object(),"%^BOLD%^MAGENTA%^You detect someone scrying you!%^RESET%^");
@@ -42,7 +43,7 @@ int scry_check(object scryer, int power)
         }   
     } 
     
-    result = (false_vision + 10) - (power + roll_dice(1, 20));
+    result = (false_vision + 10) - (power + roll_dice(1, 20) + piercing);
     if(result >= 0)
     {
         tell_object(scryer,"%^BOLD%^%^MAGENTA%^Suddenly, horrific images of your worst fears appear before your eyes, and you can't help but to stagger away in fright, losing your concentration!");
@@ -55,7 +56,7 @@ int scry_check(object scryer, int power)
     
     //tell_object(find_player("tlaloc"), "BLOCK_POWER : " + block_power);
     //tell_object(find_player("tlaloc"), "POWER       : " + power);    
-    if(block_power + 10 >= power + roll_dice(1, 20))
+    if(block_power + 10 >= power + roll_dice(1, 20) + piercing)
         return 0;
     
     return 1;
