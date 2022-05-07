@@ -305,10 +305,10 @@ int check_already_doing()
             }
             break;
         case 4:
-            if(objectp(ETO->query_property("scry detect power")))
+	    if(ETO->query_property("scry detect power") || ETO->query_property("scry block power") || ETO->query_property("block scrying") || ETO->query_property("false vision"))
             {
                 canDo = 0;
-                msg = "%^BOLD%^%^RED%^You are already attempting to detect scrying attempts!%^RESET%^";
+                msg = "%^BOLD%^%^RED%^There is already scry protection magic on you!%^RESET%^";
             }
             break;
     }
