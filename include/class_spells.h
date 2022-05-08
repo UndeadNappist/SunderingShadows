@@ -53,7 +53,7 @@ class_spell_storage =
     //"metal":
     //    ({"mending", "heat metal", "heart of metal", "keen edge", "greater magic weapon", "blade barrier", "statue", "silver sight", "iron body"}),
     "lunar":
-        ({"sleep", "dust of twilight", "rage", "moonbeam", "aspect of the wolf", "litany of madness", "lunar veil", "blood mist", "eclipse"}),
+        ({"garble", "dust of twilight", "rage", "moonbeam", "aspect of the wolf", "litany of madness", "lunar veil", "blood mist", "polar midnight"}),
     //"waves":
     //    ({"endure elements", "fog cloud", "water breathing", "ice storm", "conjure elemental", "pass portal", "vortex", "seamantle", "tidal surge"}),
     //"winter":
