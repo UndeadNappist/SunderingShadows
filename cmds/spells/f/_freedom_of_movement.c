@@ -21,6 +21,7 @@ void create()
         "mage" : ([ "quicksilver" : 2, ]),
     ]));
     set_helpful_spell(1);
+    set_peace_needed(1);
 }
 
 
