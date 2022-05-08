@@ -97,13 +97,13 @@ void spell_effect(int prof)
     effect(1);
     spell_successful();
     addSpellToCaster();
-    addSpellToTarget();
+    //addSpellToTarget();
 }
 
 void dest_effect()
 {
-    tell_object(caster, "%^GREEN%^Your protection from the elements seems to dissapate.");
-    effect(-1);
+    objectp(caster) && tell_object(caster, "%^GREEN%^Your protection from the elements seems to dissapate.");
+    objectp(target) && effect(-1);
     ::dest_effect();
     if(objectp(this_object()))
         this_object()->remove();

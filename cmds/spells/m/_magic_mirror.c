@@ -75,7 +75,7 @@ int preSpell(){
     //if (caster->query_property("mirror time") + SCRY_DELAY > time()) {
     if(caster->cooldown("remote viewing"))
     {
-        tell_object(caster,"You're exhausted from your previvous attempt.");
+        tell_object(caster,"You're exhausted from your previous attempt.");
         return 0;
     }
 
