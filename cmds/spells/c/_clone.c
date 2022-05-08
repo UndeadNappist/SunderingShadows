@@ -59,7 +59,7 @@ void spell_effect(int prof){
       "flesh!%^RESET%^");
    caster->set_property("spelled", ({TO}));
    caster->set_property("rebirth",TO);
-   caster->add_cooldown("clone", DELAY);
+   //caster->add_cooldown("clone", DELAY);
    addSpellToCaster();
    spell_successful();
 }

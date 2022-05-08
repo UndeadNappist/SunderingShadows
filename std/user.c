@@ -2131,6 +2131,7 @@ nomask void die()
         ob = new("/d/magic/obj/rebirther");
         ob->set_reztype(reztype);
         ob->move(TO);
+        this_object()->add_cooldown("rebirth", 3600);
         return;
     }
 

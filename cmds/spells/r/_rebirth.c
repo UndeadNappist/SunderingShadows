@@ -64,7 +64,7 @@ void spell_effect(int prof){
       "once more!%^RESET%^");
    caster->set_property("spelled", ({TO}));
    caster->set_property("rebirth",TO);
-   caster->add_cooldown("rebirth", DELAY);
+   //caster->add_cooldown("rebirth", DELAY);
    addSpellToCaster();
    spell_successful();
 }
