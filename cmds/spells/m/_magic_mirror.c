@@ -53,6 +53,12 @@ void create() {
 
 int preSpell(){
     string* theids;
+    //if (caster->query_property("mirror time") + SCRY_DELAY > time()) {
+    if(caster->cooldown("remote viewing"))
+    {
+        tell_object(caster,"You're exhausted from your previous attempt.");
+        return 0;
+    }
     if (userp(caster)) {
         return 1;
     }
@@ -71,12 +77,6 @@ int preSpell(){
             caster->force_me("say I cannot do that for you right now.");
             return 0;
         }
-    }
-    //if (caster->query_property("mirror time") + SCRY_DELAY > time()) {
-    if(caster->cooldown("remote viewing"))
-    {
-        tell_object(caster,"You're exhausted from your previous attempt.");
-        return 0;
     }
 
     if (caster->query_property("remote scrying")) {
@@ -124,6 +124,7 @@ void spell_effect(int prof) {
         TO->remove();
         return;
     }
+    caster->add_cooldown("remote viewing", SCRY_DELAY);
     tell_room(place,"%^BOLD%^GREEN%^As "+caster->QCN+" chants, "
         "a faint glow flickers around the "+target->query_name()+" and then slowly becomes "
         "constant.",caster);
@@ -157,7 +158,6 @@ void spell_effect(int prof) {
         duration = 60 + (CLEVEL);
     }
     caster->set_property("remote scrying",1);
-    caster->add_cooldown("remove viewing", SCRY_DELAY);
     spell_duration = duration;
     set_end_time();
     call_out("dest_effect",spell_duration);
