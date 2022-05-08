@@ -392,7 +392,7 @@ void jetstone(){
     if (member_array("Heard of the Jetstone",quests)!=-1){
       continue;
     }
-    people[i]->set_mini_quest("Heard of the Jetstone",10000000,"%^BOLD%^Heard of the Jetstone!");
+    people[i]->set_mini_quest("Heard of the Jetstone",500000,"%^BOLD%^Heard of the Jetstone!");
   }
 }
 
@@ -442,7 +442,10 @@ void tell_slay(){
     }
     quests = critters[i]->query_mini_quests();
     if (sizeof(quests)<1 || member_array("Was asked to slay Quali", quests) == -1){
-      critters[i]->set_mini_quest("Was asked to slay Quali",10000000,"%^BOLD%^Was asked to slay Qauli");
+      critters[i]->set_mini_quest("Was asked to slay Quali",5000000,"Was asked to slay Qauli");
+    }
+    if (sizeof(quests)<1 || member_array("Heard of the Jetstone", quests) == -1){
+      critters[i]->set_mini_quest("Heard of the Jetstone",500000,"Heard of the Jetstone");
     }
   }
 }
