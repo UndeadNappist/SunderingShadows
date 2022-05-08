@@ -59,3 +59,9 @@ void remove_prop(object obj)
         tell_object(environment(obj),"%^CYAN%^The "+obj->query_name()+" stops vibrations.");
     }
 }
+
+dest_effect()
+{
+    remove_prop(obj);
+    ::dest_effect();
+}

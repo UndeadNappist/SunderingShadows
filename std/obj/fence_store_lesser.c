@@ -53,7 +53,7 @@ void reset() {
         }
     }
     for(i=0;i<12;i++) { // scroll time!
-        if(!present("safe scroll 6")){
+        if(!present("safe scroll 12")){
             ob = new("/d/magic/safe_scroll");
             ob->set_spell_name(OKSCROLLS[random(sizeof(OKSCROLLS))]);
             ob->move(TO);

@@ -79,7 +79,8 @@ void max_reward(object player){
 }
 
 void catch_say(string str){
-   call_out("reply_fun", 1, str, this_player());
+    if(!userp(this_player())) return;
+    call_out("reply_fun", 1, str, this_player());
 }
 
 void reply_fun(string str, object player){

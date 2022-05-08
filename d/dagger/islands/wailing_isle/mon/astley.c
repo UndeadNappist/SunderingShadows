@@ -113,6 +113,7 @@ int read_fun(string str){
 }
     
 void catch_say(string str){
+    if(!userp(this_player())) return;
     call_out("reply_fun", 1, str, this_player());
 }
 

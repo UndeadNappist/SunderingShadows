@@ -96,7 +96,8 @@ void set_origin(string str){
         case "torm": baseroom = "/d/dagger/Torm/city/warehouse"; break;
         case "tharis": baseroom = "/d/tharis/newtharis/rooms/thief_tailor"; break;
         case "juran": baseroom = "/d/shadow/juran/city/a3"; break;
-        case "seneca": baseroom = "d/attaya/newseneca/rooms/bar_storage"; break;
+        case "seneca": baseroom = "/d/attaya/newseneca/rooms/bar_storage"; break;
+        case "wailing" : baseroom = "/d/dagger/islands/wailing_isle/room/alley"; break;
     }
 }
 
