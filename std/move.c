@@ -129,8 +129,6 @@ int remove(){
 
     this_object()->set_property("combat_remove",1);
     this_object()->unequip();
-    !userp(this_object()) && this_object()->remove_property("added short");
-    !userp(this_object()) && this_object()->remove_property("temp_hit_bonus");
     destruct(this_object());
     return 1;
 }
