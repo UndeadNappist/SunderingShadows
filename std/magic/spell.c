@@ -3443,6 +3443,10 @@ varargs int do_save(object targ, int mod, int get_dc)
         if(spell_sphere == "enchantment_charm" || spell_sphere == "illusion" || spell_sphere == "alteration")
             classlvl = caster->query_base_character_level();
     }
+       
+    if (FEATS_D->usable_feat(caster, "ragecaster") && caster->query_property("raged")) {
+        classlvl = caster->query_base_character_level();
+    }
 
     DC = classlvl + 10;
     DC += min( ({ BONUS_D->query_stat_bonus(targ, get_casting_stat()), 10 }) );
