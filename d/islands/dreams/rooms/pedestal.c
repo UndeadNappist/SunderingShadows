@@ -298,7 +298,7 @@ string l_crys()
 	"crystal is glowing %^YELLOW%^"+
         ""+color[YELLOW]+"%^RESET%^, and the green crystal is glowing "+
         "%^GREEN%^"+color[GREEN]+"%^RESET%^.  The pedestal seems to "+
-	"be emiting a faint humming sound.";
+	"be emitting a faint humming sound.";
   }
   else
   {
@@ -320,7 +320,7 @@ string l_crys()
     return "%^BOLD%^The pedestal contains 5 slots that could hold "+
         "various crystals.  The center crystal is firmly attached, "+
         "and is a milky white color.  Four slots surround the "+
-        "white crystal, creating plus sign.  Right now, "+
+        "white crystal, creating a plus sign.  Right now, "+
         ""+str+" of the slots contain crystals.";
   }
   

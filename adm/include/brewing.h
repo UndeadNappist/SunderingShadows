@@ -51,7 +51,7 @@
                      "elixir of heroism" : (["value" : 12, "dc" : 37, "materials" : ([ "red pepper" : 2, "sage" : 1, "valerian" : 1, "breath of winter" : 1 ]), "color" : "red"]), \
                      "elixir of displacement" : (["value" : 11, "dc" : 38, "materials" : ([ "allspice" : 4, "savory" : 2, "dream fragment" : 1 ]), "color" : "green"]), \
                      "elixir of rejuvenation" : (["value" : 11, "dc" : 41, "materials" : ([ "eucalyptus" : 3, "chamomile" : 1, "eye of newt" : 2 ]), "color" : "green"]), \
-                     "elixir of stoneskin" : (["value" : 10, "dc" : 43, "materials" : ([ "clove" : 3, "granite dust" : 2, "living stone" : 2 ]), "color" : "green"]), \
+                     "elixir of stoneskin" : (["value" : 10, "dc" : 43, "materials" : ([ "clove" : 3, "living stone" : 3 ]), "color" : "green"]), \
                  ])
 
 // to add: poisons (in their own category???), magic vestment oil (dc 22)

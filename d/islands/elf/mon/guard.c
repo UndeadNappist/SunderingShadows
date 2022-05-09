@@ -28,7 +28,7 @@ void create()
     ::create();
     will_open_doors(1);
     set_nogo(({ ROOMS "gate" }));
-    set_name("Ashta Rathai guard");
+    set_name("Ashta'Rathai guard");
     set_id(({ "Ashta'Rathai Guard", "ashta rathai guard",
               "elf", "guard", "mage guard", CITYLAW }));
     set_gender(random(2) ? "male" : "female");

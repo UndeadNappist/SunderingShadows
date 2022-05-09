@@ -45,7 +45,7 @@ void heart_beat(){
 	count = 0;
 	if(random(10) < 3){
 	    for(j=0;j<i;j++){
-		tell_object(people[j],"%^RED%^A large horn sounds as the Trolls of Laerad sound an attack on Asgard!");
+		tell_object(people[j],"%^RED%^A large horn sounds as the Trolls of Laerad sound an attack on the ruins of Asgard!");
 	    }
 	write_file("/d/laerad/parnelli/invasion","The trolls of systyquah attacked Asgard at "+ctime(time())+".");
 	new("/d/laerad/mon/trollm")->move(TO);

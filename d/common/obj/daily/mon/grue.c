@@ -11,7 +11,7 @@ int powerlevel, counter, handicap;
 void create(){
     ::create();
     set_name("grue");
-    set_id(({ "grue", "vrudril", "Vrudril", "V'rud'ril", "v'rud'ril" }));
+    set_id(({ "grue", "Grue", "vrudril", "Vrudril", "V'rud'ril", "v'rud'ril" }));
     set_short("%^RESET%^%^CRST%^%^C037%^V'%^C030%^ru%^C024%^d'r%^C023%^il%^%^C019%^, the %^C037%^G%^C030%^r%^C024%^u%^C023%^e%^CRST%^");
     set_long("%^RESET%^%^CRST%^%^C024%^It is hard to discern what you are looking at, as the %^C059%^da%^C244%^r%^C059%^kne%^C244%^s%^C059%^s %^C024%^writhing about this creature seeks to %^C030%^obfuscate %^C024%^and interrupt any inspection. You get a sense of %^C019%^size%^C024%^... this thing is massive, and there seems to be a scrape of %^C250%^cla%^C244%^w%^C250%^s %^C024%^on stone as it moves.%^CRST%^\n");
     set_race("grue");

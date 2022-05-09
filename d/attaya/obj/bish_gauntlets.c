@@ -74,6 +74,7 @@ void create(){
    set_wear((:TO,"wearme":));
    set_value(4500);
    set_size(-1);
+   set_property("repairtype",({ "armorsmith" }));
 }
 
 int wearme(){
