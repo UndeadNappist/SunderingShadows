@@ -153,6 +153,7 @@ void execute_feat()
     companion->set_size(3);
     companion->set_property("spell damage resistance", class_level);
     companion->set_overall_ac(0 - comp_ac - 10);
+    companion->set_monster_feats( ({ "evasion", "death ward", "stalwart" }) );
     
     caster->force_me("mount bonded steed");
        
