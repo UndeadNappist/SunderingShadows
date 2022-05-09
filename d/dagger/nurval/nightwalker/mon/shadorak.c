@@ -178,6 +178,7 @@ die(object ob)
     tell_room(environment(this_object()), "%^BLACK%^BOLD%^The tendrils of shadow seem to collapse in on themselves. "
               "The darkness coalesces into a swirling miasma as it drains back into the Shadow Plane.%^RESET%^");              
     message("broadcast", "%^BLACK%^BOLD%^A keening wail can be heard as a great evil is vanquished and returns to the Plane of Shadows!%^RESET%^", users());
+    message("broadcast", "%^WHITE%^BOLD%^The balance of power in the world shifts towards %^CYAN%^GOOD!%^RESET%^", users());
     
     foreach(object obj in this_object()->query_attackers())
     {
@@ -186,7 +187,7 @@ die(object ob)
     }
               
     WORLD_EVENTS_D->kill_event("The Avatar of Nilith defeated");
-    WORLD_EVENTS_D->inject_event((["The Avatar of Nilith defeated" : (["start message" : "%^BOLD%^%^BLACK%^The Avatar of Nilith has been defeated!", "event type" : "exp bonus", "length" : 720, "notification" : "5% Bonus Exp", "event name" : "The Avatar of Nilith defeated", "modifier" : 5, "announce" : 1, "announce to" : "world", "alignments" : ({ 1, 2, 3, 4, 7 }), ]) ]));
+    WORLD_EVENTS_D->inject_event((["The Avatar of Nilith defeated" : (["start message" : "%^BOLD%^%^BLACK%^The Avatar of Nilith has been defeated!", "event type" : "exp bonus", "length" : 720, "notification" : "5% Bonus Exp", "event name" : "The Avatar of Nilith defeated", "modifier" : 5, "announce" : 1, "announce to" : "world", "alignments" : ({ 1, 2, 3, 7 }), ]) ]));
     
     return ::die();
 }

@@ -337,7 +337,7 @@ void die(object ob) {
 
 
 }
-
+    message("broadcast", "%^BLACK%^BOLD%^The balance of power in the world shifts towards %^BOLD%^%^RED%^EVIL!%^RESET%^", users());
 WORLD_EVENTS_D->kill_event("The Avatar of Jarmila has been defeated");
 WORLD_EVENTS_D->inject_event((["The Avatar of Jarmila has been defeated" : (["start message" : "%^RED%^%^BOLD%^The Avatar of Jarmila has been defeated!%^RESET%^", "event type" : "exp bonus", "length" : 720, "notification" : "5% Bonus Exp", "event name" : "The Avatar of Jarmila has been defeated", "modifier" : 5, "announce" : 1, "announce to" : "world", "alignments" : ({ 3, 6, 9 }), ]) ]));
    TO->remove();
