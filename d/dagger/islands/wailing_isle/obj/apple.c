@@ -16,7 +16,7 @@ void create(){
 	set_destroy();
 	set_poison(0);
 	set_strength(1);
-	set_my_mess("%^RESET%^%^CRST%^%%^C247%^You choke down the grainy bites of apple.%^CRST%^");
+	set_my_mess("%^RESET%^%^CRST%^%^C247%^You choke down the grainy bites of apple.%^CRST%^");
 	set_your_mess("finishes the small apple in a couple of bites.");
 }
 
