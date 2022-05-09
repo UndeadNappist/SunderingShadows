@@ -33,6 +33,7 @@ void create(){
         "weapon focus",
         "weapon training", }));
     set_skill("athletics", 30);
+    set_skill("perception", 30);
     get_gear();
 }
 
