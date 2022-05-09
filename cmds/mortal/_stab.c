@@ -287,8 +287,24 @@ varargs int get_stab_damage(object player,object target,object weapon)
 
     if(objectp(target))
     {
+	if(FEATS_D->usable_feat(target, "mighty resilience"))
+            damage = 0;
+
+        if(target->query_property("fortification 75"))
+            damage /= 4;
+        else if(target->query_property("fortification 50"))
+            damage /= 2;
+        else if(target->query_property("fortification 25"))
+            damage = (damage * 3) / 4;
+
+        if(FEATS_D->usable_feat(target, "undead graft"))
+            damage /= 2;
+	    
+        if(FEATS_D->usable_feat(target, "danger sense") && target->query_level() + 4 > player->query_level())
+            damage /= 2;
+	    
         if(target->query_property("weapon resistance"))
-	    {
+	{
             int enchantment, resistance;
             enchantment = 0; //default 0
             resistance = (int) target->query_property("weapon resistance");
