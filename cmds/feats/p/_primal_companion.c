@@ -40,7 +40,7 @@ void create()
     feat_category("SavageCombat");
     feat_name("primal companion");
     feat_prereq("Lunar Oracle L5");
-    feat_classes(({"oracle"}));
+    feat_classes(({"oracle","ranger","druid"}));
     feat_syntax("primal_companion [TYPE] to summon or primal_companion to dismiss");
     feat_desc("Summons or dismisses your faithful primal companion. This companion will follow you through thick and thin, will level up with you, and gains several perks as it grows. The TYPE of animal will determine its base stats and natural armor.  The animal companion levels with the ranger and gains its own feats as follows:
 
@@ -56,6 +56,7 @@ The Primal Companion can also be customized through several commands, which will
   To have the animal companion follow you, use 'animal follow'.
   If your animal companion dies, you'll have to wait for a while before summoning it again.
   This feat DOES NOT stack with the animal companion feat.
+  This feat counts your lunar oracle, druid, and ranger levels.
   To command the animal companion, use %^ORANGE%^<animal command %^ULINE%^ACTION%^RESET%^ORANGE%^>.%^RESET%^");
 
     set_target_required(0);
