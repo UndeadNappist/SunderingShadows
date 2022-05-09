@@ -1962,6 +1962,13 @@ int query_damage_bonus()
             FEATS_D->usable_feat(TO, "second favored enemy") && ret += 2;
             FEATS_D->usable_feat(TO, "third favored enemy") && ret += 2;
         }
+      
+        //Are we fighting our quarry?
+        if(TO->query_property("quarry") == attacker)
+        {
+            FEATS_D->usable_feat(TO, "quarry") && ret += 2;
+            FEATS_D->usable_feat(TO, "improved quarry") && ret += 2;
+        }
     }
     
     if(this_object()->is_class("druid"))
