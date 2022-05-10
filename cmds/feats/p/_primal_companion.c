@@ -42,7 +42,7 @@ void create()
     feat_prereq("Lunar Oracle L5");
     feat_classes(({"oracle","ranger","druid"}));
     feat_syntax("primal_companion [TYPE] to summon or primal_companion to dismiss");
-    feat_desc("Summons or dismisses your faithful primal companion. This companion will follow you through thick and thin, will level up with you, and gains several perks as it grows. The TYPE of animal will determine its base stats and natural armor.  The animal companion levels with the ranger and gains its own feats as follows:
+    feat_desc("Summons or dismisses your faithful primal companion. This companion will follow you through thick and thin, will level up with you, and gains several perks as it grows. The TYPE of animal will determine its base stats and natural armor.  The primal companion levels with the oracle.
 
 The Primal Companion will hide if you use the 'hide_in_shadows' command, allowing you to effectively sneak about with your faithful friend.
 
