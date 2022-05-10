@@ -125,6 +125,7 @@ arealist = ({
 mapping areas = ([]);
 areas = ([
              "/d/shadow/city" : "Shadow",
+             "/d/shadow/coliseum" : "Shadow Coliseum",
              "/d/shadow/juran/city" : "Juran",
              "/d/dagger/nurval" : "Nurval",
              "/d/shadow/room/muuldaan/rooms/" : "Muul'daan",
@@ -150,6 +151,7 @@ areas = ([
              "/d/player_houses/lizabelle/patio" : "The Pearl Necklace",
              "/d/islands/serakii/rooms/inn/inn" : "The Rook's Rest Tavern",
              "/d/islands/serakii/rooms/inn/darts" : "The Rook's Rest Tavern",
+             "/d/dagger/islands/wailing_isle" : "The Wailing Isle",
              ]);
 
 
