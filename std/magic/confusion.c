@@ -28,7 +28,7 @@ void confuse(object caster, object targ)
         break;
     case 51..70:
         if(!present(caster,environment(targ))) TO->dest_effect();
-        tell_object(targ,"%^BOLD%^%^CYAN%^A sudden, overwhelming sense of fear comes over you!%^RESET%^");
+        tell_object(targ,"%^BOLD%^%^CYAN%^A sudden, overwhelming sense of paranoia comes over you!%^RESET%^");
         tell_room(environment(targ),"%^BOLD%^%^CYAN%^"+targ->QCN+" runs away in confusion!%^RESET%^",targ);
         targ->run_away();
         break;

@@ -37,6 +37,7 @@ string query_cast_string()
    {
         cast = "%^CYAN%^"+YOU+" starts to concentrate and chant a long worshipful incantation !";
    }
+   return cast;
 }
 
 int preSpell() {

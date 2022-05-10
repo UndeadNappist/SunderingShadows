@@ -79,20 +79,19 @@ void create()
 
 int wear_func()
 {
-    if((string)ETO->query_gender() == "female")
-    {
-        tell_room(EETO,"%^BOLD%^%^WHITE%^"+ETOQCN+" slips into the "+
+    //if((string)ETO->query_gender() == "female"){
+    tell_room(EETO,"%^BOLD%^%^WHITE%^"+ETOQCN+" slips into the "+
             "chemise and laces up the basque over the garment up",ETO);
-        tell_object(ETO,"%^BOLD%^%^WHITE%^You slip into the chemise "+
+    tell_object(ETO,"%^BOLD%^%^WHITE%^You slip into the chemise "+
             "and lace up the basque.");
-        return 1;
-    }
+    return 1;
+    /*}
     
     tell_object(ETO,"You fumble blindly with the laces.  Why in the "+
         "realms would women wear these things??");
     tell_room(EETO,""+ETOQCN+" looks really silly as "+ETO->QS+" tries "+
         "to wear a woman's garment.",ETO);
-    return 0;
+    return 0;*/
 }
 
 

@@ -30,6 +30,7 @@ void create()
     set_lrhit((: this_object(), "weapon_hit" :));
     set_weapon_prof("exotic");
     set_weight(6);
+    set_value(100000);
 
     set_ammo("%^BOLD%^%^WHITE%^flaming bullet%^RESET%^");
 

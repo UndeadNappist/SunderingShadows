@@ -10,7 +10,7 @@ void create()
     feat_category("Cypher");
     feat_name("clone scroll");
     feat_prereq("Cypher L7");
-    feat_desc("With this feat a cypher can copy any scoll in her inventory with scribe feat, even scrolls of other classes.");
+    feat_desc("With this feat a cypher can copy any scroll in her inventory with the scribe feat, even scrolls of other classes.");
     permanent(1);
     allow_blind(1);
 }

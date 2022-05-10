@@ -60,18 +60,18 @@ void create(){
 	set_remove((:TO,"remove_func":));
 }
 int wear_func(){
-   if((string)ETO->query_gender() == "female"){
+    //if((string)ETO->query_gender() == "female"){
 	tell_room(EETO,"%^BOLD%^%^WHITE%^"+ETOQCN+" slips into the "+
          "chemise and laces up the basque over the garment up",ETO);
 	tell_object(ETO,"%^BOLD%^%^WHITE%^You slip into the chemise "+
          "and lace up the basque.");
-   return 1;
-   }
-   tell_object(ETO,"You fumble blindly with the laces.  Why in the "+
+    return 1;
+    /*}
+    tell_object(ETO,"You fumble blindly with the laces.  Why in the "+
       "realms would women wear these things??");
-   tell_room(EETO,""+ETOQCN+" looks really silly as "+ETO->QS+" tries "+
+    tell_room(EETO,""+ETOQCN+" looks really silly as "+ETO->QS+" tries "+
       "to wear a woman's garment.",ETO);
-   return 0;
+    return 0;*/
 }
 int remove_func(){
 	tell_room(EETO,"%^BOLD%^%^WHITE%^"+ETOQCN+" unlaces "+
