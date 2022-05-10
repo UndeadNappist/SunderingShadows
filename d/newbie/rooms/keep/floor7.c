@@ -38,7 +38,7 @@ void create() {
      "east" : ROOMS"floor6",
    ]));
    set_search("default",(:TO,"search_here":));
-   set_trap_functions(({"west"}),({"fireball"}),({"west"}));
+   set_trap_functions(({"west"}),({"fireball"}),({"west"}), 10);
 }
 
 int fireball(object targ) {
