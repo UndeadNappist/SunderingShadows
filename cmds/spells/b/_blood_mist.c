@@ -32,6 +32,7 @@ void spell_effect(int prof){
     place->set_property("spelled", ({this_object()}) );
     caster->set_property("spelled", ({this_object()}) );
     time = 0;
+    saves = ({ });
     addSpellToCaster();
     spell_successful();
     execute_attack();
@@ -39,6 +40,7 @@ void spell_effect(int prof){
 
 void execute_attack(int prof){
     object* foes;
+    int i;
 
     if(!objectp(place)){
         dest_effect();
@@ -52,9 +54,12 @@ void execute_attack(int prof){
     if(!place->query_property("concealment")) place->set_property("concealment", 20);
 
     foes = target_selector();
-    foes = distinct_array( foes );
     foes -= ({ caster });
-    foes -= saves;
+    
+    for( i = 0; i < sizeof(saves); i++){
+        foes -= ({ saves[i] });
+        continue;
+    }
 
     if(time > clevel){
         dest_effect();
