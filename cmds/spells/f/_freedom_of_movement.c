@@ -14,7 +14,7 @@ void create()
     set_syntax("cast CLASS freedom of movement");
     set_description("This spell will protect the caster with an aura of freedom, granting her freedom from the next "
         "paralyzation effect upon her. The power of this spell is such that it will cause a brief delay once activated "
-        "before it can be used again.");
+        "before it can be used again. This spell can only be cast while at peace.");
     set_verbal_comp();
     set_somatic_comp();
     set_components(([
