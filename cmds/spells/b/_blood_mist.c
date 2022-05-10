@@ -75,7 +75,7 @@ void execute_attack(int prof){
     foreach(object ob in foes)
     {
         if(!do_save(ob, clevel)){
-            "/std/effect/status/confused"->apply_effect(ob, clevel/5 + 1, caster, "enraged");
+            "/std/effect/status/confused"->apply_effect(ob, clevel/5 + 1, caster, "enrage");
             tell_object(ob, "%^RESET%^%^CRST%^%^C124%^The bloody mist awakens something within you, %^C202%^wa%^C208%^r%^C202%^pi%^C208%^n%^C202%^g %^C124%^your perceptions!%^CRST%^");
             tell_room(place, "%^RESET%^%^CRST%^%^C124%^"+ob->query_cap_name()+"%^RESET%^%^CRST%^%^C124%^ seems to get a %^C202%^cr%^C208%^a%^C202%^ze%^C208%^d %^C124%^look in their eyes.%^CRST%^", ob);
         }
