@@ -14,7 +14,7 @@
 inherit STATUS;
 
 int counter;
-
+string result;
 object caster;
 
 void create()
@@ -51,6 +51,9 @@ void status_effect()
     if (objectp(query_param())) {
         caster = query_param();
     }
+    if (objectp(query_param2())) {
+        result = query_param2();
+    }
 
     counter = duration;
     maintain_confusion(target);
@@ -67,7 +70,7 @@ void maintain_confusion(object ob)
         dest_effect(ob);
     }
 
-    CONFUSION->confuse(caster, ob);
+    CONFUSION->confuse(caster, ob, result);
     call_out("maintain_confusion", ROUND_LENGTH, ob);
     counter--;
 }

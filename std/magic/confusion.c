@@ -6,11 +6,32 @@
 #include <std.h>
 #include <daemons.h>
 
-void confuse(object caster, object targ)
-{
+void confuse(object caster, object targ, string result){
     int i;
-    switch(random(100))
-    {
+    
+    if(result == "enrage"){
+        {
+            object *targs;
+            object chosen;
+
+            if(!present(caster,environment(targ))) this_object()->dest_effect();
+
+            targs = all_living(environment(targ));
+            filter_array(targs, "is_non_immortal", FILTERS_D);
+            targs -= ({targ});
+            i = random(sizeof(targs));
+            chosen = targs[i];
+
+            tell_object(targ,"%^BOLD%^%^RED%^In a blind rage, you attack the thing closest to you!");
+            tell_object(chosen,"%^BOLD%^%^RED%^"+targ->QCN+" suddenly turns and swings wildly at you!");
+            tell_room(environment(targ),"%^BOLD%^%^RED%^"+targ->QCN+" suddenly turns and swings wildly, attacking "+chosen->QCN+"!", ({targ, chosen}));
+
+            targ->force_me("kill "+chosen->query_name()+"");
+        }
+        return;
+    }
+        
+    switch(random(100)){
     case 0..10:
         targ->force_me("kill "+caster->query_name()+"");
         tell_object(targ,"%^BOLD%^%^RED%^Outraged, you attack "+caster->QCN+"!");
@@ -55,3 +76,4 @@ void confuse(object caster, object targ)
     break;
     }
 }
+

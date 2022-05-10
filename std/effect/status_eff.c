@@ -13,7 +13,7 @@ inherit OBJECT;
  */
 int duration;
 object target;
-mixed parameter;
+mixed parameter, parameter2;
 
 int spelled;
 int poisoned;
@@ -79,23 +79,30 @@ void set_poison()
     poisoned = 1;
 }
 
-void set_param(mixed x)
-{
+void set_param(mixed x){
     parameter = x;
 }
 
-mixed query_param()
-{
+void set_param2(mixed x){
+    parameter2 = x;
+}
+
+mixed query_param(){
     return parameter;
 }
 
-varargs object apply_effect(object victim, int dur, mixed param)
+mixed query_param2(){
+    return parameter2;
+}
+
+varargs object apply_effect(object victim, int dur, mixed param, mixed param2)
 {
     object tmp;
     tmp = new(file_name(TO));
     tmp->set_target(victim);
     tmp->set_duration(dur);
     tmp->set_param(param);
+    tmp->set_param2(param2);
     tmp->add_effect(victim);
     tmp->status_effect();
     return tmp;
