@@ -66,7 +66,7 @@ void spell_effect(int prof)
             continue;
         
         tell_object(ob, "%^GREEN%^BOLD%^The beautiful sound soothes your pain!%^RESET%^");
-        tell_room(place, "%^GREEN%^BOLD%^The beautiful sound soothes" + target->query_cap_name() + "'s pain!%^RESET%^", ob);
+        tell_room(place, "%^GREEN%^BOLD%^The beautiful sound soothes" + ob->query_cap_name() + "'s pain!%^RESET%^", ob);
         ob->cause_typed_damage(ob, "torso", sdamage, "positive energy");
     }
     
