@@ -114,7 +114,7 @@ void create_trap_kit()
 void set_my_dc(int x)
 {
     if(x < 10) x = 10;
-    if(x > 50) x = 50;
+    if(x > 80) x = 80;
     MyBaseDc = x;
     create_trap_kit();
 }
@@ -197,7 +197,7 @@ int do_trap_save(object who)
 {
     if(!objectp(TO)) return 0;
     if(!objectp(who)) return 0;
-    if("/daemon/saving_throw_d"->reflex_save(who, 0 - (int)TO->query_dc())) return 1;
+    if("/daemon/saving_throw_d"->reflex_save(who, 15 + (int)TO->query_dc())) return 1;
     return 0;
 }
 

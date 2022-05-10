@@ -72,19 +72,19 @@ mixed get_trap_object(string level, string type)
 	switch(level)
 	{
 		case "low":
-			TrapDc = 10 + random(6);
+			TrapDc = 1 + random(5);
 			break;
 		case "mid":
-			TrapDc = 16 + random(10);
+			TrapDc = 16 + random(5);
 			break;
 		case "high":
-			TrapDc = 26 + random(10);
+			TrapDc = 41 + random(5);
 			break;
 		case "epic":
-			TrapDc = 36 + random(15);
+			TrapDc = 66 + random(5);
 			break;
 		default:
-			TrapDc = 10 + random(6);
+			TrapDc = 1 + random(5);
 			break;
 	}
 	//tell_object(find_player("saide"), "level = "+level +" DC = "+TrapDc);
