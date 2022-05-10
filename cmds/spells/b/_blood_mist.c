@@ -6,6 +6,7 @@
 
 inherit SPELL;
 
+object* saves;
 int time, first_execute;
 
 void create(){
@@ -51,13 +52,15 @@ void execute_attack(int prof){
     if(!place->query_property("concealment")) place->set_property("concealment", 20);
 
     foes = target_selector();
+    foes = distinct_array( foes );
     foes -= ({ caster });
+    foes -= saves;
 
     if(time > clevel){
         dest_effect();
         return;
     }
-    if(!present(caster,place)){
+    if(!present(caster, place)){
         dest_effect();
         return;
     }
@@ -72,11 +75,12 @@ void execute_attack(int prof){
             tell_room(place, "%^RESET%^%^CRST%^%^C124%^"+ob->query_cap_name()+"%^RESET%^%^CRST%^%^C124%^ seems to get a %^C202%^cr%^C208%^a%^C202%^ze%^C208%^d %^C124%^look in their eyes.%^CRST%^", ob);
         }
         else tell_object(ob, "%^RESET%^%^CRST%^%^C125%^You manage to resist the lure of the mist.%^CRST%^");
+        saves += ({ ob });
     }
     
     time++;
 
-    if(present(caster,place) && !caster->query_unconscious()){
+    if(present(caster, place) && !caster->query_unconscious()){
         place->addObjectToCombatCycle(this_object(), 1);
         return;
     }
@@ -84,8 +88,6 @@ void execute_attack(int prof){
         dest_effect();
         return;
     }
-    
-    place->addObjectToCombatCycle(this_object(), 1);
 }
 
 void dest_effect(){
