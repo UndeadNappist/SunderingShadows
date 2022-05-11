@@ -87,41 +87,48 @@ int ask_em(string str){
 }
 
 void receive_given_item(object obj){
-   object ob;
-   if(!objectp(obj)) return;
-   if(!objectp(TP)) return;
-   if((string)obj->query_name() == "faerzress sample") {
-      obj->remove();
-      force_me("say Oh, this is perfect!  Thank you!");
-      force_me("emote turns and adds the faerzress sample to a "+
-         "small box of stones.");
-      force_me("say Now I can continue my experiments!  The "+
-         "League will be most interested in my findings, I'm sure.");
-      force_me("emote thinks a moment.");
-      force_me("say I don't have much, as you can see, but let's "+
-         "see what kind of reward I can find for you.");
-      if(!userp(TP))  return;
-      if(member_array("Rosinden's Mission",TP->query_mini_quests()) == -1) {
-         tell_object(TP,"%^BOLD%^%^BLUE%^You've just finished "+
-            "Rosinden's Mission!%^RESET%^");
-         TP->set_mini_quest("Rosinden's Mission",50000,"%^BOLD%^%^CYAN%^Rosinden's Mission%^RESET%^");
-      }
-      tell_object(TP,"Rosinden hands you a small money pouch.");
-      TP->add_money("gold",20+random(20));
-      return;
-   }
-   if((string)obj->query_name() == "gnomish extractor"){
-      force_me("say Ahh, many thanks!  You have no idea how many "+
-         "people just wander off with my tools.");
-      force_me("emote smiles and puts the extractor away, then "+
-         "returns to her work.");
-      obj->remove();
-      return;
-   }
-   force_me("say Thanks, but this isn't quite what I'm looking for.");
-   force_me("emote smiles and puts the item away.");
-   obj->remove();
-   return;
+    object ob;
+    if(!objectp(obj)) return;
+    if(!objectp(TP)) return;
+    if((string)obj->query_name() == "faerzress sample"){
+        obj->remove();
+        force_me("say Oh, this is perfect!  Thank you!");
+        force_me("emote turns and adds the faerzress sample to a small box of stones.");
+        force_me("say Now I can continue my experiments!  The League will be most interested in my findings, I'm sure.");
+        force_me("emote thinks a moment.");
+        force_me("say I don't have much, as you can see, but let's see what kind of reward I can find for you.");
+        if(!userp(TP)) return;
+        if(member_array("Rosinden's Mission",TP->query_mini_quests()) == -1){
+            tell_object(TP,"%^BOLD%^%^BLUE%^You've just finished Rosinden's Mission!%^RESET%^");
+            TP->set_mini_quest("Rosinden's Mission",50000,"%^BOLD%^%^CYAN%^Rosinden's Mission%^RESET%^");
+        }
+        tell_object(TP,"Rosinden hands you a small money pouch.");
+        TP->add_money("gold",20+random(20));
+        return;
+    }
+    if((string)obj->query_name() == "gnomish extractor"){
+        force_me("say Ahh, many thanks!  You have no idea how many people just wander off with my tools.");
+        force_me("emote smiles and puts the extractor away, then returns to her work.");
+        obj->remove();
+        return;
+    }
+    if((string)obj->query_name() == "an invitation for Rosinden"){
+        obj->remove();
+        force_me("say What's this? Another invitation from Cynthia?");
+        force_me("emote reads the letter and puts it away.");
+        force_me("say It's been a while since I saw her. Perhaps I should go visit Tabor one of these days.");
+        if(!userp(TP)) return;
+        if(member_array("An invitation for Rosinden",TP->query_mini_quests()) == -1) {
+            ell_object(TP,"%^CYAN%^You completed the quest %^BOLD%^%^MAGENTA%^An invitation for Rosinden%^RESET%^%^CYAN%^!%^RESET%^");
+            TP->set_mini_quest("An invitation for Rosinden",30000,"%^BOLD%^%^MAGENTA%^An invitation for Rosinden%^RESET%^");
+        }
+        return;
+    }
+   
+    force_me("say Thanks, but this isn't quite what I'm looking for.");
+    force_me("emote smiles and puts the item away.");
+    obj->remove();
+    return;
 }
 
 void catch_say(string msg){
