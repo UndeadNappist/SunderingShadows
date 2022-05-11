@@ -24,7 +24,7 @@ void hunting(object targ)
     }
     after = targ->query_true_name();
     classes = (string *)targ->query_classes();
-    lev = (int)targ->query_base_character_level();
+    lev = min(({ (int)targ->query_base_character_level(), 25 }));
     race = (string)targ->query_race();
     set_name((string)targ->getWholeDescriptivePhrase());
     set_id( ({ "doppleganger", race}) );
@@ -34,11 +34,11 @@ void hunting(object targ)
     set_long((string)targ->getWholeDescriptivePhrase() + " " +(string)targ->query_description());   
     for(x = 0;x < sizeof(classes);x++)
     {
-        set_class(classes[x], (int)targ->query_class_level(classes[x]));
+        set_class(classes[x], min(({ (int)targ->query_class_level(classes[x]), lev })));
         continue;
     }
     set_monster_feats((string *)targ->query_player_feats());
-    set_max_hp((int)targ->query_max_hp() * 5);
+    set_max_hp(lev * 75);
     set_hp(query_max_hp());
     
     set_alignment((int)targ->query_alignment());
