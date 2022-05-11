@@ -27,3 +27,28 @@ void init()
     ::init();
 }
 
+void die()
+{
+    string *files, *selected;
+    
+    files = get_dir("/d/common/bosses/loot/*.c");
+    files = filter_array(files, (: load_object("/d/common/bosses/loot/" + $1) :));
+    
+    selected = ({  });
+    
+    while(sizeof(selected) < 5)
+    {
+        int temp;
+        
+        temp = random(sizeof(files));
+        selected += ({ files[temp] });
+        files -= ({ files[temp] });        
+        selected = distinct_array(selected);
+    }
+    
+    foreach(string file in selected)
+        new("/d/common/bosses/loot/" + file)->move(this_object());
+        
+    ::die();
+}
+
