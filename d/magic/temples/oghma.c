@@ -55,6 +55,11 @@ void create(){
    set_listen("default","Among the various discussions you can hear a variety of different melodies being played.");
 }
 
+void reset(){
+    ::reset();
+    if(!present("cynthia")) new("/d/darkwood/tabor/mon/helper")->move(this_object());
+}
+
 void init(){
    ::init();
 //   add_action("read_charge","read");

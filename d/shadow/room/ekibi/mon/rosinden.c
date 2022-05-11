@@ -119,7 +119,7 @@ void receive_given_item(object obj){
         force_me("say It's been a while since I saw her. Perhaps I should go visit Tabor one of these days.");
         if(!userp(TP)) return;
         if(member_array("An invitation for Rosinden",TP->query_mini_quests()) == -1) {
-            ell_object(TP,"%^CYAN%^You completed the quest %^BOLD%^%^MAGENTA%^An invitation for Rosinden%^RESET%^%^CYAN%^!%^RESET%^");
+            tell_object(TP,"%^CYAN%^You completed the quest %^BOLD%^%^MAGENTA%^An invitation for Rosinden%^RESET%^%^CYAN%^!%^RESET%^");
             TP->set_mini_quest("An invitation for Rosinden",30000,"%^BOLD%^%^MAGENTA%^An invitation for Rosinden%^RESET%^");
         }
         return;

@@ -83,12 +83,12 @@ void execute_feat()
         return;
     }
     
-    tell_object(caster, "%^YELLOW%^You call on your draconic blood, and feel your body taking on the atrributes of your dragon aspect.");
+    tell_object(caster, "%^YELLOW%^You call on your draconic blood, and feel your body taking on the attributes of your dragon aspect.");
     tell_object(caster, "%^RED%^BOLD%^Your fingers extend into razor-sharp claws!");
     if(caster->query_class_level("oracle") >= 5)
         tell_object(caster, "%^GREEN%^BOLD%^You feel energy well up in your lungs!");
     if(caster->query_class_level("oracle") >= 21)
-        tell_object(caster, "%^BLUE%^BOLD%^You feel a tail form and grow, extending beind you!");
+        tell_object(caster, "%^BLUE%^BOLD%^You feel a tail form and grow, extending behind you!");
     if(caster->query_class_level("oracle") >= 31)
         tell_object(caster, "%^YELLOW%^You feel your mind and body harden with a dragon's resilience!");
         
@@ -166,8 +166,8 @@ void execute_attack()
             
             default:
             tell_object(caster, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outspread, you %^C196%^lunge %^C125%^at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C125%^ and %^C196%^gouge %^C125%^their flesh!%^CRST%^");
-            tell_object(attacker, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outpsread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at you and %^C196%^gouges %^C125%^your flesh!%^CRST%^");
-            tell_room(place, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outpsread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C125%^ and %^C196%^gouges %^C125%^their flesh!%^CRST%^", ({ caster, attacker }));
+            tell_object(attacker, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outspread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at you and %^C196%^gouges %^C125%^your flesh!%^CRST%^");
+            tell_room(place, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outspread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C125%^ and %^C196%^gouges %^C125%^their flesh!%^CRST%^", ({ caster, attacker }));
             break;
         }
         
