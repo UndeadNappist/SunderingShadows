@@ -53,6 +53,9 @@ int freeme()
     
     foreach(object eff in effects)
     {
+        if(!objectp(eff))
+            continue;
+        
         if(eff->query_name() == "effect_staggered")
             eff->dest_effect(this_player());
     }
