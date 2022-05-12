@@ -159,8 +159,8 @@ void execute_attack()
             
             default:
             tell_object(caster, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outspread, you %^C196%^lunge %^C125%^at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C125%^ and %^C196%^gouge %^C125%^their flesh!%^CRST%^");
-            tell_object(attacker, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outpsread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at you and %^C196%^gouges %^C125%^your flesh!%^CRST%^");
-            tell_room(place, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outpsread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C125%^ and %^C196%^gouges %^C125%^their flesh!%^CRST%^", ({ caster, attacker }));
+            tell_object(attacker, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outspread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at you and %^C196%^gouges %^C125%^your flesh!%^CRST%^");
+            tell_room(place, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outspread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C125%^ and %^C196%^gouges %^C125%^their flesh!%^CRST%^", ({ caster, attacker }));
             break;
         }
         
@@ -174,21 +174,21 @@ void execute_attack()
         switch(random(3))
         {
             case 0:
-            tell_object(caster, "");
-            tell_object(attacker, "");
-            tell_room(place, "", ({ caster, attacker }));
+            tell_object(caster, "%^RESET%^%^CRST%^%^C100%^You dart forward, sinking your %^C255%^te%^C250%^e%^C255%^t%^C250%^h%^RESET%^%^C100%^ deep into "+att_name+"'s flesh!%^CRST%^");
+            tell_object(attacker, "%^RESET%^%^CRST%^%^C100%^"+my_name+"%^RESET%^%^CRST%^%^C100%^ darts forward, sinking their %^C255%^te%^C250%^e%^C255%^t%^C250%^h%^RESET%^%^C100%^ deep into your flesh!%^CRST%^");
+            tell_room(place, "%^RESET%^%^CRST%^%^C100%^"+my_name+"%^RESET%^%^CRST%^%^C100%^ darts forward, sinking their %^C255%^te%^C250%^e%^C255%^t%^C250%^h%^RESET%^%^C100%^ deep into "+att_name+"'s flesh!%^CRST%^", ({ caster, attacker }));
             break;
             
             case 1:
-            tell_object(caster, "");
-            tell_object(attacker, "");
-            tell_room(place, "", ({ caster, attacker }));
+            tell_object(caster, "%^RESET%^%^CRST%^%^C100%^Biting down on "+att_name+"%^RESET%^%^CRST%^%^C100%^, you give a %^C124%^savage %^C196%^shake%^RESET%^%^C100%^ and rip out a chunk of meat!%^CRST%^");
+            tell_object(attacker, "%^RESET%^%^CRST%^%^C100%^Biting down on you, "+my_name+"%^RESET%^%^CRST%^%^C100%^ gives a %^C124%^savage %^C196%^shake%^RESET%^%^C100%^ and rips out a chunk of meat!%^CRST%^");
+            tell_room(place, "%^RESET%^%^CRST%^%^C100%^Biting down on "+att_name+"%^RESET%^%^CRST%^%^C100%^, "+my_name+"%^RESET%^%^CRST%^%^C100%^ gives a %^C124%^savage %^C196%^shake%^RESET%^%^C100%^ and rips out a chunk of meat!%^CRST%^", ({ caster, attacker }));
             break;
             
             default:
-            tell_object(caster, "");
-            tell_object(attacker, "");
-            tell_room(place, "", ({ caster, attacker }));
+            tell_object(caster, "%^RESET%^%^CRST%^%^C100%^You tear into "+att_name+"%^RESET%^%^CRST%^%^C100%^ with your %^C255%^te%^C250%^e%^C255%^t%^C250%^h%^RESET%^%^C100%^, spurred on by the taste of %^C196%^bl%^C124%^o%^C196%^o%^C124%^d%^C255%^!%^CRST%^");
+            tell_object(attacker, "%^RESET%^%^CRST%^%^C100%^"+my_name+"%^RESET%^%^CRST%^%^C100%^ tears into you with their %^C255%^te%^C250%^e%^C255%^t%^C250%^h%^RESET%^%^C100%^, spurred on by the taste of %^C196%^bl%^C124%^o%^C196%^o%^C124%^d%^C255%^!%^CRST%^");
+            tell_room(place, "%^RESET%^%^CRST%^%^C100%^"+my_name+"%^RESET%^%^CRST%^%^C100%^ tears into "+att_name+"%^RESET%^%^CRST%^%^C100%^ with their %^C255%^te%^C250%^e%^C255%^t%^C250%^h%^RESET%^%^C100%^, spurred on by the taste of %^C196%^bl%^C124%^o%^C196%^o%^C124%^d%^C255%^!%^CRST%^", ({ caster, attacker }));
             break;
         }
         
