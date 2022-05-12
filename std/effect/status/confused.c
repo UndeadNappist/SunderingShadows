@@ -51,7 +51,7 @@ void status_effect()
     if (objectp(query_param())) {
         caster = query_param();
     }
-    if (objectp(query_param2())) {
+    if (stringp(query_param2())) {
         result = query_param2();
     }
 
