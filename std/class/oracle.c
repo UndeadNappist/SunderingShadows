@@ -94,7 +94,7 @@ mapping class_featmap(string myspec, object player) {
     if(player->query_mystery() == "lunar")
     {
         return ([
-                 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus" }),
+                 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus", "claw and tooth" }),
                  5 : ({ "indomitable", "primal companion" }),
                  10: ({ "force of personality" }),
                  15: ({ "leadership" }),
