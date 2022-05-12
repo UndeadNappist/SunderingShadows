@@ -12,7 +12,7 @@ void create()
     feat_type("permanent");
     feat_category("GeneralCombat");
     feat_name("bravery");
-    feat_desc("Bravery increases your chance to withstand fear effects.");
+    feat_desc("Bravery makes you immune to fear effects.");
     permanent(1);
 }
 

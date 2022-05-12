@@ -378,7 +378,7 @@ void setup(){
     // For some reason this works, putting the code in a setup function
     // and calling it from init. - Vanadis
 
-    set_emote(10,({
+    set_emotes(10,({
         "%^CRST%^%^RESET%^%^C138%^Cynthia rocks in her chair.%^CRST%^",
         "%^CRST%^%^RESET%^%^C138%^Cynthia coughs and takes a deep breath.%^CRST%^",
         "%^CRST%^%^RESET%^%^C138%^Cynthia knits intently.%^CRST%^",
