@@ -15,7 +15,7 @@ void create(){
 void reset(){
    ::reset();
    if(!present("avatar")){
-      new(MOBS"jarmila.c")->move(TO);
+      new("/d/common/bosses/jarmila/jarmila.c")->move(TO);
    }
 }
 

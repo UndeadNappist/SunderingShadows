@@ -32,7 +32,7 @@ void die()
     string *files, *selected;
     
     files = get_dir("/d/common/bosses/loot/*.c");
-    files = filter_array(files, (: load_object("/d/common/bosses/loot/" + $1) :));
+    files = filter_array(files, (: !catch(load_object("/d/common/bosses/loot/" + $1)) :));
     
     selected = ({  });
     
