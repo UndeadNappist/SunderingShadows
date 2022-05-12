@@ -50,6 +50,12 @@ void execute_attack(int prof){
         dest_effect();
         return;
     }
+    
+    if(!first_execute){
+        first_execute++;
+        ::execute_attack();
+        return;
+    }
 
     if(!place->query_property("concealment")) place->set_property("concealment", 20);
 
