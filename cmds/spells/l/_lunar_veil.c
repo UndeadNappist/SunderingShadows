@@ -34,9 +34,12 @@ string query_cast_string()
 void spell_effect()
 {
     tell_room("%^MAGENTA%^BOLD%^Darkness blots out the sky and the moon disappears as a swirling magic flits about the area.%^RESET%^");
-    olight = place->query_light();
+    olight = place->query_property("light");
     if(olight > -2)
+    {
+        place->remove_property("light");
         place->set_light(-2);
+    }
     
     spell_successful();
     addSpellToCaster();
@@ -67,6 +70,7 @@ void dest_effect()
 {
     if(objectp(place))
     {
+        place->remove_property("light");
         tell_room(place, "The dispelling magics seem to dissapate and the darkness subsides.");
         place->set_light(olight);
     }
