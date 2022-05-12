@@ -51,6 +51,7 @@ void spell_effect(int prof)
         caster->add_temporary_feat("knockdown");
         tracker = 1;
     }
+    spell_successful();
     caster->set_property("spelled", ({ TO }));
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 5;
     set_end_time();

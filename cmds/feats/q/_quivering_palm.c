@@ -12,7 +12,7 @@ void create()
     feat_syntax("quivering_palm [TARGET]");
     feat_prereq("Monk L17, Way of The Fist or Grandmaster of The Way");
     feat_classes("monk");
-    feat_desc("A monk specialized in the way of the fist, that is unarmored and unarmed, or wielding small weapons, may attempt a quivering palm attack on a target. In order for the attempt to be successful the monk must have at least 3 available Ki and must land a touch attack on the target. If successful a brief period of time later the target must roll a successful fortitude saving throw or be set to 0 health. Against certain monsters or if the saving throw is successful the target will take 1d8 damage per monk level.
+    feat_desc("A monk specialized in the way of the fist, that is unarmored and unarmed, or wielding small weapons, may attempt a quivering palm attack on a target. In order for the attempt to be successful the monk must have at least 17 available Ki and must land a touch attack on the target. If successful a brief period of time later the target must roll a successful fortitude saving throw or be set to 0 health. Against certain monsters or if the saving throw is successful the target will take 1d8 damage per monk level.
 
 If used without an argument this feat will pick up a random attacker.");
     set_save("fortitude");
@@ -80,7 +80,7 @@ int check_can_use()
         tell_object(caster,"You cannot use quivering palm while mounted!");
         return 0;
     }
-    if(!(int)USER_D->can_spend_ki(caster, 20))
+    if(!(int)USER_D->can_spend_ki(caster, 17))
     {
         tell_object(caster, "%^CYAN%^You lack the needed ki to attempt "+
         "quivering palm.%^RESET%^");
@@ -144,7 +144,7 @@ void execute_feat()
         dest_effect();
         return;
     }
-    if(!caster->spend_ki(20))
+    if(!caster->spend_ki(17))
     {
         tell_object(caster, "%^CYAN%^You lack the needed ki to attempt "+
         "quivering palm!%^RESET%^");

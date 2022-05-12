@@ -39,6 +39,7 @@ void spell_effect()
         place->set_light(-2);
     
     spell_successful();
+    addSpellToCaster();
     
     call_out("remove_were", ROUND_LENGTH - 1);
     call_out("dest_effect", clevel / 8 + 1);

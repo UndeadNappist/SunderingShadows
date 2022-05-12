@@ -20,7 +20,7 @@ int prerequisites(object ob)
 {
    if(!objectp(ob)) {return 0; }
 
-   if(!FEATS_D->has_feat(ob,"martial weapon proficiency")&&!ob->is_class("inquisitor"))
+   if(!FEATS_D->has_feat(ob,"martial weapon proficiency")&&!ob->is_class("inquisitor") && !ob->is_class("monk"))
    {
       dest_effect();
       return 0;
