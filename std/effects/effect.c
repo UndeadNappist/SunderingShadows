@@ -705,10 +705,10 @@ int is_effect() {
 
 void sendDisbursedMessage(object victim){
 
-    tell_object(victim,"%^BOLD%^%^YELLOW%^"+caster->query_cap_name()+"'s magic disperses futilely around you.");
+    tell_object(victim,"%^BOLD%^%^YELLOW%^A spell disperses futilely around you.");
     if (present(caster,environment(victim)))
         tell_object(caster,"%^BOLD%^%^YELLOW%^Your magic disperses futilely around "+victim->query_cap_name()+".");
-    tell_room(environment(victim),"%^BOLD%^%^YELLOW%^"+caster->query_cap_name()+"'s magic disperses futilely around "+victim->query_cap_name()+".",({ victim, caster}) );
+    tell_room(environment(victim),"%^BOLD%^%^YELLOW%^A spell disperses futilely around "+victim->query_cap_name()+".",({ victim, caster}) );
     return 1;
 }
 
