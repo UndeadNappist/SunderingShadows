@@ -2395,7 +2395,6 @@ void sendDisbursedMessage(object victim)
                 tell_object(caster, "%^BOLD%^%^YELLOW%^Your " + whatsit + " disperses futilely around " + victim->QCN + ".%^RESET%^");
             }
             tell_room(environment(victim), "%^BOLD%^%^YELLOW%^A " + whatsit + " disperses futilely around " + victim->QCN + ".", ({ victim, caster }));
-            return 1;
         } else {
             tell_object(victim, "%^BOLD%^%^YELLOW%^" + caster->QCN + "'s " + whatsit + " disperses futilely around you.%^RESET%^");
             if (present(caster, environment(victim))) {
