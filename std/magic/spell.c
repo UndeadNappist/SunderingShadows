@@ -2389,14 +2389,24 @@ void sendDisbursedMessage(object victim)
         return;
     }
     if (objectp(caster)) {
-        tell_object(victim, "%^BOLD%^%^YELLOW%^A " + whatsit + " disperses futilely around you.%^RESET%^");
-        if (present(caster, environment(victim))) {
-            tell_object(caster, "%^BOLD%^%^YELLOW%^Your " + whatsit + " disperses futilely around " + victim->QCN + ".%^RESET%^");
+        if (silent_casting) {
+            tell_object(victim, "%^BOLD%^%^YELLOW%^A " + whatsit + " disperses futilely around you.%^RESET%^");
+            if (present(caster, environment(victim))) {
+                tell_object(caster, "%^BOLD%^%^YELLOW%^Your " + whatsit + " disperses futilely around " + victim->QCN + ".%^RESET%^");
+            }
+            tell_room(environment(victim), "%^BOLD%^%^YELLOW%^A " + whatsit + " disperses futilely around " + victim->QCN + ".", ({ victim, caster }));
+            return 1;
+        } else {
+            tell_object(victim, "%^BOLD%^%^YELLOW%^" + caster->QCN + "'s " + whatsit + " disperses futilely around you.%^RESET%^");
+            if (present(caster, environment(victim))) {
+                tell_object(caster, "%^BOLD%^%^YELLOW%^Your " + whatsit + " disperses futilely around " + victim->QCN + ".%^RESET%^");
+            }
+            tell_room(environment(victim), "%^BOLD%^%^YELLOW%^" + caster->QCN + "'s " + whatsit + " disperses futilely around " + victim->QCN + ".", ({ victim, caster }));
         }
-        tell_room(environment(victim), "%^BOLD%^%^YELLOW%^A " + whatsit + " disperses futilely around " + victim->QCN + ".", ({ victim, caster }));
         return 1;
     }
-    tell_object(victim, "%^BOLD%^%^YELLOW%^The " + whatsit + " disperses futilely around you.%^RESET%^");
+
+    tell_object(victim, "%^BOLD%^%^YELLOW%^A " + whatsit + " disperses futilely around you.%^RESET%^");
     tell_room(environment(victim), "%^BOLD%^%^YELLOW%^A " + whatsit + " disperses futilely around " + victim->QCN + ".", ({ victim }));
     return 1;
 }
