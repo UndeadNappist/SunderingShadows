@@ -213,16 +213,16 @@ void add_charge(object player, object room){
     
     switch(charges){
         case 0 :
-            tell_object(player, "\n%^RESET%^%^CRST%^%^C101%^A %^C039%^g%^C045%^e%^C039%^m %^RESET%^%^C101%^on the hilt of your cutlass starts to %^C051%^glow%^C101%^.\n");
-            tell_room(room, "%^RESET%^%^CRST%^%^C101%^A %^C039%^g%^C045%^e%^C039%^m %^RESET%^%^C101%^on the hilt of "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^'s cutlass starts to %^C051%^glow%^C101%^.", player);
+            tell_object(player, "\n%^RESET%^%^CRST%^%^C101%^A %^C039%^g%^C045%^e%^C039%^m %^RESET%^%^C101%^on the hilt of your cutlass starts to %^C051%^glow%^C101%^.%^CRST%^\n");
+            tell_room(room, "%^RESET%^%^CRST%^%^C101%^A %^C039%^g%^C045%^e%^C039%^m %^RESET%^%^C101%^on the hilt of "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^'s cutlass starts to %^C051%^glow%^C101%^.%^CRST%^", player);
             break;
         case 1 :
-            tell_object(player, "\n%^RESET%^%^CRST%^%^C101%^A %^C039%^s%^C045%^econ%^C039%^d %^C039%^g%^C045%^e%^C039%^m %^RESET%^%^C101%^on the hilt of your cutlass starts to %^C051%^glow%^C101%^.\n");
-            tell_room(room, "%^RESET%^%^CRST%^%^C101%^A %^C039%^s%^C045%^econ%^C039%^d %^C039%^g%^C045%^e%^C039%^m %^RESET%^%^C101%^on the hilt of "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^'s cutlass starts to %^C051%^glow%^C101%^.", player);
+            tell_object(player, "\n%^RESET%^%^CRST%^%^C101%^A %^C039%^s%^C045%^econ%^C039%^d %^C039%^g%^C045%^e%^C039%^m %^RESET%^%^C101%^on the hilt of your cutlass starts to %^C051%^glow%^C101%^.%^CRST%^\n");
+            tell_room(room, "%^RESET%^%^CRST%^%^C101%^A %^C039%^s%^C045%^econ%^C039%^d %^C039%^g%^C045%^e%^C039%^m %^RESET%^%^C101%^on the hilt of "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^'s cutlass starts to %^C051%^glow%^C101%^.%^CRST%^", player);
             break;
         case 2 :
-            tell_object(player, "\n%^RESET%^%^CRST%^%^C101%^All %^C039%^t%^C045%^hre%^C039%^e g%^C045%^em%^C039%^s %^RESET%^%^C101%^on the hilt of your cutlass are %^C051%^glowing%^C101%^.\n");
-            tell_room(room, "%^RESET%^%^CRST%^%^C101%^All %^C039%^t%^C045%^hre%^C039%^e g%^C045%^em%^C039%^s %^RESET%^%^C101%^on the hilt of "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^'s cutlass are %^C051%^glowing%^C101%^.", player);
+            tell_object(player, "\n%^RESET%^%^CRST%^%^C101%^All %^C039%^t%^C045%^hre%^C039%^e g%^C045%^em%^C039%^s %^RESET%^%^C101%^on the hilt of your cutlass are %^C051%^glowing%^C101%^.%^CRST%^\n");
+            tell_room(room, "%^RESET%^%^CRST%^%^C101%^All %^C039%^t%^C045%^hre%^C039%^e g%^C045%^em%^C039%^s %^RESET%^%^C101%^on the hilt of "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^'s cutlass are %^C051%^glowing%^C101%^.%^CRST%^", player);
             break;
     }
     charges++;
