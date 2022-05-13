@@ -2,6 +2,7 @@
 #include <spell.h>
 #include <magic.h>
 #include <daemons.h>
+#include <schoolspells.h>
 #include <psions.h>
 #include <mysteries.h>
 #include <damage_types.h>
