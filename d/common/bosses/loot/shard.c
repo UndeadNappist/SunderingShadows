@@ -66,7 +66,6 @@ void init()
     {
         if((holder->query_true_align() != 1 &&
            holder->query_true_align() != 4 &&
-           holder->query_true_align() != 5 &&
            holder->query_true_align() != 7) ||
            holder->query_character_level() < 40)
         {

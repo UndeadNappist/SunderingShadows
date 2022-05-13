@@ -7,27 +7,8 @@
 #include <daemons.h>
 
 void confuse(object caster, object targ, string result){
-    int i;
-    
     if(result == "enrage"){
-        {
-            object *targs;
-            object chosen;
-
-            if(!present(caster,environment(targ))) this_object()->dest_effect();
-
-            targs = all_living(environment(targ));
-            filter_array(targs, "is_non_immortal", FILTERS_D);
-            targs -= ({targ});
-            i = random(sizeof(targs));
-            chosen = targs[i];
-
-            tell_object(targ,"%^BOLD%^%^RED%^In a blind rage, you attack the thing closest to you!");
-            tell_object(chosen,"%^BOLD%^%^RED%^"+targ->QCN+" suddenly turns and swings wildly at you!");
-            tell_room(environment(targ),"%^BOLD%^%^RED%^"+targ->QCN+" suddenly turns and swings wildly, attacking "+chosen->QCN+"!", ({targ, chosen}));
-
-            targ->force_me("kill "+chosen->query_name()+"");
-        }
+        enrage_effect(caster, targ);
         return;
     }
         
@@ -54,26 +35,33 @@ void confuse(object caster, object targ, string result){
         targ->run_away();
         break;
     default:
-    {
-        object *targs;
-        object chosen;
-
-        if(!present(caster,environment(targ)))
-            TO->dest_effect();
-
-        targs = all_living(environment(targ));
-        filter_array(targs, "is_non_immortal", FILTERS_D);
-        targs -= ({targ});
-        i = random(sizeof(targs));
-        chosen = targs[i];
-
-        tell_object(targ,"%^BOLD%^%^RED%^In a blind rage, you attack the thing closest to you!");
-        tell_object(chosen,"%^BOLD%^%^RED%^"+targ->QCN+" suddenly turns and swings wildly at you!");
-        tell_room(environment(targ),"%^BOLD%^%^RED%^"+targ->QCN+" suddenly turns and swings wildly, "+"attacking "+chosen->QCN+"!",({targ, chosen}));
-
-        targ->force_me("kill "+chosen->query_name()+"");
+        enrage_effect(caster, targ);
+        break;
     }
-    break;
-    }
+}
+
+void enrage_effect(object caster, object targ){
+    object *targs;
+    object chosen, room;
+    string targ_name;
+    int i;
+
+    room = environment(targ);
+    targ_name = targ->query_cap_name();
+
+    if(!present(caster, room)) this_object()->dest_effect();
+
+    targs = all_living(room);
+    filter_array(targs, "is_non_immortal", FILTERS_D);
+    targs -= ({targ});
+    i = random(sizeof(targs));
+    chosen = targs[i];
+
+    tell_object(targ,"%^BOLD%^%^RED%^In a blind rage, you attack the thing closest to you!");
+    tell_object(chosen,"%^BOLD%^%^RED%^"+targ_name+" suddenly turns and swings wildly at you!");
+    tell_room(room,"%^BOLD%^%^RED%^"+targ_name+" suddenly turns and swings wildly, attacking "+chosen->query_cap_name()+"!", ({targ, chosen}));
+
+    targ->force_me("kill "+chosen->query_name()+"");
+    return;
 }
 
