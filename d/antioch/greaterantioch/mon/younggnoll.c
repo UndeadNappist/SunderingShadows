@@ -18,7 +18,7 @@ void create() {
 			  " sure there is no parlaying with this beast!");
    set_class("fighter");
    set_guild_level("fighter",8);
-   set_race("human");
+   set_race("gnoll");
    set_body_type("humanoid");
    set_property("no bows",1);
    set_gender("male");
