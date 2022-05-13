@@ -27,6 +27,8 @@ void init()
     ::init();
 }
 
+void boss_death_event() { return; }
+
 void die()
 {
     string *files, *selected;
@@ -48,6 +50,8 @@ void die()
     
     foreach(string file in selected)
         new("/d/common/bosses/loot/" + file)->move(this_object());
+        
+    this_object()->boss_death_event();
         
     ::die();
 }
