@@ -81,6 +81,7 @@ void reward_player(object who)
     who->add_money("gold", money);
     exp = exp_for_level(who->query_level() + 1) / 5;
     who->add_exp(exp);
+    exp = who->add_general_exp(who->query_classes()[0], exp);
     mats_ob = new("/cmds/mortal/obj/enchanting_mats.c");
     mats = who->query_level() * 200;
     mats_ob->set_count(mats);

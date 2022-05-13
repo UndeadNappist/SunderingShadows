@@ -2642,6 +2642,24 @@ int get_general_exp(string type)
     return player_data["general"]["experience"][type];
 }
 
+int check_exp(string type, int x)
+{
+    object checker;
+    int amount;
+    
+    if(x <= 0)
+        return x;
+    
+    check(checker = load_object("/tmp/checker.c"));
+    
+    if(!objectp(checker))
+        return x;
+    
+    amount = checker->check_amount(x);
+    
+    return amount;
+}   
+    
 mapping query_player_data()
 {
     return player_data;
