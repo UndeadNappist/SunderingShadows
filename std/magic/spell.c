@@ -2392,15 +2392,15 @@ void sendDisbursedMessage(object victim)
         if (silent_casting) {
             tell_object(victim, "%^BOLD%^%^YELLOW%^A " + whatsit + " disperses futilely around you.%^RESET%^");
             if (present(caster, environment(victim))) {
-                tell_object(caster, "%^BOLD%^%^YELLOW%^Your " + whatsit + " disperses futilely around " + victim->QCN + ".%^RESET%^");
+                tell_object(caster, "%^BOLD%^%^YELLOW%^Your " + whatsit + " disperses futilely around " + victim->query_cap_name() + ".%^RESET%^");
             }
-            tell_room(environment(victim), "%^BOLD%^%^YELLOW%^A " + whatsit + " disperses futilely around " + victim->QCN + ".", ({ victim, caster }));
+            tell_room(environment(victim), "%^BOLD%^%^YELLOW%^A " + whatsit + " disperses futilely around " + victim->query_cap_name() + ".", ({ victim, caster }));
         } else {
-            tell_object(victim, "%^BOLD%^%^YELLOW%^" + caster->QCN + "'s " + whatsit + " disperses futilely around you.%^RESET%^");
+            tell_object(victim, "%^BOLD%^%^YELLOW%^" + caster->query_cap_name() + "'s " + whatsit + " disperses futilely around you.%^RESET%^");
             if (present(caster, environment(victim))) {
-                tell_object(caster, "%^BOLD%^%^YELLOW%^Your " + whatsit + " disperses futilely around " + victim->QCN + ".%^RESET%^");
+                tell_object(caster, "%^BOLD%^%^YELLOW%^Your " + whatsit + " disperses futilely around " + victim->query_cap_name() + ".%^RESET%^");
             }
-            tell_room(environment(victim), "%^BOLD%^%^YELLOW%^" + caster->QCN + "'s " + whatsit + " disperses futilely around " + victim->QCN + ".", ({ victim, caster }));
+            tell_room(environment(victim), "%^BOLD%^%^YELLOW%^" + caster->query_cap_name() + "'s " + whatsit + " disperses futilely around " + victim->query_cap_name() + ".", ({ victim, caster }));
         }
         return 1;
     }
