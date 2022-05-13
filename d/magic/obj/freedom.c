@@ -53,7 +53,7 @@ int freeme()
     
     foreach(object eff in effects)
     {
-        if(!objectp(eff))
+        if(!eff || !objectp(eff))
             continue;
         
         if(eff->query_name() == "effect_staggered")

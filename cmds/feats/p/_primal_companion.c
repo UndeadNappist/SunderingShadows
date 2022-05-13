@@ -37,7 +37,7 @@ void create()
 {
     ::create();
     feat_type("instant");
-    feat_category("SavageCombat");
+    feat_category("Presence");
     feat_name("primal companion");
     feat_prereq("Lunar Oracle L5");
     feat_classes(({"oracle","ranger","druid"}));
@@ -69,7 +69,12 @@ int prerequisites(object ob)
     if(!objectp(ob))
         return 0;
 
-    if((ob->query_class_level("oracle") < 5 ? 1 : ob->query_mystery() != "lunar"))
+    if(ob->query_class_level("oracle") < 5)
+    {
+        dest_effect();
+        return 0;
+    }
+    if(ob->query_mystery() != "lunar")
     {
         dest_effect();
         return 0;
