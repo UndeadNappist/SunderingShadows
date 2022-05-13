@@ -57,7 +57,7 @@ void spell_effect(int prof)
 
     if (target->query_property("no hold") || target->query_property("no paralyze"))
     {
-        tell_object(caster,"%^YELLOW%^You spell disperses futilely around "+target->QCN+".\n");
+        tell_object(caster,"%^YELLOW%^Your spell disperses futilely around "+target->QCN+".\n");
         dest_effect();
         return;
     }
