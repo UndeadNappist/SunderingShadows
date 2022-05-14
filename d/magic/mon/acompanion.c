@@ -183,18 +183,18 @@ void heart_beat()
     }
 
     //Companion hides if master is hiding
-    if(!this_object()->query_invis())
+    if(!this_object()->query_hidden())
     {
         if(owner->query_hidden() || owner->query_invis())
         {
-            this_object()->set_invis(1);
+            this_object()->set_hidden(1);
             tell_object(owner, "Your animal companion fades into the shadows.");
         }
     }
     else
     {
         if(!owner->query_hidden() && !owner->query_invis())
-            this_object()->set_invis(0);
+            this_object()->set_hidden(0);
     }
 
     attackers = owner->query_attackers();
