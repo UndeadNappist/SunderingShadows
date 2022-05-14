@@ -16,6 +16,7 @@ void create(){
 "which button to push? No problem! With the new remote control you can have all your commands in the one handy "
 "pocket-sized device.%^RESET%^\n%^BOLD%^%^RED%^ How to use -\n"
 "%^YELLOW%^<here>%^WHITE%^ returns the filename of the room you are in.\n"
+"%^YELLOW%^<avsummon player>%^WHITE%^ summons a player to you.\n"
 "%^YELLOW%^<agemod playername number>%^WHITE%^ will give the player an age modifier, number can be positive or negative.\n"
 "%^YELLOW%^<setprop tpward/magicward/scryward>%^WHITE%^ to teleport, spell, or scry-proof a room.\n"
 "%^YELLOW%^<remprop tpward/magicward/scryward>%^WHITE%^ to un-teleport, un-spell, or unscry-proof a room.\n"

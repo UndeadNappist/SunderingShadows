@@ -38,17 +38,16 @@ int* restricted_alignments(string subrace)
 string* restricted_classes(string subrace)
 {
     if (!subrace || subrace == "") {
-        return ({ "psion", "psywarrior", "paladin", "monk" });
+        return ({ "psion", "psywarrior" });
     }
     switch (subrace) {
-    case "aquatic elf": return ({ "paladin", "inquisitor", "cleric" }); break;
-    case "fey'ri": return ({ "psion", "psywarrior", "monk", "druid" }); break;
-    case "sun elf": return ({ "psion", "psywarrior", "monk", "druid" }); break;
-    case "sildruath": return ({ "barbarian", "monk", "paladin", "psion", "psywarrior",}); break;
-    case "szarkai": return ({ "psion", "psywarrior", "paladin", "monk", "druid" }); break;
-    case "wild elf": return ({ "bard", "mage", "magus",  "psion", "psywarrior", "paladin", "monk", "inquisitor" }); break;
-    case "wood elf": return ({ "mage", "magus",  "psion", "psywarrior", "paladin", "monk" }); break;
-    default: return ({ "psion", "psywarrior", "paladin", "monk" }); break;
+    case "fey'ri": return ({ "psion", "psywarrior", "druid" }); break;
+    case "sun elf": return ({ "psion", "psywarrior", "druid" }); break;
+    case "sildruath": return ({ "barbarian", "psion", "psywarrior",}); break;
+    case "szarkai": return ({ "psion", "psywarrior", "druid" }); break;
+    case "wild elf": return ({ "mage", "magus",  "psion", "psywarrior", "inquisitor" }); break;
+    case "wood elf": return ({ "mage", "magus",  "psion", "psywarrior" }); break;
+    default: return ({ "psion", "psywarrior" }); break;
     }
 }
 
