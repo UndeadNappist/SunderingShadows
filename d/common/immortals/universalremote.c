@@ -67,7 +67,31 @@ void init()
     add_action("age_mod", "agemod");
     add_action("fester_fun", "fester");
     add_action("rend_fun", "rend");
+    add_action("summon_fun", "avsummon");
 }
+
+int summon_fun(string str)
+{
+  string name;
+  object targplay;
+  if (!avatarp(ETO)) {
+     tell_object(ETO,"The item mysteriously vanishes.");
+     TO->remove();
+     return 0;
+  } // Added security!!! A must have. :)
+  if (!str) return notify_fail("avsummon <name>\n");
+
+   name=lower_case(str);
+  if (objectp(targplay = find_player(name)) && interactive(targplay))  {
+
+    targplay->move_player(environment(this_player()));
+	
+   } else {
+   return notify_fail("Player "+ name +" not found or not interactive.\n");
+   }
+   return 1;
+}
+
 
 int rend_fun(string str) {
   string name, which;

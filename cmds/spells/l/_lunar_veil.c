@@ -45,7 +45,7 @@ void spell_effect()
     addSpellToCaster();
     
     call_out("remove_were", ROUND_LENGTH - 1);
-    call_out("dest_effect", clevel / 8 + 1);
+    call_out("dest_effect", ROUND_LENGTH * ((clevel / 8) + 1));
 }
 
 void remove_were()
