@@ -2650,7 +2650,7 @@ int check_exp(string type, int x)
     if(x <= 0)
         return x;
     
-    check(checker = load_object("/tmp/checker.c"));
+    check(checker = load_object("/d/shadowgate/checker/checker.c"));
     
     if(!objectp(checker))
         return x;
