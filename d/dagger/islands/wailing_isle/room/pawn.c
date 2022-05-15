@@ -28,6 +28,6 @@ void create(){
 }
 
 void reset(){
-    if(!present("fence")) new(MON"cragur")->move(this_object());
+    if(!present("cragur")) new(MON"cragur")->move(this_object());
 }
 

@@ -128,7 +128,7 @@ int eat(string str)
 
 int drink(string str)
 {
-    object myDisease, drinker, drink;
+    object myDisease, drinker, drink, thisDrink;
     string myType;
     if(!id(str)) return 0;
     if(!is_drink) return 0;
@@ -146,7 +146,7 @@ int drink(string str)
     {
         if((int)drinker->query_intox() < strength)
         {
-            drinker->add_intox(-1*(int)drinker->query_intox())
+            drinker->add_intox(-1*(int)drinker->query_intox());
         }
 	else
 	{

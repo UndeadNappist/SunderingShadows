@@ -23,7 +23,6 @@ void create() {
     set_items_allowed("misc");
     set_spoken("common");
     force_me("speech rumble in a low tone");
-    set_storage_room(STOR"cragur_storage");
 }
 
 void init(){
