@@ -1,7 +1,7 @@
 #include <std.h>
 #define ASDIR "/d/laerad/parnelli/asgard/"
 #define NOGOROOM ({ASDIR+"as56", ASDIR+"as57","/d/laerad/parnelli/forest/for081"})
-#define FAITHS ({"kreysneothosies","lord shadow"})
+#define FAITHS ({"kreysneothosies"})
 #define CLASSES ({"fighter","paladin","ranger"})
 #define EYES ({"%^RESET%^%^ORANGE%^brown","%^RESET%^%^ORANGE%^ha%^GREEN%^z%^ORANGE%^el","%^BOLD%^%^BLUE%^blue","%^RESET%^%^GREEN%^green"})
 #define HAIR ({"%^RESET%^%^ORANGE%^brown","%^YELLOW%^blond","%^RESET%^%^RED%^red","%^BOLD%^%^BLACK%^black","%^RESET%^gray"})
