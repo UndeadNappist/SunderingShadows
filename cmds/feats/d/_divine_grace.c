@@ -8,7 +8,7 @@ void create() {
     feat_category("Presence");
     feat_name("divine grace");
     feat_prereq("Paladin L7");
-    feat_desc("The paladin is the paragon of her ideals and the sheer force of her faith alone protects her from the influences of others. This feat grants the paladin a bonus to all of their saving throws equal to 1/2 her charisma bonus (currently max of 5). This feat does not stack with Force of Personality.");
+    feat_desc("The paladin is the paragon of her ideals and the sheer force of her faith alone protects her from the influences of others. This feat grants the paladin a bonus to all of their saving throws equal to 1/2 her charisma bonus (currently max of 5).");
     permanent(1);
     set_required_for(({}));
 }
