@@ -12,7 +12,9 @@ void create() {
         "is massive, allowing for %^C060%^ten armored men%^CRST%^ to walk "+
         "through abreast. What is odd though is the %^C091%^gateway%^CRST%^ just "+
         "sits there, not leading anywhere. You get the feeling that you would "+
-        "have to figure out a way to %^C093%^>power<%^CRST%^ it.\n");
+        "have to figure out a way to %^C093%^>power<%^CRST%^ it. "+
+        "You could also %^C038%^>observe<%^CRST%^ it and see if you "+
+        "can figure out more about it.\n");
     set_value(0);
     set_property("no animate",1);
 }

@@ -129,7 +129,7 @@ void reply_archway(string msg, object who){
 }
 
 
-void reply_shrine(string msg, object who){
+void reply_shard(string msg, object who){
     tell_room(ETO,"\n");
     force_me("say A shard of power you say?");
     tell_room(ETO,"%^C224%^She frowns and thinks.%^CRST%^\n");

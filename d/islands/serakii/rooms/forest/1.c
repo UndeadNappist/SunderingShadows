@@ -29,6 +29,7 @@ void reset(){
 void init() {
     ::init();
     add_action("power_fun", "power");
+    add_action("observe_fun", "observe");
 
 }
 
@@ -51,6 +52,43 @@ object ob;
     }
 	
        tell_object(TP,"%^BLACK%^%^BOLD%^Power what? the archway?\n%^RESET%^");
+    return 1;
+}
+
+int observe_fun(string str,object who){
+
+   // Observe based directly off of adademics
+   object ob;
+   int study = TP->query_skill("academics");
+
+
+    if(!str) {
+       tell_object(TP,"%^BLACK%^%^BOLD%^Observe what? the archway?\n%^RESET%^");
+       return 1;
+    }
+
+   if(str == "archway"){
+   
+
+   if(study > 25){ 
+      // Success
+      tell_room(ETP,"%^BOLD%^"+TPQCN+"%^BOLD%^ walks around the archway. They seem to "+
+         "come to some conclusion about it!%^RESET%^",TP);
+      tell_object(TP,"%^%^C134%^As you walk around observing the construction "+
+         "and material of the archway you realize that it is in perfect condition "+
+         "but has been drained of power. You should be able to use the "+
+         "same method you used to got here.\n%^RESET%^");
+      return 1;
+   }
+      // Fail
+      tell_room(ETP,"%^BOLD%^"+TPQCN+"%^BOLD%^ walks around the archway. They look "+
+            "a little lost though.%^RESET%^",TP);
+      tell_object(TP,"%^%^C134%^No matter how much you look at the archway you can't "+
+         "remember anything from your studies that might help you.\n%^RESET%^");
+      return 1;
+   }
+   
+       tell_object(TP,"%^BLACK%^%^BOLD%^Observe what? the archway?\n%^RESET%^");
     return 1;
 }
 
