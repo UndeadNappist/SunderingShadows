@@ -25,13 +25,13 @@ int Food_Shadow = 22000;
 int Food_Torm = 20000;
 
 //ORE 
-int Ore_Kinaro = 50000;
+int Ore_Kinaro = 10000;
 int Ore_Asgard = 60000;
 
 //ARMAMENTS
 int Arm_Torm = 100000;
 int Arm_Tonovi = 60000;
-int Arm_Kinaro = 50000;
+int Arm_Kinaro = 100000;
 
 //OILS
 int Oil_Torm = 70000;
