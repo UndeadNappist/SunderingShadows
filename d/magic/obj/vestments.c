@@ -220,8 +220,9 @@ int wearit()
         set_short("%^RESET%^%^CRST%^%^C144%^simple %^C255%^wh%^C252%^i%^C255%^t%^C252%^e %^C255%^li%^C252%^n%^C255%^e%^C252%^n %^RESET%^%^C144%^vestments%^CRST%^");
         break;
 
-    default:  tell_object(ETO, "Someone forgot your deity," +
-                          " please bugreport and let us know who you follow.");
+    default:  
+        set_long("%^RESET%^%^CRST%^%^C250%^These are simple gray robes that drape about the body, with a simple cloth belt cinched at the waist. They are otherwise unadorned.%^CRST%^");
+        set_short("%^RESET%^%^CRST%^%^C250%^simple gray vestments%^CRST%^");
         break;
     }
     //set_ac(myac);

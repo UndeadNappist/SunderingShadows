@@ -57,7 +57,7 @@ void spell_effect(int prof)
         if (file_exists("/d/magic/obj/shields/" + normalizedDeity + ".c")) {
             fname = "/d/magic/obj/shields/" + normalizedDeity;
         } else {
-            fname = "/d/magic/obj/shields/kismet";
+            fname = "/d/magic/obj/shields/generic";
         }
 
 
