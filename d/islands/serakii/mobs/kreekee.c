@@ -98,6 +98,77 @@ void catch_say(string message){
 	    if(strsrch(message,"legion") != -1) {
       call_out("reply_legion",1,TP,message);
     }
+        if(strsrch(message,"archway") != -1) {
+      call_out("reply_archway",1,TP,message);
+    }
+        if(strsrch(message,"shard") != -1) {
+      call_out("reply_shard",1,TP,message);
+    }
+        if(strsrch(message,"library") != -1) {
+      call_out("reply_library",1,TP,message);
+    }
+        if(strsrch(message,"shrine") != -1) {
+      call_out("reply_shrine",1,TP,message);
+    }
+        if(strsrch(message,"mass") != -1) {
+      call_out("reply_mass",1,TP,message);
+    }
+        if(strsrch(message,"Tears of the Lost") != -1) {
+      call_out("reply_mass",1,TP,message);
+    }
+}
+
+
+void reply_archway(string msg, object who){
+    tell_room(ETO,"%^C224%^The woman frowns and points northwest.%^CRST%^\n");
+    force_me("say I hear that the Hounds have an archway on the beach northwest of their camp.");
+    tell_room(ETO,"%^C224%^Her expression gets darker.%^CRST%^\n");
+    force_me("say Many of our people were taken through that archway, "+
+        "though I do not know how to make it work.");
+    return 1;
+}
+
+
+void reply_shrine(string msg, object who){
+    tell_room(ETO,"\n");
+    force_me("say A shard of power you say?");
+    tell_room(ETO,"%^C224%^She frowns and thinks.%^CRST%^\n");
+    force_me("say A shard could be created by releasing many "+
+        "souls all at once at the shrine. You should take some "+
+        "classes at the university to see if they have any ideas "+
+        "of an item that would work.");
+    return 1;
+}
+
+
+void reply_library(string msg, object who){
+    tell_room(ETO,"%^C224%^The woman nods and points northeast.%^CRST%^\n");
+    force_me("say The library is past the white keep and past the ruins in the caer. "+
+        "It is said the library was here before anything else and others say the caer "+
+        "just holds a gate to another plane. Either way you can learn a lot there in the classes.");
+    tell_room(ETO,"%^C224%^A confused look passes over her face suddenly.%^CRST%^\n");
+    force_me("say Was I a student there?");
+    return 1;
+}
+
+void reply_shrine(string msg, object who){
+    tell_room(ETO,"\n");
+    force_me("say The shrine is beautiful isnt it?");
+    tell_room(ETO,"%^C224%^She nods and smiles a moment before continuing.%^CRST%^\n");
+    force_me("say The Lysarans put it there with the help of a group of adventurers so that "+
+        "souls in the ruins of the city. With it you can sanctify corpses to free the souls. "+
+        "I hear people have been freeing souls from items there too.");
+
+    return 1;
+}
+
+
+void reply_mass(string msg, object who){
+    tell_room(ETO,"%^C224%^The woman thinks a moment.%^CRST%^\n");
+    force_me("say Oh did you learn about the horrible mass of fless from the %^C205%^library%^RESET%^? "+
+        "I heard it was last in the hands of a demon named Ahstuz had collected "+
+        "it to use the souls within it!");
+    return 1;
 }
 
 void reply_hello(string msg, object who){
@@ -152,7 +223,7 @@ void reply_hounds(string msg, object who){
 	"by the village here. They are cutthroat, "+
 	"powerful though. Used to have the contract "+
 	"for the white keep. The %^C205%^"+
-	"Legion%^CRST%^ holds that now");
+	"Legion%^CRST%^ holds that now.");
     return 1;
 }
 void reply_legion(string msg, object who){
@@ -160,13 +231,14 @@ void reply_legion(string msg, object who){
 	"after the Night of Betrayal from remnants "+
 	"of other companies that couldn't stand alone. "+
     "They hold the contract for the white keep. They "+
-    "have locked the gates north, so you can't go any "+
-    "further north. They tussle with the %^C205%^"+
+    "tussle with the %^C205%^"+
     "hounds%^CRST%^ constantly.");
     return 1;
 }
 
 void reply_serakii(string msg, object who){
-    force_me("say This is Serakii! I suppose this town had a name, but after the betrayal we stopped calling it anything.");
+    force_me("say This is Port Serith, the largest settlement "+
+        "in Serakii. To the northeast is "+
+        "the %^C205%^library%^RESET%^ where some more people live.");
     return 1;
 }
