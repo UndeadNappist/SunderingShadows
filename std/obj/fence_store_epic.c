@@ -7,7 +7,6 @@ inherit "std/room";
 #define FENCE_D "/daemon/fence_d"
 #define OKSCROLLS ({ "foresight","armor of darkness","screen","protection from spells","magic mirror","greater dispel magic","fiery body" })
 
-int flag;
 int save_contents() { return 1;}
 
 void create() {
@@ -21,7 +20,7 @@ void create() {
 int clean_up(){ return 0;}
 
 void reset() {
-    int flag, i, val, count;
+    int i, val;
     object ob, *inven;
     mapping datamap;
     string elixirname;
@@ -35,10 +34,6 @@ void reset() {
             inven[i]->remove();
         }
     }
-
-    flag = FENCE_D->restore_item(TO);
-    count = 2; // how many items (+1 from the line above) are spawned from the fence daemon
-    while (--count && --flag) FENCE_D->restore_item(TO);
 
     if(!present("rope")) new("/d/common/obj/misc/rope")->move(TO);
     if(!present("lantern")) new("/d/common/obj/misc/beacon.c")->move(TO);
@@ -69,8 +64,8 @@ void reset() {
         datamap = ELIXIRS;
         switch(random(4)) {
             case 0:
-                ob = new("/d/common/obj/brewing/elixirs/elixir_of_regeneration");
-                elixirname = "elixir of regeneration";
+                ob = new("/d/common/obj/brewing/elixirs/elixir_of_rejuvenation");
+                elixirname = "elixir of rejuvenation";
                 break;
             case 1:
                 ob = new("/d/common/obj/brewing/elixirs/elixir_of_displacement");

@@ -4,7 +4,7 @@
 #include <std.h>
 #include <daemons.h>
 #include "../defs.h"
-inherit "/std/obj/fence_store_high";
+inherit "/std/obj/fence_store_epic";
 
 void reset(){
     object ob, storage;
