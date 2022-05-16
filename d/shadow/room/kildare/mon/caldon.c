@@ -1,5 +1,6 @@
 #include <std.h>
 #include "../kildare.h"
+
 inherit NPC;
 
 void create()
@@ -32,6 +33,17 @@ void create()
    force_me("put key in pouch");
    force_me("wear pouch");
 }
+
+void receive_given_item(object obj){
+   string name;
+   name = TPQN;
+      force_me("say I don't think I should have this. Give it to Guyon");
+      force_me("give "+obj->query_name()+" to "+name+""); 
+      return;
+   }
+      
+
+
 
 void catch_say(string msg){
     if(!objectp(TO)) return;
