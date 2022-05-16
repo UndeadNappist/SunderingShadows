@@ -47,7 +47,7 @@ void reply_fun(string str, object player){
     if(!str) return;
     if(!objectp(player)) return;
     
-    if(strsrch(str,"wailing") != -1 ){
+    if(strsrch(str,"wailing") != -1 || (strsrch(str,"Wailing") != -1 )){
         call_out("wailing_reply", 2, player);
         return;
     }

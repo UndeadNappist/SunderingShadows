@@ -91,7 +91,7 @@ void reply_fun(string str, object player){
         return;
     }
     
-    if(strsrch(str,"wailing") != -1 ){
+    if(strsrch(str,"wailing") != -1 || (strsrch(str,"Wailing") != -1 )){
         force_me("emoteat cragur %^RESET%^%^CRST%^%^C247%^$M mutters under his breath.%^CRST%^");
         if(reputation > 14) force_me("say ...it's worth putting up with the cries, instead of setting up shop at Pirates' Cove.");
         return;

@@ -181,7 +181,7 @@ void reply_fun(string str, object player){
         return;
     }
     
-    if((strsrch(str,"wailing") != -1 ) && greeted){
+    if((strsrch(str,"wailing") != -1 || (strsrch(str,"Wailing") != -1 )) && greeted){
         force_me("emoteat tilly %^RESET%^%^CRST%^%^C109%^$M grumbles, shaking a little fist up towards the distant cliffs.%^CRST%^");
         force_me("say If only the weepin' yappy dirt would SHUT UP FOR ONCE!");
         return;

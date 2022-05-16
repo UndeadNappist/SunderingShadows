@@ -176,7 +176,7 @@ void reply_fun(string str, object player){
         return;
     }
     
-    if((strsrch(str,"wailing") != -1 ) && greeted){
+    if((strsrch(str,"wailing") != -1 || (strsrch(str,"Wailing") != -1 )) && greeted){
         force_me("emoteat kietta %^RESET%^%^CRST%^%^C101%^$M smiles softly, turning to glance at the cliffs through a window.%^CRST%^");
         force_me("say You can hear de cries of de spirits on de wind here. It be a sacred place, de Isle, a place where de barrier between de living and de dead be weak. And de Isle, it calls...");
         return;

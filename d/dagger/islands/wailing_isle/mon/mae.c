@@ -58,7 +58,7 @@ void reply_fun(string str, object player){
     if(!str) return;
     if(!objectp(player)) return;
     
-    if(strsrch(str,"wailing") != -1 ){
+    if(strsrch(str,"wailing") != -1 || (strsrch(str,"Wailing") != -1 )){
         force_me("say You'd think you'd get used to the sound, after a lifetime... but even with that, there's something about this place. It feels like this is where you belong.");
         return;
     }
