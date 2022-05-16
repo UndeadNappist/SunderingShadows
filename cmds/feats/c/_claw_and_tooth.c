@@ -158,9 +158,9 @@ void execute_attack()
             break;
             
             default:
-            tell_object(caster, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outspread, you %^C196%^lunge %^C125%^at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C125%^ and %^C196%^gouge %^C125%^their flesh!%^CRST%^");
-            tell_object(attacker, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outspread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at you and %^C196%^gouges %^C125%^your flesh!%^CRST%^");
-            tell_room(place, "%^RESET%^%^CRST%^%^C255%^Tal%^C252%^o%^C255%^n%^C252%^s %^C125%^outspread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C125%^ and %^C196%^gouges %^C125%^their flesh!%^CRST%^", ({ caster, attacker }));
+            tell_object(caster, "%^RESET%^%^CRST%^%^C255%^Cl%^C252%^a%^C255%^w%^C252%^s %^C125%^outspread, you %^C196%^lunge %^C125%^at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C125%^ and %^C196%^gouge %^C125%^their flesh!%^CRST%^");
+            tell_object(attacker, "%^RESET%^%^CRST%^%^C255%^Cl%^C252%^a%^C255%^w%^C252%^s %^C125%^outspread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at you and %^C196%^gouges %^C125%^your flesh!%^CRST%^");
+            tell_room(place, "%^RESET%^%^CRST%^%^C255%^Cl%^C252%^a%^C255%^w%^C252%^s %^C125%^outspread, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C196%^ lunges %^C125%^at %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C125%^ and %^C196%^gouges %^C125%^their flesh!%^CRST%^", ({ caster, attacker }));
             break;
         }
         

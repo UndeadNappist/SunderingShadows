@@ -86,7 +86,7 @@ string query_diety() {
 
 void create() {
     ::create();
-    set_id( ({ "holy symbol","symbol", "true holy symbol"}) );
+    set_id( ({ "holy symbol", "symbol", "true holy symbol"}) );
     set_name("holy symbol");
     set_short("Holy Symbol");
     //set_property("no offer",1);
@@ -122,7 +122,7 @@ SYMBOL
        "small portion of divine magic as well, through their holy "+
        "symbols.  Many of lay worshipers in all the faiths have "+
        "taken to wearing holy symbols as well.  Some wear them to "+
-       "express their religon.  Others see the wearing of a holy "+
+       "express their religion.  Others see the wearing of a holy "+
        "symbol as a protection fetish or charm, keeping them safe "+
        "from trouble throughout their days.  Faith is an important "+
        "thing in these lands to all folk, large or small.");
