@@ -1,7 +1,7 @@
 /* Borrowed from the Shadow jail cell and adapted for Torm*/
 // converted to the /std/jail_cell inheritable 9/2005 by *Styx*
 
-#define JAILMAIN "/d/dagger/torm/city/jail_main"
+#define JAILMAIN "/d/dagger/Torm/city/jail_main"
 
 #include <std.h>
 
