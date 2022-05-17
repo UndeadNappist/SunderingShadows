@@ -31,7 +31,6 @@ void create(){
    set_property("enchantment",1);
    set_item_bonus("attack bonus",1);
    set_wear((:TO,"wear_me":));
-   set_remove((:TO,"remove_me":));
  
 }
 
