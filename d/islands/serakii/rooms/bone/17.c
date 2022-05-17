@@ -12,7 +12,7 @@ set_exits(([
 
 ]));
 
-add_item("mirror","Dominating one wall is a %^C189%^massive mirror%^CRST%^. What is strange is that the %^C195%^mirror %^CRST%^does not show you, but instead shows a view of a %^C059%^dark inn%^CRST%^. If you were to %^C190%^>gaze<%^CRST%^ into the mirror you might see more clearly.\n");
+add_item("mirror","Dominating one wall is a %^C189%^massive mirror%^CRST%^. What is strange is that the %^C195%^mirror %^CRST%^does not show you, but instead shows a view of a %^C059%^cramped office%^CRST%^. If you were to %^C190%^>gaze<%^CRST%^ into the mirror you might see more clearly.\n");
 set_long(::query_long()+"\n%^C195%^Domintating one wall is a massive mirror%^CRST%^.\n");
 
 }
