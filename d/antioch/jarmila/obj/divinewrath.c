@@ -64,37 +64,39 @@ int plane_slice(string arg)
 {
     string destination, *destination_names = ({}), destination_file;
     mapping locations = ([]);
-    object destination_room;
+    object destination_room, player;
     int power, bonus;
+    
+    player = this_player();
     
     if(!arg)
     {
-        tell_object(this_player(),"You need to specify a destination");
+        tell_object(player,"You need to specify a destination");
         return 1;
     }
     
-    if(this_player()->query_current_attacker())
+    if(player->query_current_attacker())
     {
-        tell_object(this_player(), "You are a little busy for that right now!");
+        tell_object(player, "You are a little busy for that right now!");
         return 1;
     }
 
-    if(this_player()->query_bound() || this_player()->query_tripped() || this_player()->query_paralyzed())
+    if(player->query_bound() || player->query_tripped() || player->query_paralyzed())
     {
-        this_player()->send_paralyzed_message("info",TP);
+        player->send_paralyzed_message("info",TP);
         return 1;
     }
     
-    if(this_player()->cooldown("plane slice"))
+    if(player->cooldown("plane slice"))
     {
-        tell_object(this_player(), "You're not ready to slice the planes yet.");
+        tell_object(player, "You're not ready to slice the planes yet.");
         return 1;
     }
 
-    locations = this_player()->query_rem_rooms();
+    locations = player->query_rem_rooms();
     if(!mapp(locations) || !sizeof(keys(locations)))
     {
-        tell_object(this_player(),"You don't seem to have any locations remembered");
+        tell_object(player,"You don't seem to have any locations remembered");
         return 1;
     }
 
@@ -103,7 +105,7 @@ int plane_slice(string arg)
 
     if(member_array(destination, destination_names) == -1)
     {
-        tell_object(this_player(),"You don't have a location named "+destination+" remembered");
+        tell_object(player,"You don't have a location named "+destination+" remembered");
         return 1;
     }
 
@@ -111,7 +113,7 @@ int plane_slice(string arg)
 
     if(catch(call_other(destination_file,"??")))
     {
-        tell_object(this_player(),"There seems to be an error with the destination room.");
+        tell_object(player,"There seems to be an error with the destination room.");
         return 1;
     }
 
@@ -119,25 +121,27 @@ int plane_slice(string arg)
 
     if(!objectp(destination_room) || !destination_room->is_room())
     {
-        tell_object(this_player(), "Your destination doesn't seem to be a room.");
+        tell_object(player, "Your destination doesn't seem to be a room.");
         return 1;
     }
 
-    if(!TELEPORT->object_can_be_teleported(this_player(),destination_room, this_player()->query_level() + roll_dice(1, 20)))
+    if(!TELEPORT->object_can_be_teleported(player,destination_room, player->query_level() + roll_dice(1, 20)))
     {
-        tell_object(this_player(),"You notice some kind of interference preventing you from shadow jumping.");
+        tell_object(player,"You notice some kind of interference preventing you from shadow jumping.");
         return 1;
     }
 
-    this_player()->clear_followers();
-    this_player()->setAdminBlock();
+    player->clear_followers();
+    player->setAdminBlock();
 
-    tell_object(this_player(),color_me("You heft your blade in a mighty swing, slicing through the very fabric of reality."));
-    tell_object(this_player(),color_me("The blade makes a clean slice and a rift appears in the air in front of you. You step through to another place..."));
+    tell_object(player, color_me("You heft your blade in a mighty swing, slicing through the very fabric of reality."));
+    tell_object(player, color_me("The blade makes a clean slice and a rift appears in the air in front of you. You step through to another place..."));
 
-    tell_room(destination_room,"A vertical slice appears in the air and opens downward, revealing another place beyond.",this_player());
+    tell_room(environment(player), "%^RESET%^%^CRST%^%^C083%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C083%^ hefts their blade in a mighty swing, slicing through the very fabric of reality.%^CRST%^", player);
+    tell_room(environment(player), color_me("The blade makes a clean slice and a rift appears in the air."), player);
+    tell_room(destination_room,"A vertical slice appears in the air and opens downward, revealing another place beyond.",player);
 
-    call_out("move_caster",1, destination_room, this_player());
+    call_out("move_caster",1, destination_room, player);
     return 1;
 }
 
