@@ -61,6 +61,7 @@ void init(){
 
 void peer_fun(string str){
 
+    string player_name;
     int damroll;
     string* my_visions = ({ "%^C060%^A ravaged %^C058%^corpse%^CRST%^", "%^C059%^A pile of %^C066%^dead%^C059%^ children%^CRST%^", 
         "%^C220%^A %^C228%^man%^C220%^ trapped in amber%^CRST%^","%^C065%^An %^C067%^ogre-mage%^C065%^ dripping in miasma%^CRST%^", 
@@ -71,10 +72,11 @@ void peer_fun(string str){
     damroll = roll_dice(5, 10) + 10;
     this_player()->add_hp(-damroll);
     my_vision = my_visions[random(sizeof(my_visions))];
+    player_name = this_player()->query_name();
     tell_object(this_player(), "%^C088%^You feel a sharp pain in your head and suddenly your "+
         "vision is filled with a vivid image of a " + my_vision + "%^C088%^! The pain hits "+
         "the back of your head as the vision swims, and then it is gone again.\n%^CRST%^");
-    tell_room(this_object(), "%^C088%^With a frown " + this_player() + "%^C088%^squeezes "+
+    tell_room(this_object(), "%^C088%^With a frown " + player_name + " %^C088%^squeezes "+
         "their eyes shut!%^CRST%^\n",this_player());
     return 1;
 
