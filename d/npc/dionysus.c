@@ -36,7 +36,8 @@ OLI
   remove_property("swarm");
    set_gender("male");
    set_hd(30,8);
-   set_hp(250);
+   set_max_hp(250);
+   set_hp(query_max_hp());
    set_exp(1);
    set_stats("strength",25);
    set_stats("dexterity",25);

@@ -16,10 +16,10 @@ void create(){
       "%^RED%^%^BOLD%^Sacrificial Pit%^RESET%^\n"+
 	  "%^RED%^"+
       "This cave end appears to be some kind of "+
-	  "sick sacrificial pit.  The walls floor and"+
+	  "sick sacrificial pit. The walls floor and"+
 	  " ceiling are stained with blood.  On the "+
 	  "floor there is a statue of a wolf with a "+
-	  "fearsome look on it's face.  The pit in "+
+	  "fearsome look on it's face. The pit in "+
 	  "the center of the room is filled with "+
 	  "warm blood.  Several metal poles with "+
 	  "glowing red orbs line the blood pit.  "+
@@ -27,25 +27,25 @@ void create(){
       "\n");
 	      set_items(([
       (({"floor"})) : 
-	  "The floor is stained with blood.  "+
-	  "There is a pool of blood in the center of the room",
+	  "The floor is stained with blood. "+
+	  "There is a pool of blood in the center of the room.",
       (({"pit"})) : "The pit is filled with blood."+
-	  "  One can only imagine how it is kept full",
+	  " One can only imagine how it is kept full.",
       (({"statue","wolf"})) :
-	  "The wolf is stained with blood, it looks rabid",  
+	  "The wolf is stained with blood, and it looks rabid.",  
 	  (({"pole","orb","poles"})) :
-	  "metal poles with glowing red"+
-	  " orbs cast a reddened light on this room", 
+	  "mMetal poles with glowing red"+
+	  " orbs cast a reddened light on this room.", 
       (({"cage"})) : 
-	  "some beast is shut in the cage."+
-	  "  Perhaps you could free it.",]));
+	  "Some beast is shut in the cage."+
+	  " Perhaps you could free it.",]));
    set_exits(([ "west" : ROOMS"44" ]));
-   set_listen("default","you hear the churning of blood.");
-   set_smell("default","it smells fresh blood");
+   set_listen("default","You hear the churning of blood.");
+   set_smell("default","It smells of fresh blood.");
    set_door("gate",ROOMS"44","west","key");
    set_locked("gate",1);
    set_door_description("gate","The gate is made of"+
-	  " rusted iron bars.  It is lodged into the "+
+	  " rusted iron bars. It is lodged into the "+
 	  "cavern and is locked with a simple lock.");
 }
 void init(){
@@ -75,15 +75,15 @@ int open_cage(string str){
    open =1;
    	      set_items(([
       (({"floor"})) : 
-	  "The floor is stained with blood.  "+
-	  "There is a pool of blood in the center of the room",
+	  "The floor is stained with blood. "+
+	  "There is a pool of blood in the center of the room.",
       (({"pit"})) : "The pit is filled with blood."+
-	  "  One can only imagine how it is kept full",
+	  " One can only imagine how it is kept full.",
       (({"statue","wolf"})) :
-	  "The wolf is stained with blood, it looks rabid",  
+	  "The wolf is stained with blood, and it looks rabid",  
 	  (({"pole","orb","poles"})) :
-	  "metal poles with glowing red"+
-	  " orbs cast a reddened light on this room", 
+	  "Metal poles with glowing red"+
+	  " orbs cast a reddened light on this room.", 
       (({"cage"})) : 
 	  "Someone has freed the beast from the cage.",]));
    return 1;
