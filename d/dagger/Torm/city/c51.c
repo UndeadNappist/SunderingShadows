@@ -13,7 +13,7 @@ void create()
   "  Torm's west city gates lie open to the north of you from here, a"+
   " few guards watch the travelers pass by.  You can hear the sounds"+
   " of a market to the east, and see the city wall to the south."+
-  "  A sign with a lyre and a drum hangs over the door to the east."
+  "  A sign with a lyre and a drum hangs over the door to the west."
   );
   set("night long",
   "%^BLUE%^"
