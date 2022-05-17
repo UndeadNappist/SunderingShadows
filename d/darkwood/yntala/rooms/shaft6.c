@@ -27,11 +27,11 @@ void create(){
    set_listen("default","Whispers and soft hisses seem to float upon the stale air.");
    set_long((:TO,"ldesc":));
    set_items(([
-   "walls":"The walls here have been covered with gems and semi precious stones in such precise positions that they actually make a mosiac of pictures.",
-   ({"pictures","gems","mosiac"}):"%^BOLD%^%^GREEN%^Gleaming emerald and jade pieces have been inset against"
+   "walls":"The walls here have been covered with gems and semi precious stones in such precise positions that they actually make a mosaic of pictures.",
+   ({"pictures","gems","mosaic"}):"%^BOLD%^%^GREEN%^Gleaming emerald and jade pieces have been inset against"
 " pieces of %^YELLOW%^amber %^GREEN%^at the top of this picture.  The %^YELLOW%^amber %^GREEN%^is laid out in"
-" a perfect circle with many bright %^YELLOW%^rays %^GREEN%^eminating from it, showing it to be a glorious shining"
-" %^YELLOW%^sun.  %^GREEN%^In front of the %^YELLOW%^sun, %^GREEN%^the emeralds and jade make a tall, staturesque"
+" a perfect circle with many bright %^YELLOW%^rays %^GREEN%^emanating from it, showing it to be a glorious shining"
+" %^YELLOW%^sun.  %^GREEN%^In front of the %^YELLOW%^sun, %^GREEN%^the emeralds and jade make a tall, statuesque"
 " snake like being standing in full glory on the top of a %^RED%^blood red %^GREEN%^mountain of %^RED%^rubies."
 "  %^GREEN%^Within the mountain of %^RED%^rubies, %^GREEN%^pieces of %^WHITE%^opal %^GREEN%^make up the severed"
 " %^WHITE%^limbs %^GREEN%^of %^WHITE%^humanoid creatures.  %^GREEN%^The %^WHITE%^limbs %^GREEN%^stick out in all"
@@ -42,7 +42,7 @@ void create(){
 }
 string ldesc(string str){
    return("%^BOLD%^%^BLACK%^This is a dark, east-west tunnel.  It opens up a little bit from the shaft, becoming"
-" larger and easier to maneuver.  No slime covers the walls here, instead, they are inlaid with a mosiac of gems"
+" larger and easier to maneuver.  No slime covers the walls here, instead, they are inlaid with a mosaic of gems"
 " and semi precious stones that make out various pictures and depictions.  It would appear that none of the gems"
 " are loose and are a newer addition to this pyramid.%^RESET%^");
 } 

@@ -33,7 +33,7 @@ void create(){
 void bite(object targ){
 tell_room(environment(TO),"%^BOLD%^%^RED%^The firesnake lunges forward to to slash at "+targ->query_cap_name()+" venom dripping from its jaws!",targ);
  tell_object(targ,"%^BOLD%^%^RED%^The firesnake lunges at you with its venomous jaws!");
-  if(!"daemon/saving_d"->saving_throw(targ,"paralyzation_poison_death",0)){
+  if(!"daemon/saving_d"->saving_throw(targ,"paralyzation_poison_death",0) && !targ->query_property("poison immunity")){
   targ->set_paralyzed(25,"%^BOLD%^%^RED%^The venom from the firesnakes jaws racks your body with pain!");
  tell_room(environment(TO),"%^BOLD%^%^RED%^"+targ->query_cap_name()+" grimaces in agony as the venom runs through him!",targ);
   }

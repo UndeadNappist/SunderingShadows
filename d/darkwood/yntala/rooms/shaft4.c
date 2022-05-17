@@ -27,7 +27,7 @@ void create(){
    set_listen("default","Whispers and soft hisses seem to float up from below and mix with the sounds of dripping water.");
    set_long((:TO,"ldesc":));
    set_items(([
-   "walls":"The walls here seem to be in better condition than the outside of the pyramid.  They are smooth to the touch and are covered with some sort of slimey substance.  Beneath the substance however, if you look closely, there seems to be pictures or writing of some sort.",
+   "walls":"The walls here seem to be in better condition than the outside of the pyramid.  They are smooth to the touch and are covered with some sort of slimy substance.  Beneath the substance however, if you look closely, there seems to be pictures or writing of some sort.",
    ({"slime","slimy substance","substance"}):"The substance that covers the walls seems to have no color nor odor.  Here it is quite thick and could even pass for a type of jelly that has been smeared onto the walls.",
    ({"pictures","writing"}):"It is hard to make out exactly what these are, but they appear to be very crude"
 " drawings of snakes coming out of small circles with lines radiating outward from them.  Some of the snakes"

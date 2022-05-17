@@ -34,7 +34,7 @@ void create(){
    "portal":"%^BOLD%^%^CYAN%^Peering through the portal you can see what looks to be another plane.  Snake-like creatures roam freely and you realize this must be the place that they come from.  The portal is too high to reach and there is no way to close it that you can tell.",
    ({"candles","wax","mounds","mounds of wax"}):"Mounds of wax from burnt out candles litter the floor here.  They must have been used in whatever ritual it took to open the portal.",
    "bones":"These bones are clearly very old.  They have been swept uncaringly towards the edge of the room and now lay in a heap.  They appear to be human and you get the feeling that they must belong to whatever adventurers thought it would be a good idea to open the portal.",
-   "symbols":"These are clearly arcane symbols writting on the floor, but they are to old and worn out to read.",
+   "symbols":"These are clearly arcane symbols written on the floor, but they are to old and worn out to read.",
 ]));
    set_exits((["east":INRMS+"shaft6"]));
    set_search("pile",(:TO,"search_pile":));

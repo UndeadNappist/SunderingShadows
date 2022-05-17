@@ -16,8 +16,8 @@ void create(){
    set_listen("default","Whispers and soft hisses seem to float up from below and mix with the sounds of dripping water.");
    set_long((:TO,"ldesc":));
    set_items(([
-   "walls":"The walls here seem to be in better condition than the outside of the pyramid.  They are smooth to the touch and are covered with some sort of slimey substance.",
-   ({"slime","slimey substance","substance"}):"The substance that covers the walls seems to have no color nor odor.  It could pass for a very thick water, or even perhaps some type of lacquer.",
+   "walls":"The walls here seem to be in better condition than the outside of the pyramid.  They are smooth to the touch and are covered with some sort of slimy substance.",
+   ({"slime","slimy substance","substance"}):"The substance that covers the walls seems to have no color nor odor.  It could pass for a very thick water, or even perhaps some type of lacquer.",
 ]));
    set_exits((["down":INRMS+"shaft3","up":INRMS+"shaft1"]));
 }
