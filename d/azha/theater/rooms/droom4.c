@@ -26,7 +26,7 @@ int SFLAG;
 		"with a %^BOLD%^%^BLUE%^velvet couch%^RESET%^%^MAGENTA%^ and"+
 		" a pair of%^BOLD%^%^MAGENTA%^ chairs%^RESET%^%^MAGENTA%^%^, "+
 		"with a short table in the middle of the grouping. %^BOLD%^"+
-		"%^WHITE%^Silver\n"+
+		"%^WHITE%^Silver "+
 		" leaf%^RESET%^%^MAGENTA%^ crown molding joins the walls to the darker violet"+
 		" ceiling.  Silk lavender curtains with a "+
 		"%^BOLD%^%^WHITE%^silver%^RESET%^%^MAGENTA%^ starburst pattern"+

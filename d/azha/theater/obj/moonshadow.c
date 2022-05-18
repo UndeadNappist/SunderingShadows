@@ -19,18 +19,18 @@ void create(){
 		"w%^CYAN%^i%^RESET%^%^CYAN%^r%^BLUE%^l%^RESET%^s%^CYAN%^.  In"+
 		" the center of each swirl, a %^BOLD%^%^CYAN%^crescent moon "+
 		"%^RESET%^%^CYAN%^is framed.  The crescent moon shape has an "+
-		"antiquated feel to it, artisticaly detailed and stylized.  The"+
+		"antiquated feel to it, artistically detailed and stylized.  The"+
 		" hiltless blade elegantly merges with the pommel.  Wrapped "+
 		"in %^BOLD%^%^BLACK%^dark gray %^RESET%^%^CYAN%^leather, the"+
-		" pommel is well cushioned The texture of the leather creates"+
+		" pommel is well cushioned. The texture of the leather creates"+
 		" an easy grip, even in the worst of conditions.  The blade "+
-		"seem extremely light and well balanced.%^RESET%^\n");
+		"seems extremely light and well balanced.%^RESET%^\n");
    set_lore("Crafted by the elven weaponsmith Nom, Moon Shadow, was "+
 		"enchanted by the Selunite Priestess/Mage Kiya.  Moon Shadow "+
 		"began as a weapon devoted to Selune, the Goddess of the Moon."+
 		"  Copies of the blade were made by the faithful in their many "+
 		"battles and fights with the forces of Shar.  Still, Moon Shadow "+
-		"has found a home outside the religous wars between the two elder "+
+		"has found a home outside the religious wars between the two elder "+
 		"faiths.  Several elves find the design of Moon Shadow to fit their"+
 		" graceful hands better than any other weapon out there.  Others like"+
 		" the stylized look of the blade, and the graceful displays one can "+
