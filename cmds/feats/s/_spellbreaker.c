@@ -12,7 +12,7 @@ void create()
     feat_prereq("Disruptive, Fighter L10");
     feat_desc("You extend your wards, allowing yourself to make an attack of opportunity, sometimes two, whenever enemy casts a spell at you.
 
-%^BOLD%^N.B.%^RESET%^ If a character has both the spell counterstrike feat and the spellbreaker feat they will perform three attacks of opportunity.");
+%^BOLD%^N.B.%^RESET%^ Stacks with similar feats.");
     permanent(1);
     allow_blind(1);
 }
