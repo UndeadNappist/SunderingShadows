@@ -11,6 +11,6 @@ void create() {
        "south" : F_ROOMS"23-2",
        "southwest" : F_ROOMS"24-2",
        "northwest" : F_ROOMS"24-4",
-       "southeast" : F_ROOMS"23-2",
+       "southeast" : F_ROOMS"22-2",
     ] ));
 }

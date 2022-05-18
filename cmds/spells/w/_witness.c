@@ -111,7 +111,7 @@ void dest_effect()
     if(objectp(caster)) {
         caster->set_blind(0);
         caster->set_blinded(0);
-        //caster->remove_property("remote scrying");
+        caster->remove_property("remote scrying");
         //caster->remove_property("remote scrying time");
         caster->set_property("remote scrying time",time());
     }

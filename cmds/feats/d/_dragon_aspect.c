@@ -264,8 +264,8 @@ void execute_attack()
     {
         case 0:
         tell_object(caster, "%^RESET%^%^CRST%^%^C202%^Darting %^C130%^to the %^C208%^side%^C130%^, you bring your tail about to %^C196%^slam %^C130%^into %^CRST%^%^RESET%^%^CRST%^%^C130%^" + att_name + "!%^CRST%^");
-        tell_object(attacker, "%^RESET%^%^CRST%^%^C202%^Darting %^C130%^to the %^C208%^side%^C130%^, %^CRST%^" + my_name + "%^RESET%^%CRST%^%^C130%^ brings their tail about to %^C196%^slam %^C130%^into you!%^CRST%^");
-        tell_room(place, "%^RESET%^%^CRST%^%^C202%^Darting %^C130%^to the %^C208%^side%^C130%^, %^CRST%^" + my_name + "%^RESET%^%CRST%^%^C130%^ brings their tail about to %^C196%^slam %^C130%^into %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C130%^!%^CRST%^", ({ caster, attacker }));
+        tell_object(attacker, "%^RESET%^%^CRST%^%^C202%^Darting %^C130%^to the %^C208%^side%^C130%^, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C130%^ brings their tail about to %^C196%^slam %^C130%^into you!%^CRST%^");
+        tell_room(place, "%^RESET%^%^CRST%^%^C202%^Darting %^C130%^to the %^C208%^side%^C130%^, %^CRST%^" + my_name + "%^RESET%^%^CRST%^%^C130%^ brings their tail about to %^C196%^slam %^C130%^into %^CRST%^" + att_name + "%^RESET%^%^CRST%^%^C130%^!%^CRST%^", ({ caster, attacker }));
         break;
         
         default:
