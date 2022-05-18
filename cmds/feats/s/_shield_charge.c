@@ -63,7 +63,7 @@ void execute_feat()
         return;
     }
 
-    if((int)caster->query_property("using shield charge") > time())
+    if(caster->cooldown("shield charge"))
     {
         tell_object(caster,"You can't try to shield charge again so soon!");
         dest_effect();
@@ -190,9 +190,7 @@ void execute_attack()
         }
 
         tell_object(caster,"%^MAGENTA%^You charge through the area with your shield, sending opponents scattering!");
-        caster->remove_property("using shield charge");
-        caster->set_property("using shield charge", time() + 35 );
-        delay_msg(35,"%^BOLD%^%^WHITE%^You can %^CYAN%^shield charge%^WHITE%^ again.%^RESET%^");
+        caster->add_cooldown("shield charge", 35);
     }
 
 
@@ -200,8 +198,7 @@ void execute_attack()
 
     if(charging_direction)
     {
-        caster->remove_property("using shield charge");
-        caster->set_property("using shield charge", time() + 35 );
+        caster->add_cooldown("shield charge", 35);
         if(door && !open)
         {
             tell_object(caster, "%^RED%^You smash open the "+door+" as you charge to the "+arg+" behind your shield!");
