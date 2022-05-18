@@ -22,7 +22,7 @@ void create()
     set_spell_level( ([ "ranger" : 1, ]) );
     set_spell_sphere("divination");
     set_syntax("cast CLASS aspect of the falcon");
-    set_damage_desc("half of clevel to perception skill");
+    set_damage_desc("+4 to perception skill");
     set_description("By attuning yourself to the skies above, you gain a +4 bonus to your perception.");
     set_verbal_comp();
     set_somatic_comp();
