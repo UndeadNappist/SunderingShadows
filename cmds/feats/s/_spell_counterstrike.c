@@ -12,9 +12,9 @@ void create()
     feat_name("spell counterstrike");
     feat_prereq("Magus L16");
     feat_classes("magus");
-    feat_desc("At 16th level, whenever an enemy of the magus successfully casts a spell, that enemy provokes an attack of opportunity from the magus, sometimes two.
+    feat_desc("At 16th level, whenever an enemy of the magus successfully casts a spell, that enemy provokes an attack of opportunity from the magus.
 
-If a character has both the spell counterstrike feat and the spellbreaker feat they will perform three attacks of opportunity.");
+Stacks with similar feats.");
     permanent(1);
 }
 
