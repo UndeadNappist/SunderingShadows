@@ -81,6 +81,10 @@ string list_users(string *races, object tp)
                 position == "elder" ||
                 position == "arch") {
                 tmp += "%^BOLD%^%^BLACK%^Wizard %^BOLD%^%^BLACK%^----- ";
+            }
+            else if(position == "avatar")
+            {
+                tmp += "%^BOLD%^%^BLACK%^Avatar %^BOLD%^%^BLACK%^----- ";
             } else {
                 rabbit=who[i]->query_race();
                 if (objectp(shape = who[i]->query_property("shapeshifted"))) {
