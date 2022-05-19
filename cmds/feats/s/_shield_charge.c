@@ -63,7 +63,7 @@ void execute_feat()
         return;
     }
 
-    if((int)caster->query_property("using shield charge") > time())
+    if(caster->cooldown("shield charge"))
     {
         tell_object(caster,"You can't try to shield charge again so soon!");
         dest_effect();
@@ -87,6 +87,9 @@ void execute_feat()
     caster->use_stamina(roll_dice(1,6));
     caster->set_property("using instant feat",1);
 
+    tell_object(caster, "%^C102%^You tuck your chin and prepare to %^C220%^c%^C226%^h%^C227%^a%^C220%^rge%^C102%^ at %^C161%^your opposition%^C102%^ with your shield!%^RESET%^");
+    tell_room(environment(caster), "%^C161%^" + caster->query_cap_name() + "%^C102%^raises " + caster->query_possessive() " shield, tucks " + caster->query_possessive() + " chin, and prepares to %^C220%^r%^C226%^u%^C227%^n%^C220%^ " + caster->query_possessive() + " opposition d%^C226%^o%^C227%^w%^C220%^n%^C102%^!%^RESET%^", ({ caster, target }));
+    
     return;
 }
 
@@ -186,9 +189,7 @@ void execute_attack()
         }
 
         tell_object(caster,"%^MAGENTA%^You charge through the area with your shield, sending opponents scattering!");
-        caster->remove_property("using shield charge");
-        caster->set_property("using shield charge", time() + 35 );
-        delay_msg(35,"%^BOLD%^%^WHITE%^You can %^CYAN%^shield charge%^WHITE%^ again.%^RESET%^");
+        caster->add_cooldown("shield charge", 35);
     }
 
 
@@ -196,8 +197,11 @@ void execute_attack()
 
     if(charging_direction)
     {
-        caster->remove_property("using shield charge");
-        caster->set_property("using shield charge", time() + 35 );
+        if(!caster->cooldown("shield charge"))
+        {
+            caster->add_cooldown("shield charge", 35);
+        }
+
         if(door && !open)
         {
             tell_object(caster, "%^RED%^You smash open the "+door+" as you charge to the "+arg+" behind your shield!");
