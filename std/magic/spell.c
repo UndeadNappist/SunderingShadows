@@ -684,9 +684,46 @@ void query_blood_magic()
     return blood_magic;
 }
 
+void receive_opportunity_attacks()
+{
+    object* attackers = caster->query_attackers();
+    
+    if (!objectp(caster))
+    {
+        return 0;
+    }
+    if ((int)TO->query_helpful())
+    {
+        return 0;
+    }
+    
+    for (int i = 0; i < sizeof(attackers); ++i )
+    {
+        if (attackers[i] == caster) // Probably redundant.
+        {
+            continue;
+        }
+        if (FEATS_D->usable_feat(attackers[i], "spell counterstrike"))
+        {
+            attackers[i]->kill_ob(caster);
+            attackers[i] && caster && attackers[i]->execute_attack();
+        }
+        if (FEATS_D->usable_feat(attackers[i], "spellbreaker"))
+        {
+            attackers[i]->kill_ob(caster);
+            attackers[i] && caster && attackers[i]->execute_attack();
+        }
+        if(FEATS_D->usable_feat(attackers[i], "combat reflexes"))
+        {
+            attackers[i]->kill_ob(caster);
+            attackers[i] && caster && attackers[i]->execute_attack();
+        }
+    }
+}
+
 int check_reflection()
 {
-    int turnperc, flagz, counters, can_spend;
+    int turnperc, flagz, can_spend;
     object temp;
 
     if (!objectp(caster)) {
@@ -723,33 +760,6 @@ int check_reflection()
     }
     else {
         turnperc = target->query_spellTurning();
-    }
-
-    counters = 0 ;
-    if (FEATS_D->usable_feat(target, "spell counterstrike")) {
-        counters += 1;
-    }
-    if (FEATS_D->usable_feat(target, "spellbreaker")) {
-        counters += 1;
-    }
-    if(FEATS_D->usable_feat(target, "combat reflexes"))
-        counters += 1;
-
-    //Venger: with a single feat is 1 counter and a chance to counter again.
-    //with both feats is 3 counters instead of doubling the counters.
-    if (counters) {
-        spell_kill(target, caster);
-        for(int x = 0; x < counters; x++)
-            target && caster && target->execute_attack();
-        /*
-        target->execute_attack();
-        if (counters > 1) {
-            target->execute_attack();
-            target->execute_attack();
-        }else if (!random(3)) {
-                target->execute_attack();
-        }
-        */
     }
     /*
     switch (flagz) {
@@ -1418,6 +1428,8 @@ void wizard_interface(object user, string type, string targ)
 
     tell_object(caster, "You begin to " + whatdo + " " + spell_name + "!");
 
+    receive_opportunity_attacks()
+    
     // this is needed for PCs, uses different function than mobs
     if (objectp(target)) {
         check_reflection();
