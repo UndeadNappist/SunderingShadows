@@ -82,7 +82,8 @@ void spell_effect(int prof) {
     power = clevel + wis_bonus + query_spell_level(spell_type);
     caster->set_property("scry block power", power);
     addSpellToCaster();
-    spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 2;
+    //spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 2;
+    spell_duration = clevel * ROUND_LENGTH * 10;
     set_end_time();
     call_out("dest_effect",spell_duration);
     return;
