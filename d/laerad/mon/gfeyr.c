@@ -1,5 +1,6 @@
 //Coded by the one and only master of monsters...BANE//
 #include <std.h>
+#include <daemons.h>
 inherit "/d/laerad/mon/wander/swwander.c";
 void create(){
     ::create();

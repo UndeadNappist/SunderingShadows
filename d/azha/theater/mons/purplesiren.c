@@ -117,7 +117,7 @@ void sing(object targ)
 			"sing a cacophony of melodies, causing you"+
 			" to wince in pain.");
         tell_room(ETO,"%^MAGENTA%^The cacophony siren beg"+
-			"ins to sing a cacophony of melodies directed "+
+			"ins to sing a cacophony of melodies directed"+
         		" at "+targ->query_cap_name()+", who winces in"+
 			" pain at the sonic attack.",targ);
 		targ->cause_typed_damage(targ, "torso", roll_dice(1, 10) + 9, "sonic");
@@ -125,7 +125,7 @@ void sing(object targ)
 	}
 else {
      	tell_object(targ,"%^MAGENTA%^The siren begins "+
-		"to sing a cacophony melodies, though you able to resist"+
+		"to sing a cacophony of melodies, though you are able to resist"+
 		" most of the chaotic tune..");
       tell_room(ETO,"%^MAGENTA%^The cacophony siren begins"+
 		" to sing a cacophony of melodies at"+
