@@ -87,9 +87,8 @@ void execute_feat()
     caster->use_stamina(roll_dice(1,6));
     caster->set_property("using instant feat",1);
 
-    tell_object(caster, "%^C102%^You tuck your chin and prepare to %^C220%^c%^C226%^h%^C227%^a%^C220%^rge%^C102%^ at %^C161%^ " + target->query_cap_name() + "%^C102%^ with your shield!%^RESET%^");
-    tell_object(target, "%^C161%^" + caster->query_cap_name() + "%^C102%^raises " + caster->query_possessive() " shield, tucks " + caster->query_possessive() + " chin, and prepares to %^C220%^r%^C226%^u%^C227%^n%^C220%^ you d%^C226%^o%^C227%^w%^C220%^n%^C102%^!%^RESET%^");
-    tell_room(environment(caster), "%^C161%^" + caster->query_cap_name() + "%^C102%^raises " + caster->query_possessive() " shield, tucks " + caster->query_possessive() + " chin, and prepares to %^C220%^r%^C226%^u%^C227%^n%^C220%^ " + target->query_cap_name() + " d%^C226%^o%^C227%^w%^C220%^n%^C102%^!%^RESET%^", ({ caster, target }));
+    tell_object(caster, "%^C102%^You tuck your chin and prepare to %^C220%^c%^C226%^h%^C227%^a%^C220%^rge%^C102%^ at %^C161%^your opposition%^C102%^ with your shield!%^RESET%^");
+    tell_room(environment(caster), "%^C161%^" + caster->query_cap_name() + "%^C102%^raises " + caster->query_possessive() " shield, tucks " + caster->query_possessive() + " chin, and prepares to %^C220%^r%^C226%^u%^C227%^n%^C220%^ " + caster->query_possessive() + " opposition d%^C226%^o%^C227%^w%^C220%^n%^C102%^!%^RESET%^", ({ caster, target }));
     
     return;
 }
