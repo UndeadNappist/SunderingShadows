@@ -692,10 +692,6 @@ void receive_opportunity_attacks()
     {
         return 0;
     }
-    if ((int)TO->query_helpful())
-    {
-        return 0;
-    }
     
     for (int i = 0; i < sizeof(attackers); ++i )
     {
