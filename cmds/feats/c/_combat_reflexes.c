@@ -9,7 +9,7 @@ void create() {
     feat_category("MeleeDamage");
     feat_name("combat reflexes");
     feat_prereq("Thief L4");
-    feat_desc("Combat reflexes represents the highly trained speed and dexterity of the rogue in combat, allowing them to perform attacks of opportunity, both when their opponent casts spells at them and when their opponent tries to flee or escape.%^RESET%^");
+    feat_desc("Combat reflexes represents the highly trained speed and dexterity of the rogue in combat, allowing them to perform attacks of opportunity, both when their opponent casts spells and when their opponent tries to flee or escape.%^RESET%^");
     permanent(1);
 }
 
