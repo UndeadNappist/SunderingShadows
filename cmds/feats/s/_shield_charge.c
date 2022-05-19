@@ -197,7 +197,11 @@ void execute_attack()
 
     if(charging_direction)
     {
-        caster->add_cooldown("shield charge", 35);
+        if(!caster->cooldown("shield charge"))
+        {
+            caster->add_cooldown("shield charge", 35);
+        }
+
         if(door && !open)
         {
             tell_object(caster, "%^RED%^You smash open the "+door+" as you charge to the "+arg+" behind your shield!");
