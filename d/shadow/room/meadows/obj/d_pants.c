@@ -25,7 +25,7 @@
 "%^RESET%^%^ORANGE%^reddish orange%^RESET%^",\
 "%^BOLD%^%^RED%^fiery red%^RESET%^",\
 "%^BOLD%^%^CYAN%^cornflower blue%^RESET%^",\
-"%^RESET%^%^MAGENTA%^lavander%^RESET%^",\
+"%^RESET%^%^MAGENTA%^lavender%^RESET%^",\
 "%^BOLD%^%^MAGENTA%^carnation pink%^RESET%^",\
 "%^BOLD%^%^BLACK%^charcoal gray%^RESET%^",\
 "%^BOLD%^%^WHITE%^rich cream%^RESET%^",\

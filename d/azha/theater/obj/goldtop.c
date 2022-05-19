@@ -21,7 +21,7 @@ void create(){
 	set_cointype("electrum");
       set_lore( "Worn by the Cacophony Sirens, a top like this"+
 		" no true lady would wear in public.  The top would lea"+
-		"ve a woman VERY exposed, and no doubt earning her a"+
+		"ve a woman VERY exposed, and no doubt earning her a "+
 		"bad reputation.");
       set_property("lore difficulty",10);
       set_type("clothing");

@@ -50,14 +50,14 @@ int fit(string str){
       	return notify_fail("What is it you wish to fit?\n");
 	
 	tell_object(TP,"%^BOLD%^%^BLACK%^You fit the handcrank to"+
-		" the gears and begin to turn it.\n\nThe platform start to"+
-		" rise slowly\n\n\n\nThe platform comes to a halt,not wanting"+
-		" to move another inch.  Luckily though you can manage to reach"+
+		" the gears and begin to turn it.\n\nThe platform starts to"+
+		" rise slowly.\n\n\n\nThe platform comes to a halt, not wanting"+
+		" to move another inch.  Luckily though, you can manage to reach"+
 		" the backstage from here now.");
 	tell_room(ETP,"%^BOLD%^%^BLACK%^"+TPQCN+" places the handcrank"+
 		" onto the gears and begins to turn it.\n\nThe platform starts to"+
 		" rise slowly.\n\n\n\nThe platform comes to a sudden halt, not "+
-		"wanting to move another inch.  Luckily though it seems you can "+
+		"wanting to move another inch.  Luckily though, it seems you can "+
 		"manage to reach the backstage from here now.",TP);
 			add_exit(ROOMDIR"backstage","backstage");
                 	FLAG = 1;

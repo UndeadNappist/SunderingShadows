@@ -18,7 +18,7 @@ SPELL_NAME
   The spell you wish the scroll to cast when it is used.
 
 SPELL_LEVEL
-  Optinal scroll power you can specify. By default scroll will be scribed with maximum power available.
+  Optional scroll power you can specify. By default scroll will be scribed with maximum power available.
 
 NUM
   Defines how many scrolls you want to scribe.
