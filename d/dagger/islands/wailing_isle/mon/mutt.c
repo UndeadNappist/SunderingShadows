@@ -75,7 +75,7 @@ int feed_fun(string str){
     }
     
     tell_object(player, "%^RESET%^%^CRST%^%^C106%^The mutt knocks the %^C107%^jar%^C106%^ from your hands, spilling it out onto the ground and quickly wolfing down the contents.%^CRST%^");
-    tell_room(room, "%^RESET%^%^CRST%^%^C106%^The mutt knocks the %^C107%^jar%^C106%^ from "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C250%^'s hands, spilling it out onto the ground and quickly wolfing down the contents.%^CRST%^", player);
+    tell_room(room, "%^RESET%^%^CRST%^%^C106%^The mutt knocks the %^C107%^jar%^C106%^ from "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C106%^'s hands, spilling it out onto the ground and quickly wolfing down the contents.%^CRST%^", player);
     tell_room(room, "%^RESET%^%^CRST%^%^C182%^With a %^C176%^wag%^C182%^ of its tail, the mutt looks back up for more.%^CRST%^");
     jar->remove();
     
