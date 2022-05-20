@@ -16,3 +16,10 @@ void create(){
    ]));
 
 }
+
+void reset(){
+   ::reset();
+   if(!present("bagman")){
+      new(MOBS"sevitsy.c")->move(TO);
+   }
+}

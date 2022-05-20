@@ -78,6 +78,8 @@ void spell_effect()
     
     if(saved)
     {
+        tell_room(place, "%^BOLD%^" + target->query_cap_name() + " seems to resist most of the effects!%^RESET%^", target);
+        
         if(FEATS_D->usable_feat(target, "stalwart"))
             tell_object(target, "Your grit pushes you through the pain.");
         else
