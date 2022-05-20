@@ -80,7 +80,7 @@ string list_users(string *races, object tp)
                 position == "overseer" ||
                 position == "elder" ||
                 position == "arch") {
-                tmp += "%^BOLD%^%^BLACK%^Wizard %^BOLD%^%^BLACK%^----- ";
+                tmp += "%^BOLD%^%^BLACK%^Creator %^BOLD%^%^BLACK%^---- ";
             }
             else if(position == "avatar")
             {
