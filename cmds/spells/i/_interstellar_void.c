@@ -11,7 +11,7 @@ void create() {
     set_mystery("heavens");
     set_syntax("cast CLASS interstellar void on TARGET");
     set_damage_desc("void damage, 1/2 on save. exhausted and paralyzed on failed save.");
-    set_description("This spell will strike at the target with the dark void energy of the deepest depths of the cosmos. The target must make a fortitude save or be exhausted and paralyzed by the sheer weight and scale of cosmic reality. A sucessful save will reduce the damage by half.");
+    set_description("This spell will strike at the target with the dark void energy of the deepest depths of the cosmos. The target must make a fortitude save or be exhausted and paralyzed by the sheer weight and scale of cosmic reality. A successful save will reduce the damage by half.");
     set_save("fortitude");
     set_verbal_comp();
     set_somatic_comp();
