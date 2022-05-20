@@ -14,13 +14,14 @@ void create()
     
     ::create();
     set_name("crystal");
-    set_id(({"crystal","monster","summoned monster"}));
+    set_id(({"crystal","monster","summoned monster","defender","crystal defender"}));
     
     i = random(sizeof(COLORS));
     color = COLORS[i];
 
     set_gender("neuter");
-    set_short("crystal");
+    //set_short("crystal");
+    set_short("%^RESET%^%^C033%^c%^C039%^r%^C045%^y%^C051%^s%^C045%^t%^C039%^a%^C033%^l d%^C039%^e%^C045%^f%^C051%^e%^C045%^n%^C039%^d%^C033%^er%^CRST%^");
     set_long(
         "This is a small "+color+" crystal %^RESET%^%^CYAN%^that "+
         "sparkles in the light.  It seems to move of its own "+
