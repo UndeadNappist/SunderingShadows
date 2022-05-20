@@ -24,6 +24,7 @@ void create(){
    set_attack_limbs(({"whiplike whorl","shadow tendril"}));
    set_attacks_num(3);
    set_property("damage resistance", 20);
+   set_property("spell damage resistance", 20);
    set_property("void resistance percent", 50);
    set_property("radiant resistance percent", -50);
    set_overall_ac(-70);
@@ -32,7 +33,18 @@ void create(){
 
 void die()
 {
+    object *targets;
     tell_room(environment(this_object()), "%^BLACK%^BOLD%^The shadow emits a high-pitched scream as it dissipates!%^RESET%^");
+    
+    targets = this_object()->query_attackers();
+    
+    foreach(object ob in targets)
+    {
+        if(!livingp(ob))
+            continue;
+        
+        ob->cause_typed_damage(ob, "head", 100, "sonic");
+    }
     
     ::die();
 }

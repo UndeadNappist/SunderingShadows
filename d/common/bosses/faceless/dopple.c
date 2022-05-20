@@ -21,8 +21,10 @@ void create(){
    add_limb("shadow tendril","",0,0,0);
    set_attacks_num(3);
    set_property("damage resistance", 20);
+   set_property("spell damage resistance", 20);
    set_property("void resistance percent", 50);
    set_property("radiant resistance percent", -50);
+   set_monster_feats( ({ "resistance", "evasion", "stalwart", "death ward", "bravery" }) );
    set_overall_ac(-70);
 }
 
