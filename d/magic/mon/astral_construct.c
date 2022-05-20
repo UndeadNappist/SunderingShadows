@@ -211,7 +211,7 @@ void special_attack(object target)
     if(environment(target) != room)
         return;
     
-    scale = 1 + this_object()->query_level() / 10;
+    scale = 1 + (FEATS_D->usable_feat(owner, "summoners call")) + this_object()->query_level() / 10;
     attacks = ([  ]);
     
     //Construct special attacks are touch based (ectoplasm)
