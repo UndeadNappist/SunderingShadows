@@ -15,7 +15,7 @@
 #include <magic.h>
 #include "/d/islands/tonerra/areadefs.h"
 
-inherit WEAPONLESS;
+inherit "/d/common/bosses/avatar_boss.c";
 
 int coreparty = 4;
 int buffed = 0;
