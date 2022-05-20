@@ -928,9 +928,6 @@ int immunity_check(object obj, string type)
     {
         if (obj->query_property("poison immunity"))
             return 1;
-        
-        if(obj->query_property("iron body"))
-            return 1;
             
         if (FEATS_D->usable_feat(obj, "venom immunity"))
             return 1;
