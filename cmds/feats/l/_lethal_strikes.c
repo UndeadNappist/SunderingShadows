@@ -9,7 +9,9 @@ void create()
     feat_type("permanent");
     feat_category("MeleeAccuracy");
     feat_name("lethal strikes"); // Improved critical
-    feat_desc("This feat represents your ability to strike in a much more lethal manner. This will double the critical threat range with weapons or when unarmed in a shapeshifted form.");
+    feat_desc("This feat represents your ability to strike in a much more lethal manner. This will double the critical threat range with weapons or when unarmed.
+    
+%^BOLD%^N.B.%^RESET%^ This feat does not stack with the Keen Edge spell.");
     permanent(1);
 }
 

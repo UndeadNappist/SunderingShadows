@@ -12,6 +12,8 @@ void create() {
     set_spell_sphere("alteration");
     set_syntax("cast CLASS keen edge");
     set_description("This spell makes a weapon magically keen, improving its ability to deal telling blows. This transmutation increases the threat range of the weapon and works the same way as lethal strikes feat does.
+    
+%^BOLD%^N.B.%^RESET%^ This spell does not stack with the Lethal Strikes feat.
 
 %^BOLD%^%^RED%^See also:%^RESET%^ lethal strikes *feats");
     set_verbal_comp();
