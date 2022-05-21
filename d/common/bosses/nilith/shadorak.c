@@ -19,6 +19,8 @@ inherit "/d/common/bosses/avatar_boss.c";
 
 int coreparty = 4;
 int buffed = 0;
+int counter = 0;
+int hunger = 0;
 
 string color(string str)
 {
@@ -224,6 +226,8 @@ void heart_beat()
 
     if(sizeof(attackers))
     {
+        counter++;
+        
         if(!random(5))
         {
             tell_room(room, "%^BOLD%^BLACK%^Waves of necrotic energy pour off of the Nightwalker, tearing life energy from its enemies!");
@@ -250,6 +254,13 @@ void heart_beat()
             tell_room(room, "%^BOLD%^GREEN%^The Nightwalker raises its clawed hand and bone wyverns crawl out of the ground!");
             new("/d/dagger/nurval/mon/bonewyvern")->move(room);
             new("/d/dagger/nurval/mon/bonewyvern")->move(room);
+        }
+        
+        if(!(counter % 3))
+        {
+            tell_room(room, "%^YELLOW%^Shadorak tears a rift in reality, and void energies begin to pour through!%^RESET%^");
+            tell_room(room, "%^C074%^A rift in reality forms! Make sure to %^C086%^'mend rift'%^C074%^ before it's too late!%^CRST%^\n");
+            new("/d/common/bosses/nilith/necrotic_rift")->move(room);
         }
     }
 }

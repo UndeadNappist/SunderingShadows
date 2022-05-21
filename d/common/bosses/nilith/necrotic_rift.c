@@ -11,6 +11,8 @@
 
 inherit OBJECT;
 
+int destroyed;
+
 void create()
 {
     ::create();
@@ -57,6 +59,18 @@ int mend_fun(string str)
         tell_object(this_player(), "You can't do that while paralyzed.");
         return 1;
     }
+    
+    if(destroyed)
+    {
+        tell_object(this_player(), "%^BOLD%^Someone is already mending that rift!%^RESET%^");
+        return 1;
+    }
+    
+    destroyed = 1;
+    
+    tell_object(this_player(), "%^WHITE%^BOLD%^As you mend the rift, you feel a shock of void energy, stunning you!%^RESET%^");
+    this_player()->cause_typed_damage(this_player(), "body", 100, "void");
+    this_player()->set_paralyzed(6, "%^YELLOW%^You're still recovering from the rift's shock!%^RESET%^");
     
     remove();
     return 1;
