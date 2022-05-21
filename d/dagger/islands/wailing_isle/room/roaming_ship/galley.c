@@ -23,9 +23,9 @@ void create(){
     set_listen("default","%^RESET%^%^CRST%^%^C137%^T%^C138%^h%^C137%^e r%^C138%^a%^C137%^ttli%^C138%^n%^C137%^g of %^C143%^pots%^C137%^ a%^C138%^n%^C137%^d %^C143%^pans%^C137%^ ke%^C138%^e%^C137%^ps r%^C138%^h%^C137%^yt%^C138%^h%^RESET%^%^C137%^m w%^C138%^i%^C137%^th t%^C138%^h%^C137%^e r%^C138%^o%^C137%^ll of t%^C138%^h%^C137%^e wa%^C138%^v%^C137%^es.%^CRST%^");
     set_items(([
         ({"barrels", "pantry"}) : "%^RESET%^%^CRST%^%^C245%^Being between voyages, the food stocks are currently pretty low, but you might be able to find something tasty if you search around.%^CRST%^",
-		({"pots", "pans"}) : "%^RESET%^%^CRST%^%^C142%^The copper pots and pans look new and shiny.%^CRST%^",				
+		({"pots", "pans"}) : "%^RESET%^%^CRST%^%^C142%^The copper pots and pans look new and shiny.%^CRST%^",			
 		({"walls", "floor","tin"}) : "%^RESET%^%^CRST%^%^C153%^The walls and floor are kept tidy and covered by some old tin to prevent flames from catching.%^CRST%^",		
-		"table" : "%^RESET%^%^CRST%^%^C245%^This small oven allows the ship's cook to provide the crew with some heartier meals such as %^C058%^stews%^C245%^ and %^C052%^fresh meat%^RESET%^%^C245%^. It hangs from the ceiling by %^C059%^heavy chains%^C245%^ to assure some stability from the incessant rocking of the ship.%^CRST%^",
+		({"table", "oven"}) : "%^RESET%^%^CRST%^%^C245%^This small oven allows the ship's cook to provide the crew with some heartier meals such as %^C058%^stews%^C245%^ and %^C052%^fresh meat%^RESET%^%^C245%^. It hangs from the ceiling by %^C059%^heavy chains%^C245%^ to assure some stability from the incessant rocking of the ship.%^CRST%^",
         ({"stove", "chains"}) : "%^RESET%^%^CRST%^%^C059%^This is a small iron stove. It is simple in design, with a shallow oven that holds a single wire rack. Strong side handles are attached to thick chains hung from above, allowing the stove to roll with the ship's constant motion.%^CRST%^",
         ]));
     set_exits(([
