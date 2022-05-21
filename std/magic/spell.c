@@ -719,7 +719,7 @@ void receive_opportunity_attacks()
 
 int check_reflection()
 {
-    int turnperc, flagz, can_spend;
+    int turnperc, flagz, /*counters,*/ can_spend;
     object temp;
 
     if (!objectp(caster)) {
@@ -756,6 +756,33 @@ int check_reflection()
     }
     else {
         turnperc = target->query_spellTurning();
+    }
+/*
+    counters = 0 ;
+    if (FEATS_D->usable_feat(target, "spell counterstrike")) {
+        counters += 1;
+    }
+    if (FEATS_D->usable_feat(target, "spellbreaker")) {
+        counters += 1;
+    }
+    if(FEATS_D->usable_feat(target, "combat reflexes"))
+        counters += 1;
+
+    //Venger: with a single feat is 1 counter and a chance to counter again.
+    //with both feats is 3 counters instead of doubling the counters.
+    if (counters) {
+        spell_kill(target, caster);
+        for(int x = 0; x < counters; x++)
+            target && caster && target->execute_attack();
+        /*
+        target->execute_attack();
+        if (counters > 1) {
+            target->execute_attack();
+            target->execute_attack();
+        }else if (!random(3)) {
+                target->execute_attack();
+        }
+        // End a comment block here
     }
     /*
     switch (flagz) {
