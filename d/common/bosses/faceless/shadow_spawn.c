@@ -40,7 +40,7 @@ void die()
     
     foreach(object ob in targets)
     {
-        if(!livingp(ob))
+        if(!living(ob))
             continue;
         
         ob->cause_typed_damage(ob, "head", 100, "sonic");

@@ -20,6 +20,7 @@ int enrage;
 int psize;
 int madness = 0;
 int wave;
+int buffed = 0;
 
 mapping checkpoints = ([
                         "melee"   : 0,
@@ -184,9 +185,13 @@ void init()
         coreparty = psize;
     }
     
-    new("/cmds/spells/v/_vampiric_shadow_shield.c")->use_spell(this_object(), 0, 70, 100, "mage");
-    new("/cmds/spells/s/_shadow_body.c")->use_spell(this_object(), 0, 70, 100, "mage");
-    new("/cmds/spells/s/_shadowform.c")->use_spell(this_object(), 0, 70, 100, "mage");     
+    if(!buffed)
+    {
+        new("/cmds/spells/v/_vampiric_shadow_shield.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        new("/cmds/spells/s/_shadow_body.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        new("/cmds/spells/s/_shadowform.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        buffed = 1;
+    }        
 }
 
 die(object ob)
