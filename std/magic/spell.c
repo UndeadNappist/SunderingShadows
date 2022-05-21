@@ -690,7 +690,7 @@ void receive_opportunity_attacks()
     
     if (!objectp(caster) || shadow_spell)
     {
-        return 0;
+        return;
     }
     
     for (int i = 0; i < sizeof(attackers); ++i )
