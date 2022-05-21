@@ -280,6 +280,9 @@ void heart_beat()
                     if(ob->is_undead())
                         continue;
                     
+                    if(!userp(ob))
+                        continue;
+                    
                     if(((ob->query_hp() * 100) / ob->query_max_hp()) > 75)
                     {
                         tell_object(ob, "%^BOLD%^Shadorak coveteously regards your vibrant life force!%^RESET%^");
