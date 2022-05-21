@@ -182,8 +182,7 @@ int is_valid_stat_move(object who, string stat, string stat_two)
                 return 1;
             }
         }
-        tell_object(who, "That would cause your base " + stat +
-                    " to be higher than allowed.");
+        tell_object(who, "You don't have an invested point in " + stat + " to move to another stat.");
         return 0;
     }
     return 1;
