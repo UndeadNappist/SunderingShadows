@@ -32,7 +32,7 @@ void create()
 
     set_name("nightwalker");
     set_id(({ "nightwalker", "demigod", "shadow god", "night walker", "shadorak" }));
-    set_short("%^BLACK%^BOLD%^Shadorak, Greater %^BOLD%^BLACK%^N%^RESET%^%^CYAN%^i%^BOLD%^g%^BLACK%^h%^RESET%^%^CYAN%^t%^BOLD%^w%^BLACK%^a%^RESET%^%^CYAN%^l%^BOLD%^k%^BLACK%^er of Nilith%^RESET%^");
+    set_short("%^C242%^S%^C244%^h%^C246%^a%^C248%^d%^C246%^o%^C244%^r%^C242%^ak, Greater %^C062%^N%^C068%^i%^C074%^g%^C080%^h%^C086%^t%^C080%^w%^C074%^a%^C068%^l%^C062%^ker%^C242%^ of %^C062%^N%^C068%^i%^C074%^l%^C068%^i%^C062%^th%^CRST%^");
     set_long("%^BLACK%^BOLD%^This being is the stuff of nightmares. It is quite tall, towering over the nearby buildings with its lanky form. It is pale and featureless, with a miasma of dark energies emanating from it. Upon its head are two shadow horns that sweep back and up away from its head, which is featureless save for two glowing azure eyes. It has a vaguely female shape, like that of a twisted and disgusting tiefling.%^RESET%^");
     set_body_type("humanoid");
     add_limb("tendril one", "torso", 0, 0, 0);

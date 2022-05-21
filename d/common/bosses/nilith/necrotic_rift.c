@@ -16,7 +16,7 @@ void create()
     ::create();
     set_name("rift");
     set_id( ({ "necrotic rift", "rift" }) );
-    set_short("rift of necrotic energy");
+    set_short("%^C074%^rift%^C062%^ of n%^C068%^e%^C074%^c%^C080%^r%^C086%^o%^C080%^t%^C074%^i%^C062%^c e%^C068%^n%^C074%^e%^C080%^r%^C068%^g%^C062%^y%^CRST%^");
     set_long("This appears to be a rift in reality, leading, most likely, to the Plane of Shadows. It pulses and warps with dark necrotic energy. You should probably 'mend rift' before it gets out of hand!");
     set_weight(10000);
     set_property("not living", 1);
@@ -64,7 +64,7 @@ int mend_fun(string str)
 
 void remove()
 {
-    tell_room(environment(this_object()), "The rift twists and caves into itself, disappearing....");
+    tell_room(environment(this_object()), "%^C074%^The rift twists and caves into itself, disappearing....%^CRST%^");
     return ::remove();
 }
     
