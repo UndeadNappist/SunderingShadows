@@ -79,7 +79,7 @@ void create()
     set_skill("perception", 50);
     set_mob_magic_resistance("high");
     set_overall_ac(-70);
-    set_max_hp(125000);
+    set_max_hp(100000);
     set_hp(query_max_hp());
     set_property("add kits", 40);
     set_new_exp(75, "boss");
@@ -106,7 +106,7 @@ void create()
                   "epidemic",
                   "mass fester",
                   "animus blizzard",
-                  "nightmare maw",
+                  "waves of exhaustion",
                   "exhume corpses", }));
     set_spell_chance(85);
     add_money("platinum", 100000 + random(20000));
@@ -160,7 +160,7 @@ void init()
     psize = sizeof(filter_array(all_inventory(ETO), (: userp($1) :)));
     psize = psize < 1 ? 1 : psize;
     if (psize > coreparty) {
-        set_max_hp(30000 * psize);
+        set_max_hp(25000 * psize);
         set_hp(query_max_hp());
         set_damage(16, 5 + psize);
         coreparty = psize;

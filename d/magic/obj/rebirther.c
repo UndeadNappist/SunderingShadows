@@ -134,7 +134,7 @@ void do_rebirth()
     reborn->remove_pk_death_flag();
     reborn->set_death_age(0);
     //reborn->set_property("rebirth time",time());
-    reborn->add_cooldown("rebirth");
+    reborn->add_cooldown("rebirth", 3600);
     save_player( reborn->query_name() );
     PLAYER_D->add_player_info();
     reborn->remove_property("rebirth");

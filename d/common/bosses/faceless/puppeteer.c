@@ -107,7 +107,7 @@ void create()
     set_mob_magic_resistance("high");
     set_overall_ac(-70);
     set_sight_bonus(10);
-    set_max_hp(125000);
+    set_max_hp(100000);
     set_hp(query_max_hp());
     set_property("add kits", 40);
     set_new_exp(75, "boss");
@@ -179,7 +179,7 @@ void init()
     psize = sizeof(filter_array(all_inventory(ETO), (: userp($1) :)));
     psize = psize < 1 ? 1 : psize;
     if (psize > coreparty) {
-        set_max_hp(30000 * psize);
+        set_max_hp(25000 * psize);
         set_hp(query_max_hp());
         set_damage(16, 5 + psize);
         coreparty = psize;
@@ -250,16 +250,16 @@ void heart_beat()
     
     switch(percent)
     {
-        case 80..100:
+        case 90..100:
         if(sizeof(attackers))
             melee(room);
         break;
         
-        case 60..79:
+        case 70..89:
         spells(room);
         break;
         
-        case 40..59:
+        case 40..69:
         shadows(room);
         break;
         
@@ -275,7 +275,7 @@ void heart_beat()
 
 void madness_check(object room, object *attackers)
 {
-    madness = ticker / 100;
+    madness = ticker / 50;
     
     foreach(object ob in attackers)
     {
@@ -432,6 +432,9 @@ void dopple(object room)
             puppet->set_paralyzed(30, "You are blacked out!");
             
             dopple = new("/d/common/bosses/faceless/dopple");
+            dopple->set_name(puppet->query_cap_name());
+            dopple->set_id({ "doppleganger", puppet->query_cap_name() });
+            dopple->set_race(puppet->query_race());
             dopple->set_short(puppet->query_short());
             dopple->set_long(puppet->query_long());
             dopple->set_player_height(puppet->query_player_height());
@@ -521,7 +524,7 @@ int tendril(object ob)
     
     ob->set_paralyzed(roll_dice(1,4) * 6, "%^YELLOW%^The tendril has you wrapped tight!%^RESET%^");
     
-    return (roll_dice(6, 10) + 10) * (1 + enrage) + (roll_dice(madness, 10));
+    return (roll_dice(6 + madness, 10) + 10) * (1 + enrage));
 }
 
 void shadow_spikes()
@@ -545,7 +548,7 @@ void shadow_spikes()
         if(!SAVING_THROW_D->reflex_save(ob, 80 + madness))
         {
             tell_room(room, "%^BOLD%^A spike impales " + ob->query_cap_name() + "!%^RESET%^");
-            ob->cause_typed_damage(ob, "torso", roll_dice(50, 8) + roll_dice(madness, 10), "void");
+            ob->cause_typed_damage(ob, "torso", roll_dice(50 + madness, 8), "void");
         }
     }
 }   

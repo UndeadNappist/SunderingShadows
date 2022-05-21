@@ -36,7 +36,7 @@ void die()
     if(objectp(puppet))
         puppet->move_player(environment(this_object()));
     
-    tell_room(environment(this_object()), puppet->query_cap_name() + " shakes + " + puppet->query_possessive() + " head and seems to be themselves once more!", puppet);
+    tell_room(environment(this_object()), "%^BOLD%^\n" + puppet->query_cap_name() + " shakes + " + puppet->query_possessive() + " head and seems to be themselves once more!\n", puppet);
     tell_object(puppet, "%^YELLOW%^You shake your head and feel like yourself once more!%^RESET%^");
     puppet->remove_paralyzed();
     
