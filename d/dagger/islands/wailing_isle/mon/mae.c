@@ -151,6 +151,11 @@ void reply_fun(string str, object player){
         return;
     }
     
+    if(strsrch(str,"zephyr") != -1 || strsrch(str,"Zephyr") != -1 ){
+        force_me("say Ah, the Zephyr. A merchant ship that runs the shipping lanes between city ports around the Dagger and Saakrune Sea, though I hear it's from Djyaristan originally.");
+        return;
+    }
+    
     return;
 }
 
@@ -158,7 +163,7 @@ void offer_job(){
     offered = 1;
     force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M leans forward against the counter, glancing about the shop for a wary moment.%^CRST%^");
     force_me("say Rum has been hard to source, but I heard there's a shipment of it aboard a ship called the Zephyr. I'm not sure where she's docked, but you seem like the type that can get around. Can I count on you for a favor?");
-    call_out("refuse_job", 10);
+    call_out("refuse_job", 15);
     return;
 }
 

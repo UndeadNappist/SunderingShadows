@@ -329,7 +329,7 @@ void offer_job(){
     choice = 1;
     force_me("emoteat kietta %^RESET%^%^CRST%^%^C101%^$M touches her fingertips to the small gem at her forehead for a thoughtful moment.%^CRST%^");
     force_me("say Dere be questions I have for de spirits dat surround us. But I lack de proper focus for me meditations: Bone dust from de restless dead... will you be de one to deliver it?");
-    call_out("refuse_job", 10);
+    call_out("refuse_job", 15);
     return;
 }
 
@@ -337,7 +337,7 @@ void offer_unicorn(){
     offered = 1;
     choice = 2;
     force_me("say De spirits feel you be able, and a strong lure I be having. Will you go to de Moonstone Vale and bring back de horn of a unicorn?");
-    call_out("refuse_job", 10);
+    call_out("refuse_job", 15);
     return;
 }
 

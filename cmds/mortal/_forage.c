@@ -415,9 +415,7 @@ int help(){
 
    This command allows you to forage for food, more successfully in some areas than others.  It helps reduce the amount of food you need to carry, trips to civilization  for meals, or eating clerical food.  Do remember that the food might be poisoned.
 
-Success rate, time required, and how edible(**) it will be are improved by higher levels in the survival skill, but are also affected by the terrain.  **We do expect some to be glad to find snails or fungus and others to be revolted by those.  Some races might eat almost anything, some would be thrilled to find nuts or berries, while others might strongly dislike anything besides meat, i.e. think RP as well as convenience.
-
-Note:  Forage for herbs is available to those with the herbalism NWP.  Those herbs will have various uses to those with that NWP.
+   Success rate, time required, and how edible(**) it will be are improved by higher levels in the survival skill, but are also affected by the terrain.  **We do expect some to be glad to find snails or fungus and others to be revolted by those.  Some races might eat almost anything, some would be thrilled to find nuts or berries, while others might strongly dislike anything besides meat, i.e. think RP as well as convenience.
 STYX
    );
    return 1;
