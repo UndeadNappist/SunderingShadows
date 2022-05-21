@@ -146,7 +146,7 @@ void init()
     if (wizardp(player) || player->query_true_invis()) {
         return;
     }
-
+    /*
     if(player->query_true_align() != 3 &&
        player->query_true_align() != 6 &&
        player->query_true_align() != 9 &&
@@ -155,6 +155,7 @@ void init()
        member_array("collector", player->query_id()) < 0 &&
        member_array("nightmare", player->query_id()) < 0)
          this_object()->kill_ob(player);
+    */
 
     psize = sizeof(filter_array(all_inventory(ETO), (: userp($1) :)));
     psize = psize < 1 ? 1 : psize;
@@ -196,7 +197,7 @@ die(object ob)
 
 void heart_beat()
 {
-    object attackers, corpse, room;
+    object attackers, corpse, room, protector;
 
     if (!objectp(this_object()))
     {
@@ -233,7 +234,7 @@ void heart_beat()
             tell_room(room, "%^BOLD%^BLACK%^Waves of necrotic energy pour off of the Nightwalker, tearing life energy from its enemies!");
             
             foreach(object ob in attackers)
-                ob->cause_typed_damage(ob, ob->return_target_limb(), roll_dice(5, 20) + 300, "negative energy");
+                ob->cause_typed_damage(ob, ob->return_target_limb(), roll_dice(5 + hunger, 20) + 300, "negative energy");
         }
         
         if(!present("corpse", room) && !random(5))
@@ -242,26 +243,54 @@ void heart_beat()
         if(!present("banshee", room) && !random(5))
         {
             tell_room(room, "%^BOLD%^MAGENTA%^The Nightwalker raises its hand and summons a group of screaming banshees!");
-            new("/d/dagger/nurval/mon/banshee")->move(room);
-            new("/d/dagger/nurval/mon/banshee")->move(room);
-            new("/d/dagger/nurval/mon/banshee")->move(room);
-            new("/d/dagger/nurval/mon/banshee")->move(room);
-            new("/d/dagger/nurval/mon/banshee")->move(room);
-            new("/d/dagger/nurval/mon/banshee")->move(room);
+            
+            for(int x = 0; x < 5; x++)
+            {
+                protector = new("/d/dagger/nurval/mon/banshee");
+                protector->move(room);
+                this_object()->add_protector(protector);
+            }
         }
         if(!present("bonewyvern", room) && !random(10))
         {
             tell_room(room, "%^BOLD%^GREEN%^The Nightwalker raises its clawed hand and bone wyverns crawl out of the ground!");
-            new("/d/dagger/nurval/mon/bonewyvern")->move(room);
-            new("/d/dagger/nurval/mon/bonewyvern")->move(room);
+            
+            for(int x = 0; x < 2; x++)
+            {
+                protector = new("/d/dagger/nurval/mon/bonewyvern");
+                protector->move(room);
+                this_object()->add_protector(protector);
+            }
         }
         
         if(!(counter % 3))
         {
-            tell_room(room, "%^YELLOW%^Shadorak tears a rift in reality, and void energies begin to pour through!%^RESET%^");
+            tell_room(room, "\n\%^YELLOW%^Shadorak tears a rift in reality, and void energies begin to pour through!%^RESET%^");
             tell_room(room, "%^C074%^A rift in reality forms! Make sure to %^C086%^'mend rift'%^C074%^ before it's too late!%^CRST%^\n");
             new("/d/common/bosses/nilith/necrotic_rift")->move(room);
         }
+        
+        {
+            hunger = 0;
+            
+            if(!(counter % 5))
+            {
+                foreach(object ob in attackers)
+                {
+                    if(ob->is_undead())
+                        continue;
+                    
+                    if(((ob->query_hp() * 100) / ob->query_max_hp()) > 75)
+                    {
+                        tell_object(ob, "%^BOLD%^Shadorak coveteously regards your vibrant life force!%^RESET%^");
+                        hunger++;
+                    }
+                }
+                
+                if(hunger)
+                    tell_room(room, "\n\%^MAGENTA%^BOLD%^Shadorak attacks with a vicious, desperate hunger! %^WHITE%^[%^YELLOW%^HUNGER : %^CYAN%^" + hunger + "%^WHITE%^]\n");
+            }
+        }           
     }
 }
 
@@ -295,7 +324,7 @@ int bite(object me, object ob)
     tell_object(ob, color("The Nightwalker envelops you in its shadowy jaws!"));
     tell_room(environment(this_object()), color("The Nightwalker envelops " + ob->QCN + " in its shadowy jaws!"), ({ ob }));
     
-    return roll_dice(6, 10) + 10;
+    return roll_dice(6 + hunger, 10) + 10;
 }
 
 int claw(object me, object ob)
@@ -311,7 +340,7 @@ int claw(object me, object ob)
     
     ob->set_property("rend", 5);
     
-    return roll_dice(6, 10) + 10;
+    return roll_dice(6 + hunger, 10) + 10;
 }
 
 int tendril(object me, object ob)
@@ -333,5 +362,5 @@ int tendril(object me, object ob)
     
     ob->set_paralyzed(roll_dice(1,4) * 6, color("The tendril has you wrapped tight!"));
     
-    return roll_dice(6, 10) + 10;
+    return roll_dice(6 + hunger, 10) + 10;
 }

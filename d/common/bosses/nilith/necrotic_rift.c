@@ -40,7 +40,7 @@ void heart_beat()
     room = environment(this_object());
     
     targets = all_living(room);
-    targets = filter_array(targets, (: !$1->is_undead() :));
+    targets = filter_array(targets, (: !($1->is_undead()) :));
     
     tell_room(room, "%^C057%^The %^C245%^r%^C247%^i%^C249%^f%^C245%^t%^C057%^ p%^C063%^u%^C069%^l%^C075%^s%^C081%^e%^C057%^s with d%^C063%^a%^C069%^r%^C057%^k, d%^C063%^e%^C069%^s%^C075%^t%^C081%^r%^C087%^u%^C081%^c%^C075%^t%^C069%^i%^C063%^v%^C057%^e e%^C063%^n%^C069%^e%^C075%^rg%^C081%^i%^C075%^e%^C057%^s!%^CRST%^");
     

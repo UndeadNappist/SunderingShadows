@@ -11,7 +11,7 @@
 #include <std.h>
 #include <daemons.h>
 
-#define MAX_MANA 100
+#define MAX_MANA 300
 
 int mana;
 
