@@ -688,7 +688,7 @@ void receive_opportunity_attacks()
 {
     object* attackers = caster->query_attackers();
     
-    if (!objectp(caster))
+    if (!objectp(caster) || shadow_spell)
     {
         return 0;
     }
