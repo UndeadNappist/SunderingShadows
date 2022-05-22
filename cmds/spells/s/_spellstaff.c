@@ -12,14 +12,14 @@ void create()
     set_spell_name("spellstaff");
     set_spell_level(([ "druid" : 6 ]));
     set_spell_sphere("invocation_evocation");
-    set_syntax("cast CLASS spellstaff on SPELL_NAME [| SPELL_ARGS]");
+    set_syntax("cast CLASS spellstaff on SPELL_NAME [. SPELL_ARGS]");
 
     set_description("NOTE: You must carry a staff with you when casting this spell.\n\n"
         "This spell allows the druid to hold a spell in reserve to be called upon at a later "
         "time by typing <now>.  If the spell normally requires a target, that target will "
         "automatically be the druid.  If you need to add arguments to the reserved spell, you "
         "must add them at the time of casting spellstaff.\n\nexample of usage: cast spellstaff "
-        "on word of recall | <remembered location>\nNote: You do need the | symbol if the "
+        "on word of recall . <remembered location>\nNote: You do need the . symbol if the "
         "spell requires arguments, such as a location.");
 
     set_verbal_comp();

@@ -21,7 +21,7 @@ void create()
     "flesh of the creature is coated with an almost solid "+
     "rock crust.  The crust has cracked and broken away in several "+
     "places, revealing the strange substance that serves as flesh "+
-    "just beneath.  The disturbing and freightening appearance of "+
+    "just beneath.  The disturbing and frightening appearance of "+
     "this creature is only aided by the flames which leap "+
     "out from beneath the crust and wreathe its body in "+
     "an ever burning, eternal flame.  Each of its thick and "+
