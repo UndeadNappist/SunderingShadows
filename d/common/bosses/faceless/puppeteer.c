@@ -128,15 +128,15 @@ void create()
         "blind fight",
         "force of personality",
     }));
-    set_spells(({ "unholy orb",
-                  "confusion",
-                  "wave of pain",
-                  "powerword stun",
+    set_spells(({ "shadow nova",
+                  "fear",
+                  "wave of pain"
+                  "scintillating pattern",
                   "powerword blind",
+                  "shadow vortex",
                   "weird",
                   "black tentacles",
-                  "overwhelming presence",
-                  "eyebite", }));
+                  "overwhelming presence", }));
                   
     set_spell_chance(0);
     add_money("platinum", 100000 + random(20000));
@@ -187,7 +187,7 @@ void init()
     
     if(!buffed)
     {
-        new("/cmds/spells/v/_vampiric_shadow_shield.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        new("/cmds/spells/u/_unholy_aura.c")->use_spell(this_object(), 0, 70, 100, "mage");
         new("/cmds/spells/s/_shadow_body.c")->use_spell(this_object(), 0, 70, 100, "mage");
         new("/cmds/spells/s/_shadowform.c")->use_spell(this_object(), 0, 70, 100, "mage");
         buffed = 1;
@@ -282,9 +282,13 @@ void madness_check(object room, object *attackers)
         if(!userp(ob))
             continue;
         
-        if(ob->query_effect("effect_confused"))
+        if(ob->query_property("effect_confused"))
             madness++;
-        if(ob->query_effect("effect_panicked"))
+        if(ob->query_property("effect_staggered"))
+            madness++;
+        if(ob->query_property("effect_panicked"))
+            madness++;
+        if(ob->query_property("effect_exhausted"))
             madness++;
         if(ob->query_paralyzed())
             madness++;
@@ -350,7 +354,7 @@ void shadows(object room)
     
     if(!checkpoints["shadows"])
     {
-        tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^" + color("The shadows will become your friends, as they, so long ago, became mine..."));
+        tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^BOLD%^CYAN%^"The shadows will become your friends, as they, so long ago, became mine...");
         tell_room(room, color("The Shadows all around you move and flit and feel and attack!")); 
         set_spell_chance(25);
         checkpoints["shadows"] = 1;
@@ -377,7 +381,7 @@ void madness(object room)
     
     if(!checkpoints["madness"])
     {
-        tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^" + color("Your feeble minds cannot handle the harsh reality of this existence."));
+        tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^BOLD%^CYAN%^Your feeble minds cannot handle the harsh reality of this existence.");
         tell_room(room, color("A cloud of pure madness descends upon you!")); 
         checkpoints["madness"] = 1;
     }
