@@ -411,7 +411,7 @@ void dopple(object room)
     
     if(!checkpoints["dopple"])
     {
-        tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^" + color("You've managed to endure the madness of this world, but what of the madness inside of you?"));
+        tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^BOLD%^CYAN%^You've managed to endure the madness of this world, but what of the madness inside of you?%^RESET%^"));
         set_spell_chance(50);
         checkpoints["dopple"] = 1;
     }
@@ -431,7 +431,7 @@ void dopple(object room)
             string *classes;
             
             tell_object(puppet, "%^RED%^BOLD%^The puppeteer touches your head and you black out%^RESET%^!");
-            tell_room(room, "The puppeteer touches " + puppet->query_cap_name() + "'s head and " + puppet->query_objective() + " goes limp.", puppet);
+            tell_room(room, "\n\%^BOLD%^MAGENTA%^The puppeteer touches " + puppet->query_cap_name() + "'s head and " + puppet->query_objective() + " goes limp.%^RESET%^", puppet);
             puppet->move_player(prison);
             puppet->set_paralyzed(30, "You are blacked out!");
             
@@ -501,10 +501,10 @@ int bite(object ob)
     
     set_base_damage_type("piercing");
     
-    tell_object(ob, color("Puppeteer bites you ferociously with it's maw."));
-    tell_room(environment(this_object()), color(""), ({ ob }));
+    tell_object(ob, "%^RED%^BOLD%^Puppeteer bites you ferociously with its maw.%^RESET%^");
+    tell_room(environment(this_object()), "%^RED%^BOLD%^The Puppeteer bites " + ob->query_cap_name() + " ferociously with its maw!%^RESET%^", ({ ob }));
     
-    return (roll_dice(6, 10) + 10) * (1 + enrage) + (roll_dice(madness, 10));
+    return (roll_dice(6 + madness, 10) + 10) * (1 + enrage);
 }
 
 int tendril(object ob)
