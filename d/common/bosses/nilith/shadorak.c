@@ -214,7 +214,7 @@ void heart_beat()
     if (!random(10) && (query_hp() < query_max_hp()))
     {
         tell_room(room, "%^BLACK%^BOLD%^Nightwalker draws strength from the shadows around it.%^RESET%^");
-        add_hp(1000);
+        add_hp(500);
     }
 
     //If a group of corpses are in the room, raise them.
