@@ -44,20 +44,15 @@ void enrage(object room);
 int set_puppet(object ob) { puppet = ob; return 1; }
 int remove_puppet()       { puppet = 0;  return 1; }
 
-string color(string str)
-{
-    return CRAYON_D->color_string(str, "very black");
-}
-
 void create()
 {
     object ob;
     ::create();
 
-    set_name("Puppeteer");
+    set_name("puppeteer");
     set_id(({ "puppeteer", "demigod", "shadow god" }));
-    set_short("%^BLACK%^BOLD%^The Puppeteer%^RESET%^");
-    set_long(color("Before you stands a creature that, by all reasoning, belongs in the Plane of Shadows. It is a mass of writhing black tentacles, seemingly formed into a ball that never seems to stop twisting and rolling in the air. It feels about itself, almost frantically, perhaps searching for the mental energies of those around it."));
+    set_short("%^C091%^The%^C128%^ %^C097%^P%^C103%^u%^C109%^p%^C103%^p%^C097%^e%^C091%^teer%^CRST%^");
+    set_long("Before you stands a creature that, by all reasoning, belongs in the Plane of Shadows. It is a mass of writhing black tentacles, seemingly formed into a ball that never seems to stop twisting and rolling in the air. It feels about itself, almost frantically, perhaps searching for the mental energies of those around it.");
     
     add_limb("tendril one", "", 0, 0, 0);
     add_limb("tendril two", "", 0, 0, 0);
@@ -317,7 +312,7 @@ void melee(object room)
     if(!checkpoints["melee"])
     {
         tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^%^CYAN%^BOLD%^Let's start with something light, shall we?");
-        tell_room(room, color("The Puppeteer launches a series of attacks with his shadowy tentacles!"));        
+        tell_room(room, "%^C244%^The P%^C097%^u%^C103%^p%^C109%^p%^C115%^e%^C109%^t%^C103%^e%^C097%^e%^C244%^r launches a series of attacks with his %^C109%^shadowy tentacles%^C244%^!%^CRST%^");        
         checkpoints["melee"] = 1;
     }
     
@@ -336,7 +331,7 @@ void spells(object room)
     if(!checkpoints["spells"])
     {
         tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^%^BOLD%^CYAN%^Still alive are we? Perhaps a little magic to liven things up...%^RESET%^");
-        tell_room(room, color("The Puppeteer begins casting a series of dark spells!")); 
+        tell_room(room, "%^C141%^The Puppeteer begins casting a series of dark spells!%^CRST%^"); 
         //set_spell_chance(100);
         checkpoints["spells"] = 1;
     }
@@ -354,8 +349,8 @@ void shadows(object room)
     
     if(!checkpoints["shadows"])
     {
-        tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^BOLD%^CYAN%^"The shadows will become your friends, as they, so long ago, became mine...");
-        tell_room(room, color("The Shadows all around you move and flit and feel and attack!")); 
+        tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^BOLD%^CYAN%^The shadows will become your friends, as they, so long ago, became mine...");
+        tell_room(room, "%^C103%^The S%^C109%^h%^C103%^a%^C109%^d%^C103%^o%^C109%^w%^C103%^s all around you move and f%^C109%^l%^C103%^i%^C109%^t%^C103%^ and f%^C109%^e%^C103%^e%^C109%^l%^C103%^ and %^C115%^attack%^C103%^!%^CRST%^"); 
         set_spell_chance(25);
         checkpoints["shadows"] = 1;
     }
@@ -382,7 +377,7 @@ void madness(object room)
     if(!checkpoints["madness"])
     {
         tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^BOLD%^CYAN%^Your feeble minds cannot handle the harsh reality of this existence.");
-        tell_room(room, color("A cloud of pure madness descends upon you!")); 
+        tell_room(room, "%^C171%^A c%^C177%^l%^C183%^ou%^C171%^d of pure m%^C177%^a%^C183%^d%^C189%^n%^C177%^e%^C171%^ss descends upon you!%^CRST%^"); 
         checkpoints["madness"] = 1;
     }
     
@@ -411,7 +406,7 @@ void dopple(object room)
     
     if(!checkpoints["dopple"])
     {
-        tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^BOLD%^CYAN%^You've managed to endure the madness of this world, but what of the madness inside of you?%^RESET%^"));
+        tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^BOLD%^CYAN%^You've managed to endure the madness of this world, but what of the madness inside of you?%^RESET%^");
         set_spell_chance(50);
         checkpoints["dopple"] = 1;
     }
@@ -437,7 +432,7 @@ void dopple(object room)
             
             dopple = new("/d/common/bosses/faceless/dopple");
             dopple->set_name(puppet->query_cap_name());
-            dopple->set_id({ "doppleganger", puppet->query_cap_name() });
+            dopple->set_id( ({ "doppleganger", puppet->query_cap_name() }) );
             dopple->set_race(puppet->query_race());
             dopple->set_short(puppet->query_short());
             dopple->set_long(puppet->query_long());
@@ -528,7 +523,7 @@ int tendril(object ob)
     
     ob->set_paralyzed(roll_dice(1,4) * 6, "%^YELLOW%^The tendril has you wrapped tight!%^RESET%^");
     
-    return (roll_dice(6 + madness, 10) + 10) * (1 + enrage));
+    return (roll_dice(6 + madness, 10) + 10) * (1 + enrage);
 }
 
 void shadow_spikes()
@@ -545,13 +540,13 @@ void shadow_spikes()
     if(!pointerp(attackers) || !sizeof(attackers))
         return;
     
-    tell_room(room, color("Shadowy spikes launch themselves from all directions, threatening to skewer you all!"));
+    tell_room(room, "%^C245%^S%^C184%^h%^C185%^a%^C187%^d%^C185%^o%^C184%^w%^C245%^y s%^C184%^p%^C185%^i%^C186%^k%^C245%^es launch themselves from all directions, threatening to %^C166%^skewer%^C245%^ you all!%^CRST%^");
     
     foreach(object ob in attackers)
     {
         if(!SAVING_THROW_D->reflex_save(ob, 80 + madness))
         {
-            tell_room(room, "%^BOLD%^A spike impales " + ob->query_cap_name() + "!%^RESET%^");
+            tell_room(room, "%^BOLD%^RED%^A spike impales " + ob->query_cap_name() + "!%^RESET%^");
             ob->cause_typed_damage(ob, "torso", roll_dice(50 + madness, 8), "void");
         }
     }
