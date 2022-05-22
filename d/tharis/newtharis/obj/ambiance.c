@@ -81,7 +81,7 @@ void heart_beat() {
      }
      return;
    }
-   if(strsrch(roomname,"rooms/elf") != -1) {
+   if(strsrch(roomname,"rooms/elf1") != -1 || strsrch(roomname,"rooms/elf2") != -1) {
      chance = 240*playershere;
      if(random(chance)) return;
      switch(random(100)) {
@@ -96,6 +96,22 @@ void heart_beat() {
        break;
        default:
        tell_room(EETO,"%^RESET%^%^CRST%^%^C100%^A %^RESET%^%^C058%^cart %^C100%^carrying supplies rumbles up to the great wooden gates of the %^RESET%^%^C241%^compound%^RESET%^%^C100%^. A moment later the gates open, allowing it to roll in and providing the briefest glimpse of the courtyard beyond, full of training %^RESET%^%^C244%^soldiers%^C100%^.%^CRST%^");
+       break;
+     }
+     return;
+   }
+   if(strsrch(roomname,"rooms/elf3") != -1) {
+     chance = 240*playershere;
+     if(random(chance)) return;
+     switch(random(75)) {
+       case 0..24:
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C081%^A group of %^RESET%^%^C058%^students %^C081%^passes by, prattling on about the %^RESET%^%^C202%^p%^C208%^h%^C214%^y%^C220%^s%^C214%^i%^C208%^c%^C202%^s %^RESET%^%^C081%^of %^C057%^d%^C056%^e%^C055%^m%^C054%^i%^C053%^pl%^C054%^a%^C055%^n%^C056%^e%^C057%^s%^RESET%^%^C081%^.%^CRST%^");
+       break;
+       case 25..49:
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C045%^The %^RESET%^%^C241%^iron gate %^C045%^swings open and out steps a man with a long %^RESET%^%^C247%^gr%^C250%^a%^C247%^y b%^C250%^e%^C252%^a%^C247%^rd %^RESET%^%^C045%^and a %^C027%^third eye %^RESET%^%^C045%^painted upon his %^RESET%^%^C058%^swarthy brow%^C045%^. He touches a finger to his temple and begins to %^C087%^levitate%^C045%^, turning to glide westward.%^CRST%^");
+       break;
+       default:
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C061%^A sleek %^RESET%^%^C241%^horseless carriage %^RESET%^%^C061%^comes to a stop outside the %^C241%^iron gates %^RESET%^%^C061%^and a woman draped in %^C123%^s%^C159%^t%^C195%^a%^C230%^r%^C159%^r%^C123%^y %^C045%^b%^C051%^l%^C087%^u%^C123%^e %^C159%^r%^C123%^o%^C087%^b%^C051%^e%^C045%^s %^RESET%^%^C061%^climbs out, followed by a small retinue that %^RESET%^%^C036%^h%^C037%^u%^C038%^s%^C039%^t%^C038%^l%^C037%^e%^C036%^s %^RESET%^%^C061%^to keep up with her as she heads toward the academy.%^CRST%^");
        break;
      }
      return;
