@@ -38,10 +38,10 @@ int preSpell(){
 
 string query_cast_string()
 {
-   tell_object(caster,"%^BOLD%^You move your hands in a rythmic pattern as you create "+
+   tell_object(caster,"%^BOLD%^You move your hands in a rhythmic pattern as you create "+
       "a tiny portal to the Astral plane.%^RESET%^");
    tell_room(place,"%^BOLD%^"+caster->QCN+" moves " + caster->query_possessive() + " hands "+
-      "in a rythmic fashion and creates a tiny portal in the air.", ({ caster }));
+      "in a rhythmic fashion and creates a tiny portal in the air.", ({ caster }));
    return "display";
 }
 

@@ -12,7 +12,7 @@ void create()
     set_spell_name("spellstaff");
     set_spell_level(([ "druid" : 6 ]));
     set_spell_sphere("invocation_evocation");
-    set_syntax("cast CLASS spellstaff on SPELL_NAME [. SPELL_ARGS]");
+    set_syntax("cast CLASS spellstaff on SPELL_NAME [| SPELL_ARGS]");
 
     set_description("NOTE: You must carry a staff with you when casting this spell.\n\n"
         "This spell allows the druid to hold a spell in reserve to be called upon at a later "
