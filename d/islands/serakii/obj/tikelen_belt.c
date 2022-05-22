@@ -16,7 +16,7 @@ void create() {
 	"they laid down their lives countless times to allow the innocent to survive. The mother herself "+
         "sacrificed herself to save a child of prophesy who would later become one of Jarmila's most powerful "+
 	"paladins. The reliquary contains bone fragments gathered from the nun's corpse after she fell.\n");
-    set_property("lore difficulty",20);
+    set_property("lore difficulty",35);
     set_id(({"belt","chain belt","chain","tikelen truth","reliquary","silver reliquary a chain"}));
     set_property("repairtype",({ "jewel" }));
     set_long("%^RESET%^%^BOLD%^A thin silver chain no wider then a sapling attaches to a small egg "+
@@ -29,7 +29,7 @@ void create() {
     set_value(2000);
     set_ac(0);
     set_size(-1);
-    set_property("enchantment",7);
+   set_property("enchantment",5);
     set_item_bonus("intelligence",3);
     set_item_bonus("wisdom",3);
     set_type("clothing");
