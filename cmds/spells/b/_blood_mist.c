@@ -7,7 +7,7 @@
 inherit SPELL;
 
 object* saves;
-int time, first_execute;
+int time, first_execute, concealed;
 
 void create(){
     ::create();
@@ -32,6 +32,7 @@ void spell_effect(int prof){
     place->set_property("spelled", ({this_object()}) );
     caster->set_property("spelled", ({this_object()}) );
     time = 0;
+    concealed = 0;
     saves = ({ });
     addSpellToCaster();
     spell_successful();
@@ -40,7 +41,7 @@ void spell_effect(int prof){
 
 void execute_attack(int prof){
     object* foes;
-    int i;
+    int i, current_concealment;
 
     if(!objectp(place)){
         dest_effect();
@@ -57,7 +58,12 @@ void execute_attack(int prof){
         return;
     }
 
-    if(!place->query_property("concealment")) place->set_property("concealment", 20);
+    if(!concealed){
+        current_concealment = place->query_property("concealment");
+        if(current_concealment) place->remove_property("concealment");
+        place->set_property("concealment", current_concealment + 20);
+        concealed = 1;
+    }
 
     foes = target_selector();
     foes -= ({ caster });
@@ -102,10 +108,14 @@ void execute_attack(int prof){
 }
 
 void dest_effect(){
+    int current_concealment;
+    
     if(objectp(place)){
         tell_object(place, "\n%^RESET%^%^CRST%^%^C126%^The %^C196%^cr%^C124%^i%^C196%^m%^C124%^so%^C196%^n m%^C124%^i%^C196%^st %^C126%^fades and %^RESET%^%^C059%^di%^C243%^sp%^C244%^er%^C245%^se%^C246%^s...%^CRST%^");
         place->remove_property_value("spelled", ({TO}) );
+        current_concealment = place->query_property("concealment");
         place->remove_property("concealment");
+        place->set_property("concealment", current_concealment - 20);
     }
     if(objectp(caster)){
         caster->remove_property_value("spelled", ({TO}) );
