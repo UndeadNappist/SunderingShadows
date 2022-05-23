@@ -77,6 +77,10 @@ void spell_effect(int prof) {
         object i;
 
         all_spells = ob->query_property("spelled");
+        
+        if(!pointerp(all_spells))
+            all_spells = ({  });
+        
         all_spells = filter_array(all_spells, (:objectp($1):));
         all_spells = filter_array(all_spells, (:$1->is_curse():));
 
