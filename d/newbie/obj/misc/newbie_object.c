@@ -46,6 +46,7 @@ string myLong()
     tmp += "\n\n%^RESET%^Example: %^YELLOW%^explain "+tmp2[0]+"%^RESET%^ to have the mass explain "+tmp2[0]+"\n\n"+
     "Alternatively you can just type %^YELLOW%^explain%^RESET%^ or %^YELLOW%^ask%^RESET%^ to continue "+
     "on with the tutorial.%^RESET%^\n\n";
+    tmp += "%^BOLD%^%^YELLOW%^Using %^RED%^explain%^YELLOW%^ by itself will go through each topic and proceed to the next quest description.%^RESET%^\n\n";
     tmp += "%^B_CYAN%^%^YELLOW%^NOTE: You MUST complete all the quests that the mass assigns to you, BEFORE "+
     "you are able to advance to level 6.%^RESET%^";
     return tmp;

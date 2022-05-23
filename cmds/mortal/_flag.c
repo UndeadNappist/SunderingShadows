@@ -227,7 +227,7 @@ int cmd_flag(string str)
                 "/cmds/avatar/_note.c"->cmd_note("ckpt "+capitalize(TP->query_name())+" %^BOLD%^%^CYAN%^chose to remove PK immunity.%^RESET%^");
                 return 1;
                 break;
-            case "scaled level":
+            /*case "scaled level":
 
                 tell_object(TP, "This is temporarily disabled.");
                 return 1;
@@ -258,7 +258,7 @@ int cmd_flag(string str)
                     return 1;
                 }
                 USER_D->scale_level_to(TP, perc);
-                return 1;
+                return 1;*/
         }
         return 1;
     }
@@ -282,16 +282,12 @@ flag - manipulate player flags
 %^CYAN%^SYNOPSIS%^RESET%^
 
 flag
-flag scaled level as %^ORANGE%^%^ULINE%^LEVEL%^RESET%^|normal
 flag roleplay flag as on
 flag player kill as on
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
 This command lets you adjust some various flags about your character. %^ORANGE%^<flag>%^RESET%^ by itself will show all flags and their current settings.
-
-%^CYAN%^scaled level%^RESET%^
-  Will allow you to scale your level down to the specified %^ORANGE%^<level>%^RESET%^in order to adventure with or take part in plots with lower level characters. Use at your own risk. You cannot go below level 6 or above your own base character level. Using%^ORANGE%^<normal>%^RESET%^ instead of a level will revert you back to your normal non scaled level.
 
 %^CYAN%^roleplay flag %^RESET%^
   Will fly a RP flag in your current environment. This will causeyour current room to show up on the who list as a RP FLAG and will show up in the rumorscommand.
