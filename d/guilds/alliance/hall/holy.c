@@ -1,6 +1,7 @@
 // /d/guilds/alliance/holy.c
 
 #include <std.h>
+#include <player_housing.h>
 
 inherit ROOM;
 
@@ -11,7 +12,7 @@ void create()
     ::create();
     set_terrain(STONE_BUILDING);
     set_travel(PAVED_ROAD);
-    set_property("teleport proof", "/daemon/player_housing"->get_phouse_tp_proof("legendary"));
+    set_property("teleport proof", TPWARD_LEGENDARY);
     set_indoors(1);
     set_light(2);
     set_short("Holy room");

@@ -4,6 +4,7 @@
 // /d/guilds/alliance/main.c
 
 #include <std.h>
+#include <player_housing.h>
 
 inherit VAULT;
 
@@ -15,8 +16,7 @@ void create()
     set_travel(PAVED_ROAD);
     set_indoors(1);
     set_light(2);
-    //set_property("no teleport",1);
-    set_property("teleport proof", "/daemon/player_housing"->get_phouse_tp_proof("legendary"));
+    set_property("teleport proof", TPWARD_LEGENDARY);
     set_short("Main Hall in the Castle of the Alliance");
     set_long("%^CYAN%^Main Hall in the Castle of the Alliance%^RESET%^\n " +
              "%^BOLD%^This is the main hall of a once magnificent castle, on " +

@@ -3,6 +3,7 @@
 // /d/guilds/alliance/lab.c
 
 #include <std.h>
+#include <player_housing.h>
 
 inherit "/std/lab";
 
@@ -14,7 +15,7 @@ void create()
     set_light(2);
     set_terrain(STONE_BUILDING);
     set_travel(PAVED_ROAD);
-    set_property("teleport proof", "/daemon/player_housing"->get_phouse_tp_proof("legendary"));
+    set_property("teleport proof", TPWARD_LEGENDARY);
     set_short("Mage Lab of the Alliance");
     set_long("%^CYAN%^BOLD%^Mage Lab of the Alliance%^RESET%^\n " +
              "%^BOLD%^This room looks like nothing you have ever seen " +

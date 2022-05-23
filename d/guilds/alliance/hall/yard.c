@@ -7,6 +7,7 @@
  */
 
 #include <std.h>
+#include <player_housing.h>
 
 inherit ROOM;
 
@@ -18,7 +19,7 @@ void create()
     set_travel(PAVED_ROAD);
     set_indoors(0);
     set_light(3);
-    set_property("teleport proof", "/daemon/player_housing"->get_phouse_tp_proof("legendary"));
+    set_property("teleport proof", TPWARD_LEGENDARY);
     set_short("At the Castle Courtyard");
     set_long("\n\
 %^CYAN%^Castle Courtyard%^RESET%^%^BOLD%^\n" +

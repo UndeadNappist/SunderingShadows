@@ -1,6 +1,7 @@
 // /d/guilds/alliance/treasure.c
 
 #include <std.h>
+#include <player_housing.h>
 
 inherit ROOM;
 
@@ -10,7 +11,7 @@ void create(){
    ::create();
    set_terrain(STONE_BUILDING);
    set_travel(PAVED_ROAD);
-   set_property("no teleport",1);
+   set_property("teleport proof", TPWARD_LEGENDARY);
    set_indoors(1);
    set_light(2);
    set_short("Treasure room");

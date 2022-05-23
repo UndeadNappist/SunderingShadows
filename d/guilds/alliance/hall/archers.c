@@ -1,6 +1,7 @@
 // /d/guilds/alliance/archers.c
 
 #include <std.h>
+#include <player_housing.h>
 
 inherit ROOM;
 
@@ -10,7 +11,7 @@ void create(){
    set_travel(PAVED_ROAD);
    set_indoors(0);
    set_light(2);
-   set_property("no teleport",1);
+   set_property("teleport proof", TPWARD_LEGENDARY);
    set_short("Castle tower");
    set_long(
 @DESC

@@ -1,6 +1,7 @@
 // /d/guilds/alliance/bridge.c
 
 #include <std.h>
+#include <player_housing.h>
 #include "../alliance.h"
 
 inherit VAULT;
@@ -14,7 +15,7 @@ void create()
     set_travel(PAVED_ROAD);
     set_terrain(VILLAGE);
     set_light(2);
-    set_property("teleport proof", "/daemon/player_housing"->get_phouse_tp_proof("legendary"));
+    set_property("teleport proof", TPWARD_LEGENDARY);
     set_short("On the Drawbridge");
     set_long("%^CYAN%^On the Drawbridge%^RESET%^\n%^BOLD%^%^WHITE%^You find yourself walking on a massive drawbridge that leads across the dark%^RESET%^ %^ORANGE%^moat%^RESET%^%^BOLD%^%^WHITE%^ that surrounds the castle. The drawbridge is made of strong oak reinforced with iron. On it you see a large symbol that looks like two gauntlets shaking hands.%^RESET%^");
     set_listen("default", "You hear many different sounds from within the castle but they still seem distant.");

@@ -1,6 +1,7 @@
 // /d/guilds/alliance/leaders.c
 
 #include <std.h>
+#include <player_housing.h>
 
 inherit "/std/guilds/members.c";
 
@@ -12,8 +13,7 @@ void create()
     set_travel(PAVED_ROAD);
     set_indoors(1);
     set_light(2);
-    //set_property("no teleport",1);
-    set_property("teleport proof", "/daemon/player_housing"->get_phouse_tp_proof("legendary"));
+    set_property("teleport proof", TPWARD_LEGENDARY);
     set_short("Leaders' Room");
     set_long("%^CYAN%^Leader's Room%^RESET%^\n" +
              "%^BOLD%^%^WHITE%^You appear in a large room, an old, round " +

@@ -1,6 +1,7 @@
 // /d/guilds/alliance/hall.c
 
 #include <std.h>
+#include <player_housing.h>
 
 inherit ROOM;
 
@@ -11,8 +12,7 @@ void create()
     set_travel(PAVED_ROAD);
     set_indoors(1);
     set_light(2);
-    //set_property("no teleport",1);
-set_property("teleport proof", "/daemon/player_housing"->get_phouse_tp_proof("legendary"));
+    set_property("teleport proof", TPWARD_LEGENDARY);
     set_short("Front hallway of the castle");
     set_long("%^CYAN%^Front hallway of the castle%^RESET%^\n " +
              "%^BOLD%^%^WHITE%^You are standing in the hallway inside the " +
