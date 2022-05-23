@@ -3279,7 +3279,7 @@ int check_avoidance(object who, object victim)
         tell_object(rider, "%^RESET%^%^BOLD%^You direct your steed out of harm's way!%^RESET%^");
 
         tell_room(EWHO, "%^RESET%^%^BOLD%^" + rider->query_cap_name() + " directs " + rider->query_possessive() +
-                  "steed out of harm's way!%^RESET%^", rider);
+                  " steed out of harm's way!%^RESET%^", rider);
         break;
 
     default: break;
