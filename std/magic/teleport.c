@@ -52,6 +52,9 @@ varargs int object_can_be_teleported(object teleportee, object destination, int 
     
     if((int)teleportee->query_property("judgement_piercing"))
         clevel += (int)teleportee->query_property("judgement_piercing");
+    
+    if(teleportee->query_property("teleport diminish") == destination)
+        clevel -= (min( ({ 10, clevel / 3 }) ));
 
     if (!noroll) {
         roll = roll_dice(1, 20);
@@ -65,6 +68,8 @@ varargs int object_can_be_teleported(object teleportee, object destination, int 
         }
 
         if (teleportee->query_property("teleport proof") && (teleportee->query_property("teleport proof") - 9 + random(20) > clevel)) {
+            teleportee->set_property("teleport diminish", destination);
+            call_out("shed_diminish_return", 30, teleportee);
             return 0;
         }
 
@@ -74,12 +79,19 @@ varargs int object_can_be_teleported(object teleportee, object destination, int 
             endpower = destination->query_property("teleport proof");
             if ((startpower && (clevel - 9 + random(20) < startpower)) ||
                 (endpower && (clevel - 9 + random(20) < endpower))) {
+                teleportee->set_property("teleport diminish", destination);
+                call_out("shed_diminish_return", 30, teleportee);
                 return 0;
             }
         }
     }
 
     return 1;
+}
+
+void shed_diminish_return(object person)
+{   
+    person->remove_property("teleport diminish");
 }
 
 /**

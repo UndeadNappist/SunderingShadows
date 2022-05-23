@@ -171,19 +171,14 @@ void spell_effect(int prof)
         dest_effect();
         return;
     }
+    
     if (where &&
         (where->query_property("teleport proof") ||
          place->query_property("teleport proof") ||
          !where->is_room())) {
         startpower = place->query_property("teleport proof");
         endpower = where->query_property("teleport proof");
-        bonus = caster->query_stats("wisdom");
-        bonus = bonus - 10;
-        if ((object*)caster->query_attackers() != ({})) {
-            mypower = CLEVEL + bonus + random(6);
-        }else {
-            mypower = CLEVEL + bonus + random(6) + 5;
-        }
+        mypower = CLEVEL + roll_dice(1, 20);
         if ((mypower < startpower) || (mypower < endpower)) {
             tell_object(CASTER, "Nothing happens.");
             dest_effect();
