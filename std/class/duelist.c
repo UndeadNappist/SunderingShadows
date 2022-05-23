@@ -197,7 +197,7 @@ mapping class_featmap(string myspec) {
     return ([ 1 : ({ "canny defense" }), 4 : ({ "artful precision" }), 7 : ({ "elaborate parry" }), ]);
 }
 
-string *class_skills(object ob) { return base_class_ob(ob)->class_skills(); }
+string *class_skills(object ob) { return base_class_ob(ob)->class_skills(ob); }
 
 int skill_points(object ob) { return base_class_ob(ob)->skill_points(); }
 

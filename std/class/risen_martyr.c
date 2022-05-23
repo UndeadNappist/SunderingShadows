@@ -206,7 +206,7 @@ mapping query_innate_spells(object player)
     return innate_spells;
 }
 
-string *class_skills(object ob) { return base_class_ob(ob)->class_skills(); }
+string *class_skills(object ob) { return base_class_ob(ob)->class_skills(ob); }
 
 int skill_points(object ob) { return base_class_ob(ob)->skill_points(); }
 

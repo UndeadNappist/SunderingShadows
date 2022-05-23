@@ -90,9 +90,9 @@ mapping class_featmap(string myspec) {
     return ([ 1 : ({ "wild shape dragon" }), 4 : ({ "natural fighting" }), 7 : ({ "perfect predator" }), ]);
 }
 
-string *class_skills()
+string *class_skills(object ob)
 {
-    return BASE_CLASS->class_skills();
+    return BASE_CLASS->class_skills(ob);
 }
 
 int skill_points() { return BASE_CLASS->skill_points(); }

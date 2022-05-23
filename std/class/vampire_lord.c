@@ -217,7 +217,7 @@ mapping class_featmap(string myspec)
 
 string* class_skills(object ob)
 {
-    return base_class_ob(ob)->class_skills();
+    return base_class_ob(ob)->class_skills(ob);
 }
 
 int skill_points(object ob)
