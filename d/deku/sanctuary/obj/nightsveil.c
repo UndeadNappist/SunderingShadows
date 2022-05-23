@@ -15,7 +15,7 @@ void create(){
 
 AVATAR
 	);
-	set_lore("Shadow Claws are a form of punching daggers favored by the thieves of Mask.  Claiming to have been formed from the shadows themselves, the Shadow Cloaks train in use of these exotic weapons.  It is considered a great honor for a member of any Thieves Guild to be given a pair of Shadow Claws by a Priest of Mask.  Many assassins within the Lord of Thieves' faith utalize the Shadow Claws.");
+	set_lore("Shadow Claws are a form of punching daggers favored by the thieves of Mask.  Claiming to have been formed from the shadows themselves, the Shadow Cloaks train in use of these exotic weapons.  It is considered a great honor for a member of any Thieves Guild to be given a pair of Shadow Claws by a Priest of Mask.  Many assassins within the Lord of Thieves' faith utilize the Shadow Claws.");
 	set_property("lore",13);
 	set_value(357);
 	set_property("enchantment",3+random(2));

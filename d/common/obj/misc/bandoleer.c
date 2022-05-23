@@ -13,8 +13,7 @@ void create() {
        "items.  The pouches have flaps that buckle, allowing "+
        "items up to about dagger size to be stored without being "+
        "lost - even if one is, say, climbing upside down!  The "+
-       "bandoleer can be cinched around the waist or thrown across "+
-       "the chest depending on which is more convenient at the time.");
+       "bandoleer can be cinched around the waist.");
     set_value(8);
     set_weight(3);
     set_max_internal_encumbrance(8);
