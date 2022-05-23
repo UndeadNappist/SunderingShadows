@@ -90,6 +90,11 @@ ob = new(OBJ"moon_plate");
 ob = new(OBJ"iron_knuckles");
     ob->move(TO);
     if(random(4)) ob->set_property("monsterweapon",1);
+
+ob = new(OBJ"tikelen_belt");
+    ob->move(TO);
+    if(random(4)) ob->set_property("monsterweapon",1);
+
 }
 
 void grab(object targ)
