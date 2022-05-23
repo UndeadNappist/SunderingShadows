@@ -923,6 +923,12 @@ int query_resistance_percent(string res)
     if (res == "fire" && TO->query_race() == "troll") {
             mod += -15;
     }
+    
+    if(this_object()->query_race() == "devil")
+    {
+        if(res == "fire")
+            mod += 50;
+    }
 
     if(FEATS_D->usable_feat(TO, "perfection"))
     {
