@@ -3,6 +3,8 @@
 
 inherit WEAPONLESS;
 
+object ob;
+
 void init() {
     ::init();
     if(TP->query_true_invis())   return;
@@ -37,10 +39,10 @@ void create() {
     set_class("fighter");
     set_mlevel("fighter", 40);
     set_hd(40,5);
-    set_max_hp(1800 + random(501));
-    set_new_exp(25,"boss");
+    set_max_hp(600+random(100));
     set_hp(query_max_hp());
-    set_overall_ac(-10);
+    set_exp(20000);
+     set_overall_ac(-10);
     add_limb("left wing","left wing",100,1,6);
     add_limb("right wing","right wing",100,1,6);
     add_limb("barbed tail", "barbed tail",50,1,8);
@@ -50,7 +52,7 @@ void create() {
     set_attacks_num(5);
     set_property("no bows",1);
     set_attack_limbs( ({"barbed tail", "right talon", "left talon", "fangs", "right wing", "left wing"}) );
-    set_base_damage_type("slashing");
+    //set_nat_weapon_type("slashing");
    set_damage(8,4);
     set_property("swarm",1);
     set_stats("strength",21);
@@ -59,41 +61,52 @@ void create() {
     set_stats("intelligence", 12);
     set_stats("wisdom", 12);
     set_stats("charisma", 10);
-       new(OBJ"doubletflames")->move(TO);
-       new(OBJ"flesh_dagger")->move(TO);
-       new(OBJ"stormshatter")->move(TO);
-       command("wield dagger");
-     command("wear doublet");
-    set("aggressive", 20);
-    set_mob_magic_resistance("average");
+    set_property("hidden inventory", 1);
+
+//random gear drop
+	
+    ob = new(OBJ"doubletflames");
+    ob->move(TO);
+    if(random(4)) ob->set_property("monsterweapon",1);
+
+    ob = new(OBJ"flesh_dagger.c");
+    ob->move(TO);
+    if(random(4)) ob->set_property("monsterweapon",1);
+
+    ob = new(OBJ"calm_reaper");
+    ob->move(TO);
+    if(random(4)) ob->set_property("monsterweapon",1);
+	
+    ob = new("/d/deku/armours/ring_p.c");
+    ob->set_property("enchantment", 4);
+    ob->move(TO);
+    if(random(4)) ob->set_property("monsterweapon",1);
+	
+    ob = new(OBJ"stormshatter");
+    ob->move(TO);
+    if(random(4)) ob->set_property("monsterweapon",1);	
+	
+	
+    set("aggressive", 25);
+	
+    set_property("magic resistance", 60);
     set_funcs( ({"rip", "heal_up"}) );
     set_func_chance(40);
     set_alignment(9);
     add_money("gold", random(2500));
     add_money("silver", random(2500));
-    ob = new("/d/deku/armours/ring_p.c");
-    ob->set_property("enchantment", 3);
-    ob->move(TO);
-command("wear ring");
+
     set_emotes(2, ({
 	"%^RED%^Ahstuz raises his arms to the air and roars at the top of his lungs!%^RESET%^",
 	"%^BLUE%^Ahstuz stares deep into your soul.%^RESET%^",
-	"%^BOLD%^%^RED%^Ahstuz dives at you, trying to rip your head from your shoulders!%^RESET%^",
+	"%^BOLD%^%^RED%^Ahstuz dives at you, trying to rip your hear from your shoulders!%^RESET%^",
       }),1);
-     ob = new("/d/common/obj/brewing/herb_special_inherit");
-     ob->set_herb_name("patch of demonskin");
-     ob->move(TO);
-    set_resistance("electricity",20);
-    set_resistance("acid",10);
-    set_resistance("cold",10);
-    set_resistance("fire",10);
 }
 
 void die(object ob) {
     int i;
     object *att;
 
-    if(ETO->query("alternative world")) { return ::die(ob); }
     ETO->lockdown();
     tell_room(ETO, "%^BOLD%^%^RED%^Ahstuz screams in pain as his "+
        "wounds bleed glowing red blood.\nAhstuz drops to his knees "+
@@ -114,7 +127,7 @@ void die(object ob) {
     att = all_living(ETO);
     for(i=0;i<sizeof(att);i++){
       if(!interactive(att[i])) continue;
-      att[i]->set_mini_quest("Ogre Hordes", 1000000,"You defeated Ahstuz, "+
+      att[i]->set_mini_quest("Ogre Hordes", 20000,"You defeated Ahstuz, "+
          "and sealed the Gate to Hell, freeing the souls of the Ogres.");
       tell_object(att[i], "%^BOLD%^%^BLUE%^   You have sealed the gate to "+
          "Hell, and have freed the souls of the ogres, so that some day "+
@@ -138,12 +151,11 @@ void rip(object targ){
          "away ripping a large chunk from "+targ->QP+" neck!");
 	targ->add_poisoning(20);
 	targ->do_damage(targ->return_target_limb(), roll_dice(10,15));
-	targ->set_paralyzed(roll_dice(1,8), "You are stuck in the great jaws of the demon!");
+	targ->set_paralyzed(50, "You are stuck in the great jaws of the demon!");
     } else {
 	tell_room(environment(targ), "%^BOLD%^%^RED%^Ahstuz raises his arms "+
          "to the air and roars at the top of his lungs!%^RESET%^");
-    if(!targ->will_save(query_level()))
-        "/std/effect/status/panicked"->apply_effect(targ,roll_dice(1,6));
+	targ->set_paralyzed(20, "Ahstuz's roar has frozen you in your fear!");
     }
 }
 
@@ -152,7 +164,7 @@ void heal_up(object targ){
 
     tell_object(targ, "%^BOLD%^Ahstuz stares you in the eyes, and you can "+
        "feel him trying to pull your soul from you!");
-    dam = roll_dice(3,20);
+    dam = roll_dice(4,20);
     targ->do_damage("torso", dam);
     TO->heal(dam);
     return;
