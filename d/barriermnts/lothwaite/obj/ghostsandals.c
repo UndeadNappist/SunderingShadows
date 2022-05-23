@@ -48,14 +48,14 @@ void create() {
 
 int wearme(){
    if((string)ETO->query_name() == "firbolg ghost") return 1;
-   if((string)ETO->query_gender() == "male"){
+   /*if((string)ETO->query_gender() == "male"){
       tell_object(ETO,"%^ORANGE%^You fumble with the leather "+
          "thongs and cannot get them on.  How the hell do "+
          "women wear these things?");
       tell_room(EETO,"%^ORANGE%^You can't help but laugh as "+
          ""+ETOQCN+" fumbles with the thongs of the sandals.",ETO);
       return 0;
-   }
+   }*/
    if((int)ETO->query_lowest_level() < 20){
       tell_object(ETO,"%^YELLOW%^The golden sandals are too fine "+
          "for your feet!");
@@ -64,7 +64,7 @@ int wearme(){
    tell_object(ETO,"%^YELLOW%^You tie the leather thongs up your "+
       "calves and feel dainty and beautiful.");
    tell_room(EETO,"%^YELLOW%^"+ETOQCN+" ties the leather thongs "+
-      "up her calves, enhancing the beauty of her legs.",ETO);
+      "up their calves, enhancing the beauty of their legs.",ETO);
    if((int)ETO->query_lowest_level() > 24) set_item_bonus("charisma",1);
    else set_item_bonus("charisma",0);
    return 1;

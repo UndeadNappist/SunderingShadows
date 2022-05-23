@@ -443,7 +443,7 @@ void reply_func(string msg, object speaker){
         }
         people[i]->set_mini_quest("Knows of the Heart of the Jungle",10000000,"%^BOLD%^Knows of the Heart of the Jungle!");
       }
-      call_out("destroy_crystal2",2);
+      call_out("destroy_crystal2",2, speaker);
     }
     return; 
   }

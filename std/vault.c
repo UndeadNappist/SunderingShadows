@@ -937,7 +937,7 @@ int PickLock(string str)
             level = TP->query_level();
             score = random(99);
             if (score > (level + TP->query_stats("wisdom"))) {
-                ob2 = present("tools", TP);
+                ob2 = present("thief toolx", TP);
                 tell_object(TP, "You break your tools!");
                 ob2->break_picks();
                 return 1;
