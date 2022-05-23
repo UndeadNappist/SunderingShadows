@@ -422,8 +422,13 @@ int query_skill(string skill)
                 x += 3;
             break;
             
-            case "peacock":
+            case "peacock": case "viper":
             if(skill == "influence")
+                x += 3;
+            break;
+            
+            case "raven":
+            if(skill == "academics")
                 x += 3;
             break;
         }

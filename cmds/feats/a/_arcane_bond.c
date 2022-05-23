@@ -22,8 +22,11 @@ mapping valid_types = ([
                          "monkey"        :    ({  3, 15, 10, 2, 12,  5, 1, 14,  }), //+3 Athletics
                          "owl"           :    ({  6, 17, 11, 2, 15,  6, 1, 15,  }), //+3 Perception
                          "raccoon"       :    ({  8, 15, 11, 2, 16,  5, 1, 15,  }), //+3 Thievery
+                         "raven"         :    ({  4, 15,  8, 2, 15,  7, 1, 14,  }), //+3 Academics
                          "hedgehog"      :    ({  1, 16,  6, 2, 12,  7, 1, 18,  }), //+2 Will Save
                          "peacock"       :    ({  7, 12, 10, 2,  6, 13, 1, 12,  }), //+3 Influence
+                         "viper"         :    ({  4, 17,  8, 2, 13,  2, 1, 16,  }), //+3 Influence
+                         "weasel"        :    ({  3, 15, 10, 2, 12,  5, 1, 15,  }), //+2 Reflex Save
                        ]);
 
 object companion;
@@ -49,6 +52,9 @@ The available familiars are as follows, along with their passive benefits:
 %^CYAN%^BOLD%^ Owl       %^RESET%^: +3 Perception
 %^CYAN%^BOLD%^ Peacock   %^RESET%^: +3 Influence
 %^CYAN%^BOLD%^ Raccoon   %^RESET%^: +3 Thievery
+%^CYAN%^BOLD%^ Raven     %^RESET%^: +3 Academics
+%^CYAN%^BOLD%^ Viper     %^RESET%^: +3 Influence
+%^CYAN%^BOLD%^ Weasel    %^RESET%^: +2 Reflex Save
 
 The Familiar will hide if you use the 'hide_in_shadows' command, allowing you to effectively sneak about with your faithful friend. It will also go invisible with you.
 
