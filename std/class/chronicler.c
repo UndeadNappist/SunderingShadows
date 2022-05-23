@@ -95,9 +95,9 @@ mapping class_featmap(string myspec)
     return ([ 1 : ({ "live to tell the tale" }), 4 : ({ "epic tales" }), 7 : ({ "lay of the exalted dead" }), ]);
 }
 
-string *class_skills()
+string *class_skills(object ob)
 {
-    return BASE_CLASS->class_skills();
+    return BASE_CLASS->class_skills(ob);
 }
 
 int skill_points() { return BASE_CLASS->skill_points(); }
