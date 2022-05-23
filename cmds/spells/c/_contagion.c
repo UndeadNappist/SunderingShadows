@@ -55,17 +55,16 @@ void spell_effect()
         return;
     }
 
-    tell_object(caster,"%^BOLD%^%^GREEN%^You glance at " + target->QCN + ", cursing them with the disease.");
-    tell_room(place, "%^BOLD%^" + caster->QCN + " glances at " + target->QCN + ".");
-
     disease = dfile->infect(target, clevel);
     if (objectp(disease)) {
+        tell_object(caster,"%^BOLD%^%^GREEN%^You glance at " + target->QCN + ", cursing them with " + disease->query_name() + ".");
+        tell_room(place, "%^BOLD%^" + caster->QCN + " glances at " + target->QCN + ".", caster);
         if (query_forced_infection()) {
             disease->set_force_fail();
         }
         disease->advance_disease();
     } else {
-        tell_object(caster,"%^BOLD%^%^GREEN%^You sense your curse had been repelled.");
+        tell_object(caster,"%^BOLD%^%^GREEN%^You sense your " + disease->query_name() + " has been repelled.");
     }
 
     spell_successful();

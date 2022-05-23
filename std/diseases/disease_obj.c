@@ -156,9 +156,21 @@ object infect(object victim, int dc)
     }
 
     diseases = filter_array(all_inventory(victim), (:$1->is_disease():));
+    
+    foreach(object ob in diseases)
+    {
+        if(ob->query_name() == this_object()->query_name())
+        {
+            destruct(this_object());
+            return 0;
+        }
+    }
+    
+    /*
     if (sizeof(diseases)) {
         return 0;
     }
+    */
 
     tmp = new(file_name(TO));
     tmp->move(victim);
