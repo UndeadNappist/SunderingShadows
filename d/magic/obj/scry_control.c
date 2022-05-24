@@ -187,7 +187,7 @@ int scry(string str)
     string targ, real, msg;
     mapping map;
     string* map_keys;
-    int i, matches;
+    int i, matches, room_block;
     object blockobj;
 
     if (spellused) {
@@ -277,7 +277,9 @@ int scry(string str)
             }
         }
         */
-        if(!target->scry_check(observer, query_scry_power()))
+        room_block = max( ({ target->query_property("scry proof"), target->query_property("scry block power") }) );
+        
+        if(room_block + 10 > query_scry_power() + roll_dice(1, 20))
         {
             tell_object(this_player(), "%^BOLD%^RED%^There appears to be interference blocking your scrying attempt!%^RESET%^");
             dest_me();
