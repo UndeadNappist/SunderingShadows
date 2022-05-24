@@ -14,8 +14,8 @@ void create(){
     set_long("This is a large box meant to contain a miscellaneous collection of items.");
     set_max_internal_encumbrance(500);
     set_weight(1000000);
-	set_value(0);
-	set_property("no animate",1);
+    set_value(0);
+    set_property("no animate",1);
 }
 
 void setup_wardrobe(string location){
@@ -36,7 +36,7 @@ void save_wardrobe(){
     if(!objectp(environment(storage))) return;
 
     mkdir("/d/save/storage");
-    mkdir(fname);
+    mkdir(filename);
     "/daemon/yuck_d"->save_inventory(storage, filename);
 }
 
