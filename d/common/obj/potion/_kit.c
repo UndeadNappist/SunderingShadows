@@ -254,6 +254,9 @@ void toggle() {
 
 void init() {
   ::init();
+  
+  if(!living(this_player()))
+      return;
 
   if(TP == ETO) {
     add_action("split","take");

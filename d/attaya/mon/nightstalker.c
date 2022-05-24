@@ -105,6 +105,10 @@ void init()
 {
     string mrace;
     if(!objectp(TO) || !objectp(TP)) return;
+    
+    if(!living(this_player()))
+        return;
+    
     mrace = TP->query_race();
    ::init();
    if(!objectp(TO)) return;
@@ -117,8 +121,25 @@ void init()
    command("say %^RED%^Ancient spirits of the Kinnesaruda...guide "+
       "my hand in vengeance against this invader!%^RESET%^");
    command("say %^RED%^ Death to all who oppose us!%^RESET%^");
-   if(objectp(TP)) command("stab "+TPQN);
-   if(objectp(TO) && objectp(TP)) { TO->force_me("crit "+TPQN); }
+   
+   if(objectp(this_player()))
+   {
+       call_out("greet_me", 1, this_player());
+   }
+   //if(objectp(TP)) command("stab "+TPQN);
+   //if(objectp(TO) && objectp(TP)) { TO->force_me("crit "+TPQN); }
+}
+
+void greet_me(object who)
+{
+    if(!living(who))
+        return;
+    
+    if(!living(this_object()))
+        return;
+    
+    command("stab " + who->query_name());
+    command("crit " + who->query_name());
 }
 
 void die(object ob){

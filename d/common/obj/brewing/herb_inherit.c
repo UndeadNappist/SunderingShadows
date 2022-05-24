@@ -18,6 +18,10 @@ void create(){
 
 void init(){
    ::init();
+   
+   if(!living(this_player()))
+       return;
+   
    add_action("use_em","use");
 }
 
