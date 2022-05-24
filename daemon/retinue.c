@@ -23,13 +23,13 @@ void init_knights(object player){
 
     for (i=0;i<sizeof(names);i++) {
         info = retainers[names[i]];
-        player->set_retinue_follower(info["name"],info["class"], info["level"], info["race"]);
+        player->set_retinue_follower(info["name"],info["class"], min( ({ info["level"], 50 }) ), info["race"]);
     }
     count -= sizeof(names);
     for (i=0;i<count;i++) {
         tobe = CLASSES[random(sizeof(CLASSES))];
         level = influence/2 + random(influence/2);
-        player->set_retinue_follower("daemon/names"->getName(), tobe, level, (string)player->query_race());
+        player->set_retinue_follower("daemon/names"->getName(), tobe, min( ({ level, 50 }) ), (string)player->query_race());
     }
 
     player->set_retinue_level(influence);
