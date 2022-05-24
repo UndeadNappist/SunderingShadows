@@ -81,7 +81,7 @@ object makeFollower(mapping map){
     name = map["name"];
     c = map["class"];
     race = map["race"];
-    level = map["level"];
+    level = min( ({ map["level"], 50 }) );
     switch(c){
     case "fighter":
         follower = new ( FIGHTER);
