@@ -50,10 +50,10 @@ void create(){
                    ]));
     add_invis_exit("grate");
     add_pre_exit_function("grate", "GoThroughDoor");
-    set_door("cell door",CELL,"cell","Shadow jail key","lock");
+    set_door("cell door",CELL,"cell","Shadow_jail_key_x","lock");
     set_open("cell door",0);
     set_locked("cell door", 1, "lock");
-    lock_difficulty("cell door",-90, "lock");
+    lock_difficulty("cell door", 90, "lock");
     set_lock_description("cell door", "lock",
                          "This lock is sandwiched between two very heavy "
                          "metal plates to prevent tampering.  The mechanism appears to be "

@@ -36,10 +36,10 @@ void create()
     set_pre_exit_functions(({ "window", "grate" }), ({
         "GoThroughDoor", "GoThroughDoor"
     }));
-    set_door("cell door", JAILMAIN, "up", "Shadow jail key");
+    set_door("cell door", JAILMAIN, "up", "Shadow_jail_key_x");
     set_open("cell door", 0);
     set_locked("cell door", 1);
-    lock_difficulty("cell door", -90);
+    lock_difficulty("cell door", 90);
     set_door_description("cell door", "This is a door made of three inch "
                          "thick oaken boards.  It has a section cut out and replaced with a "
                          "grate of inch diameter iron bars so that some air can still get to "
