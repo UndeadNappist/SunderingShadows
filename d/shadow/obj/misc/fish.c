@@ -2,7 +2,7 @@
 #include <std.h>
 inherit "/std/food";
 
-#define FISH ([ "brim":2, "mackeral":3, "blue fish":5, "trout":10, "flounder":12, "bass":15 ])
+#define FISH ([ "brim":2, "mackerel":3, "blue fish":5, "trout":10, "flounder":12, "bass":15 ])
 
 void create() {
 int i;

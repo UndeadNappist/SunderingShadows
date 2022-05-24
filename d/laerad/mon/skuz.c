@@ -11,7 +11,7 @@ void create(){
 	"Perhaps the most feared of undead creatures, this monster "+
 	"radiates pure negative energy. The thing appears as a slimy, "+
 	"filmy coated pool of water. The beast is able to manipulate "+
-	"its body into humaniod form making it easier to %^BOLD%^RED%^ "+
+	"its body into humanoid form making it easier to %^BOLD%^RED%^"+
 	"DESTROY%^RESET%^ those foolish enough to get near it!"
     );
     set_body_type("undead");

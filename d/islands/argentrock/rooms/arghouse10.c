@@ -19,7 +19,7 @@ void create() {
    set_property("light",-2);
    set_property("no teleport",1);
    set_listen("default","This room is extraordinarily quiet and peace.");
-   set_smell("default","Smells of burnt candles fills your nosetrils.");
+   set_smell("default","Smells of burnt candles fill your nostrils.");
     set_items( (["candle sticks":"On each candle stick there is a small "+
       "black candle with burnt candlewick resting on it.",
        "altar": (: TO,"alt_desc" :),

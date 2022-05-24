@@ -10,7 +10,7 @@ void create() {
    set_travel(DIRT_ROAD);
     set("short","%^BOLD%^%^RED%^The bedroom");
     set("long","%^BOLD%^%^RED%^The bedroom
-%^RESET%^%^CYAN%^This is a bedroom. A simple %^ORANGE%^bed%^CYAN%^ with teak frames is sitting in here against the wall. A small desk and a %^ORANGE%^ch%^BOLD%^%^ORANGE%^a%^RESET%^%^ORANGE%^ir%^CYAN%^ are located beneath the %^BOLD%^%^BLUE%^w%^CYAN%^in%^BLUE%^d%^BLUE%^o%^CYAN%^w.%^RESET%^%^CYAN%^ A %^CYAN%^m%^BLUE%^ir%^CYAN%^r%^BLUE%^or%^CYAN%^ stands on the opposite of the bed. Two %^ORANGE%^ca%^BOLD%^%^ORANGE%^n%^RESET%^%^ORANGE%^delstic%^BOLD%^%^ORANGE%^k%^RESET%^%^ORANGE%^s%^CYAN%^ with a black %^BOLD%^%^BLACK%^ca%^BLACK%^n%^BLACK%^dle%^RESET%^%^CYAN%^ on each one light up the room. Everything in this room is so tidy and clean. It is so ordered like no one has ever slept in here.%^RESET%^
+%^RESET%^%^CYAN%^This is a bedroom. A simple %^ORANGE%^bed%^CYAN%^ with teak frames is sitting in here against the wall. A small desk and a %^ORANGE%^ch%^BOLD%^%^ORANGE%^a%^RESET%^%^ORANGE%^ir%^CYAN%^ are located beneath the %^BOLD%^%^BLUE%^w%^CYAN%^in%^BLUE%^d%^BLUE%^o%^CYAN%^w.%^RESET%^%^CYAN%^ A %^CYAN%^m%^BLUE%^ir%^CYAN%^r%^BLUE%^or%^CYAN%^ stands on the opposite of the bed. Two %^ORANGE%^ca%^BOLD%^%^ORANGE%^n%^RESET%^%^ORANGE%^dlestic%^BOLD%^%^ORANGE%^k%^RESET%^%^ORANGE%^s%^CYAN%^ with a black %^BOLD%^%^BLACK%^ca%^BLACK%^n%^BLACK%^dle%^RESET%^%^CYAN%^ on each one light up the room. Everything in this room is so tidy and clean. It is so ordered like no one has ever slept in here.%^RESET%^
 ");
    set_property("indoors",1);
     set_property("no teleport",1);

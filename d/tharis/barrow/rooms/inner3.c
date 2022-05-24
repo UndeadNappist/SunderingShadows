@@ -88,7 +88,7 @@ int tell_func(string str) {
         "friends ever again if you stay in here! Muahhaha!!!"
     ); 
     tell_room(TO,
-        ""+TPQCN+" gets a concerned and twisted look on his "
+        ""+TPQCN+" gets a concerned and twisted look on their "
         "face."
     );
     return 1;

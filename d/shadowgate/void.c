@@ -97,9 +97,12 @@ void clean_inventory()
             handle_player_object(ob);
             continue;
         }
-        ob->remove();
+        if(catch(ob->remove()))
+            continue;
+        
         if (objectp(ob)) {
-            destruct(ob);
+            if(catch(destruct(ob)))
+                continue;
         }
         continue;
     }

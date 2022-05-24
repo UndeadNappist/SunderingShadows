@@ -18,7 +18,7 @@ void create() {
     set_spell_level(([ "psion" : 5,  ]));
     set_spell_sphere("clairsentience");
     set_syntax("cast CLASS pierce the veils");
-    set_description("This power will allow you to see things as they truly are. It will allow you to see through magical invisibility and concealment. It will negate the effects of blindness on yourself, and the effects of blurred movement, discplacement and similar effects on opponents. Note: This spell does not negate non-magical hiding effects, such as hide in shadows.");
+    set_description("This power will allow you to see things as they truly are. It will allow you to see through magical invisibility and concealment. It will negate the effects of blindness on yourself, and the effects of blurred movement, displacement and similar effects on opponents. Note: This spell does not negate non-magical hiding effects, such as hide in shadows.");
     set_verbal_comp();
     set_somatic_comp();
 	set_helpful_spell(1);

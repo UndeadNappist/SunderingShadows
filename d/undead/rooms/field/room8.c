@@ -22,10 +22,7 @@ void create()
         "sight probably brings Kartakass great pleasure, but it just makes "
         "you sick to your stomach.  You are now between two archer towers and "
         "you see the gates to the city of Graez to your west. The guards call "
-        "to you to hurry through the gates before you get hurt.  You are now "
-        "between two archer towers and you see the gates to the city of Graez "
-        "to your west. The guards call to you to hurry through the gates before "
-        "you get hurt.");
+        "to you to hurry through the gates before you get hurt.");
 
     set_exits(([
         "west"      :TOWN+"street8",
