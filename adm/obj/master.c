@@ -412,6 +412,9 @@ string make_path_absolute(string file)
 }
 
 int player_exists(string str) {
+    if(!stringp(str) || !strlen(str))
+        return 0;
+    
     return file_exists(DIR_USERS+"/"+str[0..0]+"/"+str+".o");
 }
 
