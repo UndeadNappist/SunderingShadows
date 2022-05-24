@@ -150,6 +150,9 @@ int is_diminished_scrier(string person)
     if(!stringp(person))
         return 0;
     
+    if(!pointerp(diminished_scriers))
+        return 0;
+    
     if(member_array(person, diminished_scriers) < 0)
         return 0;
     
