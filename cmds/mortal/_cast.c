@@ -339,7 +339,7 @@ cast [cleric] %^ORANGE%^%^ULINE%^SPELL%^RESET%^ as healing|harming on %^ORANGE%^
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-Ivokes %^ORANGE%^%^ULINE%^SPELL%^RESET%^ using character's %^ORANGE%^%^ULINE%^CLASS%^RESET%^. If %^ORANGE%^%^ULINE%^CLASS%^RESET%^ is ommited uses currently posed class you can change with %^ORANGE%^<pose>%^RESET%^. If you're single class character, uses your only class.
+Ivokes %^ORANGE%^%^ULINE%^SPELL%^RESET%^ using character's %^ORANGE%^%^ULINE%^CLASS%^RESET%^. If %^ORANGE%^%^ULINE%^CLASS%^RESET%^ is ommited uses currently d class you can change with %^ORANGE%^<pose>%^RESET%^. If you're single class character, uses your only class.
 
 A %^ORANGE%^%^ULINE%^SPELL%^RESET%^ might or might not have arguments. A %^ORANGE%^%^ULINE%^SPELL%^RESET%^ might be its quick name referenced in the helpfile. Don't use spell quick names in aliases as they change as new spells get added.
 
@@ -355,7 +355,7 @@ For example, to cast prepared 'succor' spell as plant domain spell of the same l
 
   %^ORANGE%^<cast cleric succor as plant domain>%^RESET%^
 
-If the domain spell has target, it has to be applied eiter in the end of cast string or in the beginning. In next example fire domain cleric will cast succor as fire domain spell elemental swarm on goblin:
+If the domain spell has target, it has to be applied either in the end of cast string or in the beginning. In next example fire domain cleric will cast succor as fire domain spell elemental swarm on goblin:
 
   %^ORANGE%^<cast cleric succor as fire domain on goblin>%^RESET%^
 
