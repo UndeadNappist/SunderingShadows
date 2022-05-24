@@ -79,7 +79,7 @@ void execute_attack()
         
         poison = new("/d/common/obj/poisons/base/arsenic");
         poison->set_poison_dc(query_spell_DC(ob, 0));
-        POISON_D->apply_poison(ob, poison, caster, "inhaled");
+        POISON_D->ApplyPoison(ob, poison, caster, "inhaled");
         spell_kill(ob, caster);
     }
         

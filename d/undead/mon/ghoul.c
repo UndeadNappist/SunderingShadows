@@ -11,8 +11,8 @@ void create()
     set_name("ghoul");
     set_short("%^RESET%^%^RED%^Ghoul%^RESET%^");
     set_long("This is one of the many warriors captured from the Army of"
-        "Light, and corrupted by the Master into his slave. Fed off"
-        "the blood of their Master they fight with an uncanny strength.");
+        " Light, and corrupted by the Master into his slave. Fed off"
+        " the blood of their Master they fight with an uncanny strength.");
     set_race("undead");
     set_body_type("human");
     set_gender("male");

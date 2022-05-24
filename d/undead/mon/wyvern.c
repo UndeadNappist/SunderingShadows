@@ -49,7 +49,7 @@ void create()
     set_stats("constitution",17);
     set("aggressive","aggfunc");
     set_alignment(7);
-    set_emotes(6, ({"%^RED%^The Wyvern %^RESET%^%^BOLD%^*SREECHES*%^RESET%^%^RED%^ with berserk %^BOLD%^FURY%^RESET%^%^RED%^!",
+    set_emotes(6, ({"%^RED%^The Wyvern %^RESET%^%^BOLD%^*SCREECHES*%^RESET%^%^RED%^ with a berserk %^BOLD%^FURY%^RESET%^%^RED%^!",
         "%^YELLOW%^The Wyvern stares at you through its %^RED%^glowing red%^RESET%^%^YELLOW%^ eyes!", }),1);
     set_hit_funcs((["tail":(:TO,"venom":)]));
     set_speed(60);
@@ -74,7 +74,7 @@ void aggfunc()
 {
     if(TP->query_true_invis()) { return; }
     TO->kill_ob(TP,1);
-    tell_room(ETO,"%^BOLD%^Wyvern %^YELLOW%^screeches%^RESET%^%^BOLD%^ loudy and lunges "
+    tell_room(ETO,"%^BOLD%^Wyvern %^YELLOW%^screeches%^RESET%^%^BOLD%^ loudly and lunges "
         "for "+TP->QCN+"!%^RESET%^",TP);
     tell_object(TP,"%^BOLD%^Wyvern %^YELLOW%^screeches%^RESET%^%^BOLD%^ loudly and lunges "
         "for you!%^RESET%^");

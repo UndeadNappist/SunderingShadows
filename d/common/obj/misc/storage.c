@@ -11,14 +11,11 @@ void create(){
     set_name("storage");
     set_id(({"storage"}));
     set_short("storage");
-    set_open_long("This is a large box meant to contain a miscellaneous collection of items.");
-    set_closed_long(this_object()->query_open_long_desc()+"\nIt is currently closed.");
+    set_long("This is a large box meant to contain a miscellaneous collection of items.");
     set_max_internal_encumbrance(500);
     set_weight(1000000);
     set_value(0);
     set_property("no animate",1);
-    set_possible_to_close(1);
-    set_closed(1);
 }
 
 void setup_wardrobe(string location){
