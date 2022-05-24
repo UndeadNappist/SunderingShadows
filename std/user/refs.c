@@ -16,28 +16,28 @@ mapping get_refs()
     return (refs ? copy(refs) : ([]));
 }
 
-void set_ref(string ref, mixed value)
+void set_ref(string target_ref, mixed value)
 {
     if (!refs) {
         refs = ([]);
     }
-    if (!ref) {
-        ref = "default";
+    if (!target_ref) {
+        target_ref = "default";
     }
     if (undefinedp(value)) {
-        map_delete(refs, ref);
+        map_delete(refs, target_ref);
     }else {
-        refs[ref] = value;
+        refs[target_ref] = value;
     }
 }
 
-mixed get_ref(string ref)
+mixed get_ref(string target_ref)
 {
     if (!refs) {
         refs = ([]);
     }
-    if (!ref) {
-        ref = "default";
+    if (!target_ref) {
+        target_ref = "default";
     }
-    return refs[ref];
+    return refs[target_ref];
 }
