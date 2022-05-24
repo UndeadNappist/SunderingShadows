@@ -749,6 +749,9 @@ int query_resistance(string res)
         }
     }
 
+    if(!stringp(myrace) || !strlen(myrace))
+        myrace = "none";
+    
     if(strsrch(myrace, "genasi") >= 0)
     {
         switch(myrace)

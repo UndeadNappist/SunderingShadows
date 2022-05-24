@@ -2215,7 +2215,7 @@ void check_fizzle(object ob)
 
     caster->removeAdminBlock();
     if (prof >= FULL_EFFECT) {
-        TO->spell_effect(prof);
+        objectp(this_object()) && TO->spell_effect(prof);
     } else if (prof < random(100)) {
         TO->do_spell_blowup(prof);
     } else {
