@@ -7,8 +7,8 @@
 //This is a spot scry check
 int scry_check(object scryer, int power)
 {
-    object room, block_spell;
-    int block_power, room_block, detect_power, false_vision, result, piercing;
+    object room, block_spell, scry_spell;
+    int block_power, room_block, detect_power, false_vision, result, piercing, diminish;
     
     if(!objectp(this_object()) || !objectp(scryer) || !power)
         return 0;
@@ -24,6 +24,14 @@ int scry_check(object scryer, int power)
     if(this_object()->query_property("block scrying"))
         return 0;
     
+    scry_spell = previous_object();
+    
+    if(scry_spell->is_spell())
+    {
+        diminish = this_object()->is_diminish_return(scry_spell->query_spell_name(), scryer);        
+        power -= (diminish * 5);
+    }
+        
     detect_power = this_object()->query_property("scry detect power");
     false_vision = this_object()->query_property("false vision");
     room_block = max( ({ room->query_property("scry proof"), room->query_property("scry block power") }) );
@@ -57,7 +65,11 @@ int scry_check(object scryer, int power)
     //tell_object(find_player("tlaloc"), "BLOCK_POWER : " + block_power);
     //tell_object(find_player("tlaloc"), "POWER       : " + power);    
     if(block_power + 10 >= power + roll_dice(1, 20) + piercing)
+    {
+        if(scry_spell->is_spell())
+            this_object()->add_diminish_return(scry_spell->query_spell_name(), scryer);
         return 0;
+    }
     
     return 1;
 }

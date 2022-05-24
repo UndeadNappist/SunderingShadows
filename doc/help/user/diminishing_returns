@@ -4,4 +4,8 @@ Some spell help files will denote that they %^RED%^BOLD%^have diminishing return
 
 The diminishing returns are unique to the target and caster.
 
-Diminishing returns are only present on spells that denote that they have diminishing returns. This is meant to keep spam casting of certain spells to a minimum.
+Scry spells, inherently, have diminishing returns when failing a scry check against the target's scry ward. The same rules apply to scry spells as apply to the diminishing returns spells above.
+
+Teleport spells have their own type of diminishing return. When a teleport fails, specifically, against a teleport ward, the caster has diminished potency against that ward for the next 30 minutes.
+
+These listed types of spells, in the past, have made things like teleport wards and scry wards worthless because of the ability of the teleporter or scryer to continuously cast to overcome them. This is meant to keep spam casting of certain spells to a minimum.
