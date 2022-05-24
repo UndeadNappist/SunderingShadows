@@ -4,6 +4,8 @@
   -- Tlaloc --
 */
 
+string *diminished_scriers = ({  });
+
 //This is a spot scry check
 int scry_check(object scryer, int power)
 {
@@ -26,11 +28,8 @@ int scry_check(object scryer, int power)
     
     scry_spell = previous_object();
     
-    if(scry_spell->is_spell())
-    {
-        diminish = this_object()->is_diminish_return(scry_spell->query_spell_name(), scryer);        
-        power -= (diminish * 5);
-    }
+    if(is_diminished_scrier(scryer->query_name()))     
+        power -= 10;
         
     detect_power = this_object()->query_property("scry detect power");
     false_vision = this_object()->query_property("false vision");
@@ -66,8 +65,7 @@ int scry_check(object scryer, int power)
     //tell_object(find_player("tlaloc"), "POWER       : " + power);    
     if(block_power + 10 >= power + roll_dice(1, 20) + piercing)
     {
-        if(scry_spell->is_spell())
-            this_object()->add_diminish_return(scry_spell->query_spell_name(), scryer);
+        add_diminished_scryer(scryer->query_name());
         return 0;
     }
     
@@ -145,4 +143,55 @@ void reverse_look_room(object detector)
         tell_object(detector, "%^WHITE%^BOLD%^[S] %^RED%^"+ob->query_short());
     }
     return;
+}
+
+int is_diminished_scrier(string person)
+{
+    if(!stringp(person))
+        return 0;
+    
+    if(member_array(person, diminished_scriers) < 0)
+        return 0;
+    
+    return 1;
+}
+    
+int add_diminished_scrier(string person)
+{
+    if(!stringp(person))
+        return 0;
+    
+    if(!find_player(person))
+        return 0;
+
+    if(is_diminished_scrier(person))
+    {
+        remove_call_out("shed_diminish_return");
+        call_out("shed_diminish_return", 1800, person);
+        return 1;
+    }
+    else
+    {
+        diminished_scriers += ({ person });
+    }
+
+    call_out("shed_diminish_return", 1800);
+
+    return 1;
+}
+    
+int shed_diminish_return(string person)
+{
+    if(!stringp(person))
+        return 0;
+
+    if(!is_diminished_scrier(person))
+        return 0;
+
+    diminished_scriers -= ({ person });
+
+    if(!pointerp(diminished_scriers))
+        diminished_scriers = ({  });
+
+    return 1;
 }
