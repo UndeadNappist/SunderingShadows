@@ -369,8 +369,8 @@ int peer(string str)
         return 1;
     }
     write("%^BOLD%^GREEN%^The image zooms out briefly, granting a glance...");
-    target->long_look_room(this_player(), query_scry_power());
-    //scry_object->look_room(environment(scry_object));
+    //target->long_look_room(this_player(), query_scry_power());
+    scry_object->look_room(environment(scry_object));
     return 1;
 }
 
@@ -395,8 +395,8 @@ int look(string str)
     }
     write("%^BOLD%^GREEN%^The image zooms out, giving you a long look around...");
     if (objectp(scry_object)) {
-        //scry_object->long_look_room(environment(scry_object));
-        target->long_look_room(this_player(), query_scry_power());
+        scry_object->long_look_room(environment(scry_object));
+        //target->long_look_room(this_player(), query_scry_power());
     }
     return 1;
 }

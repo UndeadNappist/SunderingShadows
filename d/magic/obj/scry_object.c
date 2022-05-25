@@ -196,6 +196,7 @@ int long_look_room(object dest) {
      	if(inv[i]->query_invis()) continue;
     	if(inv[i]->query_hidden()) continue;
     	if(!inv[i]->is_detectable()) continue;
+        if(!inv[i]->scry_check(observer, scry_power)) continue;
     	TO->send_living_name(inv[i]);
     }
     desc = describe_item_contents( ({ }) );
