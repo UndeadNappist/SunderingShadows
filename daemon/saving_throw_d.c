@@ -29,7 +29,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     save = 0;
     mod = 0;
     max_mod = 0;
-    level = min( ({ ob->query_base_character_level(), 60 }) );
+    level = min( ({ (int)ob->query_base_character_level(), 60 }) );
     
     classes = ob->query_classes();
     if(!pointerp(classes))
