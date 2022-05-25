@@ -159,15 +159,10 @@ int cmd_prepare(string str)
         }
     }
 
-    // Ripped from _cast.c, think it should work?
-    if (regexp(str, implode(PLAYER_D->list_classes(), "|"))) {
-        if (!sscanf(str, "%s %s", myclass, args)) {
-            HELP_D->help("prepare");
-            return 1;
-        }
-    }else {
-        myclass = TP->query_class();
-        args = str;
+    if (sscanf(str, "%s %s", myclass, args) != 2)
+    {
+                HELP_D->help("prepare");
+                return 1;
     }
 
     if(!can_prepare_as(myclass))
