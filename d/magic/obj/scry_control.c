@@ -242,9 +242,9 @@ int scry(string str)
         */
         if(!target->scry_check(observer, query_scry_power()))
         {
-            tell_object(this_player(), "%^BOLD%^RED%^There appears to be interference blocking your scrying attempt!%^RESET%^");
+            tell_object(observer, "%^BOLD%^RED%^There appears to be interference blocking your scrying attempt!%^RESET%^");
             dest_me();
-            SCRY_D->stop_scry(this_object(), 1);
+            SCRY_D->stop_scry(this_object(), 0);
             return 1;
         }
         if (!objectp(target)) {
