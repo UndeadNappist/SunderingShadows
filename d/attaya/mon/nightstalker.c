@@ -138,8 +138,11 @@ void greet_me(object who)
     if(!living(this_object()))
         return;
     
-    command("stab " + who->query_name());
-    command("crit " + who->query_name());
+    if(living(who))
+    {
+        command("stab " + who->query_name());
+        command("crit " + who->query_name());
+    }
 }
 
 void die(object ob){
