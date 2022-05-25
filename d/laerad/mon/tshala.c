@@ -54,7 +54,7 @@ void create(){
 	set_nogo(({"/d/laerad/wasteland/waste1"}));
 	force_me("message in flies in.");
 	force_me("message out flies to the $D.");
-	set_emotes(5,({"The %^RED%^The ts%^ORANGE%^h%^YELLOW%^a%^BOLD%^"+
+	set_emotes(5,({"The %^RED%^ts%^ORANGE%^h%^YELLOW%^a%^BOLD%^"+
 	   "%^RED%^l%^YELLOW%^a %^RESET%^performs a deft pirouette in "+
 	   "the air.%^RESET%^"}),0);
 }

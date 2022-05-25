@@ -40,9 +40,9 @@ void create()
    set_alignment(5);
    set_speed(20);
    nogo("one");
-   set_emotes(5, ({"%^RED%^The Were-Rat %^BOLD%^*SNAPS*%^RESET%^%^RED%^ at you visciously!",
+   set_emotes(5, ({"%^RED%^The Were-Rat %^BOLD%^*SNAPS*%^RESET%^%^RED%^ at you viciously!",
         "%^GREEN%^%^BOLD%^The Were-Rat %^RESET%^%^BOLD%^glares %^RESET%^%^GREEN%^%^BOLD%^at you through it's %^YELLOW%^%^BOLD%^yellow eyes.%^RESET%^",
-        "%^BOLD%^The Were-Rat seems to flash a smile at you for a moment at it lunges!.",}),1);
+        "%^BOLD%^The Were-Rat seems to flash a smile at you for a moment as it lunges!",}),1);
    set_wimpy(10);
    set_funcs(({"bite"}));
    set_func_chance(30);
@@ -67,7 +67,7 @@ void init()
     
     if((int)TO->query_hp() < 50) 
     {
-        tell_room(ETO,"%^BLUE%^%^BOLD%^In desparation the %^BOLD%^Were-Rat turns and lashes "
+        tell_room(ETO,"%^BLUE%^%^BOLD%^In desperation the %^BOLD%^Were-Rat turns and lashes "
             "out ferociously!");
         command("rush "+TPQN+"");
         return 1;

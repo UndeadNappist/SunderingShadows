@@ -18,7 +18,7 @@ create (){
   set_long("%^ORANGE%^Anton is a weather-worn veteran. His gruff appreance and cool "+
   "%^BOLD%^%^BLACK%^st%^RESET%^ee%^BOLD%^%^BLACK%^l-gr%^RESET%^a%^BOLD%^%^BLACK%^y e%^RESET%^y%^BOLD%^%^BLACK%^es "+
   "%^RESET%^%^ORANGE%^makes it evident that he is a man who takes his responsibility very seriously. He's wearing "+
-  "%^BOLD%^%^BLACK%^scale armor %^RESET%^%^ORANGE%^which has seen some combat after he has arrived on the island");
+  "%^BOLD%^%^BLACK%^scale armor %^RESET%^%^ORANGE%^which has seen some combat after he has arrived on the island.");
 set_gender("male");
   if(!random(2)){
   set_race("human"); 
@@ -103,7 +103,7 @@ void do_greeting(){
 		force_me("say Greetings stranger. You are welcome to stay in Torm outpost as long as you cause no trouble\n");
 	return;}
 	force_me("emote %^CYAN%^smile\n");
-	force_me("say Greetings traveller. Welcome to Torm Outpost, you are safe from the evils roaming the island here.\n");
+	force_me("say Greetings traveler. Welcome to Torm Outpost, you are safe from the evils roaming the island here.\n");
 	force_me("say Stay for as long as you wish. but we cannot afford many accommodations\n");
 	force_me("say You should speak with Captain Dalvin. He can offer some information about the island\n");
 return;}
@@ -126,7 +126,7 @@ void do_departing(){
 		force_me("emote %^CYAN%^turns his attention elsewhere\n");
 	return 1;}
 	force_me("emote %^CYAN%^smiles and stand aside\n");
-	force_me("say Safe travles out there. It is a dangerous island, come back if you need a safe place or are wounded\n");
+	force_me("say Safe travels out there. It is a dangerous island, come back if you need a safe place or are wounded\n");
 return 1;}
 
 void set_direction(string str)

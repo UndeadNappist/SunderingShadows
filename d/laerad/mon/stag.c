@@ -18,7 +18,8 @@ void create(){
    set_gender("male");
     set_size(2);
     set_hd(20,40);
-    set_hp(200);
+    set_max_hp(200);
+    set_hp(query_max_hp());
     set_alignment(9);
     set_exp(12000);
     set_overall_ac(-8);

@@ -48,7 +48,7 @@ int cmd_master(string args)
         string sname;
         string* myspells = TP->query_mastered_base()[myclass];
 
-        mylvl = mylvl > 50?50:mylvl;
+        mylvl = mylvl > CHARACTER_LEVEL_CAP ? CHARACTER_LEVEL_CAP : mylvl;
 
         if (sizeof(myspells)) {
             foreach(sname in myspells)
@@ -112,6 +112,9 @@ int cmd_master(string args)
             write("%^CYAN%^You have mastered:");
         }
 
+        if(mylvl > CHARACTER_LEVEL_CAP)
+            mylvl = CHARACTER_LEVEL_CAP;
+        
         for (i = 0; i < 9; i++) {
             if (CLASSMAP[myclass][mylvl][i]) {
                 write("%^CYAN%^Level " + (i + 1) + ": %^RESET%^" +
@@ -120,6 +123,9 @@ int cmd_master(string args)
         }
         {
             string* bonusspells = TP->query_mastered_bonus()[myclass];
+            
+            if(!pointerp(bonusspells))
+                bonusspells = ({  });
 
             if (sizeof(bonusspells)) {
                 write("%^CYAN%^Additional spells you know:%^RESET%^");

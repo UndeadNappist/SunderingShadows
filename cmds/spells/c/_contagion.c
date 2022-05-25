@@ -64,7 +64,7 @@ void spell_effect()
         }
         disease->advance_disease();
     } else {
-        tell_object(caster,"%^BOLD%^%^GREEN%^You sense your " + disease->query_name() + " has been repelled.");
+        objectp(caster) && tell_object(caster,"%^BOLD%^%^GREEN%^You sense your disease has been repelled.");
     }
 
     spell_successful();

@@ -67,7 +67,7 @@ void heart_beat()
         force_me("say Thank you my young friend, thanks to you at least this land has rid itself of one evil.");
         force_me("say Now I can rest in piece knowing that Kartakass shall no longer be able to depend on the aid of that horrible demon.");
         force_me("say Maybe given time the forces of good will be able to topple Kartakass's evil empire.");
-        force_me("say I owe you a great dept...here take my armor as a token of my thanks, maybe you can find a use for it in this world.");
+        force_me("say I owe you a great debt...here take my armor as a token of my thanks, maybe you can find a use for it in this world.");
         force_me("say Let it guide you well as it did me in the past.");
         force_me("remove plate");
         command("drop plate");

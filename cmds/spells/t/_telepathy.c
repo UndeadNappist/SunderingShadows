@@ -13,7 +13,7 @@ void create() {
     set_syntax("cast CLASS telepathy to TARGET");
     set_description("This will allow the caster to establish a mental link with the target, allowing conversations through telepathy for a short time.
 
-This spell grands you access to <tell> and <reply> commands.");
+This spell grants you access to <tell> and <reply> commands.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
