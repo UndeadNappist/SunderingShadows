@@ -13,7 +13,7 @@ void create() {
     set_domains("evil");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS unholy smite");
-    set_damage_desc("untyped on neutral and good");
+    set_damage_desc("divine on neutral and good");
     set_description("You draw down holy power to smite your enemies, possibly blinding them. Only good and neutral creatures are harmed by the spell, evil creatures are unaffected..");
     evil_spell(1);
     set_verbal_comp();
@@ -56,8 +56,8 @@ void spell_effect(int prof){
             tell_object(attackers[i],"%^BOLD%^%^BLUE%^The darknes covers your eyes, blinding you!%^RESET%^");
             attackers[i]->set_temporary_blinded(3);
         }
-        tell_object(attackers[i],"%^BOLD%^%^BLUE%^Your soul withers in the darkn flames!%^RESET%^");
-        damage_targ(attackers[i],attackers[i]->return_target_limb(),admg,"untyped");
+        tell_object(attackers[i],"%^BOLD%^%^BLUE%^Your soul withers in the dark flames!%^RESET%^");
+        damage_targ(attackers[i],attackers[i]->return_target_limb(),admg,"divine");
     }
     spell_successful();
     dest_effect();

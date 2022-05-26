@@ -13,7 +13,7 @@ void create() {
     set_domains(({"good"}));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS holy smite");
-    set_damage_desc("untyped on neutral and evil");
+    set_damage_desc("divine on neutral and evil");
     set_description("You draw down holy power to smite your enemies, possibly blinding them. Only evil and neutral creatures are harmed by the spell, good creatures are unaffected.");
     set_verbal_comp();
     set_somatic_comp();
@@ -57,7 +57,7 @@ void spell_effect(int prof){
             attackers[i]->set_temporary_blinded(3);
         }
         tell_object(attackers[i],"%^BOLD%^%^WHITE%^Your soul burns in the light!%^RESET%^");
-        damage_targ(attackers[i],attackers[i]->return_target_limb(),admg,"untyped");
+        damage_targ(attackers[i],attackers[i]->return_target_limb(),admg,"divine");
     }
     spell_successful();
     dest_effect();
