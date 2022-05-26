@@ -53,7 +53,7 @@ void weird(object targ){
    if(!objectp(targ)) return;
    if(!present(targ)) return;
    if(targ->query_paralyzed()) return;
-   if(!SAVING_D->saving_throw(targ,"spell",-2)){
+   if(!SAVING_D->saving_throw(targ,"spell",-2) && !PLAYER_D->immunity_check(targ, "fear")){
       tell_object(targ,"%^BOLD%^%^RED%^The nightmare shade "+
          "stretches forth and horrendous images fill your "+
          "mind, freezing you in terror!");

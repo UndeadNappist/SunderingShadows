@@ -10,7 +10,7 @@ void create() {
 	" because of its %^BOLD%^giant wingspan.%^RESET%^%^GREEN%^ "+
 	"It has a pointed head and stands in a semi erect posture"+
 	" with most of its body hunched forward.  It has a "+
-	"%^BOLD%^%^GREEN%^long tale%^RESET%^%^GREEN%^ that drags "+
+	"%^BOLD%^%^GREEN%^long tail%^RESET%^%^GREEN%^ that drags "+
 	"behind it while on the ground.  The dinosaurs' eyes are beady."+
 	"  Combined this with the long rows of sharp teeth make the "+
 	"creature look a bit intimidating.  ");

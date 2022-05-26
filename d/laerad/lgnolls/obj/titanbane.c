@@ -16,7 +16,7 @@ void create() {
 	set_name("TitanBane");
 	set_short("%^YELLOW%^Titanbane%^RESET%^");
    set_obvious_short("%^BOLD%^%^ORANGE%^adamantium warwarhammer%^RESET%^");
-	set_id(({"hammer","aesatri hammer","hammer asgard","commando hammer","Commando Hammer","Hammer","commando"}));
+	set_id(({"hammer", "aesatri hammer", "hammer asgard", "commando hammer", "Commando Hammer", "Hammer", "commando", "titanbane", "Titanbane"}));
 	set_long("%^GREEN%^This weapon is truly astonishing. The head of this "+
 			"%^BOLD%^%^BLACK%^warhammer %^RESET%^%^GREEN%^is crafted from "+
 			"one single piece of %^CYAN%^adamantium%^GREEN%^. %^BOLD%^%^CYAN%^M%^WHITE%^i%^CYAN%^thr%^WHITE%^i%^CYAN%^l "+
@@ -48,7 +48,7 @@ void create() {
 			"have it that he undertook a journey into the northern mountains on Laerad, "+
 			"after rumors that gnolls had been spotted. There is no doubt that this is "+
 			"a powerful hammer. But people have reported that only in the hands of a noble "+
-			"soul, will it reveals its true power. - Sallonir deldor, Bard of Torm");
+			"soul, will it reveals its true power. - Sallonir Deldor, Bard of Torm");
 	set_property("lore",20);  
 	set_weight(15);
 	set_value(3000);

@@ -56,7 +56,7 @@ void pick_room()
     switch(myRoomState)
     {
         case 0:		
-            set_short("%^RESET%^%^ORANGE%^A delapidated hallway inside the house%^RESET%^");
+            set_short("%^RESET%^%^ORANGE%^A dilapidated hallway inside the house%^RESET%^");
 
             original_long = "%^RESET%^%^ORANGE%^The hallway around you is in an advanced "+
             "state of %^BOLD%^%^RED%^decay%^RESET%^%^ORANGE%^. It was once constructed from "+

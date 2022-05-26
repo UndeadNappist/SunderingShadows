@@ -1,4 +1,6 @@
 #include <std.h>
+#include <daemons.h>
+
 inherit MONSTER;
 void create() {
     ::create();
@@ -64,7 +66,7 @@ void aggfunc() {
 }
 void dart(object targ) {
     string dam;
-    if("daemon/saving_d"->saving_throw(targ,"poison")) {
+    if("daemon/saving_d"->saving_throw(targ,"poison") && !PLAYER_D->immunity_check(targ, "poison")) {
 	dam="hurts";
     } else {
 	dam="poisons";

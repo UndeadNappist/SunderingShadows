@@ -12,7 +12,7 @@ create() {
   set_level(12);
     set_long(
 	"Jabbar is a very large man. Massive arms rest across his chest "+
-	"as he sits in the shade waiting for your order. A turbin rests "+
+	"as he sits in the shade waiting for your order. A turban rests "+
 	"atop his head keeping the sun from his face. He is wearing "+
 	"a fine silk vest, a pair of white breeches, and some sandals."
     );

@@ -108,7 +108,7 @@ int take(string str){
 int lift(string str){
 	
 	if(!str){ notify_fail("What are you trying to lift? You could 'lift floorboards'?\n"); return 0;}
-	if(present("gnoll",TO)) {notify_fail("%^BOLD%^%^BLACK%^ You really couldn't do that without the gnolls noticing!\n"); return 0;}
+	if(present("gnoll",TO)) {notify_fail("You really couldn't do that without the gnolls noticing!\n"); return 0;}
 	if(floorx){ notify_fail("It would seem someone already has lifted the floorboards away."); return 0;}
 	else{
 	floorx=1;
@@ -128,7 +128,7 @@ int lower(string str){
 		if(!objectp(ladderobj)) 	 {return notify_fail("You cannot lower yourself down there. But perhaps if you had a ladder?"); return 0;}
 		if(base_name(ladderobj) != "/d/laerad/lgnolls/obj/ladder"){ notify_fail("This ladder doesn't fit."); return 0;}
 		if(ladderx)	 {return notify_fail("It seems like a ladder has already been lowered into the hole!"); return 0;}
-		if(!floorx)	 {return notify_fail("You need to lift the floodboards away before you can lower the ladder!"); return 0;}
+		if(!floorx)	 {return notify_fail("You need to lift the floorboards away before you can lower the ladder!"); return 0;}
 		ladderx=1;
 		write("You start lowering the ladder down into the hole. Luckily the ladder is just long enough to reach the floor below!");
 		tell_room(ETP,""+TP->QCN+" lowers the ladder down into the hole in the floor.",TP);
