@@ -13,6 +13,7 @@ object *select_livings()
     livings -= ({ caster });
     livings -= caster->query_followers();
     livings = filter_array(livings, (: !avatarp($1) :));
+    livings = filter_array(livings, (: !$1->query_property("no detect") :));
     livings = filter_array(livings, (: $1->query_invis() || $1->query_hidden() :));
 
     return livings;

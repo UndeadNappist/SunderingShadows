@@ -27,7 +27,7 @@ void query_myroom();
 
 void create(){
     ::create();
-    
+
     set_name("glyph of warding");
     set_property("no detect",1);
     set_id(({"glyphx111"}));
@@ -40,6 +40,9 @@ void create(){
 void init(){
 int bonus,lvl;
    ::init();
+
+   if(this_player()->query_property("no detect")) return;
+
    if(!TP->query_property("already_there") || (string)TP->query_property("already_there") != mycaster && !TP->query_true_invis()){
       if(TP->is_class("thief") && TP->query_hidden()){
          bonus = TP->query_stats("dexterity");
@@ -187,10 +190,10 @@ object casterobj,*spells = ({});
       }*/
 //   }
    casterobj = find_player(mycaster);
-   if(objectp(casterobj)){                  // Adjusted by Lujke 5th July 2010, to make this whole  
+   if(objectp(casterobj)){                  // Adjusted by Lujke 5th July 2010, to make this whole
      casterobj->remove_property("glyphed");  //section dependent on casterobj being a valid object
      spells += casterobj->query_property("dispellable spells");
-     for(i=0;i<sizeof(spells);i++){  
+     for(i=0;i<sizeof(spells);i++){
         if(objectp(spells[i])){
            if(!spells[i]->query_target_object()){
               if((string)spells[i]->query_spell_name() == "glyph of warding"){
