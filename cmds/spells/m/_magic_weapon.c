@@ -12,7 +12,7 @@ void create() {
     set_syntax("cast CLASS magic weapon on OBJECT");
     set_description("With this spell you can make any non-cursed, non-enchanted weapon +1.
 
-This spell uses 1 414 gp as a material component.");
+This spell uses 1 414 gp as a material component. A character must be at least level 5 to wield a +1 weapon.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
