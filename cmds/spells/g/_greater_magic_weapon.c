@@ -14,7 +14,7 @@ void create() {
     set_syntax("cast CLASS greater magic weapon on OBJECT");
     set_description("With this spell you can make any non-cursed, non-enchanted weapon +5.
 
-This spell uses 6180 gp as a material component.");
+This spell uses 6180 gp as a material component. A character must be at least level 25 to wield a +5 weapon.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
