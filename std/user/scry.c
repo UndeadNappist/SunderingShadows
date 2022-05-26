@@ -65,7 +65,7 @@ int scry_check(object scryer, int power)
     //tell_object(find_player("tlaloc"), "POWER       : " + power);    
     if(block_power + 10 >= power + roll_dice(1, 20) + piercing)
     {
-        add_diminished_scryer(scryer->query_name());
+        add_diminished_scrier(scryer->query_name());
         return 0;
     }
     
