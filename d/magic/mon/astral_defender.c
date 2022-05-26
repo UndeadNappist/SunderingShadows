@@ -11,7 +11,7 @@ int create()
     set_id(({"astral defender","monster","defender","prism","floating prism","summoned monster"}));
     set_race("construct");
 	set_gender("neuter");
-	set_short("%^RESET%^%^CYAN%^fl%^BOLD%^oa%^RESET%^%^CYAN%^t%^BOLD%^i%^RESET%^%^CYAN%^ng pr%^BOLD%^i%^RESET%^%^CYAN%^sm%^WHITE%^");
+	set_short("%^RESET%^%^CRST%^%^C030%^f%^C036%^l%^C042%^o%^C048%^at%^C042%^i%^C036%^n%^C030%^g %^C036%^p%^C042%^r%^C048%^i%^C042%^s%^C036%^m%^CRST%^");
     set_long("%^CYAN%^This is a big floating prism made out of black stone. Surges of power zap out of it periodically with flashes of cyan energy.");
 	set_body_type("human");
     set("aggressive",18);
