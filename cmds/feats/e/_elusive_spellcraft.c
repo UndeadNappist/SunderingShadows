@@ -10,7 +10,7 @@ void create()
     feat_category("ShadowAdept");
     feat_name("elusive spellcraft");
     feat_prereq("Shadow Adept L4, Gift of The Shadows");
-    feat_desc("Shadow adept gains insights into schools touched by shadoweave, and gains ability to cast enchantment, illusion and necromancy spells at greater potency, albeit far from powers that of an archmage for specific school. In addition, the shadow adept's spells gain silent casting.");
+    feat_desc("Shadow adept gains insights into schools touched by shadoweave, and gains ability to cast enchantment, illusion and necromancy spells at greater potency, gaining +2 to caster level in those schools. In addition, the shadow adept's spells gain silent casting.");
     permanent(1);
 }
 
