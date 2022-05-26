@@ -55,11 +55,11 @@ void create()
 
 int wear_fun() 
 {
-    if(!TP->is_class("bard") && !TP->is_class("mage") && !TP->is_class("sorcerer") && !TP->is_class("psion") && !TP->is_class("psywarrior")) 
+    /*if(!TP->is_class("bard") && !TP->is_class("mage") && !TP->is_class("sorcerer") && !TP->is_class("psion") && !TP->is_class("psywarrior")) 
     {
         tell_object(ETO,"The magic within these robes prevents you from wearing them.");
         return 0;
-    }
+    }*/
    
     tell_object(ETO,"%^WHITE%^%^BOLD%^You feel Lysara's blessings as you wear the soft robes.");
     tell_room(EETO,"%^WHITE%^%^BOLD%^"+ETO->QCN+" smiles and slips on the soft robes.",ETO);

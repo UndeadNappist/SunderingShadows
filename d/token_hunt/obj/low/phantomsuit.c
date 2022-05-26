@@ -71,11 +71,11 @@ set_property("no disenchant",1);
 int wear_fun(){
 //Was thief only, but changed to monk and bard per request - Octothorpe 2/4/17
 //if(!ETO->is_class("thief") || !ETO->is_class("monk") || !ETO->is_class("bard")){ using || here means that if they are not all 3 of these classes it will fail to fit - Saide
-if(!ETO->is_class("thief") && !ETO->is_class("monk") && !ETO->is_class("bard")) {
+/*if(!ETO->is_class("thief") && !ETO->is_class("monk") && !ETO->is_class("bard")) {
 tell_object(ETO,"%^BOLD%^%^BLACK%^Seems the garment "+
 "doesn't really fit you.%^RESET%^");
 return 0;
-}
+}*/
 
 tell_room(EETO,"%^BOLD%^%^BLACK%^"+ETO->QCN+" slips the "+
 "%^RESET%^g%^ORANGE%^r%^BOLD%^%^BLACK%^a%^RESET%^y%^BOLD%^"+
