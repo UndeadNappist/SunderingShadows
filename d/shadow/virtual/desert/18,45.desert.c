@@ -22,12 +22,12 @@ void create(){
     set_items(([
         ({"hole","spot","black","black spot"}) : "You see a deep dark hole in the sand. From this distance it appears to be risky to get close to.",
         ]));
-    set_search("hole", (:"fall_in":));
+    //set_search("hole", (:"fall_in":));
 }
 
 int fall_in(){
     object player = this_player();
-	tell_object(player, "You get too close to the hole trying to search it. You fall into the hole, and find yourself trapped.");
+    tell_object(player, "You get too close to the hole trying to search it. You fall into the hole, and find yourself trapped.");
     tell_room(environment(player), ""+player->query_cap_name()+" falls into a hole in the sand.", player);
     player->move("/d/shadow/virtual/level1/1,1.level1");
     return 1;
