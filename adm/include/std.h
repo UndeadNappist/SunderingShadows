@@ -67,6 +67,7 @@
 #define HEX "/std/magic/hex"
 #define STATUS "/std/effect/status_eff"
 #define DISEASE "/std/diseases/disease_obj"
+#define CURSE   "/std/curses/curse_obj"
 #define FEAT "/std/feat"
 #define SCRIBE "/std/scribe"
 #define WEAPONLESS "/std/weaponless_monsters"

@@ -9,7 +9,7 @@ int saved = 0;
 void create()
 {
     ::create();
-    set_name("cacle fever");
+    set_name("cackle fever");
     set_incubation("1 day");
     set_damage_desc("1d6 wis");
     set_infection("inhaled");
