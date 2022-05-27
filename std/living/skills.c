@@ -14,6 +14,7 @@
 #include <skills.h>
 
 #define SPLIT_EXP 1
+#define XP_PERCENT 95
 
 inherit BODY;
 
@@ -1456,6 +1457,7 @@ void add_exp(int exp)
         return __internal_add_exp(exp);
     }
     if (exp > 0) {
+        exp = max( ({ 1, (exp * XP_PERCENT) / 100 }) );
         exp = WORLD_EVENTS_D->check_exp_events(exp, TO);
     }
     if (userp(TO) && (exp > 0) && TO->query_party()) {
@@ -1483,6 +1485,7 @@ void party_exp(int exp, object tmp)
         return;
     }
     if (exp > 0) {
+        exp = max( ({ 1, (exp * XP_PERCENT) / 100 }) );
         exp = WORLD_EVENTS_D->check_exp_events(exp, TO);
     }
     if (has_XP_levelcap() && (exp > 0)) {
@@ -1507,6 +1510,7 @@ void fakeparty_exp(int exp, object tmp)
         return;
     }
     if (exp > 0) {
+        exp = max( ({ 1, (exp * XP_PERCENT) / 100 }) );
         exp = WORLD_EVENTS_D->check_exp_events(exp, TO);
     }
     if (has_XP_levelcap() && (exp > 0)) {
@@ -1531,6 +1535,7 @@ void fix_exp(int exp, object tmp)
         return;
     }
     if (exp > 0) {
+        exp = max( ({ 1, (exp * XP_PERCENT) / 100 }) );
         exp = WORLD_EVENTS_D->check_exp_events(exp, TO);
     }
     if (has_XP_levelcap() && (exp > 0)) {
@@ -1551,6 +1556,7 @@ void quest_exp(int exp, object tmp)
         return;
     }
     if (exp > 0) {
+        exp = max( ({ 1, (exp * XP_PERCENT) / 100 }) );
         exp = WORLD_EVENTS_D->check_exp_events(exp, TO);
     }
     if (has_XP_levelcap() && exp > 0) {
@@ -1571,6 +1577,7 @@ void partyquest_exp(int exp, object tmp)
         return;
     }
     if (exp > 0) {
+        exp = max( ({ 1, (exp * XP_PERCENT) / 100 }) );
         exp = WORLD_EVENTS_D->check_exp_events(exp, TO);
     }
     if (has_XP_levelcap() && (exp > 0)) {
@@ -1601,6 +1608,10 @@ void add_general_exp(string type, int exp)
     if (has_XP_levelcap() && exp > 0) {
         return;
     }
+
+    if (exp > 0)
+        exp = max( ({ 1, (exp * XP_PERCENT) / 100 }) );
+    
     if (has_XP_tax()) {
         exp = use_XP_tax(exp);
     }
