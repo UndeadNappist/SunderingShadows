@@ -527,7 +527,7 @@ void die(object obj)
 {
     object* ppl, room, * killers = ({});
     int i;
-    int eventpower = 1; // Yes, one.
+    int eventpower = 10;
 
     message("info", "%^BOLD%^%^RED%^A mighty roar follows the rumble of the earth as Klauth has fallen from his mountain!%^RESET%^", users());
     WORLD_EVENTS_D->kill_event("Klauth has been defeated");

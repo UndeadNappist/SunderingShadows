@@ -447,7 +447,7 @@ void establish_weekend_events()
                 "%^BOLD%^%^GREEN%^You watch in %^BOLD%^%^RED%^HORROR%^BOLD%^%^GREEN%^ as it tosses a %^BOLD%^%^CYAN%^large glowing "+
                 "%^BOLD%^%^GREEN%^dice toward you!\n\n";
 
-    mod = 15 + random(5);
+    mod = 20;
     eventType = "exp bonus";
     eventNotify = mod+"% Bonus Exp!";
     eventMod = "%^BOLD%^%^WHITE%^The number %^CYAN%^1%^BOLD%^%^WHITE%^ lands facing up!!";

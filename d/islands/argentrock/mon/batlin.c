@@ -451,7 +451,7 @@ void do_it()
 private start_event()
 {
     int power;//%
-    power = 15 + random(5);
+    power = 5;
     WORLD_EVENTS_D->kill_event("Pacified archmage of Argentrock");
     WORLD_EVENTS_D->inject_event((["Pacified archmage of Argentrock" : (["start message" : "
 %^CYAN%^Seas %^BOLD%^t%^RESET%^%^CYAN%^r%^BOLD%^e%^RESET%^%^CYAN%^m%^BOLD%^b%^RESET%^%^CYAN%^l%^BOLD%^e %^RESET%^%^CYAN%^as %^BOLD%^surge %^RESET%^%^CYAN%^of %^BOLD%^%^MAGENTA%^power %^RESET%^%^CYAN%^disperses from %^BOLD%^Argentrock!%^RESET%^

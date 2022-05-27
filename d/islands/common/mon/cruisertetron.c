@@ -107,7 +107,7 @@ void die(object ob)
         new("/d/common/obj/misc/tools/portable_scrying_mirror.c")->move(TO);
     }
 
-    eventpower = 10 + random(15);
+    eventpower = 5;
     tell_room(ETO, "%^BOLD%^%^RED%^Cruiser Tetron tells you: %^RESET%^Be warned...  After a time, death itself dies...");
     tell_room(ETO, "%^BOLD%^%^CYAN%^Cruiser Tetron whispers to you: %^RESET%^Perhaps, death is better.");
     ETO->set_had_players(10);

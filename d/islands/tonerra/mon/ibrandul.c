@@ -158,8 +158,8 @@ die(object ob)
     new(OBJ + "newmask")->move(TO);
 
     WORLD_EVENTS_D->kill_event("Waking A Mad God");
-    WORLD_EVENTS_D->inject_event((["Banished The Dead God" : (["start message" : "%^BOLD%^%^WHITE%^The Dead God has been banished, you feel yourself somehow more capable! For the next two hours all experience gained will award an additional %^BOLD%^%^CYAN%^20%%^BOLD%^%^WHITE%^!%^RESET%^", "event type" : "exp bonus", "length" : 120, "notification" : "20% Bonus Exp",
-                                                               "event name" : "Banished The Dead God", "modifier" : 20, "announce" : 1, "announce to" : "world" ]), ]));
+    WORLD_EVENTS_D->inject_event((["Banished The Dead God" : (["start message" : "%^BOLD%^%^WHITE%^The Dead God has been banished, you feel yourself somehow more capable! For the next two hours all experience gained will award an additional %^BOLD%^%^CYAN%^20%%^BOLD%^%^WHITE%^!%^RESET%^", "event type" : "exp bonus", "length" : 120, "notification" : "5% Bonus Exp",
+                                                               "event name" : "Banished The Dead God", "modifier" : 5, "announce" : 1, "announce to" : "world" ]), ]));
     return ::die();
 }
 
