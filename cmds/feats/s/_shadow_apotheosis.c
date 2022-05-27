@@ -114,7 +114,7 @@ void execute_attack()
         tell_room(place, cm("A shadowy tendril lashes out from " + caster->QCN + "'s vortex of shadows and lashes out!"), ({ caster }));
     }
 
-    for (i = 0; sizeof(attackers), i < sizeof(attackers); i++) {
+    for (i = 0; i < sizeof(attackers); i++) {
         if (!objectp(attackers[i])) {
             continue;
         }

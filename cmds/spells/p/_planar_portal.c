@@ -92,25 +92,7 @@ void spell_effect(int prof){
 //teleport proof stuff by ~Circe~ 6/20/08
 //new property to be used for areas protected from teleport
 //but not foolproof
-   if(endplace &&
-      (endplace->query_property("teleport proof") ||
-      place->query_property("teleport proof") ||
-      !endplace->is_room())){
-      startpower = place->query_property("teleport proof");
-      endpower = endplace->query_property("teleport proof");
-      bonus = caster->query_stats("intelligence");
-      bonus = bonus -10;
-      if((object *)caster->query_attackers() != ({})){
-         mypower = CLEVEL + bonus + random(6);
-      }else{
-         mypower = CLEVEL + bonus + random(6) + 5;
-//making it easier to teleport out if you aren't in combat
-      }
-      if((mypower < startpower) || (mypower < endpower)){
-          file = 0;
-      }
-   }
-    if (!file) {
+    if(!TELEPORT->object_can_be_teleported(caster, endplace, clevel)){
         tell_object(caster,"You sense some sort of interference "+
            "blocking your way.");
         tell_room(place,caster->QCN+" looks confused.",caster);

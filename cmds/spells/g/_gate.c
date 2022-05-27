@@ -227,17 +227,15 @@ void do_travel_2(string file)
         TO->remove();
         return;
     }
-    /*
+    
     if(file)
     {
         if(!(endplace = find_object_or_load(file))) file = 0;
     }
-    if(endplace && (endplace->query_property("no teleport") ||
+    /*if(endplace && (endplace->query_property("no teleport") ||
     place->query_property("no teleport") ||
     !endplace->is_room())) file = 0;
-    */
 
-    /*
     if(endplace && (endplace->query_property("teleport proof") ||
     place->query_property("teleport proof")))
     {
@@ -250,10 +248,10 @@ void do_travel_2(string file)
         if((mypower < startpower) || (mypower < endpower)) file = 0;
     }
     */
-    
+
 
     //if(!file || endplace->is_flight_room())
-    if(!TELEPORT->object_can_be_teleported(caster, endplace, clevel))
+    if(!file || !TELEPORT->object_can_be_teleported(caster, endplace, clevel))
     {
         tell_object(caster,"Something interferes with the conjuration "+
         "of the gate, and your spell fizzles.");
