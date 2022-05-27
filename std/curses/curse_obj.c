@@ -14,7 +14,7 @@ inherit OBJECT;
 
 string description, damage_desc;
 int power, duration;
-object victim;
+object victim, caster;
 
 void create()
 {
@@ -29,6 +29,7 @@ string set_damage_desc(string str) { damage_desc = str; return damage_desc; } //
 int set_power(int x)               { power = x; return power;               } //Power should be clevel + stat bonus
 int set_duration(int x)            { duration = x; return power;            } //Some curses have limited duration on save
 object set_victim(object ob)       { victim = ob; return victim;            } //Who we're afflicting
+object set_caster(object ob)       { caster = ob; return caster;            } //Who cast the curse
 int is_curse()                     { return 1;                              } //It IS a curse
 
 //Default break curse check. Pass curing spell clevel + stat bonus
@@ -37,17 +38,16 @@ int break_curse(int x)
     if(power + 10 > x + roll_dice(1, 20))
         return 0;
     
-    if(objectp(this_object()))
-        this_object()->remove();
+    
     
     return 1;
 }
 
-object apply_curse(object who, int level)
+object apply_curse(object who, int level, object from)
 {
     object *curses, curse;
     
-    if(!living(who) || !level)
+    if(!living(who) || !living(from) || !level)
         return 0;
     
     if(PLAYER_D->immunity_check(who, "curses"))
@@ -68,9 +68,19 @@ object apply_curse(object who, int level)
     curse->move(who);
     curse->set_power(level);
     curse->set_victim(who);
+    curse->set_caster(from);
     curse->start_curse();
     
     return curse;
+}
+
+void dest_effect()
+{   
+    if(objectp(this_object()))
+    {
+        this_object()->end_curse();
+        this_object()->remove();
+    }
 }
 
 void help()
