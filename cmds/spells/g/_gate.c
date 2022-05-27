@@ -3,6 +3,7 @@
 #include <party.h>
 #include <spell.h>
 #include <magic.h>
+#include <teleport.h>
 inherit SPELL;
 
 string purpose;
@@ -226,6 +227,7 @@ void do_travel_2(string file)
         TO->remove();
         return;
     }
+    /*
     if(file)
     {
         if(!(endplace = find_object_or_load(file))) file = 0;
@@ -233,7 +235,9 @@ void do_travel_2(string file)
     if(endplace && (endplace->query_property("no teleport") ||
     place->query_property("no teleport") ||
     !endplace->is_room())) file = 0;
+    */
 
+    /*
     if(endplace && (endplace->query_property("teleport proof") ||
     place->query_property("teleport proof")))
     {
@@ -245,8 +249,11 @@ void do_travel_2(string file)
         else mypower = clevel + bonus + random(6) + 5;
         if((mypower < startpower) || (mypower < endpower)) file = 0;
     }
+    */
+    
 
-    if(!file || endplace->is_flight_room())
+    //if(!file || endplace->is_flight_room())
+    if(!TELEPORT->object_can_be_teleported(caster, endplace, clevel))
     {
         tell_object(caster,"Something interferes with the conjuration "+
         "of the gate, and your spell fizzles.");
