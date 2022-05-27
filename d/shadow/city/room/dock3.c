@@ -32,6 +32,10 @@ int swim_to(string str)
 }
 
 void reset(){
+    object cargo;
+    ::reset();
     if(!present("crates")) new("/d/dagger/islands/wailing_isle/obj/cargo")->move(this_object());
+    cargo = present("crates");
+    cargo->refresh_cargo();
 }
 
