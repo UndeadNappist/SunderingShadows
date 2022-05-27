@@ -92,7 +92,7 @@ void spell_effect(int prof){
 //teleport proof stuff by ~Circe~ 6/20/08
 //new property to be used for areas protected from teleport
 //but not foolproof
-    if(!TELEPORT->object_can_be_teleported(caster, endplace, clevel)){
+    if(!file || !TELEPORT->object_can_be_teleported(caster, endplace, clevel)){
         tell_object(caster,"You sense some sort of interference "+
            "blocking your way.");
         tell_room(place,caster->QCN+" looks confused.",caster);
