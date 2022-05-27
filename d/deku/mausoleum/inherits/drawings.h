@@ -13,7 +13,7 @@
                 "a child might have drawn in haste, though you wonder what type of "\
                 "disturbed child would attempt to depict a zombie.%^RESET%^"
 
-#define ZOM_H   "%^BOLD%^%^WHITE%^This drawing looks disturbing. It is the stuff of nightmares,"\
+#define ZOM_H   "%^BOLD%^%^WHITE%^This drawing looks disturbing. It is the stuff of nightmares, "\
                 "a grotesque creature with entrails and insides spilling out. It has very dark red "\
                 "eyes which seethe with hatred. Its gaping maw is lined with rows of rotted "\
                 "teeth and a black tongue.%^RESET%^"

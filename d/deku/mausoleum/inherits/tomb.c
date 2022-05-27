@@ -32,7 +32,7 @@ string crack_description()
 {
     string ret;
     ret = "%^BOLD%^%^WHITE%^These cracks litter the walls, the ceiling, and "+
-          "even the floor of this once grand tomb. A permanent testmant to the abandonment "+
+          "even the floor of this once grand tomb. A permanent testament to the abandonment "+
           "that it has suffered.%^RESET%^";
           
     if(crack_destination && cracked_wall)

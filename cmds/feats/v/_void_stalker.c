@@ -69,7 +69,8 @@ int cmd_void_stalker(string str)
     }
 
     tell_object(ETO, "%^BOLD%^%^WHITE%^You concentrate on the nothing beyond, thinking of your target.");
-
+    this_player()->add_cooldown("void stalker", DELAY);
+    
     location = environment(find_living(target));
 
     if(!TELEPORT->object_can_be_teleported(TP,location,TP->query_base_character_level()))
@@ -81,7 +82,6 @@ int cmd_void_stalker(string str)
     {
         TP->move_player(location);
         tell_object(TP,"%^BOLD%^%^WHITE%^You have arrived.");
-        this_player()->add_cooldown("void stalker", DELAY);
         /*TP->set_property("void_stalker_used",time()+DELAY);*/
         return 1;
     }

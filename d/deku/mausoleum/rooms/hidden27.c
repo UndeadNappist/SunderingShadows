@@ -34,7 +34,7 @@ string get_my_long()
            "not sure what this place used to be, but there is an almost overwhelming "
            "sense of dr%^RESET%^%^RED%^ea%^BOLD%^%^BLACK%^d here. The walls are "
            "very close together and the floor is rough. Surprising though this portion of "
-           "the mausoleum is withstanding the continous onslaught from the "
+           "the mausoleum is withstanding the continuous onslaught from the "
            "dirt above remarkably well. The tunnel continues to the north and south.%^RESET%^");
     }else{
         return("%^BOLD%^%^BLACK%^You are within what you recognize instantly as "
@@ -49,7 +49,7 @@ string get_my_long()
            "not sure what this place used to be, but there is an almost overwhelming "
            "sense of dr%^RESET%^%^RED%^ea%^BOLD%^%^BLACK%^d here. The walls are "
            "very close together and the floor is rough. Surprising though this portion of "
-           "the mausoleum is withstanding the continous onslaught from the "
+           "the mausoleum is withstanding the continuous onslaught from the "
            "dirt above remarkably well. The tunnel continues to the south. "
            "There is a %^RESET%^%^CYAN%^circular indentation%^BOLD%^%^BLACK%^ "
            "in the dead center of the northern wall.%^RESET%^");
@@ -81,12 +81,12 @@ int insert_act(string str)
     if(opened) return 0;
     if(!stringp(str))
     {
-        tell_object(TP, "Try <insert ob into indentation>.");
+        tell_object(TP, "Try <insert orb into indentation>.");
         return 1;
     }
     if(sscanf(str, "%s into indentation", what) != 1)
     {
-        tell_object(TP, "Try <insert ob into indentation>.");
+        tell_object(TP, "Try <insert orb into indentation>.");
         return 1;
     }
     if(!objectp(Ob = present(what, TP)))
