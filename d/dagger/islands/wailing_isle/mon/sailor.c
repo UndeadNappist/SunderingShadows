@@ -25,6 +25,7 @@ void create(){
         "parry",
         "weapon focus",
         "weapon training", }));
+    set_property("swarm", 1);
     switch(random(2)){
         case 0 :
             gear = new("/d/common/obj/weapon/longsword");
