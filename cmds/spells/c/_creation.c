@@ -112,8 +112,8 @@ void check()
                 continue;
             }
             
-            caster->add_protector(mon);
-            caster->add_follower(mon);
+            objectp(mon) && caster->add_protector(mon);
+            objectp(mon) && caster->add_follower(mon);
         }
     }
     else
