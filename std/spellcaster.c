@@ -791,13 +791,13 @@ mapping query_mastered_bonus()
             tmp[theclass] = ({});
         }
 
-        if (FEATS_D->usable_feat(TO, "expanded knowledge 1")) {
+        if (FEATS_D->usable_feat(TO, "expanded knowledge 1") && this_object()->query("expanded_knowledge_1")) {
             tmp[theclass] += ({ TO->query("expanded_knowledge_1") });
         }
-        if (FEATS_D->usable_feat(TO, "expanded knowledge 2")) {
+        if (FEATS_D->usable_feat(TO, "expanded knowledge 2") && this_object()->query("expanded_knowledge_2")) {
             tmp[theclass] += ({ TO->query("expanded_knowledge_2") });
         }
-        if (FEATS_D->usable_feat(TO, "expanded knowledge 3")) {
+        if (FEATS_D->usable_feat(TO, "expanded knowledge 3") && this_object()->query("expanded_knowledge_3")) {
             tmp[theclass] += ({ TO->query("expanded_knowledge_3") });
         }
     }
