@@ -27,6 +27,7 @@ string *get_hall_rooms() {
 	return get_dir(RDIR+"*.c");
 }
 
+/*
 int call_guards(object caller, object location) {
 	int rtime;
 	
@@ -55,3 +56,4 @@ int arrive(object location) {
 	}
 	return 1;
 }
+*/
