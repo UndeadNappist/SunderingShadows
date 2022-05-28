@@ -18,6 +18,7 @@ int allow_shifted() { return 1; }
 
 int prerequisites(object ob) {
     int magus = 0;
+    int oracle = 0;
     if (!objectp(ob)) {
         return 0;
     }
@@ -25,8 +26,10 @@ int prerequisites(object ob) {
     if (ob->is_class("magus") && file_exists("/std/class/magus.c")) {
         magus = (int)"/std/class/magus.c"->fighter_training(ob);
     }
-    if(!FEATS_D->has_feat(ob, "weapon focus")||
-        ob->query_class_level("fighter") + magus < 4) {
+    if(ob->query_class_level("oracle") > 20 && ob->query_mystery() == "battle")
+        oracle = 1;
+    
+    if(!FEATS_D->has_feat(ob, "weapon focus") && ob->query_class_level("fighter") + magus < 4 && !oracle) {
         dest_effect();
         return 0;
     }
