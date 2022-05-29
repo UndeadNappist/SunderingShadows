@@ -99,7 +99,8 @@ void dest_effect(){
        if(objectp(TO)) TO->remove();
        return;
     }
-  caster->remove_property_value("spelled", ({TO}) );
+    
+  objectp(caster) && objectp(this_object()) && caster->remove_property_value("spelled", ({TO}) );
   removeSpellFromCaster();
   ::dest_effect();
   if(objectp(TO)) TO->remove();
