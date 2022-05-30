@@ -166,6 +166,9 @@ int add_diminished_scrier(string person)
     
     if(!find_player(person))
         return 0;
+    
+    if(!pointerp(diminished_scriers))
+        diminished_scriers = ({  });
 
     if(is_diminished_scrier(person))
     {
