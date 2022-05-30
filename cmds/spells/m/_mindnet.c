@@ -151,7 +151,8 @@ void spell_effect(int prof)
     }
 
     duration  = (ROUND_LENGTH * 5) * clevel;
-    line_name = caster->knownAs(caster->query_true_name());
+    //line_name = caster->knownAs(caster->query_true_name());
+    line_name = caster->query_name();
 
     immortals = children("/std/user.c");
     immortals = filter_array(immortals,"immortal_filter",TO);
