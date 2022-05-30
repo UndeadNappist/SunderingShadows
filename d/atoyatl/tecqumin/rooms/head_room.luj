@@ -77,10 +77,6 @@ void reset(){
   object ped_obj, store_room;
   ::reset();
   store_room = find_object_or_load(STORE);
-  if (objectp(store_room))
-  {
-    store_room->reset();
-  }
   ped_obj = store_room->query_head_obj();
   if (!objectp(ped_obj)){
     store_room->make_new_head();
