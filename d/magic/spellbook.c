@@ -227,6 +227,8 @@ int look(string str) {
     {
         output+=({"%^BOLD%^%^CYAN%^"+arrange_string(magic[x], 24)+"%^RESET%^%^CYAN%^ "+arrange_string(speccache[magic[x]]["sphere"],4)+" "+arrange_string(get_spell_level(magic[x]),2)});
     }
+    
+    output += ({ "\n%^BOLD%^%^CYAN%^There are %^WHITE%^" + sizeof(magic) + " %^CYAN%^spells in this book.%^RESET%^" });
 
     // Columns interface is documented in _spells.c
     tell_object(TP,auto_format_page(output, TP, 34));
