@@ -277,7 +277,7 @@ int replace_fun(string str) {
               +" removes.",TP);
     thing->move(STORE);
     ped_obj->move(TP);
-    ped_obj = thing;
+    store_room->set_head_obj(thing);
     if (ped_height > 1){
       if (thing_weight > ped_obj_weight){
         call_out ("lower_pedestal",2);
