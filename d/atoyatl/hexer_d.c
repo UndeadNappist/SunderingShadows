@@ -192,21 +192,25 @@ string * query_bottom_hexes(){
   lines = sizeof(seal_pic);
   bottom_hexes = ({ "t", "u", "v", "w", "x" }); 
   if (lines < 68){
-    bottom_hexes += ({"p", "q", "r", "s"});
+
+    bottom_hexes = ({"p", "q", "r", "s"});
   }
   if (lines <61 ){
-    bottom_hexes += ({"k", "l", "m", "n", "o"});
+
+    bottom_hexes = ({"k", "l", "m", "n", "o"});
+
   }
   if (lines < 54){
-    bottom_hexes += ({ "7", "8", "9", "0"});
+    bottom_hexes = ({ "7", "8", "9", "0"});
   }
   if (lines < 47){
-    bottom_hexes +=  ({ "2", "3", "4", "5", "6" });
+    bottom_hexes =  ({ "2", "3", "4", "5", "6" });
   }
   if (lines < 40){
-    bottom_hexes += ({"X", "Y", "Z", "1"});
+    bottom_hexes =  ({ "2", "3", "4", "5", "6" });
   }
   if (lines < 33){
+
     bottom_hexes += ({"S", "T", "U", "V", "W"});
   }
   return bottom_hexes;
