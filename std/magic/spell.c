@@ -1451,7 +1451,7 @@ void wizard_interface(object user, string type, string targ)
 
     tell_object(caster, "You begin to " + whatdo + " " + spell_name + "!");
 
-    receive_opportunity_attacks()
+    receive_opportunity_attacks();
     
     // this is needed for PCs, uses different function than mobs
     if (objectp(target)) {
