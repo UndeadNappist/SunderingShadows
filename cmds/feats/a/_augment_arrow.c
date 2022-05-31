@@ -90,19 +90,19 @@ void execute_feat()
     switch(arg)
     {
         case "barbed":
-        tell_object(caster, "You attach a barbed head to some of your arrows.");
+        tell_object(caster, "%^C246%^You attach a %^C160%^wicked-looking%^C246%^ %^C249%^b%^C251%^a%^C253%^r%^C255%^b%^C249%^ed head%^C246%^ to some of your arrows and place them in your quiver.%^CRST%^");
         break;
         case "crippling":
-        tell_object(caster, "You attach a crippling head to some of your arrows.");
+        tell_object(caster, "%^C246%^You attach a %^C172%^strange-looking%^C246%^ %^C190%^crippling head%^C246%^ to some of your arrows and place them in your quiver.%^CRST%^");
         break;
         case "enervating":
-        tell_object(caster, "You attach an enervating head to some of your arrows.");
+        tell_object(caster, "%^C246%^You attach a %^C112%^sickly-looking%^C246%^ %^C100%^enervating head%^C246%^ to some of your arrows and place them in your quiver.%^CRST%^");
         break;
         case "blinding":
-        tell_object(caster, "You attach a blinding head to some of your arrows.");
+        tell_object(caster, "%^C246%^You attach a %^C098%^violet-hued%^C246%^ %^C116%^blinding head%^C246%^ to some of your arrows and place them in your quiver.%^CRST%^");
         break;
         case "exploding":
-        tell_object(caster, "You attach an exploding head to some of your arrows.");
+        tell_object(caster, "%^C246%^You attach an %^C166%^i%^C172%^n%^C178%^c%^C184%^e%^C178%^n%^C172%^di%^C166%^ary%^C246%^ %^C196%^exploding head%^C246%^ to some of your arrows and place them in your quiver.%^CRST%^");
         break;
     }
     
@@ -179,8 +179,9 @@ void execute_attack()
     
     if(result <= 0)
     {
-        tell_object(caster, "You fire a " + type + " arrow at " + your_name + ", but miss!");
-        tell_room(place, my_name + " fires a " + type + " arrow at " + your_name + ", but misses!", caster);
+        tell_object(caster, "%^YELLOW%^You fire a %^CYAN%^" + type + "%^YELLOW%^ arrow at " + your_name + ", but miss!%^RESET%^");
+        tell_object(caster, "%^YELLOW%^You fire a %^CYAN%^" + type + "%^YELLOW%^ arrow at you, but miss!%^RESET%^");
+        tell_room(place, "%^YELLOW%^" + my_name + " fires a %^CYAN%^" + type + "%^YELLOW%^ arrow at " + your_name + ", but misses!%^RESET%^", caster);
         reset_attack_cycle();
         return;
     }
@@ -197,18 +198,21 @@ void execute_attack()
     switch(type)
     {
         case "barbed":
-        tell_object(caster, "You fire a barbed arrow into " + your_name + ", causing massive bleeding!");
-        tell_room(place, "generic barbed arrow message", caster);
+        tell_object(caster, "%^C246%^You fire a %^C166%^barbed arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, causing %^C160%^massive bleeding%^C246%^!%^CRST%^");
+        tell_object(attacker, "%^C246%^" + my_name + " fires a %^C166%^barbed arrow%^C246%^ into %^C195%^you%^C246%^, causing %^C160%^massive bleeding%^C246%^!%^CRST%^");
+        tell_room(place, "%^C246%^" + my_name + " fires a %^C166%^barbed arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, causing %^C160%^massive bleeding%^C246%^!%^CRST%^", ({ caster, attacker }));
         attacker->set_property("rend", 1 + flevel / 16);
         break;
         case "crippling":
-        tell_object(caster, "You fire a crippling arrow into " + your_name + ", causing " + your_obj + " to trip!");
-        tell_room(place, "generic crippling arrow message", caster);
+        tell_object(caster, "%^C246%^You fire a %^C103%^crippling arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, causing %^C195%^" + your_obj + "%^C246%^ to trip!%^CRST%^");
+        tell_object(attacker, "%^C246%^" + my_name + " fires a %^C103%^crippling arrow%^C246%^ into %^C195%^you%^C246%^, causing %^C195%^you%^C246%^ to trip!%^CRST%^");
+        tell_room(place, "%^C246%^" + my_name + " fires a %^C103%^crippling arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, causing %^C195%^" + your_obj + "%^C246%^ to trip!%^CRST%^", ({ caster, attacker }) );
         attacker->set_tripped(1);
         break;
         case "enervating":
-        tell_object(caster, "You fire an enervating arrow into " + your_name + ", fatiguing " + your_obj + "!");
-        tell_room(place, "generic crippling arrow message", caster);
+        tell_object(caster, "%^C246%^You fire an %^C137%^enervating arrow%^C146%^ %^C246%^into %^C195%^" + your_name + "%^C246%^, fatiguing %^C195%^" + your_obj + "%^C246%^!%^CRST%^");
+        tell_object(attacker, "%^C246%^" + my_name + " fires an %^C137%^enervating arrow%^C146%^ %^C246%^into %^C195%^" + your_name + "%^C246%^, fatiguing %^C195%^you%^C246%^!%^CRST%^");
+        tell_room(place, "%^C246%^" + my_name + " fires an %^C137%^enervating arrow%^C146%^ %^C246%^into %^C195%^" + your_name + "%^C246%^, fatiguing %^C195%^" + your_obj + "%^C246%^!%^CRST%^", ({ caster, attacker }));
         "/std/effect/status/fatigued"->apply_effect(target, 1);
         break;
         case "blinding":
