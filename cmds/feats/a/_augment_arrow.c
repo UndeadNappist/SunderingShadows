@@ -33,7 +33,9 @@ void create()
     %^CYAN%^BOLD%^Blinding   : %^MAGENTA%^Blind%^RESET%^
     %^CYAN%^BOLD%^Exploding  : %^YELLOW%^Splash Fire and Piercing Damage.%^RESET%^
 
-This is a toggle feat. Once it is active, you can deactivate it by typing <augment_arrow> once more");
+This is a toggle feat. Once it is active, you can deactivate it by typing %^BOLD%^<augment_arrow>%^RESET%^ once more.
+
+N.B. This feat only works while wielding a bow.");
 }
 
 int allow_shifted() { return 0; }
@@ -73,7 +75,7 @@ void execute_feat()
     
     if(ob = query_active_feat("augment arrow"))
     {
-        tell_object(caster, "You put away your specialized arrows and begin utilizing normal arrows again.");
+        tell_object(caster, "%^MAGENTA%^You put away your specialized arrows and will no longer use them.%^RESET%^");
         ob->dest_effect();
         dest_effect();
         return;
@@ -211,28 +213,29 @@ void execute_attack()
         break;
         case "enervating":
         tell_object(caster, "%^C246%^You fire an %^C137%^enervating arrow%^C146%^ %^C246%^into %^C195%^" + your_name + "%^C246%^, fatiguing %^C195%^" + your_obj + "%^C246%^!%^CRST%^");
-        tell_object(attacker, "%^C246%^" + my_name + " fires an %^C137%^enervating arrow%^C146%^ %^C246%^into %^C195%^" + your_name + "%^C246%^, fatiguing %^C195%^you%^C246%^!%^CRST%^");
+        tell_object(attacker, "%^C246%^" + my_name + " fires an %^C137%^enervating arrow%^C146%^ %^C246%^into %^C195%^you%^C246%^, fatiguing %^C195%^you%^C246%^!%^CRST%^");
         tell_room(place, "%^C246%^" + my_name + " fires an %^C137%^enervating arrow%^C146%^ %^C246%^into %^C195%^" + your_name + "%^C246%^, fatiguing %^C195%^" + your_obj + "%^C246%^!%^CRST%^", ({ caster, attacker }));
         "/std/effect/status/fatigued"->apply_effect(target, 1);
         break;
         case "blinding":
-        tell_object(caster, "You fire a blinding arrow into " + your_name + ", rendering " + your_obj + " sightless!");
-        tell_room(place, "generic blinding arrow message", caster);
+        tell_object(caster, "%^C246%^You fire a %^C190%^blinding arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, rendering %^C195%^" + your_obj + "%^C246%^ sightless!%^CRST%^");
+        tell_object(attacker, "%^C246%^" + my_name + " fires a %^C190%^blinding arrow%^C246%^ into %^C195%^you%^C246%^, rendering %^C195%^you%^C246%^ sightless!%^CRST%^");
+        tell_room(place, "%^C246%^" + my_name + " fires a %^C190%^blinding arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, rendering %^C195%^you%^C246%^ sightless!%^CRST%^", ({ attacker, caster }));
         attacker->set_temporary_blinded(flevel + bonus);
         break;
         case "exploding":
-        tell_object(caster, "You fire an exploding arrow into " + your_name + ", exploding into a shower of sparks!");
-        tell_room(place, "generic exploding arrow message", caster);
+        tell_object(caster, "%^C246%^You fire an %^C202%^exploding arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, exploding into a shower of sparks!%^CRST%^");
+        tell_object(attacker, "%^C246%^" + my_name + " fires an %^C202%^exploding arrow%^C246%^ into %^C195%^you%^C246%^, exploding into a shower of sparks!%^CRST%^");
+        tell_object(caster, "%^C246%^" + my_name + " fires an %^C202%^exploding arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, exploding into a shower of sparks!%^CRST%^", ({ attacker, caster }));
         foreach(object ob in attackers)
         {
-            tell_room(place, ob->query_cap_name() + " is caught in the blast!");
+            tell_room(place, "%^C202%^" + ob->query_cap_name() + " is caught in the blast!%^CRST%^");
             ob->cause_typed_damage(ob, ob->return_target_limb(), dam / 2, "fire");
             objectp(ob) && ob->cause_typed_damage(ob, ob->return_target_limb(), dam / 2, "piercing");
         }
         break;
     }
-        
-    
+          
     reset_attack_cycle();
 }
 
