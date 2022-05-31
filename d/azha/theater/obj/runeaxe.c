@@ -62,6 +62,7 @@ default:
 		"arek. -  Lemons and Limes - A History of Failed Plays - De"+
 		"vin Igarn");
 	set_property("lore difficulty",15);
+    set_damage_type("slashing");
 	set_property("enchantment",3);
 	set_item_bonus("sight bonus",1);
 	set_value(300);

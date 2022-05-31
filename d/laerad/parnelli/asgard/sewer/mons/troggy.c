@@ -67,7 +67,8 @@ void create() {
 	break;
    }
 	command("wearall");
-   set_hp(235);
+   set_max_hp(235);
+   set_hp(query_max_hp());
    set_exp(7000);
    add_money("gold",random(100)+100);
    set_mob_magic_resistance("average");

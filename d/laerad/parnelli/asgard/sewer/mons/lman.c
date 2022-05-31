@@ -33,7 +33,8 @@ void create() {
     	set_stats("constitution",10);
     	set_stats("wisdom",9);
     	set_stats("intelligence",9);
-    	set_hp(74+random(20));
+    	set_max_hp(74+random(20));
+        set_hp(query_max_hp());
     	set_emotes(1,({
 		"The lizardman hisses loudly for reinforcements.",
 		"The lizardman licks the blood from his blade!",

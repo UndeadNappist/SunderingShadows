@@ -29,7 +29,8 @@ void create() {
   	set_stats("constitution",14);
   	set_stats("wisdom",9);
   	set_stats("intelligence",9);
-  	set_hp(90);
+  	set_max_hp(90);
+    set_hp(query_max_hp());
   	set_exp(3000);
   	set_wielding_limbs(({"right hand","left hand"}));
   	new(SHWEAP+"trident")->move(this_object());

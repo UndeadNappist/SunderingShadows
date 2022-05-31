@@ -34,7 +34,8 @@ void create() {
   	set_stats("constitution",16);
   	set_stats("wisdom",9);
   	set_stats("intelligence",11);
-  	set_hp(350);
+  	set_max_hp(350);
+    set_hp(query_max_hp());
   	set_exp(10000);
   	set_size(3);
 	set_property("add kits",3);

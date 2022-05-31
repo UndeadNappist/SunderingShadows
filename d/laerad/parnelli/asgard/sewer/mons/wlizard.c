@@ -26,7 +26,8 @@ DIEGO
   	set_size(3);
   	set_max_hp(175);
   	set_hd(10,2);
-  	set_hp(200);
+  	set_max_hp(200);
+    set_hp(query_max_hp());
   	set_overall_ac(-6);
   	set_exp(2700);
   	set_max_distance(20);

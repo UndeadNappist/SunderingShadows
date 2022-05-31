@@ -31,7 +31,8 @@ void create() {
   	set_stats("constitution",10);
   	set_stats("wisdom",9);
   	set_stats("intelligence",9);
-  	set_hp(85);
+  	set_max_hp(85);
+    set_hp(query_max_hp());
   	set_exp(2500);
   	set_wielding_limbs(({"right hand","left hand"}));
   	new(SHWEAP+"longsword")->move(TO);
