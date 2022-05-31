@@ -24,7 +24,16 @@ void create()
     feat_category("PeerlessArcher");
     feat_name("augment_arrow");
     feat_prereq("Peerless Archer L7");
-    feat_desc("");
+    feat_syntax("augment_arrow [TYPE]");
+    feat_desc("With the feat, the Peerless Archer is able to fire an extra arrow at their target, each round, with a special type of arrow head. If the extra arrow hits the target, an extra effect will occur, as follows:
+
+    %^CYAN%^BOLD%^Barbed     : %^RED%^Rend%^RESET%^
+    %^CYAN%^BOLD%^Crippling  : %^WHITE%^Trip%^RESET%^
+    %^CYAN%^BOLD%^Enervating : %^GREEN%^Fatigue%^RESET%^
+    %^CYAN%^BOLD%^Blinding   : %^MAGENTA%^Blind%^RESET%^
+    %^CYAN%^BOLD%^Exploding  : %^YELLOW%^Splash Fire and Piercing Damage.%^RESET%^
+
+This is a toggle feat. Once it is active, you can deactivate it by typing <augment_arrow> once more");
 }
 
 int allow_shifted() { return 0; }
