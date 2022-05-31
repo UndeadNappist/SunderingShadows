@@ -370,12 +370,53 @@ void randomise_hex_positions(string * ks){
 //  tell_room(find_object_or_load("/realms/lujke/workroom"), report);
 }
 */
+/*
 void randomise_hex_positions(string * ks){
   string * available_ks, report, pos1, pos2;
   int i, count, r;
   report = "Randomised hexes:";
   count = sizeof(ks);
   available_ks = ks;
+//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Number of positions randomised: " + count);
+  for (i=0; i<count;i++){
+    report += ks[i] + " ";
+    r = random(sizeof(available_ks));
+    pos1 = __hex_positions[ks[i]];
+    pos2 = available_ks[r];
+    __hex_positions[ks[i]]=available_ks[r];
+    available_ks -= ({available_ks[r]});
+    tell_room(find_object_or_load("/realms/lujke/workroom"), "Swapping " + pos1 + " with " + pos2);
+  }
+//  tell_room(find_object_or_load("/realms/lujke/workroom"), report);
+}
+*/
+
+void randomise_hex_positions(string * ks){
+  string * available_ks, report, pos1, pos2;
+  int i, count, r, lines;
+  report = "Randomised hexes:";
+  count = sizeof(ks);
+  available_ks = ks;
+  lines = sizeof(seal_pic); 
+  if (lines < 68){
+    ks -= ({"t", "u", "v", "w", "x"});
+  }
+  if (lines <61 ){
+    ks -= ({"p", "q", "r", "s"});
+  }
+  if (lines < 54){
+    ks -= ({"k", "l", "m", "n", "o" });
+  }
+  if (lines < 47){
+    ks -=  ({"7", "8", "9", "0"  });
+  }
+  if (lines < 40){
+    ks -= ({"2", "3", "4", "5", "6"});
+  }
+  if (lines < 33){
+    ks -= ({"X", "Y", "Z", "1"});
+  }
+
 //  tell_room(find_object_or_load("/realms/lujke/workroom"), "Number of positions randomised: " + count);
   for (i=0; i<count;i++){
     report += ks[i] + " ";
