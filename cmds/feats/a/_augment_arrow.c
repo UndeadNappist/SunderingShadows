@@ -103,8 +103,9 @@ void execute_feat()
 
 void execute_attack()
 {
-    int limit, affected;
+    int limit, affected, bonus, result, dam;
     string my_name, your_name, my_poss, your_poss;
+    object weapons;
     
     object attacker, *attackers;
     
@@ -138,13 +139,49 @@ void execute_attack()
         return;
     }
     
+    weapons = caster->query_wielded();
+    
+    if(!weapons || !pointerp(weapons) || !sizeof(weapons) || member_array("bow", !weapons[0]->query_id()) < 0)
+    {
+        tell_object(caster, "You need a bow to use augment arrow!");
+        reset_attack_cycle();
+        return;
+    }
+    
+    bonus = BONUS_D->query_stat_bonus(caster, "dexterity");
     attackers = caster->query_attackers();
     affected = roll_dice(1, 6) + 1;
-    limit = EXPLODE_BASE + BONUS_D->query_stat_bonus(caster, "dexterity");
+    limit = EXPLODE_BASE + bonus);
     affected = min( ({ limit, affected }) );
+    bonus += (weapon->query_wc() + weapon->query_property("enchantment"));
+    
+    if(sizeof(attackers) > affected)
+        attackers = attackers[..affected];
+    
+    my_name = caster->query_cap_name();
+    your_name = attacker->query_cap_name();
+    my_poss = caster->query_possessive();
+    your_poss = attacker->query_possessive();
+    
+    result = thaco(attacker);
+    
+    if(result <= 0)
+    {
+        tell_object(caster, "You fire a " + type + " arrow at " + your_name + ", but miss!");
+        tell_room(place, my_name + " fires a " + type + " arrow at " + your_name + ", but misses!", caster);
+        reset_attack_cycle();
+        return;
+    }
+    
+    dam = (roll_dice(1, 6) * (1 + flevel /  10)) + bonus;
     
     switch(type)
     {
+        case "barbed":
+        tell_object(caster, "generic barbed arrow message");
+        tell_room(place, "generic barbed arrow message", caster);
+        
+       
         
     
     reset_attack_cycle();
