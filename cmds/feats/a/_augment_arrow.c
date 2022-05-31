@@ -11,6 +11,7 @@
 #include <daemons.h>
 
 #define VALID ({ "barbed", "crippling", "enervating", "blinding", "exploding" })
+#define EXPLODE_BASE 6
 
 string type;
 
@@ -89,6 +90,7 @@ void execute_feat()
         case "blinding":
         tell_object(caster, "You attach a blinding head to some of your arrows.");
         break;
+        case "exploding":
         tell_object(caster, "You attach an exploding head to some of your arrows.");
         break;
     }
@@ -96,5 +98,74 @@ void execute_feat()
     type = arg;
     
     caster->set_property("active_feats", ({ this_object() }));
-    
+    return;
 }
+
+void execute_attack()
+{
+    int limit, affected;
+    string my_name, your_name, my_poss, your_poss;
+    
+    object attacker, *attackers;
+    
+    if(!strlen(type))
+    {
+        dest_effect();
+        return;
+    }
+    
+    if(!objectp(caster))
+    {
+        dest_effect();
+        return;
+    }
+    
+    if (caster->query_ghost() || caster->query_unconscious())
+    {
+        reset_attack_cycle();
+        return;
+    }
+
+    if(caster->query_bound() || caster->query_paralyzed())
+    {
+        reset_attack_cycle();
+        return;
+    }
+    
+    if(!attacker = caster->query_current_attacker())
+    {
+        reset_attack_cycle();
+        return;
+    }
+    
+    attackers = caster->query_attackers();
+    affected = roll_dice(1, 6) + 1;
+    limit = EXPLODE_BASE + BONUS_D->query_stat_bonus(caster, "dexterity");
+    affected = min( ({ limit, affected }) );
+    
+    switch(type)
+    {
+        
+    
+    reset_attack_cycle();
+}
+
+void reset_attack_cycle()
+{
+    if (objectp(place))
+    {
+        place->addObjectToCombatCycle(this_object(), 1);
+    }
+    else
+    {
+        dest_effect();
+    }
+}
+
+void dest_effect()
+{
+    ::dest_effect();
+    remove_feat(this_object());
+    return;
+}
+    
