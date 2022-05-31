@@ -212,6 +212,7 @@ string * query_bottom_hexes(){
   return bottom_hexes;
 }
 
+/*
 void randomise_hexes(){
   string * ks, temp_value,* match_ks, pos_code1, pos_code2, * available_ks, * hex1, *hex2, * left_removals, * right_removals, *top_removals, * bottom_removals, *left_hexes, * right_hexes, *top_hexes, * bottom_hexes, * removals;
   int string_len, lines, i, r,j, count, count2;
@@ -312,6 +313,43 @@ void randomise_hexes(){
 //  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising BOTTOM positions");
   randomise_hex_positions(bottom_hexes);
 }
+*/
+
+void randomise_hexes(){
+  string * ks, temp_value,* match_ks, pos_code1, pos_code2, * available_ks, * hex1, *hex2, * left_removals, * right_removals,
+*top_removals, * bottom_removals, *left_hexes, * right_hexes, *top_hexes, * bottom_hexes, * removals;
+  int string_len, lines, i, r,j, count, count2;
+  ks = keys(__hex_positions);
+  lines = sizeof(seal_pic);
+  string_len = strlen(seal_pic[0]);
+  right_hexes = query_right_hexes();
+  left_hexes = ({"A","J","S", "2", "k", "t"});
+  top_hexes = ({"A", "B", "C", "D", "E"});
+  bottom_hexes = query_bottom_hexes();
+  ks -= top_hexes;
+  ks -= left_hexes;
+  ks -= right_hexes;
+  ks -= bottom_hexes;
+  top_removals = left_hexes + right_hexes;  
+  bottom_removals = left_hexes + right_hexes;
+  right_removals = top_hexes + bottom_hexes;
+  left_removals = top_hexes + bottom_hexes;  
+  top_hexes -= top_removals;
+  bottom_hexes -= bottom_removals;
+  right_hexes -= right_removals;
+  left_hexes -= left_removals;  
+//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising main positions");
+  randomise_hex_positions(ks);
+//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising LEFT positions");
+  randomise_hex_positions(left_hexes);
+//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising RIGHT positions");
+  randomise_hex_positions(right_hexes);
+//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising TOP positions");
+  randomise_hex_positions(top_hexes);
+//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising BOTTOM positions");
+  randomise_hex_positions(bottom_hexes);
+}
+/*
 void randomise_hex_positions(string * ks){
   string * available_ks, report;
   int i, count, r;
@@ -327,6 +365,26 @@ void randomise_hex_positions(string * ks){
   }
 //  tell_room(find_object_or_load("/realms/lujke/workroom"), report);
 }
+*/
+void randomise_hex_positions(string * ks){
+  string * available_ks, report, pos1, pos2;
+  int i, count, r;
+  report = "Randomised hexes:";
+  count = sizeof(ks);
+  available_ks = ks;
+//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Number of positions randomised: " + count);
+  for (i=0; i<count;i++){
+    report += ks[i] + " ";
+    r = random(sizeof(available_ks));
+    pos1 = __hex_positions[ks[i]];
+    pos2 = available_ks[r];
+    __hex_positions[ks[i]]=available_ks[r];
+    available_ks -= ({available_ks[r]});
+    tell_room(find_object_or_load("/realms/lujke/workroom"), "Swapping " + pos1 + " with " + pos2);
+  }
+//  tell_room(find_object_or_load("/realms/lujke/workroom"), report);
+}
+
 
 mapping query_hex_x(){
   return __hex_x;
