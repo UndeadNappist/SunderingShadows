@@ -1928,7 +1928,9 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
             tell_room(environment(caster), caster->QCN +
                       " begins to " + whatdo + " a " + whatsit + "!", caster);
         }
-
+        
+        receive_opportunity_attacks();
+        
         if (objectp(target) && target != caster) {
             check_reflection();
         }
