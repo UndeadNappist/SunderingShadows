@@ -142,6 +142,9 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
     //Ranger with wild hunter active sees through quarry's concealment
     if(attacker->query_property("quarry") == victim && FEATS_D->is_active(attacker, "wild hunter"))
         MissChance = 0;
+    
+    if(FEATS_D->has_feat(attacker, "sharp shooting"))
+        MissChance -= 20;
 
     if(surprise_accuracy && FEATS_D->has_feat(attacker, "sharpened accuracy"))
         MissChance = 0;
@@ -1242,12 +1245,17 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
             }
         }
 
-        if(attacker->is_class("thief"))
+        if(attacker->is_class("thief") || attacker->is_class("peerless_archer"))
         {
             //Sneak attack dice section
             sneak = attacker->query_prestige_level("thief") / 2;
             //Arcane trickster sneak attack progression
-            sneak += attacker->query_class_level("arcane_trickster") / 3;
+            if(attacker->query("base_class") != "thief")
+            {
+                sneak += (1 + attacker->query_class_level("arcane_trickster") / 4);
+                if(fired)
+                    sneak += (1 + attacker->query_class_level("peerless_archer") / 4);
+            }
 
             //Making this baseline and replacing combat reflexes with something else.
             /*
