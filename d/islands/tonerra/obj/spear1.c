@@ -54,7 +54,7 @@ int wield_func(string str) {
 int unwield_func(string str) {
    	tell_object(ETO,"%^YELLOW%^The carving of the monkey winks at you"+
 		" before the flickering light fades away.");
-   	tell_room(environment(ETO),"%^YELLOW%^"+ETO->QCN+" releases "+ETO->QS+""+
+   	tell_room(environment(ETO),"%^YELLOW%^"+ETO->QCN+" releases "+ETO->QP+""+
 		" hold of the spear.",ETO);
       return 1;
 }

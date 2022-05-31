@@ -24,9 +24,9 @@ void create() {
 
     ] ));
     set_items(([
-        "torches" : "They are recessed in the walls and glow brightly.  They draw from their own resivoirs of oil, and have their own smoke vents.",
+        "torches" : "They are recessed in the walls and glow brightly.  They draw from their own reservoirs of oil, and have their own smoke vents.",
         "pictograms" : "Hundreds of pictograms line the walls.  You don't have the time to decipher them now.",
-        "walls" : "They are smooth with the exception of the pictograms and writing vcarved into them.",
+        "walls" : "They are smooth with the exception of the pictograms and writing carved into them.",
         "tiles" : "The tiles are marked with the symbol of the Kinnesaruda and have been brought to this island from elsewhere."
     ] ));
 }

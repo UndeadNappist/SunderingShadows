@@ -24,7 +24,7 @@ OLI
    set_items(([
       "shelves":"These are dusty and bent. They hold many cob webbed vials and flasks.",
       "vials":"These vials contain many many colors and textures of things.",
-      "beakers":"Some of these beakers contain the results of mixtures some are empty.",
+      "beakers":"Some of these beakers contain the results of mixtures, some are empty.",
    ]));
    set_exits(([
       "north":MONASTERY+"m34",

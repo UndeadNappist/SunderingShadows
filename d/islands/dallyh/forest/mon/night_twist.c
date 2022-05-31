@@ -17,7 +17,7 @@ void create()
     "unnatural and it bends and twists in ways which no normal tree would. There is a darkness "+
     "and despair radiating outward from it so powerful that it is literally tangible. "+
     "Just gazing at this creature makes you question your very existence and a "+
-    "horrible despair begins to grip soul.%^RESET%^");
+    "horrible despair begins to grip your soul.%^RESET%^");
 
     set_gender("neuter");
 

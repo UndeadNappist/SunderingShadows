@@ -23,7 +23,7 @@ DESC
    set_travel(DIRT_ROAD);
    set_listen("default","The slight breeze stirs the small plants.");
    set_smell("default","The land has a charred smell about it.");
-   set_items((["chair":"This chair looks like a sacraficial seat. The chair is meant to be sat it in."]));
+   set_items((["chair":"This chair looks like a sacrificial seat. The chair is meant to be sat it in."]));
    set_exits(([
       "northeast":MOUNTAIN+"mount62",
       "down":MOUNTAIN+"dhome"

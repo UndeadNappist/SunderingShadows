@@ -14,7 +14,7 @@ void create(){
     );
     set("night long",
         "You have walked into a very dark and dreary swamp.  The moon shines "+
-        "brightly in the midnight sky.  An erie fog drifts across the surface of the "+
+        "brightly in the midnight sky.  An eerie fog drifts across the surface of the "+
         "water.  The place looks so alive you wonder if you should stand around "+
         "for very long."
 	"\nTo the north you see many lights coming from Systyquah village."

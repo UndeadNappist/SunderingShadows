@@ -10,7 +10,7 @@ void create() {
     feat_category("SavageCombat");
     feat_name("wild spellcraft");
     feat_prereq("Druid L11");
-    feat_desc("Some of the more adaptable druids are able to sufficiently duplicate the semantic components of spells so that they can cast them while they are shapeshifted. Only druidic and innate racial spells work in this manner.");
+    feat_desc("Some of the more adaptable druids are able to sufficiently duplicate the somatic components of spells so that they can cast them while they are shapeshifted. Only druidic and innate racial spells work in this manner.");
     permanent(1);
 }
 

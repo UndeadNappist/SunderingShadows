@@ -10,7 +10,7 @@ void create()
     set_spell_level(([ "mage" : 6, "cleric" : 5, "inquisitor":5]));
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS exhume corpses");
-    set_description("With this art the necromancer taps onto the natural flow of negative energies and uses them to track and summon corpses, from various places in the world to the place he is in. The corpses summoned are that of common folk and thus are weak. This spell by itself does nothing to the souls of the deceased, yet the reason why necromancer calls to it is obvious, and thus only evil caster will ever call to it. Using this spell in civilized lands attracts unneeded attention.");
+    set_description("With this art the necromancer taps into the natural flow of negative energies and uses them to track and summon corpses from various places in the world to his location. The corpses summoned are that of common folk and thus are weak. This spell by itself does nothing to the souls of the deceased, yet the reasons why a necromancer would us it is obvious, and thus only evil casters will ever use to it. Using this spell in civilized lands attracts unneeded attention.");
     set_helpful_spell(1);
 }
 

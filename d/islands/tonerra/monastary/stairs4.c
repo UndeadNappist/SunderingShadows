@@ -18,7 +18,7 @@ base you see it wind up into the distance. The long deep
 stone steps have started to decay, but it will take
 many eons to destroy these monstrous steps.
 
-For now you don't seem to be able to climb them
+For now, you don't seem to be able to climb them.
 OLI
    );
    set_smell("default","The old stone has kept all of the smells it's been exposed to.");

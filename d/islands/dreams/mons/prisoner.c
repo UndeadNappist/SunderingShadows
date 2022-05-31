@@ -77,7 +77,7 @@ void step3()
 
 void step3andahalf()
 {
-  force_me("say Just when you think death will finaly grant you peace, "+
+  force_me("say Just when you think death will finally grant you peace, "+
 	"they use their foul magics to heal us, just enough to keep on "+
 	"breathing.  I beg of you, free us!!!");
   call_out("step4",10);
