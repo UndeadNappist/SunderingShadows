@@ -13,6 +13,8 @@
 #define VALID ({ "barbed", "crippling", "enervating", "blinding", "exploding" })
 #define EXPLODE_BASE 6
 
+inherit FEAT;
+
 string type;
 
 void create()
@@ -104,7 +106,7 @@ void execute_feat()
 void execute_attack()
 {
     int limit, affected, bonus, result, dam;
-    string my_name, your_name, my_poss, your_poss;
+    string my_name, your_name, my_poss, your_poss, your_obj;
     object weapons;
     
     object attacker, *attackers;
@@ -149,19 +151,20 @@ void execute_attack()
     }
     
     bonus = BONUS_D->query_stat_bonus(caster, "dexterity");
-    attackers = caster->query_attackers();
+    attackers = caster->query_attackers() - ({ attacker });
     affected = roll_dice(1, 6) + 1;
-    limit = EXPLODE_BASE + bonus);
+    limit = EXPLODE_BASE + bonus;
     affected = min( ({ limit, affected }) );
-    bonus += (weapon->query_wc() + weapon->query_property("enchantment"));
+    bonus += (weapons[0]->query_wc() + weapons[0]->query_property("enchantment"));
     
     if(sizeof(attackers) > affected)
-        attackers = attackers[..affected];
+        attackers = attackers[0..affected];
     
     my_name = caster->query_cap_name();
     your_name = attacker->query_cap_name();
     my_poss = caster->query_possessive();
     your_poss = attacker->query_possessive();
+    your_obj = attacker->query_objective();
     
     result = thaco(attacker);
     
@@ -174,14 +177,47 @@ void execute_attack()
     }
     
     dam = (roll_dice(1, 6) * (1 + flevel /  10)) + bonus;
+    caster->cause_typed_damage(attacker,attacker->return_target_limb(),dam ,"piercing");
+    
+    if(!objectp(caster) || !objectp(attacker))
+    {
+        reset_attack_cycle();
+        return;
+    }
     
     switch(type)
     {
         case "barbed":
-        tell_object(caster, "generic barbed arrow message");
+        tell_object(caster, "You fire a barbed arrow into " + your_name + ", causing massive bleeding!");
         tell_room(place, "generic barbed arrow message", caster);
-        
-       
+        attacker->set_property("rend", 1 + flevel / 16);
+        break;
+        case "crippling":
+        tell_object(caster, "You fire a crippling arrow into " + your_name + ", causing " + your_obj + " to trip!");
+        tell_room(place, "generic crippling arrow message", caster);
+        attacker->set_tripped(1);
+        break;
+        case "enervating":
+        tell_object(caster, "You fire an enervating arrow into " + your_name + ", fatiguing " + your_obj + "!");
+        tell_room(place, "generic crippling arrow message", caster);
+        "/std/effect/status/fatigued"->apply_effect(target, 1);
+        break;
+        case "blinding":
+        tell_object(caster, "You fire a blinding arrow into " + your_name + ", rendering " + your_obj + " sightless!");
+        tell_room(place, "generic blinding arrow message", caster);
+        attacker->set_temporary_blinded(flevel + bonus);
+        break;
+        case "exploding":
+        tell_object(caster, "You fire an exploding arrow into " + your_name + ", exploding into a shower of sparks!");
+        tell_room(place, "generic exploding arrow message", caster);
+        foreach(object ob in attackers)
+        {
+            tell_room(place, ob->query_cap_name() + " is caught in the blast!");
+            ob->cause_typed_damage(ob, ob->return_target_limb(), dam / 2, "fire");
+            objectp(ob) && ob->cause_typed_damage(ob, ob->return_target_limb(), dam / 2, "piercing");
+        }
+        break;
+    }
         
     
     reset_attack_cycle();
