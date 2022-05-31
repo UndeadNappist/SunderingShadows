@@ -11,6 +11,7 @@ string feat_category,
     feat_name,
     feat_type,
     feat_desc,
+    feat_effect,
     feat_syntax,
     feat_prereq,
     arg,
@@ -207,6 +208,18 @@ void feat_desc(string str)
 string query_feat_desc()
 {
     if(stringp(feat_desc)) { return feat_desc; }
+    return "error";
+}
+
+void feat_effect(string str)
+{
+    if(stringp(str) && str != "")
+        feat_effect = str;
+}
+
+string query_feat_effect()
+{
+    if(stringp(feat_effect)) { return feat_effect; }
     return "error";
 }
 
@@ -521,10 +534,10 @@ varargs int do_save(object ob,int mod)
     DC = mylvl + 19;
     //MOD should include whatever stat mod you're using for the feat
     DC += mod;
-    
+
     if(catch(daemon = load_object("/daemon/saving_throw_d")))
         return 0;
-    
+
     num = daemon->do_save(ob, DC, save);
 
     return num;
@@ -641,7 +654,7 @@ int status_check()
        return 0;
     }
     if(feat_name == "stillness of mind" || feat_name == "second wind") { return 1; }
-  
+
     if((caster->light_blind(0) || caster->query_blind()))
     {
         if(!allowblind && !FEATS_D->usable_feat(caster,"blindfight"))
@@ -775,6 +788,8 @@ void help(){
         write("%^BOLD%^%^WHITE%^Prerequisites:%^RESET%^ "+feat_prereq);
     if (stringp(save_type))
         write("%^BOLD%^%^WHITE%^Saving throw:%^RESET%^ "+save_type);
+    if (stringp(feat_effect))
+        write("%^BOLD%^%^WHITE%^Effect:%^RESET%^ "+feat_effect);
     if (stringp(feat_syntax))
         write("%^BOLD%^%^WHITE%^Syntax:%^RESET%^ "+feat_syntax);
     if (stringp(feat_desc))
