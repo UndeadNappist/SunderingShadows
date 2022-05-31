@@ -33,7 +33,7 @@ create(){
 		"of %^BOLD%^jewels %^RESET%^%^CYAN%^and %^BOLD%^%^BLACK%^"+
 		"precious metals %^RESET%^%^CYAN%^to accent the fine cloth "+
 		"and skilled tailoring.  He looks like a man used to "+
-		"hireing others when he needs a %^BOLD%^%^BLACK%^<job> "+
+		"hiring others when he needs a %^BOLD%^%^BLACK%^<job> "+
 		"%^RESET%^%^CYAN%^done for him.  Maybe he'd give you one, "+
 		"if you mentioned you were interested.");
 	set_body_type("human");
@@ -241,7 +241,7 @@ void give_quest(string msg, object who){
 				"word has it, she went aground on something just "+
 				"under the waves.  So maybe start there.");
 			force_me("say Just remember.  I want that chest back "+
-				"sealed and untampered with.  I aint paying for "+
+				"sealed and untampered with.  I ain't paying for "+
 				"curiosity but for a clean job.  Got it?");
 			force_me("say Good... Now, get going.  First one to the "+
 				"prize gets my gold.  Nothing for runner ups.");
@@ -319,7 +319,7 @@ void receive_given_item(object obj){
 /* If they bring back the good chest. */	
 	if(member_array("coralgoodchest",(string)obj->query_id()) != -1){
 		tell_room(ETO,"Grizon looks the chest over carefully "+
-			"inspecting it from every side and testing then unbroken "+
+			"inspecting it from every side and testing the unbroken "+
 			"hasp.");
 		force_me("say Well now, this looks just like what I was "+
 			"expecting.");

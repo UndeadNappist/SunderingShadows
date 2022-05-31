@@ -224,7 +224,7 @@ varargs void do_trap_damage(object who, int save_result, string type)
     switch(type)
     {
         case "dam": case "damage":
-            if(!df || !"/daemon/combat_d.c"->extra_hit_calcs(TO, who, TO, tlimb)) who->do_damage(tlimb, dam);
+            if(!df || !"/daemon/combat_d.c"->extra_hit_calcs(TO, who, TO, tlimb)) who->cause_typed_damage(who, tlimb, dam, TO->query_damage_type());
             break;
         case "paralyze": case "stun":
             who->set_paralyzed(dam, msg);

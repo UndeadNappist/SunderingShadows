@@ -32,7 +32,7 @@ int wipe(string str){
    tell_object(TP,"As you wipe the sneer off the dolls face, it starts to look really pissed.");
    tell_room(ETP,"As "+TPQCN+" starts to wipe the sneer off the dolls face it starts to look really pissed.",TP);
    new(MON+"dexterity")->move(ETP);
-   tell_room(ETP,"%^BOLD%^%^YELLOW%^OOOPS IT IS PISSED!!!");
+   tell_room(ETP,"%^BOLD%^%^YELLOW%^OOOPS, IT IS PISSED!!!");
    call_out("remove",1);
    return 1;
 }

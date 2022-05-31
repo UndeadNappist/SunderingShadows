@@ -88,7 +88,7 @@ void create() {
 
 int berserk(object target){
 	force_me("emoteat "+TPQN+" %^BOLD%^%^BLACK%^BloodFang glares at you%^RESET%^");
-	force_me("emote %^BOLD%^%^RED%^speech growls hungry%^RESET%^");
+	force_me("speech %^BOLD%^%^RED%^growl hungrily%^RESET%^");
 	force_me("say %^BOLD%^%^BLACK%^Meat is here guys ... %^RED%^Kill the Meat!%^RESET%^");
      tell_room(ETO,"%^RED%^The BloodFang goes into berserk!%^RESET%^\n");
 	force_me("kill "+TP->query_name());
@@ -126,10 +126,4 @@ void bite(object targ){
 	}
 }
 }
-
-
-
-
-
-
 

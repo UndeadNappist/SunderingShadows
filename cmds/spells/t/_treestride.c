@@ -125,7 +125,7 @@ void part2(){
 "forward into the tree!%^RESET%^", caster);
     tell_object(caster, "%^RESET%^%^GREEN%^You attune your spirit to the wilderness around you, and your hands "
 "slowly pass forward into the tree!%^RESET%^");
-    caster->set_paralyzed(25, "You are focussing upon the tree!");
+    caster->set_paralyzed(25, "You are focusing upon the tree!");
     call_out("part3", 5);
 }
 

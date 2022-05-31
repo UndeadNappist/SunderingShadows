@@ -15,7 +15,7 @@ void create() {
 	::create();
 	set_name("TitanBane");
 	set_short("%^YELLOW%^Titanbane%^RESET%^");
-   set_obvious_short("%^BOLD%^%^ORANGE%^adamantium warwarhammer%^RESET%^");
+   set_obvious_short("%^BOLD%^%^ORANGE%^adamantium warhammer%^RESET%^");
 	set_id(({"hammer", "aesatri hammer", "hammer asgard", "commando hammer", "Commando Hammer", "Hammer", "commando", "titanbane", "Titanbane"}));
 	set_long("%^GREEN%^This weapon is truly astonishing. The head of this "+
 			"%^BOLD%^%^BLACK%^warhammer %^RESET%^%^GREEN%^is crafted from "+

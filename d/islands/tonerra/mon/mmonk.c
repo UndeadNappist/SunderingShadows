@@ -13,7 +13,7 @@ void create()
     set_name("Old Master");
     set_id(({ "monk", "master monk", "Monk", "old master" }));
     set_short("%^BOLD%^%^GREEN%^Old Master");
-    set_long("This is the religious and philosophical leader of this group of monks. He is stooped and old. His head is bald and wrinkled. He sits in the middle of the garden and meditates. He is one with nature. Always at peace understand everything.");
+    set_long("This is the religious and philosophical leader of this group of monks. He is stooped and old. His head is bald and wrinkled. He sits in the middle of the garden and meditates. He is one with nature, always at peace with and understanding of everything.");
     set_race("human");
     set_body_type("human");
     set_property("garlic_scent", 1);

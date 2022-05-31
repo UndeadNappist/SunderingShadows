@@ -16,7 +16,7 @@ void create()
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS resounding weapon on WEAPON");
     set_damage_desc("divine");
-    set_description("This spell makes a weapon vibrating impsossibly fast. Any creature struck with it will have a chance to recieve sonic damage. A successful save will negate the damage.");
+    set_description("This spell makes a weapon vibrating impossibly fast. Any creature struck with it will have a chance to receive sonic damage. A successful save will negate the damage.");
     set_save("fort");
     set_verbal_comp();
     set_somatic_comp();

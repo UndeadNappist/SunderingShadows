@@ -13,8 +13,8 @@ void create(){
         "Water glistens at various points on the walls, while mold and fungus "+
         "sprout everywhere.  A small stream of fetid and foul smelling liquid "+
         "disappears quickly into a hole in the wall to the south.  On the south wall above "+
-        "the hole a metal wheel with spokes can be seen afixed to the wall.  There is a metal "+
-        "plaque on the wall above the spoked wheel");
+        "the hole a metal wheel with spokes can be seen affixed to the wall.  There is a metal "+
+        "plaque on the wall above the spoked wheel.");
     set_property("light",1);
     set_property("indoors",1);
     set_smell("default","The odor in here is intense and thick.  The smell of a dank sewer presses in on you.");
@@ -23,7 +23,7 @@ void create(){
         ({"sign","plaque"}):"The lettering on the sign has faded away over time, surely it was there for a reason.",
         "wheel":"The wheel is on a rod that disappears into the wall.  Above the wheel is a sign.",
         "stream":"The fluid flows rapidly and splashes the walls, are you sure you want to get your face any closer?",
-        "hole":"The hole is small enough to wedge a small size goblin in tight.  Even if you could overcome the smell and the chance of swallowing the loathesome liquid, your size will prevent you from squeezing into the hole successfully.",
+        "hole":"The hole is small enough to wedge a small size goblin in tight.  Even if you could overcome the smell and the chance of swallowing the loathsome liquid, your size will prevent you from squeezing into the hole successfully.",
         ({"wall","walls"}):"Slimy and slick, they fester with disease."
         ]));
     set_exits(([

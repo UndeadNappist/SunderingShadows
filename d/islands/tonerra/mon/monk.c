@@ -12,7 +12,7 @@ void create()
     set_name("old monk");
     set_id(({ "monk", "old monk", "Monk" }));
     set_short("An old monk");
-    set_long("This old man spends his life sitting quietly in meditation or walking quietly communing with the nature that surrounds him here. His bald head is shadowed with a slight stubble. His calm eyes look over you with a a loving embrace.");
+    set_long("This old man spends his life sitting quietly in meditation or walking quietly communing with the nature that surrounds him here. His bald head is shadowed with a slight stubble. His calm eyes look over you with a loving embrace.");
     set_race("human");
     set_body_type("human");
     set_property("no random money", 1);

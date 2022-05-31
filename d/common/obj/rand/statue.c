@@ -13,6 +13,7 @@ void create(){
    set_long("");
    set_weight(5);
    set_value(2500);
+   set_property("repairtype",({ "jewel" }));
 }
 
 void setStuff(){

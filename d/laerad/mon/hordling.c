@@ -3,6 +3,7 @@
 // adding id of laeradmon *Styx* 12/20/03, last change 3/27/01
 
 #include <std.h>
+#include <daemons.h>
 inherit WEAPONLESS;
 
 void make_me();
@@ -205,7 +206,7 @@ void terror_me(object targ)
     tell_object(targ, "%^BOLD%^%^BLUE%^The hordling stares at you.%^RESET%^");
     tell_room(ETO, "%^BOLD%^%^BLUE%^The hordling stares at " +
               "" + targ->QCN + ".", targ);
-    if ("/daemon/saving_throw_d.c"->will_save(targ, -15)) {
+    if ("/daemon/saving_throw_d.c"->will_save(targ, 25) && (!PLAYER_D->immunity_check(targ, "fear"))) {
         tell_object(targ, "%^BOLD%^BLUE%^An immense feeling of terror " +
                     "overcomes you!");
         tell_room(ETO, "%^BOLD%^BLUE%^" + targ->QCN + " starts to shake " +
