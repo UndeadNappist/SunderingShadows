@@ -19,8 +19,8 @@ void create(){
    set_name("Adilah's Component Shop");    
    set_short("%^RED%^Adilah's Component Shop%^RESET%^");
    set_long("%^MAGENTA%^As you proceed east from the entrance "+
-      "hall, you enter the component shop of %^BOLD%^%^RED%^Adilah,"+
-      "%^RESET%^ %^RED%^the gypsy%^MAGENTA%^.  The atmosphere here "+
+      "hall, you enter the component shop of %^BOLD%^%^RED%^Adilah"+
+      "%^RESET%^%^MAGENTA%^.  The atmosphere here "+
       "has changed radically from the cool, collected environment "+
       "of the previous room.  The walls are lined with curved "+
       "shelves from the ceiling to the floor, and are laden with "+

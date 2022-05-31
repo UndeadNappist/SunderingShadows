@@ -22,9 +22,9 @@ void create(){
 "of crafting.\n%^RESET%^"); 
 	set_lore("%^BOLD%^%^WHITE%^It was said that only two fans such as this were ever made, as mirror images "
 "of each other that were perfectly balanced, to be used in harmonious synchrony.  They were designed and "
-"crafted to the instructions of Xlarenna, a half-elven gypsy of renown in the realms to the west.  It is told "
+"crafted to the instructions of Xlarenna, a half-elven nomad of renown in the realms to the west.  It is told "
 "in lore that the Queen of the Winds was so pleased with the absolute freedom and unrestricted nature of "
-"Xlarenna's life, that upon a whim She let Her blessings fall upon the identical fans.  Even as the gypsy "
+"Xlarenna's life, that upon a whim She let Her blessings fall upon the identical fans.  Even as the "
 "woman danced in the open air, did the breeze pick up and lift her with it.  When they set her down again a "
 "moment later, the very essence and strength of the winds were still carried in the fans she held, evermore "
 "blessed within them.");

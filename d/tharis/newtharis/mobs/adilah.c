@@ -21,7 +21,7 @@ void create(){
        "due to the layer upon layer of clothing she is wearing.  "+
        "Her %^BOLD%^%^MAGENTA%^co%^YELLOW%^lo%^GREEN%^rf%^RED%^ul"+
        "%^RESET%^ %^ORANGE%^garments are %^YELLOW%^horribly mismatched"+
-       "%^RESET%^ %^ORANGE%^in the manner most %^RED%^gypsies "+
+       "%^RESET%^ %^ORANGE%^in the manner most %^RED%^nomads "+
        "%^ORANGE%^favor, and the loose folds bulge here and there, "+
        "as if there are stolen goods hidden underneath them.  The "+
        "makeup on her face is %^BOLD%^%^MAGENTA%^gaudy%^RESET%^"+

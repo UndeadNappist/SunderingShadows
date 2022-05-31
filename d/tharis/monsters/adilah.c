@@ -6,9 +6,9 @@ void create(){
     ::create();
     set_name("adilah");
     set_id(({"adilah","Adilah","clerk","shop keeper","shopkeeper"}));
-    set_short("%^BOLD%^%^RED%^Adilah%^RESET%^%^ORANGE%^ the Gypsy%^RESET%^");
+    set_short("%^BOLD%^%^RED%^Adilah%^RESET%^%^ORANGE%^ the Nomad%^RESET%^");
     set("aggressive",0);
-    set_long("%^RED%^Adilah %^ORANGE%^is a plump %^RED%^gypsy woman"+
+    set_long("%^RED%^Adilah %^ORANGE%^is a plump %^RED%^nomad woman"+
        "%^ORANGE%^.  Her large frame is made even more impressive "+
        "due to the layer upon layer of clothing she is wearing.  "+
        "Her %^BOLD%^%^MAGENTA%^co%^YELLOW%^lo%^GREEN%^rf%^RED%^ul"+
