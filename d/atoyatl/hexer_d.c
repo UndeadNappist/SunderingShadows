@@ -114,6 +114,94 @@ int query_pic_num(){
 string * query_right_hexes(){
   int string_len;
   string * right_hexes;
+  right_hexes = ({"E","N", "W", "6", "o", "x"});
+  string_len = strlen(seal_pic[0]);
+  if (string_len< 64){
+    right_hexes = ({"I", "R", "1", "0", "s"});
+  }
+  if (string_len< 56){
+    right_hexes = ({"D", "M", "V", "5", "n", "w"});
+  }
+  if (string_len<48){
+    right_hexes = ({"H", "Q", "Z", "9", "r"});
+  }
+  if (string_len<40){
+    right_hexes = ({"C", "L", "U", "4", "m", "v"});
+  }
+  if (string_len<32){
+    right_hexes = ({"G", "P", "Y", "8", "q"});
+  }
+  return right_hexes;
+}
+
+
+/*
+
+
+
+
+
+
+string * query_bottom_hexes(){
+  string * bottom_hexes;
+  int lines;
+  lines = sizeof(seal_pic);
+  bottom_hexes = ({ "t", "u", "v", "w", "x" }); 
+  if (lines < 68){
+    bottom_hexes += ({"p", "q", "r", "s"});
+  }
+  if (lines <61 ){
+    bottom_hexes += ({"k", "l", "m", "n", "o"});
+  }
+  if (lines < 54){
+    bottom_hexes = ({ "7", "8", "9", "0"});
+  }
+  if (lines < 47){
+    bottom_hexes +=  ({ "2", "3", "4", "5", "6" });
+  }
+  if (lines < 40){
+    bottom_hexes += ({"X", "Y", "Z", "1"});
+  }
+  if (lines < 33){
+    bottom_hexes += ({"S", "T", "U", "V", "W"});
+  }
+  return bottom_hexes;
+}
+*/
+string * query_bottom_hexes(){
+  string * bottom_hexes;
+  int lines;
+  lines = sizeof(seal_pic);
+  bottom_hexes = ({ "t", "u", "v", "w", "x" }); 
+  if (lines < 68){
+    bottom_hexes += ({"p", "q", "r", "s"});
+  }
+  if (lines <61 ){
+    bottom_hexes += ({"k", "l", "m", "n", "o"});
+  }
+  if (lines < 54){
+    bottom_hexes += ({ "7", "8", "9", "0"});
+  }
+  if (lines < 47){
+    bottom_hexes +=  ({ "2", "3", "4", "5", "6" });
+  }
+  if (lines < 40){
+    bottom_hexes += ({"X", "Y", "Z", "1"});
+  }
+  if (lines < 33){
+    bottom_hexes += ({"S", "T", "U", "V", "W"});
+  }
+  return bottom_hexes;
+}
+
+/*
+
+
+
+
+string * query_right_hexes(){
+  int string_len;
+  string * right_hexes;
   right_hexes = ({"E","N", "W", "f", "o", "x"});
   string_len = strlen(seal_pic[0]);
   if (string_len< 64){
@@ -134,7 +222,9 @@ string * query_right_hexes(){
   return right_hexes;
 }
 
+*/
 
+/*
 string * query_bottom_hexes(){
   string * bottom_hexes;
   int lines;
@@ -159,6 +249,7 @@ string * query_bottom_hexes(){
   }
   return bottom_hexes;
 }
+*/
 /*
 void randomise_hexes(){
   string * ks, temp_value,* match_ks, pos_code1, pos_code2, * available_ks, * hex1, *hex2, * left_removals, * right_removals, *top_removals, * bottom_removals, *left_hexes, * right_hexes, *top_hexes, * bottom_hexes, * removals;
