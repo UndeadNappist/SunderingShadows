@@ -47,7 +47,7 @@ int cmd_crayon(string str) {
 
         scheme_name = args[2];
         if(scheme_name == "scheme") {
-            return notify_fail("The value 'scheme' can not used as color scheme name.\n");
+            return notify_fail("The value 'scheme' can not be used as color scheme name.\n");
         }
 
         if(args[1] == "save") {
@@ -107,14 +107,14 @@ void enter_back_color(string str) {
         return;
     }
     back_color = str;
-    write("Enter the commonly used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
+    write("Enter the commonly used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^^^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
     input_to("enter_common_colors");
 }
 
 void enter_common_colors(string str) {
     string color;
     if(!str || str == ""){
-        write("One or more invalid color codes.\nEnter the commonly used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
+        write("One or more invalid color codes.\nEnter the commonly used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^^^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
         input_to("enter_common_colors");
         return;
     }
@@ -125,19 +125,19 @@ void enter_common_colors(string str) {
     common_colors = explode(str,",");
     foreach(color in common_colors) {
         if(!(color[0..1] ==  "%^") || !(color[<2..] == "%^")) {
-            write("One or more invalid color codes.\nEnter the commonly used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
+            write("One or more invalid color codes.\nEnter the commonly used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^^^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
             input_to("enter_common_colors");
             return;
         }
     }
-    write("Enter the rarely used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
+    write("Enter the rarely used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^^^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
     input_to("enter_rare_colors");
 }
 
 void enter_rare_colors(string str) {
     string color;
     if(!str || str == "") {
-        write("One or more invalid color codes.\nEnter the rarely used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
+        write("One or more invalid color codes.\nEnter the rarely used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^^^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
         input_to("enter_rare_colors");
         return;
     }
@@ -148,7 +148,7 @@ void enter_rare_colors(string str) {
     rare_colors = explode(str,",");
     foreach(color in rare_colors) {
         if(!(color[0..1] ==  "%^") || !(color[<2..] == "%^")) {
-            write("One or more invalid color codes.\nEnter the rarely used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
+            write("One or more invalid color codes.\nEnter the rarely used color codes for the color scheme seperated by commas. \n(%%%^^^RED%%%^^^,%%%^^^BLUE%%%^^^,%%%^^^GREEN%%%^^^)\n");
             input_to("enter_rare_colors");
             return;
         }
