@@ -107,6 +107,7 @@ void setup_hex_positions(){
   ]);*/  
 }
 
+
 int query_pic_num(){
   return pic_num;
 }
