@@ -125,7 +125,10 @@ int add_max_hp_bonus(int hp)
 
 int query_max_hp_bonus()
 {
-    return max_hp_bonus;
+    int my_max_hp_bonus;
+    my_max_hp_bonus = max_hp_bonus;
+	
+    return (my_max_hp_bonus + EQ_D->gear_bonus(TO, "max hp bonus"));
 }
 
 void set_diety(string str)
