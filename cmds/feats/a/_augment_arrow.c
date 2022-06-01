@@ -80,15 +80,6 @@ void execute_feat()
         return;
     }
     
-    /*
-    if(caster->query_current_attacker())
-    {
-        tell_object(caster, "You can't activate or deactivate augment arrow during combat.");
-        dest_effect();
-        return;
-    }
-    */
-    
     if(ob = query_active_feat("augment arrow"))
     {
         tell_object(caster, "%^MAGENTA%^You put away your specialized arrows and will no longer use them.%^RESET%^");
@@ -184,12 +175,8 @@ void execute_attack()
         return;
     }
     
-    bonus = BONUS_D->query_stat_bonus(caster, "dexterity");
     attackers = caster->query_attackers() - ({ attacker });
-    affected = roll_dice(1, 6) + 1;
-    limit = EXPLODE_BASE + bonus;
-    affected = min( ({ limit, affected }) );
-    bonus += (weapons[0]->query_wc() + weapons[0]->query_property("enchantment"));
+    affected = roll_dice(1, 6) + 2;
     
     if(sizeof(attackers) > affected)
         attackers = attackers[0..affected];
@@ -200,18 +187,24 @@ void execute_attack()
     your_poss = attacker->query_possessive();
     your_obj = attacker->query_objective();
     
-    result = thaco(attacker);
+    result = BONUS_D->process_hit(caster, attacker, 1, weapons[0], 0, 0);
     
     if(result <= 0)
     {
         tell_object(caster, "%^YELLOW%^You fire a %^CYAN%^" + type + "%^YELLOW%^ arrow at " + your_name + ", but miss!%^RESET%^");
-        tell_object(caster, "%^YELLOW%^You fire a %^CYAN%^" + type + "%^YELLOW%^ arrow at you, but miss!%^RESET%^");
+        tell_object(attacker, "%^YELLOW%^" + my_name + " fires a %^CYAN%^" + type + "%^YELLOW%^ arrow at you, but miss!%^RESET%^");
         tell_room(place, "%^YELLOW%^" + my_name + " fires a %^CYAN%^" + type + "%^YELLOW%^ arrow at " + your_name + ", but misses!%^RESET%^", caster);
         reset_attack_cycle();
         return;
     }
     
-    dam = (roll_dice(1, 6) * (1 + flevel /  10)) + bonus;
+    dam = weapons[0]->query_wc();
+    bonus = COMBAT_D->get_lrdamage(caster, weapons[0], attacker);
+    dam += BONUS_D->new_damage_bonus(caster, caster->query_stats("dexterity"));
+    dam += weapons[0]->query_property("enchantment");
+    dam += bonus;   
+    dam = COMBAT_D->damage_done(caster, weapons[0], dam, 1);
+    
     caster->cause_typed_damage(attacker,attacker->return_target_limb(),dam ,"piercing");
     
     if(!objectp(caster) || !objectp(attacker))
@@ -254,7 +247,6 @@ void execute_attack()
         {
             tell_room(place, "%^C202%^" + ob->query_cap_name() + " is caught in the blast!%^CRST%^");
             ob->cause_typed_damage(ob, ob->return_target_limb(), dam / 2, "fire");
-            objectp(ob) && ob->cause_typed_damage(ob, ob->return_target_limb(), dam / 2, "piercing");
         }
         break;
     }

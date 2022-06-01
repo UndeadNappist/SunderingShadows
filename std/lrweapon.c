@@ -257,7 +257,7 @@ int __Shoot(string str) {
     if(distance >= query_range(1))
         tohitroll -= 5;
 
-    if(TP->query_class() == "ranger")
+    if(TP->is_class("ranger"))
     {
         if(TP->is_favored_enemy(foe))
         {
@@ -269,6 +269,9 @@ int __Shoot(string str) {
                 tohitroll += 2;
         }
     }
+    
+    if(this_player()->is_class("peerless archer"))
+        tohitroll += 2;
 
     tohitroll = adjust_to_hit(tohitroll);
     thaco = ETO->Thaco(1,foe,TO);
@@ -312,7 +315,7 @@ int __Shoot(string str) {
 
         damage += TP->query_property("damage bonus");
 
-        if(TP->query_class() == "ranger")
+        if(TP->is_class("ranger"))
         {
             if(TP->is_favored_enemy(foe))
             {
@@ -324,6 +327,9 @@ int __Shoot(string str) {
                     damage += 2;
             }
         }
+        
+        if(this_player()->is_class("peerless archer"))
+            damage += (roll_dice(1, 6) * (1 + this_player()->query_class_level("peerless archer") / 4));
 
         if (perfect || mPerfect) {
             damage=damage*4;
@@ -338,7 +344,11 @@ int __Shoot(string str) {
         }
         tell_room(current,"A "+ capitalize(query_ammo())+" from "+fdir+" hits "+whom+"!",foe);
 
-        write("You hit "+whom+"!");
+        if(this_player()->is_class("peerless archer"))
+            write("You hit " + whom + "!%^BOLD%^RED%^[%^BLACK%^Sneak%^RED%^]%^RESET%^");
+        else
+            write("You hit "+whom+"!");
+        
         tell_object(foe,"A "+ capitalize(query_ammo())+" from "+fdir+" hits you!");
 
         foe->add_attacker(ETO);
