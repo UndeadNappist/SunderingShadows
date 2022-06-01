@@ -49,7 +49,6 @@ int prerequisites(object ob)
 
     if ((int)ob->query_class_level("peerless_archer") < 7)
     {
-        dest_effect();
         return 0;
     }
     return ::prerequisites(ob);
@@ -72,6 +71,13 @@ void execute_feat()
     object ob;
     
     ::execute_feat();
+    
+    if (caster->query_property("using instant feat"))
+    {
+        tell_object(caster, "%^BOLD%^You are already in the middle of using a feat.%^RESET%^");
+        dest_effect();
+        return;
+    }
     
     if(ob = query_active_feat("augment arrow"))
     {
