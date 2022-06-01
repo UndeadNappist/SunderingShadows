@@ -574,6 +574,7 @@ varargs string get_adjusted_line(int line_no, int show_hexes){
     hex = __hex_blocks[hex_index];
     
 //    tell_room(find_object_or_load("/realms/lujke/workroom"),"Loading line " + y_within_hex + "of the hex.");
+  tell_object(find_player("lujke"), "Loading line " + y_within_hex + "of the hex.");
     if(y_within_hex >= sizeof(hex))
         continue;
     
@@ -586,6 +587,9 @@ varargs string get_adjusted_line(int line_no, int show_hexes){
       }
     } else {  // The following if statement is true if this line of the hex hits the right edge of the picture before the full width of the hex
       if (hex_x + strlen((hex_line) == strlen(pic_line))&& query_width(hex)<16){ 
+        tell_object(find_player("lujke"), "This line of the hex hits the right edge of the picture before the
+full width of the hex");
+
         line_start_x = strlen(seal_pic[0])-strlen(hex_line);
         x_within_hex = x - line_start_x;
       } else {
