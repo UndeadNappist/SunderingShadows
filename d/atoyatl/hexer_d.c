@@ -8,6 +8,7 @@ string * hex_pattern, * seal_pic, * all_pics, *colour_maps, * colour_map, highli
 int pic_num, hex_height, hex_width;
 mapping __hex_positions, __hex_blocks, __hex_x, __hex_y, __colour_blocks;
 void create(){
+/*
 //        1         2         3         4         5         6    
 //234567890123456789012345678901234567890123456789012345678901234567890
   hex_pattern = ({
@@ -83,6 +84,83 @@ void create(){
 "ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxxxx",  //70
 "ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxxxx",  //71
 "ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxxxx"   //72
+  });
+*/
+//        1         2         3         4         5         6    
+//234567890123456789012345678901234567890123456789012345678901234567890
+  hex_pattern = ({
+"AAAAAAAABBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDEEEEEEEE"  //01
+"AAAAAAAABBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDEEEEEEEE",  //02
+"AAAAAAFFFFBBBBBBBBBBBBGGGGCCCCCCCCCCCCHHHHDDDDDDDDDDDDIIIIEEEEEE",  //03 
+"AAAAFFFFFFFFBBBBBBBBGGGGGGGGCCCCCCCCHHHHHHHHDDDDDDDDIIIIIIIIEEEE",  //04
+"AAFFFFFFFFFFFFBBBBGGGGGGGGGGGGCCCCHHHHHHHHHHHHDDDDIIIIIIIIIIIIEE",  //05
+"FFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIII",  //06
+"FFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIII",  //07
+"FFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIII",  //08
+"FFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIII",  //09
+"JJFFFFFFFFFFFFKKKKGGGGGGGGGGGGLLLLHHHHHHHHHHHHMMMMIIIIIIIIIIIINN",  //10
+"JJJJFFFFFFFFKKKKKKKKGGGGGGGGLLLLLLLLHHHHHHHHMMMMMMMMIIIIIIIINNNN",  //11
+"JJJJJJFFFFKKKKKKKKKKKKGGGGLLLLLLLLLLLLHHHHMMMMMMMMMMMMIIIINNNNNN",  //12
+"JJJJJJJJKKKKKKKKKKKKKKKKLLLLLLLLLLLLLLLLMMMMMMMMMMMMMMMMNNNNNNNN",  //13
+"JJJJJJJJKKKKKKKKKKKKKKKKLLLLLLLLLLLLLLLLMMMMMMMMMMMMMMMMNNNNNNNN",  //14
+"JJJJJJJJKKKKKKKKKKKKKKKKLLLLLLLLLLLLLLLLMMMMMMMMMMMMMMMMNNNNNNNN",  //15
+"JJJJJJJJKKKKKKKKKKKKKKKKLLLLLLLLLLLLLLLLMMMMMMMMMMMMMMMMNNNNNNNN",  //16
+"JJJJJJOOOOKKKKKKKKKKKKPPPPLLLLLLLLLLLLQQQQMMMMMMMMMMMMRRRRNNNNNN",  //17
+"JJJJOOOOOOOOKKKKKKKKPPPPPPPPLLLLLLLLQQQQQQQQMMMMMMMMRRRRRRRRNNNN",  //18
+"JJOOOOOOOOOOOOKKKKPPPPPPPPPPPPLLLLQQQQQQQQQQQQMMMMRRRRRRRRRRRRNN",  //19
+"OOOOOOOOOOOOOOOOPPPPPPPPPPPPPPPPQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRR",  //20
+"OOOOOOOOOOOOOOOOPPPPPPPPPPPPPPPPQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRR",  //21
+"OOOOOOOOOOOOOOOOPPPPPPPPPPPPPPPPQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRR",  //22
+"OOOOOOOOOOOOOOOOPPPPPPPPPPPPPPPPQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRR",  //23
+"SSOOOOOOOOOOOOTTTTPPPPPPPPPPPPUUUUQQQQQQQQQQQQVVVVRRRRRRRRRRRRWW",  //24
+"SSSSOOOOOOOOTTTTTTTTPPPPPPPPUUUUUUUUQQQQQQQQVVVVVVVVRRRRRRRRWWWW",  //25
+"SSSSSSOOOOTTTTTTTTTTTTPPPPUUUUUUUUUUUUQQQQVVVVVVVVVVVVRRRRWWWWWW",  //26
+"SSSSSSSSTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVWWWWWWWW",  //27
+"SSSSSSSSTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVWWWWWWWW",  //28
+"SSSSSSSSTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVWWWWWWWW",  //29
+"SSSSSSSSTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVWWWWWWWW",  //30
+"SSSSSSXXXXTTTTTTTTTTTTYYYYUUUUUUUUUUUUZZZZVVVVVVVVVVVV1111WWWWWW",  //31
+"SSSSXXXXXXXXTTTTTTTTYYYYYYYYUUUUUUUUZZZZZZZZVVVVVVVV11111111WWWW",  //32
+"SSXXXXXXXXXXXXTTTTYYYYYYYYYYYYUUUUZZZZZZZZZZZZVVVV111111111111WW",  //33
+"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ1111111111111111",  //34
+"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ1111111111111111",  //35
+"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ1111111111111111",  //36
+"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ1111111111111111",  //37
+"22XXXXXXXXXXXX3333YYYYYYYYYYYY4444ZZZZZZZZZZZZ555511111111111166",  //38
+"2222XXXXXXXX33333333YYYYYYYY44444444ZZZZZZZZ55555555111111116666",  //39
+"222222XXXX333333333333YYYY444444444444ZZZZ5555555555551111666666",  //40
+"2222222233333333333333334444444444444444555555555555555566666666",  //41
+"2222222233333333333333334444444444444444555555555555555566666666",  //42
+"2222222233333333333333334444444444444444555555555555555566666666",  //43
+"2222222233333333333333334444444444444444555555555555555566666666",  //44
+"2222227777333333333333888844444444444499995555555555550000666666",  //45
+"2222777777773333333388888888444444449999999955555555000000006666",  //46
+"2277777777777733338888888888884444999999999999555500000000000066",  //47
+"7777777777777777888888888888888899999999999999990000000000000000",  //48
+"7777777777777777888888888888888899999999999999990000000000000000",  //49
+"7777777777777777888888888888888899999999999999990000000000000000",  //50
+"7777777777777777888888888888888899999999999999990000000000000000",  //51
+"kk777777777777llll888888888888mmmm999999999999nnnn000000000000oo",  //52
+"kkkk77777777llllllll88888888mmmmmmmm99999999nnnnnnnn00000000oooo",  //53
+"kkkkkk7777llllllllllll8888mmmmmmmmmmmm9999nnnnnnnnnnnn0000oooooo",  //54
+"kkkkkkkkllllllllllllllllmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnoooooooo",  //55
+"kkkkkkkkllllllllllllllllmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnoooooooo",  //56
+"kkkkkkkkllllllllllllllllmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnoooooooo",  //57 
+"kkkkkkkkllllllllllllllllmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnoooooooo",  //58 
+"kkkkkkppppllllllllllllqqqqmmmmmmmmmmmmrrrrnnnnnnnnnnnnssssoooooo",  //59
+"kkkkppppppppllllllllqqqqqqqqmmmmmmmmrrrrrrrrnnnnnnnnssssssssoooo",  //60
+"kkppppppppppppllllqqqqqqqqqqqqmmmmrrrrrrrrrrrrnnnnssssssssssssoo",  //61
+"ppppppppppppppppqqqqqqqqqqqqqqqqrrrrrrrrrrrrrrrrssssssssssssssss",  //62
+"ppppppppppppppppqqqqqqqqqqqqqqqqrrrrrrrrrrrrrrrrssssssssssssssss",  //63
+"ppppppppppppppppqqqqqqqqqqqqqqqqrrrrrrrrrrrrrrrrssssssssssssssss",  //64
+"ppppppppppppppppqqqqqqqqqqqqqqqqrrrrrrrrrrrrrrrrssssssssssssssss",  //65
+"ttppppppppppppuuuuqqqqqqqqqqqqvvvvrrrrrrrrrrrrwwwwssssssssssssxx",  //66
+"ttttppppppppuuuuuuuuqqqqqqqqvvvvvvvvrrrrrrrrwwwwwwwwssssssssxxxx",  //67
+"ttttttppppuuuuuuuuuuuuqqqqvvvvvvvvvvvvrrrrwwwwwwwwwwwwssssxxxxxx",  //68
+"ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxx",  //69
+"ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxx",  //70
+"ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxx",  //71
+"ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxx"   //72
   });
   reset_pics();
 }
@@ -554,7 +632,7 @@ varargs string query_colour_code(string str, int bright){
 varargs string get_adjusted_line(int line_no, int show_hexes){
   string result, index_code, pic_line, code_line, hex_index, * hex, colour_code, pixel, grid_colour;
   int x, count, hex_line, hex_x, hex_y, x_within_hex, y_within_hex, i, * y_ks, hex_midpoint, line_start_x, p;
-  tell_object(find_player("lujke"), "Getting adjusted line");
+//  tell_object(find_player("lujke"), "Getting adjusted line");
   if (line_no > sizeof(seal_pic)-1){
     return "Error loading line - line number too big";
   }
@@ -574,7 +652,7 @@ varargs string get_adjusted_line(int line_no, int show_hexes){
     hex = __hex_blocks[hex_index];
     
 //    tell_room(find_object_or_load("/realms/lujke/workroom"),"Loading line " + y_within_hex + "of the hex.");
-  tell_object(find_player("lujke"), "Loading line " + y_within_hex + "of the hex.");
+//  tell_object(find_player("lujke"), "Loading line " + y_within_hex + "of the hex.");
     if(y_within_hex >= sizeof(hex))
         continue;
     
@@ -587,8 +665,8 @@ varargs string get_adjusted_line(int line_no, int show_hexes){
       }
     } else {  // The following if statement is true if this line of the hex hits the right edge of the picture before the full width of the hex
       if (hex_x + strlen((hex_line) == strlen(pic_line))&& query_width(hex)<16){ 
-        tell_object(find_player("lujke"), "This line of the hex hits the right edge of the picture before the
-full width of the hex");
+//        tell_object(find_player("lujke"), "This line of the hex hits the right edge of the picture before the
+//  full width of the hex");
 
         line_start_x = strlen(seal_pic[0])-strlen(hex_line);
         x_within_hex = x - line_start_x;
