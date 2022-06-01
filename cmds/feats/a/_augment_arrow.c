@@ -193,7 +193,7 @@ void execute_attack()
     {
         tell_object(caster, "%^YELLOW%^You fire a %^CYAN%^" + type + "%^YELLOW%^ arrow at " + your_name + ", but miss!%^RESET%^");
         tell_object(attacker, "%^YELLOW%^" + my_name + " fires a %^CYAN%^" + type + "%^YELLOW%^ arrow at you, but miss!%^RESET%^");
-        tell_room(place, "%^YELLOW%^" + my_name + " fires a %^CYAN%^" + type + "%^YELLOW%^ arrow at " + your_name + ", but misses!%^RESET%^", caster);
+        tell_room(place, "%^YELLOW%^" + my_name + " fires a %^CYAN%^" + type + "%^YELLOW%^ arrow at " + your_name + ", but misses!%^RESET%^", ({ caster, attacker }));
         reset_attack_cycle();
         return;
     }
@@ -242,10 +242,11 @@ void execute_attack()
         case "exploding":
         tell_object(caster, "%^C246%^You fire an %^C202%^exploding arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, exploding into a shower of sparks!%^CRST%^");
         tell_object(attacker, "%^C246%^" + my_name + " fires an %^C202%^exploding arrow%^C246%^ into %^C195%^you%^C246%^, exploding into a shower of sparks!%^CRST%^");
-        tell_object(caster, "%^C246%^" + my_name + " fires an %^C202%^exploding arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, exploding into a shower of sparks!%^CRST%^", ({ attacker, caster }));
+        tell_room(place, "%^C246%^" + my_name + " fires an %^C202%^exploding arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, exploding into a shower of sparks!%^CRST%^", ({ attacker, caster }));
         foreach(object ob in attackers)
         {
-            tell_room(place, "%^C202%^" + ob->query_cap_name() + " is caught in the blast!%^CRST%^");
+            tell_room(place, "%^C202%^" + ob->query_cap_name() + " is caught in the blast!%^CRST%^", attacker);
+            tell_object(attacker, "%^C202%^You are caught in the blast!%^CRST%^", attacker);
             ob->cause_typed_damage(ob, ob->return_target_limb(), dam / 2, "fire");
         }
         break;
