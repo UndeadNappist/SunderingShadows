@@ -3956,7 +3956,7 @@ string get_casting_stat()
         return;
     }
 
-    if(spell_type == "innate" || spell_type == "cantrip" || spell_type == "deep") {
+    if(spell_type == "innate" || spell_type == "cantrip" || spell_type == "deep" || shadow_spell) {
         mycastingstat = "intelligence";
         if(caster->query_stats("wisdom") > caster->query_stats(mycastingstat)) mycastingstat = "wisdom";
         if(caster->query_stats("charisma") > caster->query_stats(mycastingstat)) mycastingstat = "charisma";
