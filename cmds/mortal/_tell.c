@@ -168,29 +168,35 @@ int cmd_tell(string str)
     telepaths = all_inventory(environment(this_player()));
     telepaths = filter_array(telepaths, (: userp($1) :));
    
-    foreach(object obj in telepaths)
+    if(!this_player()->query("no pk"))
     {
-        int DC;
+        foreach(object obj in telepaths)
+        {
+            int DC;
         
-        if(obj == this_player())
-            continue;
-        
-        if(this_player()->query_level() > obj->query_level() + 5)
-            continue;
+            if(obj == this_player())
+                continue;
             
-        if(!FEATS_D->usable_feat(obj, "psychic vampire"))
-            continue;
+            if(obj->query("no pk"))
+                continue;
         
-        if(this_player()->query_discipline() != "telepath")
-            continue;
+            if(this_player()->query_level() > obj->query_level() + 5)
+                continue;
+            
+            if(!FEATS_D->usable_feat(obj, "psychic vampire"))
+                continue;
         
-        DC = obj->query_stats("intelligence") - this_player()->query_stats("intelligence");
-        DC += 10;
+            if(this_player()->query_discipline() != "telepath")
+                continue;
         
-        if(roll_dice(1, 20) < DC)
-            continue;
+            DC = obj->query_stats("intelligence") - this_player()->query_stats("intelligence");
+            DC += 10;
         
-        tell_object(obj, "%^BOLD%^CYAN%^You pick up a fleeting thought %^WHITE%^. o 0 (" + msg + ")%^RESET%^");
+            if(roll_dice(1, 20) < DC)
+                continue;
+        
+            tell_object(obj, "%^BOLD%^CYAN%^You pick up a fleeting thought %^WHITE%^. o 0 (" + msg + ")%^RESET%^");
+        }
     }
 
 #include <detect_thoughts.h>
