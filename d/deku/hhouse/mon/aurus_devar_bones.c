@@ -518,7 +518,7 @@ void die(object ob)
         "absorb information "+
         "expand incredibly!! For the next %^BOLD%^%^CYAN%^two hours%^BOLD%^%^BLACK%^ all experience gained will award an additional %^BOLD%^%^CYAN%^"+
         "5%%^BOLD%^%^BLACK%^!%^RESET%^",
-        "event type" : "exp bonus", "length" : 120, "notification" : "15% Bonus Exp",
+        "event type" : "exp bonus", "length" : 120, "notification" : "5% Bonus Exp",
         "event name" : "Banishment of Au'rus Devar!", "modifier" : 5, "announce" : 1, "announce to" : "world" ]),]));
 
         return ::die(ob);

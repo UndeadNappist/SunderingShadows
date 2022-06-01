@@ -116,7 +116,7 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
         MissChance += 10;
     
     if(FEATS_D->usable_feat(victim, "sharp shooting"))
-        MissChance += 10;
+        MissChance += 20;
 
     if(FEATS_D->usable_feat(victim, "eternal warrior") && victim->query("available focus") == 2)
         MissChance += 10;

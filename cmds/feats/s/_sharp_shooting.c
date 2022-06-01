@@ -8,7 +8,7 @@ void create() {
     feat_category("PeerlessArcher");
     feat_name("sharp shooting");
     feat_prereq("Peerless Archer L7");
-    feat_desc("The Peerless Archer is the master of terrain, cover and concealment. He has learned how best to use cover whilst also possessing the knowledge to dead eye shots into cover to hit their target. With this feat, the Peerless Archer gains 10% MissChance and their shots ignore 20% of their enemies' MissChance, as long as the shot was fired from a bow.");
+    feat_desc("The Peerless Archer is the master of terrain, cover and concealment. He has learned how best to use cover whilst also possessing the knowledge to dead eye shots into cover to hit their target. With this feat, the Peerless Archer gains 20% MissChance and their shots ignore 20% of their enemies' MissChance, as long as the shot was fired from a bow.");
     permanent(1);
     set_required_for(({}));
 }
