@@ -12,6 +12,7 @@
 
 #define VALID ({ "barbed", "crippling", "enervating", "blinding", "exploding" })
 #define EXPLODE_BASE 6
+#define DELAY 30
 
 inherit FEAT;
 
@@ -22,7 +23,7 @@ void create()
     ::create();
     feat_type("instant");
     feat_category("PeerlessArcher");
-    feat_name("augment_arrow");
+    feat_name("augment arrow");
     feat_prereq("Peerless Archer L7");
     feat_syntax("augment_arrow [TYPE]");
     feat_desc("With the feat, the Peerless Archer is able to fire an extra arrow at their target, each round, with a special type of arrow head. If the extra arrow hits the target, an extra effect will occur, as follows:
@@ -79,6 +80,15 @@ void execute_feat()
         return;
     }
     
+    /*
+    if(caster->query_current_attacker())
+    {
+        tell_object(caster, "You can't activate or deactivate augment arrow during combat.");
+        dest_effect();
+        return;
+    }
+    */
+    
     if(ob = query_active_feat("augment arrow"))
     {
         tell_object(caster, "%^MAGENTA%^You put away your specialized arrows and will no longer use them.%^RESET%^");
@@ -90,6 +100,13 @@ void execute_feat()
     if(!arg || !strlen(arg) || member_array(arg, VALID) < 0)
     {
         tell_object(caster, "%^CYAN%^You must select a valid augmentation type. Valid choices are : %^YELLOW%^" + implode(VALID, ", ") + ".%^RESET%^");
+        dest_effect();
+        return;
+    }
+    
+    if(caster->cooldown("augment arrow"))
+    {
+        tell_object(caster, "You can't augment your arrows yet.");
         dest_effect();
         return;
     }
@@ -115,6 +132,7 @@ void execute_feat()
     
     type = arg;
     
+    caster->add_cooldown("augment arrow", 30);
     caster->set_property("active_feats", ({ this_object() }));
     return;
 }
@@ -159,7 +177,7 @@ void execute_attack()
     
     weapons = caster->query_wielded();
     
-    if(!weapons || !pointerp(weapons) || !sizeof(weapons) || member_array("bow", !weapons[0]->query_id()) < 0)
+    if(!weapons || !pointerp(weapons) || !sizeof(weapons) || member_array("bow", weapons[0]->query_id()) < 0)
     {
         tell_object(caster, "You need a bow to use augment arrow!");
         reset_attack_cycle();
