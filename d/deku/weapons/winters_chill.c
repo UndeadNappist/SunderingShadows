@@ -66,6 +66,9 @@ void create(){
     charges = 10 + random(11);
     set_item_bonus("cold resistance", 10);
     set_wield((:TO,"wield_me":));
+    
+    set_damage_type("bludgeoning");
+    set_property("repairtype", ({ "woodwork", "weaponsmith" }));
 }
 
 int wield_me() {

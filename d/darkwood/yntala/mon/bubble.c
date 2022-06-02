@@ -7,7 +7,7 @@ void create(){
   setenv("MOUT", "$N %^BOLD%^%^CYAN%^floats $D.");
    set_id(({"bubble"}));
    set_short("%^BOLD%^%^WHITE%^A floating little %^CYAN%^bubble%^RESET%^");
-   set_long("%^BOLD%^%^WHITE%^This is a tiny little irredescent %^CYAN%^bubble %^WHITE%^that floats effortlessly through the air.");
+   set_long("%^BOLD%^%^WHITE%^This is a tiny little iridescent %^CYAN%^bubble %^WHITE%^that floats effortlessly through the air.");
   set_hd(1,1);
   set_max_hp(1);
   set_hp(1);
@@ -24,7 +24,7 @@ void create(){
   set_damage(1,3);
   set_property("knock unconscious",1);
    set_emotes(1, ({"%^BOLD%^%^WHITE%^The little bubble swirls effortlessly in the air.%^RESET%^",
-      "%^BOLD%^%^CYAN%^The small bubble is caught on an air current and flies high into the air, spiralling around before gently floating back down.","%^BOLD%^%^WHITE%^Irredescent %^RESET%^%^WHITE%^%^c%^CYAN%^o%^WHITE%^l%^CYAN%^o%^RESET%^%^CYAN%^r%^BLUE%^s %^BOLD%^%^WHITE%^shimmer on the surface of the %^CYAN%^bubble %^WHITE%^as it floats around.%^RESET%^","%^BOLD%^%^WHITE%^The bubble quivers, changes shape, and reforms again as a gentle breeze hits it.%^RESET%^",
+      "%^BOLD%^%^CYAN%^The small bubble is caught on an air current and flies high into the air, spiraling around before gently floating back down.","%^BOLD%^%^WHITE%^Iridescent %^RESET%^%^WHITE%^%^c%^CYAN%^o%^WHITE%^l%^CYAN%^o%^RESET%^%^CYAN%^r%^BLUE%^s %^BOLD%^%^WHITE%^shimmer on the surface of the %^CYAN%^bubble %^WHITE%^as it floats around.%^RESET%^","%^BOLD%^%^WHITE%^The bubble quivers, changes shape, and reforms again as a gentle breeze hits it.%^RESET%^",
 }), 0);
 }
 void init() {
