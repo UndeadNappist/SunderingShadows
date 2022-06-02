@@ -236,22 +236,22 @@ string * query_right_hexes(){
   }
   switch(lines)
   {
-  case 0..33:
+  case 0..35:
     lines = 2;
     break;  
-  case 34..43:
+  case 36..45:
     lines = 3;
     break;  
-  case 44..53:
+  case 46..55:
     lines = 3;
     break;  
-  case 54..63:
+  case 56..65:
     lines = 4;
     break;  
-  case 64..73:
+  case 66..75:
     lines = 5;
     break;  
-  case 74..100:
+  case 76..100:
     lines = 6;
     break;
   }
