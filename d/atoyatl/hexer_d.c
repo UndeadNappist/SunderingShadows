@@ -189,271 +189,12 @@ int query_pic_num(){
   return pic_num;
 }
 
-/*
-string * query_right_hexes(){
-  int string_len;
-  string * right_hexes;
-  right_hexes = ({"E","N", "W", "f", "o", "x"});
-  string_len = strlen(seal_pic[0]);
-  if (string_len< 64){
-    right_hexes = ({"I", "R", "a", "j", "s"});
-  }
-  if (string_len< 56){
-    right_hexes = ({"D", "M", "V", "e", "n", "w"});
-  }
-  if (string_len<48){
-    right_hexes = ({"H", "Q", "Z", "i", "r"});
-  }
-  if (string_len<40){
-    right_hexes = ({"C", "L", "U", "d", "m", "v"});
-  }
-  if (string_len<32){
-    right_hexes = ({"G", "P", "Y", "h", "q"});
-  }
-  return right_hexes;
-}
 
 
-string * query_bottom_hexes(){
-  string * bottom_hexes;
-
-  int lines, i;
-  lines = sizeof(seal_pic);
-  if (lines < 68){
-    bottom_hexes = ({"p", "q", "r", "s"});
-  }
-  if (lines <61 ){
-    bottom_hexes = ({"k", "l", "m", "n", "o"});
-  }
-  if (lines < 54){
-    bottom_hexes = ({"g", "h", "i", "j"});
-  }
-  if (lines < 47){
-    bottom_hexes= ({"b", "c", "d", "e", "f"});
-  }
-  if (lines < 40){
-    bottom_hexes = ({"X", "Y", "Z", "a"});
-  }
-  if (lines < 33){
-    bottom_hexes = ({"S", "T", "U", "V", "W"});
-  }
-  return bottom_hexes;
-}
-void randomise_hexes(){
-  string * ks, temp_value,* match_ks, pos_code1, pos_code2, * available_ks, * hex1, *hex2, * left_removals, * right_removals, *top_removals, * bottom_removals, *left_hexes, * right_hexes, *top_hexes, * bottom_hexes, * removals;
-  int string_len, lines, i, r,j, count, count2;
-  ks = keys(__hex_positions);
-  lines = sizeof(seal_pic);
-  string_len = strlen(seal_pic[0]);
-  right_hexes = ({"E","N", "W", "f", "o", "x"});
-  left_hexes = ({"A","J","S", "b", "k", "t"});
-  top_hexes = ({"A", "B", "C", "D", "E"});
-  bottom_hexes = ({"t", "u", "v", "w", "x"});
-  top_removals = right_hexes + left_hexes;  
-  bottom_removals = right_hexes + left_hexes;
-  right_removals = top_hexes + bottom_hexes;
-  left_removals = top_hexes + bottom_hexes;  
-  if (string_len< 64){
-    right_hexes = ({"I", "R", "a", "j", "s"});
-    ks -= right_hexes;
-    bottom_removals += right_hexes;
-    top_removals += right_hexes;
-  }
-  if (string_len< 56){
-    right_hexes = ({"D", "M", "V", "e", "n", "w"});
-    ks -= right_hexes;
-    bottom_removals += right_hexes;
-    top_removals += right_hexes;
-  }
-  if (string_len<48){
-    right_hexes = ({"H", "Q", "Z", "i", "r"});
-    ks -= right_hexes;
-    bottom_removals += right_hexes;
-    top_removals += right_hexes;
-  }
-  if (string_len<40){
-    right_hexes = ({"C", "L", "U", "d", "m", "v"});
-    ks -= right_hexes;
-    bottom_removals += right_hexes;
-    top_removals += right_hexes;
-  }
-  if (string_len<32){
-    right_hexes = ({"G", "P", "Y", "h", "q"});
-    ks -= right_hexes;
-  }
-
-  if (lines < 68){
-    bottom_hexes = ({"p", "q", "r", "s"});
-    ks -= bottom_hexes;
-    left_removals += bottom_hexes;
-    right_removals += bottom_hexes;
-  }
-  if (lines <61 ){
-    bottom_hexes = ({"k", "l", "m", "n", "o"});
-    ks -= bottom_hexes;
-    left_removals += bottom_hexes;
-    right_removals += bottom_hexes;
-  }
-  if (lines < 54){
-    bottom_hexes = ({"g", "h", "i", "j"});
-    ks -= bottom_hexes;
-    left_removals += bottom_hexes;
-    right_removals += bottom_hexes;
-  }
-  if (lines < 47){
-    bottom_hexes= ({"b", "c", "d", "e", "f"});
-    ks -= bottom_hexes;
-    left_removals += bottom_hexes;
-    right_removals += bottom_hexes;
-  }
-  if (lines < 40){
-    bottom_hexes = ({"X", "Y", "Z", "a"});
-    ks -= bottom_hexes;
-    left_removals += bottom_hexes;
-    right_removals += bottom_hexes;
-  }
-  if (lines < 33){
-    bottom_hexes = ({"S", "T", "U", "V", "W"});
-    ks -= bottom_hexes;
-    left_removals += bottom_hexes;
-    right_removals += bottom_hexes;
-  }
-  top_hexes -= top_removals;
-  bottom_hexes -= bottom_removals;
-  right_hexes -= right_removals;
-  left_hexes -= left_removals;  
-  removals = ({"A","B", "C", "D", "E","J","N","S", "W", "b","f", "k","o", "t", "u", "v", "w", "x"});
-  for (i=0;i<sizeof(removals);i++){
-    if (member_array(removals[i], ks)!=-1){
-      ks -= ({removals[i]});
-    }
-  }
-//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising main positions");
-  randomise_hex_positions(ks);
-//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising LEFT positions");
-  randomise_hex_positions(left_hexes);
-//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising RIGHT positions");
-  randomise_hex_positions(right_hexes);
-//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising TOP positions");
-  randomise_hex_positions(top_hexes);
-//  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising BOTTOM positions");
-  randomise_hex_positions(bottom_hexes);
-}
-*/
-/*
-string * query_right_hexes(){
-  int string_len;
-  string * right_hexes;
-  right_hexes = ({"E","N", "W", "6", "o", "x"});
-  string_len = strlen(seal_pic[0]);
-  if (string_len< 64){
-    right_hexes = ({"I", "R", "1", "0", "s"});
-  }
-  if (string_len< 56){
-    right_hexes = ({"D", "M", "V", "5", "n", "w"});
-  }
-  if (string_len<48){
-    right_hexes = ({"H", "Q", "Z", "9", "r"});
-  }
-  if (string_len<40){
-    right_hexes = ({"C", "L", "U", "4", "m", "v"});
-  }
-  if (string_len<32){
-    right_hexes = ({"G", "P", "Y", "8", "q"});
-  }
-  return right_hexes;
-}
-
-
-/*
-string * query_bottom_hexes(){
-  string * bottom_hexes;
-  int lines;
-  lines = sizeof(seal_pic);
-  bottom_hexes = ({ "t", "u", "v", "w", "x" }); 
-  if (lines < 68){
-
-    bottom_hexes = ({"p", "q", "r", "s"});
-  }
-  if (lines <61 ){
-
-    bottom_hexes = ({"k", "l", "m", "n", "o"});
-
-  }
-  if (lines < 54){
-    bottom_hexes = ({ "7", "8", "9", "0"});
-  }
-  if (lines < 47){
-    bottom_hexes =  ({ "2", "3", "4", "5", "6" });
-  }
-  if (lines < 40){
-    bottom_hexes =  ({ "2", "3", "4", "5", "6" });
-  }
-  if (lines < 33){
-    bottom_hexes = ({"S", "T", "U", "V", "W"});
-  }
-  return bottom_hexes;
-}
-*/
-
-/*
-string * query_bottom_hexes(){
-  string * bottom_hexes;
-  int lines, i;
-  lines = sizeof(seal_pic);
-  bottom_hexes = ({ "t", "u", "v", "w", "x" }); 
-  if (lines < 68){
-    for (i=0;i<sizeof(bottom_hexes);i++)
-    {
-      m_delete(__hex_positions, bottom_hexes[i]);
-    }
-    bottom_hexes += ({"p", "q", "r", "s"});
-  }
-  if (lines <61 ){
-    for (i=0;i<sizeof(bottom_hexes);i++)
-    {
-      m_delete(__hex_positions, bottom_hexes[i]);
-    }
-    bottom_hexes += ({"k", "l", "m", "n", "o"});
-  }
-  if (lines < 54){
-    for (i=0;i<sizeof(bottom_hexes);i++)
-    {
-      m_delete(__hex_positions, bottom_hexes[i]);
-    }
-    bottom_hexes += ({ "7", "8", "9", "0"});
-  }
-  if (lines < 47){
-    for (i=0;i<sizeof(bottom_hexes);i++)
-    {
-      m_delete(__hex_positions, bottom_hexes[i]);
-    }
-    bottom_hexes +=  ({ "2", "3", "4", "5", "6" });
-  }
-  if (lines < 40){
-    for (i=0;i<sizeof(bottom_hexes);i++)
-    {
-      m_delete(__hex_positions, bottom_hexes[i]);
-    }
-    bottom_hexes += ({"X", "Y", "Z", "1"});
-  }
-  if (lines < 33){
-    for (i=0;i<sizeof(bottom_hexes);i++)
-    {
-      m_delete(__hex_positions, bottom_hexes[i]);
-    }
-    bottom_hexes += ({"S", "T", "U", "V", "W"});
-  }
-  return bottom_hexes;
-}
-
-
-
-*/
 
 
 string * query_right_hexes(){
-  int string_len;, i
+  int string_len, i;
   string * right_hexes;
   right_hexes = ({"E","N", "W", "6", "o", "x"});
   string_len = strlen(seal_pic[0]);
@@ -499,8 +240,6 @@ string * query_bottom_hexes(){
   string * bottom_hexes;
   int lines, i;
   lines = sizeof(seal_pic);
-  tell_object(find_player("lujke", "Initial hex positions:");
-  tell_object(find_player("lujke", __hex_positions);
   bottom_hexes = ({ "t", "u", "v", "w", "x" }); 
   if (lines < 68){
     for (i=0;i<sizeof(bottom_hexes);i++)
@@ -544,8 +283,6 @@ string * query_bottom_hexes(){
     }
     bottom_hexes += ({"S", "T", "U", "V", "W"});
   }
-  tell_object(find_player("lujke", "Final hex positions:");
-  tell_object(find_player("lujke", __hex_positions);
   return bottom_hexes;
 }
 
@@ -554,17 +291,17 @@ void randomise_hexes(){
   string * ks, temp_value,* match_ks, pos_code1, pos_code2, * available_ks, * hex1, *hex2, * left_removals, * right_removals,
 *top_removals, * bottom_removals, *left_hexes, * right_hexes, *top_hexes, * bottom_hexes, * removals;
   int string_len, lines, i, r,j, count, count2;
+  left_hexes = ({"A","J","S", "b", "k", "t"});
+  top_hexes = ({"A", "B", "C", "D", "E"});
+  bottom_hexes = query_bottom_hexes();
+  right_hexes = query_right_hexes();
   ks = keys(__hex_positions);
   lines = sizeof(seal_pic);
   string_len = strlen(seal_pic[0]);
-  right_hexes = query_right_hexes();
-  left_hexes = ({"A","J","S", "2", "k", "t"});
-  top_hexes = ({"A", "B", "C", "D", "E"});
-  bottom_hexes = query_bottom_hexes();
   ks -= top_hexes;
+  ks -= bottom_hexes;
   ks -= left_hexes;
   ks -= right_hexes;
-  ks -= bottom_hexes;
   top_removals = left_hexes + right_hexes;  
   bottom_removals = left_hexes + right_hexes;
   right_removals = top_hexes + bottom_hexes;
