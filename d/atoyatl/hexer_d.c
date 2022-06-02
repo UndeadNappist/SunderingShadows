@@ -348,16 +348,16 @@ void randomise_hexes(){
   lines = sizeof(seal_pic);
   switch(lines)
   {
-  case 0..19:
+  case 0..23:
     left_hexes = ({"A","J"});   
     break;
-  case 20..33:
+  case 24..37:
     left_hexes = ({"A","J","S"});
     break;
-  case 34..47:
+  case 38..51:
     left_hexes = ({"A","J","S", "2"});
     break;
-  case 48..61:
+  case 52..65:
     left_hexes = ({"A","J","S", "2", "k"});
     break;
   default:
@@ -374,7 +374,7 @@ void randomise_hexes(){
     top_hexes = ({"A","B","C","D"});
     break;
   default:
-    top_hexes = ({"A","B","C", "D", "E");
+    top_hexes = ({"A","B","C", "D", "E"});
     break;
   }
 
