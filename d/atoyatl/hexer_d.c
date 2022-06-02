@@ -330,11 +330,14 @@ void randomise_hexes(){
   string * ks, temp_value,* match_ks, pos_code1, pos_code2, * available_ks, * hex1, *hex2, * left_removals, * right_removals,
 *top_removals, * bottom_removals, *left_hexes, * right_hexes, *top_hexes, * bottom_hexes, * removals;
   int string_len, lines, i, r,j, count, count2;
-  left_hexes = ({"A","J","S", "b", "k", "t"});
+  left_hexes = ({"A","J","S", "2", "k", "t"});
+
   top_hexes = ({"A", "B", "C", "D", "E"});
   bottom_hexes = query_bottom_hexes();
   right_hexes = query_right_hexes();
   ks = keys(__hex_positions);
+// 
+//  tell_object(find_player("lujke"), __hex_positions);
   lines = sizeof(seal_pic);
   string_len = strlen(seal_pic[0]);
   ks -= top_hexes;
