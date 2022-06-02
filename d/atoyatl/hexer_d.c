@@ -194,8 +194,9 @@ int query_pic_num(){
 
 
 string * query_right_hexes(){
-  int string_len, i;
+  int string_len, i, lines;
   string * right_hexes;
+  lines = sizeof(seal_pic);
   right_hexes = ({"E","N", "W", "6", "o", "x"});
   string_len = strlen(seal_pic[0]);
   if (string_len< 64){
@@ -233,12 +234,18 @@ string * query_right_hexes(){
     }
     right_hexes = ({"G", "P", "Y", "8", "q"});
   }
+
+  lines = (lines - 2) / 10;  
+  right_hexes = right_hexes[0..lines-1];   //////
+
   return right_hexes;
 }
 
 string * query_bottom_hexes(){
   string * bottom_hexes;
-  int lines, i;
+  int lines, i, string_len;   ////////////
+  string_len = strlen(seal_pic[0]);  /////////////////
+
   lines = sizeof(seal_pic);
   bottom_hexes = ({ "t", "u", "v", "w", "x" }); 
   if (lines < 68){
@@ -274,15 +281,18 @@ string * query_bottom_hexes(){
     {
       m_delete(__hex_positions, bottom_hexes[i]);
     }
-    bottom_hexes += ({"X", "Y", "Z", "1"});
+
+    bottom_hexes = ({"X", "Y", "Z", "1"});
   }
   if (lines < 33){
     for (i=0;i<sizeof(bottom_hexes);i++)
     {
       m_delete(__hex_positions, bottom_hexes[i]);
     }
-    bottom_hexes += ({"S", "T", "U", "V", "W"});
+    bottom_hexes = ({"S", "T", "U", "V", "W"});
   }
+  string_len = (string_len -8) /16 +1;   ////////////// 
+  bottom_hexes = bottom_hexes [0.. string_len -1]; 
   return bottom_hexes;
 }
 
