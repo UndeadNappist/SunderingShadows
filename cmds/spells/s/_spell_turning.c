@@ -13,7 +13,7 @@ void create()
     set_spell_level(([ "mage" : 7, "oracle" : 7 ]));
     set_mystery("spellscar");
     set_spell_sphere("abjuration");
-    set_damage_desc("clevel/6+5 spell reflection chance.");
+    set_damage_desc("clevel/6+5 spell reflection chance. Spell turning stat.");
     set_syntax("cast CLASS spell turning");
     set_description("The most skilled of abjurers can use such a spell to raise a protective ward around themselves. While it holds, it will have a chance to reflect any spells which are directly aimed at the caster. The ward will not reflect splash damage or AOE, but only directly targeted spells. This spell will override spell reflection and reflection feats. Splash spells and AOE spells are not affected.");
     set_verbal_comp();

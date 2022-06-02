@@ -346,7 +346,38 @@ void randomise_hexes(){
   tell_object(find_player("lujke"), temp_value);
 
   lines = sizeof(seal_pic);
+  switch(lines)
+  {
+  case 0..19:
+    left_hexes = ({"A","J"});   
+    break;
+  case 20..33:
+    left_hexes = ({"A","J","S"});
+    break;
+  case 34..47:
+    left_hexes = ({"A","J","S", "2"});
+    break;
+  case 48..61:
+    left_hexes = ({"A","J","S", "2", "k"});
+    break;
+  default:
+    left_hexes = ({"A","J","S", "2", "k", "t"});
+    break;
+  }
   string_len = strlen(seal_pic[0]);
+  switch(string_len)
+  {
+  case 0..40:
+    top_hexes = ({"A","B","C"});   
+    break;
+  case 41..56:
+    top_hexes = ({"A","B","C","D"});
+    break;
+  default:
+    top_hexes = ({"A","B","C", "D", "E");
+    break;
+  }
+
   ks -= top_hexes;
   ks -= bottom_hexes;
   ks -= left_hexes;
