@@ -340,6 +340,7 @@ void randomise_hexes(){
   randomise_hex_positions(bottom_hexes);
 }
 */
+/*
 string * query_right_hexes(){
   int string_len;
   string * right_hexes;
@@ -395,6 +396,7 @@ string * query_bottom_hexes(){
 }
 */
 
+/*
 string * query_bottom_hexes(){
   string * bottom_hexes;
   int lines, i;
@@ -445,6 +447,107 @@ string * query_bottom_hexes(){
   return bottom_hexes;
 }
 
+
+
+*/
+
+
+string * query_right_hexes(){
+  int string_len;, i
+  string * right_hexes;
+  right_hexes = ({"E","N", "W", "6", "o", "x"});
+  string_len = strlen(seal_pic[0]);
+  if (string_len< 64){
+    for (i=0;i<sizeof(right_hexes);i++)
+    {
+      m_delete(__hex_positions, right_hexes[i]);
+    }
+    right_hexes = ({"I", "R", "1", "0", "s"});
+  }
+  if (string_len< 56){
+    for (i=0;i<sizeof(right_hexes);i++)
+    {
+      m_delete(__hex_positions, right_hexes[i]);
+    }
+    right_hexes = ({"D", "M", "V", "5", "n", "w"});
+  }
+  if (string_len<48){
+    for (i=0;i<sizeof(right_hexes);i++)
+    {
+      m_delete(__hex_positions, right_hexes[i]);
+    }
+    right_hexes = ({"H", "Q", "Z", "9", "r"});
+  }
+  if (string_len<40){
+    for (i=0;i<sizeof(right_hexes);i++)
+    {
+      m_delete(__hex_positions, right_hexes[i]);
+    }
+    right_hexes = ({"C", "L", "U", "4", "m", "v"});
+  }
+  if (string_len<32){
+    for (i=0;i<sizeof(right_hexes);i++)
+    {
+      m_delete(__hex_positions, right_hexes[i]);
+    }
+    right_hexes = ({"G", "P", "Y", "8", "q"});
+  }
+  return right_hexes;
+}
+
+string * query_bottom_hexes(){
+  string * bottom_hexes;
+  int lines, i;
+  lines = sizeof(seal_pic);
+  tell_object(find_player("lujke", "Initial hex positions:");
+  tell_object(find_player("lujke", __hex_positions);
+  bottom_hexes = ({ "t", "u", "v", "w", "x" }); 
+  if (lines < 68){
+    for (i=0;i<sizeof(bottom_hexes);i++)
+    {
+      m_delete(__hex_positions, bottom_hexes[i]);
+    }
+    bottom_hexes = ({"p", "q", "r", "s"});
+  }
+  if (lines <61 ){
+    for (i=0;i<sizeof(bottom_hexes);i++)
+    {
+      m_delete(__hex_positions, bottom_hexes[i]);
+    }
+    bottom_hexes = ({"k", "l", "m", "n", "o"});
+  }
+  if (lines < 54){
+    for (i=0;i<sizeof(bottom_hexes);i++)
+    {
+      m_delete(__hex_positions, bottom_hexes[i]);
+    }
+    bottom_hexes = ({ "7", "8", "9", "0"});
+  }
+  if (lines < 47){
+    for (i=0;i<sizeof(bottom_hexes);i++)
+    {
+      m_delete(__hex_positions, bottom_hexes[i]);
+    }
+    bottom_hexes =  ({ "2", "3", "4", "5", "6" });
+  }
+  if (lines < 40){
+    for (i=0;i<sizeof(bottom_hexes);i++)
+    {
+      m_delete(__hex_positions, bottom_hexes[i]);
+    }
+    bottom_hexes += ({"X", "Y", "Z", "1"});
+  }
+  if (lines < 33){
+    for (i=0;i<sizeof(bottom_hexes);i++)
+    {
+      m_delete(__hex_positions, bottom_hexes[i]);
+    }
+    bottom_hexes += ({"S", "T", "U", "V", "W"});
+  }
+  tell_object(find_player("lujke", "Final hex positions:");
+  tell_object(find_player("lujke", __hex_positions);
+  return bottom_hexes;
+}
 
 
 void randomise_hexes(){
