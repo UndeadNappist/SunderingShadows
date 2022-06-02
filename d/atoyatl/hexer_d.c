@@ -251,6 +251,9 @@ string * query_right_hexes(){
   case 64..73:
     lines = 5;
     break;  
+  case 74..100:
+    lines = 6;
+    break;
   }
   if (string_len/8%2==0)
   {
@@ -276,7 +279,6 @@ string * query_bottom_hexes(){
       m_delete(__hex_positions, bottom_hexes[i]);
     }
     bottom_hexes = ({"p", "q", "r", "s"});
-    string_len ++;
   }
   if (lines <61 ){
     for (i=0;i<sizeof(bottom_hexes);i++)
@@ -284,7 +286,7 @@ string * query_bottom_hexes(){
       m_delete(__hex_positions, bottom_hexes[i]);
     }
     bottom_hexes = ({"k", "l", "m", "n", "o"});
-    string_len --;
+    string_len ++;
   }
   if (lines < 54){
     for (i=0;i<sizeof(bottom_hexes);i++)
@@ -292,7 +294,7 @@ string * query_bottom_hexes(){
       m_delete(__hex_positions, bottom_hexes[i]);
     }
     bottom_hexes = ({ "7", "8", "9", "0"});
-    string_len ++;
+    string_len --;
   }
   if (lines < 47){
     for (i=0;i<sizeof(bottom_hexes);i++)
@@ -300,7 +302,7 @@ string * query_bottom_hexes(){
       m_delete(__hex_positions, bottom_hexes[i]);
     }
     bottom_hexes =  ({ "2", "3", "4", "5", "6" });
-    string_len --;
+    string_len ++;
   }
   if (lines < 40){
     for (i=0;i<sizeof(bottom_hexes);i++)
@@ -309,7 +311,7 @@ string * query_bottom_hexes(){
     }
 
     bottom_hexes = ({"X", "Y", "Z", "1"});
-    string_len ++;
+    string_len --;
   }
   if (lines < 33){
     for (i=0;i<sizeof(bottom_hexes);i++)
@@ -317,9 +319,9 @@ string * query_bottom_hexes(){
       m_delete(__hex_positions, bottom_hexes[i]);
     }
     bottom_hexes = ({"S", "T", "U", "V", "W"});
-    string_len --;
+    string_len ++;
   }
-  bottom_hexes = bottom_hexes [0.. string_len -1]; 
+  bottom_hexes = bottom_hexes [0.. string_len]; 
   return bottom_hexes;
 }
 
