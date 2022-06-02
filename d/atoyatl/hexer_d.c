@@ -234,9 +234,30 @@ string * query_right_hexes(){
     }
     right_hexes = ({"G", "P", "Y", "8", "q"});
   }
+  switch(lines)
+  {
+  case 0..33:
+    lines = 2;
+    break;  
+  case 34..43:
+    lines = 3;
+    break;  
+  case 44..53:
+    lines = 3;
+    break;  
+  case 54..63:
+    lines = 4;
+    break;  
+  case 64..73:
+    lines = 5;
+    break;  
+  }
+  if (string_len/8%2==0)
+  {
+    lines ++;
+  } 
+  right_hexes = right_hexes[0..lines-1];
 
-  lines = (lines - 2) / 10;  
-  right_hexes = right_hexes[0..lines-1];   //////
 
   return right_hexes;
 }
@@ -248,12 +269,14 @@ string * query_bottom_hexes(){
 
   lines = sizeof(seal_pic);
   bottom_hexes = ({ "t", "u", "v", "w", "x" }); 
+  string_len = (string_len -8) /16;
   if (lines < 68){
     for (i=0;i<sizeof(bottom_hexes);i++)
     {
       m_delete(__hex_positions, bottom_hexes[i]);
     }
     bottom_hexes = ({"p", "q", "r", "s"});
+    string_len ++;
   }
   if (lines <61 ){
     for (i=0;i<sizeof(bottom_hexes);i++)
@@ -261,6 +284,7 @@ string * query_bottom_hexes(){
       m_delete(__hex_positions, bottom_hexes[i]);
     }
     bottom_hexes = ({"k", "l", "m", "n", "o"});
+    string_len --;
   }
   if (lines < 54){
     for (i=0;i<sizeof(bottom_hexes);i++)
@@ -268,6 +292,7 @@ string * query_bottom_hexes(){
       m_delete(__hex_positions, bottom_hexes[i]);
     }
     bottom_hexes = ({ "7", "8", "9", "0"});
+    string_len ++;
   }
   if (lines < 47){
     for (i=0;i<sizeof(bottom_hexes);i++)
@@ -275,6 +300,7 @@ string * query_bottom_hexes(){
       m_delete(__hex_positions, bottom_hexes[i]);
     }
     bottom_hexes =  ({ "2", "3", "4", "5", "6" });
+    string_len --;
   }
   if (lines < 40){
     for (i=0;i<sizeof(bottom_hexes);i++)
@@ -283,6 +309,7 @@ string * query_bottom_hexes(){
     }
 
     bottom_hexes = ({"X", "Y", "Z", "1"});
+    string_len ++;
   }
   if (lines < 33){
     for (i=0;i<sizeof(bottom_hexes);i++)
@@ -290,8 +317,8 @@ string * query_bottom_hexes(){
       m_delete(__hex_positions, bottom_hexes[i]);
     }
     bottom_hexes = ({"S", "T", "U", "V", "W"});
+    string_len --;
   }
-  string_len = (string_len -8) /16 +1;   ////////////// 
   bottom_hexes = bottom_hexes [0.. string_len -1]; 
   return bottom_hexes;
 }
