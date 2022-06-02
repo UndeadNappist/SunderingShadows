@@ -397,7 +397,7 @@ string * query_bottom_hexes(){
 
 string * query_bottom_hexes(){
   string * bottom_hexes;
-  int lines;
+  int lines, i;
   lines = sizeof(seal_pic);
   bottom_hexes = ({ "t", "u", "v", "w", "x" }); 
   if (lines < 68){
