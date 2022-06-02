@@ -141,7 +141,7 @@ void greet_me(object who)
     if(living(who))
     {
         command("stab " + who->query_name());
-        command("crit " + who->query_name());
+        living(who) && command("crit " + who->query_name());
     }
 }
 
