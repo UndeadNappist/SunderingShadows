@@ -705,6 +705,9 @@ int check_reflection()
     if ((int)TO->query_helpful()) {
         return 0;
     }
+    
+    if(splash_spell)
+        return 0;
 
     flagz = 0;
     if (FEATS_D->usable_feat(target, "spell reflection")) {

@@ -336,8 +336,15 @@ void randomise_hexes(){
   bottom_hexes = query_bottom_hexes();
   right_hexes = query_right_hexes();
   ks = keys(__hex_positions);
-// 
 //  tell_object(find_player("lujke"), __hex_positions);
+  temp_value = "([";
+  for (i=0;i<sizeof(ks);i++)
+  {
+    temp_value += ks[i] + ":" + __hex_positions[ks[i]] + ", "; 
+  }
+  temp_value += "])";
+  tell_object(find_player("lujke"), temp_value);
+
   lines = sizeof(seal_pic);
   string_len = strlen(seal_pic[0]);
   ks -= top_hexes;
@@ -353,12 +360,43 @@ void randomise_hexes(){
   right_hexes -= right_removals;
   left_hexes -= left_removals;  
 //  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising main positions");
+  temp_value = "Randomising: ([";
+  for (i=0;i<sizeof(ks);i++)
+  {
+    temp_value += ks[i] + ":" + __hex_positions[ks[i]] + ", "; 
+  }
+  temp_value += "])";
+  tell_object(find_player("lujke"), temp_value);
+
   randomise_hex_positions(ks);
 //  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising LEFT positions");
+  temp_value = "Randomising: ([";
+  for (i=0;i<sizeof(left_hexes);i++)
+  {
+    temp_value += left_hexes[i] + ":" + __hex_positions[left_hexes[i]] + ", "; 
+  }
+  temp_value += "])";
+  tell_object(find_player("lujke"), temp_value);
   randomise_hex_positions(left_hexes);
 //  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising RIGHT positions");
+  temp_value = "Randomising: ([";
+  for (i=0;i<sizeof(right_hexes);i++)
+  {
+    temp_value += right_hexes[i] + ":" + __hex_positions[right_hexes[i]] + ", "; 
+  }
+  temp_value += "])";
+  tell_object(find_player("lujke"), temp_value);
+
   randomise_hex_positions(right_hexes);
 //  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising TOP positions");
+  temp_value = "Randomising: ([";
+  for (i=0;i<sizeof(top_hexes);i++)
+  {
+    temp_value += top_hexes[i] + ":" + __hex_positions[top_hexes[i]] + ", "; 
+  }
+  temp_value += "])";
+  tell_object(find_player("lujke"), temp_value);
+
   randomise_hex_positions(top_hexes);
 //  tell_room(find_object_or_load("/realms/lujke/workroom"), "Randomising BOTTOM positions");
   randomise_hex_positions(bottom_hexes);

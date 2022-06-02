@@ -11,7 +11,7 @@ void create()
     feat_name("spell reflection");
     feat_prereq("Improved resistance");
     feat_effect("Spellcraft/4 spell reflection chance");
-    feat_desc("The spell reflection feat will give a chance to bounce any spells off the character and back at their caster. This will only affect directly targetted spells. This should only affect harmful spells. It does not stack with the 'reflection' feat. The chance to reflect directly depends on your spellcraft skill.");
+    feat_desc("The spell reflection feat will give a chance to bounce any spells off the character and back at their caster. This will only affect directly targetted spells. This should only affect harmful spells. Splash spells or AOE spells are not affected. It does not stack with the 'reflection' feat. The chance to reflect directly depends on your spellcraft skill.");
     permanent(1);
 }
 

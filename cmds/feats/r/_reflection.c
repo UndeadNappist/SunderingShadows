@@ -14,7 +14,7 @@ void create()
     feat_name("reflection");
     feat_prereq("Deflection");
     feat_effect("Athletics/4 spell reflection chance");
-    feat_desc("The Reflection feat will give a chance to cast any spells cast at you back at the caster. This should only affect harmful spells. Percentile of the success is quarter of your athletics. It does not stack with the 'spell reflection' feat. The chance to reflect depends on your athletic skill.");
+    feat_desc("The Reflection feat will give a chance to cast any spells cast at you back at the caster. This should only affect harmful spells. Splash spells and AOE spells are not affected. Percentile of the success is quarter of your athletics. It does not stack with the 'spell reflection' feat. The chance to reflect depends on your athletic skill. This feat effectively adds to your spell turning stat.");
     permanent(1);
     set_target_required(0);
 }
