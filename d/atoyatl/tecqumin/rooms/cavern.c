@@ -205,6 +205,9 @@ int completed_quest(object ob){
   if (TP->query_true_invis()) return 0;
   quests = TP->query_mini_quests();
   if (sizeof(quests)>0 && member_array("Arranged the blocks to reveal the seal on the Unfettered's cage", quests)!=-1){
+    TP->remove_mini_quest("Arranged the blocks to reveal the seal on the Unfettered's cage");
+  }
+  if (sizeof(quests)>0 && member_array("Revealed the seal on the Unfettered's cage", quests)!=-1){
     return 1;
   }
   return 0;
@@ -322,11 +325,12 @@ int touch_blocks(string str){
   HEXER_D->swap_hexes(which, HEXER_D->query_highlight());
   HEXER_D->highlight_hex("none");
   if (HEXER_D->check_completed()==1){
+    quests = TP->query_mini_quests();
+    if (member_array("Revealed the seal on the Unfettered's cage", quests)==-1){
+      TP->set_mini_quest("Revealed the seal on the Unfettered's cage");
+    }
+
     call_out("reveal_seal", 2);
-  }
-  quests = TP->query_mini_quests();
-  if (member_array("Arranged the blocks to reveal the seal on the Unfettered's cage", quests)==-1){
-    TP->set_mini_quest("Arranged the blocks to reveal the seal on the Unfettered's cage");
   }
   return 1;
 }
