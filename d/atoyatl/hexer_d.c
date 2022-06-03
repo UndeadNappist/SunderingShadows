@@ -8,11 +8,12 @@ string * hex_pattern, * seal_pic, * all_pics, *colour_maps, * colour_map, highli
 int pic_num, hex_height, hex_width;
 mapping __hex_positions, __hex_blocks, __hex_x, __hex_y, __colour_blocks;
 void create(){
-/*
+//        1         2         3         4         5         6    
+
 //        1         2         3         4         5         6    
 //234567890123456789012345678901234567890123456789012345678901234567890
   hex_pattern = ({
-"AAAAAAAABBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDEEEEEEEEEE"  //01
+"AAAAAAAABBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDEEEEEEEEEE",  //01
 "AAAAAAAABBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDEEEEEEEEEE",  //02
 "AAAAAAFFFFBBBBBBBBBBBBGGGGCCCCCCCCCCCCHHHHDDDDDDDDDDDDIIIIEEEEEEEE",  //03 
 "AAAAFFFFFFFFBBBBBBBBGGGGGGGGCCCCCCCCHHHHHHHHDDDDDDDDIIIIIIIIEEEEEE",  //04
@@ -42,30 +43,30 @@ void create(){
 "SSSSSSSSTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVWWWWWWWWWW",  //28
 "SSSSSSSSTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVWWWWWWWWWW",  //29
 "SSSSSSSSTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVWWWWWWWWWW",  //30
-"SSSSSSXXXXTTTTTTTTTTTTYYYYUUUUUUUUUUUUZZZZVVVVVVVVVVVV1111WWWWWWWW",  //31
-"SSSSXXXXXXXXTTTTTTTTYYYYYYYYUUUUUUUUZZZZZZZZVVVVVVVV11111111WWWWWW",  //32
-"SSXXXXXXXXXXXXTTTTYYYYYYYYYYYYUUUUZZZZZZZZZZZZVVVV111111111111WWWW",  //33
-"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ1111111111111111WW",  //34
-"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ1111111111111111WW",  //35
-"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ111111111111111166",  //36
-"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ111111111111111166",  //37
-"22XXXXXXXXXXXX3333YYYYYYYYYYYY4444ZZZZZZZZZZZZ55551111111111116666",  //38
-"2222XXXXXXXX33333333YYYYYYYY44444444ZZZZZZZZ5555555511111111666666",  //39
-"222222XXXX333333333333YYYY444444444444ZZZZ555555555555111166666666",  //40
-"222222223333333333333333444444444444444455555555555555556666666666",  //41
-"222222223333333333333333444444444444444455555555555555556666666666",  //42
-"222222223333333333333333444444444444444455555555555555556666666666",  //43
-"222222223333333333333333444444444444444455555555555555556666666666",  //44
-"222222777733333333333388884444444444449999555555555555000066666666",  //45
-"222277777777333333338888888844444444999999995555555500000000666666",  //46
-"227777777777773333888888888888444499999999999955550000000000006666",  //47
-"777777777777777788888888888888889999999999999999000000000000000066",  //48
-"777777777777777788888888888888889999999999999999000000000000000066",  //49
-"7777777777777777888888888888888899999999999999990000000000000000oo",  //50
-"7777777777777777888888888888888899999999999999990000000000000000oo",  //51
-"kk777777777777llll888888888888mmmm999999999999nnnn000000000000oooo",  //52
-"kkkk77777777llllllll88888888mmmmmmmm99999999nnnnnnnn00000000oooooo",  //53
-"kkkkkk7777llllllllllll8888mmmmmmmmmmmm9999nnnnnnnnnnnn0000oooooooo",  //54
+"SSSSSSXXXXTTTTTTTTTTTTYYYYUUUUUUUUUUUUZZZZVVVVVVVVVVVVaaaaWWWWWWWW",  //31
+"SSSSXXXXXXXXTTTTTTTTYYYYYYYYUUUUUUUUZZZZZZZZVVVVVVVVaaaaaaaaWWWWWW",  //32
+"SSXXXXXXXXXXXXTTTTYYYYYYYYYYYYUUUUZZZZZZZZZZZZVVVVaaaaaaaaaaaaWWWW",  //33
+"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZaaaaaaaaaaaaaaaaWW",  //34
+"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZaaaaaaaaaaaaaaaaWW",  //35
+"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZaaaaaaaaaaaaaaaaff",  //36
+"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZaaaaaaaaaaaaaaaaff",  //37
+"bbXXXXXXXXXXXXccccYYYYYYYYYYYYddddZZZZZZZZZZZZeeeeaaaaaaaaaaaaffff",  //38
+"bbbbXXXXXXXXccccccccYYYYYYYYddddddddZZZZZZZZeeeeeeeeaaaaaaaaffffff",  //39
+"bbbbbbXXXXccccccccccccYYYYddddddddddddZZZZeeeeeeeeeeeeaaaaffffffff",  //40
+"bbbbbbbbccccccccccccccccddddddddddddddddeeeeeeeeeeeeeeeeffffffffff",  //41
+"bbbbbbbbccccccccccccccccddddddddddddddddeeeeeeeeeeeeeeeeffffffffff",  //42
+"bbbbbbbbccccccccccccccccddddddddddddddddeeeeeeeeeeeeeeeeffffffffff",  //43
+"bbbbbbbbccccccccccccccccddddddddddddddddeeeeeeeeeeeeeeeeffffffffff",  //44
+"bbbbbbggggcccccccccccchhhhddddddddddddiiiieeeeeeeeeeeejjjjffffffff",  //45
+"bbbbggggggggcccccccchhhhhhhhddddddddiiiiiiiieeeeeeeejjjjjjjjffffff",  //46
+"bbggggggggggggcccchhhhhhhhhhhhddddiiiiiiiiiiiieeeejjjjjjjjjjjjffff",  //47
+"gggggggggggggggghhhhhhhhhhhhhhhhiiiiiiiiiiiiiiiijjjjjjjjjjjjjjjjff",  //48
+"gggggggggggggggghhhhhhhhhhhhhhhhiiiiiiiiiiiiiiiijjjjjjjjjjjjjjjjff",  //49
+"gggggggggggggggghhhhhhhhhhhhhhhhiiiiiiiiiiiiiiiijjjjjjjjjjjjjjjjoo",  //50
+"gggggggggggggggghhhhhhhhhhhhhhhhiiiiiiiiiiiiiiiijjjjjjjjjjjjjjjjoo",  //51
+"kkgggggggggggllllhhhhhhhhhhhhmmmmiiiiiiiiiiiinnnnjjjjjjjjjjjjoooo",  //52
+"kkkkggggggggllllllllhhhhhhhhmmmmmmmmiiiiiiiinnnnnnnnjjjjjjjjoooooo",  //53
+"kkkkkkggggllllllllllllhhhhmmmmmmmmmmmmiiiinnnnnnnnnnnnjjjjoooooooo",  //54
 "kkkkkkkkllllllllllllllllmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnoooooooooo",  //55
 "kkkkkkkkllllllllllllllllmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnoooooooooo",  //56
 "kkkkkkkkllllllllllllllllmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnoooooooooo",  //57 
@@ -84,83 +85,6 @@ void create(){
 "ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxxxx",  //70
 "ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxxxx",  //71
 "ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxxxx"   //72
-  });
-*/
-//        1         2         3         4         5         6    
-//234567890123456789012345678901234567890123456789012345678901234567890
-  hex_pattern = ({
-"AAAAAAAABBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDEEEEEEEE"  //01
-"AAAAAAAABBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDEEEEEEEE",  //02
-"AAAAAAFFFFBBBBBBBBBBBBGGGGCCCCCCCCCCCCHHHHDDDDDDDDDDDDIIIIEEEEEE",  //03 
-"AAAAFFFFFFFFBBBBBBBBGGGGGGGGCCCCCCCCHHHHHHHHDDDDDDDDIIIIIIIIEEEE",  //04
-"AAFFFFFFFFFFFFBBBBGGGGGGGGGGGGCCCCHHHHHHHHHHHHDDDDIIIIIIIIIIIIEE",  //05
-"FFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIII",  //06
-"FFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIII",  //07
-"FFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIII",  //08
-"FFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIII",  //09
-"JJFFFFFFFFFFFFKKKKGGGGGGGGGGGGLLLLHHHHHHHHHHHHMMMMIIIIIIIIIIIINN",  //10
-"JJJJFFFFFFFFKKKKKKKKGGGGGGGGLLLLLLLLHHHHHHHHMMMMMMMMIIIIIIIINNNN",  //11
-"JJJJJJFFFFKKKKKKKKKKKKGGGGLLLLLLLLLLLLHHHHMMMMMMMMMMMMIIIINNNNNN",  //12
-"JJJJJJJJKKKKKKKKKKKKKKKKLLLLLLLLLLLLLLLLMMMMMMMMMMMMMMMMNNNNNNNN",  //13
-"JJJJJJJJKKKKKKKKKKKKKKKKLLLLLLLLLLLLLLLLMMMMMMMMMMMMMMMMNNNNNNNN",  //14
-"JJJJJJJJKKKKKKKKKKKKKKKKLLLLLLLLLLLLLLLLMMMMMMMMMMMMMMMMNNNNNNNN",  //15
-"JJJJJJJJKKKKKKKKKKKKKKKKLLLLLLLLLLLLLLLLMMMMMMMMMMMMMMMMNNNNNNNN",  //16
-"JJJJJJOOOOKKKKKKKKKKKKPPPPLLLLLLLLLLLLQQQQMMMMMMMMMMMMRRRRNNNNNN",  //17
-"JJJJOOOOOOOOKKKKKKKKPPPPPPPPLLLLLLLLQQQQQQQQMMMMMMMMRRRRRRRRNNNN",  //18
-"JJOOOOOOOOOOOOKKKKPPPPPPPPPPPPLLLLQQQQQQQQQQQQMMMMRRRRRRRRRRRRNN",  //19
-"OOOOOOOOOOOOOOOOPPPPPPPPPPPPPPPPQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRR",  //20
-"OOOOOOOOOOOOOOOOPPPPPPPPPPPPPPPPQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRR",  //21
-"OOOOOOOOOOOOOOOOPPPPPPPPPPPPPPPPQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRR",  //22
-"OOOOOOOOOOOOOOOOPPPPPPPPPPPPPPPPQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRR",  //23
-"SSOOOOOOOOOOOOTTTTPPPPPPPPPPPPUUUUQQQQQQQQQQQQVVVVRRRRRRRRRRRRWW",  //24
-"SSSSOOOOOOOOTTTTTTTTPPPPPPPPUUUUUUUUQQQQQQQQVVVVVVVVRRRRRRRRWWWW",  //25
-"SSSSSSOOOOTTTTTTTTTTTTPPPPUUUUUUUUUUUUQQQQVVVVVVVVVVVVRRRRWWWWWW",  //26
-"SSSSSSSSTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVWWWWWWWW",  //27
-"SSSSSSSSTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVWWWWWWWW",  //28
-"SSSSSSSSTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVWWWWWWWW",  //29
-"SSSSSSSSTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVWWWWWWWW",  //30
-"SSSSSSXXXXTTTTTTTTTTTTYYYYUUUUUUUUUUUUZZZZVVVVVVVVVVVV1111WWWWWW",  //31
-"SSSSXXXXXXXXTTTTTTTTYYYYYYYYUUUUUUUUZZZZZZZZVVVVVVVV11111111WWWW",  //32
-"SSXXXXXXXXXXXXTTTTYYYYYYYYYYYYUUUUZZZZZZZZZZZZVVVV111111111111WW",  //33
-"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ1111111111111111",  //34
-"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ1111111111111111",  //35
-"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ1111111111111111",  //36
-"XXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZ1111111111111111",  //37
-"22XXXXXXXXXXXX3333YYYYYYYYYYYY4444ZZZZZZZZZZZZ555511111111111166",  //38
-"2222XXXXXXXX33333333YYYYYYYY44444444ZZZZZZZZ55555555111111116666",  //39
-"222222XXXX333333333333YYYY444444444444ZZZZ5555555555551111666666",  //40
-"2222222233333333333333334444444444444444555555555555555566666666",  //41
-"2222222233333333333333334444444444444444555555555555555566666666",  //42
-"2222222233333333333333334444444444444444555555555555555566666666",  //43
-"2222222233333333333333334444444444444444555555555555555566666666",  //44
-"2222227777333333333333888844444444444499995555555555550000666666",  //45
-"2222777777773333333388888888444444449999999955555555000000006666",  //46
-"2277777777777733338888888888884444999999999999555500000000000066",  //47
-"7777777777777777888888888888888899999999999999990000000000000000",  //48
-"7777777777777777888888888888888899999999999999990000000000000000",  //49
-"7777777777777777888888888888888899999999999999990000000000000000",  //50
-"7777777777777777888888888888888899999999999999990000000000000000",  //51
-"kk777777777777llll888888888888mmmm999999999999nnnn000000000000oo",  //52
-"kkkk77777777llllllll88888888mmmmmmmm99999999nnnnnnnn00000000oooo",  //53
-"kkkkkk7777llllllllllll8888mmmmmmmmmmmm9999nnnnnnnnnnnn0000oooooo",  //54
-"kkkkkkkkllllllllllllllllmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnoooooooo",  //55
-"kkkkkkkkllllllllllllllllmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnoooooooo",  //56
-"kkkkkkkkllllllllllllllllmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnoooooooo",  //57 
-"kkkkkkkkllllllllllllllllmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnoooooooo",  //58 
-"kkkkkkppppllllllllllllqqqqmmmmmmmmmmmmrrrrnnnnnnnnnnnnssssoooooo",  //59
-"kkkkppppppppllllllllqqqqqqqqmmmmmmmmrrrrrrrrnnnnnnnnssssssssoooo",  //60
-"kkppppppppppppllllqqqqqqqqqqqqmmmmrrrrrrrrrrrrnnnnssssssssssssoo",  //61
-"ppppppppppppppppqqqqqqqqqqqqqqqqrrrrrrrrrrrrrrrrssssssssssssssss",  //62
-"ppppppppppppppppqqqqqqqqqqqqqqqqrrrrrrrrrrrrrrrrssssssssssssssss",  //63
-"ppppppppppppppppqqqqqqqqqqqqqqqqrrrrrrrrrrrrrrrrssssssssssssssss",  //64
-"ppppppppppppppppqqqqqqqqqqqqqqqqrrrrrrrrrrrrrrrrssssssssssssssss",  //65
-"ttppppppppppppuuuuqqqqqqqqqqqqvvvvrrrrrrrrrrrrwwwwssssssssssssxx",  //66
-"ttttppppppppuuuuuuuuqqqqqqqqvvvvvvvvrrrrrrrrwwwwwwwwssssssssxxxx",  //67
-"ttttttppppuuuuuuuuuuuuqqqqvvvvvvvvvvvvrrrrwwwwwwwwwwwwssssxxxxxx",  //68
-"ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxx",  //69
-"ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxx",  //70
-"ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxx",  //71
-"ttttttttuuuuuuuuuuuuuuuuvvvvvvvvvvvvvvvvwwwwwwwwwwwwwwwwxxxxxxxx"   //72
   });
   reset_pics();
 }
@@ -197,42 +121,44 @@ string * query_right_hexes(){
   int string_len, i, lines;
   string * right_hexes;
   lines = sizeof(seal_pic);
-  right_hexes = ({"E","N", "W", "6", "o", "x"});
+  right_hexes = ({"E","N", "W", "f", "o", "x"});
   string_len = strlen(seal_pic[0]);
   if (string_len< 64){
     for (i=0;i<sizeof(right_hexes);i++)
     {
       m_delete(__hex_positions, right_hexes[i]);
     }
-    right_hexes = ({"I", "R", "1", "0", "s"});
+    right_hexes = ({"I", "R", "a", "j", "s"});
   }
   if (string_len< 56){
     for (i=0;i<sizeof(right_hexes);i++)
     {
       m_delete(__hex_positions, right_hexes[i]);
     }
-    right_hexes = ({"D", "M", "V", "5", "n", "w"});
+
+    right_hexes = ({"D", "M", "V", "e", "n", "w"});
   }
   if (string_len<48){
     for (i=0;i<sizeof(right_hexes);i++)
     {
       m_delete(__hex_positions, right_hexes[i]);
     }
-    right_hexes = ({"H", "Q", "Z", "9", "r"});
+    right_hexes = ({"H", "Q", "Z", "i", "r"});
   }
   if (string_len<40){
     for (i=0;i<sizeof(right_hexes);i++)
     {
       m_delete(__hex_positions, right_hexes[i]);
     }
-    right_hexes = ({"C", "L", "U", "4", "m", "v"});
+    right_hexes = ({"C", "L", "U", "d", "m", "v"});
   }
   if (string_len<32){
     for (i=0;i<sizeof(right_hexes);i++)
     {
       m_delete(__hex_positions, right_hexes[i]);
     }
-    right_hexes = ({"G", "P", "Y", "8", "q"});
+
+    right_hexes = ({"G", "P", "Y", "h", "q"});
   }
   switch(lines)
   {
@@ -293,7 +219,7 @@ string * query_bottom_hexes(){
     {
       m_delete(__hex_positions, bottom_hexes[i]);
     }
-    bottom_hexes = ({ "7", "8", "9", "0"});
+    bottom_hexes = ({ "g", "h", "i", "j"});
     string_len --;
   }
   if (lines < 47){
@@ -301,7 +227,7 @@ string * query_bottom_hexes(){
     {
       m_delete(__hex_positions, bottom_hexes[i]);
     }
-    bottom_hexes =  ({ "2", "3", "4", "5", "6" });
+    bottom_hexes =  ({ "b", "c", "d", "e", "f" });
     string_len ++;
   }
   if (lines < 40){
@@ -310,7 +236,8 @@ string * query_bottom_hexes(){
       m_delete(__hex_positions, bottom_hexes[i]);
     }
 
-    bottom_hexes = ({"X", "Y", "Z", "1"});
+
+    bottom_hexes = ({"X", "Y", "Z", "a"});
     string_len --;
   }
   if (lines < 33){
@@ -330,7 +257,8 @@ void randomise_hexes(){
   string * ks, temp_value,* match_ks, pos_code1, pos_code2, * available_ks, * hex1, *hex2, * left_removals, * right_removals,
 *top_removals, * bottom_removals, *left_hexes, * right_hexes, *top_hexes, * bottom_hexes, * removals;
   int string_len, lines, i, r,j, count, count2;
-  left_hexes = ({"A","J","S", "2", "k", "t"});
+
+  left_hexes = ({"A","J","S", "b", "k", "t"});
 
   top_hexes = ({"A", "B", "C", "D", "E"});
   bottom_hexes = query_bottom_hexes();
@@ -355,13 +283,15 @@ void randomise_hexes(){
     left_hexes = ({"A","J","S"});
     break;
   case 38..51:
-    left_hexes = ({"A","J","S", "2"});
+
+    left_hexes = ({"A","J","S", "b"});
     break;
   case 52..65:
-    left_hexes = ({"A","J","S", "2", "k"});
+
+    left_hexes = ({"A","J","S", "b", "k"});
     break;
   default:
-    left_hexes = ({"A","J","S", "2", "k", "t"});
+    left_hexes = ({"A","J","S", "b", "k", "t"});
     break;
   }
   string_len = strlen(seal_pic[0]);
