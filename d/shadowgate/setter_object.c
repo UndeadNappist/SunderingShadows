@@ -386,7 +386,7 @@ hint_gender()
 
 string *generate_race()
 {
-    string * choices;
+    string * choices, *restricted;
 
     choices = get_dir("/std/races/*.c");
     choices = map(choices, (:replace_string($1, ".c", ""):));
