@@ -11,16 +11,13 @@ void create() {
     set_spell_level(([ "mage" : 6 ]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS contingency on SPELL_NAME [on SPELL_ARGS]");
-    set_description("This spell allows you to put a spell in reserve, and call upon it at any time with the command <now>. The target of the reserved spell is always the caster, but arguments can be specified for spells that require them. You must carry a likeness of yourself, usually a small statue, when casting this spell.
+    set_description("This spell allows you to put a spell in reserve, and call upon it at any time with the command <now>. The target of the reserved spell is always the caster, but arguments can be specified for spells that require them. You must carry a likeness of yourself, usually a small statue, when casting this spell. The likeness can not hold psionic powers, monk ki or warlock invocations.
 
 Example of usage:  cast contingency on teleport on LOCATION");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
     set_casting_time(2);
-    set_components(([
-      "mage" : ([ "quicksilver":1, "eyelash of ogre-mage":1, ]),
-    ]));
 }
 
 string query_cast_string() {
@@ -36,8 +33,8 @@ int preSpell() {
 }
 
 void spell_effect(int prof) {
-  string spell, args, *comp_names, orgSpell, newtype;
-  int x, spellProf, spelllevel;
+  string spell, args, *comp_names, orgSpell, newtype, myclass, improv;
+  int x, spellProf, spelllevel, i;
   object spellObj;
 
 
@@ -52,7 +49,6 @@ void spell_effect(int prof) {
   }
 
   orgSpell = spell;
-  newtype = spell_type;
 
   spell = replace_string(spell," ","_");
   spell = "/cmds/spells/"+spell[0..0]+"/_"+spell;
@@ -62,12 +58,24 @@ void spell_effect(int prof) {
     return;
   }
 
-  if(spell_type == "sorcerer") newtype = "mage";
-  spelllevel = spell->query_spell_level(newtype);
-  if(spell_type == "sorcerer") orgSpell = "level "+spelllevel;
+  foreach(myclass in caster->query_classes()) {
+      newtype = myclass;
+      if (newtype == "monk" || newtype == "warlock" || newtype == "psion" || newtype == "psywarrior") continue;
+      if (newtype == "bard" || newtype == "sorcerer" || newtype == "oracle" || newtype == "magus" || newtype == "inquisitor") {
+        improv = "level " + spell->query_spell_level(newtype);
+        if (caster->can_memorize(newtype, improv) && member_array(orgSpell, caster->query_mastered_spells(newtype)) != -1) {
+          orgSpell = improv;
+          break;
+        }
+      }
+      if (caster->can_memorize(newtype, orgSpell)) {
+        break;
+      }
+      newtype = spell_type;
+  }
 
-  if (!caster->query_memorized(spell_type,orgSpell)) {
-    tell_object(caster,"You don't have that spell memorized.");
+  if (!caster->query_memorized(newtype,orgSpell)) {
+    tell_object(caster,"You cannot cast that spell.");
     dest_effect();
     return;
   }
@@ -76,27 +84,19 @@ void spell_effect(int prof) {
     args = 0;
   }
 
-  caster->forget_spell(spell_type,orgSpell);
-  spellObj = new(spell);
-  spellObj->set_caster(caster);
-  spellProf = spellObj->calculate_prof_state();
+  caster->forget_memorized(newtype,orgSpell);
+  caster->set_property("spelled",({TO}));
   cont= new("/d/magic/obj/contingency");
 
   cont->set_clevel(clevel);
   cont->set_spell(spell);
+  cont->set_spell_type(newtype);
   cont->set_args(args);
   cont->move(caster);
   tell_room(place,"%^BOLD%^%^RED%^You hear a sucking noise in the background as if some magic has been sucked into a bottle.");
   tell_object(caster,"Type, <now> to activate");
-  // Changed by Garrett to actually be dismissable and dispellable.
-  // The spell is WAY overpowered if it's not dispellable.
-  // Garrett
-  // Changed by ilmarinen to make int not dispellable.
-  // The spell is WAY underpowered if it is dispellable.
-  // Ilmarinen
-  set_heart_beat(15);
+  set_heart_beat(1);
   addSpellToCaster();
-  //  dest_effect();
 }
 
 void dest_effect(){

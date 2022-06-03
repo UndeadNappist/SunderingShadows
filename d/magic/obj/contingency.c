@@ -2,7 +2,7 @@
 #include <daemons.h>
 inherit OBJECT;
 
-string spell, args;
+string spell, spell_type, args;
 int prof;
 int level;
 
@@ -29,7 +29,7 @@ void init() {
     add_action("now","now");
 }
 
-set_clevel(int i) {
+void set_clevel(int i) {
     level = i;
 }
 
@@ -37,11 +37,15 @@ int get_prof() {
     return prof;
 }
 
-set_spell(string xxx) {
+void set_spell(string xxx) {
     spell = xxx;
 }
 
-set_args(string arg) {
+void set_spell_type (string type) {
+    spell_type = type;
+}
+
+void set_args(string arg) {
     args = arg;
 }
 
@@ -60,20 +64,15 @@ int now() {
 
     if(!deep_present("statue of "+capitalize(TP->query_name()),TP)){
 	write("The image of yourself is missing, the contingency fails.\n");
-      remove();
+       remove();
        return 1;
     }
 
-    spellobj = new(spell);
-
-    if(!stringp(args) || args == "") {
-        spellobj->use_spell(TP,"",level, 100,"mage");
-    }
-    else {
-        spellobj->use_spell(TP,args,level,100,"mage");
-    }
-
     call_out("remove",1);
+
+    if(!stringp(args)) args = "";
+    new(spell)->use_spell(TP,args,level,100, spell_type);
+
     return 1;
 }
 
