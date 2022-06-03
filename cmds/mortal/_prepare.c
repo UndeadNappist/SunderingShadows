@@ -294,13 +294,13 @@ int cmd_prepare(string str)
         tell_object(TP, "%^BOLD%^%^GREEN%^You turn your focus inwards, harnessing the power to invoke spells of " + str + ".  (" + times + " attempt(s) - Any action you take will interrupt your focusing.)%^RESET%^");
         tell_room(ETP, TPQCN + " turns " + TP->QP + " focus inwards.", TP);
         break;
-        
+
     case "mage":
-    
+
         tell_object(TP, "%^BOLD%^%^GREEN%^You open your spell book and begin memorizing "+spellname+".  ("+times+" attempt(s) - Any action you take will interrupt your memorizing...");
         tell_room(environment(this_player()), this_player()->query_cap_name() + " opens up " + this_player()->query_possessive() + " spell book and begins studying intensely.", this_player());
         break;
-        
+
     default:
 
         tell_object(TP, "%^BOLD%^%^GREEN%^You focus your thoughts upon preparing the spell of " + spellname + "  (" + times + " attempt(s) - Any action you take will interrupt your preparations....");
@@ -404,7 +404,7 @@ int max_allowed(object obj, string myclass, int level)
     max_spells = (int)obj->magic_arsenal_feat(max_spells);
     max_spells = (int)obj->bonus_spell_slots(max_spells);
     max_spells = (int)obj->bonus_spell_slots_by_level(level, max_spells);
-    
+
     if(level == 10 && FEATS_D->has_feat(obj, "deep magic"))
         max_spells = 1;
 
@@ -1102,7 +1102,7 @@ Psionic casters (psion, psywarrior):
 
 Warlocks, monks do not prepare.
 
-Preparation lists (normal casters only):
+Preparation lists:
     prepare add|remove %^ORANGE%^%^ULINE%^LISTNAME%^RESET%^ %^ORANGE%^%^ULINE%^CLASS%^RESET%^ %^ORANGE%^%^ULINE%^SPELL%^RESET%^
     prepare prepare|check|delete|display %^ORANGE%^%^ULINE%^LISTNAME%^RESET%^ %^ORANGE%^%^ULINE%^CLASSNAME%^RESET%^
     prepare copy %^ORANGE%^%^ULINE%^LISTNAME%^RESET%^ %^ORANGE%^%^ULINE%^CLASS%^RESET%^ to %^ORANGE%^%^ULINE%^LISTNAME%^RESET%^2 %^ORANGE%^%^ULINE%^CLASS2%^RESET%^
@@ -1115,9 +1115,8 @@ Spontaneous casters (bards and sorcerers) can prepare %^ORANGE%^%^ULINE%^NUMBER%
 
 Psionic casters may use this command to prepare power points. For example, %^ORANGE%^<prepare psion points times 100>%^RESET%^ will prepare 100 power points for psion.
 
-Normal caster classes (clerics, mages, druids, paladins, rangers, assassins) may use preparation lists.
 ""
-%^CYAN%^PREPARATION LISTS (NORMAL CASTERS ONLY)%^RESET%^
+%^CYAN%^PREPARATION LISTS%^RESET%^
 
 Spell lists are the feature that allows you to prepare spells in bulk and store lists of preparations for various purboses. Each casting %^ORANGE%^%^ULINE%^CLASS%^RESET%^ requires own spell list. You can not have lists of the same name even in different classes. Syntax goes as follows:
 
