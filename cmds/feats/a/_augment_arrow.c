@@ -73,6 +73,8 @@ void execute_feat()
     
     ::execute_feat();
     
+    place = environment(caster);
+    
     if (caster->query_property("using instant feat"))
     {
         tell_object(caster, "%^BOLD%^You are already in the middle of using a feat.%^RESET%^");

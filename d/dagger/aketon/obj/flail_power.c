@@ -1,6 +1,6 @@
 #include "/d/dagger/aketon/short.h"
 
-inherit WEAPON;
+inherit "/d/common/obj/weapon/flail.c";
 
 create() {
    ::create();
@@ -13,12 +13,8 @@ create() {
    set_weight(17);
    set_size(2);
    set_value(850);
-   set_wc(1,6);
-   set_large_wc(2,4);
-   set_type("bludgeoning");
    set_property("enchantment",random(3)+2);
    set_hit( (: TO,"hit_func" :) );
-   set_prof_type("flail");
 }
 
 int hit_func(object vic) {
