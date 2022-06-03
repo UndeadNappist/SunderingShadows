@@ -828,6 +828,16 @@ varargs string get_adjusted_line(int line_no, int show_hexes){
       
       }
 //      tell_room(find_object_or_load("/realms/lujke/workroom"), "Showing this hex");
+      if (index_code == "01") index_code = "1";
+      if (index_code == "02") index_code = "2";
+      if (index_code == "03") index_code = "3";
+      if (index_code == "04") index_code = "4";
+      if (index_code == "05") index_code = "5";
+      if (index_code == "06") index_code = "6";
+      if (index_code == "07") index_code = "7";
+      if (index_code == "08") index_code = "8";
+      if (index_code == "09") index_code = "9";
+
       if (y_within_hex==0 ||y_within_hex==sizeof(hex)-1){
         pixel = "%^RESET%^"+ grid_colour + index_code + "%^RESET%^";
       }
