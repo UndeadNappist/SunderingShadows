@@ -24,7 +24,11 @@ void create() { ::create(); }
 int *age_brackets() { return ({ 18, 45, 60, 90 }); }
 
 int *restricted_alignments(string subrace) {
-    return ({});
+    
+    switch(subrace)
+    {
+        case "dhampir" : return ({ 1, 4, 7 });
+    }
 }
 
 string *restricted_classes(string subrace) {
