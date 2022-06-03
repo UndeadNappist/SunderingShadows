@@ -92,7 +92,6 @@ void make_polearm(object obj) {
    obj->set_long("This is an exquisitely crafted "+metal+" "+what+
       "%^RESET%^.  The "+gem+" and "+gem2+" encrusted shaft is "
       "intricately carved and etched with ancient mystical runes.");
-   obj->set_property("repairtype", ({ "weaponsmith" }));
    switch(which) {
      case 0: // awlpike
       obj->set_weight(12);
@@ -202,7 +201,6 @@ void make_random(object obj) {
    gem2 = GEMS[random(sizeof(GEMS))];
    metal = METAL[random(sizeof(METAL))];
    wood = WOOD[random(sizeof(WOOD))];
-   obj->set_property("repairtype", ({ "weaponsmith" }));
    obj->add_id(WEAPONS[which]);
   switch(which) {
     case 0..1: // dagger/dirk
