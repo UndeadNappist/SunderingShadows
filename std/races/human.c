@@ -29,6 +29,8 @@ int *restricted_alignments(string subrace) {
     {
         case "dhampir" : return ({ 1, 4, 7 });
     }
+    
+    return ({  });
 }
 
 string *restricted_classes(string subrace) {
