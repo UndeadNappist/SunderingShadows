@@ -365,15 +365,18 @@ void randomise_hexes(){
 
 
 void randomise_hex_positions(string * ks){
-  string * available_ks, report;
+
+  string * available_ks, report, *js;
   int i, count, r;
   report = "Randomised hexes:";
   count = sizeof(ks);
   available_ks = ks;
+  js = keys(__hex_positions);
 //  tell_room(find_object_or_load("/realms/lujke/workroom"), "Number of positions randomised: " + count);
   for (i=0; i<count;i++){
     report += ks[i] + " ";
     r = random(sizeof(available_ks));
+  if (member_array(ks[i], js)==-1 || member_array(available_ks[r], js)==-1) continue;
     __hex_positions[ks[i]]=available_ks[r];
     available_ks -= ({available_ks[r]});
   }
