@@ -1118,7 +1118,9 @@ Psionic casters may use this command to prepare power points. For example, %^ORA
 ""
 %^CYAN%^PREPARATION LISTS%^RESET%^
 
-Spell lists are the feature that allows you to prepare spells in bulk and store lists of preparations for various purboses. Each casting %^ORANGE%^%^ULINE%^CLASS%^RESET%^ requires own spell list. You can not have lists of the same name even in different classes. Syntax goes as follows:
+Spell lists are the feature that allows you to prepare spells in bulk and store lists of preparations for various purposes. If you have multiple preparing classes, each %^ORANGE%^%^ULINE%^CLASS%^RESET%^ requires its own spell list. You can not have lists of the same name even in different classes. Syntax as follows:
+
+%^BOLD%^%^RED%^Note%^RESET%^: For spontaneous casters the %^ORANGE%^%^ULINE%^SPELL%^RESET%^ will be the level of the spell, including the word level, e.g. level 3.
 
 %^ORANGE%^<prepare add %^ORANGE%^%^ULINE%^LISTNAME%^RESET%^ %^ORANGE%^%^ULINE%^CLASS%^RESET%^ %^ORANGE%^%^ULINE%^SPELL%^RESET%^%^ORANGE%^>%^RESET%^
     Will add %^ORANGE%^%^ULINE%^SPELL%^RESET%^ of caster %^ORANGE%^%^ULINE%^CLASS%^RESET%^ to preparation list named %^ORANGE%^%^ULINE%^LISTNAME%^RESET%^
