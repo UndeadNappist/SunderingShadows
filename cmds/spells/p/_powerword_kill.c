@@ -19,7 +19,7 @@ void create() {
     set_syntax("cast CLASS powerword kill on TARGET");
     set_damage_desc("untyped");
     set_save("fortitude");
-    set_description("The caster utters a word of power which seeks to unravel the very nature of the target. Any target with less than 75% of their maximum health must make a death save or be immediately killed. Otherwise, the target takes the half normalized untyped spell damage. All other enemies must also make a death save if their health is below 25%. They otherwise take 1/4 normalized untyped spell damage.");
+    set_description("The caster utters a word of power which seeks to unravel the very nature of the target. Any target with less than 75% of their maximum health must make a death save or be immediately killed. Otherwise, the target takes the half (modified by level differences) of their current HP in untyped damage. All other enemies must also make a death save if their health is below 25%. They otherwise take a quarter of their current HP as untyped damage.");
     mental_spell();
     set_verbal_comp();
     //set_silent_casting(1);
@@ -65,7 +65,10 @@ void spell_effect(int prof)
     {
         tell_object(target,"%^BOLD%^You feel a tug at your life force, but with some difficulty you fight it off!");
         tell_room(place,"%^BOLD%^"+target->QCN+" staggers in pain momentarily, but soon recovers.",({target}));
-        target && target->cause_typed_damage(target, target->return_target_limb(), sdamage/2,"untyped");
+        difflevel = clevel - target->query_base_character_level();
+        mydmg = (target->query_hp() * (50 + difflevel)) / 100;
+        mydmg = min( ({ mydmg, 600 }) );
+        target && target->cause_typed_damage(target, target->return_target_limb(), mydmg, "untyped");
     }
     
     foreach(object ob in targets)
@@ -85,7 +88,10 @@ void spell_effect(int prof)
         }
         tell_object(ob,"%^BOLD%^You painfully fight off the word of power!");
         tell_room(place,"%^BOLD%^"+target->QCN+" staggers in pain momentarily, but soon recovers.",({ ob }));
-        target && target->cause_typed_damage(target, target->return_target_limb(), sdamage/4,"untyped");
+        difflevel = clevel - ob->query_base_character_level();
+        mydmg = (ob->query_hp() * (25 + difflevel)) / 100;
+        mydmg = min( ({ mydmg, 300 }) );
+        ob && ob->cause_typed_damage(ob, ob->return_target_limb(), mydmg,"untyped");
     }
     
     spell_kill(target, caster);
