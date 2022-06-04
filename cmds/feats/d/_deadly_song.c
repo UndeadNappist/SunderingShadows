@@ -10,8 +10,8 @@ void create()
     feat_category("Performance");
     feat_name("deadly song");
     feat_syntax("deadly_song [TARGET]");
-    feat_prereq("Bard L20");
-    feat_desc("At 20th level, a bard can use her performance to cause one enemy to die from joy or sorrow.
+    feat_prereq("Bard L21");
+    feat_desc("At 21th level, a bard can use her performance to cause one enemy to die from joy or sorrow. The target of the song must make a combat death save or die. On a successful save, they will take sonic damage instead.
 
 If used without an argument this feat will pick up a random attacker.");
     set_save("will");
@@ -27,7 +27,7 @@ int prerequisites(object ob)
     if (!objectp(ob)) {
         return 0;
     }
-    if ((int)ob->query_class_level("bard") < 20) {
+    if ((int)ob->query_class_level("bard") < 21) {
         dest_effect();
         return 0;
     }
@@ -172,8 +172,9 @@ void execute_attack()
     bonusdc = BONUS_D->query_stat_bonus(caster, "charisma");
     spell_kill(target, caster);
     if ((string)target->query_property("no death") || do_save(target, bonusdc)) {
-        tell_room(place, "%^BOLD%^%^BLUE%^" + target->QCN + " is utterly unaffected by the melody!", target);
-        tell_object(target, "%^BOLD%^%^BLUE%^You are utterly unaffected by the melody!");
+        tell_room(place, "%^BOLD%^%^BLUE%^" + target->QCN + " is heavily affected by the melody but survives!", target);
+        tell_object(target, "%^BOLD%^%^BLUE%^You are heavily affected by the melody but survive!");
+        target->cause_typed_damage(target, target->return_target_limb(), roll_dice(flevel + bonusdc, 8), "sonic");                
     } else {
         tell_room(place, "%^BOLD%^%^MAGENTA%^The soul is pushed beyond %^MAGENTA%^the veil%^MAGENTA%^ from its coil!");
         tell_room(place, "%^BOLD%^%^MAGENTA%^The lifeless husk of " + target->QCN + " drops to the ground!", target);
