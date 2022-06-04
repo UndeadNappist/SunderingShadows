@@ -37,7 +37,7 @@ void create(){
    set_hd(70,20);
    set_spells(({
      "black tentacles",
-     "massacre",
+     "fester",
      "ghoul touch",
      "meteor swarm",
      "frost orb",
