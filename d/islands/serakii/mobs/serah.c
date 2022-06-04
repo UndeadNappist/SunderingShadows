@@ -262,12 +262,12 @@ int die(object ob){
    tell_room(room, "%^C153%^Her whole form starts to shudder and %^C062%^fell "+
    "energy%^C153%^ starts to erupt into small %^C056%^fires %^C153%^along her body.%^CRST%^");
       tell_room(room, "%^C187%^Sarah speaks in a voice like %^C172%^honey %^CRST%^'Agrath...'");
-   power = 10 + random(10);
+   power = 10;
    WORLD_EVENTS_D->kill_event("Ended the Archmage of Oblivion");
    WORLD_EVENTS_D->inject_event((["Ended the Archmage of Oblivion" : (["start message" : "%^C062%^Arcane power%^C081%^ explodes over "+
       "the %^C022%^forest%^C081%^ of %^C061%^Serakii %^C081%^as the %^C246%^archmage of Oblivion%^C081%^ is killed! The power spreads "+
       "across the realm and all %^C087%^experience %^C081%^gained will award an additional %^CRST%^" + power + "%^C081%^ percent!%^CRST%^",
-      "event type" : "exp bonus", "length" : 10, "notification" : power + "% Bonus Exp",
+      "event type" : "exp bonus", "length" : 120, "notification" : power + "% Bonus Exp",
       "event name" : "Ended the Archmage of Oblivion", "modifier" : power, "announce" : 1, "announce to" : "world" ]), ])
    );
 
