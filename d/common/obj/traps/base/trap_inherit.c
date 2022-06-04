@@ -49,22 +49,22 @@ void create_trap_kit()
     string TrapLevel, TL;
     switch(MyBaseDc)
     {
-        case 0..15: 
+        case 0..15:
             TrapLevel = "a weak";
             TL = "weak";
-            num = 15;   
+            num = 15;
             break;
-        case 16..25:    
+        case 16..25:
             TrapLevel = "an average";
             TL = "average";
-            num = 30;   
+            num = 30;
             break;
         case 26..35:
             TrapLevel = "a strong";
             TL = "strong";
             num = 50;
             break;
-        case 36..51:        
+        case 36..51:
             TrapLevel = "an epic";
             TL = "epic";
             num = 70;
@@ -77,14 +77,14 @@ void create_trap_kit()
     }
 
     TO->set_name(TL +" "+MyTrapName + " trap kit");
-    TO->set_id(({"trap", "trap kit", "kit", TL+" trap kit", 
+    TO->set_id(({"trap", "trap kit", "kit", TL+" trap kit",
     MyTrapName + " trap kit", TL + " "+
     MyTrapName + " trap kit", "playersettabletrapkit"}));
 
     TO->set_short("%^BOLD%^%^WHITE%^"+capitalize(TrapLevel)+
     " %^BOLD%^%^GREEN%^"+MyTrapName+"%^BOLD%^%^WHITE%^ "+
     "trap kit%^RESET%^");
-		
+
     TO->set_long("%^BOLD%^%^WHITE%^This small mechanical "+
     "instrument has been crafted with precise "+
     "detail.  It is etched with markings and several "+
@@ -93,7 +93,7 @@ void create_trap_kit()
     MyTrapName + " trap kit.%^RESET%^");
 
     TO->set_property("lore difficulty", MyBaseDc);
-	
+
     TO->set_lore("These mechanisms are readily assembled "+
     "trap kits.  They have various creators, and various "+
     "ways of working, though anyone with the proper knowledge "+
@@ -103,12 +103,12 @@ void create_trap_kit()
     "on how to recover them and use them has spread over the "+
     "years, it still takes some knowledge of dungeoneering "+
     "to get much use from one.  "+
-    TO->query("lore_string")+"%^RESET%^");	
+    TO->query("lore_string")+"%^RESET%^");
 
     if(!intp(MyBaseDie)) MyBaseDie = 6;
     TO->set_base_damage(num, MyBaseDie);
     return;
-	
+
 }
 
 void set_my_dc(int x)
@@ -121,8 +121,8 @@ void set_my_dc(int x)
 
 int query_dc() { return MyBaseDc; }
 
-//basically want to let avatars have super 
-//power traps - that default to a dc of 50 
+//basically want to let avatars have super
+//power traps - that default to a dc of 50
 //future uses are possible - just some modification
 //to this function - Saide
 
@@ -131,16 +131,16 @@ void adjust_dc(int x)
     MyBaseDc = 50;
 }
 
-string query_trap_level() 
+string query_trap_level()
 {
-    string TL; 
+    string TL;
     switch(MyBaseDc)
     {
         case 0..15:
             TL = "weak";
             break;
-        case 16..25:    
-            TL = "average"; 
+        case 16..25:
+            TL = "average";
             break;
         case 26..35:
             TL = "strong";
@@ -159,7 +159,7 @@ void set_base_damage(int num, int die)
 {
     if(!intp(die)) return;
     if(!intp(num)) return;
-    if(!MyBaseDie) 
+    if(!MyBaseDie)
     {
         MyBaseDie = die;
     }
@@ -182,13 +182,13 @@ void set_origin_object(string str)
     OriginObject = str;
 }
 
-mixed query_origin_object() 
-{ 
-    if(!stringp(OriginObject)) 
+mixed query_origin_object()
+{
+    if(!stringp(OriginObject))
     {
         return "out of nowhere";
     }
-    return OriginObject; 
+    return OriginObject;
 }
 
 //assuming that traps are going to use reflex save
@@ -197,7 +197,7 @@ int do_trap_save(object who)
 {
     if(!objectp(TO)) return 0;
     if(!objectp(who)) return 0;
-    if("/daemon/saving_throw_d"->reflex_save(who, 15 + (int)TO->query_dc())) return 1;
+    if("/daemon/saving_throw_d"->reflex_save(who, 20 + (int)TO->query_dc())) return 1;
     return 0;
 }
 
@@ -217,7 +217,7 @@ varargs void do_trap_damage(object who, int save_result, string type)
     dam = (int)TO->query_damage();
     tlimb = (string)who->return_target_limb();
     if(save_result) dam = dam / 2;
-    if(!stringp(msg = TO->query("stun_message"))) 
+    if(!stringp(msg = TO->query("stun_message")))
     {
         msg = "%^BOLD%^%^RED%^You are stunned from the trap!%^RESET%^";
     }
@@ -233,7 +233,7 @@ varargs void do_trap_damage(object who, int save_result, string type)
             dam = dam / 4;
             if(dam < 1) dam = 1;
             if(dam > 15) dam = 15;
-            who->set_tripped(dam, msg);				
+            who->set_tripped(dam, msg);
             break;
         default:
             if(!df || !"/daemon/combat_d.c"->extra_hit_calcs(TO, who, TO, tlimb)) who->cause_typed_damage(who, tlimb, dam, TO->query_damage_type());
@@ -254,7 +254,7 @@ int isMagic()
     ::isMagic();
     if(!objectp(TO)) return 0;
     ThisDc = (int)TO->query_dc();
-    switch(ThisDc) 
+    switch(ThisDc)
     {
         case 0..15:
             return 1;

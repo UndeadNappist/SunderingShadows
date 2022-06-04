@@ -45,7 +45,7 @@ int remove_trap(mapping set_trap, object to, object tp, string what){
   	if(to->query_trap_status(what)==0){
        	tell_player(tp,"The trap is already deactivated!!\n");
        	return 1;
-    }	
+    }
  	if(tp->query_armour("torso"))
      	score = tp->query_thief_skill("find/remove traps") +(-10);
    	else
@@ -75,13 +75,13 @@ mixed get_trap_object(string level, string type)
 			TrapDc = 1 + random(5);
 			break;
 		case "mid":
-			TrapDc = 16 + random(5);
+			TrapDc = 21 + random(5);
 			break;
 		case "high":
 			TrapDc = 41 + random(5);
 			break;
 		case "epic":
-			TrapDc = 66 + random(5);
+			TrapDc = 61 + random(5);
 			break;
 		default:
 			TrapDc = 1 + random(5);
@@ -90,7 +90,7 @@ mixed get_trap_object(string level, string type)
 	//tell_object(find_player("saide"), "level = "+level +" DC = "+TrapDc);
 	if(type != "random")
 	{
-		if(file_exists(TRAP_DIRS+type+"_base.c")) 
+		if(file_exists(TRAP_DIRS+type+"_base.c"))
 		{
 			MyFile = TRAP_DIRS+type+"_base.c";
 		}
@@ -106,4 +106,3 @@ mixed get_trap_object(string level, string type)
 	TrapOb->set_my_dc(TrapDc);
 	return TrapOb;
 }
-		
