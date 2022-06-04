@@ -1254,7 +1254,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
             sneak = attacker->query_prestige_level("thief") / 2;
             //Arcane trickster sneak attack progression
             sneak += (1 + attacker->query_class_level("arcane_trickster") / 4);
-            if(fired)
+            if(weapon->is_lrweapon())
                 sneak += (1 + attacker->query_class_level("peerless_archer") / 4);
 
             //Making this baseline and replacing combat reflexes with something else.
