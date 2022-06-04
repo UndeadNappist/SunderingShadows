@@ -32,7 +32,18 @@ void create() {
                                      +" with a variety of other implements that have clearly been made"
                                      +" in the forge for other crafts and activities." ,
                ({"anvil", "anvils"}) : "These are fairly standard anvils, in three different sizes. They"
-                                    +" are all too big and heavy to move, though."
+
+                                    +" are all too big and heavy to move, though.",
+               ({"implements", "farm implements"}) : "There are a variety of agricultural tools that have been made here, including rakes, hoes, spades, sickles, dibbers, flails, and a chaff cutter",
+               ({"dibber", "dibbers" }) : "a dibber or dibble or dibbler is a pointed wooden stick for making holes in the ground so that seeds, seedlings or small bulbs can be planted. They aren't of a lot of use to adventurers",
+               ({"rake", "rakes" }) : "There are large and small rakes, of various types. None of them would be much use to you.",
+               ({"hoe", "hoes" }): "A hoe is a small flat blade attached to a stick. It is designed for breaking up soil, small scale digging and tilling (mixing) soil. It doesn't have any other meaning you might be thinking of.",
+               ({"spade", "spades" }) :(: TO, "view_spades" :),
+
+               ({"sickle", "sickles"}) : (: TO, "view_sickles" :),
+               ({"flail", "flails"}) : "These flails are simple agricultural tools, and lack the additional spikes and things that would make one into a weapon, even a not very good one.",
+               ({"cutter", "chaff cutter"}) : "The chaff cutter is an ingenious gnomish device for cutting straw or hay into small pieces before being mixed together with other forage and fed to horses and cattle. It's not much use to adventurers, however"
+
                                     ]));
   set_exits( ([ "out" : TABAXROOM + "centre" ,
              ]) );
@@ -486,6 +497,32 @@ int make_em(string str){
   return 1;
 }
 
+string view_spades(){
+  if (spade <1)
+  {
+    return "Someone seems to have taken all the spades for now";
+  }
+  if (spade == 1)
+  {
+    return "The spades that have been made in this smithy are well built and suited for digging. There is one left that you could take, if you have somewhere you want to dig.";
+  }
+  return "The spades that have been made in this smithy are well built and suited for digging. There are " + spade + " left. You could take one, if you have somewhere you want to dig.";
+
+}
+
+string view_sickles(){
+  if (sickle <1)
+  {
+    return "Someone seems to have taken all the sickles for now";
+  }
+  if (sickle == 1)
+  {
+    return "The sickles appear to be fairly simple agricultural tools and not great weapons. There is one left that you could take.";
+
+  }
+  return "The sickles appear to be fairly simple agricultural tools and not great weapons. There are " + sickle + " left. You could take one, if you want.";
+
+}
 object get_weapon(){
   object ob;
   string what;
