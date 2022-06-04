@@ -349,6 +349,38 @@ string dust_desc(){
   }
   return desc;
 }
+int take_em(string str){
+  object ob;
+  if (!stringp(str)){return 0;}
+  if (str == "sickle" ) 
+  { 
+    if (sickle <1) 
+    {
+      tell_object(TP, "Someone seems to have taken all the sickles for now. Sorry.");
+      return 1;
+    }
+    sickle --;
+    TP->force_me("emote takes a sickle from among the farming implements");
+    ob = new ("/d/common/obj/weapon/sickle");
+    ob->move(TP);
+    return 1;
+  }
+  if (str == "spade") 
+  { 
+    if (spade <1) 
+    {
+      tell_object(TP, "Someone seems to have taken all the spades for now. Sorry.");
+      return 1;
+    }
+    spade --;
+    TP->force_me("emote takes a spade from among the farming implements");
+    ob = new ("/d/atoyatl/tecqumin/tabaxi/obj/spade.c");
+    ob->move(TP);
+    return 1;
+  } 
+  return 0;
+}
+
 
 int make_em(string str){
   int skill;
