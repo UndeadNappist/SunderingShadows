@@ -1,6 +1,7 @@
 #include <std.h>
 #include <daemons.h>
 #include <magic.h>
+
 inherit FEAT;
 
 void create()
@@ -10,7 +11,7 @@ void create()
     feat_category("Inquisition");
     feat_name("true judgement");
     feat_syntax("true_judgement [TARGET]");
-    feat_prereq("Inquisitor L10");
+    feat_prereq("Inquisitor L21");
     feat_desc("At 21st level, an inquisitor can call true judgment down upon a foe during combat. The inquisitor can invoke true judgment on a foe. Once declared, the target must make a fortitude save or die. Targets warded from death or targets that succeeded a save will still take a large amount of divine damage.
 
 If used without an argument this feat will pick up a random attacker.");

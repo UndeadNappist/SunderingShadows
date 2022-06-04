@@ -17,7 +17,7 @@ void create() {
     set_domains(({ "war" }));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS powerword kill on TARGET");
-    set_damage_desc("untyped");
+    set_damage_desc("untyped. death on failed save, ~50% current health on successful save, lesser effect splashed");
     set_save("fortitude");
     set_description("The caster utters a word of power which seeks to unravel the very nature of the target. Any target with less than 75% of their maximum health must make a death save or be immediately killed. Otherwise, the target takes the half (modified by level differences) of their current HP in untyped damage. All other enemies must also make a death save if their health is below 25%. They otherwise take a quarter of their current HP as untyped damage.");
     mental_spell();

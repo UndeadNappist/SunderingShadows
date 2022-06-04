@@ -35,11 +35,11 @@ string* restricted_classes(string subrace)
     }
     switch (subrace) {
     case "duergar":
-    case "gray dwarf": return ({ "mage", "magus",  "bard", "ranger", "paladin", "sorcerer", "druid", "warlock" }); break;
+    case "gray dwarf": return ({ "mage", "magus",  "bard", "ranger", "sorcerer", "druid" }); break;
 
-    case "gold dwarf": return ({ "mage", "magus",  "ranger", "psion", "psywarrior", "sorcerer", "druid", "warlock" }); break;
+    case "gold dwarf": return ({ "mage", "magus", "psion", "psywarrior", "sorcerer", "druid", "warlock" }); break;
 
-    default: return ({ "mage", "magus",  "ranger", "psion", "psywarrior", "paladin", "sorcerer", "druid", "warlock" }); break;
+    default: return ({ "mage", "magus", "psion", "psywarrior", "sorcerer", "druid", "warlock" }); break;
     }
 }
 
@@ -51,7 +51,7 @@ string* restricted_deities(string subrace)
     }
     switch (subrace) {
     case "duergar":
-    case "gray dwarf": return ({ "anhur", "helm", "lathander", "mielikki", "oghma", "selune", "sune", "torm", "tymora", "tyr" }); break;
+    case "gray dwarf": return ({ "jarmila", "edea", "kreysneothosies", "callamir" }); break;
 
     case "shield dwarf": return ({ "shar", "mask", "bane", "beshaba", "cyric", "talos" }); break;
 

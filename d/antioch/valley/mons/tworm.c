@@ -2,6 +2,7 @@
 //exp values. ~Circe~ 2/4/13
 
 #include <std.h>
+#include <daemons.h>
 #include "../valley.h"
 inherit WEAPONLESS;
 
@@ -52,7 +53,7 @@ void spines(object targ)
 		" pierce through your armor and into your skin.");
 		tell_room(ETO,"%^BOLD%^The tenebrous worm's bristles"+
 		" slice into "+targ->query_cap_name()+".",targ);
-		if(!"daemon/saving_d"->saving_throw(targ,"paralyzation_poison_death")) {
+		if(!"daemon/saving_d"->saving_throw(targ,"paralyzation_poison_death") && (!PLAYER_D->immunity_check(targ, "poison"))) {
 			tell_object(targ,"The poison from the spines burns"+
 			" through your veins.");
 			targ->do_damage("torso",(random(6)+1)*4);

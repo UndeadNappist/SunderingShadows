@@ -1,4 +1,5 @@
 #include <std.h>
+#include <daemons.h>
 #include "../lothwaite.h"
 inherit MONSTER;
 
@@ -154,7 +155,7 @@ int drain(object targ)
 
 int scare(object targ)
 {
-		if(!"daemon/saving_d"->saving_throw(targ,"spell")) {
+		if((!"daemon/saving_d"->saving_throw(targ,"spell")) && (!PLAYER_D->immunity_check(targ, "fear"))){
 			tell_object(targ,"%^BOLD%^%^BLUE%^The ghost "+
                      "stares into your eyes and you feel yourself "+
                      "frozen in fear!");
