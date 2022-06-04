@@ -55,9 +55,9 @@ void create(){
    set_stats("intelligence",30);
    set_stats("wisdom",19);
    
-   set_max_hp(33500);
+   set_max_hp(63500);
    set_hp(query_max_hp());
-   set_overall_ac(-40);
+   set_overall_ac(-45);
    set_exp(3000000);
 
    set_mob_magic_resistance("high");
