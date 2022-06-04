@@ -16,7 +16,7 @@ void create(){
     set_name("A waystation in the Yniam Plains");
     set_short("%^RESET%^%^CRST%^%^C046%^The %^C130%^hub %^C046%^of the %^C144%^Yniam waystation%^CRST%^");
     set_long((:this_object(), "long_fun":));
-    set_smell("default", "%^RESET%^%^CRST%^%^C156%^The scents of the plains are carried in the breeze.%^CRST%^");
+    set_smell("default", "%^RESET%^%^CRST%^%^C156%^The scents of the plains are carried on the breeze.%^CRST%^");
     set_listen("default", "%^RESET%^%^CRST%^%^C125%^The susurrus of people working and trading breaks the quiet of the plains.%^CRST%^");
     set_items(([
         ({"walls", "palisade"}) : "%^RESET%^%^CRST%^%^C058%^The palisade is a %^C136%^wooden wall %^C058%^comprised of logs sunk end-first into the earth and lashed together with strips of %^C130%^leather%^C058%^. It is a simple defense meant more to buy time than to actually keep someone out.%^CRST%^",
