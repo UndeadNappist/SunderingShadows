@@ -9,7 +9,7 @@ void create() {
     set_terrain(STONE_BUILDING);
     set_travel(PAVED_ROAD);
     set_property("indoors",1);
-
+    set_property("no teleport",1);
     set_name("cluttered workroom");
     set_property("light",2);
     set_short("%^C058%^cluttered workroom%^CRST%^");
