@@ -11,7 +11,7 @@ inherit ROOM;
 
 int query_skill(object ob, string skill);
 
-int cleaned, weapons, bows, armour;
+int cleaned, weapons, bows, armour, spade, sickle;
 object * weapon_makers, * bow_makers, * armour_makers;
 
 void create() {
@@ -48,6 +48,7 @@ void init(){
   add_action("clean_me", "tidy");
   add_action("clean_me", "clear");
   add_action("clean_me", "straighten");
+  add_action("take_em", "take");
   set_had_players(3);
   smith = present("smith", TO);
   if (!objectp(smith)){
@@ -88,6 +89,9 @@ void reset(){
   wp_mk = weapon_makers;
   bw_mk = bow_makers;
   ar_mk = armour_makers;
+  sickle = 1 + random (3);
+  spade = 1 + random (3);
+
   removals = ({});
   clean = cleaned;
   ::reset();
@@ -360,7 +364,9 @@ int take_em(string str){
       return 1;
     }
     sickle --;
-    TP->force_me("emote takes a sickle from among the farming implements");
+    tell_object(TP, "You take a sickle from among the farming implements");
+    tell_room(TO, TPQCN + " takes a sickle from among the farming implements", TP);
+
     ob = new ("/d/common/obj/weapon/sickle");
     ob->move(TP);
     return 1;
@@ -373,7 +379,9 @@ int take_em(string str){
       return 1;
     }
     spade --;
-    TP->force_me("emote takes a spade from among the farming implements");
+    tell_object(TP, "You take a spade from among the farming implements");
+    tell_room(TO, TPQCN + " takes a spade from among the farming implements", TP);
+
     ob = new ("/d/atoyatl/tecqumin/tabaxi/obj/spade.c");
     ob->move(TP);
     return 1;
