@@ -18,6 +18,9 @@ set_exits(([
 add_item("mirror","Dominating one wall is a %^C189%^massive mirror%^CRST%^. What is strange is that the %^C195%^mirror %^CRST%^does not show you, but instead shows a view of a %^C059%^city square%^CRST%^. If you were to %^C190%^>gaze<%^CRST%^ into the mirror you might see more clearly.\n");
 set_long(::query_long()+"\n%^C195%^Domintating one wall is a massive mirror%^CRST%^.\n");
 
+    set_search("default","Where do you want to search?");
+    set_search("wall",(:TO,"search_wall":));
+
 }
 
 void init() {
@@ -74,3 +77,9 @@ int send_living_name(object targ){
     known = 0;
     return 1;
 }
+
+int search_wall(string str) {
+        tell_object(TP, "%^BOLD%^%^BLACK%^\nYou find small scratched runes. How did you miss that?... \n\n%^RESET%^");
+}
+
+
