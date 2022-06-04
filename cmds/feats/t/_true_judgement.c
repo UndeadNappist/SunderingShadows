@@ -10,8 +10,8 @@ void create()
     feat_category("Inquisition");
     feat_name("true judgement");
     feat_syntax("true_judgement [TARGET]");
-    feat_prereq("Inquisitor L20");
-    feat_desc("At 20th level, an inquisitor can call true judgment down upon a foe during combat. The inquisitor can invoke true judgment on a foe. Once declared, the target must make a fortitude save or die. Targets warded from death or targets that succeeded a save throw won't be affected.
+    feat_prereq("Inquisitor L10");
+    feat_desc("At 21st level, an inquisitor can call true judgment down upon a foe during combat. The inquisitor can invoke true judgment on a foe. Once declared, the target must make a fortitude save or die. Targets warded from death or targets that succeeded a save will still take a large amount of divine damage.
 
 If used without an argument this feat will pick up a random attacker.");
     set_save("fort");
@@ -27,7 +27,7 @@ int prerequisites(object ob)
     if (!objectp(ob)) {
         return 0;
     }
-    if ((int)ob->query_class_level("inquisitor") < 20) {
+    if ((int)ob->query_class_level("inquisitor") < 21) {
         dest_effect();
         return 0;
     }
@@ -168,8 +168,9 @@ void execute_attack()
     bonusdc = BONUS_D->query_stat_bonus(caster, "wisdom");
     spell_kill(target, caster);
     if ((string)target->query_property("no death") || do_save(target, bonusdc)) {
-        tell_room(place, "%^BOLD%^%^BLUE%^" + target->QCN + " is utterly unaffected by the judgement!", target);
-        tell_object(target, "%^BOLD%^%^BLUE%^You are utterly unaffected by the judgement!");
+        tell_room(place, "%^BOLD%^%^BLUE%^" + target->QCN + " gasps as the true judgement wracks " + target->query_possessive() + " soul, but manages to survive!", target);
+        tell_object(target, "%^BOLD%^%^BLUE%^You gasp as the true judgement wracks your soul, but you manage to survive!");
+        target->cause_typed_damage(target, target->return_target_limb(), roll_dice(flevel + bonusdc, 8), "divine");
     } else {
         tell_room(place, "%^BOLD%^%^MAGENTA%^The soul is pushed beyond %^MAGENTA%^the veil%^MAGENTA%^ from its coil!");
         tell_room(place, "%^BOLD%^%^MAGENTA%^The lifeless husk of " + target->QCN + " drops to the ground!", target);
