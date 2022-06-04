@@ -328,7 +328,7 @@ string dust_desc(){
   string desc;
   switch (cleaned){
   case 0:
-    desc = "The %^BOLD%^%^BLACK%^smithy%^RESET%^ looks absolutely filthy and neglected. You could clean, if the state of the place bothers you.";
+    desc = "The %^BOLD%^%^BLACK%^smithy%^RESET%^ looks absolutely filthy and neglected";
     break;
   case 1..7:
    desc = "%^BOLD%^%^BLACK%^The %^RESET%^smithy%^BOLD%^%^BLACK%^ looks pretty grimy and untended. Most"
