@@ -1,13 +1,13 @@
 // trap.c
-//originally coded by Tristan - recoded by Saide to support 
+//originally coded by Tristan - recoded by Saide to support
 //new trap lib code
 //basic concept - detect/find roll against the dc of the trap
 //if you fail at this - you aren't able to even know there is a trap
-//so you cannot by default, try to recover or remove it 
+//so you cannot by default, try to recover or remove it
 //remove is dc + 5
 //recover is dc + 10
-//failure in either case = trap triggered 
-//Updated by ~Circe~ 3/20/13 to work with Detect Snares and 
+//failure in either case = trap triggered
+//Updated by ~Circe~ 3/20/13 to work with Detect Snares and
 //Pits/Detect Traps. These spells grant the property "detecting_snares".
 
 #include <std.h>
@@ -38,12 +38,12 @@ int cmd_trap(string str)
       	return help();
     	}
 
-    	if( sscanf(str, "%s %s", action, junk) != 2) 
+    	if( sscanf(str, "%s %s", action, junk) != 2)
 	{
       	return help();
     	}
 
-    	switch(action) 
+    	switch(action)
 	{
 		case "detect":
 			return detect_action(junk);
@@ -74,13 +74,13 @@ int reveal_action(string input)
 	string targ, targ_type, *MyTraps = ({}), who, *VTRIGS = ({}), *TK;
 	string MyParty, *rexits, *TrapKeys, tmp, my_msg, TN, TCN;
 	object *MyTargs = ({}), theObj, MyTarg;
-	mapping TrapInfo, Dmap;	
+	mapping TrapInfo, Dmap;
 	if(!objectp(TP)) return 0;
-	if(!stringp(input)) 
+	if(!stringp(input))
 	{
 		return help();
 	}
-	
+
 	if(sscanf(input, "on %s to %s", targ, who) != 2)
 	{
 		tell_object(TP, "trap reveal on <object> to <who>\n"
@@ -95,14 +95,14 @@ int reveal_action(string input)
 			return 1;
 		}
 		MyTargs = PARTY_D->query_party_members(MyParty);
-		if(!sizeof(MyTargs)) 
+		if(!sizeof(MyTargs))
 		{
 			tell_object(TP, "There are no members in your party.");
 			return 1;
 		}
 		MyTargs = distinct_array(MyTargs);
 		MyTargs -= ({TP});
-		if(!sizeof(MyTargs)) 
+		if(!sizeof(MyTargs))
 		{
 			tell_object(TP, "You are the only member of your party.");
 			return 1;
@@ -117,14 +117,14 @@ int reveal_action(string input)
 			return 1;
 		}
 
-		if(!living(MyTarg)) 
+		if(!living(MyTarg))
 		{
 			tell_object(TP, capitalize(who)+" is not a living "+
 			"creature and would have no way of understanding what you "+
 			"mean.");
 			return 1;
 		}
-		if(MyTarg == TP) 
+		if(MyTarg == TP)
 		{
 			tell_object(TP, "You already know how to avoid traps "+
 			"you have set!");
@@ -133,7 +133,7 @@ int reveal_action(string input)
 		MyTargs += ({MyTarg});
 	}
 
-	if(!objectp(theObj = present(targ, TP))) 
+	if(!objectp(theObj = present(targ, TP)))
 	{
 		if(!objectp(theObj = present(targ, ETP)))
 		{
@@ -148,10 +148,10 @@ int reveal_action(string input)
 
 	if(theObj == ETP)
 	{
-		if(theObj->is_vault()) 
+		if(theObj->is_vault())
 		{
 			Dmap = ETP->query_doors_map();
-			if(member_array(targ, keys(Dmap)) != -1) 
+			if(member_array(targ, keys(Dmap)) != -1)
 			{
 				targ_type = "door";
 			}
@@ -161,7 +161,7 @@ int reveal_action(string input)
 			rexits = ETP->query_exits();
 			if(member_array(targ, rexits) != -1) targ_type = "exit";
 		}
-	}	
+	}
 
 	if(!targ_type)
 	{
@@ -171,7 +171,7 @@ int reveal_action(string input)
 	}
 	TrapInfo = theObj->query_trap_data();
 	TrapKeys = keys(TrapInfo);
-	if(!sizeof(TrapInfo) || !mapp(TrapInfo)) 
+	if(!sizeof(TrapInfo) || !mapp(TrapInfo))
 	{
 		tell_object(TP, "You cannot find any traps that you have "+
 		"set on that object to reveal.");
@@ -189,12 +189,12 @@ int reveal_action(string input)
 				VTRIGS += ({TrapKeys[x] +" the " + targ});
 				DCS += ({TrapInfo[TrapKeys[x]]["dc"]});
 				continue;
-			}		
+			}
 			break;
 		case "exit":
 			if(TrapInfo[targ])
 			{
-				if(TrapInfo[targ]["set by"] == TPQN) 
+				if(TrapInfo[targ]["set by"] == TPQN)
 				{
 					MyTraps += ({targ});
 					VTRIGS += ({"use the "+targ+" exit"});
@@ -210,7 +210,7 @@ int reveal_action(string input)
 				MyTraps += ({TrapKeys[x]});
 				TK = explode(TrapKeys[x], " ");
 				TK -= explode(targ, " ");
-				VTRIGS += ({TK[0] + " the "+implode(TK[1..(sizeof(TK)-1)], " ") + 
+				VTRIGS += ({TK[0] + " the "+implode(TK[1..(sizeof(TK)-1)], " ") +
 				" on "+targ});
 				DCS += ({TrapInfo[TrapKeys[x]]["dc"]});
 				continue;
@@ -220,7 +220,7 @@ int reveal_action(string input)
 			break;
 	}
 
-	if(!sizeof(MyTraps)) 
+	if(!sizeof(MyTraps))
 	{
 		tell_object(TP, "You haven't set any traps on "+targ+" that you can "+
 		"reveal information about.");
@@ -233,7 +233,7 @@ int reveal_action(string input)
 		my_msg = "%^BOLD%^%^WHITE%^You try to reveal the triggers of your "+
 		"traps on the "+targ+" and how to avoid them to your party members.%^RESET%^";
 	}
-	else 
+	else
 	{
 		my_msg = "%^BOLD%^%^WHITE%^You try to reveal the triggers of your "+
 		"traps on the "+targ+" and how to avoid them to "+MyTarg->QCN+".%^RESET%^";
@@ -249,7 +249,7 @@ int reveal_action(string input)
 		"reveal something of importance to you about the "+
 		targ+".");
 		TargSkill = MyTargs[x]->query_skill("dungeoneering");
-		if(sizeof(MyTargs[x]->query_armour("torso"))) 
+		if(sizeof(MyTargs[x]->query_armour("torso")))
 		{
 			TargSkill += MyTargs[x]->skill_armor_mod(MyTargs[x]->query_armour("torso"));
 		}
@@ -261,12 +261,12 @@ int reveal_action(string input)
 			if(i > sizeof(VTRIGS) || i > sizeof(DCS)) continue;
 			tell_object(MyTargs[x], TPQCN + " reveals to you a "+
 			"trap on the "+targ+".");
-			if((failSkill = (int)theObj->query_failed_know(MyTraps[i], TN))) 
+			if((failSkill = (int)theObj->query_failed_know(MyTraps[i], TN)))
 			{
 				if(TargSkill <= failSkill) continue;
 			}
-			if(TargSkill + roll_dice(1, 20) >= (DCS[i]/2)) 
-			{			
+			if(TargSkill + roll_dice(1, 20) >= (DCS[i]/2))
+			{
 				tell_object(MyTargs[x], TPQCN+"%^BOLD%^%^WHITE%^ shows "+
 				"you that the trap will be triggered when you %^BOLD%^"+
 				"%^RED%^"+VTRIGS[i]+"%^BOLD%^%^WHITE%^ and shows you "+
@@ -294,7 +294,7 @@ int reveal_action(string input)
 			"have some knowledge of your traps on "+targ+" now.%^RESET%^");
 			continue;
 		}
-		else 
+		else
 		{
 			tell_object(TP, TCN+"%^BOLD%^%^RED%^ doesn't seem "+
 			"to have understood you at all about your traps on "+targ+".");
@@ -302,7 +302,7 @@ int reveal_action(string input)
 		}
 		continue;
 	}
-	return 1;		
+	return 1;
 }
 
 
@@ -311,9 +311,9 @@ int set_action(string input)
 	string targ, trigger, trapkit, targ_type, *door_locks, *rexits, tmp;
 	string *VTRIG = ({}), tstr, ThisTrap, *ttriggers, trap_type, trap_lvl;
 	object MyTrapKit, MyTarg;
-	int MySkill, x;
+	int MySkill, x, roll;
 	mapping Dmap, TrapInfo;
-	
+
 	if(!objectp(TP)) return 0;
 	if(!stringp(input))
 	{
@@ -351,7 +351,7 @@ int set_action(string input)
 		}
 	}
 
-	if(MyTarg != ETP) 
+	if(MyTarg != ETP)
 	{
 		if(!living(MyTarg)) targ_type = "object";
 	}
@@ -360,7 +360,7 @@ int set_action(string input)
 		if(ETP->is_vault())
 		{
 			Dmap = ETP->query_doors_map();
-			if(member_array(targ, keys(Dmap)) != -1) 
+			if(member_array(targ, keys(Dmap)) != -1)
 			{
 				targ_type = "door";
 				door_locks = ETP->getLocks(targ);
@@ -379,25 +379,25 @@ int set_action(string input)
 		return 1;
 	}
 	MySkill = TP->query_skill("dungeoneering");
-	if(sizeof(TP->query_armour("torso"))) 
+	if(sizeof(TP->query_armour("torso")))
 	{
 		MySkill += TP->skill_armor_mod(TP->query_armour("torso"));
 	}
-	if(MySkill < 15) 
+	if(MySkill < 15)
 	{
 		tell_object(TP, "You must have at least 15 points "+
 		"in dungeoneering before you are able to "+
 		"set your own traps.");
 		return 1;
 	}
-	
-	switch(targ_type) 
+
+	switch(targ_type)
 	{
 		case "exit":
 			VTRIG += ({targ});
 			break;
 		case "object":
-			if(MyTarg->is_container() && MyTarg->query_possible_to_close()) 
+			if(MyTarg->is_container() && MyTarg->query_possible_to_close())
 			{
 				VTRIG += ({"open", "close"});
 				if(MyTarg->query_lock_data() && MyTarg->query_lock_data("key"))
@@ -415,10 +415,10 @@ int set_action(string input)
 					VTRIG += ({"pick "+door_locks[x]});
 				continue;
 			}
-	}			
+	}
 	if(trigger == "triggers" || trigger == "trigger")
 	{
-		if(!sizeof(VTRIG)) 
+		if(!sizeof(VTRIG))
 		{
 			tell_object(TP, "You find no viable method to rig a trap on "+
 						targ+".");
@@ -470,10 +470,10 @@ int set_action(string input)
 		}
 	}
 	TrapInfo = MyTarg->query_trap_data();
-	//should they try to trap something that is already trapped - then 
-	//make both traps go off - a way to get around the whole 
+	//should they try to trap something that is already trapped - then
+	//make both traps go off - a way to get around the whole
 	//using set to determine if something is trapped or not - Saide
-	if(undefinedp(TrapInfo)) 
+	if(undefinedp(TrapInfo))
 	{
 		tell_object(TP, "You are unable to set a trap on the "+
 		targ+".");
@@ -481,7 +481,7 @@ int set_action(string input)
 	}
 	TP->set_paralyzed(10, "%^BOLD%^%^RED%^You are busy setting a trap.%^RESET%^");
 	if(targ_type == "exit") targ = targ + " exit";
-	if(TrapInfo[ThisTrap]) 
+	if(TrapInfo[ThisTrap])
 	{
 		tell_object(TP, "%^BOLD%^%^BLACK%^You go about setting the trap "+
 		"on the "+targ+" and are overcome with a sudden sense of dread as "+
@@ -496,13 +496,14 @@ int set_action(string input)
 	}
 	tell_object(TP, "%^BOLD%^%^WHITE%^You go about setting the trap "+
 	"on the "+targ+".%^RESET%^");
-	if(!TP->query_invis()) 
+	if(!TP->query_invis())
 	{
 		tell_room(ETP, TPQCN+"%^BOLD%^%^WHITE%^ seems to be doing something to "+
 		"the "+targ+".%^RESET%^", TP);
 	}
 
-	if((MySkill + roll_dice(1, 20)) >= ((int)MyTrapKit->query_dc() + 10))
+    roll = roll_dice(1,20);
+	if((MySkill + roll) >= ((int)MyTrapKit->query_dc()) && roll != 1)
 	{
 		tell_object(TP, "%^BOLD%^%^WHITE%^You successfully set "+
 		MyTrapKit->query_short() + " on the "+targ+".");
@@ -525,18 +526,18 @@ int set_action(string input)
 	MyTrapKit->trap_activated(TP);
 	MyTrapKit->remove();
 	return 1;
-		
+
 }
 
 int detect_action(string input)
 {
 	int MySkill;
-	if(!stringp(input)) 
+	if(!stringp(input))
 	{
 		return help();
 	}
 	input = lower_case(input);
-	if(input != "on" && input != "off") 
+	if(input != "on" && input != "off")
 	{
 		return help();
 	}
@@ -547,11 +548,11 @@ int detect_action(string input)
             MySkill += (int)TP->query_property("detecting_snares")->query_bonus();
          }
       }
-	if(sizeof(TP->query_armour("torso"))) 
+	if(sizeof(TP->query_armour("torso")))
 	{
 		MySkill += TP->skill_armor_mod(TP->query_armour("torso"));
 	}
-	if(MySkill < 15) 
+	if(MySkill < 15)
 	{
 		tell_object(TP, "You must have at least 15 points "+
 		"in dungeoneering before you are able to "+
@@ -561,7 +562,7 @@ int detect_action(string input)
 
 	if(input == "on")
 	{
-		if(TP->query("is_auto_detecting_traps")) 
+		if(TP->query("is_auto_detecting_traps"))
 		{
 			tell_object(TP, "You are already auto detecting traps.");
 			return 1;
@@ -577,7 +578,7 @@ int detect_action(string input)
 
 	if(input == "off")
 	{
-		if(!TP->query("is_auto_detecting_traps")) 
+		if(!TP->query("is_auto_detecting_traps"))
 		{
 			tell_object(TP, "You are not currently auto detecting traps.");
 			return 1;
@@ -596,20 +597,20 @@ int find_action(string input)
 	object theObj, *inven;
 	int x, MySkill, i;
 	string *TK, tmp, *DMap, TDoor;
-	mapping TrapInfo; //to determine, if the room around them is a vault, if 
-					//they are trying to target a door 
+	mapping TrapInfo; //to determine, if the room around them is a vault, if
+					//they are trying to target a door
 
 	if(sscanf(input, "on %s", obj) != 1)
 	{
 		tell_object(TP, "trap find on <object>\n");
 		return 1;
 	}
-	
+
 	inven = all_inventory(TP);
 
-    	for(x = 0;x< sizeof(inven);x++) 
+    	for(x = 0;x< sizeof(inven);x++)
 	{
-      	if(inven[x]->id(obj)) 
+      	if(inven[x]->id(obj))
 		{
             	theObj = inven[x];
 			MyType = "object";
@@ -617,25 +618,25 @@ int find_action(string input)
         	}
     	}
 
-	if(!objectp(theObj)) 
+	if(!objectp(theObj))
 	{
 		inven = all_inventory(ETP);
-	 	for(x = 0;x< sizeof(inven);x++) 
+	 	for(x = 0;x< sizeof(inven);x++)
 		{
-			if(inven[x]->id(obj)) 
+			if(inven[x]->id(obj))
 			{
             		theObj = inven[x];
 				MyType = "object";
             		break;
         		}
 		}
-	}	
+	}
 
-    	if(!objectp(theObj)) 
+    	if(!objectp(theObj))
 	{
       	theObj = ETP;
 		MyType = "room";
-		if(theObj->is_vault()) 
+		if(theObj->is_vault())
 		{
 			DMap = keys(theObj->query_doors_map());
 			if(member_array(obj, DMap) != -1)
@@ -643,20 +644,20 @@ int find_action(string input)
 				t_type = "door";
 			}
 		}
-		Rexits = theObj->query_exits();	
+		Rexits = theObj->query_exits();
 		if(sizeof(Rexits))
 		{
 			if(member_array(obj, Rexits) != -1)
 			{
 				t_type = "exit";
 			}
-		}	
+		}
 		if(!t_type) t_type = "misc";
     	}
 
 	MN = TPQN;
 	TrapInfo = theObj->query_trap_data();
-	if(!sizeof(TrapInfo)) 
+	if(!sizeof(TrapInfo))
 	{
 		write(FFAILURE);
         	tell_room(ETP,RFFAILURE,TP);
@@ -670,7 +671,7 @@ int find_action(string input)
             MySkill += (int)TP->query_property("detecting_snares")->query_bonus();
          }
       }
-	if(sizeof(TP->query_armour("torso"))) 
+	if(sizeof(TP->query_armour("torso")))
 	{
 		MySkill += TP->skill_armor_mod(TP->query_armour("torso"));
 	}
@@ -696,7 +697,7 @@ int find_action(string input)
 					continue;
 				}
 				continue;
-			}		
+			}
 			break;
 		case "room":
 			for(x = 0; x < sizeof(TrapKeys);x++)
@@ -707,14 +708,14 @@ int find_action(string input)
 						continue;
 				if(member_array(MN, TrapInfo[TrapKeys[x]]["passed_check"]) != -1 ||
 				(MySkill + roll_dice(1, 20)) >= TrapInfo[TrapKeys[x]]["dc"])
-				{			
-					theObj->add_passed_check(TrapKeys[x], MN);	
+				{
+					theObj->add_passed_check(TrapKeys[x], MN);
 					if(t_type == "door")
 					{
 						i = member_array(TrapKeys[x], VDOORACTS);
 						if(i != -1)
 						{
-							DTs += ({VDOORACTS[i] +" the "+obj});		
+							DTs += ({VDOORACTS[i] +" the "+obj});
 							continue;
 						}
 						i = member_array(TrapKeys[x], VLOCKACTS);
@@ -728,9 +729,9 @@ int find_action(string input)
 						member_array(TK[0], VLOCKACTS) == -1) continue;
 						if(strsrch(TrapKeys[x], obj) == -1) continue;
 						TK -= explode(obj, " ");
-						if(sizeof(TK) > 1) 
+						if(sizeof(TK) > 1)
 						{
-							DTs += ({TK[0] + " the "+ 
+							DTs += ({TK[0] + " the "+
 							implode(TK[1..(sizeof(TK)-1)], " ") +
 							" on the "+obj});
 							continue;
@@ -740,7 +741,7 @@ int find_action(string input)
 					}
 					if(t_type == "exit")
 					{
-						if(member_array(TrapKeys[x], Rexits) != -1 && 
+						if(member_array(TrapKeys[x], Rexits) != -1 &&
 						TrapKeys[x] == obj)
 						{
 							DTs += ({"use the "+TrapKeys[x] + " exit"});
@@ -765,7 +766,7 @@ int find_action(string input)
 						/*i = member_array(TrapKeys[x], VDOORACTS);
 						if(i != -1)
 						{
-							DTs += ({VDOORACTS[i] +" any door"});		
+							DTs += ({VDOORACTS[i] +" any door"});
 							continue;
 						}
 						i = member_array(TrapKeys[x], VLOCKACTS);
@@ -781,7 +782,7 @@ int find_action(string input)
 						}
 						for(i = 0;i < sizeof(DMap);i++)
 						{
-							if(strsrch(TrapKeys[x], DMap[i]) != -1) 
+							if(strsrch(TrapKeys[x], DMap[i]) != -1)
 							{
 								TDoor = DMap[i];
 								break;
@@ -791,9 +792,9 @@ int find_action(string input)
 						if(!stringp(TDoor)) continue;
 						TK = explode(TrapKeys[x], " ");
 						TK -= explode(TDoor, " ");
-						if(sizeof(TK) > 1) 
+						if(sizeof(TK) > 1)
 						{
-							DTs += ({TK[0] + " the "+ 
+							DTs += ({TK[0] + " the "+
 							implode(TK[1..(sizeof(TK)-1)], " ") +
 							" on the "+TDoor});
 							continue;
@@ -808,15 +809,15 @@ int find_action(string input)
 				}
 				continue;
 			}
-			break;					
+			break;
 	}
 
-	if(!sizeof(DTs)) 
+	if(!sizeof(DTs))
 	{
 		write(FFAILURE);
 		tell_room(ETP,RFFAILURE,TP);
 		return 1;
-	}	
+	}
 
 	if(MyType != "room")
 	{
@@ -833,7 +834,7 @@ int find_action(string input)
 		"something on the "+obj+".%^RESET%^", TP);
 		return 1;
 	}
-	else 
+	else
 	{	tell_object(TP, "%^BOLD%^There appear to be "+sizeof(DTs)+
 		" traps on the "+obj+".%^RESET%^");
 		for(x = 0;x < sizeof(DTs);x++)
@@ -847,19 +848,19 @@ int find_action(string input)
 	}
 	return 1;
 }
-				
+
 
 
 int remove_recover_action(string input, string Atype)
 {
 	object *inven, theObj, TrapObj;
 	string obj, ThisTrap, t_type, *Rexits, *DMap, MN, *TrapKeys, tmp, MyTrap;
-	int x, MySkill, DC;
+	int x, MySkill, DC, roll;
 	mapping TrapInfo;
 
 	if(sscanf(input, "on %s", obj) != 1)
 	{
-		if(Atype == "remove")		
+		if(Atype == "remove")
 		{
 			tell_object(TP, "trap remove on <object>\n");
 			tell_object(TP, "trap disarm on <object>");
@@ -872,7 +873,7 @@ int remove_recover_action(string input, string Atype)
 
 	for(x = 0;x < sizeof(inven);x++)
 	{
-		if(inven[x]->id(obj)) 
+		if(inven[x]->id(obj))
 		{
 			t_type = "object";
 			theObj = inven[x];
@@ -880,12 +881,12 @@ int remove_recover_action(string input, string Atype)
 		}
 	}
 
-	if(!objectp(theObj)) 
+	if(!objectp(theObj))
 	{
 		inven = all_inventory(ETP);
 		for(x = 0;x < sizeof(inven);x++)
 		{
-			if(inven[x]->id(obj)) 
+			if(inven[x]->id(obj))
 			{
 				t_type = "object";
 				theObj = inven[x];
@@ -894,10 +895,10 @@ int remove_recover_action(string input, string Atype)
 		}
 	}
 
-	if(!objectp(theObj)) 
+	if(!objectp(theObj))
 	{
 		theObj = ETP;
-		if(theObj->is_vault()) 
+		if(theObj->is_vault())
 		{
 			DMap = keys(theObj->query_doors_map());
 			if(member_array(obj, DMap) != -1)
@@ -905,7 +906,7 @@ int remove_recover_action(string input, string Atype)
 				t_type = "door";
 			}
 		}
-		Rexits = theObj->query_exits();	
+		Rexits = theObj->query_exits();
 		if(sizeof(Rexits))
 		{
 			if(member_array(obj, Rexits) != -1)
@@ -914,12 +915,12 @@ int remove_recover_action(string input, string Atype)
 			}
 		}
 		if(!t_type) t_type = "misc";
-	}	
+	}
 
 	MN = TPQN;
 	TrapInfo = theObj->query_trap_data();
 
-	if(!sizeof(TrapInfo)) 
+	if(!sizeof(TrapInfo))
 	{
 		write(FFAILURE);
         	tell_room(ETP,RFFAILURE,TP);
@@ -928,52 +929,52 @@ int remove_recover_action(string input, string Atype)
 
 	MySkill = TP->query_skill("dungeoneering");
 
-	if(sizeof(TP->query_armour("torso"))) 
+	if(sizeof(TP->query_armour("torso")))
 	{
 		MySkill += TP->skill_armor_mod(TP->query_armour("torso"));
 	}
 	TrapKeys = keys(TrapInfo);
-	
+
 	switch(t_type)
 	{
 		case "object":
 			for(x = 0;x < sizeof(TrapKeys);x++)
 			{
 				if(TrapInfo[TrapKeys[x]]["trap state"] != 1) continue;
-				if(TrapInfo[TrapKeys[x]]["set by"] == TPQN) 
+				if(TrapInfo[TrapKeys[x]]["set by"] == TPQN)
 				{
 					MyTrap = TrapKeys[x];
 					continue;
 				}
-				if(member_array(MN, keys(TrapInfo[TrapKeys[x]]["failed_check"])) != -1) 
+				if(member_array(MN, keys(TrapInfo[TrapKeys[x]]["failed_check"])) != -1)
 					if(TrapInfo[TrapKeys[x]]["failed_check"][MN] >= MySkill)
 						continue;
 				if(member_array(MN, TrapInfo[TrapKeys[x]]["passed_check"]) != -1 ||
-				(MySkill + roll_dice(1, 20)) >= TrapInfo[TrapKeys[x]]["dc"]) 
+				(MySkill + roll_dice(1, 20)) >= TrapInfo[TrapKeys[x]]["dc"])
 				{
 					theObj->add_passed_check(TrapKeys[x], MN);
 					ThisTrap = TrapKeys[x];
 					break;
 				}
-				else 
+				else
 				{
 					theObj->add_failed_check(TrapKeys[x], MN, MySkill);
 					continue;
 				}
 			}
 			break;
-		case "misc": 
+		case "misc":
 			for(x = 0;x < sizeof(TrapKeys);x++)
 			{
 				if(TrapInfo[TrapKeys[x]]["trap state"] != 1) continue;
-				if(member_array(MN, keys(TrapInfo[TrapKeys[x]]["failed_check"])) != -1) 
+				if(member_array(MN, keys(TrapInfo[TrapKeys[x]]["failed_check"])) != -1)
 					if(TrapInfo[TrapKeys[x]]["failed_check"][MN] >= MySkill)
 						continue;
 				if(member_array(MN, TrapInfo[TrapKeys[x]]["passed_check"]) != -1 ||
-				(MySkill + roll_dice(1, 20)) >= TrapInfo[TrapKeys[x]]["dc"]) 
+				(MySkill + roll_dice(1, 20)) >= TrapInfo[TrapKeys[x]]["dc"])
 				{
 					theObj->add_passed_check(TrapKeys[x], MN);
-					if(strsrch(TrapKeys[x], obj) != -1) 
+					if(strsrch(TrapKeys[x], obj) != -1)
 					{
 						if(TrapInfo[TrapKeys[x]]["set by"] == TPQN)
 						{
@@ -985,14 +986,14 @@ int remove_recover_action(string input, string Atype)
 					}
 					continue;
 				}
-				else 
+				else
 				{
 					theObj->add_failed_check(TrapKeys[x], MN, MySkill);
 					continue;
 				}
-			}	
+			}
 		case "exit":
-			if(TrapInfo[obj]) 
+			if(TrapInfo[obj])
 			{
 				if(TrapInfo[obj]["trap state"] != 1) break;
 				if(member_array(MN, keys(TrapInfo[obj]["failed_check"])) != -1)
@@ -1012,9 +1013,9 @@ int remove_recover_action(string input, string Atype)
 					theObj->add_failed_check(obj, MN, MySkill);
 					break;
 				}
-			}		
+			}
 			break;
-		case "door": 
+		case "door":
 			for(x = 0;x < sizeof(TrapKeys);x++)
 			{
 				if(TrapInfo[TrapKeys[x]]["trap state"] != 1) continue;
@@ -1045,7 +1046,7 @@ int remove_recover_action(string input, string Atype)
 						ThisTrap = TrapKeys[x];
 						break;
 					}
-					if(strsrch(TrapKeys[x], obj) != -1) 
+					if(strsrch(TrapKeys[x], obj) != -1)
 					{
 						if(TrapInfo[TrapKeys[x]]["set by"] == TPQN)
 						{
@@ -1057,7 +1058,7 @@ int remove_recover_action(string input, string Atype)
 					}
 					continue;
 				}
-				else 
+				else
 				{
 					theObj->add_failed_check(TrapKeys[x], MN, MySkill);
 					continue;
@@ -1069,14 +1070,14 @@ int remove_recover_action(string input, string Atype)
 			break;
 	}
 	if(!stringp(ThisTrap) && stringp(MyTrap)) ThisTrap = MyTrap;
-	if(!stringp(ThisTrap) || !TrapInfo[ThisTrap]) 
+	if(!stringp(ThisTrap) || !TrapInfo[ThisTrap])
 	{
 		tmp = "You find no traps on the "+obj;
 		if(t_type == "exit") tmp += " exit";
 		tmp += " to "+Atype+".";
 		tell_object(TP, tmp);
 		return 1;
-	}	
+	}
 	DC = TrapInfo[ThisTrap]["dc"];
 	if(!TP->query_invis())
 	{
@@ -1086,8 +1087,8 @@ int remove_recover_action(string input, string Atype)
 	{
 		case "remove": case "disarm":
 			DC += 5;
-			if((MySkill + roll_dice(1, 20)) >= DC || 
-			(TrapInfo[ThisTrap]["set by"] == TPQN && roll_dice(1, 20) != 1))
+            roll = roll_dice(1,20);
+			if(((MySkill + roll) >= DC || TrapInfo[ThisTrap]["set by"] == TPQN) && roll != 1)
 			{
 				tmp = "You successfully disarm a trap on the "+obj;
 				if(t_type == "exit") tmp += " exit.";
@@ -1117,8 +1118,8 @@ int remove_recover_action(string input, string Atype)
 				"object, please bug report this.");
 				return 1;
 			}
-			if((MySkill + roll_dice(1, 20)) >= DC ||
-			(TrapInfo[ThisTrap]["set by"] == TPQN && roll_dice(1, 20) != 1))
+            roll = roll_dice(1,20);
+			if(((MySkill + roll) >= DC || TrapInfo[ThisTrap]["set by"] == TPQN) && roll != 1)
 			{
 				TrapObj->set_my_dc((DC-10));
 				tmp = "You successfully recover "+TrapObj->query_short()+
@@ -1140,7 +1141,7 @@ int remove_recover_action(string input, string Atype)
 			}
 			else TrapObj->remove();
 			break;
-		default: 
+		default:
 			break;
 	}
 	tell_object(ETP, "You hear a mechanical click....");
@@ -1192,4 +1193,3 @@ search, steal, glance, dungeoneering
 ");
     return 1;
 }
-
