@@ -18,7 +18,8 @@ int cmd_last(string str)
     }
 
     if (!str) {
-        return help();
+        help();
+        return 1;
     }
 
     if (str == "tell") {
