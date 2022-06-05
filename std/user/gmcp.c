@@ -18,7 +18,7 @@ void gmcp(string str)
     write("\n\<GMCP request end.>\n");
 }
 
-void send_gcmp(string str)
+void send_gmcp(string str)
 {
     efun::send_gmcp(str);
 }
