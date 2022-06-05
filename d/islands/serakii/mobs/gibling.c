@@ -1,5 +1,5 @@
 
-// Corrupted Hound Mounted - 2022
+// Chittering Gibling - 2022
 
 #include <std.h>
 #include "../serakii.h"
@@ -84,6 +84,7 @@ void create()
 	set_monster_feats(({
 	    "combat reflexes",
 		"danger sense",
+		"perfect caster",
 		"mobility",
 		"evasion",
 		"blade block",
@@ -94,11 +95,11 @@ void create()
     }));
     add_money("gold",random(5000));
     ob = new(OBJ"bloodwood_axe");
-    if(random(5)) ob->set_property("monsterweapon", 1);
+    if(random(6)) ob->set_property("monsterweapon", 1);
     ob->move(TO);
     command("wield axe");
     ob = new(OBJ"bloodwood_axe");
-    if(random(5)) ob->set_property("monsterweapon", 1);
+    if(random(6)) ob->set_property("monsterweapon", 1);
     ob->move(TO);
     command("wield axe");
 

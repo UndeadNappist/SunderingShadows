@@ -38,6 +38,7 @@ void create(){
    set_spells(({
      "black tentacles",
      "fester",
+	 "massacre"
      "ghoul touch",
      "meteor swarm",
      "frost orb",
