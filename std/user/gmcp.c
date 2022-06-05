@@ -6,9 +6,12 @@
   -- Tlaloc -- 9.16.21
 */
 
+int gmcp_enabled;
+
 void gmcp_enable()
 {
     write("<GMCP negotiation enabled.>\n");
+    gmcp_enabled = 1;
 }
 
 void gmcp(string str)
