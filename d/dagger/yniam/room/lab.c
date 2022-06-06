@@ -52,14 +52,12 @@ void look_cages(){
 }
 
 void look_goblin(){
-    object player, room;
+    object player;
     player = this_player();
-    room = environment(player);
     
     if(!occupied) tell_object(player, "%^RESET%^%^CRST%^You do not notice that here.%^CRST%^");
     else{ 
         tell_object(player, "%^RESET%^%^CRST%^%^C108%^This nasty little %^C064%^goblin %^C108%^is trapped in one of the cages. It is typical of the breed: %^RESET%^%^CRST%^%^C065%^small, green, and foul. %^RESET%^%^C108%^It appears someone has made an attempt to clean this one by dousing it with water.%^CRST%^");
-        tell_room(room, "%^RESET%^%^CRST%^"+player->query_cap_name()+" looks over the goblin.%^CRST%^", player);
     }
     return;
 }
