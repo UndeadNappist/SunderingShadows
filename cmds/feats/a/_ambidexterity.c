@@ -16,7 +16,7 @@ void create()
     set_required_for(({"two weapon fighting","improved two weapon fighting","unassailable parry","whirl"}));
 }
 
-int allow_shifted() { return 0; }
+int allow_shifted() { return 1; }
 
 int prerequisites(object ob)
 {
