@@ -3614,6 +3614,9 @@ varargs int do_save(object targ, int mod, int get_dc)
 
         if(targ->query_property("mind blank"))
             DC -= 5;
+        
+        if(targ->query("subrace") == "dhampir")
+            DC -= 2;
     }
 
     if(evil_spell && FEATS_D->usable_feat(targ, "celestial totem"))

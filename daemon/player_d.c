@@ -869,6 +869,9 @@ int immunity_check(object obj, string type)
         if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
             return 1;
         
+        if(obj->query("subrace") == "dhampir")
+            return 1;
+        
         return 0;
     }
     break;

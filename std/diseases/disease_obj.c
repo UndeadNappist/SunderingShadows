@@ -119,6 +119,9 @@ int do_save(int disease_bonus)
     if(ETO->query_mystery() == "bones" && ETO->query_class_level("oracle") >= 10)
         disease_bonus -= 2;
     
+    if(ETO->query("subrace") == "dhampir")
+        disease_bonus -= 2;
+    
     if ("/daemon/saving_throw_d"->fort_save(ETO, -(clevel + disease_bonus))) {
         return 1;
     }

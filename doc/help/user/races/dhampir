@@ -10,8 +10,10 @@
 %^BOLD%^%^BLUE%^Average life span: %^RESET%^110
 
 %^BOLD%^%^BLUE%^Racial Traits:
-%^CYAN%^Ghoulish Sorcery%^RESET%^         - +1 clevel for sorcerers with ghoul bloodline
 %^CYAN%^Negative Energy Affinity%^RESET%^ - effects of negative/positive energy reversed
+%^CYAN%^Resist Level Drain%^RESET%^       - immune to negative level effects
+%^CYAN%^Ghoulish Sorcery%^RESET%^         - +1 clevel for sorcerers with ghoul bloodline
+%^CYAN%^Undead Resistance%^RESET%^        - +2 saving throws vs. disease and mind-affecting spells
 %^CYAN%^Low Light Vision%^RESET%^         - +2 to sight bonus to see in the dark
 %^CYAN%^Skilled%^RESET%^                  - +2 to perception and influence
 
