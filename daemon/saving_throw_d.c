@@ -110,6 +110,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
             
             if(ob->query("subrace") == "senzokuan")
                 mod += 1;
+            
+            if(ob->query_race() == "beastkin")
+                mod += 2;
 
             if(PLAYER_D->check_familiar(ob, "fox") || PLAYER_D->check_familiar(ob, "weasel"))
                 mod += 2;
