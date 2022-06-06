@@ -69,7 +69,7 @@ int __Read_me(string str)
   %^ORANGE%^<rent boat>%^RESET%^      Will rent a boat for you (1000 gold).
   %^ORANGE%^<return boat>%^RESET%^    Will return rented board.
   %^ORANGE%^<buy boat>%^RESET%^       Will buy a boat for you (20000 gold).
-  %^ORANGE%^<retrieve boat>%^RESET%^  Will call boat to this dock if you owe one
+  %^ORANGE%^<retrieve boat>%^RESET%^  Will call boat to this dock if you own one
   %^ORANGE%^<sell boat>%^RESET%^      Will sell boat.
 
 %^CYAN%^Known safe harbors:%^RESET%^
