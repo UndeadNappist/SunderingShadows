@@ -11,7 +11,7 @@ void create() {
     set_spell_sphere("necromancy");
     set_mystery(({"dragon","bones"}));
     set_syntax("cast CLASS cause fear on TARGET");
-    set_damage_desc("frightened, sickened on save");
+    set_damage_desc("frightened, shaken on save");
     set_description("This power allows the caster to project an aura of fear toward a target, potentially sending him fleeing.");
     set_verbal_comp();
     set_somatic_comp();
@@ -50,7 +50,7 @@ void spell_effect(int prof){
         tell_object(target, "%^RESET%^%^BLUE%^You fight back some horrid images projected into your mind.%^RESET%^");
         tell_room(place,"%^RESET%^%^BLUE%^"+target->QCN+" grimmaces and shakes "+target->QP+" head, fighting off the mental attack.%^RESET%^",target);
 
-        "/std/effect/status/sickened"->apply_effect(target,roll_dice(1,6), caster);
+        "/std/effect/status/shaken"->apply_effect(target,roll_dice(1,6), caster);
     }
     else
     {
