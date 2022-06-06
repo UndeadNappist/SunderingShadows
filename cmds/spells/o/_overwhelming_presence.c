@@ -69,7 +69,7 @@ void spell_effect(int prof)
         else
         {
             tell_object(ob, "%^MAGENTA%^You manage to shrug off the feeling of overwhelming awe!%^RESET%^");
-            tell_room(place, "%^MAGENTA%^" + c_name + " manages to shrug off the feeling of overwhelming awe!%^RESET%^", ob);
+            tell_room(place, "%^MAGENTA%^" + ob->query_cap_name() + " manages to shrug off the feeling of overwhelming awe!%^RESET%^", ob);
             "/std/effect/status/staggered"->apply_effect(ob, 1, caster);
             targets -= ({ ob });
         }
