@@ -5352,7 +5352,7 @@ string query_real_age_cat()
     if (!file_exists(myfile)) {
         return 0;
     }
-    agecats = (int*)myfile->age_brackets();
+    agecats = (int*)myfile->age_brackets(this_object()->query("subrace"));
     if (sizeof(agecats) < 4) {
         return "error in array";
     }
