@@ -853,7 +853,7 @@ select_age(string str)
         templatefile = "/std/acquired_template/" + char_sheet["template"];
     }
 
-    age_brackets = racefile->age_brackets();
+    age_brackets = racefile->age_brackets(char_sheet["subrace"]);
 
     if (str == "random") {
         amount = age_brackets[0] + random(age_brackets[3] * 12 / 10 - age_brackets[0]);
@@ -890,7 +890,7 @@ synopsis_age()
 
     int *age_brackets;
 
-    age_brackets = racefile->age_brackets();
+    age_brackets = racefile->age_brackets(char_sheet["subrace"]);
 
     write("%^RESET%^--==%^BOLD%^< %^GREEN%^You must now assign your %^CYAN%^age %^WHITE%^>%^RESET%^==--\n");
     write("%^BOLD%^%^WHITE%^Values between %^GREEN%^" + age_brackets[0] + "%^WHITE%^ and %^GREEN%^" + age_brackets[1] + "%^WHITE%^ will make you of %^CYAN%^normal%^WHITE%^ age.");
@@ -1299,7 +1299,7 @@ int age_to_adjust(int age, string stat, string race)
 
     int *base = ({0, 0, 0, 0, 0, 0});
 
-    int *age_brackets = racefile->age_brackets();
+    int *age_brackets = racefile->age_brackets(char_sheet["subrace"]);
 
     if (char_sheet["template"] == "undead" ||
         char_sheet["template"] == "vampire") {

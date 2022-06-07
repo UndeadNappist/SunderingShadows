@@ -21,7 +21,13 @@ inherit DAEMON;
 void create() { ::create(); }
 
 // age at which each age cat starts: normal, middle, old, venerable
-int *age_brackets() { return ({ 18, 45, 60, 90 }); }
+int *age_brackets(string subrace)
+{ 
+    if(subrace == "dhampir")
+        return ({ 18, 110, 220, 300 });
+    
+    return ({ 18, 45, 60, 90 }); 
+}
 
 int *restricted_alignments(string subrace) {
     
