@@ -37,8 +37,11 @@ create() {
   set_max_mp(query_mp());
   add_money("copper", random(20));
   set_emotes(4, ({
-      "%^C187%^A patron tries to balance an %^C029%^adventuring feast%^C187%^ in either arm as they navigate back to the %^C245%^games room%^C187%^. %^C141%^Christof%^C187%^ can be seen chuckling in the background.%^CRST%^\n",
-      "%^C141%^Christof%^C147%^ pours a %^C214%^tea%^C147%^ for a professor at a corner table. The %^C172%^aroma%^C147%^ is calming in the %^C059%^busy inn%^C147%^.%^CRST%^\n",
+      "%^C187%^A patron tries to balance an %^C029%^adventuring feast%^C187%^ in either "+
+	  "arm as they navigate back to the %^C245%^games room%^C187%^. %^C141%^Christof%^C187%^ "+
+	  "can be seen chuckling in the background.%^CRST%^\n",
+      "%^C141%^Christof%^C147%^ pours a %^C214%^tea%^C147%^ for a professor at a "+
+	  "corner table. The %^C172%^aroma%^C147%^ is calming in the %^C059%^busy inn%^C147%^.%^CRST%^\n",
       "%^C246%^A table of off duty %^C242%^militia %^C246%^quietly play a game of %^C231%^dice %^C246%^at a %^C100%^table %^C246%^in the corner%^CRST%^\n",
       "%^C251%^The%^C196%^ f%^C226%^i%^C196%^re %^C250%^in the%^C196%^ %^C245%^fireplace %^C196%^c%^C247%^r%^C196%^ack%^C247%^l%^C196%^es.%^CRST%^\n",
       "%^C140%^A %^C064%^farmer %^C140%^finishes their %^C249%^drink%^C140%^. They go over to the %^C241%^fireplace %^C140%^to place a hand on the %^C227%^plaque%^C140%^, mouthing something %^C250%^silently%^C140%^ before leaving.%^CRST%^\n",
@@ -105,7 +108,7 @@ create() {
   }));
   
   set_menu_long(({
-    "sips from the fragrant tea, as they do they relax in the knowledge that they are quite the refined soul indeed.\n",
+    "Served in a thick ceramic mug, this black tea looks most sublime indeed. A true lordly beverage, scented with bergamot.\n",
     "%^C242%^A large black plate of food with %^C253%^several%^C242%^ different %^C253%^dishes%^C242%^ arranged "+
     "on it. In the %^C253%^centre%^C242%^ some fresh %^C138%^baked bread%^C242%^, with a %^C158%^glistening%^C242%^ "+
     "%^C076%^salad%^C242%^ with %^C076%^fresh lettuce%^C242%^ and %^C076%^veggies%^C242%^ topped with %^C138%^crushed "+
