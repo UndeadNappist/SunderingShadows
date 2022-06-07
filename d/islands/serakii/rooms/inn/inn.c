@@ -126,12 +126,14 @@ int read(string str)
 	    tell_object(TP,"%^C125%^**********************************\n%^CRST%^");
 		tell_object(TP,"%^C063%^Drinks%^CRST%^");
         tell_object(TP,"Water\t\t1 Gold");
-		tell_object(TP,"Coffee\t\t5 Gold");
+		tell_object(TP,"Coffee\t\t10 Gold");
+		tell_object(TP,"Earl Graez tea\t\t10 Gold");
         tell_object(TP,"Red Wine\t25 Gold");
         tell_object(TP,"Dark Ale\t10 Gold");
 		tell_object(TP,"Whiskey\t\t30 Gold\n");
 		tell_object(TP,"%^C179%^Food%^CRST%^");
 		tell_object(TP,"Meat Platter\t20 Gold");
+		tell_object(TP,"Adventuring Feast\t50 Gold");
 		                tell_object(TP,"Bread Platter\t20 Gold");
 						tell_object(TP,"Fried Fish\t25 Gold\n");
 		tell_object(TP,"%^C125%^**********************************\n%^CRST%^");
