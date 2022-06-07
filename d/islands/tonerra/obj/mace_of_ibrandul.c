@@ -26,6 +26,7 @@ OLI
    set_weight(10);
    set_value(2500);
    set_type("bludgeoning");
+   set_damage_type("bludgeoning");
    set_prof_type("mace");  // changed to just normal mace 11/23/03 *Styx*
    set_prof_level(40);
    set_property("enchantment",4);

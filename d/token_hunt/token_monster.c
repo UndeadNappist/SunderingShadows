@@ -811,7 +811,7 @@ void initial_setup()
             "with brands of "+MYSTYLE+" and other nature symbols. A set of well worn hilts "
             "pokes out from behind "+TO->QP+" cloak, their grips showing a great deal of wear "
             "and long use as though "+TO->QP+" is well accustom to protecting "+TO->QP+"self "
-            "and that which "+TO->QS+"cares for.%^RESET%^");
+            "and that which "+TO->QS+" cares for.%^RESET%^");
         break;
     case "antipaladin":
         set_long("%^RESET%^%^CYAN%^There is very little to be seen of this knight's appearance "

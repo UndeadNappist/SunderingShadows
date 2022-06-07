@@ -72,8 +72,8 @@ if(random(3))
 	obj->set_property("monsterweapon",1);
 }
 	obj->move(TO);
-	command("wield flail");
 	force_me("wearall");
+    command("wield flail");
 	add_money("electrum",random(50)+70);
 	set_wielding_limbs( ({ "right hand", "left hand" }) );
 	set_max_hp(random(40)+250);
