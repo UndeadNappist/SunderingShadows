@@ -28,6 +28,7 @@ void create() {
    set_item_bonus("damage bonus",4);
    set_property("enchantment",6);
    set_hit((:TO,"hit_func":));
+   set_value(10000);
    set_wield((:TO,"wield_func":));
    set_unwield((:TO,"unwield_func":));
    set_property("lore difficulty",15);
