@@ -1552,7 +1552,7 @@ void setup()
 //Automatically checks if there is an inventory wipe bug and attempts to rectify
 void check_inventory()
 {
-    string temp_name;
+    string temp_name, error;
     
     if(this_object()->query_race() == "unborn" || !strlen(this_object()->query_race()))
         return;
@@ -1562,6 +1562,7 @@ void check_inventory()
     if(!sizeof(all_inventory(this_object())))
     {
         tell_object(this_object(), "Inventory error: attempting restore now...");
+        log_file("inventory_fail", "Inventory error on " + temp_name + ".\n");
         
         if(!get_dir("/inv/backup_inv/" + temp_name[0..0] + "/" + temp_name + "/"))
         {
@@ -1569,8 +1570,11 @@ void check_inventory()
             return 1;
         }
         
-        if(catch(YUCK_D->load_inventory(this_object(), "/inv/backup/inv/" + temp_name[0..0] + "/" + temp_name)))
+        if(error = catch(YUCK_D->load_inventory(this_object(), "/inv/backup/inv/" + temp_name[0..0] + "/" + temp_name)))
+        {
             tell_object(this_object(), "Inventory restore error! Contact an admin.");
+            log_file("inventory_fail", "YUCK_D error : " + error + ".\n");
+        }
         else
             tell_object(this_object(), "Inventory restore complete.");
     }

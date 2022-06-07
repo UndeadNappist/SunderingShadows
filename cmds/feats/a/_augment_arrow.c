@@ -106,7 +106,8 @@ void execute_feat()
     
     //These will become far more stylized descriptions
     switch(arg)
-    {        case "barbed":
+    {       
+        case "barbed":
         tell_object(caster, "%^C246%^You attach a %^C160%^wicked-looking%^C246%^ %^C249%^b%^C251%^a%^C253%^r%^C255%^b%^C249%^ed head%^C246%^ to some of your arrows and place them in your quiver.%^CRST%^");
         break;
         case "crippling":
@@ -138,13 +139,15 @@ void execute_attack()
     
     object attacker, *attackers;
     
+    ::execute_attack();
+    
     if(!strlen(type))
     {
         dest_effect();
         return;
     }
     
-    if(!objectp(caster))
+    if(!objectp(caster) || !objectp(place))
     {
         dest_effect();
         return;
