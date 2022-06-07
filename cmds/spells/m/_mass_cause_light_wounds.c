@@ -4,7 +4,7 @@ inherit "/cmds/spells/m/_mass_harm";
 void create() {
     ::create();
     set_spell_name("mass cause light wounds");
-    set_spell_level(([ "cleric" : 5, "bard" : 5 ]));
+    set_spell_level(([ "cleric" : 5 ]));
     set_affixed_spell_level(2);
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS mass cause light wounds [on TARGET]");
