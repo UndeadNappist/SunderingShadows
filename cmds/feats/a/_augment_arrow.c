@@ -250,8 +250,8 @@ void execute_attack()
         tell_room(place, "%^C246%^" + my_name + " fires an %^C202%^exploding arrow%^C246%^ into %^C195%^" + your_name + "%^C246%^, exploding into a shower of sparks!%^CRST%^", ({ attacker, caster }));
         foreach(object ob in attackers)
         {
-            tell_room(place, "%^C202%^" + ob->query_cap_name() + " is caught in the blast!%^CRST%^", attacker);
-            tell_object(attacker, "%^C202%^You are caught in the blast!%^CRST%^", attacker);
+            tell_room(place, "%^C202%^" + ob->query_cap_name() + " is caught in the blast!%^CRST%^", ob);
+            tell_object(ob, "%^C202%^You are caught in the blast!%^CRST%^", ob);
             ob->cause_typed_damage(ob, ob->return_target_limb(), dam / 2, "fire");
         }
         break;

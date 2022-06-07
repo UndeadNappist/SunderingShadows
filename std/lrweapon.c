@@ -270,7 +270,7 @@ int __Shoot(string str) {
         }
     }
     
-    if(this_player()->is_class("peerless archer"))
+    if(this_player()->is_class("peerless_archer"))
         tohitroll += 2;
 
     tohitroll = adjust_to_hit(tohitroll);
@@ -328,8 +328,8 @@ int __Shoot(string str) {
             }
         }
         
-        if(this_player()->is_class("peerless archer"))
-            damage += (roll_dice(1, 6) * (1 + this_player()->query_class_level("peerless archer") / 4));
+        if(this_player()->is_class("peerless_archer"))
+            damage += (roll_dice(1, 6) * (1 + this_player()->query_class_level("peerless_archer") / 4));
 
         if (perfect || mPerfect) {
             damage=damage*4;
@@ -344,7 +344,7 @@ int __Shoot(string str) {
         }
         tell_room(current,"A "+ capitalize(query_ammo())+" from "+fdir+" hits "+whom+"!",foe);
 
-        if(this_player()->is_class("peerless archer"))
+        if(this_player()->is_class("peerless_archer"))
             write("You hit " + whom + "!%^BOLD%^RED%^[%^BLACK%^Sneak%^RED%^]%^RESET%^");
         else
             write("You hit "+whom+"!");
