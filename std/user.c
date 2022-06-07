@@ -1546,8 +1546,36 @@ void setup()
     }
     delete("no advance");
     force_me("look");
+    call_out("check_inventory", 1);
 }
 
+//Automatically checks if there is an inventory wipe bug and attempts to rectify
+void check_inventory()
+{
+    string temp_name;
+    
+    if(this_object()->query_race() == "unborn" || !strlen(this_object()->query_race()))
+        return;
+    
+    temp_name = this_object()->query_name();
+    
+    if(!sizeof(all_inventory(this_object())))
+    {
+        tell_object(this_object(), "Inventory error: attempting restore now...");
+        
+        if(!get_dir("/inv/backup_inv/" + temp_name[0..0] + "/" + temp_name + "/"))
+        {
+            tell_object(this_object(),"No backup currently exists for this character!");
+            return 1;
+        }
+        
+        if(catch(YUCK_D->load_inventory(this_object(), "/inv/backup/inv/" + temp_name[0..0] + "/" + temp_name)))
+            tell_object(this_object(), "Inventory restore error! Contact an admin.");
+        else
+            tell_object(this_object(), "Inventory restore complete.");
+    }
+}
+        
 void init_mud_guilds(){
   string *tmp, *tmpguild;
   int i;
