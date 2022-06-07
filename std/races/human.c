@@ -385,6 +385,10 @@ string *query_eye_colors(string subrace) {
         choices += ({"hazel"});
         choices += ({"brown", "gray"});
     }
+    
+    if(subrace == "dhampir")
+        choices += ({ "red", "black", "purple", "white" });
+    
     return choices;
 }
 
