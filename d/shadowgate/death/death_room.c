@@ -335,7 +335,8 @@ void do_death6(object tp)
                     "go back...again?  Will you do anything other than " +
                     "throw your life away?%^RESET%^\n");
     }
-    call_out("end_death", 6, tp);
+    //call_out("end_death", 6, tp);
+    call_out("do_death7", 8, tp);
     WHICH_CALL_OUT = "end_death";
     attempt_raise();
     return;
