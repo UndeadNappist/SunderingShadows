@@ -153,6 +153,8 @@ void execute_attack()
         return;
     }
     
+    place = environment(caster);
+    
     if (caster->query_ghost() || caster->query_unconscious())
     {
         reset_attack_cycle();
