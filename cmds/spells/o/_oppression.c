@@ -23,11 +23,11 @@ void create()
     set_author("tlaloc");
     set_spell_name("oppression");
     set_spell_sphere("enchantment_charm");
-    set_spell_level( ([ "cleric" : 4, "paladin" : 4 ]) );
+    set_spell_level( ([ "cleric" : 4, "paladin" : 4, "inquisitor" : 4 ]) );
     set_syntax("cast CLASS oppression");
     set_damage_desc("Shaken on attackers on failed save.");
     set_description("This spell surrounds the caster in a dark aura of fear, causing enemies caught in the aura to be shaken unless they make a will saving throw. This aura will attempt to apply the shaken effect every round until the will save is made, then will no longer affect that target.");
-    traveling_aoe_spell(1);
+    traveling_spell(1);
     set_save("will");
     evil_spell(1);
 }
