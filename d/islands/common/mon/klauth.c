@@ -122,7 +122,8 @@ void create()
 
     set_skill("perception", 50); //make it stabbable by a highly skilled thief so they're not useless. Nienne, 04/10.
 
-    set_resistance("fire", MULT);
+    //set_resistance("fire", MULT);
+    set_resistance_percent("fire", 100);
     set_property("cast and attack", 1);
     set_property("function and attack", 1);
     //set_property("quest required","%^BOLD%^%^RED%^Defeated the great red wyrm Klauth!%^RESET%^"); // use this for items for this quest.
