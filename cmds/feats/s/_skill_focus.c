@@ -16,9 +16,7 @@ void create()
     feat_syntax("skill_focus");
     feat_desc("Skill Focus allows the selection of one non-class skill, which the character will then be skilled at as per a class skill.
 
-%^BOLD%^N.B.%^RESET%^ If multiclassing in future causes the skill to be a class skill (skill on the class helpfile), this feat will have no effect. It must be abandoned and regained in order to select a different skill focus. Crafting skills cannot be taken by way of this feat."+(FEATS_D->has_feat(TP,"skill focus")?"
-
-"+"%^YELLOW%^You have chosen your skill focus as: %^BOLD%^%^WHITE%^"+TP->query("skill_focus")+".":""));
+%^BOLD%^N.B.%^RESET%^ If multiclassing in future causes the skill to be a class skill (skill on the class helpfile), this feat will have no effect. It must be abandoned and regained in order to select a different skill focus. Crafting skills cannot be taken by way of this feat.");
     permanent(1);
 }
 
