@@ -44,7 +44,7 @@ void spell_effect(int prof)
     duration = (ROUND_LENGTH * 10) * clevel;
 
     tell_object(caster,"%^BOLD%^%^MAGENTA%^You feel powers of light warding you from the evil!");
-    tell_room(place,"%^BOLD%^%^MAGENTA%^"+caster->QCN+" is suddenly surrounded by halo of light!",caster);
+    tell_room(place,"%^BOLD%^%^MAGENTA%^"+caster->QCN+" is suddenly surrounded by a halo of light!",caster);
 
     caster->set_property("spelled", ({TO}));
     caster->set_property("nimbus",1);

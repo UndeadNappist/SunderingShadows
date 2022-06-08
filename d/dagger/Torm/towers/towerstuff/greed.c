@@ -1,4 +1,4 @@
-inherit "/std/weapon";
+inherit "/d/common/obj/weapon/dagger";
 #include <std.h>
 
 string OWNER;
@@ -35,7 +35,7 @@ int extra_wield(){
   if(!ETO) return 0;
   if(!interactive(TP)) return 1;
   if((string)ETO->query_name() !=OWNER){
-  write("The dagger laughs and fills your eyes with tears as it disapears.\n");
+  write("The dagger laughs and fills your eyes with tears as it disappears.\n");
   TO->remove();
   return 0;
   }

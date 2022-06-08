@@ -279,8 +279,8 @@ void do_travel_2(string file)
         TO->set_property("MyCreatedEnter", "portal"+portnum);
     }
 
-    tell_room(endplace,"%^BOLD%^%^GREEN%^Whorling mists coalesc "+
-    "into being before you, spiralling faster and faster of "+
+    tell_room(endplace,"%^BOLD%^%^GREEN%^Whorling mists coalesce "+
+    "into being before you, spiraling faster and faster of "+
     "their own accord. Finally they shimmer into being as an "+
     "ovoid portal within the air, offering travel to somewhere beyond"+
     ".%^RESET%^");

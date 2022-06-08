@@ -25,10 +25,10 @@ void create(){
 	"plains" : "These emerald plains span a great distance.",
 	({"trees", "forest"}) : "The tops of the great trees of the Kilkean forest are barely visible in the distance.",
     ({"pyramid"}):"Massive structure dominates landscape to the west",
-      ({"building","temple"}) : "The large red stone building "+
+    /*({"building","temple"}) : "The large red stone building "+
          "to the south looks to be some sort of military "+
          "compound.  Local talk informs you that it is actually "+
-         "a grand temple dedicated to Tempus, the god of war."
+         "a grand temple dedicated to Tempus, the god of war."*/
     ]) );
     set_exits( ([
        "northwest" : RPATH"p1",
