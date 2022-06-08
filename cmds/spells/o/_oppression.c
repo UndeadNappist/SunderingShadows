@@ -119,6 +119,9 @@ void execute_attack()
     {
         foreach(object ob in foes)
         {
+            if(!objectp(ob))
+                continue;
+            
             if(!do_save(ob, 0) && !PLAYER_D->immunity_check("fear"))
             {
                 tell_object(ob, "%^C081%^You cower in %^C069%^fear%^C081%^ from %^C069%^" + my_name + "'s%^C081%^ oppressive aura!%^CRST%^");
