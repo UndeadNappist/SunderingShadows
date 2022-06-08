@@ -87,6 +87,9 @@ void execute_attack()
     if (party) {
         party_members = (object*)PARTY_OB->query_party_members(party);
     }
+    
+    inven = caster->query_attackers();
+    /*
     inven = all_living(room);
     inven = filter_array(inven, (:$1->is_living():));
     inven -= ({ caster });
@@ -96,6 +99,7 @@ void execute_attack()
     if (caster->query_followers()) {
         inven -= caster->query_followers();
     }
+    */
 
     if (sizeof(oppressed)) { // So they don't stay under the influence of the aura if they leave the room -Ares
         tmp = oppressed;
