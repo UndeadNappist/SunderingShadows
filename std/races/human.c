@@ -50,7 +50,18 @@ string *restricted_classes(string subrace) {
 }
 
 // this only affects rolling in creation; does not prevent dedication to a deity in-game, to allow for character evolution. N, 3/16.
-string *restricted_deities(string subrace) { return ({}); }
+string *restricted_deities(string subrace)
+{
+    if(subrace == "dhampir")
+        return ({ "jarmila", "kreysneothosies", "callamir", "lysara", "edea", "eucalia" });
+    if(subrace == "tiefling")
+        return ({ "jarmila", "kreysneothosies", "callamir", "edea" });
+    if(subrace == "aasimar")
+        return ({ "khyron", "ashra", "lord shadow", "nilith", "the faceless one" });
+    if(subrace == "feytouched")
+        return ({ "kreysneothosies", "lord shadow" });
+    return ({});
+}
 
 int *stat_mods(string subrace) { // stats in order: str, dex, con, int, wis, cha
     if(!subrace || subrace == "") return ({ 0, 0, 2, 0, 0, 0 }); //temporary until +2 stat of choice is written
