@@ -1561,8 +1561,8 @@ void check_inventory()
     
     if(!sizeof(all_inventory(this_object())))
     {
-        tell_object(this_object(), "Inventory error: attempting restore now...");
-        log_file("inventory_fail", "Inventory error on " + temp_name + ".\n");
+        tell_object(this_object(), "Empty inventory: attempting restore now...");
+        log_file("inventory_fail", "Inventory empty on " + temp_name + ".\n");
         
         if(!get_dir("/inv/backup_inv/" + temp_name[0..0] + "/" + temp_name + "/"))
         {
