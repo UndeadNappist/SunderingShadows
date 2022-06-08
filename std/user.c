@@ -51,6 +51,7 @@ int start_time, quit_time, down_time;  // For user timing -- Thorn 950420
 //int rushed; //counter for timed cmds rushed cuz first was /cmds/fighter/_rush.c
 //int gutted; //counter for timed cmds _crit.c in /cmds/assassin - Bane
 int birth;
+int log_out_empty;
 //int logout_time, login_time; // Tracking login/logout timers. - garrett.
 mapping user_vars = ([]);
 nosave mapping static_user=([]);// = (["net_died_here":0,"term_info":([]),"channels":({}),"died_here":0,"watched":0,"pastMessages":([]),"saveable":({})]);
@@ -1000,6 +1001,13 @@ int quit()
     if(catch(break_all_spells()))
         message("environment", "Error breaking spells.", this_object());
     
+    inv=all_inventory(TO);
+    
+    if(!sizeof(inv))
+        log_out_empty = 1;
+    else
+        log_out_empty = 0;
+    
     set_hidden(0);
     set_magic_hidden(0);
     //YUCK_D->save_inventory(TO);
@@ -1035,7 +1043,7 @@ int quit()
     if(catch(YUCK_D->save_inventory(TO)))
         tell_object(this_object(), "Inventory save failed.");
     
-    inv=all_inventory(TO);
+    //inv=all_inventory(TO);
     
     foreach(object ob in inv)
     {
@@ -1557,6 +1565,9 @@ void check_inventory()
     if(this_object()->query_race() == "unborn" || !strlen(this_object()->query_race()))
         return;
     
+    if(log_out_empty)
+        return;
+    
     temp_name = this_object()->query_name();
     
     if(!sizeof(all_inventory(this_object())))
@@ -1570,7 +1581,7 @@ void check_inventory()
             return 1;
         }
         
-        if(error = catch(YUCK_D->load_inventory(this_object(), "/inv/backup/inv/" + temp_name[0..0] + "/" + temp_name)))
+        if(error = catch(YUCK_D->load_inventory(this_object(), "/inv/backup_inv/" + temp_name[0..0] + "/" + temp_name)))
         {
             tell_object(this_object(), "Inventory restore error! Contact an admin.");
             log_file("inventory_fail", "YUCK_D error : " + error + ".\n");
