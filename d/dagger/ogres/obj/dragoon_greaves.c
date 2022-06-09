@@ -38,10 +38,6 @@ int wear_func(){
         tell_object(ETO,"You are far too inexperienced to wear these greaves!");
     return 0;
     }
-    if(!ETO->is_class("cavalier") && !ETO->is_class("paladin") && !ETO->is_class("fighter") && !ETO->is_class("cleric") && !ETO->is_class("antipaladin")) {
-        tell_object(ETO,"You lack the required training to wear these greaves.");
-    return 0;
-   }
     tell_room(environment(ETO),"%^CYAN%^%^BOLD%^"+ETOQCN+"%^CYAN%^%^BOLD%^ buckles on the greaves slowly.%^RESET%^",ETO);
     tell_object(ETO,"%^BLACK%^%^BOLD%^You buckle on the greaves.%^RESET%^");
     return 1;
