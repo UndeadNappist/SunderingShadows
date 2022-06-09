@@ -164,7 +164,7 @@ void calculate_exp(string group, int exp, object tmp) {
        size = sizeof(tmp3);
     for(i=0, tot=0; i<size; i++) 
     {
-        x = (int)tmp3[i]->query_highest_level();
+        x = (int)tmp3[i]->query_highest_level();//x a total of all levels in group...group of 5 50s = 250
         tot += x;
     }
     for(i=0,sizeof(tmp3)>0; i<size=sizeof(tmp3); i++) 
@@ -172,6 +172,7 @@ void calculate_exp(string group, int exp, object tmp) {
        x = (int)tmp3[i]->query_level();
        if(size > 1)
        {
+        //if level 50
         //tmp3[i]->fix_exp( (x*exp)/(tot - (x/size))+1,tmp);
          if(x <= ((int)previous_object()->query_level()-30))
            blah =  (to_float(x)/to_float(tot))*0.05;
@@ -180,7 +181,7 @@ void calculate_exp(string group, int exp, object tmp) {
         else if (x <= ((int)previous_object()->query_level()-12))
            blah =  (to_float(x)/to_float(tot))*0.5;
          else
-           blah = (to_float(x)/to_float(tot))*1.5;
+           blah = (to_float(x)/to_float(tot))*1.5; //50.00 / 250.00 = 0.2 * 1.5 = 0.3
         
         
          //if(blah >= 1.0)
@@ -188,7 +189,7 @@ void calculate_exp(string group, int exp, object tmp) {
         // next 3 lines added to try to encourage groups, previously was the two lines above -Ares
         size = sizeof(query_party_members(group));
         if(!size) { blah = blah; }
-        else { blah = blah + ( size * 0.1); }  // additional 10% exp per person in group, larger groups = more exp
+        else { blah = blah + ( size * 0.1); }  // additional 10% exp per person in group, larger groups = more exp //blah = 0.3 + (5 * 0.1) = 0.8
         //
         tmp3[i]->party_exp(to_int(exp*blah), tmp);
        }else
@@ -196,8 +197,52 @@ void calculate_exp(string group, int exp, object tmp) {
     }
 }
 
+/*
 
+int calculate_exp(string group, int exp, object ob)
+{
+    int party_size, party_levels, my_cut;
+    object *my_party;
+    float my_percent;
+    
+    if(!party || !mapp(party) || !party[group] || !pointerp(party[group]))
+    {
+        previous_object()->fakeparty_exp(exp, ob);
+        return exp;
+    }
+    
+    my_party = filter_array(party[group], (: environment($1) == environment($2) :), previous_object());
+    party_size = sizeof(my_party);
+    
+    if(party_size <= 1)
+    {
+        previous_object()->fakeparty_exp(exp, ob);
+        return exp;
+    }
 
+    manage_party(my_party);    
+    party_levels = 0;
+    
+    //Give party bonus BEFORE divvy
+    exp += (to_float(exp) * (to_float(party_levels) * 0.1));
+    
+    foreach(object dude in my_party)
+        party_levels += dude->query_base_character_level();
+    
+    foreach(object dude in my_party)
+    {
+        if(!objectp(dude))
+            continue;
+        
+        my_percent = to_float(dude->query_base_character_level()) / to_float(party_levels);
+        my_cut = to_int(my_percent * to_float(exp));
+        dude->party_exp(my_cut, ob);
+    }
+    
+    return exp;
+}
+*/        
+            
 string *query_parties() {
     if(!party) return 0;
     return keys(party);
