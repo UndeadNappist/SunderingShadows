@@ -128,6 +128,7 @@ void remove_party(string group) {
     map_delete(party, group);
 }
 
+/*
 void calculate_exp(string group, int exp, object tmp) {
    int tot, x, i, j;
    float blah;
@@ -196,8 +197,7 @@ void calculate_exp(string group, int exp, object tmp) {
         tmp3[i]->party_exp(exp,tmp);
     }
 }
-
-/*
+*/
 
 int calculate_exp(string group, int exp, object ob)
 {
@@ -240,8 +240,7 @@ int calculate_exp(string group, int exp, object ob)
     }
     
     return exp;
-}
-*/        
+}      
             
 string *query_parties() {
     if(!party) return 0;
