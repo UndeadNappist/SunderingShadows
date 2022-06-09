@@ -13,9 +13,9 @@ void create(){
 " that shines in the light and reflects prismatic sprays of color throughout the"
 " room.  A small inscription is written on the inside of the band.%^RESET%^\n");
    set_lore("%^BOLD%^%^WHITE%^These rings are rare and rumored to be made by a"
-" wayward priest who dappled in the arts of magic.  Becuase of the mad wizards"
+" wayward priest who dappled in the arts of magic.  Because of the mad wizards"
 " inexperience, the rings were thought to be to dangerous and unreliable for"
-" general use.  All the known copies were gathered together and burried deep"
+" general use.  All the known copies were gathered together and buried deep"
 " within the Barrier Mountains.%^RESET%^");
    set_language("common");
    set_read("%^YELLOW%^This is the fabled prismatic ring of stars.\nUse it wisely"

@@ -16,7 +16,7 @@ void create()
     set_spell_sphere("illusion");
     set_syntax("cast CLASS visions from within");
     set_damage_desc("mental damage and cowering on failed save");
-    set_description("With this spell the caster shares own nightmares with everyone in the area. All affected targets take mental damage and are left cowering if they fail a saving throw. Those that succeed on their save will take half damage and are left shaken.");
+    set_description("With this spell the caster shares their own nightmares with everyone in the area. All affected targets take mental damage and are left cowering if they fail a saving throw. Those that succeed on their save will take half damage and are left shaken.");
     set_verbal_comp();
     set_somatic_comp();
     mental_spell();

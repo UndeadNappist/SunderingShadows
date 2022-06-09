@@ -27,6 +27,7 @@ void create()
     set_overall_ac(4);
     set_funcs(({"my_special"}));
     set_func_chance(20);
+    set_property("no_random_treasure", 1);
 }
 
 void my_special(object target) 
