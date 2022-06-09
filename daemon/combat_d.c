@@ -3686,7 +3686,7 @@ int do_functions(object who)
         return 0;
     }
     who->setFuncCast(1);
-    if (who->query_func_chance() > (random(100) + 1)) {
+    if (intp(who->query_func_chance()) && who->query_func_chance() > (random(100) + 1)) {
         random_targ = who->return_player_target(50);
         if ((!objectp(random_targ))) {
             return 0;
