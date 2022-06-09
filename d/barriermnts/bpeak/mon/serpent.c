@@ -2,6 +2,7 @@
 //4/8/13 -hades
 #include <std.h>
 inherit WEAPONLESS;
+
 void create(){
   ::create();
   set_name("translucent serpent");
@@ -29,4 +30,18 @@ void create(){
   set_attack_limbs( ({"teeth","tail","left foreclaw","right foreclaw"}) );
   set_base_damage_type("slashing");
   set_property("knock unconscious",1);
+  call_out("die", 300); //setting a 5 minute lifespan
 }
+
+int die(){
+    object snake, room;
+    snake = this_object();
+    room = environment(snake);
+    
+    if(objectp(room)) tell_room(room, "%^RESET%^%^ORANGE%^The serpent fades away, returning to nothingness.%^RESET%^");
+    snake->remove();
+
+    ::die();
+    return 1;
+}
+
