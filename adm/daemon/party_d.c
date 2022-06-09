@@ -222,12 +222,12 @@ int calculate_exp(string group, int exp, object ob)
 
     manage_party(my_party);    
     party_levels = 0;
-    
-    //Give party bonus BEFORE divvy
-    exp += (to_float(exp) * (to_float(party_levels) * 0.1));
-    
+
     foreach(object dude in my_party)
         party_levels += dude->query_base_character_level();
+        
+    //Give party bonus BEFORE divvy
+    exp += (to_float(exp) * (to_float(party_size) * 0.1));
     
     foreach(object dude in my_party)
     {
