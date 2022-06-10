@@ -227,7 +227,7 @@ int calculate_exp(string group, int exp, object ob)
         party_levels += dude->query_base_character_level();
         
     //Give party bonus BEFORE divvy
-    exp += (to_float(exp) * (to_float(party_size) * 0.1));
+    exp = (exp * 150) / 100;
     
     foreach(object dude in my_party)
     {
