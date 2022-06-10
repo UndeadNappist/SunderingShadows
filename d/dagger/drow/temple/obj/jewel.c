@@ -29,7 +29,7 @@ int press_func(string str) {
         notify_fail("Press what?\n");
         return 0;
     }
-    tell_object(TP, "%^BOLD%^%^RED%^You press hard on the facet of the jewel and here a small click!%^RESET%^");
+    tell_object(TP, "%^BOLD%^%^RED%^You press hard on the facet of the jewel and hear a small click!%^RESET%^");
     call_out("do_pulse1", 1, ETO);
     call_out("do_pulse2", 3, ETO);
     call_out("do_pulse3", 6, ETO);
@@ -54,7 +54,7 @@ void do_hotdeath (object ob) {
             hit_limb=inv[i]->return_target_limb();
             tell_room(ETO, "%^BOLD%^%^RED%^"+inv[i]->query_cap_name()+" recoils in pain as "+inv[i]->query_possessive()+" "+hit_limb+" burns in flame!", inv[i]);
             tell_object(inv[i], "%^BOLD%^%^RED%^Your "+hit_limb+" screams with pain from the fire!");
-            inv[i]->do_damage(hit_limb, random(15) + 6);
+            inv[i]->cause_typed_damage(inv[i], hit_limb, random(15), "fire");  
             number--;
         }
     }
