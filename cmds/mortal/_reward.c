@@ -7,7 +7,7 @@
 int cmd_reward(string str)
 {
     object player, target;
-    string player_reward, cooldown_name;
+    string cooldown_name;
 
     if(!str){
         tell_object(player, "You need to pick a target to reward for their roleplay.");
@@ -15,7 +15,7 @@ int cmd_reward(string str)
     }
     
     player = this_player();
-    player_reward = player->query_name()+"_reward";
+    cooldown_name = "reward - "+capitalize(str);
     
     if(!userp(player)) return 0;
     if(!objectp(target = present(str, environment(player)))){
@@ -34,7 +34,7 @@ int cmd_reward(string str)
         tell_object(player, "That player is not accepting rewards.");
         return 1;
     }
-    if(target->query_property(player_reward)){
+    if(player->cooldown(cooldown_name)){
         tell_object(player, "You have already rewarded them recently, please wait awhile.");
         return 1;
     }
@@ -52,18 +52,10 @@ int cmd_reward(string str)
 
         tell_object(player, "%^CYAN%^%^BOLD%^You have rewarded "+target->query_cap_name()+" with some experience.");
         tell_object(target, "%^CYAN%^%^BOLD%^You feel enlightened as your powers grow.");
-        cooldown_name = "reward - "+str;
         this_player()->add_cooldown(cooldown_name, DELAY);
-        target->set_property(player_reward, 1);
-        call_out("reward_duration", 3600, target, player_reward);
     }
 
     return 1;
-}
-
-void reward_duration(object target, string player_reward){
-    target->remove_property(player_reward);
-    return;
 }
 
 void help()
