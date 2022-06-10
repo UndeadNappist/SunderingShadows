@@ -32,7 +32,7 @@ void create() {
       ({"clamshells","lights"}) : "%^C143%^All around the stage are %^C241%^clamshells%^C143%^ facing "+
       "you. They hold a %^C160%^light%^C143%^ so that actors would be well %^C190%^lit%^C143%^ but "+
       "without %^C190%^lighting%^C143%^ the audience.%^CRST%^\n",
-      ({"blackness"}) : "%^C238%^beyond the stage is an %^C242%^inky blackness%^C238%^ that you "+
+      ({"blackness"}) : "%^C238%^Beyond the stage is an %^C242%^inky blackness%^C238%^ that you "+
       "cannot enter or see beyond.%^CRST%^\n",
       ({"candle"}) : "A candle sits alone in the centre of the stafe. You could >light< it.%^CRST%^\n",
     ]));
