@@ -16,7 +16,7 @@
 
 %^BOLD%^%^CYAN%^Gems of Power %^WHITE%^- Gems of power, stolen from Geonslu, should remain out of sight. Holders of the gems are responsible for any damage should Geonslu come for your gem in the form of fines. Repeated attacks will lead to banishment.
 
-%^BOLD%^%^MAGENTA%^GATES%^WHITE^ - Gates should not be opened to dangerous areas. Gates should be closed directly after travel. Those who open gates that result in damage or death in the city are directly responsible for that damage. Continued misuse of gates within the city will result in a ban and punitive action. 
+%^BOLD%^%^MAGENTA%^GATES%^WHITE%^ - Gates should not be opened to dangerous areas. Gates should be closed directly after travel. Those who open gates that result in damage or death in the city are  directly responsible for that damage. Continued misuse of gates within the city will result in a ban and punitive action. 
 
 %^BOLD%^%^RED%^Husbandry %^WHITE%^- Any person that brings an animal into the city is responsible for its conduct and any crimes it may commit.
 

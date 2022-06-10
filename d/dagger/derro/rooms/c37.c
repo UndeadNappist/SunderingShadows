@@ -15,7 +15,7 @@ void create(){
   "%^RED%^Treasure room%^RESET%^\n"
    "  At last you have gained entrance to the giants' treasure room!"
    "  But what's this?   Seems someone's already looted it."
-   "  A few scattered coins cover the floor along with the diminutive tracks of "
+   "  A few scattered coins cover the floor that you could probably >reclaim< along with the diminutive tracks of "
    "Derro leading back east in the dust."
    "  Sigh, maybe you can track down that Derro and maybe he's long gone."
   );
@@ -25,7 +25,7 @@ void create(){
   );
   set_items(([
   "floor":"Carved from the bedrock of the mountains.",
-   (({"scattered coins","coins"})):"Numerous silver coins are scattered about the floor apparently not enough for someone else to gather.",
+   (({"scattered coins","coins"})):"Numerous silver coins are scattered about the floor apparently not enough for someone else to >reclaim<.",
   "walls":"Carved from the roots of the world with a careful eye and a strong arm.",
   "globes":"These magic globes are set in the ceiling far from the ground and seem enchanted to emit a dim red glow.",
   "ceiling":"Damn near 25 feet at the peak from the floor almost making it seem as if you're not actually far underground.  There is a red globe mounted in the center of the ceiling.",
@@ -37,14 +37,14 @@ void create(){
 }
 void init(){
   ::init();
-  add_action("gather","gather");
+  add_action("reclaim","reclaim"); // changed from gather as it was conflicting with other commands. LoKi
 }
 
 
-int gather(string str){
+int reclaim(string str){
   if(flag==1)   return notify_fail("\nThey've already been cleaned out\n");
-   write("You gather as many of the coins as you can and realize that whoever looted this place must of thought they were leaving silver, but it's actually platinum!");
-  tell_room(TO,TPQCN+" gathers up the scattered coins.", TP);
+   write("You reclaim as many of the coins as you can and realize that whoever looted this place must of thought they were leaving silver, but it's actually platinum!");
+  tell_room(TO,TPQCN+" reclaims the scattered coins.", TP);
   remove_item("coins");
   flag=1;
   set_long("%^RED%^Treasure room%^RESET%^\n"
