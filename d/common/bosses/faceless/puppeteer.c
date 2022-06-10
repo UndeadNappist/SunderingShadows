@@ -130,6 +130,9 @@ void create()
                   "scintillating pattern",
                   "powerword blind",
                   "shadow vortex",
+                  "insanity",
+                  "oppression",
+                  "crushing despair",
                   "weird",
                   "black tentacles",
                   "overwhelming presence", }));
@@ -362,7 +365,7 @@ void shadows(object room)
     
     tell_room(room, "%^BLACK%^BOLD%^The Puppeteer beckons to the shadows around you!%^RESET%^");
     
-    for(int x = 0; x < (5 + madness); x++)
+    for(int x = 0; x < (5 + madness * 2); x++)
     {
         tell_room(room, "%^YELLOW%^A figure emerges from the shadows!%^RESET%^");
         shadow = new("/d/common/bosses/faceless/shadow_spawn");
@@ -388,7 +391,7 @@ void madness(object room)
     if(SAVING_THROW_D->will_save(target, 80 + madness))
     {
         tell_object(target, "%^CYAN%^%^BOLD%^You cough and struggle and are able to shake off the madness!%^RESET%^");
-        tell_room(room, "%^CYAN%^BOLD%^" + target->query_cap_name() + " coughs and struggles and is able to shake off the madness!.%^RESET%^");
+        tell_room(room, "%^CYAN%^BOLD%^" + target->query_cap_name() + " coughs and struggles and is able to shake off the madness!.%^RESET%^", target);
     }
     else
     {

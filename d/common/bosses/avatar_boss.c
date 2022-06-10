@@ -32,6 +32,7 @@ void boss_death_event() { return; }
 void die()
 {
     string *files, *selected;
+    object *attackers;
     
     files = get_dir("/d/common/bosses/loot/*.c");
     files = filter_array(files, (: !catch(load_object("/d/common/bosses/loot/" + $1)) :));
@@ -52,6 +53,11 @@ void die()
         new("/d/common/bosses/loot/" + file)->move(this_object());
         
     catch(this_object()->boss_death_event());
+    
+    attackers = this_object()->query_attackers();
+    
+    //foreach(object ob in attackers)
+    //    ob->set("boss avatar", 1);
         
     ::die();
 }

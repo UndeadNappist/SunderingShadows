@@ -43,7 +43,7 @@ void die()
         if(!living(ob))
             continue;
         
-        ob->cause_typed_damage(ob, "head", 100, "sonic");
+        ob->cause_typed_damage(ob, "head", 150, "sonic");
     }
     
     ::die();
@@ -54,5 +54,5 @@ int killem(object targ)
    if(!objectp(targ)) return 0;
 
    //tell_room(ETO,"%^BOLD%^%^BLACK%^The whiplike tendrils of shadow strike with uncanny precision.%^RESET%^");
-   return roll_dice(1, 8);
+   return roll_dice(2, 8);
 }
