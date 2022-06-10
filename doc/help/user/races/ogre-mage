@@ -1,15 +1,19 @@
 %^BOLD%^%^BLUE%^Ogre-mage (Oni):
 
-%^BOLD%^%^BLUE%^Stat adjustments: %^RESET%^+2 constitution, +2 wisdom, -2 charisma
-%^BOLD%^%^BLUE%^Skill adjustments: %^RESET%^+2 endurance
-%^BOLD%^%^BLUE%^Misc bonuses: %^RESET%^+2 natural armor
-%^BOLD%^%^BLUE%^Innate spells: %^RESET%^levitate
+%^BOLD%^%^BLUE%^Stat adjustments: %^RESET%^+2 constitution, -2 wisdom, +2 charisma
+%^BOLD%^%^BLUE%^Innate spells: %^RESET%^levitate, alter self, darkness, invisibility
 %^BOLD%^%^BLUE%^Size: %^RESET%^large
 
 %^BOLD%^%^BLUE%^Standard alignments: %^RESET%^LE, NE
-%^BOLD%^%^BLUE%^Classes restricted: %^RESET%^cleric, bard, ranger, psion, psywarrior,  paladin, monk, druid
+%^BOLD%^%^BLUE%^Classes restricted: %^RESET%^ranger, psion, psywarrior, paladin, druid, inquisitor
 %^BOLD%^%^BLUE%^Normal adventuring starting age: %^RESET%^21-24
 %^BOLD%^%^BLUE%^Average life span: %^RESET%^195
+
+%^BOLD%^%^BLUE%^Racial Traits:
+%^CYAN%^Regeneration%^RESET%^     - +1 fast healing
+%^CYAN%^Toughness%^RESET%^        - +2 natural armor
+%^CYAN%^Night Race%^RESET%^       - light and darkness reversed
+%^CYAN%^Skilled%^RESET%^          - +2 to spellcraft and endurance
 
 %^BOLD%^%^BLUE%^Description:
 Ogre magi are 10 1/2 feet tall and have dark eyes. They usually have light blue, light green, or pale brown skin, along with a pair of ivory horns on their forehead. Their hair is usually a different color from that of their skin, and is a darker shade (except ogre magi with pale brown skin and yellow hair). They have black nails and dark eyes with white pupils. Their teeth and tusks are usually pure white.

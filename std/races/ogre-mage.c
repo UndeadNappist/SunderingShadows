@@ -19,18 +19,19 @@ int* restricted_alignments(string subrace)
 
 string* restricted_classes(string subrace)
 {
-    return ({ "cleric", "bard", "ranger", "psion", "psywarrior", "paladin", "monk", "inquisitor", "oracle"});
+    //return ({ "cleric", "bard", "ranger", "psion", "psywarrior", "paladin", "monk", "inquisitor", "oracle" });
+    return ({ "druid", "ranger", "psion", "psywarrior", "inquisitor", "paladin" });
 }
 
 // stats in order: str, dex, con, int, wis, cha
 int* stat_mods(string subrace)
 {
-    return ({ 0, 0, 2, 0, 2, -2 });
+    return ({ 0, 0, 2, 0, -2, 2 });
 }
 
 mapping skill_mods(string subrace)
 {
-    return ([ "endurance" : 2 ]);
+    return ([ "spellcraft" : 2, "endurance" : 2 ]);
 }
 
 int natural_AC(string subrace)
@@ -108,7 +109,20 @@ mapping query_racial_innate(string subrace)
                 "levitate"      : (["type" : "spell", "casting level" : 0.5,
                                     "daily uses" : 1, "delay" : 1, "uses left" : 1,
                                     "refresh time" : -1, "level required" : 0,
-                                    "class specific" : 0])]);
+                                    "class specific" : 0]),
+                "alter self"      : (["type" : "spell", "casting level" : 0.5,
+                                    "daily uses" : 1, "delay" : 1, "uses left" : 1,
+                                    "refresh time" : -1, "level required" : 0,
+                                    "class specific" : 0]),
+                "darkness"      : (["type" : "spell", "casting level" : 0.5,
+                                    "daily uses" : 1, "delay" : 1, "uses left" : 1,
+                                    "refresh time" : -1, "level required" : 0,
+                                    "class specific" : 0]),
+                "invisibility"      : (["type" : "spell", "casting level" : 0.5,
+                                    "daily uses" : 1, "delay" : 1, "uses left" : 1,
+                                    "refresh time" : -1, "level required" : 0,
+                                    "class specific" : 0])
+            ]);
 }
 
 string* wielding_limbs()
