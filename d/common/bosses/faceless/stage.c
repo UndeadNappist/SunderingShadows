@@ -129,11 +129,11 @@ int do_puppet(object tp,int mystate) {
        tell_room(room,"%^C100%^A voice speaks from the %^C239%^blackness%^C100%^. '%^C135%^Don't worry that you didn't rehearse your lines. I'll speak for you from now on!\n%^RESET%^");
      break;
      case 8:
-       tell_room("%^C246%^The man formally bows to you and states, empthatically, %^C099%^'Let the show begin!'%^C246%^. Suddenly, shadow tendrils seem to explode from the man, extending in all directions into the shadows in the corners of the room. Before you eyes, the man transforms into a shadowy mass of undulating tendrils, all centered around a great seeing eye. %^C196%^The creature attacks!%^CRST%^");
+       tell_room(room, "%^C246%^The man formally bows to you and states, empthatically, %^C099%^'Let the show begin!'%^C246%^. Suddenly, shadow tendrils seem to explode from the man, extending in all directions into the shadows in the corners of the room. Before you eyes, the man transforms into a shadowy mass of undulating tendrils, all centered around a great seeing eye. %^C196%^The creature moves forward to attack!%^CRST%^");
        break;
      case 9:
        //tell_room(room," \n%^RESET%^");
-       new("/puppeteer")->move(room);
+       new(STORAGE"puppeteer")->move(room);
        isrunning = 0;
        return 1;
      break;
