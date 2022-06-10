@@ -80,14 +80,14 @@ int cmd_update(string str)
     
     if(file[<2..<1] != ".c")
         file += ".c";
+
+    seteuid(getuid(this_player()));
     
     if(file_size(file) == -1)
     {
         write("File does not exist.");
         return 1;
     }
-    
-    seteuid(getuid(this_player()));
     
     if(do_update(file, deep) < time())
         write(file + " : No update necessary.");
