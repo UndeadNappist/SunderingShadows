@@ -24,7 +24,7 @@ void create() {
         "a %^C160%^flame%^C058%^ would sit to %^C185%^light%^C058%^ up the actors as "+
         "they perform. You cannot see much beyond the stage, if there are seats or "+
         "not, for there is nothing but an %^C238%^impenetrable inky blackness%^C058%^ beyond. "+
-        "Deep red carpets have been drawn.\n\nIn the centre of the stage is a solitary unlit candle.%^CRST%^\n");
+        "Deep red curtains have been drawn.\n\nIn the centre of the stage is a solitary unlit candle.%^CRST%^\n");
 
     set_items(([
       ({"floor"}) : "%^C094%^The floor has been set with fine wood, %^C060%^polished%^C094%^ "+

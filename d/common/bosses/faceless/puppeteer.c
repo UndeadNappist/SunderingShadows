@@ -419,6 +419,8 @@ void dopple(object room)
         foreach(object ob in attackers)
             ob->cease_all_attacks();
             
+        tell_room(room, "%^CYAN%^BOLD%^For a moment, your heads seem to clear and there is a pause in the madness.....%^RESET%^");
+            
         checkpoints["dopple"] = 1;
     }
     
@@ -443,7 +445,7 @@ void dopple(object room)
             
             dopple = new("/d/common/bosses/faceless/dopple");
             dopple->set_name(puppet->query_cap_name());
-            dopple->set_id( ({ "doppleganger", puppet->query_cap_name(), puppet->query_name() }) );
+            dopple->set_id( ({ "doppleganger", puppet->query_cap_name(), puppet->query_name(), puppet->query_race() }) );
             dopple->set_race(puppet->query_race());
             dopple->set_short(puppet->query_short());
             dopple->set_long(puppet->query_long());
