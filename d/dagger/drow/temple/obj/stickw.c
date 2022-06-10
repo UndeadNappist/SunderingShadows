@@ -6,11 +6,11 @@ void init() {
 }
 void create() {
     ::create();
-    set_id(({"stick","insence","stick of insence",
-	"insence stick","wis_stick"}));
-    set_short("%^RED%^Stick of insence%^RESET%^");
+    set_id(({"stick","incense","stick of incense",
+	"incense stick","wis_stick"}));
+    set_short("%^RED%^Stick of incense%^RESET%^");
     set_long(
-	"%^RED%^This is a stick of insence of plain design. "
+	"%^RED%^This is a stick of incense of plain design. "
 	"It is probably "
     	"used for some sort of worship. It may be burned "
 	"by <ignite stick>."
@@ -35,7 +35,7 @@ int ignite_func(string str) {
 	    "smell.%^RESET%^"
 	);
 	say(
-	    "%^RED%^"+TPQCN+" burns a stick of insence.%^RESET%^"
+	    "%^RED%^"+TPQCN+" burns a stick of incense.%^RESET%^"
 	,TP);
         TO->remove();
 	return 1;
@@ -45,7 +45,7 @@ int ignite_func(string str) {
 	    "feelings within you!%^RESET%^"
 	);
 	say(
-	    "%^RED%^"+TPQCN+" burns a stick of insence.%^RESET%^"
+	    "%^RED%^"+TPQCN+" burns a stick of incense.%^RESET%^"
 	,TP);
         TP->add_stat_bonus("wisdom",1);
         TO->remove();

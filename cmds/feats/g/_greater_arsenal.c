@@ -6,7 +6,7 @@ inherit FEAT;
 void create() 
 {
     ::create();
-    feat_type("premanent");
+    feat_type("permanent");
     feat_category("Hierophant");
     feat_name("greater arsenal");
     feat_desc("Greater arsenal will allow hierophant to prepare even more spells.");

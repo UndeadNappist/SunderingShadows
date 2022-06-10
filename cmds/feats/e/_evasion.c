@@ -4,7 +4,7 @@ inherit FEAT;
 
 void create() {
     ::create();
-    feat_type("premanent");
+    feat_type("permanent");
     feat_category("Evasion");
     feat_name("evasion");
     feat_prereq("Base Dexterity 13, Dodge");

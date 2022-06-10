@@ -7,7 +7,7 @@ int help();
 
 void create() {
     ::create();
-    feat_type("premanent");
+    feat_type("permanent");
     feat_category("PrimevalChampion");
     feat_name("wild shape dragon");
     feat_prereq("Primeval Champion L1");

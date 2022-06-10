@@ -9,7 +9,7 @@ string* JUDGEMENT_TYPES;
 void create()
 {
     ::create();
-    feat_type("premanent");
+    feat_type("permanent");
     feat_category("Inquisition");
     feat_name("slayer");
     feat_syntax("slayer JUDGEMENT");

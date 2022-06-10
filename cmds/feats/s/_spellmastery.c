@@ -35,7 +35,7 @@ int armor_filter(object ob)
 
 void create() {
     ::create();
-    feat_type("premanent");
+    feat_type("permanent");
     feat_category("MagicDamage");
     feat_name("spellmastery");
     feat_syntax("spellmastery [SPELLNAME]");

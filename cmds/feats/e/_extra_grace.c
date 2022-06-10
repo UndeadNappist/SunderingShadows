@@ -4,7 +4,7 @@ inherit FEAT;
 
 void create() {
     ::create();
-    feat_type("premanent");
+    feat_type("permanent");
     feat_category("Presence");
     feat_name("extra grace");
     feat_prereq("Channel");

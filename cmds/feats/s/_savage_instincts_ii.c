@@ -4,7 +4,7 @@ inherit FEAT;
 
 void create() {
     ::create();
-    feat_type("premanent");
+    feat_type("permanent");
     feat_category("SavageCombat");
     feat_name("savage instincts ii");
     feat_prereq("Savage instincts I, Druid L15");

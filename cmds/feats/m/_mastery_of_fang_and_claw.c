@@ -4,7 +4,7 @@ inherit FEAT;
 
 void create() {
     ::create();
-    feat_type("premanent");
+    feat_type("permanent");
     feat_category("SavageCombat");
     feat_name("mastery of fang and claw");
     feat_prereq("Savage Instincts II");

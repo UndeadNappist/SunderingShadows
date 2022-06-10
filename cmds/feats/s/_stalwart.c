@@ -4,7 +4,7 @@ inherit FEAT;
 
 void create() {
     ::create();
-    feat_type("premanent");
+    feat_type("permanent");
     feat_category("Inquisition");
     feat_name("stalwart");
     feat_prereq("Inquisitor L11");

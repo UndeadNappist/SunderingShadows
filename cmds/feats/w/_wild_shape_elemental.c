@@ -6,7 +6,7 @@ int help();
 
 void create() {
     ::create();
-    feat_type("premanent");
+    feat_type("permanent");
     feat_category("Archdruid");
     feat_name("wild shape elemental");
     feat_prereq("Archdruid L1");

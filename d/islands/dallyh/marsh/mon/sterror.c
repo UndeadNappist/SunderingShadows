@@ -113,7 +113,7 @@ void terrorize()
             tell_object(vars[i],"%^BOLD%^%^CYAN%^The "+me+"%^BOLD%^%^CYAN%^ %^BOLD%^%^BLACK%^R"+
             "%^RESET%^%^RED%^I%^BOLD%^%^BLACK%^"+
             "PS%^BOLD%^%^CYAN%^ and %^RESET%^%^RED%^T%^BOLD%^%^BLACK%^EA%^RESET%^%^RED%^RS "+
-            "%^BOLD%^%^CYAN%^ at your mind!%^RESET%^");
+            "%^BOLD%^%^CYAN%^at your mind!%^RESET%^");
             vars[i]->do_damage(vars[i]->return_target_limb(),(roll_dice(10,6)*mod));
         }
         continue;
