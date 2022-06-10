@@ -1,8 +1,6 @@
 %^BOLD%^%^BLUE%^Human:
 
 %^BOLD%^%^BLUE%^Stat adjustments: %^RESET%^+2 to stat of choice
-%^BOLD%^%^BLUE%^Skill adjustments: %^RESET%^+4 at first level
-%^BOLD%^%^BLUE%^Misc bonuses: %^RESET%^per ethnicity, bonus feat at first level
 %^BOLD%^%^BLUE%^Innate spells: %^RESET%^none
 %^BOLD%^%^BLUE%^Size: %^RESET%^medium
 
@@ -10,6 +8,11 @@
 %^BOLD%^%^BLUE%^Classes allowed: %^RESET%^any
 %^BOLD%^%^BLUE%^Normal adventuring starting age: %^RESET%^18-20
 %^BOLD%^%^BLUE%^Average life span: %^RESET%^110
+
+%^BOLD%^%^BLUE%^Racial Traits:
+%^CYAN%^Extra Feat%^RESET%^       - bonus feat at level 1
+%^CYAN%^Adaptable%^RESET%^        - 4 extra skill points at level 1
+%^CYAN%^Human Heritage%^RESET%^   - Additional bonuses based on ethnicity
 
 %^BOLD%^%^BLUE%^Description:
 Human form is where the term "humanoid" comes from. Humans have two arms, two legs, and stand near two meters high. Their skin comes in varying shades from light tan to dark brown, with visible hair of all normal colors on the top of their heads and occassionally as mustaches or beards in the case of the males who have not shaved.
