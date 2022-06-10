@@ -57,10 +57,10 @@ int cmd_recognize(string str)
 
             write("You will recognize " + who + " as " + capitalize(as) + ".");
 
-            if (!newbiep(TP) && !(TP->isKnown(ob->query_name())) && ob != TP) {
+            if (!newbiep(TP) && !(TP->isKnown(ob->query_name())) && ob != TP && !avatarp(TP) && !adminp(TP)) {
                 int expdelta;
                 int thelevel = TP->query_level();
-
+                    
                 expdelta = abs(EXP_NEEDED[thelevel + 1] - EXP_NEEDED[thelevel]) / 9;
 
                 TP->set_property("ignore tax", 1);

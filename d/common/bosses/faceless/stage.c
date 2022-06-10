@@ -115,34 +115,25 @@ int do_puppet(object tp,int mystate) {
      case 5:
        tell_room(room,"%^C100%^A voice speaks from the %^C239%^blackness%^C100%^. '%^C135%^Time to draw the curtains!'%^RESET%^\n");
 
-       
        //Remove Exit
-
-       /*
        if(member_array("backstage",room->query_exits()) != -1) room->remove_exit("backstage");
        thatroom = find_object_or_load(ROOMS"11.c");
        if(member_array("stage",thatroom->query_exits()) != -1) thatroom->remove_exit("stage");
-       
-       */
 
        tell_room(thatroom,"Suddenly the exit to the stage vanishes!");
-
-
-
      break;
      case 6:
+       tell_room(room, "%^C147%^A man steps from the %^C056%^shadows%^C147%^. He is middle-aged, with %^C252%^salt and pepper hair%^C147%^ and a beard, all finely trimmed to perfection. He wears the finest %^C036%^suit of green%^C147%^ with a dapper button-up vest and %^C255%^crisp white gentleman's shirt%^C147%^ underneath, adorned with a fine silk scarf. His shoes, and the cane he walks with, are well made and shine with a %^C246%^m%^C248%^i%^C250%^r%^C252%^r%^C246%^or-p%^C248%^o%^C250%^l%^C252%^i%^C246%^sh%^C147%^.%^CRST%^");
+       break;
+     case 7:
        tell_room(room,"%^C100%^A voice speaks from the %^C239%^blackness%^C100%^. '%^C135%^Don't worry that you didn't rehearse your lines. I'll speak for you from now on!\n%^RESET%^");
      break;
-     case 7:
-
-       // Call avatar
-
-       /*
-       tell_room(room," \n%^RESET%^");
-       new(MON"puppet")->move(room);
-       */
-
-
+     case 8:
+       tell_room("%^C246%^The man formally bows to you and states, empthatically, %^C099%^'Let the show begin!'%^C246%^. Suddenly, shadow tendrils seem to explode from the man, extending in all directions into the shadows in the corners of the room. Before you eyes, the man transforms into a shadowy mass of undulating tendrils, all centered around a great seeing eye. %^C196%^The creature attacks!%^CRST%^");
+       break;
+     case 9:
+       //tell_room(room," \n%^RESET%^");
+       new("/puppeteer")->move(room);
        isrunning = 0;
        return 1;
      break;
@@ -153,8 +144,19 @@ int do_puppet(object tp,int mystate) {
      break;
    }
    mystate++;
-   call_out("do_puppet",5,tp,mystate);
+   call_out("do_puppet",12,tp,mystate);
    return 1;
+}
+
+void return_exits()
+{
+    object thatroom;
+    
+    if(catch(thatroom = load_object(ROOMS"11.c")))
+        return;
+    
+    add_exit("backstage", ROOMS"11.c");
+    thatroom->add_exit("stage", STORAGE"stage.c");
 }
 
 void reset_cinematics() { triggered = 0; }
