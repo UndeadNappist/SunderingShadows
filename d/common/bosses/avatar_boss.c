@@ -51,7 +51,7 @@ void die()
     foreach(string file in selected)
         new("/d/common/bosses/loot/" + file)->move(this_object());
         
-    this_object()->boss_death_event();
+    catch(this_object()->boss_death_event());
         
     ::die();
 }

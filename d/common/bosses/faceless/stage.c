@@ -101,7 +101,7 @@ int do_puppet(object tp,int mystate) {
        tell_room(room,"%^C058%^You light the candle and step back...\n%^RESET%^");
      break;
      case 1:
-       tell_room(room,"%^C240%^You hear a lone solitary clapping, it is exagerated and condesending.\n%^RESET%^");
+       tell_room(room,"%^C240%^You hear a lone solitary clapping, it is exagerated and condescending.\n%^RESET%^");
      break;
      case 2:
        tell_room(room,"%^C100%^A voice speaks from the %^C239%^blackness%^C100%^. '%^C135%^You thought you could remove my puppets from the world, remove my influence from the crowns, and I would skulk away?'\n%^RESET%^");
@@ -155,8 +155,8 @@ void return_exits()
     if(catch(thatroom = load_object(ROOMS"11.c")))
         return;
     
-    add_exit("backstage", ROOMS"11.c");
-    thatroom->add_exit("stage", STORAGE"stage.c");
+    add_exit(ROOMS"11.c", "backstage");
+    thatroom->add_exit(STORAGE"stage.c", "stage");
 }
 
 void reset_cinematics() { triggered = 0; }
