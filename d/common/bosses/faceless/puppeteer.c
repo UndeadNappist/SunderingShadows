@@ -404,7 +404,7 @@ void madness(object room)
 //Replaces a player with a doppleganger, which they have to kill.
 void dopple(object room)
 {
-    object prison;
+    object prison, *attackers;
     
     if(!objectp(room))
         return;
@@ -413,6 +413,12 @@ void dopple(object room)
     {
         tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^BOLD%^CYAN%^You've managed to endure the madness of this world, but what of the madness inside of you?%^RESET%^");
         set_spell_chance(50);
+        
+        attackers = this_object()->query_attackers();
+        
+        foreach(object ob in attackers)
+            ob->cease_all_attacks();
+            
         checkpoints["dopple"] = 1;
     }
     
@@ -437,7 +443,7 @@ void dopple(object room)
             
             dopple = new("/d/common/bosses/faceless/dopple");
             dopple->set_name(puppet->query_cap_name());
-            dopple->set_id( ({ "doppleganger", puppet->query_cap_name() }) );
+            dopple->set_id( ({ "doppleganger", puppet->query_cap_name(), puppet->query_name() }) );
             dopple->set_race(puppet->query_race());
             dopple->set_short(puppet->query_short());
             dopple->set_long(puppet->query_long());
@@ -555,4 +561,4 @@ void shadow_spikes()
             ob->cause_typed_damage(ob, "torso", roll_dice(50 + madness, 8), "void");
         }
     }
-}   
+}
