@@ -31,7 +31,7 @@ AVATAR
 	set_property("enchantment",3+random(2));
       set_item_bonus("attack bonus",1);
       set_item_bonus("damage bonus",1);
-      set_item_bonus("armor class",1);
+      set_item_bonus("armor bonus",1);
 	set_wield((:TO,"wield_func":));
 	set_unwield((:TO,"unwield_func":));
 	set_hit((:TO,"hit_func":));
