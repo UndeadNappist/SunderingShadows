@@ -110,61 +110,60 @@ int can_request() {
 }
 
 int select_diety(string str) {
-    string old;
-    object symbol;
+    string old, my_race, my_subrace, race_file, *restricted_deities;
+    object symbol, player;
     int align;
 
     if(!str) return notify_fail("Try choose <DEITY NAME>.");
+    
     str = lower_case(str);
+    player = this_player();
     if(str != diety) return notify_fail("You can only choose to follow "+capitalize(diety)+" while in here.\n");
-    if(TP->query_property("dominated")) return notify_fail("The god senses your true feelings and does not accept you as a follower.\n");
-//    align = TP->query_alignment();
-    align = TP->query_true_align();
-// no longer required, all lawful new gods run by clergy limitations.
-/*    if(TP->is_class("cavalier") || TP->is_class("paladin")) {
-        if(member_array(str, KNIGHTS) == -1) {
-            tell_object(TP, "A knight may not worship "+capitalize(str)+".");
-            return 1;
-        }
-    } */
-    if((int)TP->query("last forsake") + FORSAKE_DELAY > time() && !avatarp(TP)) {
-        tell_object(TP,"You must ponder your recent decision to forsake a god longer.");
+    if(player->query_property("dominated")) return notify_fail("The god senses your true feelings and does not accept you as a follower.\n");
+    align = player->query_true_align();
+    if((int)player->query("last forsake") + FORSAKE_DELAY > time() && !avatarp(player)) {
+        tell_object(player,"You must ponder your recent decision to forsake a god longer.");
         return 1;
     }
 
-    if (!DIETY_D->allowed_follow((string)TP->query_name(), str)) {
-        tell_object(TP,capitalize(str)+ "will not have you as a follower. You must prove your faith.");
+    if (!DIETY_D->allowed_follow((string)player->query_name(), str)) {
+        tell_object(player,capitalize(str)+ "will not have you as a follower. You must prove your faith.");
         return 1;
     }
     if(member_array(align,DIETIES[str][1]) == -1) {
-        tell_object(TP,capitalize(str)+" does not allow followers of your alignment.");
+        tell_object(player,capitalize(str)+" does not allow followers of your alignment.");
         return 1;
     }
-    if(TP->is_class("paladin") || TP->is_class("cavalier") || TP->is_class("cleric") || TP->is_class("monk")) { // clergy/orders
+    if(player->is_class("paladin") || player->is_class("cavalier") || player->is_class("cleric") || player->is_class("monk")) { // clergy/orders
         if(member_array(align,DIETIES[str][2]) == -1) {
-            tell_object(TP,capitalize(str)+" does not allow clergy of your alignment.");
+            tell_object(player,capitalize(str)+" does not allow clergy of your alignment.");
             return 1;
         }
     }
-
-    old = TP->query_diety();
-    symbol = present("holy symbol",TP);
-    if(old && old != "pan" && old != "godless") {
-        tell_object(TP,"You have already chosen to follow "+capitalize(old)+"!");
+    
+    my_race = this_player()->query_race();
+    my_subrace = this_player()->query_subrace();
+    race_file = "/std/races/"+my_race+".c";
+    restricted_deities = (string *)race_file->restricted_deities(my_subrace);
+    if(member_array(str, restricted_deities) != -1){
+        tell_object(player, capitalize(str)+" rejects your dedication.");
         return 1;
     }
-    tell_object(TP,"%^BOLD%^You have decided to follow "+capitalize(str)+"!");
-    TP->set_diety(str);
-//    TP->set_sphere(DIETIES[str][0]);
-    TP->forget_all_cl_spells();
+
+    old = player->query_diety();
+    symbol = present("holy symbol",player);
+    if(old && old != "pan" && old != "godless") {
+        tell_object(player,"You have already chosen to follow "+capitalize(old)+"!");
+        return 1;
+    }
+    tell_object(player,"%^BOLD%^You have decided to follow "+capitalize(str)+"!");
+    player->set_diety(str);
+    player->forget_all_cl_spells();
     if(objectp(symbol)) symbol->remove();
-    TP->set("god changed",1);
-    TP->update_channels();
-    /*if(!avatarp(TP))
-        ADVANCE_D->diety_news(diety,TPQCN+" has chosen to follow "+capitalize(diety)+"!");*/
-    log_file("player/god_change", capitalize(TP->query_name())+" joined "+capitalize(diety)+": "+ctime(time())+"\n");
-//added by Styx 4/21/02
-    "/cmds/avatar/_note.c"->cmd_note("ckpt "+TPQN+" %^BOLD%^%^CYAN%^chose to follow "+capitalize(diety)+".");
+    player->set("god changed",1);
+    player->update_channels();
+    log_file("player/god_change", player->query_cap_name()+" joined "+capitalize(diety)+": "+ctime(time())+"\n");
+    "/cmds/avatar/_note.c"->cmd_note("ckpt "+player->query_cap_name()+" %^BOLD%^%^CYAN%^chose to follow "+capitalize(diety)+".");
     return 1;
 }
 
