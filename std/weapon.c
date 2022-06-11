@@ -14,6 +14,7 @@ int maxAtLevel = 1;
 int Weapon_speed = -1;
 nosave string damage_type;
 string special_material_type;
+string flag_required;
 
 #ifdef __OLD_ROOM_BEHAVIOUR
 
@@ -21,6 +22,8 @@ string special_material_type;
 
 #endif /* __OLD_ROOM_BEHAVIOUR */
 
+//Flag required on player to wield
+set_flag_required(string str);
 
 // New critical hit related functions -Ares
 
@@ -329,6 +332,7 @@ int is_ok_wield()
     if (!userp(who)) {
         return 1;
     }
+    
     if (who->query("new_class_type")) {
         switch (query_weapon_prof()) {
         case "simple":  if (FEATS_D->usable_feat(who, "simple weapon proficiency")) {
@@ -617,3 +621,7 @@ string query_special_material_type()
     }
     return special_material_type;
 }
+
+string set_flag_required(string str) { flag_required = str; return flag_required; }
+
+string query_flag_required() { return flag_required; }

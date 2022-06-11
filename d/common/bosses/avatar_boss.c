@@ -56,8 +56,8 @@ void die()
     
     attackers = this_object()->query_attackers();
     
-    //foreach(object ob in attackers)
-    //    ob->set("boss avatar", 1);
+    foreach(object ob in attackers)
+        ob->set("boss avatar", 1);
         
     ::die();
 }

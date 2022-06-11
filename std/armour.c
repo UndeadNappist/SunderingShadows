@@ -15,6 +15,7 @@ private string *possibleLimbs;
 nosave private int originalAc,max_dex_bonus;
 private object wornBy;
 int block_chance;
+string flag_required;
 
 int is_armor()
 {
@@ -557,3 +558,7 @@ int query_block_chance()
     }
     return (int)tp->query_shieldMiss();
 }
+
+string set_flag_required(string str) { flag_required = str; return flag_required; }
+
+string query_flag_required() { return flag_required; }

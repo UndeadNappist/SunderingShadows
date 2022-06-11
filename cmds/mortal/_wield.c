@@ -7,7 +7,7 @@ inherit DAEMON;
 int cmd_wield(string str)
 {
     object ob, *obs;
-    string what, hand1, hand2, ok, *wielder, wieldf,ob_quest,*player_quests;
+    string what, hand1, hand2, ok, *wielder, wieldf,ob_quest,*player_quests, flag;
     int size_diff,my_size,its_size,inc,level, free_hands, *tmp,i;
     function f;
     mapping itembonuses;
@@ -69,6 +69,18 @@ int cmd_wield(string str)
             return 1;
         }
     }
+    
+    if(flag = ob->query_flag_required())
+    {
+        if(userp(this_player()))
+        {
+            if(!this_player()->query(flag))
+            {
+                tell_object(this_player(), "You find yourself unable to wield the weapon!");
+                return 1;
+            }
+        }
+    }   
 
     if(ob->query_property("quest required") && interactive(TP))
     {

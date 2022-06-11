@@ -9,7 +9,7 @@ inherit DAEMON;
 int cmd_wear(string str)
 {
     mixed* limbs;
-    string ret, what, where, wear, unwear, ob_quest, * player_quests;
+    string ret, what, where, wear, unwear, ob_quest, * player_quests, flag;
     int i, j, level, quiet, ultimate, active_feat;
     object ob, * obs;
     mapping itembonuses;
@@ -74,6 +74,18 @@ int cmd_wear(string str)
             return 1;
         }
     }
+
+    if(flag = ob->query_flag_required())
+    {
+        if(userp(this_player()))
+        {
+            if(!this_player()->query(flag))
+            {
+                tell_object(this_player(), "You find yourself unable to wear this armor!");
+                return 1;
+            }
+        }
+    }  
 
     if (ob->query_property("quest required") && interactive(TP)) {
         ob_quest = ob->query_property("quest required");
