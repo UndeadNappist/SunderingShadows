@@ -147,7 +147,7 @@ void dest_effect()
     remove_call_out("room_check");
     if (objectp(caster))
     {       
-        tell_room(environment(caster), "%^C081%^" + my_name + "'s oppressive aura dissipates.%^CRST%^", caster);
+        tell_room(environment(caster), "%^C081%^" + caster->query_cap_name() + "'s oppressive aura dissipates.%^CRST%^", caster);
         tell_object(caster, "%^C081%^Your oppressive aura dissipates.%^CRST%^");
         caster->remove_property_value("added short",({" %^C063%^(o%^C069%^p%^C075%^p%^C081%^r%^C075%^e%^C069%^s%^C063%^sive a%^C069%^u%^C075%^r%^C063%^a)%^CRST%^"}));
     }
