@@ -99,8 +99,8 @@ int hit_func(object target)
 
     new("/cmds/spells/m/_mass_cure_light_wounds")->use_spell(TO, owner->query_cap_name(), 54, 100, "cleric");
     
-    damage = roll_dice(6, 10) + 10;
-    target->cause_typed_damage(target, target->query_target_limb(), damage, "divine");
+    dam = roll_dice(6, 10) + 10;
+    target->cause_typed_damage(target, target->query_target_limb(), dam, "divine");
 }
 
 int wield_func()

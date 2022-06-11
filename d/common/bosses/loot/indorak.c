@@ -69,7 +69,7 @@ void init()
     if(!owner)
     {
         if((!holder->is_undead() &&
-        !holder->query_property("negative energy affinity") ||
+        !holder->query_property("negative energy affinity")) ||
         holder->query_character_level() < 40)
         {
             tell_object(holder, "The icy scythe rejects your grasp, slipping from your hand!");

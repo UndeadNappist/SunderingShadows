@@ -13,9 +13,9 @@
 
 #define MAX_MANA 300
 
-int mana;
-
 inherit ARMOUR;
+
+int mana;
 
 void create()
 {
@@ -31,6 +31,7 @@ void create()
     set_property("id difficulty", 40);
     set_ac(0);
     set_value(10000);
+    set_flag_required("boss avatar");
     set_limbs( ({ "head" }) );
     set_property("enchantment", 7);
     set_item_bonus("mental resistance percent", 50);
@@ -47,11 +48,9 @@ void init()
 }
 
 void heart_beat()
-{
-    ::heart_beat();
-    
+{   
     mana = mana >= MAX_MANA ? MAX_MANA : mana + 1;
-}
+}   
 
 int draw(string str)
 {
@@ -73,7 +72,7 @@ int draw(string str)
 
 int check_mana(string str)
 {
-    if(str != "power)
+    if(str != "power")
         return 0;
      
     printf("The circlet currently has %d power points stored in it.\n", mana);
