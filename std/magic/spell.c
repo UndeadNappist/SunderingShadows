@@ -1711,7 +1711,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
         if(clevel < 1)
             clevel = 1;
 
-        clevel += caster->query_property("empowered");
+        clevel += (caster->query_property("empowered") * 2);
     }
 
     if(classtype == "cantrip")
@@ -1730,7 +1730,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
             clevel = max( ({ caster->query_level(), 1 }) );
 
         if ((int)caster->query_property("empowered")) {
-            clevel += (int)caster->query_property("empowered");
+            clevel += ((int)caster->query_property("empowered") * 2);
         }
     }
 
@@ -1759,7 +1759,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
         }
 
         if ((int)caster->query_property("empowered")) {
-            clevel += (int)caster->query_property("empowered");
+            (clevel += (int)caster->query_property("empowered") * 2);
         }
     }
 
@@ -2829,7 +2829,7 @@ void define_clevel()
             clevel += 1;
 
     if ((int)caster->query_property("empowered")) {
-        clevel += (int)caster->query_property("empowered");
+        clevel += ((int)caster->query_property("empowered") * 2);
     }
     clevel = clevel < 0 ? 1 : clevel;
 }
@@ -2886,7 +2886,7 @@ void define_base_damage(int adjust)
 
         if(caster && caster->query_property("empower spell") && !abnormal_cast)
         {
-            slevel += 1;
+            slevel += 2;
             caster->remove_property("empower spell");
             tell_object(caster, "%^BOLD%^Your spell is empowered.%^RESET%^");
         }
