@@ -203,8 +203,8 @@ void boss_death_event()
     tell_room(environment(this_object()), "%^BOLD%^CYAN%^You feel a great shadow lift from the area as the puppeteer dissapates into nothingness!%^RESET%^");
     message("broadcast", "%^WHITE%^BOLD%^An insidious, creeping shadow has been cleansed from this land as the Puppeteer is defeated!%^RESET%^", users());
     message("broadcast", "%^WHITE%^BOLD%^The balance of power in the world shifts towards %^CYAN%^GOOD%^RESET%^", users());
-    //WORLD_EVENTS_D->kill_event("The Avatar of the Faceless One has been defeated");
-    //WORLD_EVENTS_D->inject_event((["The Avatar of the Faceless One has been defeated" : (["start message" : "%^BOLD%^%^BLACK%^The Puppeteer has been defeated!", "event type" : "exp bonus", "length" : 720, "notification" : "5% Bonus Exp", "event name" : "The Avatar of the Faceless One has been defeated", "modifier" : 5, "announce" : 1, "announce to" : "world", "alignments" : ({ 1, 4, 7 }) ]), ]));
+    WORLD_EVENTS_D->kill_event("The Avatar of the Faceless One has been defeated");
+    WORLD_EVENTS_D->inject_event((["The Avatar of the Faceless One has been defeated" : (["start message" : "%^BOLD%^%^BLACK%^The Puppeteer has been defeated!", "event type" : "exp bonus", "length" : 720, "notification" : "5% Bonus Exp", "event name" : "The Avatar of the Faceless One has been defeated", "modifier" : 5, "announce" : 1, "announce to" : "world", "alignments" : ({ 1, 4, 7 }) ]), ]));
 }
 
 void heart_beat()

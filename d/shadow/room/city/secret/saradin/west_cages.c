@@ -12,7 +12,7 @@ void create(){
    set_long(
    	"%^BOLD%^%^BLACK%^"+
    	"This room is nothing more than a rectangular room with scuff "+
-   	"marks and scratches in the stone floor.%^RESET%^\n"
+   	"marks and scratches in the stone floor, and surprisingly, a gaping hole with a dark, shadowy haze emanating from it.%^RESET%^\n"
    );
    set_property("indoors",1);
    set_property("light",2);
@@ -26,7 +26,8 @@ void create(){
 			"The seem relatively new.\n"
   	]));
    set_exits(([
-		"east" : SARADIN+"cent_room"
+		"east" : SARADIN+"cent_room",
+        "down" : "/d/common/bosses/faceless/rooms/1",
 	]));
 
   	set_door("west door",SARADIN+"cent_room","east","red key");

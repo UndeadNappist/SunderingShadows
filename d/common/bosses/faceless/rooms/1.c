@@ -12,6 +12,7 @@ void create(){
 set_exits(([
 
 "north" : ROOMS"2",
+"up" : "d/shadow/room/city/secret/saradin/west_cages.c",
 
 ]));
 

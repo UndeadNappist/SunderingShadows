@@ -115,7 +115,7 @@ class_spell_storage =
 "psion":
 ([
     "egoist":
-        ({"thicken skin","animal affinity","chameleon","resist death","breath of life","empathic relief","lesser transformation","shadow double","shadow body","rewind age"}),
+        ({"thicken skin","animal affinity","chameleon","resist death","inspiring recovery","empathic relief","lesser transformation","shadow double","shadow body","rewind age"}),
     "seer":
         ({"dissonance","seeing","hypercognition","escape detection","remote viewing","recovered information","inner eye","alter fate","psionic foresight"}),
     "shaper":
