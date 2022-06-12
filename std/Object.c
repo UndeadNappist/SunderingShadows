@@ -584,6 +584,8 @@ mixed query_property(string prop)
         } else if (TO->query_race() == "troll") {
             num += 2;
         }
+        else if(this_object()->query_race() == "ogre-mage")
+            num += 1;
         
         if(FEATS_D->usable_feat(this_object(), "metabolic healing") && this_object()->query("available focus"))
             num += 1;
