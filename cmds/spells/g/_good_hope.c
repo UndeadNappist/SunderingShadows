@@ -97,6 +97,9 @@ void execute_attack()
         dest_effect();
         return;
     }
+    
+    place = environment(target);
+    
     if(!random(10))
     {
         tell_room(place,"%^BOLD%^%^MAGENTA%^Hope shines brightly in "+target->QCN+"'s eyes.", target);
