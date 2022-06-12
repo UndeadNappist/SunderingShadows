@@ -103,7 +103,7 @@ int hit_func(object target)
             return 0;
         
         tell_object(owner, color("Your blade flashes with divine purpose!"));
-        target->cause_typed_damage(target, target->return_target_limb(), roll_dive(6, 10) + 10, "divine");
+        target->cause_typed_damage(target, target->return_target_limb(), roll_dice(6, 10) + 10, "divine");
         return 0;
     }
     
@@ -149,7 +149,7 @@ int hit_func(object target)
 
 int wield_func()
 {
-    if(environment(this_object()) != owner)
+    if(environment(this_object()) != owner || !owner->query("boss avatar"))
     {
         tell_object(environment(this_object()), "The holy shard rejects your touch!");
         return 0;
