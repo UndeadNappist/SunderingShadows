@@ -180,7 +180,6 @@ void bonespike(object target){
 
 
 void whistle(){
-    object ob;
     object obx;
     object bodyguard;
     object room;
@@ -195,7 +194,6 @@ void whistle(){
          this_object()->add_follower(bodyguard);
          this_object()->add_protector(bodyguard);
          bodyguard->move(room);
-         ob->move(room);
       if(!random(2)){
          bodyguard = new(MOBS"rat");
          bodyguard->move(room);

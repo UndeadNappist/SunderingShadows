@@ -81,7 +81,7 @@ int wield_fun(){
     object room, player;
    
     player = environment(this_object());    
-    room = environment(this_object());
+    room = environment(player);
     
 	tell_room(room,"%^C059%^As %^CRST%^"+player->query_cap_name()+"%^C059%^ "+
 	"wields the %^C239%^ebony staff%^C059%^, %^CRST%^"+ element +"%^C059%^ "+
@@ -96,7 +96,7 @@ int unwield_fun(){
     object room, player;
    
     player = environment(this_object());    
-    room = environment(this_object());
+    room = environment(player);
     
 	tell_room(room,"%^C059%^The "+ element +"%^C059%^ receeds from your staff%^CRST%^",player);
     tell_object(player,"%^C059%^The "+ element +"%^C059%^ receeds from your staff%^CRST%^");
