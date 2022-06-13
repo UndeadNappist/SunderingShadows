@@ -5,6 +5,74 @@
 #include <objects.h>
 #include <daemons.h>
 
+string reader_output(object targ)
+{
+    string output = "";
+    string race_var, sub_race, template;
+    string *myclasses;
+    object shape;
+    
+    race_var = targ->query_race();
+    sub_race = targ->query("subrace");
+    race_var = strsrch(sub_race, race_var) ? sub_race : sub_race + " " + race_var;
+    template = targ->query_acquired_template();
+    race_var = strlen(template) ? template + " " + race_var : race_var;
+    shape = targ->query_property("shapeshifted");
+    objectp(shape) && race_var = shape->query_shape_race();
+    
+    output += "Race: " + race_var + "::";
+    output += "Gender: " + targ->query_gender() + ":: ";
+    output += "Alignment: " + targ->query_al_title(targ->query_alignment()) + ":: ";
+    myclasses = targ->query_classes();
+    pointerp(myclasses) && output += "Class: " + implode(myclasses, ":") + ":: ";   
+    
+    {
+        string* classes = targ->query_classes();
+        string cl;
+        string* clvls = ({});
+
+        foreach(cl in classes)
+        {
+            clvls += ({ "" + targ->query_class_level(cl) });
+        }
+        output += "Level: " + implode(clvls, ":") + ":: ";
+    }
+       
+    if(targ->query_adjusted_character_level() < 100)
+        output += "Exp to Next: " + english_number(total_exp_for_level(targ->query_adjusted_character_level() + 1) - targ->query_exp()) + ":: ";
+    
+    if(mapp(targ->query_XP_tax()["improvement"]))
+        output += "Exp Tax: " + english_number(targ->query_XP_tax()["improvement"]["amount"]) + ":: ";
+    
+    output += "Exp: " + english_number(targ->query_exp()) + ":: ";
+    output += "Armor Class: " + BONUS_D->effective_ac(targ) + " base + " + BONUS_D->ac_bonus(targ, targ) + " dex" + ":: ";
+    output += "Base Hit: " + BONUS_D->new_bab(1, targ) + ":: ";
+    
+    stringp(targ->query_diety()) && output += "Deity: " + targ->query_diety() + ":: ";
+    stringp(targ->query_sphere()) && output += "Sphere: " + targ->query_sphere() + ":: ";
+    targ->is_class("sorcerer") && output += "Bloodline: " + targ->query_bloodline() + ":: ";
+    targ->is_class("oracle") && output += "Mystery: " + targ->query_mystery() + ":: ";
+    targ->is_class("warlock") && output += "Heritage: " + targ->query("warlock heritage") + ":: ";
+    targ->is_class("psion") && output += "Discipline: " + targ->query_discipline() + ":: ";
+    targ->is_class("fighter") && output += "Fighter Style: " + targ->query_fighter_style() + ":: ";
+    targ->is_class("monk") && output += "Monk Way: " + targ->query("monk way") + ":: ";
+    
+    if(targ->is_class("mage") || targ->is_class("archmage"))
+        output += "Schools: " + ((targ->query_school() && targ->query_opposing_school()) ? targ->query_school() + " vs " + targ->query_opposing_school() : "universalist") + ":: ";
+
+    if(targ->is_class("ranger"))
+        output += "Favored Enemy: " + implode(targ->query_favored_enemies(), ":") + ":: " + "Favored Terrain: " + implode(targ->query_favored_terrains(), ":") + ":: ";    
+    sizeof(targ->query_divine_domain()) && output += "Divine Domains: " + implode(targ->query_divine_domain(), ":") + ":: ";
+    output += "Play Time: " + parse_time(targ->query_age()) + ":: ";
+    output += "Age: " + targ->query_real_age() + " : " + targ->query_real_age_cat() + ":: ";
+    output += "Body Type: " + targ->query_body_type() + ":: ";
+    output += "Hair Color: " + targ->query_hair_color() + ":: ";
+    output += "Eye Color: " + targ->query_eye_color() + ":: ";
+    output += "End of sheet.";
+    
+    return output;
+}   
+
 mixed* genoutput(object targ)
 {
     mixed* output = ({});
@@ -24,7 +92,7 @@ mixed* genoutput(object targ)
             race_var = capitalize(targ->query_acquired_template() + " " + race_var);
         }
 
-        if (objectp(shape = TP->query_property("shapeshifted"))) {
+        if (objectp(shape = targ->query_property("shapeshifted"))) {
             race_var = (string)shape->query_shape_race();
             race_var = capitalize(race_var);
         }
@@ -130,6 +198,7 @@ mixed* genoutput(object targ)
 int cmd_score(string args)
 {
     mixed* output = ({}), oline;
+    string reader_output;
     object targ;
 
     if (TP->query_race() == "unborn") {
@@ -146,7 +215,14 @@ Use <review> to review you choices or <press button> to start the process.\n");
             }
         }
     }
-
+    
+    if(this_player()->query("reader"))
+    {
+        reader_output = reader_output(targ);
+        tell_object(this_player(), reader_output);
+        return 1;
+    }
+    
     output = genoutput(targ) + "/cmds/mortal/_hp"->genoutput(targ);
 
     write("%^RESET%^%^GREEN%^--=%^BOLD%^<%^WHITE%^ " + targ->query_title() + " %^BOLD%^%^GREEN%^>%^RESET%^%^GREEN%^=--%^RESET%^");
