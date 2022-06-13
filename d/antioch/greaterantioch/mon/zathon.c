@@ -129,7 +129,8 @@ void receive_given_item(object obj){
    if((string)obj->query_name() == "chieftainaxe") {
       force_me("say You have done it? Indeed!  This is his battleaxe!");
       force_me("emote stands up, nodding as he examines the item.");
-      command("drop axe");
+      force_me("emote beckons an acolyte, who accepts the axe and takes it away.");
+      obj->move("/d/shadowgate/void");
       force_me("say I am impressed.");
       force_me("emote smiles to you.");
       force_me("say As I promised, I will give you a reward, and also"+
