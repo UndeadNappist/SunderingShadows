@@ -28,7 +28,7 @@ void init()
 {
     ::init();
     
-    if(userp(this_player()) && !avatarp(this_player()))
+    if(userp(this_player()) && !avatarp(this_player()) && this_player()->query_base_character_level() >= 40)
         combatants += ({ this_player() });
 }
 
@@ -67,7 +67,10 @@ void die()
        
     //foreach(object ob in attackers)
     foreach(object ob in combatants)
-        ob->set("boss avatar", 1);
+    {
+        if(ob->query_base_character_level() >= 40)
+            ob->set("boss avatar", 1);
+    }
         
     ::die();
 }
