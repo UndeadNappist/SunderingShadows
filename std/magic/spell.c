@@ -687,12 +687,12 @@ void query_blood_magic()
 void receive_opportunity_attacks()
 {
     object* attackers = caster->query_attackers();
-    
+
     if (!objectp(caster) || shadow_spell)
     {
         return;
     }
-    
+
     for (int i = 0; i < sizeof(attackers); ++i )
     {
         if (attackers[i] == caster) // Probably redundant.
@@ -738,7 +738,7 @@ int check_reflection()
     if ((int)TO->query_helpful()) {
         return 0;
     }
-    
+
     if(splash_spell)
         return 0;
 
@@ -1455,7 +1455,7 @@ void wizard_interface(object user, string type, string targ)
     tell_object(caster, "You begin to " + whatdo + " " + spell_name + "!");
 
     receive_opportunity_attacks();
-    
+
     // this is needed for PCs, uses different function than mobs
     if (objectp(target)) {
         check_reflection();
@@ -1711,7 +1711,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
         if(clevel < 1)
             clevel = 1;
 
-        clevel += (caster->query_property("empowered") * 2);
+        clevel += caster->query_property("empowered");
     }
 
     if(classtype == "cantrip")
@@ -1730,7 +1730,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
             clevel = max( ({ caster->query_level(), 1 }) );
 
         if ((int)caster->query_property("empowered")) {
-            clevel += ((int)caster->query_property("empowered") * 2);
+            clevel += (int)caster->query_property("empowered");
         }
     }
 
@@ -1759,7 +1759,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
         }
 
         if ((int)caster->query_property("empowered")) {
-            (clevel += (int)caster->query_property("empowered") * 2);
+            clevel += (int)caster->query_property("empowered");
         }
     }
 
@@ -1931,9 +1931,9 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
             tell_room(environment(caster), caster->QCN +
                       " begins to " + whatdo + " a " + whatsit + "!", caster);
         }
-        
+
         receive_opportunity_attacks();
-        
+
         if (objectp(target) && target != caster) {
             check_reflection();
         }
@@ -2829,7 +2829,7 @@ void define_clevel()
             clevel += 1;
 
     if ((int)caster->query_property("empowered")) {
-        clevel += ((int)caster->query_property("empowered") * 2);
+        clevel += (int)caster->query_property("empowered");
     }
     clevel = clevel < 0 ? 1 : clevel;
 }
@@ -3492,7 +3492,7 @@ varargs int do_save(object targ, int mod, int get_dc)
         if(spell_sphere == "enchantment_charm" || spell_sphere == "illusion" || spell_sphere == "alteration")
             classlvl = caster->query_base_character_level();
     }
-       
+
     if (FEATS_D->usable_feat(caster, "ragecaster") && caster->query_property("raged")) {
         classlvl = caster->query_base_character_level();
     }
@@ -3614,7 +3614,7 @@ varargs int do_save(object targ, int mod, int get_dc)
 
         if(targ->query_property("mind blank"))
             DC -= 5;
-        
+
         if(targ->query("subrace") == "dhampir")
             DC -= 2;
     }
