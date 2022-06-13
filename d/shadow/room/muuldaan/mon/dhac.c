@@ -36,5 +36,5 @@ void init(){
 }
 
 void whisper_dead(object who){
-   command("whisper "+who->query_name()+" You can %^YELLOW%^pray%^RESET%^, to get a new body. If you need help once you have prayed, we can %^YELLOW%^reequip %^RESET%^you with basic items here.");
+   command("whisper "+who->query_name()+" You can %^YELLOW%^pray%^RESET%^, to get a new body.");
 }

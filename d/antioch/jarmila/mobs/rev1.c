@@ -22,7 +22,7 @@ void create()
    "%^RESET%^%^ORANGE%^tents%^RESET%^%^BOLD%^. With her %^YELLOW%^long "+
    "hair%^RESET%^%^BOLD%^ flowing in the %^RESET%^%^CYAN%^wind"+
    "%^RESET%^%^BOLD%^ she is the very image of someone enthralled "+
-   "with pure %^CYAN%^happiness%^RESET%^%^BOLD%^. %^RED%^Cc%^RESET%^%^BOLD%^ol"+
+   "with pure %^CYAN%^happiness%^RESET%^%^BOLD%^. %^RED%^C%^RESET%^%^BOLD%^ol"+
    "%^GREEN%^o%^RESET%^%^BOLD%^rful"+
    "%^RESET%^%^BOLD%^ ri%^BLUE%^b%^WHITE%^bo%^RED%^n%^WHITE%^s "+
    "are tied to her wrists and ankles.\n%^RESET%^");

@@ -54,7 +54,7 @@ int touch(string str) {
     );
     say(
 	"%^RED%^"+TPQCN+ " is suddenly burned from a bolt after touching "
-	"the %^MAGENTA%^glyps%^RESET%^!"
+	"the %^MAGENTA%^glyphs%^RESET%^!"
     ,TP);
     this_player()->add_hp(-10);
     return 1;

@@ -13,8 +13,8 @@ void create() {
     set_spell_sphere("divination");
     set_syntax("cast CLASS legend lore on <object>");
     set_description("This spell grants the caster a second's insight into the nature of an item, revealing both magical "
-"attributes and its history.  The caster will also reveals the item's true nature to those standing nearby.  Whether the "
-"truth of the item can be revealed is dependant upon the caster's strength, and the obscurity of the item.");
+"attributes and its history.  The caster will also reveal the item's true nature to those standing nearby.  Whether the "
+"truth of the item can be revealed is dependent upon the caster's strength, and the obscurity of the item.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();

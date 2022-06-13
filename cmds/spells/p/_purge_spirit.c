@@ -38,7 +38,7 @@ void spell_effect()
     tell_room(place,"%^BLUE%^%^BOLD%^"+caster->QCN+" makes a pass at "+target->QCN+" as if grabbing something out of the air.", target);
     if(!do_save(target)) {
         tell_object(target,"%^MAGENTA%^%^BOLD%^You are staggered by the force pulling on your soul!");
-        tell_room(environment(caster),"%^BLUE%^%^BOLD%^"+target->QCN+" staggered, unable to move.", ({ target}) );
+        tell_room(environment(caster),"%^BLUE%^%^BOLD%^"+target->QCN+" is staggered, unable to move.", ({ target}) );
         damage_targ(target, target_limb, sdamage,"divine");
         target->set_paralyzed(roll_dice(1,2)*8,"%^BOLD%^%^BLUE%^You are staggered by the force pulling on your soul!");
     }
