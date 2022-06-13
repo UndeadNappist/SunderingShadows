@@ -19,7 +19,7 @@ void create()
     string rank;
     ::create();
     will_open_doors(1);
-    set_nogo(({ "/d/darkwood/room/road1", "/d/shadow/room/village/mainroad1", "/d/shadow/room/pass/pass2", "/d/shadow/virtual/desert/25,0.desert", "/d/shadow/city/room/dolanco1", "/d/shadow/city/room/dolanco4", "/d/shadow/city/room/magecourt" }));
+    set_nogo(({ "/d/darkwood/room/road1", "/d/shadow/room/village/mainroad1", "/d/shadow/room/pass/pass2", "/d/shadow/virtual/desert/25,0.desert", "/d/shadow/city/room/dolanco1", "/d/shadow/city/room/dolanco4", "/d/shadow/city/room/magecourt", "/d/shadow/city/room/3coinsbalcony" }));
     set_name("Shadow Guard");
     set_id(({ "Shadow Guard", "shadow guard", "guard", CITYLAW }));
     set_short("A tall human");
