@@ -175,7 +175,7 @@ void init()
         return;
     }
 
-    psize = sizeof(filter_array(all_inventory(ETO), (: userp($1) :)));
+    psize = sizeof(filter_array(all_living(ETO), (: userp($1) :)));
     psize = psize < 1 ? 1 : psize;
     if (psize > coreparty) {
         set_max_hp(25000 * psize);

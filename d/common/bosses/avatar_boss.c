@@ -4,6 +4,8 @@
 
 inherit WEAPONLESS;
 
+object *combatants = ({  });
+
 void create()
 {
     ::create();
@@ -25,6 +27,9 @@ void create()
 void init()
 {
     ::init();
+    
+    if(userp(this_player()) && !avatarp(this_player()))
+        combatants += ({ this_player() });
 }
 
 void boss_death_event() { return; }
@@ -54,9 +59,14 @@ void die()
         
     catch(this_object()->boss_death_event());
     
-    attackers = this_object()->query_attackers();
-    
-    foreach(object ob in attackers)
+    /*
+    attackers = all_living(environment(this_object()));
+    attackers -= ({ this_object() });
+    attacker = filter_array(attackers, (: (userp($1) && !avatarp($1)) :));
+    */
+       
+    //foreach(object ob in attackers)
+    foreach(object ob in combatants)
         ob->set("boss avatar", 1);
         
     ::die();
