@@ -339,7 +339,7 @@ void melee(object room)
         checkpoints["melee"] = 1;
     }
     
-    spike_chance = max( ({ 1, 5 - madness }) );
+    spike_chance = max( ({ 0, 5 - madness }) );
     
     if(!random(spike_chance))
         shadow_spikes();

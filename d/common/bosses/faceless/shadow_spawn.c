@@ -36,11 +36,14 @@ void die()
     object *targets;
     tell_room(environment(this_object()), "%^BLACK%^BOLD%^The shadow emits a high-pitched scream as it dissipates!%^RESET%^");
     
-    targets = this_object()->query_attackers();
+    targets = all_living(environment(this_object()));
     
     foreach(object ob in targets)
     {
         if(!living(ob))
+            continue;
+        
+        if(ob->query_name() == "puppeteer")
             continue;
         
         ob->cause_typed_damage(ob, "head", 200, "sonic");

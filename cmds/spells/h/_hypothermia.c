@@ -56,7 +56,7 @@ void spell_effect(int prof){
 		"\n%^BOLD%^%^CYAN%^ You manage to slightly dodge it!");
         tell_room(place,"%^BOLD%^%^WHITE%^A thin blue ray swirled with white"+
 		" streaks from "+caster->QCN+"'s outstretched hand."+
-		"\n%^BOLD%^%^CYAN%^"+target->QCN+" manages to slightly dodge it!");
+		"\n%^BOLD%^%^CYAN%^"+target->QCN+" manages to slightly dodge it!", ({caster, target}));
         damage = sdamage / 2;
         damage_targ(target,target->return_target_limb(),damage,"cold");
         spell_successful();
@@ -73,7 +73,7 @@ void spell_effect(int prof){
         tell_room(place,"%^BOLD%^%^WHITE%^A thin blue ray swirled with white"+
 		" streaks from "+caster->QCN+"'s outstretched hand."+
 		"\n%^BOLD%^%^CYAN%^"+target->QCN+" is hit with the full force of"+
-		" the frozen ray!");
+		" the frozen ray!", ({caster, target}));
         damage = sdamage;
         damage_targ(target,target->return_target_limb(),damage,"cold");
         target->use_stamina(clevel/2);

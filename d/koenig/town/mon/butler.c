@@ -42,7 +42,7 @@ void embrace(object targ)
   if(!targ) return 0;
   tell_room(environment(targ),"Lurch embraces "+targ->query_cap_name()+" and begins to SQUEEZE!", targ);
    targ->do_damage("torso", random(20)+5);
-  tell_object(targ,"%^BOLD%^%^RED%^Lurch embraces you with his huge arms and begins to %^RESET%^%^RED%^SQUEEZE%^BOLD%^%^RED%^. You can fill some ribs begin to give!%^RESET%^");
+  tell_object(targ,"%^BOLD%^%^RED%^Lurch embraces you with his huge arms and begins to %^RESET%^%^RED%^SQUEEZE%^BOLD%^%^RED%^. You can feel some ribs begin to give!%^RESET%^");
   return 1;
 }
 void crush(object targ)
