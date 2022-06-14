@@ -43,7 +43,7 @@ void die()
         if(!living(ob))
             continue;
         
-        ob->cause_typed_damage(ob, "head", 150, "sonic");
+        ob->cause_typed_damage(ob, "head", 200, "sonic");
     }
     
     ::die();

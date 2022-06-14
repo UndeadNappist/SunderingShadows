@@ -280,7 +280,7 @@ void heart_beat()
 
 void madness_check(object room, object *attackers)
 {
-    madness = ticker / 50;
+    madness = ticker / 25;
     
     foreach(object ob in attackers)
     {
@@ -310,7 +310,7 @@ void madness_check(object room, object *attackers)
     {
         tell_room(room, "%^MAGENTA%^BOLD%^The Puppeteer is emboldened by the madness it is causing!%^RESET%^");
         tell_room(room, "%^YELLOW%^MADNESS : %^CYAN%^" + madness);
-        add_hp(madness * 100);
+        add_hp(madness * 200);
     }
 }
 
@@ -326,7 +326,7 @@ void melee(object room)
         checkpoints["melee"] = 1;
     }
     
-    spike_chance = max( ({ 0, 5 - madness }) );
+    spike_chance = max( ({ 1, 5 - madness }) );
     
     if(!random(spike_chance))
         shadow_spikes();
@@ -517,7 +517,7 @@ int bite(object ob)
     tell_object(ob, "%^RED%^BOLD%^Puppeteer bites you ferociously with its maw.%^RESET%^");
     tell_room(environment(this_object()), "%^RED%^BOLD%^The Puppeteer bites " + ob->query_cap_name() + " ferociously with its maw!%^RESET%^", ({ ob }));
     
-    return (roll_dice(6 + madness, 10) + 10) * (1 + enrage);
+    return (roll_dice(10 + madness, 10) + 10) * (1 + enrage);
 }
 
 int tendril(object ob)
@@ -541,7 +541,7 @@ int tendril(object ob)
     
     ob->set_paralyzed(roll_dice(1,4) * 6, "%^YELLOW%^The tendril has you wrapped tight!%^RESET%^");
     
-    return (roll_dice(6 + madness, 10) + 10) * (1 + enrage);
+    return (roll_dice(12 + madness, 10) + 10) * (1 + enrage);
 }
 
 void shadow_spikes()
@@ -565,7 +565,7 @@ void shadow_spikes()
         if(!SAVING_THROW_D->reflex_save(ob, 80 + madness))
         {
             tell_room(room, "%^BOLD%^RED%^A spike impales " + ob->query_cap_name() + "!%^RESET%^");
-            ob->cause_typed_damage(ob, "torso", roll_dice(50 + madness, 8), "void");
+            ob->cause_typed_damage(ob, "torso", roll_dice(50 + madness, 10), "void");
         }
     }
 }
