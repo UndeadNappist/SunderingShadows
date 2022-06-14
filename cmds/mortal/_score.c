@@ -22,7 +22,7 @@ string reader_output(object targ)
     
     output += "Race: " + race_var + " :: ";
     output += "Gender: " + targ->query_gender() + " :: ";
-    output += "Alignment: " + targ->query_al_title(targ->query_alignment()) + " :: ";
+    output += "Alignment: " + targ->query_al_title(targ->query_alignment()) + " :: \n";
     myclasses = targ->query_classes();
     pointerp(myclasses) && output += "Class: " + implode(myclasses, " : ") + " :: ";   
     
@@ -35,7 +35,7 @@ string reader_output(object targ)
         {
             clvls += ({ "" + targ->query_class_level(cl) });
         }
-        output += "Level: " + implode(clvls, " : ") + " :: ";
+        output += "Level: " + implode(clvls, " : ") + " :: \n";
     }
        
     if(targ->query_adjusted_character_level() < 100)
@@ -44,11 +44,13 @@ string reader_output(object targ)
     if(mapp(targ->query_XP_tax()["improvement"]))
         output += "Exp Tax: " + english_number(targ->query_XP_tax()["improvement"]["amount"]) + " :: ";
     
-    output += "Exp: " + english_number(targ->query_exp()) + " :: ";
+    output += "Exp: " + english_number(targ->query_exp()) + " :: \n";
     output += "Armor Class: " + BONUS_D->effective_ac(targ) + " base + " + BONUS_D->ac_bonus(targ, targ) + " dex" + " :: ";
-    output += "Base Hit: " + BONUS_D->new_bab(1, targ) + " :: ";
+    output += "Base Hit: " + BONUS_D->new_bab(1, targ) + " :: \n";
     
     stringp(targ->query_diety()) && output += "Deity: " + targ->query_diety() + " :: ";
+    sizeof(targ->query_divine_domain()) && output += "Divine Domains: " + implode(targ->query_divine_domain(), " : ") + " :: ";
+    output += "\n";
     stringp(targ->query_sphere()) && output += "Sphere: " + targ->query_sphere() + " :: ";
     targ->is_class("sorcerer") && output += "Bloodline: " + targ->query_bloodline() + " :: ";
     targ->is_class("oracle") && output += "Mystery: " + targ->query_mystery() + " :: ";
@@ -62,12 +64,13 @@ string reader_output(object targ)
 
     if(targ->is_class("ranger"))
         output += "Favored Enemy: " + implode(targ->query_favored_enemies(), " : ") + " :: " + "Favored Terrain: " + implode(targ->query_favored_terrains(), " : ") + " :: ";    
-    sizeof(targ->query_divine_domain()) && output += "Divine Domains: " + implode(targ->query_divine_domain(), " : ") + " :: ";
+
+    output += "\n";
     output += "Play Time: " + parse_time(targ->query_age()) + " :: ";
-    output += "Age: " + targ->query_real_age() + " : " + targ->query_real_age_cat() + " :: ";
+    output += "Age: " + targ->query_real_age() + " : " + targ->query_real_age_cat() + " :: \n";
     output += "Body Type: " + targ->query_body_type() + " :: ";
     output += "Hair Color: " + targ->query_hair_color() + " :: ";
-    output += "Eye Color: " + targ->query_eye_color() + " :: ";
+    output += "Eye Color: " + targ->query_eye_color() + " :: \n";
     output += "End of sheet.";
     
     return output;

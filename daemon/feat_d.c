@@ -1739,7 +1739,7 @@ void display_feats(object ob,object targ, string mytype)
             {
                 reader_output += ("category : " + categories[i] + " :: ");
                 obuff = sort_array(feats[categories[i]], 1);
-                reader_output += (implode(obuff, " : ") + " ::\n\n\ ");
+                reader_output += (implode(obuff, " : ") + " :: \n");
             }
             tell_object(ob, reader_output);           
             tell_object(ob, "End of screen");
