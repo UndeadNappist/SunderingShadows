@@ -4315,13 +4315,13 @@ void help()
         write("%^BOLD%^%^RED%^This spell affects current area.");
     }
     if (splash_spell == 1) {
-        write("%^BOLD%^%^RED%^This spell can affect multiple targets.");
+        write("%^BOLD%^%^RED%^This spell can affect multiple targets. (Splash)");
     }
     if (splash_spell == 2) {
-        write("%^BOLD%^%^RED%^This spell will affect mostly enemies.");
+        write("%^BOLD%^%^RED%^This spell will affect mostly enemies. (Burst)");
     }
     if (splash_spell == 3) {
-        write("%^BOLD%^%^RED%^This spell will affect everyone.");
+        write("%^BOLD%^%^RED%^This spell will affect everyone. (Blast)");
     }
 
     if (mapp(feats_required)) {
