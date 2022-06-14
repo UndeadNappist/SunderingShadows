@@ -198,12 +198,10 @@ void boss_death_event()
     object *attackers;
     
     if(objectp(puppet))
+    {
         puppet->move_player(environment(this_object()));
-    
-    attackers = this_object()->query_attackers();
-        
-    foreach(object ob in attackers)
-        ob->cease_all_attacks();
+        puppet->kill_ob(this_object());
+    }
     
     environment(this_object())->return_exits();
     

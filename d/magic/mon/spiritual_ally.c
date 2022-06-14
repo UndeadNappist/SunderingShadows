@@ -64,7 +64,7 @@ void setup_servant(object caster, int clevel)
         int ench;
 
         normalizedDeity = replace_string(deity," ","_");
-        if(!file_exists("/d/magic/obj/weapons/"+normalizedDeity+".c") deity = "generic";
+        if(!file_exists("/d/magic/obj/weapons/"+normalizedDeity+".c")) normalizedDeity = "generic";
 
         wpn=new("/d/magic/obj/weapons/"+normalizedDeity+"");
         ench = clevel/7;

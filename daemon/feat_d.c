@@ -1729,7 +1729,22 @@ void display_feats(object ob,object targ, string mytype)
     categories = sort_array(categories, 1);
     {
         int vertical = ob->getenv("VCOLUMNS") ? 1 : 0;
-        string * obuff;
+        string * obuff, reader_output;
+        
+        if(ob->query("reader"))
+        {
+            reader_output = "";
+            
+            for(i = 0; i < sizeof(categories); i++)
+            {
+                reader_output += ("category : " + categories[i] + " :: ");
+                obuff = sort_array(feats[categories[i]], 1);
+                reader_output += (implode(obuff, " : ") + " :: ");
+                tell_object(ob, reader_output);
+            }
+            
+            tell_object(ob, "End of screen");
+        }
 
         if (vertical) {
             obuff = ({});

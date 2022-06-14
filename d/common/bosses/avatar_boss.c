@@ -73,5 +73,8 @@ void die()
     }
         
     ::die();
+        
+    foreach(object ob in combatants)
+        ob->cease_all_attacks();
 }
 

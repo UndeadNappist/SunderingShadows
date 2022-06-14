@@ -83,6 +83,8 @@ int light(string str) {
 		    return 1;
 		}
 		
+        triggered = 1;
+        
         do_puppet(TP,0);
         return 1;}
         else  {tell_object(TP,"Light what?");
