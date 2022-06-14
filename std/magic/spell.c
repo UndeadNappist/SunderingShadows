@@ -2852,7 +2852,11 @@ void define_base_spell_level_bonus()
     if (FEATS_D->usable_feat(caster, "apoapsis of power")) {
         sdamage_adjustment += 2;
     }
+    /*
+    this shouldn't be zeroing out, splash/aoe are supposed to get knocked down the damage table
+    there is logic in define_base_damage() to make sure that spell levels do not go below 1 from the adjustment
     sdamage_adjustment = sdamage_adjustment < 0 ? 0 : sdamage_adjustment;
+    */
 }
 
 /**
