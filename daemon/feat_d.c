@@ -1545,13 +1545,24 @@ string pick_color(string feat, object targ)
     return "%^BOLD%^%^CYAN%^";
 }
 
-string format_feat(string feat,object targ) {
+string format_feat(string feat,object targ, object viewer) {
     int level,level_check;
     string display,tmp;
 
     feat = capitalize(feat);
     level_check = can_use_feat(targ, lower_case(feat));
     level = level_of_feat(targ, lower_case(feat));
+    
+    if(objectp(viewer) && viewer->query("reader"))
+    {
+        if(has_feat(targ, lower_case(feat)))
+            display = "* " + feat;
+        else
+            display = feat;
+        
+        return display;
+    }
+    
     if (!level || level == -1) {
         tmp = "%^CYAN%^--";
     } else if (!level_check) {
@@ -1738,7 +1749,7 @@ void display_feats(object ob,object targ, string mytype)
             for(i = 0; i < sizeof(categories); i++)
             {
                 reader_output += ("category : " + categories[i] + " :: ");
-                obuff = sort_array(feats[categories[i]], 1);
+                obuff = map(sort_array(feats[categories[i]], 1), (: format_feat($1, $2, $3) :), targ, ob);
                 reader_output += (implode(obuff, " : ") + " :: \n");
             }
             tell_object(ob, reader_output);           
