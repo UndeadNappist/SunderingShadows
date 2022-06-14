@@ -15,8 +15,8 @@ Each spell level utilizes a different die when calculating damage. The table per
 %^CYAN%^L9:%^RESET%^  1d14
 %^CYAN%^Default:%^RESET%^  1d8
 
-%^CYAN%^Splash Spell:%^RESET%^ -2 level
-%^CYAN%^Burst Spell:%^RESET%^  -4 levels
+%^CYAN%^Splash Spell:%^RESET%^ -1 level
+%^CYAN%^Burst Spell:%^RESET%^  -2 levels
 
 Various feats and conditions may shift the damage table further.
 
