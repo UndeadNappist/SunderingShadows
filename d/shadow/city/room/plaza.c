@@ -13,7 +13,9 @@ void create(){
     set_terrain(CITY);
     set_climate("temperate");
     set_name("Magistrates' Plaza");
-    set_short("%^BOLD%^Magistrates' Plaza, Shadow%^RESET%^");
+    set_short("%^BOLD%^The ruins of the Magistrates' Plaza, Shadow%^RESET%^");
+    set_long("%^BOLD%^The ruins of the Magistrates' Plaza, Shadow%^RESET%^\n%^RESET%^%^CRST%^%^C100%^Where the two major thoroughfares of the city intersect, nothing much remains but %^C101%^rubble %^C100%^and %^C059%^deep crevices %^RESET%^%^C100%^torn through the city streets. %^C124%^Blood %^C100%^paints some of the debris where innocent bystanders were caught unawares by the sudden devastation that must have taken place here. It seems localized, contained solely to this plaza.\n%^CRST%^");
+    /*set_short("%^BOLD%^Magistrates' Plaza, Shadow%^RESET%^");
     set_long("%^BOLD%^Magistrates' Plaza, Shadow%^RESET%^\n "+
         "%^RESET%^The intersection of the two major thoroughfares through "+
         "the %^BOLD%^%^BLACK%^City of Shadow %^RESET%^forms this magnificent "+
@@ -27,7 +29,7 @@ void create(){
         "st%^BOLD%^o%^RESET%^ne steps lead up to a bluff overlooking the "+
         "plaza that houses the Magistrate's Hall and associated "+
         "government offices. The %^YELLOW%^Bank of Shadow %^RESET%^is "+
-        "situated at the southeast corner of the plaza. There is a wooden %^ORANGE%^board%^RESET%^ standing, with notices and a %^CYAN%^%^BOLD%^map%^RESET%^ of the area pinned to it.\n");
+        "situated at the southeast corner of the plaza. There is a wooden %^ORANGE%^board%^RESET%^ standing, with notices and a %^CYAN%^%^BOLD%^map%^RESET%^ of the area pinned to it.\n");*/
     set_smell("default","Your nose catches the miasma of thousands "+
         "of humanoids in close proximity.");
     set_listen("default","You hear the dull roar of conversations and "+
