@@ -589,7 +589,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
                     if(opposed_alignment(targ, attacker))
                     {
                         reduction += 5;
-                        if(FEATS_D->usable_feat("champion"))
+                        if(FEATS_D->usable_feat(targ, "champion"))
                             reduction += 5;
                     }
                 }
@@ -659,6 +659,9 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
         }
     }
     */
+    
+    if(damage > 0 && FEATS_D->usable_feat(targ, "way of the learned pupil"))
+        USER_D->regenerate_pool(targ, 2 + targ->query_class_level("monk") / 15, 0, "ki");
 
     return damage;
 }
