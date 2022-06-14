@@ -103,7 +103,7 @@ void create()
     set_mob_magic_resistance("high");
     set_overall_ac(-70);
     set_sight_bonus(10);
-    set_max_hp(100000);
+    set_max_hp(120000);
     set_hp(query_max_hp());
     set_property("add kits", 40);
     set_new_exp(75, "boss");
@@ -126,11 +126,12 @@ void create()
     }));
     set_spells(({ "shadow nova",
                   "fear",
-                  "wave of pain"
-                  "scintillating pattern",
+                  "wave of pain",
+                  "waves of exhaustion",
                   "powerword blind",
                   "shadow vortex",
                   "insanity",
+                  "entropic storm",
                   "oppression",
                   "crushing despair",
                   "weird",
@@ -178,7 +179,7 @@ void init()
     psize = sizeof(filter_array(all_living(ETO), (: userp($1) :)));
     psize = psize < 1 ? 1 : psize;
     if (psize > coreparty) {
-        set_max_hp(25000 * psize);
+        set_max_hp(30000 * psize);
         set_hp(query_max_hp());
         set_damage(16, 5 + psize);
         coreparty = psize;
@@ -293,7 +294,19 @@ void madness_check(object room, object *attackers)
             madness++;
         if(ob->query_property("effect_panicked"))
             madness++;
+        if(ob->query_property("effect_cowering"))
+            madness++;
         if(ob->query_property("effect_exhausted"))
+            madness++;
+        if(ob->query_property("effect_frightened"))
+            madness++;
+        if(ob->query_property("effect_fatigued"))
+            madness++;
+        if(ob->query_property("effect_sickened"))
+            madness++;
+        if(ob->query_property("effect_staggered"))
+            madness++;
+        if(ob->query_property("effect_shaken"))
             madness++;
         if(ob->query_paralyzed())
             madness++;
