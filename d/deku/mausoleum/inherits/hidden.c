@@ -54,14 +54,14 @@ void create()
     "not sure what this place used to be, but there is an almost overwhelming "+
     "sense of dr%^RESET%^%^RED%^ea%^BOLD%^%^BLACK%^d here. The walls are "+
     "very close together and the floor is rough. Surprising though this portion of "+
-    "the mausoleum is withstanding the continous onslaught from the "+
+    "the mausoleum is withstanding the continuous onslaught from the "+
     "dirt above remarkably well.%^RESET%^");
     
     set_listen("default","Eerie moans and groans echo all around you.");
     set_smell("default","The aroma of death and decay hangs heavily here."); 
      
     set_items(([
-       ({"structure", "mausoluem" }) : "%^BOLD%^%^WHITE%^This ancient structure "+
+       ({"structure", "mausoleum" }) : "%^BOLD%^%^WHITE%^This ancient structure "+
        "has obviously been abandoned. It looks as if it were left in a half finished state. "+
        "There are portions of the white stone attached to an older red stone. The floor "+
        "is rough and the walls are much closer together here.%^RESET%^",

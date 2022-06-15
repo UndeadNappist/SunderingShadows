@@ -11,7 +11,7 @@ void create() {
     set_long(
       "%^BOLD%^%^BLACK%^These are the disgusting sewers under the city of Sanctuary. They are"+
       " filled with many strange objects. The tunnel stretches off for miles"+
-      " toward the south. The dark walls are covered with disgusting slime "+
+      " toward the south. The dark walls are covered with disgusting slime"+
       " mold from the many decades of sewage that flowed within here."
     );
     set_exits(([

@@ -24,7 +24,7 @@ MELNMARN
 ]));
     set_smell("default","You smell the odors of a bustling city.");
     set_listen("default","You hear the sounds of people moving in the city.");
-    set_door("gate", "/d/shadow/room/city/eastgate","west","xxxyyy");
+    set_door("gate", "/d/shadow/city/room/eastgate","west","xxxyyy");
 
     set_lock_description("gate","lock","This is a huge bar across the giant door.");
     set_door_description("gate","These are two huge solid wooden doors that come together in the middle. They are bound together with giant dwarven forged iron bands.");

@@ -40,6 +40,7 @@ void create() {
    set_wield((:TO,"wield_fun":));
    set_unwield((:TO,"unwield_fun":));
    set_hit((:TO,"hit_fun":));
+   set_damage_type("slashing");
 }
 
 int wield_fun(){

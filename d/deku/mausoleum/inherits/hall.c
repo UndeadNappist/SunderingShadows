@@ -54,8 +54,8 @@ void create()
     set_smell("default","The aroma of death and decay hangs heavily here."); 
      
     set_items(([
-       ({"structure", "mausoluem", "cracks"}) : "%^BOLD%^%^WHITE%^This ancient "+
-       "structure is currently in a state of decay. There are visible cracks litering "+
+       ({"structure", "mausoleum", "cracks"}) : "%^BOLD%^%^WHITE%^This ancient "+
+       "structure is currently in a state of decay. There are visible cracks littering "+
        "the walls, floor, and ceiling of it. The entire structure groans and creaks around "+
        "you as it undergoes a vicious assault from the weight of the dirt above it.%^RESET%^",
        ({"stone", "stones", "walls", "wall", "floor", "ceiling"}) : "%^BOLD%^%^WHITE%^The stone "+

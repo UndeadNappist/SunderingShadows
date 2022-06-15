@@ -13,7 +13,7 @@ void create() {
     set_short("Sanctuary Sewers");
     set_long(
       "%^BOLD%^%^BLACK%^These are the disgusting sewers under the city of Sanctuary. They are"+
-      " filled with many strange but interesting objects. The tunnel abluntly"+
+      " filled with many strange but interesting objects. The tunnel abruptly"+
       " ends here. The walls are dark and covered with disgusting slime mold"+
       " from the many decades of sewage that flowed within here."
     );
