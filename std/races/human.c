@@ -346,13 +346,14 @@ string *query_hair_colors(string subrace) {
     else {
         choices += ({"ebony"});
         choices += ({"sable", "auburn", "scarlet", "crimson"});
-        choices += ({"black", "brown", "red", "white", "gray", "bald"});
+        choices += ({"black", "brown", "red", "white", "gray", "bald", "blonde"});
     }
     return choices;
 }
 
 string *query_eye_colors(string subrace) {
     string *choices = ({});
+    
     if(!stringp(subrace) ||
        member_array(subrace,({"aasimar","feytouched","tiefling","air genasi","earth genasi","fire genasi","water genasi","heartlander","attayan"})) != -1) {
         choices += ({"violet", "purple", "silver"});

@@ -203,7 +203,7 @@ void execute_attack()
     {
         tell_object(target,"%^BOLD%^Your soul struggles, but manages to survive.");
         tell_room(place,"%^BOLD%^%^BLUE%^"+target->QCN+" is harmed but manages to survive the death!",target);
-        target->cause_typed_damage(target, target->return_target_limb(),roll_dice(clevel,10),"negative energy");
+        target->cause_typed_damage(target, target->return_target_limb(),roll_dice(clevel + bonusdc,10),"negative energy");
     } else {
         tell_room(place,"%^BOLD%^%^WHITE%^The soul is pushed beyond %^MAGENTA%^the veil%^WHITE%^ from its coil!");
         tell_room(place,"%^BOLD%^%^WHITE%^The lifeless husk of "+target->QCN+" drops to the ground!",target);
