@@ -75,6 +75,7 @@ void max_reward(object player){
     force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C057%^$M catches sight of $N, stowing away his flask and waving $O over.%^CRST%^");
     force_me("say You're a proper scoundrel to have around here... so I wanted let you in on some of my private stash of goods that come through. Just between us important nobs, hmm?");
     player->set("wailing isle brookes", 1);
+    player->set_mini_quest("The Wailing Isle: A pirate's life for me...", 1, "%^RESET%^%^CRST%^%^C255%^The Wailing Isle: %^RESET%^%^C100%^A %^C144%^pirate's %^C100%^life for me...%^CRST%^");
     return;
 }
 
@@ -221,17 +222,6 @@ void reply_fun(string str, object player){
         return;
     }
     
-    if(strsrch(str,"zephyr") != -1 || strsrch(str,"Zephyr") != -1 ){
-        force_me("say Aye, I know a little about her. A merchant vessel captained by a woman named Katerina. She runs the trade routes between the cities of the Saakrune and Dagger seas.");
-        return;
-    }
-    
-    if(strsrch(str,"katerina") != -1 || strsrch(str,"Katerina") != -1 ){
-        force_me("emoteat brookes %^RESET%^%^CRST%^%^C057%^$M mutters a curse before sneaking another sip from his flask.%^CRST%^");
-        force_me("say A Tsarven beauty, they say. She's also a pox on anyone who tries to steal her cargo, fearless and fierce. Rumor is she's been blessed by the Djinn of her homeland.");
-        return;
-    }
-    
     return;
 }
 
@@ -240,15 +230,15 @@ void offer_job(){
     switch(choice){
         case 1 :
             force_me("say I have clients who sometimes ship through Torm, but have accrued a backlog of tax owed to the crown. They would like those records... expunged. Are you able to retrieve them from the tax office near the Tormish docks?");
-            call_out("refuse_job", 15);
+            call_out("refuse_job", 10);
             break;
         case 2 :
             force_me("say Some cargo that was intended to make its way here instead found itself headed to Shadow. I need someone who can ruin it to send a message. A big one, with fire and smoke. Can I count on you to do that?");
-            call_out("refuse_job", 15);
+            call_out("refuse_job", 10);
             break;
         case 3 :
             force_me("say A little bird has told me that the captain of the Zephyr has come into possession a map of new trade routes that the merchants of Torm will be utilizing. Those are quite valuable to the right buyers, and I think you could profit as well. Can you retrieve those charts?");
-            call_out("refuse_job", 15);
+            call_out("refuse_job", 10);
             break;
         default :
             tell_object(this_player(), "Something is wrong, contact Chernobog!");
