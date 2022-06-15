@@ -79,7 +79,7 @@ void spell_effect(int prof)
     }
     target->set_property("spelled",({TO}));
     target->set_property("damage resistance",10);
-    target->set_property("iron body",1);
+    //target->set_property("iron body",1);
     addSpellToCaster();
     return;
 }
@@ -111,6 +111,6 @@ void reverse_spell(){
     caster->set_property("damage resistance",-5); // restore their lost AC!
     spell_successful();
     caster->set_property("spelled", ({TO}) );
-    caster->set_property("iron body",1);
+    //caster->set_property("iron body",1);
     call_out("dest_effect",(clevel*10));
 }
