@@ -352,6 +352,37 @@ Your email address: ", mud_name()), this_object());
 
 }
 
+/*
+protected void enter_reader(string str)
+{
+    str = capitalize(str);
+    
+    if (str != "Y" && str != "N")
+    {
+        message("logon", "\nPlease enter Y for yes, or N for no.\n",
+                this_object());
+        message("logon", "Do you play with a screen reader? [y/n]: ", this_object());
+        input_to("enter_reader");
+        return;
+    }
+    if(str == "Y)
+    {
+        message("logon", "\nScreen Reader support turned on. Use 'set reader off' to turn it off later in the game.\n", this_object());
+        __Player->set("reader", 1);
+        __Player->reset_terminal();
+    }
+    if(str == "N")
+    {
+        message("logon", "\nScreen Reader support turned off. Use 'set reader on' to turn it on later in the game.\n", this_object());
+        __Player->set("reader", 0);
+        __Player->reset_terminal();
+    }
+    message("logon", sprintf("If you wish to be able to restore your password, enter your email. You can later change this setting with <chfn> command. Your email address: ", mud_name()), this_object());
+    input_to("enter_email");
+    return;
+}
+*/
+
 protected void enter_email(string str) {
     string a, b;
 
