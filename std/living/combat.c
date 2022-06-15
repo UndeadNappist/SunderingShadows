@@ -340,7 +340,13 @@ void set_asleep(int xxx, string message) { return COMBAT_D->set_asleep(TO, xxx, 
 int query_unconscious() { return (query_combat_mapps("vars", "unconscious") || (query_hp() < 1) || query_combat_mapps("vars", "asleep")); }
 int query_asleep() { return query_combat_mapps("vars", "asleep"); }
 int query_tripped() { return query_combat_mapps("vars", "tripped"); }
-int query_temporary_blinded() { return query_combat_mapps("static_vars", "blinded"); }
+int query_temporary_blinded()
+{
+    if(this_object()->true_seeing())
+        return 0;
+    
+    return query_combat_mapps("static_vars", "blinded");
+}
 int query_blindfolded() { return query_combat_mapps("vars", "blindfolded"); }
 int query_blind() { return (query_combat_mapps("static vars", "blinded") + query_combat_mapps("vars", "blindfolded")); }
 int query_bound() { return query_combat_mapps("vars", "bound"); }
