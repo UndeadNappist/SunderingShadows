@@ -48,7 +48,7 @@ int preSpell()
 spell_effect(int prof)
 {
     object mon, oldenv, * foes, * oldattackers, foe;
-    int i, chooser, num, num2, numfoes, randnum, nummon, timestart;
+    int i, chooser, num, num2, numfoes, randnum, nummon, timestart, duration;
 
     if (!objectp(caster)) {
         dest_effect();
@@ -142,7 +142,11 @@ spell_effect(int prof)
     addSpellToCaster();
     spell_successful();
     num = 0;
-    call_out("check", 1, ({ num, (2 + clevel) * ROUND_LENGTH, caster, foes }));
+    spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH + 300;
+    duration = time() + spell_duration;
+    set_end_time();
+    //call_out("check", 1, ({ num, (2 + clevel) * ROUND_LENGTH, caster, foes }));
+    call_out("dest_effect", duration);
 }
 
 int check(mixed* args)

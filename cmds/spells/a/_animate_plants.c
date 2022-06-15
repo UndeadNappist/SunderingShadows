@@ -101,6 +101,10 @@ spell_effect(int prof)
 
     addSpellToCaster();
     spell_successful();
+    spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH + 300;
+    duration = time() + spell_duration;
+    set_end_time();
+    call_out("dest_effect", duration);
 
     check();
 }
@@ -152,6 +156,8 @@ void check()
 void dest_effect()
 {
     int i;
+    
+    remove_call_out("check");
 
     if(objectp(caster))
     {
