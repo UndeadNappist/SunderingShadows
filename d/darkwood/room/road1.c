@@ -34,7 +34,7 @@ THORN
                 "south" : "/d/darkwood/room/road2",
                 "west" : "/d/shadow/room/village/path16",
            ]));
-    set_door("gate", "/d/shadow/room/city/southgate","north","xxxyyy");
+    set_door("gate", "/d/shadow/city/room/southgate","north","xxxyyy");
     set_lock_description("gate","lock","This is a huge bar across the giant door.");
     set_door_description("gate","These are two huge solid wooden doors that come together in the middle. They are bound together with giant dwarven forged iron bands.");
     lock_difficulty("gate",-2000,"lock");
