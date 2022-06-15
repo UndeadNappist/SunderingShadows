@@ -15,6 +15,7 @@ void create() {
     set_description("This spell will cover the caster's skin in a layer of granite, reducing the damage he takes with "
 "each hit.  The higher the level the caster, the more damage will be resisted.  The spell also renders the caster immune "
 "to poison."); //This covers premonition from srds for druids
+    set_bonus_type("body");
     set_verbal_comp();
 	set_helpful_spell(1);
 }

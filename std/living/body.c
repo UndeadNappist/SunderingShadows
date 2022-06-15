@@ -14,6 +14,7 @@
 //#define SIZEDTYPES ({"chain","clothing","leather","armour"})
 //#define MULTIPLE_WEAR ({"clothing","jewelry", "sheath"})
 //#define PK_DAMAGE_PERCENTAGE 100
+#define MAX_RESIST_PERCENT 110
 
 inherit CONTAINER;
 
@@ -1067,6 +1068,8 @@ int query_resistance_percent(string res)
     //Mage is invulnerable for duration of prismatic sphere
     if(TO->query_property("prismatic sphere"))
         mod = 100;
+    
+    mod = mod > MAX_RESIST_PERCENT ? MAX_RESIST_PERCENT : mod;
 
     return resistances["resistance percents"][res] + mod;
 }

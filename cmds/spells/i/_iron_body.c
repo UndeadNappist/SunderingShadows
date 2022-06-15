@@ -17,6 +17,7 @@ void create() {
     set_description("By using this power, the caster lends some of his psychic energy or arcane spellcraft to "
 "protect himself. It causes the caster to gain a strong resistance to physical attacks, as well as immunity "
 "to most standard poisons. It does not work together with stoneskin.");
+    set_bonus_type("body");
     set_verbal_comp();
     set_somatic_comp();
     set_components(([

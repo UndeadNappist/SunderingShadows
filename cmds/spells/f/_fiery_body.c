@@ -17,7 +17,7 @@ void effect(int direction)
     }
 
     caster->add_stat_bonus("dexterity", 7 * direction);
-    caster->set_resistance_percent("fire", 133 * direction);
+    caster->set_resistance_percent("fire", 110 * direction);
     caster->set_resistance_percent("acid", 50 * direction);
     caster->set_resistance_percent("electricity", 50 * direction);
     caster->set_resistance_percent("cold", -50 * direction);
@@ -32,9 +32,10 @@ void create()
     set_spell_level(([ "mage" : 9, "oracle" : 9, "warlock" : 4, "cleric" : 9, "druid" : 9 ]));
     set_mystery("flame");
     set_domains("fire");
+    set_bonus_type("body");
     set_spell_sphere("alteration");
     set_syntax("cast CLASS fiery body");
-    set_damage_desc("levitating, 133% resistance to fire, 50% to acid and electricity, -50% to cold, 6 dex bonus");
+    set_damage_desc("levitating, 110% resistance to fire, 50% to acid and electricity, -50% to cold, 6 dex bonus");
     set_description("This spell transforms your body into living flame. You and your equipment are immune to fire damage. For every three fire damage point taken you're healed one point. You ignore half of electricity and acid damage. You gain six dexterity bonus and ability to fly. You take half more damage from cold.");
     set_verbal_comp();
     set_somatic_comp();

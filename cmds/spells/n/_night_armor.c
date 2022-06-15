@@ -16,6 +16,7 @@ void create() {
     set_syntax("cast CLASS night armor on TARGET");
     set_damage_desc("10 damage, cold and silver resistance");
     set_description("You entwine some of the energy from shadow plane into your target, strengthening their body. This spell won't work together with iron body or stone skin family of spells.");
+    set_bonus_type("body");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
