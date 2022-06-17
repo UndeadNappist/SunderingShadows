@@ -61,6 +61,7 @@ void create() {
 
 set_exits(([
       "south":"/d/player_houses/silesse/beach1.c",
+      "cave" : "/d/player_houses/silesse/cave",
 ]));
 
   set_smell("default","You smell the salty air of the ocean.");
@@ -68,7 +69,7 @@ set_exits(([
 }
 
 
-void reset(){
+/*void reset(){
    ::reset();
    if((string)TO->query_exit("cave") == "/d/player_houses/silesse/cave"){
       tell_room(TO,"%^RESET%^%^GREEN%^The vines fall back into place on the %^BOLD%^%^BLACK%^cliff face%^RESET%^%^GREEN%^,"
@@ -102,4 +103,5 @@ void set_vine_closed(){
 " concealing the %^BOLD%^%^BLACK%^dark entrance %^RESET%^%^GREEN%^to the %^BOLD%^%^BLACK%^cave %^RESET%^%^GREEN%^once again.");
    remove_exit("cave");
    return;
-}
+}*/
+
