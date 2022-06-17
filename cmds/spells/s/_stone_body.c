@@ -28,10 +28,12 @@ string query_cast_string() {
 }
 
 int preSpell() {
+    /*
     if(caster->query_stoneSkinned() || caster->query_property("iron body")){
         tell_object(caster,"You are already protected by a similar effect.");
         return 0;
     }
+    */
     return 1;
 }
 
