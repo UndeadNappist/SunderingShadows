@@ -931,10 +931,10 @@ int query_resistance_percent(string res)
             mod += -15;
     }
     
-    if(this_object()->query_race() == "devil")
+    if(this_object()->query_race() == "devil" || this_object()->query_race() == "imp")
     {
         if(res == "fire")
-            mod += 50;
+            mod += 100;
     }
 
     if(FEATS_D->usable_feat(TO, "perfection"))

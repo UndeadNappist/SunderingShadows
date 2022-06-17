@@ -581,7 +581,7 @@ mixed query_property(string prop)
         }
         if (TO->query_race() == "shade" || this_object()->is_shade()) {
             num -= min( ({ 0, (total_light(environment(this_object())) - 2) / 2 }) );
-        } else if (TO->query_race() == "troll") {
+        } else if (TO->query_race() == "troll" || this_object()->query_race() == "imp") {
             num += 2;
         }
         else if(this_object()->query_race() == "ogre-mage")
