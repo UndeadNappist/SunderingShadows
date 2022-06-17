@@ -82,7 +82,7 @@ int wieldme()
 		tell_object(ETO,"By attempting to wield a weapon that is not yours you"+
 		" bring the icey wrath of Auril down upon you!");
 		set_property("magic",1);
-		ETO->do_damage("torso",random(50)+75);
+        ETO->cause_typed_damage(ETO, "torso", random(50) + 75, "cold");
 		ETO->add_attacker(TO);
 		ETO->continue_attack();
 		ETO->remove_attacker(TO);
@@ -104,7 +104,7 @@ int wieldme()
 		tell_object(ETO,"%^BLUE%^The sword is cold to your touch"+
 		" and gripping it hurts you.");
 		set_property("magic",1);
-		ETO->do_damage("torso",random(8)+1);
+        ETO->cause_typed_damage(ETO, "torso", random(8) + 1, "cold");
 		ETO->add_attacker(TO);
 		ETO->continue_attack();
 		ETO->remove_attacker(TO);
@@ -148,7 +148,7 @@ int hitme(object targ)
 			tell_room(environment(ETO),"%^BOLD%^%^BLUE%^"+targ->query_cap_name()+""+
 			" turns a bluish shade as "+ETO->query_cap_name()+"'s"+
 			" cutlass bites into "+targ->query_subjective()+".",({ETO,targ}));
-			targ->do_damage(random(8)+5);
+            targ->cause_typed_damage(targ, targ->return_target_limb(), random(8) + 5, "cold");
 			return 1;
 		}
 		else {
@@ -164,7 +164,7 @@ int hitme(object targ)
 			" cutlass bites into "+targ->query_objective()+", but"+
 			" "+targ->query_subjective()+" smiles and seems"+
 			" unharmed.",({ETO,targ}));
-			targ->do_damage("torso",-(random(10)+1));
+            targ->cause_typed_damage(targ, "torso", random(10) + 1, "positive");
 			return 1;
 		}
 	}
@@ -177,7 +177,7 @@ int hitme(object targ)
 				" at you, freezing you to the core.");
 				tell_room(environment(ETO),"%^BOLD%^Chill winds arise"+
 				" and tear viciously at "+targ->query_cap_name()+".",({ETO,targ}));
-				targ->do_damage("torso",random(15)+5);
+                targ->cause_typed_damage(targ, "torso", random(15) + 5, "cold");
 				return 1;
 			}
 			else {
@@ -190,6 +190,7 @@ int hitme(object targ)
 				" winds arise and enfold "+targ->query_cap_name()+","+
 				" gently caressing "+targ->query_objective()+".",({ETO,targ}));
 				targ->do_damage("torso",-(random(15)+1));
+                targ->cause_typed_damage(targ, "torso", random(15) + 1, "positive");
 				return 1;
 			}
 		}
@@ -207,7 +208,7 @@ int hitme(object targ)
 						tell_room(environment(ETO),"%^BOLD%^Hale"+
 						" pours down from the sky, strangely it only"+
 						" batters "+targ->query_cap_name()+".",({ETO,targ}));
-						targ->do_damage("torso",random(15)+8);
+                        targ->cause_typed_damage(targ, "torso", random(15) + 8, "cold");
 						return 1;
 					}
 				}
@@ -231,7 +232,7 @@ int hitme(object targ)
 					"Icicles begin to form on "+targ->query_cap_name()+""+
 					" as "+targ->query_subjective()+" freezes.",({ETO,targ}));
 					targ->set_paralyzed(25,"You are frozen!");
-					targ->do_damage("torso",random(20)+10);
+                    targ->cause_typed_damage(targ, "torso", random(20) + 10, "cold");
 					return 1;
 				}
 				else {
@@ -241,7 +242,7 @@ int hitme(object targ)
 					" coldness wash over you and you shiver in pain.");
 					tell_room(environment(ETO),"%^BOLD%^%^CYAN%^"+targ->query_cap_name()+""+
 					" shivers from the incredible cold.",({ETO,targ}));
-					targ->do_damage("torso",random(20)+10);
+					targ->cause_typed_damage(targ, "torso", random(20) + 10, "cold");
 					return 1;
 				}
 			}
