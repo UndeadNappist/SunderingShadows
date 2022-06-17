@@ -879,6 +879,17 @@ int display_is_known(string feat, object ob)
     return usable_feat(ob, feat);
 }
 
+int display_is_not_known(string feat, object ob)
+{
+    if(!objectp(ob) || !stringp(feat))
+        return 0;
+    
+    if(!usable_feat(ob, feat))
+        return 1;
+    
+    return 0;
+}
+
 int filter_feats(object ob, string feat)
 {
     object obj;
@@ -1696,6 +1707,7 @@ void display_feats(object ob,object targ, string mytype)
             //added by saide to allow a player to get only
             //a list of feats they are allowed to take
             if (mytype == "allowed") {
+                temp = filter_array(temp, "display_is_not_known", this_object(), targ);
                 temp = filter_array(temp, "display_meets_requirements", TO, targ);
             }
             if (mytype == "active") {
