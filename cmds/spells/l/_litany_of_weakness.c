@@ -14,7 +14,7 @@ void create()
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS litany of weakness TARGET");
     set_damage_desc("fatigue");
-    set_description("Your litany proclaims your target weak, sapping its strength. The target is fatigued for 3 rounds. While subject to this spell, the target cannot be the target of another spell that has the word 'litany' in the title..");
+    set_description("Your litany proclaims your target weak, sapping its strength. The target is fatigued for 3 rounds. While subject to this spell, the target cannot be the target of another spell that has the word 'litany' in the title.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);

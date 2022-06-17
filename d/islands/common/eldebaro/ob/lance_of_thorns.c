@@ -77,15 +77,15 @@ int check(object targ)
     switch(random(10))
     {
         case 0..8:
-            tell_object(ETO, "%^BOLD%^%^GREEN%^You %^BOLD%^%^RED%^IMB%^BOLD%^%^BLACK%^E%^BOLD%^%^RED%^D%^BOLD%^%^GREEN%^"+
+            tell_object(ETO, "%^BOLD%^%^GREEN%^You %^BOLD%^%^RED%^EMB%^BOLD%^%^BLACK%^E%^BOLD%^%^RED%^D%^BOLD%^%^GREEN%^"+
             " your lance deep into "+targ->QCN+"%^BOLD%^%^GREEN%^'s torso and %^BOLD%^%^YELLOW%^TWIST%^BOLD%^%^GREEN%^"+
             " the thorns around inside as "+targ->QS+" %^BOLD%^%^RED%^SCREAMS%^BOLD%^%^GREEN%^ in %^BOLD%^%^BLACK%^PAIN%^BOLD%^%^GREEN%^!%^RESET%^");
     
-            tell_object(targ, ETOQCN+"%^BOLD%^%^GREEN%^ %^BOLD%^%^RED%^IMB%^BOLD%^%^BLACK%^E%^BOLD%^%^RED%^DS%^BOLD%^%^GREEN%^"+
+            tell_object(targ, ETOQCN+"%^BOLD%^%^GREEN%^ %^BOLD%^%^RED%^EMB%^BOLD%^%^BLACK%^E%^BOLD%^%^RED%^DS%^BOLD%^%^GREEN%^"+
             " "+ETO->QP+" lance deep into your torso and %^BOLD%^%^YELLOW%^TWISTS%^BOLD%^%^GREEN%^"+
             " the thorns around inside!! You %^BOLD%^%^RED%^SCREAM%^BOLD%^%^GREEN%^ in %^BOLD%^%^BLACK%^PAIN%^BOLD%^%^GREEN%^!%^RESET%^");
     
-            tell_room(EETO, ETOQCN+"%^BOLD%^%^GREEN%^ %^BOLD%^%^RED%^IMB%^BOLD%^%^BLACK%^E%^BOLD%^%^RED%^DS%^BOLD%^%^GREEN%^"+
+            tell_room(EETO, ETOQCN+"%^BOLD%^%^GREEN%^ %^BOLD%^%^RED%^EMB%^BOLD%^%^BLACK%^E%^BOLD%^%^RED%^DS%^BOLD%^%^GREEN%^"+
             " "+ETO->QP+" lance deep into "+targ->QCN+"%^BOLD%^%^GREEN%^'s torso and %^BOLD%^%^YELLOW%^TWISTS%^BOLD%^%^GREEN%^"+
             " the thorns around inside as "+targ->QS+" %^BOLD%^%^RED%^SCREAMS%^BOLD%^%^GREEN%^ in %^BOLD%^%^BLACK%^PAIN%^BOLD%^%^GREEN%^!%^RESET%^", ({ETO, targ}));
             if(is_undead) return roll_dice(2,20);
