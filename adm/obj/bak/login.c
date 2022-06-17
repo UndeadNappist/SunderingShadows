@@ -343,12 +343,16 @@ protected void ansi_test(string str) {
         __Player->reset_terminal();
     }
     __Player->set_gender("other");
-    message("logon", "Do you play with a screen reader? [y/n]: ", this_object());
-    input_to("enter_reader");
+    message("logon", sprintf("
+If you wish to be able to restore your password, enter your email. You
+can later change this setting with <chfn> command.
+Your email address: ", mud_name()), this_object());
+    input_to("enter_email");
     return;
 
 }
 
+/*
 protected void enter_reader(string str)
 {
     str = capitalize(str);
@@ -361,7 +365,7 @@ protected void enter_reader(string str)
         input_to("enter_reader");
         return;
     }
-    if(str == "Y")
+    if(str == "Y)
     {
         message("logon", "\nScreen Reader support turned on. Use 'set reader off' to turn it off later in the game.\n", this_object());
         __Player->set("reader", 1);
@@ -377,6 +381,7 @@ protected void enter_reader(string str)
     input_to("enter_email");
     return;
 }
+*/
 
 protected void enter_email(string str) {
     string a, b;
