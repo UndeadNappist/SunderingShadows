@@ -4221,7 +4221,8 @@ void help()
         quickname = MAGIC_D->query_index_row(spell_name)["quick"];
     }
 
-    write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + (quickname ? (" (" + quickname + ")") : ""));
+    //write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + (quickname ? (" (" + quickname + ")") : ""));
+    write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + "%^RESET%^");
     classkeys = keys(spell_levels);
 
     if (!sizeof(classkeys)) {
