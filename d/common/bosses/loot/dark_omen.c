@@ -19,7 +19,7 @@ void create()
 {
     ::create();
     
-    set_name("ring");
+    set_name("dark omen");
     set_id( ({ "ring", "omen", "dark omen", "dark ring" }) );
     set_short("");
     set_obvious_short("");
@@ -27,7 +27,6 @@ void create()
     set_lore("");
     set_property("lore difficulty", 40);
     set_property("id difficulty", 40);
-    set_ac(0);
     set_value(10000);
     set_flag_required("boss avatar");
     set_property("enchantment", 7);

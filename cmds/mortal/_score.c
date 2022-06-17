@@ -14,7 +14,7 @@ string reader_output(object targ)
     
     race_var = targ->query_race();
     sub_race = targ->query("subrace");
-    strlen(sub_race) && race_var = strsrch(sub_race, race_var) ? sub_race : sub_race + " " + race_var;
+    strlen(sub_race) && race_var = strsrch(sub_race, race_var) < 0 ? sub_race : sub_race + " " + race_var;
     template = targ->query_acquired_template();
     race_var = strlen(template) ? template + " " + race_var : race_var;
     shape = targ->query_property("shapeshifted");
