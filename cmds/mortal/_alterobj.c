@@ -41,9 +41,11 @@ int cmd_alterobj(string str) {
        if(!ob->is_armor() && !ob->is_weapon() && !ob->is_instrument() && !ob->is_carving() && !ob->is_container())
 	 return notify_fail("You can only alter weapons, armor, clothing, jewelry, containers, or instruments.\n");
        percent = do_nwps(ob);
-       if(!percent) {
+       if(!percent)
+       {
          TP->remove_property("working");
-         return notify_fail("For some reason alterobj has not picked up an appropriate craft skill. Please notify an imm and tell them this message.\n");
+         //return notify_fail("For some reason alterobj has not picked up an appropriate craft skill. Please notify an imm and tell them this message.\n");
+         return notify_fail("For some reason you can't figure out how to alter this object.\n");
        }
 //       tell_room(ETP,"Pulling up percentage of "+percent+".");
        tell_room(ETP, TPQCN+" begins adding embellishments to "+ob->query_short()+".", TP);
