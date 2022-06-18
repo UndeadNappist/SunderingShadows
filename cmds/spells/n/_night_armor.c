@@ -34,11 +34,13 @@ int preSpell()
         tell_object(caster, "You must specify a target!");
         return 0;
     }
+    /*
     if(target->query_stoneSkinned() || target->query_property("iron body"))
     {
         tell_object(caster,"That target already has protection of this nature!");
         return 0;
     }
+    */
     return 1;
 }
 

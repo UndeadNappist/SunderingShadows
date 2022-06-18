@@ -60,11 +60,13 @@ void create()
 
 int preSpell()
 {
+    /*
    if(caster->query_stoneSkinned() || caster->query_property("iron body") || caster->query_property("form of doom") || caster->query_property("fiery body"))
    {
       tell_object(caster,"You already have protection of this nature!");
       return 0;
    }
+   */
 
    return 1;
 }

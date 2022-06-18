@@ -100,7 +100,7 @@ void dest_effect() {
       tell_room(environment(target),"%^BOLD%^The armor surrounding "+target->QCN+" loses its form and falls apart.",target);
       tell_object(target,"%^BOLD%^The force protecting you breaks apart, leaving you vulnerable once again.");
       target->set_property("damage resistance",-10);
-      target->set_property("iron body",-1);
+      //target->set_property("iron body",-1);
     }
     ::dest_effect();
     if(objectp(TO)) TO->remove();
