@@ -121,7 +121,7 @@ mapping monster_stat_rolls()
 
 int size()
 {
-    return 2;
+    return 1;
 }
 
 string* limbs()
