@@ -67,10 +67,6 @@ $R with long hair
 
     A human with long hair, if you are a human.
 
-$SR with blue hair
-
-    A water genasi with blue hair, if your subrace is water genasi.
-
 %^CYAN%^SEE ALSO%^RESET%^
 
 describe, who, colors
