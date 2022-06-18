@@ -4550,14 +4550,16 @@ string getWholeDescriptivePhrase(){
   }
   if(strsrch(phrase,"$R") == -1)
   {
+      /*
      if( (strsrch(phrase,"$SR") != -1) && query("subrace") !=0)
      {
         phrase = phrase;
      }
-     else
-     {
+     */
+     //else
+     //{
         phrase = phrase+" $R";
-     }
+     //}
   }
   str = replace_string(phrase,"$B",(query_body_type()==0?"":query_body_type()));
   str = replace_string(str,"$E",((query_eye_color()==0)?"":query_eye_color()));
