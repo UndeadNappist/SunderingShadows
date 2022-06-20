@@ -734,6 +734,7 @@ mapping query_mastered_base()
 mapping query_mastered_bonus()
 {
     mapping tmp = ([]);
+    string *bonus;
 
     if (TO->is_class("psion")) {
         string mydis = (string)TO->query_discipline();
@@ -802,9 +803,22 @@ mapping query_mastered_bonus()
         }
     }
     
-    if(sizeof(this_object()->query_property("bonus_mastered")))
+    if(sizeof(bonus = this_object()->query_property("bonus_mastered")))
     {
+        bonus = distinct_array(bonus);
         
+        if(this_object()->is_class("bard"))
+            tmp["bard"] += bonus;
+        if(this_object()->is_class("magus"))
+            tmp["magus"] += bonus;
+        if(this_object()->is_class("inquisitor"))
+            tmp["magus"] += bonus;
+        if(this_object()->is_class("oracle"))
+            tmp["oracle"] += bonus;
+        if(this_object()->is_class("sorcerer"))
+            tmp["sorcerer"] += bonus;
+        if(this_object()->is_class("warlock"))
+            tmp["warlock"] += bonus;
     }
 
     if (TO->is_class("psywarrior")) {
