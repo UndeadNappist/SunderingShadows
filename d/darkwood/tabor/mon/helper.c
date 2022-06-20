@@ -54,7 +54,7 @@ void reply_func(string msg, object player){
         force_me("emoteat cynthia %^CRST%^%^RESET%^%^C138%^$M glances up from her knitting to look at you.%^CRST%^");
         if(player->query_level() > 15){
             force_me("say Hello dear. I don't think I have any %^C153%^tips%^CRST%^ an accomplished adventurer like you don't already know.");
-            force_me("emoteat cynthia %^CRST%^%^RESET%^%^C138%^$Mat cynthia %^CRST%^%^RESET%^%^C138%^$M smiles affably.%^CRST%^");
+            force_me("emoteat cynthia %^CRST%^%^RESET%^%^C138%^$M smiles affably.%^CRST%^");
             return;
         }
         force_me("say Hello dear. My name is Cynthia, but everybody calls me grandma. You may not believe me, but I once was an adventurer like you!");
