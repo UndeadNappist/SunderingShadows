@@ -18,7 +18,7 @@ void create() {
     set_damage_desc("cold, 2 AC");
     set_bonus_type("deflection");
     set_syntax("cast CLASS ice shield");
-    set_description("This spell will protect the caster in a field of bitter cold actic air.  It gives a slight bonus to "
+    set_description("This spell will protect the caster in a field of bitter cold arctic air.  It gives a slight bonus to "
 "the caster's armor, additionally, any enemies attacking the caster must make a saving throw or suffer damage from the "
 "bitter cold.");
     set_verbal_comp();
@@ -99,7 +99,7 @@ void dest_effect(){
         tell_object(caster,"%^BOLD%^%^CYAN%^The shield of bitter cold air fades away, leaving "
             "you vulnerable once again.");
         tell_room(environment(caster),"%^BOLD%^%^CYAN%^The shield of bitter cold air surrounding "
-            ""+caster->QCN+" fades away, leaving "+caster->QP+" vulnerable once "
+            ""+caster->QCN+" fades away, leaving "+caster->QO+" vulnerable once "
             "again.",caster);
         //caster->remove_property("ice shield");
         caster->add_ac_bonus(-2);
