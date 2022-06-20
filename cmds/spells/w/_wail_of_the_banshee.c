@@ -24,7 +24,7 @@ void create()
 
 string query_cast_string()
 {
-    return "%^BLUE%^" + caster->QCN + " starts to chant in fell tongues, and a feeling of otherwordly horror fills the area.";
+    return "%^BLUE%^" + caster->QCN + " starts to chant in fell tongues, and a feeling of otherworldly horror fills the area.";
 }
 
 void spell_effect(int prof)
@@ -49,7 +49,7 @@ void spell_effect(int prof)
                 continue;
             }
             tell_object(foe, "%^BOLD%^%^BLUE%^You scream as your soul is carved out from your body!");
-            tell_room(place, "%^BOLD%^%^BLUE%^" + foe->QCN + " screams as " + foe->QP + " soul is carved out from their body!", foe);
+            tell_room(place, "%^BOLD%^%^BLUE%^"+foe->QCN+" screams as "+foe->QP+" soul is carved out from "+foe->QP+" body!", foe);
             damage_targ(foe, foe->return_target_limb(), foe->query_max_hp() * 2, "sonic");
             max -= foe->query_level();
         }

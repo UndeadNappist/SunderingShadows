@@ -14,7 +14,7 @@ set_short("%^RESET%^%^ORANGE%^A narrow underground passage%^RESET%^");
  
 set_long("%^WHITE%^A narrow underground passage%^RESET%^\n"
 "%^RESET%^%^ORANGE%^This narrow passage cuts its way under the "
-"surface of the Yniam Planes toward the Charu Mountains.  All around you "
+"surface of the Yniam Plains toward the Charu Mountains.  All around you "
 "can be seen instances of chisel and pick marks gouging into the "
 "%^WHITE%^sandstone rock%^ORANGE%^.  They mar the wall, floor and ceiling's "
 "surfaces, revealing where this passage was enlarged to allow travel along "

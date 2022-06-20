@@ -63,7 +63,7 @@ void spell_effect(int prof)
                "little resemblance to its mundane counterpart. Where leather would be "
                "fastened with rivets, this seems to simply hover together, providing "
                "protection for the wearer. Though the armor is crafted from energy, "
-               "it does still over some encumberment.");
+               "it does still offer some encumberment.");
                break;
          case "heavy": myarmor = new("/d/common/obj/armour/fullplate.c"); //May want to consider making this plate.c instead, especially at low levels
             myarmor->set_short("%^BOLD%^%^WHITE%^a s%^RESET%^h%^BOLD%^i%^RESET%^m"
@@ -74,7 +74,7 @@ void spell_effect(int prof)
                "that are contoured to fit the wearer. The typical chainmail and padding "
                "are missing, as this armor requires no help in protecting the wearer "
                "from heavy blows. Though the fullplate is lighter than its mundane "
-               "counterparts, it does still ofer some encumberment.");
+               "counterparts, it does still offer some encumberment.");
             myarmor->set_owned(caster);
             break;
          default: myarmor = new("/d/common/obj/armour/chain.c");
@@ -86,7 +86,7 @@ void spell_effect(int prof)
                "%^CYAN%^air %^RESET%^beneath it helps cushion the impact of blows, much as "
                "the traditional quilted material would. The links yield easily to blows, "
                "absorbing some of the shock. The suit of armor is lighter than its mundane "
-               "counterparts, though it does still ofer some encumberment.");
+               "counterparts, though it does still offer some encumberment.");
             break;
       }
       myarmor->add_id("energy armor");

@@ -11,7 +11,7 @@ void create() {
     feat_prereq("Mounted combat");
     feat_desc("This feat is an indication of the character's riding skill, allowing them to make attacks on foes in such a way that they can move clear of retaliatory blows before they land. This is based on the rider's athletics skill.
 
-%^BOLD%^N.B.%^RESET%^ This feat is not effective against ranged attackers, as the rider does not gain sufficient distance to out-range their attacks. 
+%^BOLD%^N.B.%^RESET%^ This feat is not effective against long ranged attackers, as the rider does not gain sufficient distance to out-range their attacks, but is still valid at a point-blank range.
 
 %^BOLD%^N.B.%^RESET%^ This feat does not work in conjunction with shot on the run, as it is effectively the same action, but on horseback.");
     permanent(1);
