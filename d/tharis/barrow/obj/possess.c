@@ -28,7 +28,7 @@ int no_can_do() {
   if ( !me ) return 1;
   message ( "my_action",
       "%^RESET%^%^BOLD%^You are currently possessed and "
-      "are uncapable of doing anything like that!%^RESET%^"
+      "are incapable of doing anything like that!%^RESET%^"
   ,me );
   message ( "other_action",
       "%^RESET%^%^BOLD%^"+me->query_cap_name()+""
@@ -49,7 +49,7 @@ void possess ( object me ) {
  	"%^MAGENTA%^You suddenly feel an evil seep into your body.%^RESET%^"
     ,me);
     message("other_action",
-	"%^MAGENTA%^"+me->query_cap_name()+" cackles in a low, evil "
+	"%^MAGENTA%^"+me->query_cap_name()+" cackles in a low, evil, "
 	"and possessed manner.%^RESET%^"
     ,environment(me),me);
     for (x=1; x<=amt; x++) {
@@ -66,12 +66,12 @@ void possess_fun(object ob) {
     me = environment( TO );
     if ( !ob ) return;
     message("my_action",
-	"%^RED%^You feel the will of Lloth control your body!"
+	"%^RED%^You feel an alien will take control of your body!"
 	"%^RESET%^"
     ,ob);
     ob->do_damage("head",roll_dice(1,4));
     for(y=1;y<4;y++) {
-        write("%^CYAN%^Lloth forces you to move!%^RESET%^");
+        write("%^CYAN%^Something forces you to move!%^RESET%^");
         exit = environment(TP)->query_destinations();
         z = random(sizeof(exit));
         if (sizeof(exit)>0){
@@ -86,7 +86,7 @@ void possess_fun(object ob) {
         if((living(sucker)) && sucker !=(me) && sucker->query_level() < 400) {
             if(!sucker->kill_ob(me,0)) {
                 me->kill_ob(sucker,0);
-                write("%^BLUE%^Lloth forces you to attack "
+                write("%^BLUE%^Something forces you to attack "
                       +sucker->query_cap_name()+"!%^RESET%^"
                 );
             }
@@ -103,7 +103,7 @@ void removal(object ob) {
 	"of your body.%^RESET%^"
     ,ob );
     message ( "my_action",
-	"%^BOLD%^%^RED%^A shadow is emerges from "+ob->query_cap_name()+" "
+	"%^BOLD%^%^RED%^A shadow emerges from "+ob->query_cap_name()+"'s "
 	"body and dissolves into the ground.%^RESET%^"
     ,environment ( ob ), ob );
     TO -> remove();
