@@ -58,6 +58,7 @@ void spell_effect(int prof)
         //caster->set_property("raised resistance", 1);
         //mrflag = 1;
     //}
+    caster->set_property("frightful_aspect", 1);
     spell_successful();
     addSpellToCaster();
     environment(caster)->addObjectToCombatCycle(TO, 1);
