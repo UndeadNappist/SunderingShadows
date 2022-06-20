@@ -10,7 +10,7 @@
 #include <daemons.h>
 
 //Hit interval instead of proc chance. Procs every 5 hits.
-#define HIT_INTERVAL 2
+#define HIT_INTERVAL 3
 
 inherit "/d/common/obj/weapon/warhammer.c";
 
@@ -39,6 +39,7 @@ void create()
     set_property("id difficulty", 40);
     set_property("able to cast", 1);
     set_property("enchantment", 7);
+    set_property("no alter", 1);
     
     set_item_bonus("positive energy resistance percent", -25);
     set_item_bonus("caster level", 3);

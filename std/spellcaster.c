@@ -801,6 +801,11 @@ mapping query_mastered_bonus()
             tmp[theclass] += ({ TO->query("expanded_knowledge_3") });
         }
     }
+    
+    if(sizeof(this_object()->query_property("bonus_mastered")))
+    {
+        
+    }
 
     if (TO->is_class("psywarrior")) {
         if (FEATS_D->usable_feat(TO, "mind over matter")) {

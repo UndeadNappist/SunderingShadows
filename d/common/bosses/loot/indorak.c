@@ -9,7 +9,7 @@
 #include <std.h>
 #include <daemons.h>
 
-//Hit interval instead of proc chance. Procs every 5 hits.
+//Hit interval instead of proc chance. Procs every 3 hits.
 #define HIT_INTERVAL 3
 
 inherit "/d/common/obj/weapon/scythe.c";
