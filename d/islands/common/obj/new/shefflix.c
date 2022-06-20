@@ -37,6 +37,7 @@ void create()
         "polute the human world.");
 
     set_property("no curse",1);
+    set_property("no alter", 1);
     set_property("enchantment",7);
 
     set_item_bonus("attack bonus",7);

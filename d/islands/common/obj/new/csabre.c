@@ -45,6 +45,7 @@ void create()
              "it on to his bretheren.");
 
     set_property("no curse", 1);
+    set_property("no alter", 1);
     set_property("enchantment", 7);
 
     counter = 0;

@@ -24,6 +24,7 @@ void create()
         " It gives the impression of a weapon that can cut through bone as if it was butter.");
 
     set_property("no curse",1);
+    set_property("no alter", 1);
     set_property("enchantment",7);
 
     set_item_bonus("armor bonus",5);

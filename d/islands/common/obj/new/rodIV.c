@@ -57,6 +57,7 @@ void create()
     set_property("able to cast", 1);
 
     set_property("no curse", 1);
+    set_property("no alter", 1);
     set_property("enchantment", 7);
 
     set_wield((: TO, "wieldme" :));

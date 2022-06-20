@@ -36,7 +36,7 @@ create()
     set_value(375000);
 
     set_property("no curse",1);
-
+    set_property("no alter", 1);
 
     set_item_bonus("damage bonus",7);
     set_item_bonus("will",6);

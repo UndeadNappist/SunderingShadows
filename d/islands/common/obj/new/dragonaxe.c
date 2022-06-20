@@ -28,6 +28,7 @@ void create()
         " as if it had just been polished.");
 
     set_property("no curse", 1);
+    set_property("no alter", 1);
     set_property("enchantment", 7);
 
     set_property("lore difficulty", 15);

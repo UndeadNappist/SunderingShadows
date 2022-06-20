@@ -56,6 +56,7 @@ void create()
              "ture of what truly happened, but them.");
 
     set_property("no curse",1);
+    set_property("no alter", 1);
     set_property("enchantment",7);
 
     set_item_bonus("damage bonus",7);

@@ -19,6 +19,7 @@ void create()
     set_read("%^RESET%^%^GREEN%^You will be but a mortal, not a god, in the hands of the one that slays you.%^RESET%^");
     set("value", 150000);
     set_property("no curse", 1);
+    set_property("no alter", 1);
     set_property("enchantment", 7);
     set_item_bonus("attack bonus", 7);
     set_item_bonus("damage bonus", 7);

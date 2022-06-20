@@ -55,6 +55,7 @@ void create() {
    set_item_bonus("attack bonus",3);
    set_item_bonus("damage bonus",3);
    set_item_bonus("sight bonus",3);
+   set_property("no alter", 1);
    set_weapon_prof("exotic");
    glowing = 0;
    owned = 0;
