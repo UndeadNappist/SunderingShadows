@@ -52,7 +52,7 @@ void execute_attack()
         return;
     }
 
-    if (!objectp(caster) || !objectp(place) || !present(caster, place) || counter < 0) {
+    if (!objectp(caster) || !objectp(place) || !present(caster, place) || counter < 0 || place != environment(caster)) {
         dest_effect();
         return;
     }
