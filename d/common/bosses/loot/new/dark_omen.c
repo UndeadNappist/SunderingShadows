@@ -30,7 +30,7 @@ void create()
     set_value(10000);
     set_flag_required("boss avatar");
     //set_property("enchantment", 7);
-    set_heart_beat(1);
+    //set_heart_beat(1);
     set_wear((:this_object(),"wear_fun":));
     set_remove( (: this_object(),"remove_fun" :) );
 }
