@@ -20,6 +20,8 @@ void create(){
   set_remove((:TO,"removeit":));
 }
 
+int is_metal() { return 0; }
+
 void init(){
    ::init();
    if(stringp(owner)) return;

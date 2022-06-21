@@ -64,7 +64,7 @@ void spell_effect(int prof)
     mywpn = new("/d/magic/obj/psion_weapon");
     mywpn->make_me(""+arg+"");
     mywpn->move(caster);
-    
+    addSpelltoCaster();
     caster->remove_paralyzed();
     caster->force_me("wield weapon");
     spell_successful();
