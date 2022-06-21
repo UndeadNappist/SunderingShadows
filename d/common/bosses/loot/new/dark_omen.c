@@ -52,6 +52,14 @@ int wear_fun()
         owner = this_player()->query_name();
         tell_object(this_player(), "The dark ring binds itself with your soul!");
     }
+    else
+    {
+        if(owner != this_player()->query_name())
+        {
+            tell_object(this_player(), "This is not your ring!");
+            return 0;
+        }
+    }
     
     this_player()->set_property("bonus_mastered", ({ "fear", "ray of exhaustion", "waves of fatigue", "ray of enfeeblement", "cause fear" }));
     tell_object(this_player(), "The ring slides onto your finger, lending you its dark power!");
