@@ -37,7 +37,7 @@ int extra_wear(){
    tell_object(ETO,"You cannot master the magic in the armor, "+
       "and it refuses to be worn.");
    tell_room(EETO,""+ETOQCN+" seems depressed as "+ETO->QP+" crystalline "+
-      "breastplate resists "+ETO->QP+" attemps to wear it.",ETO);
+      "breastplate resists "+ETO->QP+" attempts to wear it.",ETO);
    return 0;
   }
   if((string)ETO->query_name() !=OWNER){
