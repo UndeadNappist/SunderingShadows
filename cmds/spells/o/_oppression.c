@@ -43,6 +43,17 @@ string query_cast_string()
     return "display";
 }
 
+int preSpell()
+{
+    if(caster->query_property("oppression"))
+    {
+        tell_object(caster, "You already have an aura of oppression up.");
+        return 0;
+    }
+    
+    return 1;
+}
+
 void spell_effect()
 {
     int duration;
@@ -54,6 +65,7 @@ void spell_effect()
     
     caster->set_property("spelled", ({ this_object() }));
     caster->set_property("added short",({" %^C063%^(o%^C069%^p%^C075%^p%^C081%^r%^C075%^e%^C069%^s%^C063%^sive a%^C069%^u%^C075%^r%^C063%^a)%^CRST%^"}));
+    caster->set_property("oppression", 1);
     addSpellToCaster();
     counter = 8 * clevel;
     spell_duration = counter * ROUND_LENGTH;
@@ -150,6 +162,7 @@ void dest_effect()
         tell_room(environment(caster), "%^C081%^" + caster->query_cap_name() + "'s oppressive aura dissipates.%^CRST%^", caster);
         tell_object(caster, "%^C081%^Your oppressive aura dissipates.%^CRST%^");
         caster->remove_property_value("added short",({" %^C063%^(o%^C069%^p%^C075%^p%^C081%^r%^C075%^e%^C069%^s%^C063%^sive a%^C069%^u%^C075%^r%^C063%^a)%^CRST%^"}));
+        caster->remove_property("oppression");
     }
     ::dest_effect();
     
