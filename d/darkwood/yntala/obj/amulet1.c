@@ -23,7 +23,7 @@ void create(){
         set_item_bonus("magic resistance",1);
         set_size(-1);
         set_wear((:TO,"wearme":));
-        set_remove((:TO,"unwearme":));
+        //set_remove((:TO,"unwearme":));
 }
 int wearme(string str){
    tell_room(environment(ETO),"%^BOLD%^%^GREEN%^"+ETOQCN+" reaches up and carefully secures the amulet into place.%^RESET%^",ETO);
