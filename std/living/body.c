@@ -1017,6 +1017,10 @@ int query_resistance_percent(string res)
                     if(res == "cold")
                         mod = 100;
                     break;
+                    case "shadow":
+                    if(res == "void")
+                        mod = 100;
+                    break;
                 }
             }
         }

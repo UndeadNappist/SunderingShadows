@@ -219,6 +219,12 @@ void execute_attack()
             tell_room(place, "%^GREEN%^" + my_name + " breathes a cloud of poison at their enemies!%^RESET%^", caster);
             dam_type = "untyped";
             break;
+            
+            case "shadow":
+            tell_object(caster, "%^BLACK%^BOLD%^You breathe a stream of void energy at your enemies!%^RESET%^");
+            tell_room(place, "%^BLACK%^BOLD%^" + my_name + " breathes a stream of void energy at their enemies!%^RESET%^", caster);
+            dam_type = "void";
+            break;
 
             case "white":
             case "silver":

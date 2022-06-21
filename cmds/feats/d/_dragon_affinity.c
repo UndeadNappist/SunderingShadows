@@ -2,7 +2,7 @@
 #include <daemons.h>
 #include <dirs.h>
 
-#define VALID ({ "black", "blue", "brass", "bronze", "copper", "gold", "green", "red", "silver", "white" }) 
+#define VALID ({ "black", "blue", "brass", "bronze", "copper", "gold", "green", "red", "shadow", "silver", "white" }) 
 
 inherit FEAT;
 
