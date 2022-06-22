@@ -32,6 +32,13 @@ void init()
     ::init();
 
     add_action("leave", "leave");
+    
+    //If they're in the base room, get them out.
+    if(userp(this_player()))
+    {    
+        if(base_name(this_object()) == file_name(this_object()))
+            this_player()->move_player("/d/common/obj/daily/entrance");
+    }
 }
 
 int leave(string str)
