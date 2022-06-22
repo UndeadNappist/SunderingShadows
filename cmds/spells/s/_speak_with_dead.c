@@ -26,7 +26,6 @@ string query_cast_string()
 
 void spell_effect(int prof)
 {
-	string arg;
     string *ignored, *casterallowed, *targallowed;
 
     if(!arg)
@@ -34,9 +33,8 @@ void spell_effect(int prof)
         TO->remove();
         return;
     }
-   	 arg = lower_case(ARG);
-    if (!(who = find_player(caster->realName(arg))))
-	{
+   
+    if (!(who = find_player(caster->realName(lower_case(arg))))) {
       	tell_object(CASTER,capitalize(arg)+" cannot be found within the "+
             "land of the dead to establish a link.\n");
         TO->remove();
