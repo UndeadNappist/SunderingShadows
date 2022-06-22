@@ -33,7 +33,7 @@ void create()
 "hand with divine power that targets a specific type of enemy. This infusion has a " +
 "chance to do divine damage, based on weapon dice. The chance of this bane hitting and the " +
 "damage done increases with your Inquisitor levels. Additionally, your weapon gets an additional +2 " +
-"attack and +2 damage bonuses against the selected type.\n " +
+"attack and +2 damage bonuses against the selected type. Typing <bane> a second time will remove the enhancement.\n " +
               "%^BOLD%^You can select from the following bane enemy types: \n\n" + implode(map(valid_choices, (:" " + $1:)), "\n"));
     set_target_required(0);
 }
@@ -88,12 +88,6 @@ void execute_feat()
     }
     */
 
-    if(!arg || member_array(arg, valid_choices) < 0)
-    {
-        write("Valid bane choices are : " + implode(valid_choices, ", "));
-        return;
-    }
-
     if(sizeof(caster->query_wielded()))
         weapon = caster->query_wielded()[0];
 
@@ -106,6 +100,19 @@ void execute_feat()
     if(caster->query_property("bane weapon"))
     {
         write("Your weapon is already magically enhanced.");
+        dest_effect();
+        return;
+    }
+    
+    if(caster->cooldown("bane"))
+    {
+        tell_object(caster, "You need to wait a bit longer before re-applying bane.");
+        return;
+    }
+    
+    if(!arg || member_array(arg, valid_choices) < 0)
+    {
+        write("Valid bane choices are : " + implode(valid_choices, ", "));
         return;
     }
 
@@ -116,11 +123,12 @@ void execute_feat()
     caster->set_property("using instant feat",1);
     caster->remove_property("bane weapon");
     caster->set_property("bane weapon", ({ weapon, arg }));
+    caster->add_cooldown("bane", 30);
 
     glvl = caster->query_guild_level("inquisitor");
-    timer = (5 + (glvl / 3)) * 8;
+    //timer = (5 + (glvl / 3)) * 8;
 
-    call_out("dest_effect", timer);
+    //call_out("dest_effect", timer);
 }
 
 void execute_attack()
