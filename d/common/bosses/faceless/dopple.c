@@ -14,7 +14,7 @@ void create(){
    set_hd(60,6);
    set_level(60);
    set_mlevel("fighter", 60);
-   set_hp(3000);
+   set_hp(3500);
    set_gender("none");
    set_race("shadow");
    add_limb("whiplike whorl","",0,0,0);

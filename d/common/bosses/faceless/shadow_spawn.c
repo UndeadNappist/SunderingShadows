@@ -15,7 +15,7 @@ void create(){
    set_hd(60,6);
    set_level(60);
    set_mlevel("fighter", 60);
-   set_hp(3000);
+   set_hp(3500);
    set_base_damage_type("void");
    set_gender("none");
    set_race("shadow");
@@ -29,6 +29,7 @@ void create(){
    set_property("radiant resistance percent", -50);
    set_overall_ac(-70);
    set_hit_funcs((["whiplike whorl":(:TO,"killem":),"shadow tendril":(:TO,"killem":)]));
+   set_monster_feats( ({ "evasion", "dodge", "scramble" }) );
 }
 
 void die()
@@ -43,10 +44,13 @@ void die()
         if(!living(ob))
             continue;
         
+        if(avatarp(ob))
+            continue;
+        
         if(ob->query_name() == "puppeteer")
             continue;
         
-        ob->cause_typed_damage(ob, "head", 200, "sonic");
+        ob->cause_typed_damage(ob, "head", 175, "sonic");
     }
     
     ::die();
