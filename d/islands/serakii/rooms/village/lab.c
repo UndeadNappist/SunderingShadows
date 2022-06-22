@@ -12,7 +12,7 @@ void create() {
 
     set_name("enchantment laboratory");
     set_property("light",2);
-    set_short("%^C094%^wo%^C059%^o%^C094%^d s%^C060%^h%^C094%^op%^CRST%^");
+    set_short("%^C068%^en%^C081%^c%^C068%^h%^C087%^a%^C068%^nt%^C074%^m%^C068%^ent la%^C069%^b%^C087%^o%^C068%^r%^C075%^a%^C068%^t%^C087%^o%^C068%^ry%^CRST%^");
 set_long("This room is dominated by an %^C040%^e%^C034%^n%^C040%^ormo%^C035%^u%^C040%^s "+
 "hov%^C035%^e%^C040%^ring cryst%^C034%^a%^C040%^l%^CRST%^ "+
 "surrounded by a series of %^C247%^inscribed concentric "+

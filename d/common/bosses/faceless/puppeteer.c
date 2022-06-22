@@ -107,7 +107,7 @@ void create()
     set_hp(query_max_hp());
     set_property("add kits", 40);
     set_new_exp(75, "boss");
-    set_property("add quest", "");
+    set_property("add quest", "%^C244%^Faced the P%^C124%^u%^C160%^p%^C196%^p%^C197%^e%^C244%^teer!%^CRST%^");
     set_property("quest exp", 12000000);
     add_money("gold", random(100000) + (80000));
     add_money("platinum", random(20000) + (40000));
@@ -355,7 +355,7 @@ void spells(object room)
     {
         tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^%^BOLD%^CYAN%^Still alive are we? Perhaps a little magic to liven things up...%^RESET%^");
         tell_room(room, "%^C141%^The Puppeteer begins casting a series of dark spells!%^CRST%^"); 
-        //set_spell_chance(100);
+        //set_spell_chance(75);
         checkpoints["spells"] = 1;
     }
     
@@ -374,7 +374,7 @@ void shadows(object room)
     {
         tell_room(room, "%^YELLOW%^The Puppeteer says : %^RESET%^BOLD%^CYAN%^The shadows will become your friends, as they, so long ago, became mine...");
         tell_room(room, "%^C103%^The S%^C109%^h%^C103%^a%^C109%^d%^C103%^o%^C109%^w%^C103%^s all around you move and f%^C109%^l%^C103%^i%^C109%^t%^C103%^ and f%^C109%^e%^C103%^e%^C109%^l%^C103%^ and %^C115%^attack%^C103%^!%^CRST%^"); 
-        set_spell_chance(25);
+        set_spell_chance(35);
         checkpoints["shadows"] = 1;
     }
     
@@ -444,7 +444,7 @@ void dopple(object room)
     
     if(catch(prison = load_object("/d/common/bosses/faceless/prison_room")))
     {
-        tell_room(room, "BOSS ERROR IN LOADING ROOM. CONTACT AN IMM.");
+        //tell_room(room, "BOSS ERROR IN LOADING ROOM. CONTACT AN IMM.");
         return;
     }
     
