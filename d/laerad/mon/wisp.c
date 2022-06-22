@@ -17,7 +17,8 @@ void create(){
     set_gender("male");
     set_size(1);
     set_hd(15,30);
-    set_hp(150);
+    set_max_hp(150);
+    set_hp(query_max_hp());
     set_alignment(9);
     set_overall_ac(-8);
     set_exp(8000);
@@ -48,3 +49,12 @@ void attack(object targ){
     tell_room(ETO,"%^BOLD%^RED%^The Will o' wisp misses "+targ->query_cap_name()+" with a bolt of electricity!",targ);
     return 1;
 }
+
+// Taming DCs: Low - 10, Mid - 25, High - 40, Epic - 55
+// Types of DCs: "survival" for wild creatures (snakes, rats, stags, spiders, etc...)
+//               "spellcraft" for magical creatures (elementals, sprites, will o wisp, etc...)
+//               "dungeoneering" for constructs (clockwork creatures, golems, etc...)
+int is_tamable(){ return 1; }
+int query_tame_DC(){ return 40; }
+string query_DC_type(){ return "spellcraft"; }
+
