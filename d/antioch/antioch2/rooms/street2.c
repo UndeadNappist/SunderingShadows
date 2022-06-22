@@ -41,7 +41,7 @@ void create()
    ob = new("std/bboard");
    ob->set_name("board");
    ob->set_id(({"board","bulletin board","antioch board","Antioch board"}));
-   ob->set_board_id("union_board");
+   ob->set_board_id("antioch_board");
    ob->set_short("Arcane Bulletin Board");
    ob->set_long("This is a large board where people can discuss relevant issues about the town.");
    ob->set_max_posts(30);

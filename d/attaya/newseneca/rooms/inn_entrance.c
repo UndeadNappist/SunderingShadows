@@ -98,7 +98,7 @@ void create(){
       "border painted vibrant purple.  All manner of notices are "+
       "found tacked here, along with a %^BOLD%^list%^RESET%^ of "+
       "quest items you could read.");
-   ob->set_board_id("union_board");
+   ob->set_board_id("seneca_quests_board");
    ob->set_max_posts(50);
    ob->set_location("/d/attaya/newseneca/rooms/inn_entrance");
    set_quest_daemon("/daemon/quests_high");

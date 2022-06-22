@@ -31,9 +31,9 @@ void create() {
         ob= new("std/bboard");
         ob->set_name("board");
         ob->set_id(({"board","bulletin board"}));
-        ob->set_board_id("union_board");
+        ob->set_board_id("deku");
         ob->set_queue();
-        ob->set_max_posts(30);
+        ob->set_max_posts(50);
         //  ob->set_edit_ok(({"grayhawk","tristan","thorn","pegasus"}));
         ob->set_location("/d/deku/town/road5");
         ob->set_short("%^RESET%^%^GREEN%^Arcane Bulletin Board%^RESET%^");

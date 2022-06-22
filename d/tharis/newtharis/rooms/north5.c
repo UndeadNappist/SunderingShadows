@@ -40,9 +40,9 @@ void create(){
         ob = new("std/bboard");
         ob->set_name("board");
         ob->set_id(({"board","bulletin board"}));
-        ob->set_board_id("union_board");
+        ob->set_board_id("tharis_board");
         ob->set_queue();
-        ob->set_max_posts(30);
+        ob->set_max_posts(50);
         ob->set_location("/d/tharis/newtharis/rooms/north5");
         ob->set_short("%^RESET%^%^GREEN%^Arcane Bulletin Board%^RESET%^");
         ob->set_long("This is an aging wooden board where adventurers sometimes leave notes "

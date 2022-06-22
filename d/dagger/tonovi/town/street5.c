@@ -77,7 +77,7 @@ void create(){
     ob = new("/std/bboard");
     ob->set_name("board");
     ob->set_id( ({ "board", "bulletin board", "tonovi board", "Tonovi board" }));
-    ob->set_board_id("union_board");
+    ob->set_board_id("tonovi_board");
     ob->set_short("Arcane Notice Board");
     ob->set_long("A sturdy wooden frame supports a cork noticeboard here, "+
         "upon the outer wall of the hotel, to allow businesses to advertise "+

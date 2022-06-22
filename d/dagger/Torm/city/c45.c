@@ -37,8 +37,8 @@ void reset(){
   bboard->set_id(({"board",
   "bulltin board","a bulletin board","bulletin board on the wall","a bulletin board on the wall",
   }));
-  bboard->set_board_id("union_board");
-  bboard->set_max_posts(25);
+  bboard->set_board_id("tormcity_board");
+  bboard->set_max_posts(50);
  bboard->set_short("Arcane Bulletin Board");
   bboard->set_long("This elegantly framed bulletin board is host to the notes and remarks of the people passing through the city of Torm for other travelers and merchants.");
   }

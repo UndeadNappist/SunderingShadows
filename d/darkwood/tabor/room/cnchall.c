@@ -80,7 +80,7 @@ object ob;
   ob = new("/std/bboard");
   ob->set_name("board");
   ob->set_id( ({ "board", "bulletin board" }) );
-  ob->set_board_id("union_board");
+  ob->set_board_id("tabor_board");
   ob->set_short("%^RESET%^%^CYAN%^Arcane Bulletin Board");
   ob->set_long("This corkboard has been nailed to the wall of the "+
      "inn to allow businesses to advertise and citizens and adventurers "+
