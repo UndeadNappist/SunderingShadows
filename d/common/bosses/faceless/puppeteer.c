@@ -51,7 +51,7 @@ void create()
     ::create();
 
     set_name("puppeteer");
-    set_id(({ "puppeteer", "demigod", "shadow god" }));
+    set_id(({ "puppeteer", "demigod", "shadow god", "outsider" }));
     set_short("%^C091%^The%^C128%^ %^C097%^P%^C103%^u%^C109%^p%^C103%^p%^C097%^e%^C091%^teer%^CRST%^");
     set_long("Before you stands a creature that, by all reasoning, belongs in the Plane of Shadows. It is a mass of writhing black tentacles, seemingly formed into a ball that never seems to stop twisting and rolling in the air. It feels about itself, almost frantically, perhaps searching for the mental energies of those around it.");
     
@@ -62,7 +62,7 @@ void create()
     add_limb("mouth", "", 0, 0, 0);
     
     set_gender("neuter");
-    set_race("shadow");
+    set_race("outsider");
     set_size(2);
     set_hd(75, 9);
     set_class("oracle");
