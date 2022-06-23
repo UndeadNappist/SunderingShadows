@@ -103,7 +103,7 @@ void create()
     set_mob_magic_resistance("high");
     set_overall_ac(-70);
     set_sight_bonus(10);
-    set_max_hp(120000);
+    set_max_hp(100000);
     set_hp(query_max_hp());
     set_property("add kits", 40);
     set_new_exp(75, "boss");
@@ -179,7 +179,7 @@ void init()
     psize = sizeof(filter_array(all_living(ETO), (: userp($1) :)));
     psize = psize < 1 ? 1 : psize;
     if (psize > coreparty) {
-        set_max_hp(30000 * psize);
+        set_max_hp(25000 * psize);
         set_hp(query_max_hp());
         set_damage(16, 5 + psize);
         coreparty = psize;
@@ -323,7 +323,7 @@ void madness_check(object room, object *attackers)
     {
         tell_room(room, "%^MAGENTA%^BOLD%^The Puppeteer is emboldened by the madness it is causing!%^RESET%^");
         tell_room(room, "%^YELLOW%^MADNESS : %^CYAN%^" + madness);
-        add_hp(madness * 200);
+        add_hp(madness * 50);
     }
 }
 
