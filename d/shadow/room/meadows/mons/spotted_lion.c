@@ -25,7 +25,8 @@ void create()
     //set_level(14);
     //set_class("fighter");
     //set_mlevel("fighter",14);
-    set_hp(random(25) + 90);
+    set_max_hp(random(25) + 90);
+    set_hp(query_max_hp());
     set_new_exp(6, "normal");
     set_stats("strength", 16);
     set_damage(1, 6);
@@ -95,3 +96,12 @@ void die(object obj)
     }
     ::die(obj);
 }
+
+// Taming DCs: Low - 10, Mid - 25, High - 40, Epic - 55
+// Types of DCs: "survival" for wild creatures (snakes, rats, stags, spiders, etc...)
+//               "spellcraft" for magical creatures (elementals, sprites, will o wisp, etc...)
+//               "dungeoneering" for constructs (clockwork creatures, golems, etc...)
+int is_tamable(){ return 1; }
+int query_tame_DC(){ return 25; }
+string query_DC_type(){ return "survival"; }
+

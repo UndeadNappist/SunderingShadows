@@ -26,7 +26,8 @@ void create()
    //set_level(10);
    //set_class("fighter");
    //set_mlevel("fighter",10);
-   set_hp(random(20)+65);
+   set_max_hp(random(20)+65);
+   set_hp(query_max_hp());
    set_stats("intelligence",18);
    set_exp(275);
    set_overall_ac(6);
@@ -55,3 +56,12 @@ void create()
 int query_blinking() {
    return 1;
 }
+
+// Taming DCs: Low - 10, Mid - 25, High - 40, Epic - 55
+// Types of DCs: "survival" for wild creatures (snakes, rats, stags, spiders, etc...)
+//               "spellcraft" for magical creatures (elementals, sprites, will o wisp, etc...)
+//               "dungeoneering" for constructs (clockwork creatures, golems, etc...)
+int is_tamable(){ return 1; }
+int query_tame_DC(){ return 25; }
+string query_DC_type(){ return "survival"; }
+

@@ -24,7 +24,8 @@ void create()
    set_property("swarm",1);
    set("aggressive",15);
    set_hd(8,4);
-   set_hp(random(15)+50);
+   set_max_hp(random(15)+50);
+   set_hp(query_max_hp());
    set_overall_ac(6);
    //set_class("fighter");
    //set_mlevel("fighter",8);
@@ -65,4 +66,12 @@ void die(object obj)
    if(!random(5)) new(OBJ+"wpelt")->move(TO);
    ::die(obj);
 }
+
+// Taming DCs: Low - 10, Mid - 25, High - 40, Epic - 55
+// Types of DCs: "survival" for wild creatures (snakes, rats, stags, spiders, etc...)
+//               "spellcraft" for magical creatures (elementals, sprites, will o wisp, etc...)
+//               "dungeoneering" for constructs (clockwork creatures, golems, etc...)
+int is_tamable(){ return 1; }
+int query_tame_DC(){ return 25; }
+string query_DC_type(){ return "survival"; }
 
