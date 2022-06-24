@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------
 |                            %^YELLOW%^11%^RESET%^        %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^   |
 |            %^YELLOW%^7%^RESET%^               |       %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^   |
-|   %^YELLOW%^21%^RESET%^       |      %^YELLOW%^23%^RESET%^     / %^YELLOW%^10%^RESET%^     %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^    |
-|    \   %^YELLOW%^17%^RESET%^--|         \  /      %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^  %^YELLOW%^24%^RESET%^ |
+|   %^YELLOW%^21%^RESET%^       |      %^YELLOW%^23%^RESET%^     / %^YELLOW%^10%^RESET%^ %^BOLD%^%^CYAN%^C%^RESET%^   %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^    |
+|    \   %^YELLOW%^17%^RESET%^--|         \%^BOLD%^%^CYAN%^B%^RESET%^ /      %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^  %^YELLOW%^24%^RESET%^ |
 | %^YELLOW%^16%^RESET%^  |  |   |          |       %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^ %^YELLOW%^8%^RESET%^ %^RESET%^%^BLUE%^~~~~~~~~~%^RESET%^    |
 |  \  %^YELLOW%^20%^RESET%^  \  |--------- %^YELLOW%^6%^RESET%^    %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^   |
 |   |  |   | |       %^RESET%^%^BLUE%^      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^   |
@@ -10,7 +10,7 @@
 | %^YELLOW%^15%^RESET%^ ------- %^YELLOW%^1%^RESET%^       %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^ %^YELLOW%^9%^RESET%^ %^RESET%^%^BLUE%^    ~~~~~~~~%^RESET%^   |
 |    \  %^YELLOW%^3%^RESET%^    |%^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^  |
 |     \      |----%^YELLOW%^18%^RESET%^ %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^  |
-|     %^YELLOW%^19%^RESET%^  %^YELLOW%^22%^RESET%^-|         %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^  |
+|     %^YELLOW%^19%^RESET%^  %^YELLOW%^22%^RESET%^-|%^BOLD%^%^CYAN%^ A%^RESET%^       %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^  |
 |     /-%^YELLOW%^4%^RESET%^    |            %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^ %^YELLOW%^14%^RESET%^ %^RESET%^%^BLUE%^~~~~~~~~%^RESET%^  |
 |    /       |              %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^  |
 |   -------- %^YELLOW%^5%^RESET%^ ------- %^YELLOW%^12%^RESET%^     %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^  |
@@ -19,7 +19,7 @@
 |                                 %^RESET%^%^BLUE%^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%^RESET%^ |
 -------------------------------------------------------------------------
 
-%^BOLD%^%^MAGENTA%^ Area
+%^BOLD%^%^YELLOW%^ Area
 %^BOLD%^%^WHITE%^ 1.  %^GREEN%^Shadow
 %^BOLD%^%^WHITE%^ 2.  %^GREEN%^Desert
 %^BOLD%^%^WHITE%^ 3.  %^GREEN%^Koenig
@@ -45,4 +45,12 @@
 %^BOLD%^%^WHITE%^23.  %^GREEN%^Tonovi
 %^BOLD%^%^WHITE%^24.  %^GREEN%^Danger Continent
 
+%^BOLD%^%^CYAN%^Taverns
+
+%^BOLD%^%^WHITE%^ A.  %^GREEN%^Rhapsody
+%^BOLD%^%^WHITE%^ B.  %^GREEN%^The Scourge
+%^BOLD%^%^WHITE%^ C.  %^GREEN%^Pearl Necklace 
+
 OOC: See <rumors> for suggested areas for your level.
+
+%^BOLD%^%^CYAN%^
