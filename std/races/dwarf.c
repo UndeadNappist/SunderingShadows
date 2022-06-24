@@ -51,7 +51,7 @@ string* restricted_deities(string subrace)
     }
     switch (subrace) {
     case "duergar":
-    case "gray dwarf": return ({ "jarmila", "kreysneothosies", "eucalia", "callamir", "edea" });
+    case "gray dwarf": return ({ "jarmila", "kreysneothosies", "eucalia", "callamir", "edea" }); break;
 
     case "shield dwarf": return ({ "shar", "mask", "bane", "beshaba", "cyric", "talos" }); break;
 
