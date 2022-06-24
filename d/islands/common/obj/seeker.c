@@ -75,7 +75,8 @@ int seeker(string str)
         tell_object(TP,"You can't feel anything from the cloak, without it wrapped about you.");
         return 1;
     }
-    if(WAIT_TIME > (time() - used_time))
+    //if(WAIT_TIME > (time() - used_time))
+    if(this_player()->cooldown("seeker cloak"))
     {
         tell_object(TP,"The magic is faded.");
         return 1;
@@ -105,6 +106,9 @@ int seeker(string str)
     }
     write("%^BOLD%^%^WHITE%^You close your eyes and begin to seek...");
     say("%^BOLD%^%^WHITE%^"+ETOQCN+" closes "+ETO->QP+" eyes and begins to fade...");
+    
+    this_player()->add_cooldown("seeker cloak", WAIT_TIME);
+    
     location = environment(find_living(target));
     if(location->query_property("teleport proof") || location->query_property("no teleport") || ETP->query_property("no teleport") || ETP->query_property("teleport proof"))
     {
@@ -114,7 +118,7 @@ int seeker(string str)
     else
     {
         this_player()->move_player(location);
-        used_time = time();
+        //used_time = time();
         return 1;
     }
 }
