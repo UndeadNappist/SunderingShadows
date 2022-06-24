@@ -201,7 +201,7 @@ void calculate_exp(string group, int exp, object tmp) {
 
 int calculate_exp(string group, int exp, object ob)
 {
-    int party_size, party_levels, my_cut;
+    int party_size, party_levels, my_cut, max_level, my_level;
     object *my_party;
     float my_percent;
     
@@ -224,8 +224,15 @@ int calculate_exp(string group, int exp, object ob)
     party_levels = 0;
 
     foreach(object dude in my_party)
-        party_levels += dude->query_base_character_level();
+    {
+        my_level = dude->query_base_character_level();
         
+        if(my_level > max_level)
+            max_level = my_level;
+        
+        party_levels += my_level;
+    }
+      
     //Give party bonus BEFORE divvy
     exp = (exp * 150) / 100;
     
@@ -235,8 +242,14 @@ int calculate_exp(string group, int exp, object ob)
             continue;
         
         my_percent = to_float(dude->query_base_character_level()) / to_float(party_levels);
-        my_cut = to_int(my_percent * to_float(exp));
-        dude->party_exp(my_cut, ob);
+        
+        if(dude->query_base_character_level() < max_level - 20)
+            my_cut = 0;
+        else
+        {
+            my_cut = to_int(my_percent * to_float(exp));
+            dude->party_exp(my_cut, ob);
+        }
     }
     
     return exp;

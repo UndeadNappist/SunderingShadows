@@ -1,7 +1,8 @@
 /**
  * List of deities with follower-clergy pairs
  *
- * Followers must be two steps from god's alignment
+ * ///Followers must be two steps from god's alignment
+ * No, we control what alignments can worship what gods now. No steps or anything. Just what makes sense.
  *
  * Clergy must be one step from god's alignment
  */
