@@ -82,3 +82,5 @@ int struck(int damage, object what, object who){
     
     return damage;
 }
+
+int is_metal() { return 0; }
