@@ -14,7 +14,7 @@ string *restricted_classes(string subrace) {
 
 // this only affects rolling in creation; does not prevent dedication to a deity in-game, to allow for character evolution. N, 3/16.
 string *restricted_deities(string subrace) {
-    return ({ "anhur","helm","lathander","mielikki","selune","sune","torm","tymora","tyr" });
+    return ({ "jarmila", "kreysneothosies", "eucalia", "callamir", "edea" });
 }
 
 // stats in order: str, dex, con, int, wis, cha

@@ -55,7 +55,7 @@ string* restricted_classes(string subrace)
 string* restricted_deities(string subrace)
 {
     if(subrace == "szarkai" || subrace == "fey'ri")
-        return ({ "jarmila", "edea", "callamir", "kreysneothosies" });
+        return ({ "jarmila", "kreysneothosies", "eucalia", "callamir", "edea" });
     
     return ({});
 }

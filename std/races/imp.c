@@ -31,7 +31,7 @@ string* restricted_classes(string subrace)
 
 string* restricted_deities(string subrace)
 {
-    return ({ "jarmila", "kresyneothosies", "callamir", "edea" });
+    return ({ "jarmila", "kreysneothosies", "eucalia", "callamir", "edea" });
 }
 
 int* stat_mods(string subrace)   // stats in order: str, dex, con, int, wis, cha

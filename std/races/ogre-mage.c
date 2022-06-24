@@ -23,6 +23,10 @@ string* restricted_classes(string subrace)
     return ({ "druid", "ranger", "psion", "psywarrior", "inquisitor", "paladin" });
 }
 
+string *restricted_deities(string subrace) {
+    return ({ "jarmila", "kreysneothosies", "eucalia", "callamir", "edea" });
+}
+
 // stats in order: str, dex, con, int, wis, cha
 int* stat_mods(string subrace)
 {

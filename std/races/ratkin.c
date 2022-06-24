@@ -22,6 +22,10 @@ string* restricted_classes(string subrace)
     return ({ "paladin",});
 }
 
+string *restricted_deities(string subrace) {
+    return ({ "jarmila", "kreysneothosies", "eucalia", "callamir", "edea" });
+}
+
 // this only affects rolling in creation; does not prevent dedication to a deity in-game, to allow for character evolution. N, 3/16.
 string* restricted_deities(string subrace)
 {

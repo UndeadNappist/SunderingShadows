@@ -97,6 +97,7 @@ string requirements() // string version, maybe we'll need this, maybe not, can r
     string str;
     str = "Prerequisites:\n"
         "    20 Base Class Levels\n"
+        "    Any class but Druid or Ranger\n"
         "    Must not be undead\n";
     return str;
 }
@@ -131,6 +132,9 @@ int prerequisites(object player)
     if ((player->query_class_level(base)) < 20) {
         return 0;
     }
+    if(base == "druid" || base == "ranger")
+        return 0;
+    
     return 1;
 }
 
