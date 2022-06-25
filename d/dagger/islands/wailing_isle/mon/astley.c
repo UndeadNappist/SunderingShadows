@@ -94,7 +94,7 @@ int read_fun(string str){
 	if(!str) return 0;
 	if(str != "menu") return 0;
 	
-	write("%^C060%^-<>-<>-<>- %^C243%^??????????? %^RESET%^%^%^C060%^%^-<>-<>-<>-%^CRST%^");
+	write("%^C060%^-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-<>-%^CRST%^");
     write("");
     write("         %^C060%^-<>- %^C243%^Drinks %^C060%^-<>-%^RESET%^");
     write("");

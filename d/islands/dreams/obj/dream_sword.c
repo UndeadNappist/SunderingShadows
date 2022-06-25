@@ -169,7 +169,7 @@ int hitme(object targ){
          case "the faceless one":
             tell_object(ETO,"%^BOLD%^%^BLUE%^A smirk plays upon your lips as you sense your lord's will work its way into your mind, and you call forth an age-old curse!%^RESET%^");
             tell_room(EETO,"%^BOLD%^%^BLUE%^"+ETOQCN+" smirks knowingly and calls forth an age-old curse!%^RESET%^",ETO);
-            new("/cmds/spells/d/_darkbolt")->use_spell(ETO,targ,powah,100,"cleric");
+            new("/cmds/spells/d/_darkbolt")->use_spell(ETO,targ,powah,100,"innate");
             break;
          default:
             tell_object(ETO,"%^BOLD%^%^MAGENTA%^You hear faint whisperings that seem to be coming from the lifeless dragon upon your sword.  Suddenly, you shout out an incantation!%^RESET%^");
