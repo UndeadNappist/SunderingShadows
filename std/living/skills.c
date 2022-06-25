@@ -14,7 +14,7 @@
 #include <skills.h>
 
 #define SPLIT_EXP 1
-#define XP_PERCENT 85
+#define XP_PERCENT 80
 
 inherit BODY;
 
