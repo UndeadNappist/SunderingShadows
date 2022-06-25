@@ -44,6 +44,7 @@ void create()
         ]));
     set_exits(([
         "east" : "/d/shadow/room/pass/pass23",
+        "south" : "/d/common/obj/pets/workshop",
         ]));
 }
 

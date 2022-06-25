@@ -22,6 +22,7 @@ void create()
     set_property("hidden inventory", 1);
     set_property("cast and attack", 1);
     set_property("function and attack", 1);
+    set_property("full attacks", 1);
 }
 
 void init()

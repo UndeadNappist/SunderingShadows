@@ -42,9 +42,9 @@ void create() {
     set_spoken("wizish");
     force_me("pose %^RESET%^%^CRST%^%^C058%^at a worktable%^CRST%^");
     set_emotes(4,({
-        "%^RESET%^%^CRST%^%^C144%^The gnome takes out a small cloth, wiping at his goggles.%^CRST%^",
-        "%^RESET%^%^CRST%^%^C091%^Lopos Coppernogger mutters to himself: %^RESET%^%^CRST%^%^C144%^\"If he's on these demiplanes, we could trap him... there.\"%^CRST%^",
-        "%^RESET%^%^CRST%^%^C144%^The gnome looks over at you curiously for a moment.%^CRST%^",
+        "%^RESET%^%^CRST%^%^C130%^The gnome takes out a small cloth, breathing on his goggles and wiping them clean.%^CRST%^",
+        "%^RESET%^%^CRST%^%^C130%^Using delicate tools, the gnome makes a small etching onto the surface of a bracelet before copying the shape in ink on a nearby page.%^CRST%^",
+        "%^RESET%^%^CRST%^%^C130%^The gnome looks over at you curiously for a moment.%^CRST%^",
         }), 0);
     offered = 0;
 }
@@ -68,7 +68,7 @@ void reply_func(string str, object player){
     }
     if(strsrch(str, "pocket") != -1 || strsrch(str, "dimension") != -1 || strsrch(str, "pet") != -1){
         force_me("emoteat morpos %^RESET%^%^CRST%^%^C130%^$M claps his hands together excitedly%^CRST%^");
-        force_me("say %^RESET%^%^CRST%^%^C226%^\"I've developed a way to safely keep your dearest pets with you, even while diving into danger... or a failed experiment, yes? The bracelets are home to small pocket dimensions suited towards our lesser companions.\"%^CRST%^");
+        force_me("say %^RESET%^%^CRST%^%^C226%^\"I've developed a way to safely keep your dearest pets with you, even while diving into danger... or a failed experiment, yes? The bracelets are home to small pocket dimensions suited towards our lesser companions. I can even enhance them with extra pockets!\"%^CRST%^");
         if(!player->query("pet_bracelet")) call_out("make_offer", 2, player);
         return;
     }
