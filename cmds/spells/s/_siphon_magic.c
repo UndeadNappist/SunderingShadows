@@ -9,7 +9,6 @@ void create()
     ::create();
     set_spell_name("siphon magic");
     set_spell_level(([ "mage" : 5, "cleric" : 5, "inquisitor" : 5, "oracle" : 5, "magus" : 5 ]));
-    set_mystery("spellscar");
     set_spell_sphere("abjuration");
     set_syntax(
         "cast CLASS siphon magic on OBJECT2 into OBJECT2");

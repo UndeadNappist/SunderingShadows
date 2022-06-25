@@ -43,7 +43,7 @@ class_spell_storage =
     //"solar":
     //    ({"faerie fire", "flaming sphere", "daylight", "dimension door", "solar siege shot", "sirocco", "sunbeam", "sunburst", "hellball"}),
     "spellscar":
-        ({"armor", "resist energy", "dispel magic", "true form", "siphon magic", "globe of invulnerability", "spell turning", "spellscar", "imprisonment"}),
+        ({"armor", "resist energy", "dispel magic", "true form", "greater dispel magic", "globe of invulnerability", "spell turning", "spellscar", "imprisonment"}),
     //"ancestor":
     //    ({"unseen servant", "spiritual weapon", "heroism", "spiritual ally", "telekinetic push", "greater heroism","vision", "timeless body", "astral projection"}),
     "nature":
