@@ -57,4 +57,5 @@ int strikeme(int damage, object what, object who){
 		"with a splash like it struck water.");
         return (damage*-1);
    }
+   return damage;
 }
