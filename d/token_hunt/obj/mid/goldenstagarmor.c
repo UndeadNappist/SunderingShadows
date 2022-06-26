@@ -45,10 +45,11 @@ int remove_func(){
 }
 
 int strike_func(int damage, object what, object who){
-	if(random(1000) < 200){
+    if(random(1000) < 200){
 	tell_room(environment(query_worn()),"%^BOLD%^%^WHITE%^As "+who->QCN+"'s blow is landed, the scent of %^RED%^roses %^WHITE%^lifts into the air and "+ETOQCN+"'s "+query_short()+" %^BOLD%^%^WHITE%^shimmers with light.  From out of the metal, %^GREEN%^emerald vines %^WHITE%^grow rapidly, their %^BLACK%^thorn %^WHITE%^and %^RED%^rose %^WHITE%^covered lengths, twining about "+who->QCN+"'s limbs and tangling them in the swirl of new life!%^RESET%^",({ETO,who}));
 	tell_object(ETO,"%^BOLD%^%^WHITE%^As "+who->QCN+"'s blow is landed, the scent of %^RED%^roses %^WHITE%^lifts into the air and your "+query_short()+" %^BOLD%^%^WHITE%^shimmers with light.  From out of the metal, %^GREEN%^emerald vines %^WHITE%^grow rapidly, their %^BLACK%^thorn %^WHITE%^and %^RED%^rose %^WHITE%^covered lengths, twining about "+who->QCN+"'s limbs and tangling them in the swirl of new life!%^RESET%^");
 	tell_object(who,"%^BOLD%^%^WHITE%^As your blow is landed, the scent of %^RED%^roses %^WHITE%^lifts into the air and "+ETOQCN+"'s "+query_short()+" %^BOLD%^%^WHITE%^shimmers with light.  From out of the metal, %^GREEN%^emerald vines %^WHITE%^grow rapidly, their %^BLACK%^thorn %^WHITE%^and %^RED%^rose %^WHITE%^covered lengths, twining about your limbs and tangling you up in the swirl of new life!%^RESET%^");
-		who->set_paralyzed(roll_dice(1,6));
-return damage;	}
+	who->set_paralyzed(roll_dice(1,6));
+    }
+    return damage;
 }
