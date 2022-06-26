@@ -1,15 +1,18 @@
 %^BOLD%^%^BLUE%^Goblin:
 
-%^BOLD%^%^BLUE%^Stat adjustments: %^RESET%^+2 dexterity
-%^BOLD%^%^BLUE%^Skill adjustments: %^RESET%^+4 stealth
-%^BOLD%^%^BLUE%^Misc bonuses: %^RESET%^night race
+%^BOLD%^%^BLUE%^Stat adjustments: %^RESET%^+4 dexterity, -2 strength
 %^BOLD%^%^BLUE%^Innate spells: %^RESET%^none
 %^BOLD%^%^BLUE%^Size: %^RESET%^small
 
 %^BOLD%^%^BLUE%^Standard alignments: %^RESET%^any evil
-%^BOLD%^%^BLUE%^Classes resticted: %^RESET%^mage, magus,  bard, ranger, psion, psywarrior, paladin, monk, inquisitor
+%^BOLD%^%^BLUE%^Classes resticted: %^RESET%^mage, magus, bard, ranger, psion, psywarrior, paladin, monk, inquisitor
 %^BOLD%^%^BLUE%^Normal adventuring starting age: %^RESET%^13-19
 %^BOLD%^%^BLUE%^Average life span: %^RESET%^50
+
+%^BOLD%^%^BLUE%^Racial Traits:
+%^CYAN%^Cave Crawler%^RESET%^     - +4 to stealth and athletics
+%^CYAN%^Oversized Ears%^RESET%^   - +4 to perception
+%^CYAN%^Night Race%^RESET%^       - light and dark reversed
 
 %^BOLD%^%^BLUE%^Description:
 Goblins are small, vicious-looking, innately evil creatures with pointy ears, flat noses, and wide mouths with small, sharp fangs. They are often called greenskins, but their skin color actually ranges from yellow to orange, and their eyes are usually a bright red or yellow. They speak in a high-pitched, harsh voice and, although they tend to have low intelligence, are inclined to know the languages of other pest-type creatures, such as kobolds and hobgoblins, and the equally crude orcs.
