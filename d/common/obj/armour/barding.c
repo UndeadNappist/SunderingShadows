@@ -32,13 +32,13 @@ int do_struck(int damage, object weapon, object attacker) {
   object who, rider;
 
   who=query_worn();
-  if (!objectp(who)) return 0;
-  if (!objectp(rider=who->query_current_rider())) return 0;
-   if (!rider_skill=rider->query_skill("athletics")) return 0;
-  if (!objectp(environment(who)) || !objectp(environment(rider))) return -damage;  // Something's broken!
-   if (environment(who) != environment(rider)) return 0; // No saves here.
+  if (!objectp(who)) return damage;
+  if (!objectp(rider=who->query_current_rider())) return damage;
+   if (!rider_skill=rider->query_skill("athletics")) return damage;
+  if (!objectp(environment(who)) || !objectp(environment(rider))) return damage;  // Something's broken!
+   if (environment(who) != environment(rider)) return damage; // No saves here.
   die_roll=random(20)+1;
-  if (die_roll == 1) return 0; 
+  if (die_roll == 1) return damage; 
   if ( (die_roll == 20 ) || ((die_roll + rider_skill - (damage / 19)) >= 20) ) {
 
    //// deflect here
