@@ -158,7 +158,7 @@ int remove_func() {
 int struck_func(int damage, object what, object who) {
     // Deflect special for all wearers.
     // Giant-kin are healed by 1/3 the damage.
-    if (!(random(1000) < 200)) { return 0; }
+    if (random(1000) > 200) { return damage; }
     tell_object(who,
         "%^MAGENTA%^"+ETO->QCN+"'s armor "
         "g%^BOLD%^l%^RESET%^%^MAGENTA%^i%^BOLD%^%^WHITE%^m%^MAGENTA%^m"
