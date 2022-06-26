@@ -54,9 +54,9 @@ int remove_func(){
         return 1;
 }
 int strike_func(int damage, object what, object who){
-if(!objectp(ETO)) return 1;
+    if(!objectp(ETO)) return damage;
      
-       if(random(500) < 100){
+    if(random(500) < 100){
         tell_room(environment(query_worn()),"%^BOLD%^For"+
         " a moment "+who->QCN+" looks surprised"+
         " by "+ETOQCN+"'s armor, the spikes impale into "+
@@ -67,7 +67,7 @@ if(!objectp(ETO)) return 1;
         tell_object(who,"%^BOLD%^"+ETOQCN+"'s"+
         " extend and impale you!.");
         who->do_damage(random(6)+3);
-         return 0;
-      }
+    }
+    return damage;
 }
  int is_metal() { return 0; }//fer druish
