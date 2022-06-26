@@ -100,8 +100,8 @@ int strike_func(int damage, object what, object who){
 		" the fabric of your coat and tries to slice into "+who->QCN+"");
 	tell_object(who,"%^BOLD%^%^BLACK%^A pair of dark claws emerge from"+
 		" the fabric of "+ETOQCN+"'s coat and take a swipe at you!");
-	return 1;
 	}
 
 }
+	return damage;
 }
