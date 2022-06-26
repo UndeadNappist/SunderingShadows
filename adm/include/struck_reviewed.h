@@ -23,7 +23,11 @@
     "/d/barriermnts/lothwaite/obj/ghostboots", \
     "/d/barriermnts/lothwaite/obj/ghostsandals", \
     "/d/barriermnts/lothwaite/obj/torc", \
+    "/d/barriermnts/ruins/obj/battleguards", \
+    "/d/barriermnts/ruins/obj/elbowshield", \
+    "/d/common/obj/armour/barding", \
     "/d/dagger/derro/obj/shield", \
+    "/d/dagger/derro/obj/Stormrobe", \
     "/d/dagger/marsh/tower/obj/castershoes", \
     "/d/dagger/marsh/tower/obj/shadowbracers", \
     "/d/dagger/ogres/obj/doubletflames", \
@@ -33,6 +37,7 @@
     "/d/deku/armours/fire_robe", \
     "/d/deku/armours/priest_robe", \
     "/d/deku/armours/robe", \
+    "/d/deku/fortress/obj/crimson_coif", \
     "/d/deku/hhouse/ob/azloths_blessing", \
     "/d/deku/hhouse/ob/heart_of_talos", \
     "/d/deku/hhouse/ob/lathanders_dawn", \
@@ -46,6 +51,7 @@
     "/d/islands/argentrock/obj/shd_gskeletal", \
     "/d/islands/common/eldebaro/ob/ebon_reflector", \
     "/d/islands/common/eldebaro/ob/shroud_of_darkness", \
+    "/d/islands/common/eldebaro/ob/stormbringer_armor", \
     "/d/islands/common/obj/harbinger", \
     "/d/islands/common/obj/new/e_chain", \
     "/d/islands/common/obj/new/flameguards", \
@@ -59,21 +65,29 @@
     "/d/islands/coralsea/obj/coralscape", \
     "/d/islands/dallyh/marsh/obj/frobe", \
     "/d/islands/dallyh/forest/obj/rosebodice", \
+    "/d/islands/dinosaur/obj/lg_armor", \
+    "/d/islands/dreams/obj/darkcassock", \
+    "/d/islands/dreams/obj/rainbowcassock", \
+    "/d/islands/elf/obj/anklet", \
     "/d/islands/elf/obj/bracers", \
     "/d/islands/elf/obj/scale_mail", \
     "/d/islands/elf/obj/shield", \
     "/d/islands/elf/obj/v_gloves", \
     "/d/islands/pirates/obj/newcoat", \
     "/d/islands/pirates/obj/redcoat", \
+    "/d/islands/pirates/squires_trial/obj/demonskin", \
     "/d/islands/serakii/obj/dragonrobes", \
     "/d/islands/serakii/obj/hound_bracers", \
     "/d/islands/serakii/obj/hound_robe", \
     "/d/islands/serakii/obj/legion_bracers", \
     "/d/islands/serakii/obj/legion_cassock", \
     "/d/islands/serakii/obj/moon_plate", \
+    "/d/laerad/lgnolls/obj/asgaardshield", \
     "/d/laerad/lgnolls/obj/gnollbarding", \
+    "/d/laerad/outpost/obj/torm_leather", \
     "/d/laerad/outpost/obj/torm_shield", \
     "/d/laerad/outpost/obj/torm_scalemail", \
+    "/d/magic/obj/shields/ashra", \
     "/d/magic/obj/shields/callamir", \
     "/d/magic/obj/shields/cevahir", \
     "/d/magic/obj/shields/jarmila", \
@@ -90,11 +104,13 @@
 
 // /d/<r-z>, /realms
 #define STRUCK_REVIEWED_C ({ \
+    "/d/shadow/room/deep_echos/obj/dpants", \
     "/d/shadow/room/farm/obj/petal_buckler", \
     "/d/shadow/room/githyanki/obj/obsidion_vambraces", \
     "/d/token_hunt/obj/high/dragonrobe", \
     "/d/token_hunt/obj/high/nightydsp", \
     "/d/token_hunt/obj/high/wolfg", \
+    "/d/token_hunt/obj/low/creepingmail", \
     "/d/token_hunt/obj/low/darkgem_shield", \
     "/d/token_hunt/obj/low/rainbowbangles", \
     "/d/token_hunt/obj/low/rubytalongaunt", \
@@ -102,6 +118,7 @@
     "/d/token_hunt/obj/mid/chainedovercoat", \
     "/d/token_hunt/obj/mid/forestarmor", \
     "/d/token_hunt/obj/mid/glitteringarmor", \
+    "/d/token_hunt/obj/mid/goldenstagarmor", \
     "/d/token_hunt/obj/mid/goldenstagcloth", \
     "/d/token_hunt/obj/mid/ogregauntlets", \
     "/d/token_hunt/obj/mid/paingreaves", \
@@ -110,6 +127,7 @@
     "/d/underdark/lower/dragon/obj/shadowdancer", \
     "/d/underdark/mines/obj/dragonmask", \
     "/d/underdark/mines/obj/gnorobe", \
+    "/d/underdark/ud_ruins/obj/fomorian_leather", \
     "/realms/kismet/obj/rewards/k_balurhat", \
     "/realms/kismet/obj/rewards/moontiara", \
     "/realms/kismet/obj/rewards/r_orchid", \
