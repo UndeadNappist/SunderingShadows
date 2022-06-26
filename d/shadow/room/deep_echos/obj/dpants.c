@@ -73,7 +73,7 @@ if(!objectp(ETO)) return 1;
         tell_object(ETO,"%^BOLD%^BLACK%^your pants "+
         "hiss giving off a mist in the sunlight.");
         TO->set_overallStatus(1);
-        return 1;
+        return damage;
         }
     
         if(random(500) < 50){
@@ -86,5 +86,7 @@ if(!objectp(ETO)) return 1;
         " "+who->QCN+" with uncertainty.");
         tell_object(who,"%^BOLD%^%^BLACK%^The darkness of "+ETOQCN+"'s"+
         " pants seems to cloud them from view.");
-                return (-1*damage/2);}
+        return (-1*damage/2);
+    }
+    return damage;
 }
