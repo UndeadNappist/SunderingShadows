@@ -36,10 +36,11 @@ int remove_func(){
 	return 1;
 }
 int strike_func(int damage, object what, object who){
-	if(random(1000) < 300){
+    if(random(1000) < 300){
 	tell_room(environment(query_worn()),"%^BOLD%^%^BLUE%^With a flash, the orb depicted on the front of "+ETOQCN+"'s armor comes to life, pulsing with energy.  "+who->QCN+" cries out in pain!%^RESET%^",({ETO,who}));
 	tell_object(ETO,"%^BOLD%^%^BLUE%^With a flash, the orb depicted on the front comes to life, pulsing with energy.  $T cries out in pain!%^RESET%^");
 	tell_object(who,"%^BOLD%^%^BLUE%^With a flash, the orb depicted on the front of "+ETOQCN+"'s armor comes to life, pulsing with energy.  You cry out in pain!%^RESET%^");
-		who->set_paralyzed(roll_dice(1,3));
-return damage;	}
+	who->set_paralyzed(roll_dice(1,3));
+    }
+    return damage;
 }
