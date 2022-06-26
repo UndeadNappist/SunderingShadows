@@ -57,13 +57,12 @@ int strike_func(int damage, object what, object who){
          tell_object(who,"%^BOLD%^%^WHITE%^You are blinded by the %^RED%^p%^RESET%^%^ORANGE%^r%^YELLOW%^i%^GREEN%^s%^RESET%^%^CYAN%^m%^BOLD%^%^BLUE%^a%^RESET%^%^BLUE%^t%^BOLD%^%^MAGENTA%^i%^RESET%^%^MAGENTA%^c%^BOLD%^%^WHITE%^ lights of "+ETOQCN+"'s coat!%^RESET%^");
          who->set_paralyzed((random(4)+3),"%^BOLD%^You are still trying to clear your head.%^RESET%^");
          who->set_temporary_blinded(1,"%^BOLD%^All you can see are spots right now!%^RESET%^");
-         return 1;
       }else{
          tell_room(environment(query_worn()),"%^BOLD%^%^%^WHITE%^"+ETO->QCN+"'s coat shifts into %^RED%^p%^RESET%^%^ORANGE%^r%^YELLOW%^i%^GREEN%^s%^RESET%^%^CYAN%^m%^BOLD%^%^BLUE%^a%^RESET%^%^BLUE%^t%^BOLD%^%^MAGENTA%^i%^RESET%^%^MAGENTA%^c%^BOLD%^%^WHITE%^ flashes.%^RESET%^",({ETO,who}));
          tell_object(ETO,"%^BOLD%^%^%^WHITE%^Your coat flash with a brilliant %^RED%^p%^RESET%^%^ORANGE%^r%^YELLOW%^i%^GREEN%^s%^RESET%^%^CYAN%^m%^BOLD%^%^BLUE%^a%^RESET%^%^BLUE%^t%^BOLD%^%^MAGENTA%^i%^RESET%^%^MAGENTA%^c%^BOLD%^%^WHITE%^ light.%^RESET%^");
          tell_object(who,"%^BOLD%^%^WHITE%^"+ETOQCN+"'s coat shifts into %^RED%^p%^RESET%^%^ORANGE%^r%^YELLOW%^i%^GREEN%^s%^RESET%^%^CYAN%^m%^BOLD%^%^BLUE%^a%^RESET%^%^BLUE%^t%^BOLD%^%^MAGENTA%^i%^RESET%^%^MAGENTA%^c%^BOLD%^%^WHITE%^ flashes!%^RESET%^");
          ETO->cause_typed_damage(who,who->return_target_limb(),10+random(11), "force");
-         return 1;
       }
    }
+   return damage;
 }
