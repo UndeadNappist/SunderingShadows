@@ -69,7 +69,7 @@ int removeme() {
 }
 
 int strikeme(int damage, object what, object who){
-        if(random(1000) < 400){
+    if(random(1000) < 400){
         tell_room(environment(query_worn()),"%^BOLD%^%^RED%^"+ETOQCN+"'s red "+
            "armor drags across "+who->QCN+"'s skin, cutting "+who->QO+" deeply!",({ETO,who}));
         tell_object(ETO,"%^BOLD%^%^RED%^The demonskin seems to pull your arm "+
@@ -77,5 +77,6 @@ int strikeme(int damage, object what, object who){
         tell_object(who,"%^BOLD%^%^RED%^"+ETOQCN+"'s reddish armor drags across "+
            "your skin, flensing you!");
         who->do_damage("torso",(random(20)+6));
-        return damage;  }
+    }
+    return damage;
 }
