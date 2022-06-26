@@ -90,6 +90,7 @@ int strike_func(int damage, object what, object who)
 	
         return (damage*25)/100;
     }
+    return damage;
 }
 
 int is_metal() { return 0; }
