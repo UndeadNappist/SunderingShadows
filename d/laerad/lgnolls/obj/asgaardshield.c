@@ -31,11 +31,14 @@ void create() {
         set_property("enchantment",3);
 }
 int strikeme(int damage, object what, object who){
+    if(!random(3)) {
   	tell_object(ETO,"%^BOLD%^The S%^ORANGE%^i%^WHITE%^g%^ORANGE%^i%^WHITE%^l on the shield suddenly glows br%^ORANGE%^i%^WHITE%^ghtl%^ORANGE%^y %^WHITE%^as "+who->QCN+"%^BOLD%^ strikes at you!");
    	tell_object(who,"%^BOLD%^%^WHITE%^The sigil on "+ETO->QCN+"'s shield suddenly glows with a %^YELLOW%^bright light%^WHITE%^, blinding you!%^RESET%^");
    	tell_room(environment(ETO),"%^BOLD%^%^WHITE%^The sigil on "+ETO->QCN+"'s "+
 		"shield suddenly flashes brightly, blinding  "+who->QCN+" as "+who->QS+" %^BOLD%^%^BLACK%^tries to attack!",({who,ETO}));
-  return (-1)*(damage/2);
+        return (-1)*(damage/2);
+    }
+    return damage;
 }
 
 int wearme(){
