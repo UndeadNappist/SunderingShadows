@@ -54,19 +54,17 @@ int strike_func(int damage, object what, object who){
         "robe worn by "+ETOQCN+"%^RED%^ the ph%^YELLOW%^o%^RESET%^%^RED%^"+
         "en%^YELLOW%^i%^RESET%^%^RED%^x on the "+
         "torso of the robe screams loudly!%^RESET%^",({ETO,who}));
-        	
+
         tell_object(ETO,who->QCN+"%^RED%^ strikes your robe "+
         "and the ph%^YELLOW%^o%^RESET%^%^RED%^en%^YELLOW%^i%^RESET%^"+
         "%^RED%^x on its torso screams loudly!%^RESET%^");
-        
+
         tell_object(who,"%^RED%^You strike the robe "+
         "worn by "+ETOQCN+"%^RED%^ and the ph%^YELLOW%^o%^RESET%^"+
         "%^RED%^en%^YELLOW%^i%^RESET%^%^RED%^x on its torso "+
         "screams loudly and an immense pain swells in your "+
         "head!%^RESET%^");
         who->cause_typed_damage(who, "torso", roll_dice(1, 10) + 4, "fire");
-        return 0;
     }
+	return damage;
 }
-
-
