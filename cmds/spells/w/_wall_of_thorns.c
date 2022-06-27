@@ -25,7 +25,7 @@ void create()
     set_description("The spell wall of thorns will create a massive wall of tangled thorn bushes that will "
         "damage anyone going through an exit, or optionally, damage anyone who attacks the caster.  If "
         "no arguments are given to the spell, the wall of thorns will surround the caster and damage anyone "
-        "who attacks him or her.  The caster may type <remove wall> to end the wall of thorns spell early.");
+        "who attacks the caster.  The caster may type <remove wall> to end the wall of thorns spell early.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();

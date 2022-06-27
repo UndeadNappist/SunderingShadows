@@ -86,6 +86,7 @@ void reply_func(string str, object player){
             bracelet->move(player);
         }
         player->set("pet_bracelet", 1);
+        bracelet->set_owner(player);
         offered = 0;
         return;
     }

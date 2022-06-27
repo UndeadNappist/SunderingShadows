@@ -7,7 +7,7 @@ void create() {
     set_short("%^YELLOW%^A dirt trail through the forest.%^RESET%^");
     
     set_long(TO->query_long()+"  %^BOLD%^%^BLACK%^A %^YELLOW%^dirt "+
-    "trail%^BOLD%^%^BLACK%^ here meets the gates of verbobone "+
+    "trail%^BOLD%^%^BLACK%^ here meets the gates of Verbobone "+
     "directly to the west or heads off into the forest to the "+
     "east.%^RESET%^");
     set_exits(([
