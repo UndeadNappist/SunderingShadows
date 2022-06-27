@@ -58,6 +58,10 @@ int abandon_fun(string str){
         tell_object(player, "%^RESET%^%^CRST%^%^C059%^You don't seen to have that type of pet.%^CRST%^");
         return 1;
     }
+    if(player->query_property("pet_summoned")){
+        tell_object(player, "%^RESET%^%^CRST%^%^C059%^You cannot release a pet when one is summoned.%^CRST%^");
+        return 1;
+    }
     
     room = environment(player);
     tell_object(player, "%^RESET%^%^CRST%^%^C089%^The %^C039%^r%^C045%^u%^C051%^n%^C045%^e%^C039%^s %^RESET%^%^C089%^along your bracelet %^C087%^flare brightly%^C089%^, %^C196%^bu%^C124%^r%^C196%^ni%^C124%^n%^C196%^g %^RESET%^%^C089%^away the bond you had with "+str+"%^RESET%^%^CRST%^%^C089%^.%^CRST%^");
