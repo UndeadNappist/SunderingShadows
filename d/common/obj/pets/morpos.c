@@ -93,6 +93,7 @@ void reply_func(string str, object player){
     if(strsrch(str, "enhance") != -1 || strsrch(str, "bracelet") != -1){
         force_me("emoteat morpos %^RESET%^%^CRST%^%^C130%^$M's head bobs up and down in a series of agreeable nods.%^CRST%^");
         force_me("say %^RESET%^%^CRST%^%^C226%^\"Yes, yes... I can enhance your dimensional bracelet with more spaces, but it -is- a bit pricey. Two million is the cheapest I can go, but think of all the research you'll be funding!\"%^CRST%^");
+        if(!player->query("pet_bracelet")) call_out("make_offer", 2, player);
         return;
     }
     if(strsrch(str, "lopos") != -1 || strsrch(str, "Lopos") != -1){
