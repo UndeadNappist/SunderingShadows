@@ -210,7 +210,7 @@ int extra_lrhit(object targ){
           if(!"daemon/saving_throw_d"->reflex_save(targetz[i],-25) && !"daemon/feat_d"->usable_feat(targetz[i],"evasion")) {
             tell_object(targetz[i],"%^BOLD%^%^YELLOW%^You are caught by the edge of the explosion!%^RESET%^");
             tell_room(EETO,"%^BOLD%^%^YELLOW%^"+targetz[i]->QCN+" is caught by the edge of the explosion!%^RESET%^",targetz[i]);
-            targets[i]->cause_typed_damage(targets[i], targets[i]->return_target_limb(), roll_dice(2,10), "fire");
+            targetz[i]->cause_typed_damage(targetz[i], targetz[i]->return_target_limb(), roll_dice(2,10), "fire");
             //targetz[i]->do_damage("torso",roll_dice(2,10));
           }
         }
