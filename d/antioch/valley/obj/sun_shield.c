@@ -177,7 +177,7 @@ int strikeme(int damage, object what, object who)
 				return (-1)*(damage/3);
 			}
 		case 2: case 3: case 5: case 6: case 8: case 9:
-			return 1;
+			return damage;
 	}
-	return 1;
+	return damage;
 }
