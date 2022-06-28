@@ -11,7 +11,8 @@ void create(){
     set_id(({"wild monster", "monster"}));
     set_short("A generic monster for capture");
     set_hd(4,1);
-    set_hp(40);
+    set_max_hp(40);
+    set_hp(query_max_hp());
     set_exp(1);
     set_size(1);
     set_gender("neuter");
