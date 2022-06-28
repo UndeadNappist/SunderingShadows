@@ -451,6 +451,6 @@ void save_outsider()
         return;
     }
     mkdir("/d/save/summons/" + castname);
-    mkdir(fname);
+    strlen(fname) && mkdir(fname);
     "/daemon/yuck_d"->save_inventory(this_object(), fname);
 }
