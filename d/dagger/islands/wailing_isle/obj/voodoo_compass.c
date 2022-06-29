@@ -71,7 +71,7 @@ int teleport_me(string str){
     tell_object(player, "%^RESET%^%^CRST%^%^C101%^You press your finger to the %^C172%^c%^C178%^o%^C184%^m%^C172%^p%^C178%^a%^C184%^s%^C172%^s %^C059%^ne%^C245%^e%^C196%^dl%^C124%^e %^RESET%^%^C101%^and feel it pierce the skin. Drops of blood flow down, soaking into the wood and brass as it begins to %^C118%^e%^C112%^e%^C106%^ri%^C118%^l%^C112%^y %^C106%^gl%^C118%^o%^C112%^w%^RESET%^%^C101%^... and you feel yourself falling backwards.%^CRST%^");
     tell_room(room, "%^RESET%^%^CRST%^%^C101%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ presses their finger to the %^C172%^c%^C178%^o%^C184%^m%^C172%^p%^C178%^a%^C184%^s%^C172%^s %^C059%^ne%^C245%^e%^C196%^dl%^C124%^e%^RESET%^%^C101%^. Drops of blood flow down, soaking into the wood and brass as it begins to %^C118%^e%^C112%^e%^C106%^ri%^C118%^l%^C112%^y %^C106%^gl%^C118%^o%^C112%^w%^RESET%^%^C101%^... and then they vanish, falling backwards into a %^C059%^pool %^C245%^of %^C244%^s%^C243%^h%^C059%^ad%^C243%^o%^C244%^w%^RESET%^%^C101%^.%^CRST%^", player);
     
-    player->move_player("/realms/chernobog/areas/wailing_isle/room/beach3");
+    player->move_player("/d/dagger/islands/wailing_isle/room/beach3");
     sacrifice = player->query_max_hp() / 2;
     current_hp = player->query_hp();
     if(sacrifice > current_hp) player->set_hp(1);
