@@ -298,14 +298,14 @@ int cmd_brew(string str)
             expdrain = max_exp_drain;
         }
 
-        //if(!avatarp(TP)) TP->add_exp((-1)*expdrain);
-
-        if ((int)"/daemon/config_d.c"->check_config("character improvement") == 0) {
-            TP->add_exp(expdrain * -1);
-        }else if ((int)"/daemon/config_d.c"->check_config("character improvement") == 1) {
-            if ((int)TP->set_XP_tax(expdrain, 0, "improvement") == -1) {
-                tell_object(TP, "You can't seem to figure out how to make the potion, perhaps later.");
-                return 1;
+        if(!avatarp(TP)) {
+            if ((int)"/daemon/config_d.c"->check_config("character improvement") == 0) {
+                TP->add_exp(expdrain * -1);
+            }else if ((int)"/daemon/config_d.c"->check_config("character improvement") == 1) {
+                if ((int)TP->set_XP_tax(expdrain, 0, "improvement") == -1) {
+                    tell_object(TP, "You can't seem to figure out how to make the potion, perhaps later.");
+                    return 1;
+                }
             }
         }
 
