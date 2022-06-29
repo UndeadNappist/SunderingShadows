@@ -10,6 +10,7 @@ inherit BREWINH;
 #define BLUE ({"azure","cyan","blue","sapphire","aquamarine","violet","cerulean","indigo","teal","turquoise","cobalt"})
 
 string myvar;
+int hidden_id_set;
 
 void create() {
     ::create();
@@ -40,6 +41,10 @@ void init() {
     ::init();
     add_action("drink_potion","drink");
     add_action("drink_potion","quaff");
+    if(!hidden_id_set) {
+        set_hidden_id(({ myname }));
+        set_property("full identify", 1);
+    }
 }
 
 int drink_potion(string str) {
