@@ -483,7 +483,7 @@ mixed query_property(string prop)
     object* worn;
     int num, mylevel, scaled, tmpval;
     string subrace, binding;
-    
+
     num = 0;
 
     if (!props) {
@@ -510,7 +510,7 @@ mixed query_property(string prop)
                 }
             }
         }
-        
+
         if(this_object()->is_class("druid"))
         {
             if(FEATS_D->has_feat(this_object(), "guardian of nature"))
@@ -519,10 +519,10 @@ mixed query_property(string prop)
                     num += 2;
             }
         }
-        
+
         if(this_object()->is_class("psion") && this_object()->query("available focus"))
             num += 1;
-    
+
         if ((string)TO->query_race() == "human") {
             subrace = (string)TO->query("subrace");
             if (subrace) {
@@ -554,7 +554,7 @@ mixed query_property(string prop)
         }
         if(this_object()->query_race() == "elf" && this_object()->query("subrace") != "szarkai")
             num += 2;
-        
+
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "spell penetration"));
     }
@@ -586,22 +586,22 @@ mixed query_property(string prop)
         }
         else if(this_object()->query_race() == "ogre-mage")
             num += 1;
-        
+
         if(FEATS_D->usable_feat(this_object(), "metabolic healing") && this_object()->query("available focus"))
             num += 1;
-        
+
         if(this_object()->query_mystery() == "shadow" && this_object()->query_class_level("oracle") > 30)
         {
             if(total_light(environment(this_object())) < 2)
                 num += 1;
         }
-        
+
         if(this_object()->query_mystery() == "nature" && this_object()->query_class_level("oracle") > 10)
         {
             if(USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "forest"))
                 num += 2;
         }
-        
+
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "fast healing"));
     }
@@ -610,13 +610,13 @@ mixed query_property(string prop)
     if (prop == "spell dcs") {
         if (FEATS_D->usable_feat(TO, "spell focus"))
             num += 1;
-        
+
         if(FEATS_D->usable_feat(TO, "spell penetration"))
             num += 1;
-        
+
         if(FEATS_D->usable_feat(TO, "greater spell penetration"))
             num += 1;
-        
+
         //num += props["empowered"]; //doesn't seem to do anything
         return (num + TO->query_property("empowered"));
     }
@@ -625,23 +625,23 @@ mixed query_property(string prop)
         if (FEATS_D->usable_feat(TO, "undead graft")) {
             num += 6;
         }
-		
+
 		if (FEATS_D->usable_feat(TO, "perfect self")) {
             num += 10;
         }
-		
+
         if (FEATS_D->usable_feat(TO, "shadow master")) {
             if (ETO->query_light() < 1) {
                 num += 8;
             }
         }
-        
+
         if(this_object()->query_bloodline() == "orc" && this_object()->query_class_level("sorcerer") > 30)
             num += 5;
-        
+
         if(FEATS_D->usable_feat(this_object(), "armored juggernaut") && !this_object()->is_ok_armour("thief"))
             num += (BONUS_D->query_stat_bonus(this_object(), "strength") / 2);
-        
+
         if(this_object()->is_shade() || this_object()->query_race() == "nightwing")
         {
             num -= (total_light(environment(this_object())) - 2);
@@ -671,15 +671,15 @@ mixed query_property(string prop)
             num += 5;
         if(this_object()->query_mystery() == "battle" && this_object()->query_class_level("oracle") >= 15)
             num += 5;
-        
+
         if(this_object()->is_animal())
         {
             object rider = this_object()->query_current_rider();
-            
+
             if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
                 num += 5;
         }
-        
+
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "damage resistance"));
     }
@@ -731,19 +731,19 @@ mixed query_property(string prop)
             (string)TO->query("subrace") == "szarkai") {
             num += 2;
         }
-        
+
         if(FEATS_D->has_feat(this_object(), "eternal warrior") && this_object()->query("available focus") == 2)
             num += 2;
-        
+
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "magic resistance") + EQ_D->gear_bonus(TO, "spell resistance"));
     }
-    
+
     if(prop == "darkvision")
     {
         if(avatarp(this_object()) || wizardp(this_object()))
             return 1;
-        
+
         if(this_object()->query_mystery() == "shadow")
         {
             if(this_object()->query_class_level("oracle") >= 15)
@@ -759,7 +759,7 @@ mixed query_property(string prop)
             if(this_object()->query_class_level("oracle") >= 15)
                 num += 1;
         }
-        
+
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "darkvision"));
     }
@@ -839,31 +839,31 @@ mixed query_property(string prop)
         }
         return num;
     }
-    
+
     if(prop == "spectral hand")
     {
         if(PLAYER_D->check_familiar(this_object()))
             return 1;
-        
+
         return props[prop];
     }
-    
+
     if(prop == "rend")
     {
         int rend_max;
-        
+
         if(this_object()->is_undead())
             return 0;
-        
+
         if(PLAYER_D->immunity_check(this_object(), "rend"))
             return 0;
-        
+
         rend_max = this_object()->query_character_level() / 5 + 1;
         props["rend"] = min( ({ props["rend"], rend_max }) );
-        
+
         return props[prop];
     }
-        
+
     if (prop == "spell damage resistance") {
         if (TO->is_vampire()) {
             if (!TO->is_in_sunlight()) {
@@ -878,7 +878,7 @@ mixed query_property(string prop)
         {
             num -= (2 * (total_light(environment(this_object())) - 2));
         }
-                     
+
         if ((string)TO->query_race() == "human") {
             subrace = (string)TO->query("subrace");
             if (subrace) {
@@ -887,10 +887,10 @@ mixed query_property(string prop)
                 }
             }
         }
-		
+
         if(this_object()->query_bloodline() == "fey" && this_object()->query_class_level("sorcerer") > 30)
             num += 10;
-        
+
 		if (FEATS_D->usable_feat(TO, "perfect self")) {
             num += 50;
         }
@@ -905,15 +905,15 @@ mixed query_property(string prop)
             num += 9;
         }
         */
-        
+
         if(this_object()->is_animal())
         {
             object rider = this_object()->query_current_rider();
-            
+
             if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
                 num += 5;
         }
-        
+
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "spell damage resistance"));
     }
@@ -1022,13 +1022,13 @@ int remove_property_value(string prop, mixed val)
 }
 
 int add_property_value(string prop, mixed val)
-{       
+{
     if(props[prop] && !catch(props[prop] += val))
         return 1;
-    
+
     return 0;
 }
-    
+
 string* regexp_query_property(string pattern)
 {
     string* vars, * prop;
@@ -1067,6 +1067,12 @@ void   set_id(string str)
     set("id", str);
 }
 
+void set_hidden_id(string str)
+{
+    if(!arrayp(str)) str = ({ str });
+    set("hidden id", str);
+}
+
 void   set_short(string str)
 {
     set("short", str);
@@ -1091,6 +1097,20 @@ void remove_id(string str)
     TO->set("id", tmp_ids);
 }
 
+void add_hidden_id(string str)
+{
+    add("hidden id", str);
+}
+
+void remove_hidden_id(string str)
+{
+    string* tmp_ids;
+    tmp_ids = query_hidden_id();
+    tmp_ids -= ({ str });
+    delete("hidden id");
+    set("hidden id", tmp_ids);
+}
+
 void   set_value(int x)
 {
     set("value", x);
@@ -1106,7 +1126,20 @@ void   set_cointype(string str)
 
 string* query_id()
 {
-    return query("id");
+    string* known_ids, hidden_ids;
+    known_ids = query("id");
+    hidden_ids = query("hidden id");
+
+    if(hidden_ids && query_property("full identify") && (objectp(this_player()) && is_identified(this_player()->query_name()))) {
+        known_ids += hidden_ids;
+    }
+
+    return known_ids;
+}
+
+string* query_hidden_id()
+{
+    return query("hidden id");
 }
 
 string query_name()
@@ -1216,6 +1249,15 @@ int id(string str)
     }
 
     if (member_array(str, ob_data["id"]) != -1) {
+        return 1;
+    }
+
+    if (sizeof(ob_data["hidden id"]) &&
+        member_array(str, ob_data["hidden id"]) != -1 &&
+        query_property("full identify") &&
+        objectp(this_player()) &&
+        is_identified(this_player()->query_name()))
+    {
         return 1;
     }
 
@@ -1829,7 +1871,7 @@ int drop()
     }
     if(query_property("no drop"))
         return 1;
-    
+
     if (unique_item == 1) {
         UNIQUE_D->clear_lease(TO->query_unique_id());
     }
