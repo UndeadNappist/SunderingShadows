@@ -22,9 +22,9 @@ void create(){
         "wall" : "%^RESET%^%^CRST%^%^C171%^A %^C166%^sun elven%^C171%^-styled %^C249%^wall%^C171%^ has been erected around, serving to protect the growth from %^C124%^merciless%^C171%^ %^C037%^wind%^C171%^ and %^C098%^people%^C171%^ that might come to attempt to %^C124%^harm%^C171%^ it. A hue of %^C165%^Senzokuan%^C171%^ architecture is added through %^C165%^narrow slits%^C171%^ and a senzokuan %^C242%^roofing%^C171%^ and over it.%^CRST%^",
         ]));
     set_exits(([
-        "west" : "/d/magic/temples/edea/temple_n",
-        "south" : "/d/magic/temples/edea/temple_e",
-        "southwest" : "/d/magic/temples/edea/edea",
+        "east" : "/d/magic/temples/edea/temple_s",
+        "north" : "/d/magic/temples/edea/temple_w",
+        "northeast" : "/d/magic/temples/edea/edea",
         ]));
 }
 
