@@ -54,25 +54,29 @@ int drink_potion(string str) {
       return 1;
    }
    if(TP->query_paralyzed()) return notify_fail(TP->query_paralyze_message()+"\n");
-   if(TP->query_property("potion effect") && !TO->query_property("instant potion")) {
-     tell_object(TP,"%^BOLD%^%^WHITE%^You throw back the potion, but it has no effect against the one you've already consumed.%^RESET%^");
-     TO->remove();
-     return 1;
-   }
 
-   tell_object(TP,"%^BOLD%^%^WHITE%^You quickly quaff the draught from the potion.%^RESET%^\n");
-   tell_room(ETP,TP->QCN+" drinks from a small vial.\n",TP);
-   TP->set_property("potion effect",myname);
-   if(myvar) {
-     if(reversed) "/daemon/delay_d"->sleep(base_name(TO),"potion_backfire",random(5)+7,({ TP, strength, myvar }));
-     else "/daemon/delay_d"->sleep(base_name(TO),"potion_effect",random(5)+7,({ TP, strength, myvar }));
+   if(id(str)) {
+       if(TP->query_property("potion effect") && !TO->query_property("instant potion")) {
+         tell_object(TP,"%^BOLD%^%^WHITE%^You throw back the potion, but it has no effect against the one you've already consumed.%^RESET%^");
+         TO->remove();
+         return 1;
+       }
+
+       tell_object(TP,"%^BOLD%^%^WHITE%^You quickly quaff the draught from the potion.%^RESET%^\n");
+       tell_room(ETP,TP->QCN+" drinks from a small vial.\n",TP);
+       TP->set_property("potion effect",myname);
+       if(myvar) {
+         if(reversed) "/daemon/delay_d"->sleep(base_name(TO),"potion_backfire",random(5)+7,({ TP, strength, myvar }));
+         else "/daemon/delay_d"->sleep(base_name(TO),"potion_effect",random(5)+7,({ TP, strength, myvar }));
+       }
+       else {
+         if(reversed) "/daemon/delay_d"->sleep(base_name(TO),"potion_backfire",random(5)+7,({ TP, strength }));
+         else "/daemon/delay_d"->sleep(base_name(TO),"potion_effect",random(5)+7,({ TP, strength }));
+       }
+       TO->remove();
+       return 1;
    }
-   else {
-     if(reversed) "/daemon/delay_d"->sleep(base_name(TO),"potion_backfire",random(5)+7,({ TP, strength }));
-     else "/daemon/delay_d"->sleep(base_name(TO),"potion_effect",random(5)+7,({ TP, strength }));
-   }
-   TO->remove();
-   return 1;
+   return 0;
 }
 
 // please over-write these function for potion effect and backfire.
