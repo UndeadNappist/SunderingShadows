@@ -332,7 +332,8 @@ int cmd_brew(string str)
         ob2 = new(filename);
         if (mydir != "oils" && mydir != "powders" && mydir != "misc") { // these do not scale/etc
             ob2->set_myname(myname);
-            ob2->set_hidden_id(({ myname }));
+            ob2->set_hidden_id(({ myname, explode(myname, " of ")[1] }));
+            if(mydir == "elixirs") ob2->add_hidden_id("elixir");
             ob2->set_property("full identify", 1);
             ob2->set_dc(dc);
             ob2->set_strength(strength);

@@ -40,8 +40,13 @@ void init() {
     ::init();
     add_action("drink_potion","drink");
     add_action("drink_potion","quaff");
-    if(!TO->query_hidden_id()) {
+    if(!query_hidden_id() || sizeof(query_hidden_id()) == 1) {
+        string* parts = explode(myname, " of ");
         set_hidden_id(({ myname }));
+        if(sizeof(parts) == 2){
+            if(parts[0] == "elixir") add_hidden_id("elixir");
+            add_hidden_id(parts[1]);
+        }
         set_property("full identify", 1);
     }
 }
