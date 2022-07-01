@@ -19,4 +19,16 @@ set_exits(([
 ]));
 
 }
+void reset(){
+   ::reset();
+   if(!present("ambiance device")){
+      new(MOBS"rich_ambiance.c")->move(TO);
+   }
+}
+void reset(){
+   ::reset();
+   if(!present("ambiance device")){
+      new(MOBS"rich_ambiance.c")->move(TO);
+   }
+}
 

@@ -32,7 +32,8 @@ void create(){
     ]) );
     set_exits( ([
        "southwest" : RPATH"p8",
-       "enter" : "/d/undead/rooms/town/portal",
+       // "enter" : "/d/undead/rooms/town/portal",
+       "enter" : "/d/islands/graez/rooms/city/portal",
     ]) );
     set_invis_exits(({"enter"}));
     set_pre_exit_functions(({"enter"}),({"go_portal"}));

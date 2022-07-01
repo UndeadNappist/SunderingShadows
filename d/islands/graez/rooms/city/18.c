@@ -22,3 +22,10 @@ set_exits(([
 ]));
 
 }
+
+void reset(){
+   ::reset();
+   if(!present("ambiance device")){
+      new(MOBS"harbor_ambiance.c")->move(TO);
+   }
+}

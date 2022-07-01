@@ -35,4 +35,11 @@ void create() {
     set_smell("default","%^CRST%^You smell the %^C088%^cookfires%^CRST%^.");
     set_listen("default","%^CRST%^You hear the %^C106%^bustle %^CRST%^of the %^C060%^city%^CRST%^.");
 
+    set_post_exit_functions(({"east"}), ({"GoThroughDoor"}));
+
+}
+
+int GoThroughDoor(){
+   tell_object(TP,"\nYou carefully climb the steps to the top of the wall.\n");
+   return 1;
 }

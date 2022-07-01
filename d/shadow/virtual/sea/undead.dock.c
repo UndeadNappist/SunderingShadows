@@ -27,7 +27,8 @@ void create()
         "not trouble you with now.");
 
     set_exits(([
-        "north"     :"/d/undead/rooms/town/street12"
+        //"north"     :"/d/undead/rooms/town/street12",
+        "north"     :"/d/islands/graez/rooms/city/1"
              ]));
 
     set_smell("default","The salty smell of the sea invades your nostrils.");

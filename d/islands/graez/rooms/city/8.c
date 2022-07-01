@@ -15,5 +15,11 @@ set_exits(([
 "north" : TOWN"9",
 
 ]));
+}
 
+void reset(){
+   ::reset();
+   if(!present("ambiance device")){
+      new(MOBS"harbor_ambiance.c")->move(TO);
+   }
 }

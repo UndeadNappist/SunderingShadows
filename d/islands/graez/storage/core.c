@@ -13,7 +13,8 @@ string faction_name;
 void create() {
     ::create();
    faction_control=0;
-   // set_repop(60);
+pick_critters();
+    set_repop(50);
 
     switch(faction_control){
         case 0: faction_name = "no one";
@@ -37,27 +38,32 @@ int check_faction(){
 
 int set_faction(int i){
     faction_control = i;
-    set_long("This room is controlled by the "+faction_control+" who are the "+faction_name+"  isnt that grand!\n");
+    //set_long("This room is controlled by the "+faction_control+" who are the "+faction_name+"  isnt that grand!\n");
     return 1;
 }
 
 
-void pick_critters(int rank, int faction){
+void pick_critters(){
 
 
-   switch(faction){
+   switch(faction_control){
 
-      case 0 : break;
+      case 0 : 
+
+      set_monsters( ({MOBS"undead_grunt"}),({random(3) }) );
+
+      break;
+
       case 1 : 
 
-      set_monsters( ({MOBS"human_grunt"}),({random(9) }) );
+      set_monsters( ({MOBS"human_grunt",MOBS"human_captain",MOBS"human_corporal"}),({random(2),random(2),random(2)}) );
 
       break;
 
 
       case 2:  
 
-      set_monsters( ({MOBS"undead_grunt"}),({random(9) }) );
+      set_monsters( ({MOBS"undead_grunt",MOBS"undead_captain",MOBS"undead_corporal"}),({random(2),random(2),random(2)}) );
 
       break;
 

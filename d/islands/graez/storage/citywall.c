@@ -5,7 +5,7 @@ inherit CORE;
 
 void create() {
     ::create();
-
+    faction_control = 1;
     set_travel(PAVED_ROAD);
     set_terrain(CITY);
     set_property("indoors",0);
@@ -31,14 +31,21 @@ void create() {
     set_smell("default","%^CRST%^You smell %^C220%^sawdust %^CRST%^and %^C124%^blood%^CRST%^.");
     set_listen("default","%^CRST%^You hear the sounds of the %^C060%^city%^CRST%^.");
 
-    set_post_exit_functions(({"southeast"}),({"GoThroughDoor"}));
-set_post_exit_functions(({"southeast", "northeast"}), ({"GoThroughDoor","GoThroughDoor"}));
+//    set_post_exit_functions(({"southeast"}),({"GoThroughDoor"}));
+set_post_exit_functions(({"southeast", "northeast","west"}), ({"GoThroughDoor","GoThroughDoor","GoThroughDoor2"}));
 
 
 }
 
 int GoThroughDoor(){
-   tell_object(TP,"You slip through the crenels in the battlement and down onto the battlefield.");
+   tell_object(TP,"\nYou slip through the crenels in the battlement and down onto the battlefield.\n");
    return 1;
 }
+
+int GoThroughDoor2(){
+   tell_object(TP,"\nYou carefully walk down the steps off of the wall.\n");
+   return 1;
+}
+
+
 

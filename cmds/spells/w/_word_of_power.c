@@ -92,7 +92,8 @@ void spell_effect(int prof)
         break;
     case "graez":
     case "sangri":
-        where = "/d/undead/rooms/town/church1";
+        //where = "/d/undead/rooms/town/church1";
+        where = "/d/islands/graez/rooms/city/church1";
     placename = "Graez";
     break;
     case "asgard":
