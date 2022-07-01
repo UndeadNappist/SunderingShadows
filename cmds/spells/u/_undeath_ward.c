@@ -10,7 +10,7 @@ void create()
     set_spell_name("undeath ward");
     set_spell_level(([ "cleric" : 5, "inquisitor" : 4, "mage" : 6]));
     set_spell_sphere("abjuration");
-    set_syntax("cast CLASS repulsion");
+    set_syntax("cast CLASS undeath ward");
     set_damage_desc("removes undead from combat or damages them");
     set_description("This spell pushes undead creatures away from you, removing them from combat. Undead that makes the save will take damage instead.");
     set_save("will");

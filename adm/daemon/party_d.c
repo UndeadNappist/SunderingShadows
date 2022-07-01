@@ -245,11 +245,12 @@ int calculate_exp(string group, int exp, object ob)
         
         if(dude->query_base_character_level() < max_level - 20)
             my_cut = 0;
+        else if(dude->query_base_character_level() < max_level - 15)
+            my_cut /= 2;
         else
-        {
             my_cut = to_int(my_percent * to_float(exp));
-            dude->party_exp(my_cut, ob);
-        }
+        
+        my_cut && dude->party_exp(my_cut, ob);
     }
     
     return exp;

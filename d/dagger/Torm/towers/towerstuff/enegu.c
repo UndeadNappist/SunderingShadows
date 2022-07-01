@@ -48,8 +48,6 @@ void create() {
     set_mob_magic_resistance("average");
     set_exp(30000);
     set_alignment(9);
-    set_emotes(15, ({
-            }),1);
     ob = new("/d/attaya/obj/screamer.c");
 	ob->set_property("monsterweapon",1);
     ob->move(TO);
