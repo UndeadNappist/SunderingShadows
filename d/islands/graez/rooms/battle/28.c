@@ -2,7 +2,7 @@
 #include <std.h>
 #include "../../graez.h"
 
-inherit CORE;
+inherit STORAGE"scrubland.c";
 
 void create() {
     ::create();
