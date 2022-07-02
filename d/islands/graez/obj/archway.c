@@ -40,7 +40,7 @@ void create() {
    phrasec = "Tar";
    phrased = "sat";
    phrasee = "Koro";
-   phrasef = "nro";
+   phrasef = "ava";
    locked = 1;
 }
 
@@ -93,7 +93,7 @@ void reset_tumblers(){
    phrasec = "Tar";
    phrased = "sat";
    phrasee = "Koro";
-   phrasef = "nro";
+   phrasef = "ava";
    locked = 1;
 }
 
@@ -235,16 +235,16 @@ case "5" :
 switch( phrasee )
 {
    case "Koro":
-   phrased = "Nara";
+   phrasee = "Nara";
    break;
    case "Nara":
-   phrased = "Qura";
+   phrasee = "Qura";
    break;
    case "Qura":
-   phrased = "Nero";
+   phrasee = "Nero";
    break;
    case "Nero":
-   phrased = "Vala";
+   phrasee = "Vala";
    break;
 }
 break;
@@ -252,16 +252,16 @@ case "6" :
 switch( phrasef )
 {
    case "rot":
-   phrasee = "ava";
+   phrasef = "ava";
    break;
    case "ava":
-   phrasee = "for";
+   phrasef = "for";
    break;
    case "for":
-   phrasee = "tir";
+   phrasef = "tir";
    break;
    case "tir":
-   phrasee = "rot";
+   phrasef = "rot";
    break;
 }
 break;
