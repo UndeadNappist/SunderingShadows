@@ -244,7 +244,7 @@ switch( phrasee )
    phrasee = "Nero";
    break;
    case "Nero":
-   phrasee = "Vala";
+   phrasee = "Koro";
    break;
 }
 break;

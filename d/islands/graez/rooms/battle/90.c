@@ -3,7 +3,6 @@
 #include <std.h>
 #include "../../graez.h"
 inherit STORAGE"desert.c";
-inherit CORE;
 
 void create() {
     ::create();

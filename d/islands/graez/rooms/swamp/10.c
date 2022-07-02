@@ -12,7 +12,7 @@ void create(){
 set_exits(([
 
 "north" : SWAM"42",
-"southwest" : SWAM"4",
+"southwest" : SWAM"9",
 "east" : SWAM"17",
 
 
