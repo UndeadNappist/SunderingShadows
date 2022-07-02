@@ -26,11 +26,13 @@ string *restricted_deities(string subrace) {
     return ({ "jarmila", "kreysneothosies", "eucalia", "callamir", "edea" });
 }
 
+/*
 // this only affects rolling in creation; does not prevent dedication to a deity in-game, to allow for character evolution. N, 3/16.
 string* restricted_deities(string subrace)
 {
     return ({  });
 }
+*/
 
 // stats in order: str, dex, con, int, wis, cha
 int* stat_mods(string subrace)
