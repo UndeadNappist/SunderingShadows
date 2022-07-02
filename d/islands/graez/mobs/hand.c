@@ -52,7 +52,7 @@ void create()
     set_property("no bows", 1);
     set_sight_bonus(5);
     set_property("no random treasure", 1);
-    
+    set("aggressive", 35);    
     set_funcs(({"grab"}));
     set_func_chance(50);
 

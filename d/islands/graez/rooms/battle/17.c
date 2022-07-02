@@ -2,7 +2,8 @@
 #include <std.h>
 #include "../../graez.h"
 
-inherit CORE;
+inherit STORAGE"light_forest.c";
+
 
 void create() {
     ::create();

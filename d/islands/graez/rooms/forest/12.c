@@ -15,7 +15,7 @@ set_exits(([
 
 "northeast" : FOREST"13",
 "west" : FOREST"25",
-"south" : FOREST"11",
+"southwest" : FOREST"11",
 
 ]));
 

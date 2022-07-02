@@ -10,7 +10,7 @@ void create() {
 set_exits(([
 
 "east" : FOREST"18",
-"west" : FOREST"21",
+"west" : FOREST"20b",
 "south" : FOREST"20",
 "north" : BATTLE"81",
 
