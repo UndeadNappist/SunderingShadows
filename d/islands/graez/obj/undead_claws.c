@@ -53,25 +53,30 @@ void create()
 int extra_wield()
 {
    object room,player;
+   string playername,
    
    player = environment(this_object());    
    room = environment(this_player());
+   playername = player->query_cap_name();
+   
      
     tell_object(player, "%^C137%^You slide your hand into the %^C240%^knuckles%^C137%^, careful to not touch the claws themselves.%^CRST%^");
-    tell_room(room, ""+ player +" %^C137%^wields the %^C088%^vicious %^C137%^looking %^C240%^claws%^C137%^.%^CRST%^", player);
+    tell_room(room, ""+ playername +" %^C137%^wields the %^C088%^vicious %^C137%^looking %^C240%^claws%^C137%^.%^CRST%^", player);
 	
     return 1;
 }
 
 int extra_unwield()
 {
-	object room,player;
-    
-	player = environment(this_object());    
-    room = environment(this_player());
+   object room,player;
+   string playername,
+   
+   player = environment(this_object());    
+   room = environment(this_player());
+   playername = player->query_cap_name();
    
     tell_object(player, "%^C143%^You set remove the %^C243%^claws%^C143%^, stretching your fingers.%^CRST%^");
-    tell_room(room, "%^C143%^"+ player +" %^C143%^unwields the %^C088%^vicious %^C143%^looking %^C243%^claws%^C143%^.%^CRST%^", player);
+    tell_room(room, "%^C143%^"+ playername +" %^C143%^unwields the %^C088%^vicious %^C143%^looking %^C243%^claws%^C143%^.%^CRST%^", player);
     return 1;
 }
 

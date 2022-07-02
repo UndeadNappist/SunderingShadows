@@ -50,7 +50,7 @@ void create(){
     set_alignment(9);
     set_moving(1);
     set_speed(40);
-    set("aggressive", 20);
+    set("aggressive", 30);
 
     set_monster_feats(({
         "weapon focus",

@@ -107,7 +107,7 @@ void create(){
    ::rally(); //free rally for commander
    recruited = 0;
    
-   broadcast_area("/realms/loki/graez/rooms/", "\%^C190%^Lightning %^C066%^strikes the %^C238%^monolith %^C066%^as %^C067%^Ser Garoteth%^C066%^ the %^C241%^Death Knight%^C066%^ emerges to lead the %^C061%^undead%^C066%^!%^CRST%^\n");   
+   broadcast_area("/d/islands/graez/rooms/", "\%^C190%^Lightning %^C066%^strikes the %^C238%^monolith %^C066%^as %^C067%^Ser Garoteth%^C066%^ the %^C241%^Death Knight%^C066%^ emerges to lead the %^C061%^undead%^C066%^!%^CRST%^\n");   
    
 }
 
@@ -153,7 +153,7 @@ return;
 
 void die(object ob){
 
-   broadcast_area("/realms/loki/graez/rooms/", "%^C037%^A cheer goes up from the %^C060%^battlements %^C037%^of %^C060%^Graez %^C037%^as word reaches them %^C240%^Ser Garoteth %^C037%^has fallen!%^CRST%^");
+   broadcast_area("/d/islands/graez/rooms/", "%^C037%^A cheer goes up from the %^C060%^battlements %^C037%^of %^C060%^Graez %^C037%^as word reaches them %^C240%^Ser Garoteth %^C037%^has fallen!%^CRST%^");
    ::die(ob);
 }
 

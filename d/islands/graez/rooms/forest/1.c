@@ -10,6 +10,7 @@ void create() {
 set_exits(([
 
 "southeast" : FOREST"2",
+"north" : BATTLE"41",
 
 
 ]));

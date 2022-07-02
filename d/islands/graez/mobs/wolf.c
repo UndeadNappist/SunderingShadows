@@ -33,7 +33,7 @@ create()
     set_stats("strength", 18);
     set_funcs(({"bite"}));
     set_func_chance(20);
-    set("aggressive", 20);
+    set("aggressive", 30);
     set_moving(1);
     set_speed(40);
 }

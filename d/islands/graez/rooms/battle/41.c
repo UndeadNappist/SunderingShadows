@@ -10,6 +10,7 @@ void create() {
 set_exits(([
 
 "northwest" : ROOMS"31",
+"south" : FOREST"1",
 "northeast" : ROOMS"42",
 "southeast" : ROOMS"51",
 

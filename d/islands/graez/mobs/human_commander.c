@@ -115,7 +115,7 @@ void create(){
    ::rally(); //free rally for commander
    recruited = 0;
 
-   broadcast_area("/realms/loki/graez/rooms/", "\n%^C186%^Graez's defenders "+
+   broadcast_area("/d/islands/graez/rooms/", "\n%^C186%^Graez's defenders "+
    "rally as %^C220%^Commander Ashton%^C186%^ takes the %^C247%^field%^C186%^!%^CRST%^\n");
 
 }
@@ -160,7 +160,7 @@ return;
 
 void die(object ob){
 
-   broadcast_area("/realms/loki/graez/rooms/", "%^C244%^The "+
+   broadcast_area("/d/islands/graez/rooms/", "%^C244%^The "+
    "defense of %^C060%^Graez %^C244%^collapses as %^C214%^Commander "+
    "Ashton%^C244%^ succumbs to his %^C088%^wounds%^CRST%^!");
    ::die(ob);
