@@ -38,7 +38,7 @@ void create()
     set_property("id difficulty", 20);
 
     // Enchantment and Bonuses
-    set_property("enchantment", 4);
+    set_property("enchantment", 5);
     set_item_bonus("attack bonus", 3);
 
 
@@ -53,7 +53,7 @@ void create()
 int extra_wield()
 {
    object room,player;
-   string playername,
+   string playername;
    
    player = environment(this_object());    
    room = environment(this_player());
@@ -69,13 +69,13 @@ int extra_wield()
 int extra_unwield()
 {
    object room,player;
-   string playername,
+   string playername;
    
    player = environment(this_object());    
    room = environment(this_player());
    playername = player->query_cap_name();
    
-    tell_object(player, "%^C143%^You set remove the %^C243%^claws%^C143%^, stretching your fingers.%^CRST%^");
+    tell_object(player, "%^C143%^You remove the %^C243%^claws%^C143%^, stretching your fingers.%^CRST%^");
     tell_room(room, "%^C143%^"+ playername +" %^C143%^unwields the %^C088%^vicious %^C143%^looking %^C243%^claws%^C143%^.%^CRST%^", player);
     return 1;
 }

@@ -96,7 +96,8 @@ void create(){
    ob = new(OBJ"undead_bane");
    ob->move(TO);
    command("wield sword");
-
+   command("offer all");
+   command("offer all");
    command("speech %^C060%^speak in a "+
    "%^C246%^terse%^C060%^ %^C124%^commanding%^C060%^ "+
    "tone");

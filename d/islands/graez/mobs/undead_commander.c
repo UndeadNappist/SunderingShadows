@@ -90,7 +90,8 @@ void create(){
    ob = new(OBJ"wretched_wrath");
    ob->move(TO);
    command("wield axe");
-
+   command("offer all");
+   command("offer all");
    command("speech %^C231%^utter in a %^C244%^"+
    "deathless %^C247%^hollow %^C231%^voice%^CRST%^");
 

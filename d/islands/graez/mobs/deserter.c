@@ -85,7 +85,6 @@ void create(){
 
     ob = new(OBJ"undead_claws");
        ob->move(this_object());
-       ob->set_property("enchantment",4);
        if(random(4)) ob->set_property("monsterweapon",1);
        command("wield claws");
 	   
