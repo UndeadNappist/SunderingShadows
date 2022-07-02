@@ -150,6 +150,8 @@ void dest_effect(){
       //caster->set_property("remote scrying time",time());
     }
     
+    tell_object(caster, "%^BOLD%^%^BLACK%^The listening shadow returns to its proper place.%^RESET%^");
+    
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }
