@@ -14,7 +14,7 @@ void create() {
     ::create();
    faction_control=0;
 pick_critters();
-    set_repop(50);
+    set_repop(20);
 
     switch(faction_control){
         case 0: faction_name = "no one";
