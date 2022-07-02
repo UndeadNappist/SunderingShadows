@@ -12,7 +12,7 @@ void create(){
 
 set_exits(([
 "east" : TOWN"2",
-"south" : TOWN"dock",
+"south" : "/d/shadow/virtual/sea/undead.dock",
 "north" : TOWN"4",
 "west" : TOWN"3",
 
