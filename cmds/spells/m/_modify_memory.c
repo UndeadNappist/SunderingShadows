@@ -9,7 +9,9 @@ create()
     set_spell_level(([ "assassin" : 4, "bard" : 4, "psion" : 4 ]));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS modify memory on TARGET");
-    set_description("This spell alters victim's memory so they won't remember who you are. Should their will falter they will forget your name and will be momentarily dazed.");
+    set_description("This spell alters the victim's immediate memory so they will not recognize who you are. Should their will falter they will forget your name and will be momentarily dazed.
+                    
+%^BOLD%^%^RED%^N.B.%^RESET%^ This spell is only meant to modify memory short term, it is not meant to wipe out long term roleplay. The connection between your face and name is removed from the victim, but they still remember that you exist and can recall any past interactions. The victim can also recognize you by name again once an in character event happens that merits doing so, such as an introduction, or being addressed by another player by name.");
     mental_spell();
     diminish_returns();
     set_verbal_comp();
