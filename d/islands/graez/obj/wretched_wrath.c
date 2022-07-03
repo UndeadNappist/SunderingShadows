@@ -105,7 +105,7 @@ int extra_hit(object target)
         case 2:
         tell_object(target, "%^C239%^" + playername + "%^C239%^ holds up their axe and shadows leap out from it to envelop you!%^CRST%^");
         tell_object(player, "%^C239%^Shadows leap from the axe and entwine" + targetname + "%^C239%^!");
-	     tell_room(room,"%^C239%^"+ player +"%^C239%^'s axe bleeds shadows that leap out to envelop "+ targetname +"%^C239%^!%^CRST%^",player,target); 
+	     tell_room(room,"%^C239%^"+ playername +"%^C239%^'s axe bleeds shadows that leap out to envelop "+ targetname +"%^C239%^!%^CRST%^",player,target); 
         target->cause_typed_damage(target, "head", extra_damage(target), "negative energy");
         break;
     }
