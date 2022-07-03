@@ -431,7 +431,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
         USER_D->regenerate_ki(targ, 1);
     }
 
-    resist_perc = (int)targ->query_resistance_percent(type);
+    resist_perc = (int)targ->query_resistance_percent(type, attacker);
 
     resist = (int)targ->query_resistance(type);
 

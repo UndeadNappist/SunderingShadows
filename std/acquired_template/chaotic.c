@@ -12,7 +12,7 @@
   -25% resistance against all damage from lawful
   +2 to CMB and CMD (maybe you're slippery or distracting or something).
   warpwave - melee attacks have a chance of applying a random status on failed fort save.
-  chaos field - spell casts in room have a chance to trigger wild magic.
+  chaos field - spell casts in room have a chance to trigger wild magic. (maybe 10% here?)
 */
 
 #include <std.h>
@@ -28,7 +28,7 @@ mapping innate_spells()
 {
     return ([ "alter self"          : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
               "polymorph self"      : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
-              "blink"               : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),  
+              "displacement"        : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),  
               "confusion"           : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
               "prismatic spray"     : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
               "greater polymorph"   : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),              

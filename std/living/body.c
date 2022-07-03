@@ -866,7 +866,7 @@ int query_resistance(string res)
     return (myres + EQ_D->gear_bonus(TO, res));
 }
 
-int query_resistance_percent(string res)
+int query_resistance_percent(string res, object source)
 {
     int mod = 0;
 
@@ -1065,6 +1065,10 @@ int query_resistance_percent(string res)
         }
     }
 
+    //Agent of Chaos template
+    if(objectp(source) && is_lawful(source) && this_object()->query_acquired_template() == "chaotic")
+        mod -= 25;
+    
     //Psion mental mastery capstone
     if(this_object()->is_class("psion") && this_object()->query("available focus") == 2 && res == "mental")
         mod = 100;
