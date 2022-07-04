@@ -17,7 +17,7 @@ void create()
     ::create();
     set_name("undead bane");
     set_id( ({ "undead bane", "gleaming two handed sword", "bane", "sword", "gleaming sword"}) );
-    set_short("undead bane");
+    set_short("%^C193%^u%^C195%^n%^C194%^d%^C195%^ead b%^C194%^a%^C195%^n%^C193%^e%^CRST%^");
     set_obvious_short("%^C254%^gle%^C247%^a%^C254%^mi%^C244%^n%^C254%^g tw%^C247%^o%^C254%^ "+
         "h%^C248%^a%^C254%^nd%^C249%^e%^C254%^d s%^C250%^w%^C254%^o%^C252%^r%^C254%^d%^CRST%^");
     set_long("This %^C247%^two handed sword%^CRST%^, forged from %^C239%^iron%^CRST%^ and "+

@@ -18,7 +18,7 @@ void create()
     set_name("wretched wrath");
     set_id( ({ "wretched wrath", "axe", "ebon handled iron battle axe", "battle axe", "iron battle axe"}) );
     set_short("%^C244%^wr%^C061%^e%^C244%^tc%^C056%^h%^C244%^ed w%^C061%^r%^C244%^a%^C056%^t%^C244%^h%^CRST%^");
-    set_obvious_short("ebon handled iron battle axe");
+    set_obvious_short("%^C239%^ebon%^C060%^ handled %^C241%^iron battle axe%^CRST%^");
     set_long("The %^C060%^handle%^CRST%^ of this %^C241%^battle axe%^CRST%^ is four feet long and formed from %^C240%^ebon wood%^CRST%^. At the very bottom of the handle is a %^C231%^small human skull%^CRST%^ that has been fused to the handle with %^C124%^heat %^CRST%^and %^C056%^magic%^CRST%^, %^C059%^melting %^CRST%^it in such a way that it is almost unrecognizable. The %^C245%^axe blade%^CRST%^ itself is made from %^C239%^iron %^CRST%^and is viciously sharp.");
     set_lore("%^C144%^I've seen the death knight from "+
 	"a distance. That axe! I will have nightmares of "+
