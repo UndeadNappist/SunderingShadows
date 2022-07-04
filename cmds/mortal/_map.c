@@ -239,7 +239,7 @@ entered: " + title);
     }
     MAPPER->load_map(TPQN, mapname);
     tell_object(TP, "Showing map: " + mapname); 
-    tell_object(TP, MAPPER->show_basic_map(person));
+    tell_object(person, MAPPER->show_basic_map(TP));
     break;
   case "key":
     mapname = MAPPER->query_current_map(TP->query_name());
@@ -487,6 +487,8 @@ void help()
     "        <map list>           - lists your saved maps\n"
     "        <map check>          - Tells you whether or not your mapper is\n"
     "                               running\n"
+    "        <map show to [name]  - shows your current map to another player\n"
+
     "<map note add [title][note]> - Adds a note to your map under the given\n"
     "                               title (Titles must be short - 1 or 2\n"
     "                               characters\n"
