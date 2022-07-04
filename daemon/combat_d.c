@@ -931,6 +931,50 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
         }
     }
     //END BANE SECTION
+    
+    //AGENT OF CHAOS
+    if(attacker->query_acquired_template() == "chaotic")
+    {
+        int glvl, bonus;
+        object eff;
+        
+        glvl = attacker->query_base_character_level();
+        
+        if(!random(15 - glvl / 7))
+        {
+            bonus = max( ({ BONUS_D->query_stat_bonus(attacker, "wisdom"), BONUS_D->query_stat_bonus(attacker, "intelligence"), BONUS_D->query_stat_bonus(attacker, "charisma") }) );
+        
+            if(!target->fort_save(attacker->query_base_character_level() + bonus))
+            {
+                switch(roll_dice(1, 6))
+                {
+                    case 1:
+                    eff = "/std/effect/status/cowering.c";
+                    break;
+                    case 2:
+                    eff = "/std/effect/status/dazzled.c";
+                    break; 
+                    case 3:
+                    eff = "/std/effect/status/fatigued.c";
+                    break;
+                    case 4:
+                    eff = "/std/effect/status/frightened.c";
+                    break;
+                    case 5:
+                    eff = "/std/effect/status/shaken.c";
+                    break;
+                    case 6:
+                    eff = "/std/effect/status/sickened.c";
+                    break;
+                }
+                
+                if(objectp(target) && objectp(eff))
+                    if(!catch(eff->apply_effect(target, 1)))
+                        tell_object(attacker, "%^C165%^Your attack causes a w%^C171%^a%^C177%^r%^C183%^p%^C177%^w%^C171%^a%^C165%^ve effect!%^CRST%^");
+            }
+        }
+    }
+    //END AGENT OF CHAOS   
 
     if(!attacker)
         return;

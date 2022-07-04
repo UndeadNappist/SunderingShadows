@@ -7,12 +7,12 @@
   Shortened to "Chaotic" for the purposes of display in score and for setting/querying.
   
   Template Features:
-  +10 spell resistance
-  0 spell resistance against lawful
-  -25% resistance against all damage from lawful
-  +2 to CMB and CMD (maybe you're slippery or distracting or something).
-  warpwave - melee attacks have a chance of applying a random status on failed fort save.
-  chaos field - spell casts in room have a chance to trigger wild magic. (maybe 10% here?)
+  +10 spell resistance *
+  0 spell resistance against lawful *
+  -25% resistance against all damage from lawful *
+  +2 to CMB and CMD (maybe you're slippery or distracting or something). *
+  warpwave - melee attacks have a chance of applying a random status on failed fort save. *
+  chaos field - spells cast on you have a chance to cause wild magic effect. (maybe 10% here?) *
 */
 
 #include <std.h>

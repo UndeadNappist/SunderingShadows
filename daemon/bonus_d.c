@@ -614,6 +614,9 @@ int query_combat_maneuver_bonus(object ob)
     else
         cmb += query_stat_bonus(ob, "strength");
     
+    if(ob->query_acquired_template() == "chaotic")
+        cmb += 2;
+    
     cmb += (mysize - 2);
     
     return cmb;
@@ -637,6 +640,9 @@ int query_combat_maneuver_defense(object ob)
     
     if(ob->query_race() == "hobgoblin")
         cmd += 1;
+    
+    if(ob->query_acquired_template() == "chaotic")
+        cmd += 2;
     
     return cmd;
 }

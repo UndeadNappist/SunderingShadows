@@ -1574,7 +1574,7 @@ mixed WildMagicArea(object where)
         return 0;
     }
 
-    if (where->query_property("wild magic") > roll_dice(1, 100) || caster->query_property("spellscarred")) {
+    if (where->query_property("wild magic") > roll_dice(1, 100) || caster->query_property("spellscarred") || (!is_lawful(caster) && target && target->query_acquired_template() == "chaotic" && !random(10))) {
         wm_affect = where->query_property("wild magic affect");
         caster->remove_property("spellscarred");
         if (!stringp(wm_notify = where->query_property("wild magic warning"))) {
@@ -3305,6 +3305,15 @@ varargs int checkMagicResistance(object victim, int mod)
     }
 
     res = (int)victim->query_property("magic resistance");
+    
+    //Agent of chaos is highly resistant to magic unless it's coming from a lawful, where it's weak.
+    if(victim->query_acquired_template() == "chaotic")
+    {
+        if(is_lawful(caster))
+            res = 0;
+        else
+            res += 10;
+    }
 
     dieroll = roll_dice(1, 20);
 
