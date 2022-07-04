@@ -2,7 +2,6 @@
 varargs int cmd_map(string str) {
   string verb, name, *mapnames, result, mapname, title, note, verb2, plain_title, * roomnames, * titles, title1, title2, startroom, endroom, * route,
 line, temp;
-  object showee, *critters;
   mapping maps;
   int num, i, count, j, width, flag;
 //  report("Running command map, with string " + str);
