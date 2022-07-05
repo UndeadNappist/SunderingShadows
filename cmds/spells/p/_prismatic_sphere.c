@@ -13,6 +13,8 @@
 
 inherit SPELL;
 
+object shadow;
+
 void create()
 {
     ::create();
@@ -87,15 +89,24 @@ void spell_effect(int prof)
         }
     }
 
+    if(!objectp(shadow = new("/cmds/spells/obj/sphere_shadow.c")))
+    {
+        tell_object(caster, "There has been an error! Contact a DEV.");
+        return;
+    }
+    
+    shadow->start_shadow(caster);
+    
     addSpellToCaster();
     caster->set_property("spelled", ({TO}));
     caster->set_property("prismatic sphere", 1);
     caster->set_property("added short",({"%^BOLD%^MAGENTA%^ (surrounded in a magical shell)%^RESET%^"}));
 
     spell_duration = (2 + (clevel / 10)) * ROUND_LENGTH;
+    set_end_time();
     call_out("dest_effect",spell_duration);
 }
-
+/*
 void execute_attack()
 {
     object *attackers,room;
@@ -122,11 +133,15 @@ void execute_attack()
     }
     prepend_to_combat_cycle(room);
 }
+*/
 
 void dest_effect()
 {
     int chance;
     remove_call_out("dest_effect");
+    
+    objectp(shadow) && shadow->end_shadow();
+    
     if (!objectp(caster))
     {
         TO->remove();

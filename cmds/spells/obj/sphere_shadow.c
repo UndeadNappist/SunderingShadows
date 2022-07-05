@@ -52,7 +52,7 @@ int start_shadow(object ob)
 
 int end_shadow()
 {
-  unshadow();
+  //unshadow();
   destruct(this_object());
 
 }
