@@ -13,6 +13,8 @@
 
 inherit SPELL;
 
+#define DELAY 180
+
 object shadow;
 
 void create()
@@ -25,7 +27,7 @@ void create()
     set_syntax("cast CLASS prismatic sphere");
     set_save("reflex");
     set_damage_desc("Blindness to enemies on failed reflex save, caster becomes invulnerable.");
-    set_description("This spell creates opaque globe of shimmering, multicolored light that surrounds you and protects you from all forms of attack. The sphere flashes in all colors of the visible spectrum, blinding attackers for 2d4 rounds on a failed reflex save. This sphere prevents all forms of attack between you and your attackers. Be warned, this sphere cuts off the magical weave to your summoned minions, causing them to be destroyed.");
+    set_description("This spell creates opaque globe of shimmering, multicolored light that surrounds you and protects you from all forms of attack. The sphere flashes in all colors of the visible spectrum, blinding attackers for 2d4 rounds on a failed reflex save. This sphere prevents all forms of attack between you and your attackers. Be warned, this sphere cuts off the magical weave to your summoned minions, causing them to be destroyed. This spell has a cooldown.");
     set_verbal_comp();
     set_somatic_comp();
 }
@@ -39,6 +41,12 @@ int preSpell()
 {
     if (caster->query_property("prismatic sphere")) {
         tell_object(caster, "You are already affected by similar magic.");
+        return 0;
+    }
+    
+    if(caster->cooldown("prismatic sphere"))
+    {
+        tell_object(caster, "You can't use prismatic sphere yet.");
         return 0;
     }
 
@@ -100,6 +108,7 @@ void spell_effect(int prof)
     addSpellToCaster();
     caster->set_property("spelled", ({TO}));
     caster->set_property("prismatic sphere", 1);
+    caster->add_cooldown("prismatic sphere", DELAY);
     caster->set_property("added short",({"%^BOLD%^MAGENTA%^ (surrounded in a magical shell)%^RESET%^"}));
 
     spell_duration = (2 + (clevel / 10)) * ROUND_LENGTH;

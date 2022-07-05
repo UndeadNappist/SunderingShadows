@@ -19,6 +19,18 @@ object *query_attackers()                             { return ({  }); } //No at
 
 object query_sphere_shadow()                          { return this_object(); } //Allows you to reference shadow by calling sphered player
 
+//I found this necessary to stop things like AOE spells from firing.
+void execute_attack()
+{
+    object attacker = sphered->query_current_attacker();
+    
+    if(objectp(attacker))
+    {
+        tell_room(environment(attacker), "%^BOLD%^The prismatic sphere stops the fighting!%^RESET%^");
+        attacker->remove_attacker(sphered);
+        sphered->remove_attacker(attacker);
+    }
+}
 
 //Mask cause_typed_damage while sphere is up
 int cause_typed_damage(object targ, string limb, int damage, string type)
@@ -37,7 +49,7 @@ int cause_typed_damage(object targ, string limb, int damage, string type)
     if(!objectp(sphered) || targ != sphered)
         return targ->cause_typed_damage(targ, limb, damage, type);
     
-    tell_room(environment(targ), "%^CYAN%^BOLD%^The sphere shimmers as it nullifies the damage.%^RESET%^");
+    tell_room(environment(sphered), "%^CYAN%^BOLD%^The sphere shimmers as it nullifies the damage.%^RESET%^");
     attacker->remove_attacker(targ);
     targ->remove_attacker(attacker);
     
