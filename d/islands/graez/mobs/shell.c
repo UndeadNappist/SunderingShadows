@@ -91,11 +91,11 @@ if(rank==4){
 switch(faction)
 {	
 	case 1:
-	if(random(2)) force_me("northeast");
+	if(random(10)) force_me("northeast");
 	else force_me("southeast");
 	break;
 	case 2:
-		if(random(2)) force_me("southwest");
+		if(random(10)) force_me("southwest");
 	else force_me("northwest");
 	break;
 	
