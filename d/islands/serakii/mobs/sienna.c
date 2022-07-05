@@ -146,7 +146,7 @@ int xrush(string str){
       tell_object(TP,"sienna watches as you rush.");
       tell_object(TP,"%^BOLD%^%^RED%^At the last second, she steps aside and punches you in the face!%^RESET%^");
       tell_room(ETO,"As "+TPQCN+" tries to rush sienna, she sidesteps and punches them in the face!",TP);
-	  TP->do_damage("torso",random(100)+80);
+	  TP->do_damage("head",random(100)+80);
 	  
       return 1;
    }
