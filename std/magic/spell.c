@@ -2551,6 +2551,9 @@ void define_clevel()
             clevel = caster->query_base_character_level();
         }
     }
+    
+    if(shadow_spell)
+        spell_sphere = "illusion";
 
     if (FEATS_D->usable_feat(caster, "tricky spells")) {
         if(spell_sphere == "enchantment_charm" || spell_sphere == "illusion" || spell_sphere == "alteration")
@@ -3499,6 +3502,9 @@ varargs int do_save(object targ, int mod, int get_dc)
         if (spell_type == caster->query("base_class"))
             classlvl = caster->query_base_character_level();
     }
+    
+    if(shadow_spell)
+        spell_sphere = "illusion";
 
     if (FEATS_D->usable_feat(caster, "tricky spells"))
     {

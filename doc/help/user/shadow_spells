@@ -11,4 +11,6 @@ Shadow spells cast the chosen spell at spell level - 1, no matter what the actua
 
 So a spell cast by shadow evocation would have 4/10th of the original DC, or 40 percent.
 
+Spells cast by shadow spells always are considered to be of the illusion spell sphere and all have the WILL save type.
+
 Spells like Bend Reality, Reality Revision, Limited Wish, and Wish are NOT shadow spells and do not suffer DC penalties, though they still cast at spell level - 1.
