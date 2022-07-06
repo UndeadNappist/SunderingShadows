@@ -26,7 +26,7 @@ void execute_attack()
     
     if(objectp(attacker))
     {
-        tell_room(environment(attacker), "%^BOLD%^The prismatic sphere stops the fighting!%^RESET%^");
+        message("protection", "%^BOLD%^The prismatic sphere stops the fighting!%^RESET%^", environment(sphered));
         attacker->remove_attacker(sphered);
         sphered->remove_attacker(attacker);
     }
@@ -49,7 +49,7 @@ int cause_typed_damage(object targ, string limb, int damage, string type)
     if(!objectp(sphered) || targ != sphered)
         return targ->cause_typed_damage(targ, limb, damage, type);
     
-    tell_room(environment(sphered), "%^CYAN%^BOLD%^The sphere shimmers as it nullifies the damage.%^RESET%^");
+    message("protection", "%^CYAN%^BOLD%^The sphere shimmers as it nullifies the damage.%^RESET%^", environment(targ));
     attacker->remove_attacker(targ);
     targ->remove_attacker(attacker);
     

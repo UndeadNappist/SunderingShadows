@@ -40,13 +40,15 @@ string query_cast_string()
 int preSpell()
 {
     if (caster->query_property("prismatic sphere")) {
-        tell_object(caster, "You are already affected by similar magic.");
+        //tell_object(caster, "You are already affected by similar magic.");
+        message("failure", "You are already affected by similar magic.", caster);
         return 0;
     }
     
     if(caster->cooldown("prismatic sphere"))
     {
-        tell_object(caster, "You can't use prismatic sphere yet.");
+        //tell_object(caster, "You can't use prismatic sphere yet.");
+        message("cooldown", "You can't use prismatic sphere yet.", caster);
         return 0;
     }
 
@@ -62,9 +64,10 @@ void spell_effect(int prof)
 
     attackers = caster->target_selector();
 
-    tell_object(caster, "%^BOLD%^A globe of flashing prismatic colors forms around you, protecting you from harm!%^RESET%^");
-    tell_room(place, "%^BOLD%^" + caster->QCN + " forms a globe of prismatic colors around " + caster->QO + " with a flash of light!%^RESET%^", ({ caster }));
-
+    //tell_object(caster, "%^BOLD%^A globe of flashing prismatic colors forms around you, protecting you from harm!%^RESET%^");
+    message("my spells", "%^BOLD%^A globe of flashing prismatic colors forms around you, protecting you from harm!%^RESET%^", caster);
+    //tell_room(place, "%^BOLD%^" + caster->QCN + " forms a globe of prismatic colors around " + caster->QO + " with a flash of light!%^RESET%^", ({ caster }));
+    message("other spells", "%^BOLD%^" + caster->QCN + " forms a globe of prismatic colors around " + caster->QO + " with a flash of light!%^RESET%^", place, ({ caster }));
     if(sizeof(attackers))
     {
         foreach(object ob in attackers)
@@ -75,8 +78,10 @@ void spell_effect(int prof)
             if(do_save(ob, 0))
                 continue;
 
-            tell_room(place, "%^BOLD%^" + ob->QCN + " is blinded by the flash!%^RESET%^", ({ ob }));
-            tell_object(ob, "%^BOLD%^You are blinded by the flash!%^RESET%^");
+            //tell_room(place, "%^BOLD%^" + ob->QCN + " is blinded by the flash!%^RESET%^", ({ ob }));
+            message("status effect", "%^BOLD%^" + ob->QCN + " is blinded by the flash!%^RESET%^", place, ({ ob }));
+            //tell_object(ob, "%^BOLD%^You are blinded by the flash!%^RESET%^");
+            message("status effect", "%^BOLD%^You are blinded by the flash!%^RESET%^", ob);
             ob->set_temporary_blinded(roll_dice(2, 4));
         }
     }
@@ -85,7 +90,8 @@ void spell_effect(int prof)
 
     if(sizeof(minions))
     {
-        tell_object(caster, "Your connection to your minions is severed!");
+        //tell_object(caster, "Your connection to your minions is severed!");
+        message("my spells", "Your connection to your minions is severed!", caster);
 
         foreach(object ob in minions)
         {
@@ -99,7 +105,8 @@ void spell_effect(int prof)
 
     if(!objectp(shadow = new("/cmds/spells/obj/sphere_shadow.c")))
     {
-        tell_object(caster, "There has been an error! Contact a DEV.");
+        //tell_object(caster, "There has been an error! Contact a DEV.");
+        message("failure", "There as been an error! Submit a bug report.", caster);
         return;
     }
     
@@ -157,8 +164,10 @@ void dest_effect()
         return;
     }
 
-    tell_object(caster, "%^BOLD%^%^MAGENTA%^The prismatic sphere fades from around you.");
-    tell_room(environment(caster), "%^BOLD%^%^MAGENTA%^The sphere around "+caster->QCN+" fades away.",caster);
+    //tell_object(caster, "%^BOLD%^%^MAGENTA%^The prismatic sphere fades from around you.");
+    message("my spells", "%^BOLD%^%^MAGENTA%^The prismatic sphere fades from around you.", caster);
+    //tell_room(environment(caster), "%^BOLD%^%^MAGENTA%^The sphere around "+caster->QCN+" fades away.",caster);
+    message("other spells", "%^BOLD%^%^MAGENTA%^The sphere around "+caster->QCN+" fades away.", environment(caster), ({ caster }));
 
     caster->remove_property("prismatic sphere");
     caster->remove_property_value("added short",({"%^BOLD%^MAGENTA%^ (surrounded in a magical shell)%^RESET%^"}));
