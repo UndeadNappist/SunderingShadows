@@ -9,11 +9,11 @@
 %^RED%^   * +2 combat maneuver bonus and combat maneuver defense
 %^RED%^   * +10 spell resistance against non-lawful casters
 %^RED%^   * 0 spell resistance against lawful casters
-%^RED%^   * -25% resistance percent against all damage from lawful sources
+%^RED%^   * -25% resistance percent against damage from lawful sources
 %^RED%^ * Chaos Field
-%^RED%^   * 10% chance for non-helpful spells in area to cast wild magic instead
+%^RED%^   * 10% chance for non-helpful spells in area to cause wild magic
 %^RED%^ * Warpwave
-%^RED%^   * Melee attacks have a chance to apply random status effect on failed fort save
+%^RED%^   * Melee attacks can apply random status effect on failed fort save
 %^RED%^ * Innate Spells
 %^RED%^   * alter self
 %^RED%^   * polymorph self
