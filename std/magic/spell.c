@@ -1555,7 +1555,7 @@ mixed special_spell_handling(string which)
 
 mixed WildMagicArea(object where)
 {
-    object nspell;
+    object nspell, *chaotic_entities;
     int psi_immune, slev, count, chaotic_presence;
     mixed wmlev, * wm_affect = ({});
     string wmclass, file, rspell, wm_notify;
@@ -1565,7 +1565,10 @@ mixed WildMagicArea(object where)
     wmlev = slev;
     wmclass = spell_type;
     
-    chaotic_presence = sizeof(filter_array(all_living(place), (: $1->query_acquired_template() == "chaotic" :)));
+    chaotic_entities = filter_array(all_living(place), (: $1->query_acquired_template() == "chaotic" :));
+    //chaotic_presence = sizeof(filter_array(all_living(place), (: $1->query_acquired_template() == "chaotic" :)));
+    chaotic_entities -= ({ caster });
+    chaotic_presence = sizeof(chaotic_entities);
 
     if (!objectp(where)) {
         return 0;
