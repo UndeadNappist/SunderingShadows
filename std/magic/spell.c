@@ -1556,15 +1556,16 @@ mixed special_spell_handling(string which)
 mixed WildMagicArea(object where)
 {
     object nspell;
-    int psi_immune, slev, count;
+    int psi_immune, slev, count, chaotic_presence;
     mixed wmlev, * wm_affect = ({});
     string wmclass, file, rspell, wm_notify;
-
 
     psi_immune = 1;
     slev = query_spell_level(spell_type);
     wmlev = slev;
     wmclass = spell_type;
+    
+    chaotic_presence = sizeof(filter_array(all_living(place), (: $1->query_acquired_template() == "chaotic" :)));
 
     if (!objectp(where)) {
         return 0;
@@ -1574,7 +1575,7 @@ mixed WildMagicArea(object where)
         return 0;
     }
 
-    if (where->query_property("wild magic") > roll_dice(1, 100) || caster->query_property("spellscarred") || (!is_lawful(caster) && target && target->query_acquired_template() == "chaotic" && !random(10))) {
+    if (where->query_property("wild magic") > roll_dice(1, 100) || caster->query_property("spellscarred") || (!is_lawful(caster) && chaotic_presence && !help_or_harm && !random(10))) {
         wm_affect = where->query_property("wild magic affect");
         caster->remove_property("spellscarred");
         if (!stringp(wm_notify = where->query_property("wild magic warning"))) {
