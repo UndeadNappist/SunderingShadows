@@ -118,12 +118,12 @@ void execute_feat()
     if(DC > base + roll_dice(1, 20))
     {
         tell_object(caster, "%^CYAN%^Your target resists your attempt to scar them with wild magic!");
-        caster->add_cooldown("primal scar", 300);
+        caster->add_cooldown("primal scar", 180);
         dest_effect();
         return;
     }
     
-    type = spell->query_spell_type();
+    //type = spell->query_spell_type();
     
     foreach(string str in allowed)
     {
@@ -131,7 +131,7 @@ void execute_feat()
             my_class = str;
     }
     
-    level = spell->query_spell_level(type);
+    //level = spell->query_spell_level(type);
     available = keys(caster->query_all_memorized(my_class)[9]);
     
     if(!pointerp(available) || !sizeof(available))
@@ -152,7 +152,7 @@ void execute_feat()
     
     tell_object(caster, "%^BOLD%^%^CYAN%^You use your primal knowledge to scar " + target->query_cap_name() + " with wild magic.");
     target->set_property("spellscarred", 1);
-    caster->add_cooldown("primal scar", 300);
+    caster->add_cooldown("primal scar", 180);
 
     dest_effect();
     return;
