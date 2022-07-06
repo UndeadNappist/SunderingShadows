@@ -44,7 +44,13 @@
 #define NPC "/std/npc"
 #define GUARDSMAN "/std/guardsman.c"
 #define SHAPESHIFT "/std/shapeshift.c"
+
+// DEPRECATED SHORT FORMS OF FUNCTIONS
 #define TP this_player()
+#define TO this_object()
+#define PO previous_object()
+#define ETP environment(this_player())
+#define ETO environment(this_object())
 #define TPQCN this_player()->query_cap_name()
 #define TPQN this_player()->query_name()
 #define TOQCN this_object()->query_cap_name()
@@ -59,9 +65,11 @@
 #define QO query_objective()
 #define QS query_subjective()
 #define QNPC "/d/npc/QNPC.c"
-
 #define ENV(A) environment(A)
 #define FPL(A) find_player(A)
+#define QCN query_cap_name()
+//END DEPRECATED FORMS OF FUNCTIONS
+
 // because Garrett is silly and is a wabbit
 #define SPELL "/std/magic/spell"
 #define HEX "/std/magic/hex"
@@ -71,14 +79,10 @@
 #define FEAT "/std/feat"
 #define SCRIBE "/std/scribe"
 #define WEAPONLESS "/std/weaponless_monsters"
-#define TO this_object()
 #define WIZARDSPELL "/std/magic/wizardspell.c"
-#define PO previous_object()
-#define ETP environment(this_player())
-#define ETO environment(this_object())
+
 #define ROPE "/d/common/obj/misc/rope.c"
 #define EETO environment(environment(this_object()))
-#define QCN query_cap_name()
 #define CHARACTER_LEVEL_CAP 50
 #define TEST_CHARACTER_LEVEL_CAP 60
 
