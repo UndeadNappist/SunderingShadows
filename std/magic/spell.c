@@ -3318,8 +3318,6 @@ varargs int checkMagicResistance(object victim, int mod)
     {
         if(is_lawful(caster))
             res = 0;
-        else
-            res += 10;
     }
 
     dieroll = roll_dice(1, 20);

@@ -734,6 +734,9 @@ mixed query_property(string prop)
 
         if(FEATS_D->has_feat(this_object(), "eternal warrior") && this_object()->query("available focus") == 2)
             num += 2;
+        
+        if(this_object()->query_acquired_template() == "chaotic")
+            num += 10;
 
         num += props[prop];
         return (num + EQ_D->gear_bonus(TO, "magic resistance") + EQ_D->gear_bonus(TO, "spell resistance"));
