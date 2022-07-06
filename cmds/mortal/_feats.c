@@ -454,6 +454,7 @@ int cmd_feats(string str)
     }
 
     str = lower_case(str);
+    str = replace_string(str, "_", " ");
 
     if (avatarp(TP) && objectp(ob = find_player(str))) {
         FEATS_D->display_feats(TP, ob);
