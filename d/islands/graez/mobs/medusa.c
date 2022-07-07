@@ -110,13 +110,13 @@ void gaze(object target){
 
   if(!objectp(target)) return 0;
   if(!objectp(TO)) return 0;
-  if(!target->will_save(50)) {
+  if(!target->will_save(30)) {
     if(target->query_property("no death")){
 
       //damage and stun  
       tell_object(target,"%^C186%^The Medusa turns to gaze in your direction. You cannot look away and you feel your whole body get tense as her magic tries to turn you to stone!%^CRST%^");
       tell_room(room,"%^C186%^The medusa turns to gaze at "+target->QCN+"%^C186%^ who stands slack and does not move!%^CRST%^",target);
-      target->cause_typed_damage(target, target->return_target_limb(), random(300)+100, "void");
+      target->cause_typed_damage(target, target->return_target_limb(), random(200)+100, "void");
       target->set_tripped(1,"%^C186%^You are still trying to catch your breath!%^CRST%^");
       return(random(3)+1);
     }
