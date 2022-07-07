@@ -25,7 +25,16 @@ void heart_beat()
 {
     ::heart_beat();
     if(!objectp(TO)) return;
-    if(!objectp(myMaster)) return;
+    if(!objectp(myMaster))
+    {
+        go_away();
+        return;
+    }
+    if(environment(this_object()) != environment(myMaster))
+    {
+        go_away();
+        return;
+    }
     if(pointerp(TO->query_attackers()))
     {
         if(member_array(myMaster, (object *)TO->query_attackers()) != -1) 

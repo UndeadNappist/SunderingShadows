@@ -97,6 +97,7 @@ void add_guardian()
     ob = new("/d/magic/mon/elemental_guardian");
     ob->setup_guardian(caster, (string)caster->query("monk_ele_focus"));    
     ob->set_property("minion", caster);
+    caster->add_follower(ob);
     mons += ({ob});
     return;
 }
