@@ -74,7 +74,8 @@ int query_size(){
 
 int wear_it(){
     if(ETO->is_class("mage") || ETO->is_class("cleric") 
-	|| ETO->is_class("psion") || ETO->is_class("sorcerer") || ETO->is_class("druid")) {
+	|| ETO->is_class("psion") || ETO->is_class("sorcerer") || ETO->is_class("druid")
+    || ETO->is_class("magus") || ETO->is_class("warlock") {
         if((int)ETO->query_highest_level() < 30) {
 	        tell_object(ETO,"The robe growls at the puny one "+
             "who tries to wear it.");
