@@ -62,7 +62,7 @@ demon:3:10000:5:right hand;left hand:0:0:0:0:0:0:human:3:8
 devil:3:10000:5:right hand;left hand:0:0:0:0:0:0:human:3:8
 dragon:12:100000:3::5:5:5:5:5:5:dragon:3:12
 giant:0:10000:5:right hand;left hand:2:0:0:0:0:-2:human:3:5
+imp:2:7000:4:right hand;left hand:-1:-1:5:5:1:-7:human:1:2
 illithid:-4:10000:5:right hand;left hand;primary right tentacle;primary left tentacle;secondary right tentacle;secondary left tentacle:0:0:0:0:0:0:flayer:2:4
-kender:2:7000:5:right hand;left hand:-2:-3:-1:0:9:-4:human:1:0
 lupine:4:999999:3:right forepaw;left forepaw:0:0:0:0:0:0:quadruped:2:4
 troll:0:10000:5:right hand;left hand:2:0:0:0:0:-2:human:3:9
