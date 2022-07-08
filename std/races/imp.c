@@ -62,7 +62,7 @@ mapping daily_uses(string subrace)
 mapping query_racial_innate(string subrace)
 {
     return (["invisibility" : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),
-             "detect magic" : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),    
+             "alter self" : (["type" : "spell", "daily uses" : -1, "level required" : 0, ]),    
              "detect good" : (["type" : "spell", "daily uses" : -1, "level required" : 0, ])
     ]);
 }
