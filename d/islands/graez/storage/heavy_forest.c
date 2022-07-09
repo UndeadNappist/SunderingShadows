@@ -5,8 +5,8 @@ inherit CROOM;
 void pick_critters();
 
 void create() {
-    ::create();
     pick_critters();
+    ::create();
     set_terrain(HEAVY_FOREST);
     set_travel(FOOT_PATH);
     set_property("indoors",0);
