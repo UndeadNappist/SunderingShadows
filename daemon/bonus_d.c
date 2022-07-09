@@ -617,6 +617,8 @@ int query_combat_maneuver_bonus(object ob)
     if(ob->query_acquired_template() == "chaotic")
         cmb += 2;
     
+    cmb += ob->query("gladiator trance") / 2;
+    
     cmb += (mysize - 2);
     
     return cmb;
@@ -661,8 +663,8 @@ int combat_maneuver(object victim, object attacker, int mod)
     if(result == 20)
         return 1;
     
-    psybonus = attacker->query("gladiator trance") / 2;
-    result += psybonus;
+    //psybonus = attacker->query("gladiator trance") / 2;
+    //result += psybonus;
     result += mod;
     
     if(!userp(victim))
