@@ -45,6 +45,10 @@ mapping BONUS_CATS = ([
              "will",
              "reflex"
              }),
+ "combat maneuver" : ({
+         "combat maneuver bonus",
+         "combat maneuver defense",
+             }),
  "resistances" : ({
          "acid resistance",                 "acid resistance percent",
              "bludgeoning resistance",          "bludgeoning resistance percent",
@@ -318,7 +322,7 @@ mixed gear_bonus(object who, string bonus, int flag)
 mixed all_active_bonuses(object who, int flag)
 {
     string *myBonuses, Bonus, myDisplay = "", myName, itemDisplay, *SpellSlots;
-    string *statDisplay = ({}), *skillDisplay = ({}), *resistanceDisplay = ({}), *savingDisplay = ({}), *miscDisplay = ({});
+    string *statDisplay = ({}), *skillDisplay = ({}), *resistanceDisplay = ({}), *savingDisplay = ({}), *miscDisplay = ({}), *maneuverDisplay = ({});
     mapping myItems, myTmp;
     object item, *items;
     int x, totalBon, y, dodisplay;
@@ -440,6 +444,12 @@ mixed all_active_bonuses(object who, int flag)
             case "light":
                 totalBon = who->query_property("light");
                 break;
+            case "combat maneuver bonus":
+                totalBon = BONUS_D->query_combat_maneuver_bonus(who);
+                break;
+            case "combat maneuver defense":
+                totalBon = BONUS_D->query_combat_maneuver_defense(who);
+                break;
             case "fire resistance": case "cold resistance": case "water resistance": case "air resistance":
             case "earth resistance": case "bludgeoning resistance": case "piercing resistance": case "slashing resistance":
             case "silver resistance": case "cold iron resistance": case "electricity resistance": case "acid resistance": case "sonic resistance":
@@ -510,6 +520,14 @@ mixed all_active_bonuses(object who, int flag)
             }
             else savingDisplay += ({myDisplay});
         }
+        else if(member_array(Bonus, BONUS_CATS["combat maneuver"]) != -1)
+        {
+            if(!sizeof(maneuverDisplay))
+            {
+                maneuverDisplay = ({"\n%^BLUE%^-=%^BOLD%^<%^GREEN%^ Combat Maneuvers %^BLUE%^>%^RESET%^%^BLUE%^=-", myDisplay});
+            }
+            else maneuverDisplay += ({myDisplay});
+        }
         else if(member_array(Bonus, BONUS_CATS["resistances"]) != -1)
         {
             if(!sizeof(resistanceDisplay))
@@ -531,6 +549,6 @@ mixed all_active_bonuses(object who, int flag)
     if(flag) return myItems;
     else
     {
-        return (statDisplay + skillDisplay + savingDisplay + resistanceDisplay + miscDisplay);
+        return (statDisplay + skillDisplay + savingDisplay + maneuverDisplay + resistanceDisplay + miscDisplay);
     }
 }

@@ -85,6 +85,6 @@
 
 #define VALID_WEAPON_BONUSES ({ })
 
-#define VALID_OTHER_BONUSES ({ })
+#define VALID_OTHER_BONUSES ({ "combat maneuver bonus", "combat maneuver defense" })
 
 #define VALID_BONUSES (VALID_ARMOR_BONUSES + VALID_WEAPON_BONUSES + VALID_OTHER_BONUSES)
