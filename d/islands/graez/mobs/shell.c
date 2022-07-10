@@ -35,10 +35,13 @@ void heart_beat()
 {
     ::heart_beat();
 
+    if (!objectp(TO)) {
+        return;
+    }
 // am I in combat?
-	if (!TO->query_attackers() || (mixed *)TO->query_attackers() != ({ })) {
-		return 1;
-	}
+    if (sizeof(TO->query_attackers())) {
+        return;
+    }
 
 // am I resting?
     if (resting == 1){
@@ -47,7 +50,7 @@ void heart_beat()
 		if(resting_time <= 0){
 			resting = 0;
 		}
-		return 1;
+		return;
 	}
 what_should_I_do();
 return;
