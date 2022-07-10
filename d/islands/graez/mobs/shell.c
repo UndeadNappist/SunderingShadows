@@ -36,7 +36,7 @@ void heart_beat()
     ::heart_beat();
 
 // am I in combat?
-	if ((mixed *)TO->query_attackers() != ({ })) {
+	if (!TO->query_attackers() || (mixed *)TO->query_attackers() != ({ })) {
 		return 1;
 	}
 
