@@ -30,6 +30,10 @@ void create()
 init()
 {
     ::init();
+    
+    if(!userp(this_player()))
+        return;
+    
     add_action("break_free", "break");
 }
 
@@ -90,9 +94,9 @@ void clean_inventory()
     
     foreach(ob in deep_inventory(TO))
     {
-        if(get_eval_cost() < 100000)
+        if(get_eval_cost() < 50000)
             continue;
-        
+                
         if (!objectp(ob)) {
             continue;
         }
@@ -101,8 +105,9 @@ void clean_inventory()
             handle_player_object(ob);
             continue;
         }
-        if(catch(ob->remove()))
-            continue;
+        //if(catch(ob->remove()))
+        ob->remove();
+        //    continue;
         
         if (objectp(ob)) {
             if(catch(destruct(ob)))

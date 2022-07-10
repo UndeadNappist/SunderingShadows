@@ -84,6 +84,9 @@ int extra_damage(object ob)
 {
     int bonus;
     
+    if(!objectp(owner))
+        return 0;
+    
     bonus = this_object()->query_wc() + this_object()->query_property("enchantment") + owner->query_damage_bonus();
     bonus += BONUS_D->new_damage_bonus(this_object(), owner->query_stats("strength"));
     
@@ -115,7 +118,7 @@ int extra_hit(object target)
         case 0:
         tell_object(player, "%^C137%^You shove your attacker's blow aside and attack again!%^CRST%^");
 		counter = 0;
-        owner->execute_attack();
+        player->execute_attack();
         break;
         case 1:
         tell_object(player, "%^C160%^You rake the talons across%^CRST%^ " + targetname + "%^C160%^'s body, leaving a %^C245%^wicked %^C160%^wound!%^CRST%^");
