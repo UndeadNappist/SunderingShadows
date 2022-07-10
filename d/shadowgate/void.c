@@ -90,9 +90,13 @@ void clean_inventory()
     
     foreach(ob in deep_inventory(TO))
     {
+        if(get_eval_cost() < 100000)
+            continue;
+        
         if (!objectp(ob)) {
             continue;
         }
+        
         if (userp(ob)) {
             handle_player_object(ob);
             continue;
