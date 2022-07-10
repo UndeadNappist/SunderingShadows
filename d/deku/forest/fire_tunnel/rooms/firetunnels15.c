@@ -9,7 +9,7 @@ void create() {
     "to the south.  The tunnel of flames "+
     "continues north here.%^RESET%^");
     add_item("opening","%^BLUE%^This is a small opening "+
-    "in the barrier surrounding the flames directly north of here.  "+
+    "in the barrier surrounding the flames directly south of here.  "+
     "You could try to %^RED%^enter%^RESET%^%^BLUE%^ it, if you "+
     "were brave enough.%^RESET%^");
     set_exits(([

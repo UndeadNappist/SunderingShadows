@@ -43,11 +43,11 @@ void create(){
         "It smells musty and unused in here."
       );
       set_items(([
-        "wall":"The wall is made entirely out of large blocks of rose and grey marble.  It "
+        "wall":"The wall is made entirely out of large blocks of rose and gray marble.  It "
            "is somehow both beautiful and intimidating at the same time.  That castle was built "
            "for strength as well as beauty.",
 	"table":"This is a plain table that looks like it has seen many years of use.",
-	({"chair","chairs"}):"the chairslook old, but are still sturdy and strong.",
+	({"chair","chairs"}):"The chairs look old, but are still sturdy and strong.",
 	"rack":"This rack once held weapons that were ready to be used in defense of the castle.  "
 		  "The rack is long abandoned now though ... ",
 	"stairs":"The stairs wind up through the ceiling in a tight spiral",

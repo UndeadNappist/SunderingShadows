@@ -103,9 +103,9 @@ int extra_hit(object target)
         player->execute_attack();
         break;
         case 1:
-        tell_object(player, "%^BOLD%^As you strike " + targetname + "%^BOLD%^ with the sword it glows, searing " + target->query_objective() + "%^BOLD%^!");
-        tell_object(target, "%^BOLD%^As the sword strikes you, it glows with a fiece holy fire!%^RESET%^");
-	     tell_room(room,"%^C248%^"+ playername +"%^C248%^'s sword flashes with a %^C195%^bright light%^C248%^ as it strikes%^CRST%^ "+ targetname +"%^C248%^!%^CRST%^",player,target); 
+        tell_object(player, "%^BOLD%^As you strike " + targetname + "%^BOLD%^ with the sword, it glows, searing " + target->query_objective() + "%^BOLD%^!");
+        tell_object(target, "%^BOLD%^As the sword strikes you, it glows with a fierce holy fire!%^RESET%^");
+	    tell_room(room,"%^C248%^"+ playername +"%^C248%^'s sword flashes with a %^C195%^bright light%^C248%^ as it strikes%^CRST%^ "+ targetname +"%^C248%^!%^CRST%^",player,target); 
         target->cause_typed_damage(target, "torso", extra_damage(target), "divine");
         break;
         case 2:

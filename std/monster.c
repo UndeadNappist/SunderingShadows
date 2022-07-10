@@ -618,7 +618,7 @@ void die(object ob)
         if (!objectp(contents[i])) {
             continue;
         }
-        if (contents[i]->query_property("monsterweapon") || !contents[i]->query_short()) {
+        if (contents[i]->query_property("monsterweapon") || !contents[i]->query_short() || !objectp(tmp)) {
             contents[i]->remove();
             continue;
         }else {

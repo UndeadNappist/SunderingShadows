@@ -1,6 +1,6 @@
 %^BOLD%^%^CYAN%^COMBAT MANEUVERS%^RESET%^
 
-%^RESET%^%^ORANGE%^Some maneuvers in combat require a check to determine their success. This pits the attacker's Combat Maneuver Bonus (CMB) against the victim's Combat Maneuver Defense(CMD). Combat maneuver checks are used mainly for actions which are not attacks to perform damage but are meant to disarm/trip/sunder or perform some other debilitating condition on the victim. The calculation for combat maneuvers is as follows:
+%^RESET%^%^ORANGE%^Some maneuvers in combat require a check to determine their success. This pits the attacker's Combat Maneuver Bonus (CMB) against the victim's Combat Maneuver Defense(CMD). Combat maneuver checks are used mainly for actions that are not attacks to perform damage but are meant to disarm/trip/sunder or perform some other debilitating condition on the victim. The calculation for combat maneuvers is as follows:
 
 CMB = Base Attack + Strength Bonus + Size Modifier
 CMD = Base Attack + Strength OR Dexterity Bonus + Size Modifier

@@ -10,7 +10,7 @@ void create()
   set_property("indoors", 0);
   set_short("Entrance to the Tower of the Black Dawn.");
    set_long("%^BOLD%^%^RED%^Entrance to the Tower of the Black Dawn
-%^BOLD%^%^BLACK%^You stand before the massive gates to the Crystalline Tower of the Kinnesaruda Empire.  It is now that the true scope of the tower grasps you.  The massive walls before you are mearly the southeast support structure for the crystal tower that is over a mile high!  The tower glistens in the soft light.
+%^BOLD%^%^BLACK%^You stand before the massive gates to the Crystalline Tower of the Kinnesaruda Empire.  It is now that the true scope of the tower grasps you.  The massive walls before you are merely the southeast support structure for the crystal tower that is over a mile high!  The tower glistens in the soft light.
 %^BOLD%^%^WHITE%^A large mirror stands before you, fastened to one of the massive doors..
 ");
   set_smell("default", "It is terribly cold here.  You are getting frostbite.");

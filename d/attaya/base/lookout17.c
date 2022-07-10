@@ -12,7 +12,7 @@ void create() {
     set_property("no teleport", 1);
     set_short("Inside the walls of the Tower of the Black Dawn.");
     set_long(
-      "This plain stone room is a storage area.  A few benches and shelves line the walls.  there isn't much here, though."
+      "This plain stone room is a storage area.  A few benches and shelves line the walls.  There isn't much here, though."
     );
 
     set_exits( ([

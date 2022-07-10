@@ -12,12 +12,12 @@ void create() {
 
     set_name("light forest");
     set_short("%^C028%^light forest%^CRST%^");
-    set_long("You heave entered a %^C028%^light forest%^CRST%^ "+
+    set_long("You have entered a %^C028%^light forest.%^CRST%^ "+
 	"The %^C040%^trees %^CRST%^here are %^C060%^gnarled %^CRST%^and "+
 	"dwarfed though as if they are constantly trying to fight "+
 	"for %^C255%^life%^CRST%^. You can even hear %^C095%^small "+
 	"animals%^CRST%^ in the %^C028%^trees%^CRST%^. The ground "+
-	"is less compact here. and movement is harder through the "+
+	"is less compact here, and movement is harder through the "+
 	"trees. Off to the north you see a %^C243%^mountain range%^CRST%^.\n");
 
 
