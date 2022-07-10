@@ -25,7 +25,7 @@ void create() {
     set_currency("silver");
     set_menu(
 ({ "juice", "ale", "coffee", "deathblow", "nuts", "pretzels", "potato", "eggs" }),
-({ "soft drink", "alcoholic", "coffee", "alcoholic", "food", "food", "food", "food" }),
+({ "soft drink", "alcoholic", "caffeine", "alcoholic", "food", "food", "food", "food" }),
 ({ 12, 7, 15, 25, 7, 5, 10, 12 })
     );
     

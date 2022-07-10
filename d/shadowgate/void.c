@@ -112,7 +112,9 @@ void clean_inventory()
             if(catch(destruct(ob)))
                 continue;
         }
-        continue;
+        
+        if(objectp(ob))
+            ob->move_or_destruct();
     }
     return;
 }
@@ -130,6 +132,6 @@ void check_my_inventory()
     }
     clean_inventory();
     reclaim_objects();
-    call_out("check_my_inventory", 30);
+    call_out("check_my_inventory", 20);
     return;
 }
