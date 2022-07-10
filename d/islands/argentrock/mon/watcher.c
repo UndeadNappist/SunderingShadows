@@ -87,7 +87,7 @@ void strik(object targ)
 
    if(!"/daemon/saving_throw_d.c"->reflex_save(targ,-30)){
     targ->move("/d/islands/argentrock/inherit/sea");
-    tell_object(targ,"%^CYAN%^You loose your footing and are"+
+    tell_object(targ,"%^CYAN%^You lose your footing and are"+
 	   " sent %^BOLD%^%^BLUE%^flying into the sea");
     tell_room(ETO,"%^CYAN%^The elf lands a brutal blow on "+
     " "+targ->query_cap_name()+" that sends them flying"+
