@@ -16,7 +16,7 @@ void create(){
    set_short("%^C059%^Ser %^C060%^Garoteth%^C059%^, the %^C160%^Ravenous%^CRST%^");
    set_long("Dressed in %^C059%^gothic armor%^CRST%^ a century out of fashion and draped in a %^C160%^blood red%^CRST%^ %^C124%^heavy cloak%^CRST%^, this %^C238%^death knight%^CRST%^ before you is a terrifying sight. bright angry %^C160%^red eyes%^CRST%^ flare from behind a %^C243%^sugarloaf helm%^CRST%^. It wields a %^C239%^great battle axe%^CRST%^ in both hands and watches over the %^C058%^blasted battlefield%^CRST%^ without emotion or reaction.");
    set_race("undead");
-
+   set_property("swarm",0);
    rank = 4;
    faction = 2;
 
@@ -175,8 +175,8 @@ void receive_given_item(object obj){
    force_me("say Take this axe, and reap the entire city in my name.");
    force_me("give axe to "+name+"");
    force_me("offer axe");    
-   return;
+
 
    TP->set_mini_quest("Became the holder of Wrath", 500000, "Became the holder of Wrath");
-
+   return;
 }

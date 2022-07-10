@@ -24,7 +24,7 @@ void create(){
    set_id(({"commander","human commander","Commander Ashton of the City Guard",
    "commander ashton of the city guard","ashton","commander ashton","Commander Ashton"}));
    set_race("human");
-   
+  set_property("swarm",0);   
    rank = 4;
    faction = 1;
    
@@ -185,8 +185,8 @@ void receive_given_item(object obj){
    "his axe destroyed. Here, take this sword as an exchange");
    force_me("give undead bane to "+name+"");
    force_me("offer axe");    
-   return;
+
 
    TP->set_mini_quest("Earned Ashton's Undead Bane", 500000, "Earned Ashton's Undead Bane");
-
+   return;
 }
