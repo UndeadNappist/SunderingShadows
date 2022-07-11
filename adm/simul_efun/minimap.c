@@ -51,7 +51,7 @@ varargs string simple_map(mixed arg)
     if(!objectp(room))
         return "";
     
-    exits = room->query_exits();
+    exits = room->query_obvious_exits();
     
     if(!exits || !sizeof(exits))
         return "";
@@ -103,7 +103,6 @@ varargs string simple_map(mixed arg)
             break;
         }
     }
-    
     ret = implode(lines, "\n");
     ret = replace_string(ret, "@", "%^GREEN%^BOLD%^@%^RESET%^");
     ret = replace_string(ret, "*", "%^GREEN%^*%^RESET%^");
@@ -111,7 +110,7 @@ varargs string simple_map(mixed arg)
     ret = replace_string(ret, "\\", "%^CYAN%^\\%^RESET%^");
     ret = replace_string(ret, "/", "%^CYAN%^/%^RESET%^");
     ret = replace_string(ret, "|", "%^CYAN%^|%^RESET%^");
-    ret = replace_string(ret, ".", "%^C250%^|%^CRST%^");
+    ret = replace_string(ret, ".", "%^C240%^.%^CRST%^");
     return ret;
 }
         
