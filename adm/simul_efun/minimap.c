@@ -90,7 +90,7 @@ varargs string simple_map(mixed arg)
             lines[1][2..2] = this_exit;
             lines[2][3..3] = "\\";
             break;
-            case "southest":
+            case "southeast":
             lines[5][6..6] = this_exit;
             lines[4][5..5] == "\\";
             break;
@@ -99,13 +99,13 @@ varargs string simple_map(mixed arg)
             lines[4][3..3] = "/";
             break;
             default:
-            extra_desc += ({ dir });
+            //extra_desc += ({ dir });
             break;
         }
     }
         
-    if(sizeof(extra_desc))
-        lines[3] = replace_string(lines[3], "\n", " Also Available: " + implode(extra_desc, ", ") + "\n");
+    //if(sizeof(extra_desc))
+    //    lines[3] = replace_string(lines[3], "\n", " Also Available: " + implode(extra_desc, ", ") + "\n");
     
     ret = lines[0] + lines[1] + lines[2] + lines[3] + lines[4] + lines[5] + lines[6];
     ret = replace_string(ret, "@", "%^GREEN%^BOLD%^@%^RESET%^");
