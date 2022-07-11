@@ -637,6 +637,9 @@ void die(object ob)
     }
     TO->move(ROOM_VOID);
     remove();
+    
+    if(objectp(this_object()))
+        destruct(this_object());
 }
 
 int query_npc()
