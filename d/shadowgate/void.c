@@ -93,7 +93,7 @@ void clean_inventory()
 
     seteuid(UID_ROOT);
     
-    trash = new("/d/shadowgate/trash.c");
+    trash = load_object("/d/shadowgate/trash");
     
     foreach(ob in deep_inventory(TO))
     {

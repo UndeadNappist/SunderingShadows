@@ -8,7 +8,7 @@
 
 #include <std.h>
 
-inherit CONTAINER;
+inherit ROOM;
 
 void create()
 {
