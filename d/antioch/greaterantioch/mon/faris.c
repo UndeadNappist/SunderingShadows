@@ -25,7 +25,6 @@ void create() {
    set_gender("male");
    set_hd(20,6);
    set_alignment(9);
-   command("pose struggling with a woman on a bed");
    set_max_hp(400);
    set_hp(400);
    set_overall_ac(-8);
