@@ -77,6 +77,7 @@ void clean_inventory()
 {
     object * players;
     object ob;
+    object trash;
 
     if (!objectp(TO)) {
         return;
@@ -92,6 +93,8 @@ void clean_inventory()
 
     seteuid(UID_ROOT);
     
+    trash = new("/d/shadowgate/trash.c");
+    
     foreach(ob in deep_inventory(TO))
     {
         if(get_eval_cost() < 50000)
@@ -105,17 +108,20 @@ void clean_inventory()
             handle_player_object(ob);
             continue;
         }
-        if(catch(ob->remove()))
-            continue;
         
-        if (objectp(ob)) {
-            if(catch(destruct(ob)))
-                continue;
+        if(objectp(trash))
+        {
+            ob->move(trash);
         }
-        
-        if(objectp(ob))
-            ob->move_or_destruct();
+        else
+        {
+            if(catch(ob->remove()))
+                destruct(ob);
+        }   
     }
+    
+    objectp(trash) && destruct(trash);
+    
     return;
 }
 
