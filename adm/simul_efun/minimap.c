@@ -36,7 +36,7 @@ string query_blocked(object what, string direction)
 varargs string simple_map(mixed arg)
 {
     string *exits, *lines, *extra_desc;
-    string this_exit;
+    string this_exit, ret;
     object room;
     
     if(userp(arg))
@@ -56,11 +56,14 @@ varargs string simple_map(mixed arg)
     if(!exits || !sizeof(exits))
         return "";
     
+    extra_desc = ({  });
     lines = allocate(7);
     lines[0] = "---------\n";
     lines[6] = "---------\n";
     lines[1] = "|       |\n";
-    lines[3][4..4] = "*";
+
+    lines[2] = lines[3] = lines[4] = lines[5] = lines[1];
+    lines[3][4..4] = "%^GREEN%^*%^RESET%^";
     
     foreach(string dir in exits)
     {
@@ -103,7 +106,7 @@ varargs string simple_map(mixed arg)
             lines[4][2..2] = "/";
             break;
             default:
-            extra_desc = dir;
+            extra_desc += ({ dir });
             break;
         }
     }
@@ -111,7 +114,8 @@ varargs string simple_map(mixed arg)
     if(sizeof(extra_desc))
         lines[3] = replace_string(lines[3], "\n", "Also Available: " + implode(extra_desc, ", ") + "\n");
     
-    return implode(lines, "\n");           
+    ret = lines[0] + lines[1] + lines[2] + lines[3] + lines[4] + lines[5] + lines[6];
+    return ret;
 }
         
         
