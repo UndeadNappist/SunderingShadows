@@ -213,7 +213,7 @@ Use <review> to review you choices or <press button> to start the process.\n");
 
     if (args) {
         if (args && avatarp(TP)) {
-            if (!(targ = find_player(args))) {
+            if (!(targ = find_player(lower_case(args)))) {
                 return notify_fail("That person is not available for scoring.\n");
             }
         }

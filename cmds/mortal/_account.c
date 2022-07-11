@@ -41,6 +41,8 @@ int cmd_account(string str)
 
     if(avatarp(TP) && stringp(str) && str != "" && str != " ")
     {
+        str = lower_case(str);
+
         if(!user_exists(str) && !find_player(str))
         {
             tell_object(TP,"That player doesn't seem to exist.");
