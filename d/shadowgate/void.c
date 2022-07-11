@@ -18,7 +18,7 @@ void create()
         "You're in the void, stuck here for reasons unknown.\n"
         "To get out, simply %^WHITE%^<break free>%^WHITE%^.");
     set_property("light", 1);
-    call_out("check_my_inventory", 20);
+    call_out("check_my_inventory", 10);
     set_property("no teleport", 1);
     set_property("indoors", 1);
     set_terrain(WOOD_BUILDING);
@@ -97,7 +97,7 @@ void clean_inventory()
     
     foreach(ob in deep_inventory(TO))
     {
-        if(get_eval_cost() < 50000)
+        if(get_eval_cost() < 100000)
             continue;
                 
         if (!objectp(ob)) {
@@ -138,6 +138,6 @@ void check_my_inventory()
     }
     clean_inventory();
     reclaim_objects();
-    call_out("check_my_inventory", 20);
+    call_out("check_my_inventory", 10);
     return;
 }

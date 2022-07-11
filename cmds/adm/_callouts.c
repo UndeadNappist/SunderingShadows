@@ -24,13 +24,6 @@ mixed cmd_callouts(string input) {
         message("system", "No pending callouts.", this_player());
         return 1;
     }
-
-    /*
-    this_player()->more(({
-        sprintf("%:-40s %:-25s %:-6s", "Object", "Function", "Delay"),
-        "---------------------------------------------------------------------------"
-    }) + items, "system");
-    */
     
     write(sprintf("header row")+"\n"+implode(items, "\n"));
     return 1;
