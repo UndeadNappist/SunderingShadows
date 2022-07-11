@@ -56,6 +56,9 @@ void spell_effect(int prof) {
     place = query_place();
     arg = query_arg();
     clevel += dispel_power();
+    
+    if(!objectp(place))
+        return;
 
     tell_room(place, "%^BOLD%^The air shimmers as "+caster->QCN+" %^BOLD%^%^WHITE%^completes a spell.", caster);
     tell_object(caster, "%^BOLD%^The air in the area begins to shimmer.");
@@ -69,7 +72,7 @@ void spell_effect(int prof) {
         return;
     }
     
-    //Holy shit this section - imagine aoe farming and there are a hundred items on the floor and dozens of mobs in room
+    //Holy shit this section - imagine aoe farming and there are a hundred items on the floor and dozens of mobs in room and a witch doctor casts this
     if (!targ) {  // now, if there wasn't a target set, do the room
         allinv = deep_inventory(place);
         allinv = target_filter(allinv);
@@ -79,6 +82,7 @@ void spell_effect(int prof) {
         allinv += ({targ});
     }
 
+    //And then some of your targets have 8-10 buffs on them and aoe spells
     for (i = 0;i < sizeof(allinv);i++) {
         if (!objectp(allinv[i])) continue;
         if(!caster->ok_to_kill(allinv[i])) continue;

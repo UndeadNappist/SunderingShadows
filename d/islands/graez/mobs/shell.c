@@ -238,7 +238,9 @@ void die(object ob){
 object war_room;
 
 war_room=find_object_or_load("/realms/loki/graez/storage/special_war.c");
-war_room->something_died(rank,faction);
+
+    if(objectp(war_room) && rank && faction)
+        war_room->something_died(rank,faction);
 
    ::die(ob);
 }
