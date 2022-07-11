@@ -8,10 +8,7 @@
 
 #include <std.h>
 
-#define LINE0 "---------\n"
-#define LINE1 "|       |\n"
-
-string query_door(object what, string direction)
+string query_blocked(object what, string direction)
 {
     string dest;
     object room;
@@ -38,7 +35,8 @@ string query_door(object what, string direction)
 
 varargs string simple_map(mixed arg)
 {
-    string *exits;
+    string *exits, *lines, *extra_desc;
+    string this_exit;
     object room;
     
     if(userp(arg))
@@ -58,9 +56,62 @@ varargs string simple_map(mixed arg)
     if(!exits || !sizeof(exits))
         return "";
     
+    lines = allocate(7);
+    lines[0] = "---------\n";
+    lines[6] = "---------\n";
+    lines[1] = "|       |\n";
+    lines[3][4..4] = "*";
+    
+    foreach(string dir in exits)
+    {
+        this_exit = query_blocked(room, dir);
         
+        switch(dir)
+        {
+            case "north":
+            lines[1][4..4] = this_exit;
+            lines[2][4..4] = "|";
+            break;
+            case "south":
+            lines[5][4..4] = this_exit;
+            lines[4][4..4] = "|";
+            break;
+            case "east":
+            lines[3][7..7] = this_exit;
+            lines[3][5..5] = "-";
+            lines[3][6..6] = "-";
+            break;
+            case "west":
+            lines[3][1..1] = this_exit;
+            lines[3][2..2] = "-";
+            lines[3][3..3] = "-";
+            break;
+            case "northeast":
+            lines[1][7..7] = this_exit;
+            lines[2][6..6] = "/";
+            break;
+            case "northwest":
+            lines[1][1..1] = this_exit;
+            lines[2][2..2] = "\\";
+            break;
+            case "southest":
+            lines[5][7..7] = this_exit;
+            lines[4][6..6] == "\\";
+            break;
+            case "southwest":
+            lines[5][1..1] = this_exit;
+            lines[4][2..2] = "/";
+            break;
+            default:
+            extra_desc = dir;
+            break;
+        }
+    }
+        
+    if(sizeof(extra_desc))
+        lines[3] = replace_string(lines[3], "\n", "Also Available: " + implode(extra_desc, ", ") + "\n");
     
-    
+    return implode(lines, "\n");           
 }
         
         

@@ -68,6 +68,8 @@ void spell_effect(int prof) {
         dest_effect();
         return;
     }
+    
+    //Holy shit this section - imagine aoe farming and there are a hundred items on the floor and dozens of mobs in room
     if (!targ) {  // now, if there wasn't a target set, do the room
         allinv = deep_inventory(place);
         allinv = target_filter(allinv);
@@ -114,6 +116,9 @@ void dispel(object ob) {
     }
 
     shuffle(spells);
+    
+    if(sizeof(spells) > 10)
+        spells = spells[0..9];
 
     for (i = 0; i < sizeof(spells); i++) {
         if (!objectp(ob)) {
