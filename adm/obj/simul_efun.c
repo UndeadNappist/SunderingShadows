@@ -79,4 +79,4 @@ string identify(mixed a);
 #include "/adm/simul_efun/time_funcs.c"
 #include "/adm/simul_efun/array.c"
 #include "/adm/simul_efun/parse_command.c"
-#include "/adm/simul_efun/minimap.c"
+//#include "/adm/simul_efun/minimap.c"

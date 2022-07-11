@@ -676,6 +676,9 @@ void describe_current_room(int verbose)
                 borg += "It is completely dark.";
             }
         }
+        //if(this_object()->query("minimap"))
+        //    message("minimap", simple_map(this_object()), this_object());
+        
         message("room_description", borg, TO);
         if (stringp(tmp = (string)env->query_smell("default"))) {
             message("smell", tmp, TO);

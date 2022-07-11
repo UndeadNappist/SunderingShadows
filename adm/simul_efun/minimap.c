@@ -113,7 +113,3 @@ varargs string simple_map(mixed arg)
     ret = replace_string(ret, ".", "%^C240%^.%^CRST%^");
     return ret;
 }
-        
-        
-    
-    
