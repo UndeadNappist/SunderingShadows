@@ -14,7 +14,7 @@ void create()
 	"%^GREEN%^You are at the northern edge of a valley. Now"+
 	" you can see the %^BOLD%^%^CYAN%^waterfall%^RESET%^%^GREEN%^ that before you could"+
 	" only hear. The %^BOLD%^%^CYAN%^waterfall%^RESET%^%^GREEN%^ is crashing into a"+
-	" large %^BOLD%^%^BLUE%^lake%^RESET%^%^GREEN%^ which empties into a"+
+	" large %^BOLD%^%^BLUE%^lake%^RESET%^%^GREEN%^ that empties into a"+
         " %^BLUE%^river%^GREEN%^. The"+
 	" river winds its way down to the eastern end"+
 	" of the valley and disappears into the %^BOLD%^woods%^RESET%^%^GREEN%^."+

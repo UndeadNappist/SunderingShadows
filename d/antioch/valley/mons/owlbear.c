@@ -13,7 +13,7 @@ void create(){
 	set_short("An enormous owlbear");
 	set_long(
 	"Very well named, this beast looks exactly like a cross"+
-	" between an owl and a bear. It has the furr and body of"+
+	" between an owl and a bear. It has the fur and body of"+
 	" a bear with the claws and head of an owl. The beast is"+
 	" huge and it looks rather crazed and deadly. Its yellow"+
 	" beak is sharp and the creature would probably love to have"+

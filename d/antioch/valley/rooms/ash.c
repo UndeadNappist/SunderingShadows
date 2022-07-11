@@ -13,7 +13,7 @@ void create()
 	set_property("light",3);
 	set_short("%^BOLD%^Branches of an ash tree");
 	set_long(
-	"%^GREEN%^You are standing in the branches of the%^BOLD%^%^BLUE%^blue ash%^RESET%^%^GREEN%^ tree."+
+	"%^GREEN%^You are standing in the branches of the %^BOLD%^%^BLUE%^blue ash%^RESET%^%^GREEN%^ tree."+
 	" Although the branches do not appear to be very thick,"+
 	" they seem to easily support your weight. From here you"+
 	" can see a network of branches extending upwards, almost"+

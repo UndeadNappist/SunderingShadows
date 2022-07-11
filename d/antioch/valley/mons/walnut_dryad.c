@@ -9,7 +9,7 @@ void create()
 	set_long(
 	"The dryad watches you cautiously, prepared to defend herself"+
 	" should you make any hostile move. You have invaded her home"+
-	" which she has sworn to protect at all costs. Should the"+
+	" that she has sworn to protect at all costs. Should the"+
    " walnut tree she lives in ever die, she would perish with"+
 	" it. She blends in well with the tree, her skin is darkly"+
 	" tanned to match the color of the branches, and her hair"+
