@@ -120,8 +120,9 @@ void init_retinue()
     
     // LEGACY FOLLOWER SUPPORT
     // THIS IS BAD AND SHOULD BE REMOVED ASAP
-    if (!sizeof(retinue))
+    if (!sizeof(retinue) || stringp(keys(retinue)[0]))
     {
+        clear_retinue();
         string retainer_directory = "/d/save/retainers/" + player->query_name() + "/";
         mkdir(retainer_directory); // If the directory doesn't exist, make it.
         file_names = get_dir(retainer_directory);
