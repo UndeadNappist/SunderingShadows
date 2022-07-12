@@ -78,7 +78,7 @@ void remove_retinue(int slot)
     }
     
     map_delete(retinue, slot);
-    map_delete(last_follower_death_times, slot)
+    map_delete(last_follower_death_times, slot);
 
     // Reorder the retinue
     for (slot = 0; slot < sizeof(retinue); ++slot)
