@@ -62,5 +62,6 @@ int strike_func(int damage, object what, object who){
       tell_object(who,"%^BOLD%^%^WHITE%^Motes of silver light rise off of "+ETOQCN+"'s robe, slamming into you with a jolt.%^RESET%^");
       who->do_damage(who->return_limb(),random(4)+6);
    }
+   return damage;
 }
 
