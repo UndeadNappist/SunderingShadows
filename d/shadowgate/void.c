@@ -76,27 +76,29 @@ void handle_player_object(object ob)
 
 void clean_inventory()
 {
-    object * players;
+    object * players, *targets;
     object ob;
     object trash;
 
     if (!objectp(TO)) {
         return;
     }
-
+    
+    /*
     players = filter_array(all_inventory(TO), (:userp($1):));
     if (sizeof(players)) {
-        foreach(ob in players) {
+        foreach(ob in players)
             handle_player_object(ob);
-        }
-        return;
     }
-
-    //seteuid(UID_DESTRUCT);
+    */
     
     trash = load_object("/d/shadowgate/trash");
+    targets = deep_inventory(this_object());
     
-    foreach(ob in deep_inventory(TO))
+    if(sizeof(targets) > 100)
+        targets = targets[0..99];
+    
+    foreach(ob in targets)
     {
         if(get_eval_cost() < 25000)
             continue;
@@ -121,13 +123,15 @@ void clean_inventory()
         }   
     }
     
-    //objectp(trash) && destruct(trash);
+    objectp(trash) && destruct(trash);
     
     return;
 }
 
 void check_my_inventory()
 {
+    mixed error;
+    
     if (!objectp(TO)) {
         return;
     }
@@ -137,7 +141,7 @@ void check_my_inventory()
         TO->remove();
         return;
     }
-    clean_inventory();
+    error = catch(clean_inventory());
     reclaim_objects();
     call_out("check_my_inventory", 10);
     return;

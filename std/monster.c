@@ -638,8 +638,6 @@ void die(object ob)
     TO->move(ROOM_VOID);
     remove();
     
-    seteuid(UID_DESTRUCT);
-    
     if(objectp(this_object()))
         destruct(this_object());
 }
