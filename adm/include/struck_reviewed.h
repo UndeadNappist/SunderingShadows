@@ -68,6 +68,7 @@
     "/d/islands/dallyh/forest/obj/rosebodice", \
     "/d/islands/dinosaur/obj/lg_armor", \
     "/d/islands/dreams/obj/darkcassock", \
+    "/d/islands/dreams/obj/moonlight_robe", \
     "/d/islands/dreams/obj/rainbowcassock", \
     "/d/islands/elf/obj/anklet", \
     "/d/islands/elf/obj/bracers", \
