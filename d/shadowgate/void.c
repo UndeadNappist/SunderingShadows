@@ -84,13 +84,12 @@ void clean_inventory()
         return;
     }
     
-    /*
     players = filter_array(all_inventory(TO), (:userp($1):));
-    if (sizeof(players)) {
+    if (sizeof(players))
+    {
         foreach(ob in players)
             handle_player_object(ob);
     }
-    */
     
     trash = load_object("/d/shadowgate/trash");
     targets = deep_inventory(this_object());
@@ -123,7 +122,7 @@ void clean_inventory()
         }   
     }
     
-    objectp(trash) && destruct(trash);
+    sizeof(targets) && objectp(trash) && destruct(trash);
     
     return;
 }
