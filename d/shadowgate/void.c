@@ -23,6 +23,7 @@ void create()
     set_property("indoors", 1);
     set_terrain(WOOD_BUILDING);
     set_travel(DIRT_ROAD);
+    seteuid(UID_ROOT);
     set_no_clean(1);
     return;
 }
@@ -91,13 +92,13 @@ void clean_inventory()
         return;
     }
 
-    seteuid(UID_ROOT);
+    //seteuid(UID_DESTRUCT);
     
     trash = load_object("/d/shadowgate/trash");
     
     foreach(ob in deep_inventory(TO))
     {
-        if(get_eval_cost() < 100000)
+        if(get_eval_cost() < 25000)
             continue;
                 
         if (!objectp(ob)) {
@@ -120,7 +121,7 @@ void clean_inventory()
         }   
     }
     
-    objectp(trash) && destruct(trash);
+    //objectp(trash) && destruct(trash);
     
     return;
 }
