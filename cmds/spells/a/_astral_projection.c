@@ -34,6 +34,7 @@ int preSpell()
         tell_object(caster, "This is a greater summon, and you already have one!");
         return 0;
     }
+    if(!userp(caster)) return 0;
     return 1;
 }
 
