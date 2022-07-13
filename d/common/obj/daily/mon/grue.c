@@ -183,3 +183,16 @@ void slam_attack(){
     return;
 }
 
+void die(object ob){
+    object room, pet;
+    room = environment(this_object());
+    
+    tell_room(room, "%^RESET%^%^CRST%^%^C059%^The %^C023%^dar%^C024%^kness %^C030%^rece%^C037%^des%^C059%^, and whatever %^C124%^lurked %^C059%^within seems to dissolve in the light.%^CRST%^");
+    if(!random(10)){
+        tell_room(room, "\n%^RESET%^%^CRST%^%^C023%^A small patch of %^C059%^darkness %^C023%^seems to have persisted, and it lets out a strange mewling noise...%^CRST%^");
+        pet = new("/d/common/obj/pets/loot_pets/baby_grue");
+        pet->move(room);
+    }
+    ::die();
+}
+

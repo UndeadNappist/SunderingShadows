@@ -76,19 +76,21 @@ void set_powerlevel(int pwrlvl){
 }
 
 void steam_fun(object targ){
-    tell_room(environment(this_object()), "%^RESET%^%^CRST%^\n%^C202%^The %^C250%^g%^C248%^o%^C246%^l%^C244%^em %^C202%^shudders, vents opening along its sides to expel huge clouds of %^C255%^steam %^C202%^towards %^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C255%^!%^CRST%^", targ);
+    object room = environment(this_object());
+    
+    tell_room(room, "%^RESET%^%^CRST%^\n%^C202%^The %^C250%^g%^C248%^o%^C246%^l%^C244%^em %^C202%^shudders, vents opening along its sides to expel huge clouds of %^C255%^steam %^C202%^towards %^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C255%^!%^CRST%^", targ);
     tell_object(targ, "%^RESET%^%^CRST%^\n%^C202%^The %^C250%^g%^C248%^o%^C246%^l%^C244%^em %^C202%^shudders, vents opening along its sides to expel huge clouds of %^C255%^steam %^C202%^towards %^C230%^you%^C255%^!%^CRST%^");
 
     if(userp(targ)){
         if(powerlevel > 4){
             if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 15) + handicap)){
                 tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You manage to dive away, avoiding the hot blast!%^CRST%^\n");
-                tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ manages to dive away!%^CRST%^\n", targ);
+                tell_room(room, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ manages to dive away!%^CRST%^\n", targ);
                 handicap++;
                 return;
             }
             tell_object(targ, "%^RESET%^%^CRST%^%^C196%^A blast of superheated %^C255%^steam %^C196%^catches you in the face, searing and %^C214%^bl%^C220%^i%^C226%^nd%^C220%^i%^C214%^ng %^C196%^you!%^CRST%^\n");
-            tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C196%^ catches a blast of %^C255%^steam %^C196%^in the face!%^CRST%^\n", targ);
+            tell_room(room, "%^RESET%^%^CRST%^%^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C196%^ catches a blast of %^C255%^steam %^C196%^in the face!%^CRST%^\n", targ);
             targ->cause_typed_damage(targ, "head", roll_dice(powerlevel,10), "fire");   
             targ->set_temporary_blinded(roll_dice(1,powerlevel));
             handicap--;
@@ -97,7 +99,7 @@ void steam_fun(object targ){
         return;
     }
     else{
-        tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C124%^"+targ->QCN+" %^RESET%^%^CRST%^%^C124%^is engulfed in superheated steam and is incinerated!%^CRST%^\n");
+        tell_room(room, "%^RESET%^%^CRST%^%^C124%^"+targ->QCN+" %^RESET%^%^CRST%^%^C124%^is engulfed in superheated steam and is incinerated!%^CRST%^\n");
         targ->die();
         return;
     }
@@ -105,25 +107,26 @@ void steam_fun(object targ){
 
 void buzz_fun(object targ){
     int i;
-    object* attackers;
+    object room, *attackers;
     
     attackers = query_attackers();
+    room = environment(this_object());
     
-    tell_room(environment(this_object()), "%^RESET%^%^CRST%^\n%^C202%^The %^C250%^g%^C248%^o%^C246%^l%^C244%^em %^C202%^shifts, sending the buzz saw down in a low arc!%^CRST%^");
+    tell_room(room, "%^RESET%^%^CRST%^\n%^C202%^The %^C250%^g%^C248%^o%^C246%^l%^C244%^em %^C202%^shifts, sending the buzz saw down in a low arc!%^CRST%^");
 
     for(i=0; i < powerlevel; i++){
         targ=attackers[random(sizeof(attackers))];
         if(userp(targ)){
             if(SAVING_THROW_D->reflex_save(targ, (powerlevel * 14) + handicap)){
                 tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You dodge, and the buzz saw blade only grazes you!%^CRST%^\n");
-                tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ dodges out of the way!%^CRST%^\n", targ);
+                tell_room(room, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ dodges out of the way!%^CRST%^\n", targ);
                 targ->cause_typed_damage(targ, "torso", roll_dice(powerlevel, 10), "slashing");
                 handicap++;
                 return;
             }
         
             tell_object(targ, "%^RESET%^%^CRST%^%^C196%^The buzz saw catches you, digging in to %^C124%^rip %^C196%^and %^C124%^tear!%^CRST%^\n");
-            tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C196%^The saw blade digs into %^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C196%^, %^C124%^ripping %^C196%^and %^C124%^tearing%^C196%^!%^CRST%^\n", targ);
+            tell_room(room, "%^RESET%^%^CRST%^%^C196%^The saw blade digs into %^C230%^"+targ->QCN+"%^RESET%^%^CRST%^%^C196%^, %^C124%^ripping %^C196%^and %^C124%^tearing%^C196%^!%^CRST%^\n", targ);
             targ->cause_typed_damage(targ, "torso", roll_dice((powerlevel * 2),10), "slashing");
             targ->set_property("rend", powerlevel);
             handicap--;
@@ -131,7 +134,7 @@ void buzz_fun(object targ){
         }
         else{
             if(!objectp(targ)) continue;
-            tell_room(environment(this_object()), "%^RESET%^%^CRST%^%^C124%^"+targ->QCN+" %^RESET%^%^CRST%^%^C124%^is torn apart by the whirling buzz saw!%^CRST%^");
+            tell_room(room, "%^RESET%^%^CRST%^%^C124%^"+targ->QCN+" %^RESET%^%^CRST%^%^C124%^is torn apart by the whirling buzz saw!%^CRST%^");
             targ->die();
             attackers = query_attackers();
             continue;
@@ -141,7 +144,15 @@ void buzz_fun(object targ){
 }
 
 void die(object ob){
-    tell_room(ETO, "%^RESET%^%^CRST%^%^C059%^The %^C220%^go%^C214%^le%^C220%^m %^C059%^falls apart into a pile of %^C244%^broken parts %^C059%^and %^C244%^cogs%^C059%^.");
+    object room, pet;
+    room = environment(this_object());
+    
+    tell_room(room, "%^RESET%^%^CRST%^%^C059%^The %^C220%^go%^C214%^le%^C220%^m %^C059%^falls apart into a pile of %^C244%^broken parts %^C059%^and %^C244%^cogs%^C059%^.");
+    if(!random(10)){
+        tell_room(room, "\n%^RESET%^%^CRST%^%^C136%^All the commotion seems to have attracted one of the denizens of the demiplane.%^C059%^.");
+        pet = new("/d/common/obj/pets/loot_pets/clockwork_hummingbird");
+        pet->move(room);
+    }
     ::die();
 }
 

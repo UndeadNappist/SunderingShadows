@@ -168,3 +168,16 @@ void bloody_heal(){
     return;
 }
 
+void die(object ob){
+    object room, pet;
+    room = environment(this_object());
+    
+    tell_room(room, "%^RESET%^%^CRST%^%^C059%^The %^C196%^re%^C124%^dc%^C125%^ap %^C059%^collapses, reaching out with a %^C124%^viciously %^C255%^ta%^C250%^l%^C255%^one%^C250%^d %^RESET%^%^C059%^hand before dying.%^CRST%^");
+    if(!random(10)){
+        tell_room(room, "\n%^RESET%^%^CRST%^%^C126%^The nearby %^C036%^ve%^C040%^ge%^C046%^t%^C036%^at%^C040%^io%^C046%^n %^RESET%^%^C126%^rustles for a moment, breaking for a %^C196%^b%^C160%^ri%^C255%^g%^C160%^ht %^C196%^re%^C160%^d m%^C255%^u%^C196%^s%^C160%^hr%^C196%^o%^C255%^o%^C196%^m %^RESET%^%^C126%^that meanders closer on its animated %^C144%^stalk%^C126%^.%^CRST%^");
+        pet = new("/d/common/obj/pets/loot_pets/shroomling");
+        pet->move(room);
+    }
+    ::die();
+}
+

@@ -160,3 +160,16 @@ void wave_fun(){
     return;
 }
 
+void die(object ob){
+    object room, pet;
+    room = environment(this_object());
+    
+    tell_room(room, "%^RESET%^%^CRST%^%^C059%^The %^C143%^ele%^C137%^men%^C131%^tal %^C143%^f%^C137%^o%^C131%^rm %^RESET%^%^C059%^sinks, melting away to join the surrounding %^C118%^b%^C112%^o%^C106%^g%^C059%^.%^CRST%^");
+    if(!random(10)){
+        tell_room(room, "\n%^RESET%^%^CRST%^%^C131%^Not all of it seems to have dissipated, as %^118%^bu%^C112%^lbo%^C106%^us %^C112%^o%^C118%^o%^C112%^z%^C106%^e %^RESET%^%^C131%^seems to move about with a disgusting sucking sound.%^CRST%^");
+        pet = new("/d/common/obj/pets/loot_pets/disgusting_oozeling");
+        pet->move(room);
+    }
+    ::die();
+}
+
