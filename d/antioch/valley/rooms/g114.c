@@ -11,7 +11,7 @@ void create()
 	);
 	set_exits( ([
 	"south" : ROOMS+"dryad5",
-	"north" : ROOMS+"m9",
+	"north" : ROOMS+"g102",
 	"west" : ROOMS+"g115",
 	"east" : ROOMS+"g113",
 	]) );
