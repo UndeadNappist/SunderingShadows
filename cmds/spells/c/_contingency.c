@@ -29,6 +29,10 @@ int preSpell() {
     tell_object(caster,"You need to have a likeness of yourself to cast upon.");
     return 0;
   }
+  if(present("remotexoli", caster)){
+      message("info", "You already have a contingency in place.", caster);
+      return 0;
+  }
   return 1;
 }
 
