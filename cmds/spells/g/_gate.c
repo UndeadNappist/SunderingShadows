@@ -46,7 +46,7 @@ string query_cast_string()
 int preSpell()
 {
     string destination;
-    if(arg == "summoning" && (caster->query_property("has_elemental") || caster->query_property("mages_sword") || caster->query_property("casting_greater_summons")))
+    if(arg == "summoning" && (caster->query_property("has_elemental") || caster->query_property("mages_sword")))
     {
         tell_object(caster,"You already have a powerful summoned creature under your control.");
         return 0;
