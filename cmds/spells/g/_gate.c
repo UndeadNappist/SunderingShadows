@@ -46,7 +46,7 @@ string query_cast_string()
 int preSpell()
 {
     string destination;
-    if(arg == "summoning" && (caster->query_property("has_elemental") || caster->query_property("mages_sword")))
+    if(arg == "summoning" && (caster->query_property("has_elemental") || caster->query_property("mages_sword") || caster->query_property("casting_greater_summons")))
     {
         tell_object(caster,"You already have a powerful summoned creature under your control.");
         return 0;
@@ -113,6 +113,7 @@ void do_summons()
     " arms before "+caster->QO+", and traces of "+
     "mist follow the motion of "+caster->QP+" hands.%^RESET%^",caster);
 
+    caster->set_property("has_elemental",1);
     call_out("do_summons_2",ROUND_LENGTH);
 }
 
@@ -158,7 +159,6 @@ void do_summons_2()
     beastie->set_caster(caster);
     beastie->set_mylevel(clevel);
 
-    caster->set_property("has_elemental",1);
     addSpellToCaster();
 }
 
@@ -324,7 +324,9 @@ void dest_effect()
         }
         else if(objectp(endplace)) endplace->remove_exit("portal");
     }
-    if(objectp(caster) && arg == "summoning") caster->remove_property("has_elemental");
+    if(objectp(caster) && arg == "summoning"){
+        caster->remove_property("has_elemental");
+    }
     if(objectp(beastie))
     {
         tell_room(environment(beastie),"%^BOLD%^%^GREEN%^The outsider "+

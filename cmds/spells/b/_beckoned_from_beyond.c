@@ -159,6 +159,7 @@ void do_summons() {
     	tell_room(place,"%^RED%^"+caster->QCN+" extends a hand before "+caster->QO+", "
       "and the air shimmers and grows hazy.%^RESET%^",caster);
 
+        caster->set_property("has_elemental",1);
     	call_out("do_summons_2",ROUND_LENGTH);
 }
 
@@ -202,7 +203,7 @@ void do_summons_2() {
     mon->set_mylevel(clevel);
     mon->set_caster(caster);
     mon->set_property("minion", caster);
-    caster->set_property("has_elemental",1);
+    
     //gets set earlier in the code - Saide, December 2016
     //addSpellToCaster();
     check2();
