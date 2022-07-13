@@ -8,7 +8,7 @@ void create() {
     feat_category("Presence");
     feat_name("leadership");
     //feat_prereq("Force of personality");
-    feat_desc("This feat represents the pinnacle of renown for a character, allowing them to attract a number of loyal followers based upon their influence skill.\n\n%^BOLD%^%^RED%^This feat is currently a placeholder, all characters can recruit followers.%^RESET%^"
+    feat_desc("This feat represents the pinnacle of renown for a character, allowing them to attract a number of loyal followers based upon their influence skill.\n\n%^BOLD%^%^RED%^This feat is currently a placeholder, all characters can recruit followers.%^RESET%^
 
 %^BOLD%^%^WHITE%^See also:%^RESET%^ follower.");
     permanent(1);
