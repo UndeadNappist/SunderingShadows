@@ -65,7 +65,7 @@ OLI
         "deku" : "/d/deku/town/road5.c", 
         "down" : "/d/shadow/city/room/plaza",
         "newbietown" :"/d/newbie/rooms/town/square",
-        "Sjail":"/d/shadow/room/city/jail_main",
+        "Sjail":"/d/shadow/city/room/jail_main",
 //      "arena" : "/realms/obsidian/rooms/arena1",
 //      "fenceroom" : "/realms/garrett/fenceroom",
         "east" : "/d/dagger/avaboard2",

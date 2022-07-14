@@ -29,8 +29,8 @@ void create()
 	set_exits(([
         "arena" : "/realms/obsidian/rooms/arena1",
 //        "locked" : "/realms/obsidian/rooms/lock",
-        "adventure" : "/d/shadow/room/city/adventure",
-	"northeast" : "/d/dagger/avalounge",
+//        "adventure" : "/d/shadow/room/city/adventure",
+        "northeast" : "/d/dagger/avalounge",
 	]));
         set_door("door","/d/dagger/avalounge","northeast",0);
         set_open("door",0);
