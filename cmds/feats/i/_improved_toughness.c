@@ -12,7 +12,7 @@ void create()
     feat_prereq("Toughness");
     feat_desc("Improved Toughness is a passive feat that when taken will further increase the character's health by a certain amount per level beyond that of toughness. Like toughness, this feat will also apply to levels gained before the feat was taken.");
     permanent(1);
-    set_required_for(({"damage resistance","regeneration"}));
+    set_required_for(({"damage resistance"}));
 }
 
 int allow_shifted() { return 1; }
