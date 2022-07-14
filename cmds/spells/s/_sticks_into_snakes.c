@@ -25,7 +25,7 @@ void create()
     set_spell_level(([ "cleric" : 5, "druid" : 5]));
     set_spell_sphere("alteration");
     set_syntax("cast CLASS sticks into snakes");
-    set_description("This spell allows the caster to create snakes from sticks in the surrounding area. There must be sticks present for this spell to be successful.");
+    set_description("This spell allows the caster to create snakes from sticks in the surrounding area. There must be sticks present for this spell to be successful. This spell lasts until combat is over.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
@@ -103,7 +103,7 @@ spell_effect(int prof)
             mon = new("/d/magic/mon/amphisbaena");
             break;
         }
-        mons[num - 1] = mon;
+        mons += ({ mon });
         if (!objectp(mon)) {
             continue;
         }
@@ -142,11 +142,11 @@ spell_effect(int prof)
     addSpellToCaster();
     spell_successful();
     num = 0;
-    spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH + 300;
-    duration = time() + spell_duration;
-    set_end_time();
+    //spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH + 300;
+    //duration = spell_duration;
+    //set_end_time();
     //call_out("check", 1, ({ num, (2 + clevel) * ROUND_LENGTH, caster, foes }));
-    call_out("dest_effect", duration);
+    //call_out("dest_effect", duration);
 }
 
 int check(mixed* args)
@@ -189,7 +189,10 @@ int check(mixed* args)
         foes = newfoes;
         defend(caster, foes);
     }
-
+    else
+    {
+        dest_effect();
+    }
 
     /*for (num2=0;num2<=sizeof(newfoes)-1;num2++)
       {
@@ -210,11 +213,14 @@ int check(mixed* args)
       }
       }*/
 
+    /*
     if (num++ < timetowait) {
         call_out("check", 1, ({ num, timetowait, caster, foes }));
     }else  {
         dest_effect();
     }
+    */
+    call_out("check", 6);
 }
 void defend(object caster, object* foes)
 {
@@ -268,6 +274,8 @@ void dest_effect()
             mons[num]->move("/d/shadowgate/void.c");
             if (objectp(mons[num])) {
                 mons[num]->remove();
+                if(objectp(mons[num]))
+                    destruct(mons[num]);
             }
         }
     }
