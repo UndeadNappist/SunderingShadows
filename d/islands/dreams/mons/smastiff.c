@@ -28,7 +28,8 @@ void create()
     set_attacks_num(3);
     set_base_damage_type("piercing");
     set_damage(2, 4);
-    set_hp(random(50) + 200);
+    set_max_hp(random(50) + 200);
+    set_hp(query_max_hp());
     set_speed(30);
     set_nogo(({ ROOMDIR "pedestal" }));
     set_exp(4000);
@@ -46,3 +47,12 @@ void create()
         ob->move(TO);
     }
 }
+
+// Taming DCs: Low - 10, Mid - 25, High - 40, Epic - 55
+// Types of DCs: "survival" for wild creatures (snakes, rats, stags, spiders, etc...)
+//               "spellcraft" for magical creatures (elementals, sprites, will o wisp, etc...)
+//               "dungeoneering" for constructs (clockwork creatures, golems, etc...)
+int is_tamable(){ return 1; }
+int query_tame_DC(){ return 25; }
+string query_DC_type(){ return "survival"; }
+
