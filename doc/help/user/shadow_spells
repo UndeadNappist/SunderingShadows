@@ -4,13 +4,22 @@ There are a number of spells in the game that create an illusion of a spell effe
 
 %^BOLD%^Some examples of shadow spells are %^RED%^shadow evocation, shadow alteration, shades, and greater shadow conjuration.%^RESET%^
 
-Shadow spells cast the chosen spell at spell level - 1, no matter what the actual target spell level is.
+Shadow spells can cast mage spells of the specific school up to 1 spell level lower than the the spell level of the shadow spell.
+
+Shadow spells cast the chosen spell at the same caster level as the shadow spell for purposes of damage, bonus, and duration calculations.
+
+Spells cast by shadow spells always are considered to be of the illusion spell sphere and all have their save type set to WILL.
+
 
 %^CYAN%^BOLD%^Shadow spells get a decreased spell save DC as follows:
-%^YELLOW%^DC = (Original DC * spell level) / 10%^RESET%^
+%^YELLOW%^DC = Original DC - (20 - (maximum shadow spell level * 2)) %^RESET%^
 
-So a spell cast by shadow evocation would have 4/10th of the original DC, or 40 percent.
+In our save system, 1 point of save/DC value represents a 5% increase/decrease on the outcome of the d20 roll.
 
-Spells cast by shadow spells always are considered to be of the illusion spell sphere and all have the WILL save type.
+A spell cast by shadow evocation (maximum shadow spell level of 4) would have a penalty of 12 to the DC representing an increase of 60% on the outcome of the roll by the target, or a 40% effectiveness compared to a non-illusory version of the spell.
 
-Spells like Bend Reality, Reality Revision, Limited Wish, and Wish are NOT shadow spells and do not suffer DC penalties, though they still cast at spell level - 1.
+A spell cast by shades (maximum shadow spell level of 8) would have a penalty of 4 to the DC representing an increase of 20% on the outcome of the roll by the target, or a 80% effectiveness compared to a non-illusory version of the spell.
+
+
+
+Spells like Bend Reality, Reality Revision, Limited Wish, and Wish are NOT shadow spells and do not suffer DC penalties.
