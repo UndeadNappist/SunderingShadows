@@ -57,7 +57,7 @@ void spell_effect(int prof)
     control->set_property("spelled", ({TO}) );
 
     caster->add_follower(ob);
-    caster->set_property("has_elemental");
+    caster->set_property("has_elemental", 1);
 
     ob->move(environment(caster));
 

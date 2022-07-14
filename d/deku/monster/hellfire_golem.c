@@ -49,7 +49,8 @@ void create()
     set_mob_magic_resistance("average");
     set_spells(({"handfire", "flame strike", "fire storm"}));    
     set_spell_chance(50);
-    set_hp(245 + random(31));
+    set_max_hp(245 + random(31));
+    set_hp(query_max_hp());
     //set_exp(5000);
 	set_new_exp(25, "normal");
     set_funcs(({"slam"}));
@@ -85,3 +86,12 @@ void slam(object targ)
         x--;
     }
 }
+
+// Taming DCs: Low - 10, Mid - 25, High - 40, Epic - 55
+// Types of DCs: "survival" for wild creatures (snakes, rats, stags, spiders, etc...)
+//               "spellcraft" for magical creatures (elementals, sprites, will o wisp, etc...)
+//               "dungeoneering" for constructs (clockwork creatures, golems, etc...)
+int is_tamable(){ return 1; }
+int query_tame_DC(){ return 25; }
+string query_DC_type(){ return "dungeoneering"; }
+
