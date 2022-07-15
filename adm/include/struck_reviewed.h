@@ -70,6 +70,7 @@
     "/d/islands/dreams/obj/darkcassock", \
     "/d/islands/dreams/obj/moonlight_robe", \
     "/d/islands/dreams/obj/rainbowcassock", \
+    "/d/islands/dreams/obj/sunlight_robe", \
     "/d/islands/elf/obj/anklet", \
     "/d/islands/elf/obj/bracers", \
     "/d/islands/elf/obj/scale_mail", \
