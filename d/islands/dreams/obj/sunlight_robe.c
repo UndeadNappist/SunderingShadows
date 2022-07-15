@@ -78,4 +78,5 @@ int strike_func(int damage, object what, object who){
         " "+ETOQCN+"'s robe, burning you!");
 			who->do_damage("torso",random(4)+6);
 	}
+	return damage;
 }
