@@ -30,6 +30,7 @@ void create()
     set_description("This spell creates opaque globe of shimmering, multicolored light that surrounds you and protects you from all forms of attack. The sphere flashes in all colors of the visible spectrum, blinding attackers for 2d4 rounds on a failed reflex save. This sphere prevents all forms of attack between you and your attackers. Be warned, this sphere cuts off the magical weave to your summoned minions, causing them to be destroyed. This spell has a cooldown.");
     set_verbal_comp();
     set_somatic_comp();
+    set_helpful_spell(1);
 }
 
 string query_cast_string()
