@@ -61,9 +61,9 @@ void setup_elemental(object caster)
     set_stats("dexterity",4);
 }
 
-void die(object obj)
-{
-    cast->remove_property("has_elemental");
+void die(object obj){
+    if(objectp(cast)) cast->remove_property("has_elemental");
     ::die(obj);
     return;
 }
+
