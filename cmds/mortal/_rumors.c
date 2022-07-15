@@ -179,9 +179,8 @@ int cmd_rumors(string args)
             foreach(peep in peeps)
             {
                     
-                if (peep == TP) {
-                    continue;
-                }
+                if(peep == TP) continue;
+                if(peep->query_invis()) continue;
 
                 if(!objectp(ENV(peep)))
                     continue;
