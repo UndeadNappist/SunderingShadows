@@ -52,6 +52,7 @@ void create() {
 void init(){
     ::init();
     add_action("enhance_fun", "enhance");
+    add_action("replace_fun", "replace");
 }
 
 void reply_func(string str, object player){
@@ -63,7 +64,7 @@ void reply_func(string str, object player){
     if(strsrch(str, "hi") != -1 || strsrch(str, "Hi") != -1 || strsrch(str, "ello") != -1 || strsrch(str, "reetings") != -1){
         force_me("emoteat morpos %^RESET%^%^CRST%^%^C130%^$M bows his head, his beard parting in a broad grin.%^CRST%^");
         force_me("say %^RESET%^%^CRST%^%^C226%^\"Hello there! Welcome to the pocket dimension research wing!\"%^CRST%^");
-        call_out("second_greeting", 3);
+        call_out("second_greeting", 3, player);
         return;
     }
     if(strsrch(str, "pocket") != -1 || strsrch(str, "dimension") != -1 || strsrch(str, "pet") != -1){
@@ -106,13 +107,19 @@ void reply_func(string str, object player){
         force_me("say %^RESET%^%^CRST%^%^C226%^\"We Coppernoggers don't usually speak ill of kin, but that one... I've never heard of family turning their back on family like him. Some of us don't believe it -is- him, not really, not anymore.\"%^CRST%^");
         return;
     }
+    if(strsrch(str, "replace") != -1 || strsrch(str, "Replace") != -1){
+        force_me("emoteat morpos %^RESET%^%^CRST%^%^C130%^$M arches a bushy brow.%^CRST%^");
+        force_me("say %^RESET%^%^CRST%^%^C226%^\"You need another one? Well... I'd have to charge the materials this time. It would be three million to cover it all.\"%^CRST%^");
+        return;
+    }
     
     return;
 }
 
-void second_greeting(){
+void second_greeting(object player){
     force_me("emoteat morpos %^RESET%^%^CRST%^%^C130%^Taking a brief look around the room, $M offers a sheepish shrug of his shoulders.%^CRST%^");
     force_me("say %^RESET%^%^CRST%^%^C226%^\"Well... it's not impressive yet, but just wait until word gets out about the dimensional bracelets we're developing!\"%^CRST%^");
+    if(!player->query("pet_bracelet")) call_out("make_offer", 2, player);
     return;
 }
 
@@ -131,8 +138,44 @@ void cancel_offer(){
     return;
 }
 
+void replace_fun(string str){
+    object player;
+    player = this_player();
+    
+    if(!str){
+        tell_object(player, "Syntax: <replace bracelet>");
+        return 0;
+    }
+    if(str != "bracelet") return 0;
+    if(!player->query_funds("gold", 3000000)){
+        tell_object(player, "%^RESET%^%^CRST%^%^C059%^You don't have enough gold.%^CRST%^");
+        return 1;
+    }
+    
+    tell_object(player, "%^RESET%^%^CRST%^%^YELLOW%^It will cost %^MAGENTA%^3,000,000 gold %^YELLOW%^to replace your bracelet. Enter <yes> to continue, or anything else to abort.%^RESET%^");
+    input_to("replace_confirmation", player);
+    return 1;
+}
+
+void replace_confirmation(string str, object player){
+    object bracelet, room;
+    room = environment(player);
+    
+    if(str != "yes" && str != "y" && str != "Y"){
+        tell_object(player, "%^RESET%^%^CRST%^%^C059%^Replacement purchase cancelled.%^CRST%^");
+        return;
+    }
+    
+    tell_room(room, "%^RESET%^%^CRST%^%^C130%^Morpos leaves for a moment, returning with a silver bracelet in his hands. %^C226%^\"Let's be careful with the one, hmm?\" %^RESET%^%^C130%^He sets it down on a nearby table.%^CRST%^");
+    player->use_funds("gold", 3000000);
+    bracelet = new("/d/common/obj/pets/pet_bracelet");
+    bracelet->set_owner(player);
+    bracelet->move(room);
+    return;
+}
+
 int enhance_fun(string str){
-    object bracelet, player, room;
+    object bracelet, player;
     player = this_player();
     
     if(!str){
