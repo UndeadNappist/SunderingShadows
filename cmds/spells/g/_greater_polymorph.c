@@ -64,6 +64,7 @@ int preSpell()
         allies += ({ caster });
     
     allies += caster->query_protectors();
+    allies += caster->query_followers();
     
     if(member_array(target, allies) < 0)
     {
