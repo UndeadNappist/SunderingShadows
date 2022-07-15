@@ -1,132 +1,118 @@
 //Added prop to prevent summon/dismissal of followers when in quest areas.  Also set to prevent summon/dismissal if room has no teleport prop - Octothorpe 8/31/10
 // help expanded with guidelines regarding appropriate gear per suggestion by Cyric
+// Heavily rewritten by Spade in June of 2022
+
+// Depends on the rumors daemon for recruit pool selection
+
 #include <std.h>
-#include <daemons.h>
 #include <magic.h>
-inherit DAEMON;
+#include <daemons.h>
 
-#define RETINUE "/daemon/retinue"
-#define MAGE "/cmds/mortal/followers/mage"
+#define    MAGE "/cmds/mortal/followers/mage"
 #define FIGHTER "/cmds/mortal/followers/fighter"
-#define CLERIC "/cmds/mortal/followers/cleric"
-#define THIEF "/cmds/mortal/followers/thief"
-#define PSION "/cmds/mortal/followers/psion" // this is to load a plot granted follower only - this is not a standard-issue follower! N, 12/15.
-#define BARD "/cmds/mortal/followers/bard" // this is to load a plot granted follower only - this is not a standard-issue follower! N, 1/18.
-#define DUMBY "/cmds/mortal/followers/dumbyroom"
-#define MONK "/cmds/mortal/followers/monk"
+#define  CLERIC "/cmds/mortal/followers/cleric"
+#define   THIEF "/cmds/mortal/followers/thief"
+#define   PSION "/cmds/mortal/followers/psion" // this is to load a plot granted follower only - this is not a standard-issue follower! N, 12/15.
+#define    BARD "/cmds/mortal/followers/bard" // this is to load a plot granted follower only - this is not a standard-issue follower! N, 1/18.
+#define    MONK "/cmds/mortal/followers/monk"
+#define   DUMBY "/cmds/mortal/followers/dumbyroom"
 
-int help(){
-    int i;
-    mapping retinue;
 
-    RETINUE->init_knights(TP);
-    retinue = TP->get_retinue_mapping();
 
+int help()
+{
     write(
-@OLI
-    This will allow you to manage your followers.
-    follower <name> summon
-    follower <name> dismiss
-    follower <name> <command>
-    follower <name,name2> <command>
+        "%^CYAN%^NAME%^RESET%^%^ \n\n" +
 
-    This command allows you to summon, command, and dismiss your followers or retainers. They will come shortly after you summon them and will obey your every command. You must also learn what to order them to do.  You must RP to learn what is best for each follower. You will gain your first follower at 10 influence, and then receive an additional one for every 5 points gained above that. The <name> argument can be replaced with <all> and the command will be executed by all the retainers.
-OLI
-     +
-@OLI
+        "follower - manage your retinue \n\n" +
 
-    Of special note:  Followers save themselves.  If you change the title of the follower it will save.  If your follower has 1 hp left it will also save.  If you give your follower a new sword it will save (it will not automatically rewield).
+        "%^CYAN%^SYNOPSIS%^RESET%^%^ \n\n" +
 
-    A special "title" command has been added to allow you to set the title  of your followers: follower <name> title <string containing $N>
+        "follower (%^ORANGE%^%^ULINE%^list%^RESET%^)\n"+
+        "follower recruit (%^ORANGE%^%^ULINE%^id%^RESET%^) \n"+
+        "follower abandon [%^ORANGE%^%^ULINE%^id%^RESET%^] \n"+
+        "follower rename [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^name%^RESET%^] \n"+
+        "follower title [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^name%^RESET%^] \n"+
+        "follower summon [%^ORANGE%^%^ULINE%^id%^RESET%^] \n"+
+        "follower dismiss [%^ORANGE%^%^ULINE%^id%^RESET%^]\n"+
+        "follower [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^]\n"+
+        "follower [%^ORANGE%^%^ULINE%^id1,id2%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^] \n"+
+        "follower all [%^ORANGE%^%^ULINE%^command%^RESET%^] \n\n"+
 
-OLI
+        "%^CYAN%^DESCRIPTION%^RESET%^ \n\n"+
+
+        "Your retinue is an RP tool that allows you to play as the leader of a group of NPCs. \n"+
+        "These NPCs are weaker than other players, and suffer significantly more on death. \n"
+        "Upon dying, an NPC follower will LOSE all enchanted gear, several levels, and become unsummonable for a time. \n"+
+        "If an NPC follower dies too soon after a previous death, it will meet its final death and be removed from your retinue. \n"+
+        "Additionally, it will become harder to recruit new followers for a time. \n\n"+
+
+        "Potential new recruits can be viewed with <follower recruit>, and can be recruited with <follower recruit (id)> \n"+
+        "How often NPCs can be recruited, and how often your pool of recruits cycles out, is determined by your character's influence. \n"+
+        "To prevent an NPC from slipping out of your fingers, the follower pool will be prevented from cycling for thirty seconds after being viewed. \n\n"
+        
+        "Using the power of modern magic, new recruits can be renamed while they are inactive using <follower rename [id] [name]> \n"+
+        "They can also be given a title using <follower title [id] [name]>. The title must include either $R or $N, or an $N will be added for you. \n\n"+
+        "If a follower no longer fits your RP, it can be removed from your retinue with <follower abandon [ID]> \n\n"
     );
-    write("Your current followers are:");
-    if (retinue && sizeof(values(retinue)) > 0) {
-
-        for (i=0;i<sizeof(values(retinue));i++) {
-            write(arrange_string(capitalize(values(retinue)[i]["name"]),15)+values(retinue)[i]["class"]);
-        }
-    } else {
-        write("    You currently have no followers.");
-    }
-    write("\n Keep the following in mind:%^RESET%^\n\n"
-	"   1)  Retainers should only have gear they can actually use.  Example:  "
-	"if they cannot wear or wield the armor or weapons due to enchantment "
-	"or class they should not have it - clerics with edged weapons, level "
-	"8 with +2 gear.\n\n"
-	"   2)  They should not have excess equipment they would not have need "
-	"for, i.e. mages should not have two sets of bracers or robes.\n\n"
-	"   3)  Keep sacks (and other similar storage - chests, baskets, extra "
-	"pouches) limited to two since there is no reason for them to be "
-	"carrying much in sacks.\n\n"
-      "%^BOLD%^%^RED%^Please note:%^WHITE%^ We do not refund gear for followers. "
-      "To help avoid gear loss, the following hints may help: 1) Dismiss before "
-      "logging out. 2) Don't move when summoning. 3) Summon one follower at a time. 4) Command your follower to save when you are satisfied with their setup.%^RESET%^"
-    );
-    if(avatarp(TP))
-	write("%^BOLD%^%^GREEN%^(Immortal eyes only) - you can ban or reinstate "
-	   "the use of followers by using <follower [name] [lock|unlock]>.  "
-	   "Killing one will also eliminate that specific follower permanently.");
     return 1;
 }
 
-object makeFollower(mapping map){
-    string name;
-    string c;
-    int level;
-    string race;
-    object follower, ob;
+object make_follower(mapping map, int f_slot)
+{
+    string f_name, f_class;
+    int f_level;
+    string f_race;
+    object follower, ob, player = this_player();
 
-    name = map["name"];
-    c = map["class"];
-    race = map["race"];
-    level = min( ({ map["level"], 50 }) );
-    switch(c){
+    f_name = map["name"];
+    f_class = map["class"];
+    f_race = map["race"];
+    f_level = min( ({ map["level"], 50 }) );
+    switch(f_class)
+    {
     case "fighter":
-        follower = new ( FIGHTER);
+        follower = new(FIGHTER);
         break;
     case "cleric":
-        follower = new ( CLERIC);
+        follower = new(CLERIC);
         break;
     case "thief":
-        follower = new ( THIEF);
+        follower = new(THIEF);
         break;
     case "mage":
-        follower = new ( MAGE);
+        follower = new(MAGE);
         break;
     case "psion": // this is to load a plot granted follower only - this is not a standard-issue follower! N, 12/15.
-        follower = new ( PSION);
+        follower = new(PSION);
         break;
     case "bard": // this is to load a plot granted follower only - this is not a standard-issue follower! N, 12/15.
-        follower = new ( BARD);
+        follower = new(BARD);
         break;
     case "monk":
-        follower = new ( MONK);
+        follower = new(MONK);
         break;
     default:
-        error("Unknown class "+c);
+        error("Unknown class " + f_class);
     }
 
-    follower->set_name(name);
-    follower->set_short(capitalize(name)+", a bold retainer for "+TP->query_cap_name());
-    follower->add_id(""+(string)TP->query_name()+" retainer");
-//added the id to allow tracking for perfect caster exclusion
-    follower->set_level(level);
-    follower->set_mlevel(c,level);
-    follower->set_guild_level(c,level);
-    follower->set_hd(level,8);
-    follower->set_max_hp(roll_dice(12,level));
+    follower->set_name(f_name);
+    follower->set_short(capitalize(f_name) + ", a bold retainer for " + player->query_cap_name());
+    follower->add_id(player->query_name() + " retainer");  // Added the id to allow tracking for perfect caster exclusion
+    follower->set_level(f_level);
+    follower->set_mlevel(f_class, f_level);
+    follower->set_guild_level(f_class, f_level);
+    follower->set_hd(f_level, 8);
+    follower->set_max_hp(roll_dice(12, f_level));
     follower->set_hp(follower->query_max_hp());
-    follower->set_alignment(TP->query_alignment());
-    follower->set_diety(TP->query_diety());
+    follower->set_alignment(player->query_alignment());
+    follower->set_diety(player->query_diety());
     follower->equip_me();
-    follower->set_race(race);
-    if((string)TP->query("subrace") == "szarkai") follower->set_race("drow");
+    follower->set_race(f_race);
+    follower->set_slot(f_slot);
 
-    if (c == "cleric") {
-        //these races do not have clerics!
-        if(race == "ogre") follower->set_race("ogre-mage");
+    if (f_class == "cleric")
+    {
         new ("/d/magic/symbols/holy_symbol")->move(follower);
         follower->set_stats("strength",15);
         follower->set_stats("constitution",14);
@@ -134,14 +120,8 @@ object makeFollower(mapping map){
         follower->set_stats("intelligence",15);
         follower->set_stats("wisdom",20);
         follower->set_stats("charisma",13);
-    } else if (c == "mage") {
-        //these races do not have mages!
-        if(race == "dwarf" || race == "halfling") follower->set_race("gnome");
-        if(race == "ogre" || race == "hobgoblin") follower->set_race("ogre-mage");
-        if(race == "firbolg") follower->set_race("elf");
-        if(race == "wemic" || race == "beastman") follower->set_race("human");
-        if(race == "goblin" || race == "orc" || race == "ogre" || race == "bugbear" || race == "gnoll")
-          follower->set_race("kobold");
+    } else if (f_class == "mage")
+    {
         ob = new ("/d/magic/spellbook");
         ob->add_all();
         ob->move(follower);
@@ -153,23 +133,24 @@ object makeFollower(mapping map){
         follower->set_stats("intelligence",20);
         follower->set_stats("wisdom",15);
         follower->set_stats("charisma",13);
-    } else if(c == "thief"){
-        //these races do not have thieves!
-        if(race == "ogre") follower->set_race("goblin");
+    } else if(f_class == "thief")
+    {
         follower->set_stats("strength",15);
         follower->set_stats("constitution",14);
         follower->set_stats("dexterity",20);
         follower->set_stats("intelligence",14);
         follower->set_stats("wisdom",15);
         follower->set_stats("charisma",13);
-    } else if(c == "fighter"){
+    } else if(f_class == "fighter")
+    {
         follower->set_stats("strength",20);
         follower->set_stats("constitution",16);
         follower->set_stats("dexterity",14);
         follower->set_stats("intelligence",10);
         follower->set_stats("wisdom",13);
         follower->set_stats("charisma",12);
-    } else if(c == "psion"){
+    } else if(f_class == "psion")
+    {
         new ("/d/magic/psicrystal")->move(follower);
         follower->set_stats("strength",12);
         follower->set_stats("constitution",14);
@@ -177,7 +158,8 @@ object makeFollower(mapping map){
         follower->set_stats("intelligence",20);
         follower->set_stats("wisdom",13);
         follower->set_stats("charisma",15);
-    } else if(c == "bard"){
+    } else if(f_class == "bard")
+    {
         follower->set_stats("strength",12);
         follower->set_stats("constitution",14);
         follower->set_stats("dexterity",16);
@@ -188,181 +170,345 @@ object makeFollower(mapping map){
     return follower;
 }
 
-
-int cmd_follower(string str){
+int cmd_follower(string raw_arguments)
+{
+    object player = this_player(), current_environment = environment(player);
     mapping retinue;
-    string who, what, *whoList, command, excess;
-    object *npcs, whoObj, temp;
-    mapping controller;
-    int i;
+    string command, args_one_and_two, arg_one, arg_two, *target_followers_array, follower_score_sheet;
+    object target_follower_object, temp;
+    mapping controller, current_recruitables;
+    int i, target_follower_key, area_type, influence = player->query_skill("influence");
 
-    if(!FEATS_D->usable_feat(TP,"leadership")) return 0;
+    /*  Intentionally removed before cohorts are implemented. There's absolutely no justufication for locking an RP tool behind a feat. // Spade
+    if(!FEATS_D->usable_feat(player, "leadership"))
+    {
+        return 0;
+    }*/
 
-    RETINUE->init_knights(TP);
-    retinue = TP->get_retinue_mapping();
+    player->validate_retinue_influence();
+    player->init_retinue();
+    retinue = player->get_retinue_mapping();
 
-    if (!str) {   return help();    }
-
-    if (sscanf(str, "%s %s", who,what) != 2){
+    if (!raw_arguments)
+    {
         return help();
     }
 
-    sscanf(what, "%s %s", command, excess);
-    if (!command) {
-        command = what;
+    // This brings me great physical pain, but I don't know how better to do this   // Spade
+    if (strsrch(raw_arguments, " ") != -1)
+    {
+        sscanf(raw_arguments, "%s %s", command, args_one_and_two);
+        if (args_one_and_two)
+        {
+            sscanf(args_one_and_two, "%s %s", arg_one, arg_two);
+        }
+    }
+    else
+    {
+        command = raw_arguments;
     }
 
-    controller = TP->query("current retinue");
-    if (!controller) {
+    controller = player->query("current retinue");
+    if (!controller)
+    {
         controller = ([]);
     }
-    if (who == "all") {
-        whoList = keys(retinue);
-    } else {
-        whoList = explode(who,",");
-    }
-    if (avatarp(TP) && what == "lock") {
-        whoObj = find_player(who);
-        whoObj->set("bad knight",1);
-        tell_object(whoObj,"%^BOLD%^You have been flagged for abuse, your retainers will not answer your commands.");
-        write("%^BOLD%^You have flagged "+who+" for abuse, please note "+whoObj->query_objective()+".");
-        return 1;
-    }
 
-    if (avatarp(TP) && what == "unlock") {
-        whoObj = find_player(who);
-        whoObj->set("bad knight",0);
-        tell_object(whoObj,"%^BOLD%^You have regained your good name, your retainers will answer your commands.");
-        write("%^BOLD%^You have unflagged "+who+" for abuse, please note "+whoObj->query_objective()+".");
-        return 1;
-    }
-
-    if (TP->query("bad knight")) {
-        write("%^BOLD%^You have been forsaken by your retainers for abuse.");
-        return 1;
-    }
-    switch(command){
-    case "summon":
-		if(ETP->query_property("no teleport"))
-		{
-		    tell_object(TP,"Your followers are unable to find their way to your current location.");
-			return 0;
-		}
-		if(ETP->query_property("no follower"))
-		{
-		    tell_object(TP,"Your followers are unable to find their way to your current location.");
-			return 0;
-		}
-        for (i = 0;i<sizeof(whoList);i++) {
-            who = whoList[i];
-            if (!retinue[who]) {
-                continue;
-            }
-            if (!(whoObj = controller[who])) {
-                whoObj = makeFollower (retinue[who]);
-               whoObj->move(DUMBY); // Maybe this is the problem?
-                controller[who]=whoObj;
-                whoObj->set_followee(TP);
-                whoObj->restoreFollower();
-               whoObj->move(DUMBY); // Make sure they're there!
-                whoObj->set_followee(TP);
-                whoObj->add_id(""+(string)TP->query_name()+" retainer");
-            }
-            tell_room(ETP,"%^BOLD%^%^GREEN%^"+TPQCN+" summons a retainer.",TP);
-          temp=new(base_name(TO));
-          temp->start_summoning((random(3)+1)*ROUND_LENGTH, TP, whoObj);
-            write("%^BOLD%^%^GREEN%^You summon "+capitalize(who)+" to you.");
-//            call_out("summoning",random(20)+1,TP,whoObj);
-        }
-        break;
-    case "dismiss":
-
-        if(!objectp(TP)) { return 0; }
-
-		if(ETP->query_property("no teleport"))
-		{
-		    tell_object(TP,"Your followers are unable to find their way out of your current location.");
-			return 0;
-		}
-
-		if(ETP->query_property("no follower"))
-		{
-		    tell_object(TP,"Your followers are unable to find their way out of your current location.");
-			return 0;
-		}
-
-        if(sizeof(TP->query_attackers()))
+    switch(command)
+    {
+    case "list":
+        write("");
+        write("\n%^C246%^/%^C247%^///%^C248%^///%^C249%^///%^C250%^///%^C251%^///%^C252%^///%^C253%^///%^C254%^///%^C255%^/// %^C051%^Current Followers%^C255%^ ///%^C254%^///%^C253%^///%^C252%^///%^C251%^///%^C250%^///%^C249%^///%^C248%^///%^C247%^///%^C246%^/\n");
+        for (i = 0; i < sizeof(retinue); ++i)
         {
-            tell_object(TP,"You can't do that while being attacked!");
+            follower_score_sheet = "     Lv. " + retinue[i]["level"] + " " + retinue[i]["race"] + " " + retinue[i]["class"] + " ";
+            write(arrange_string(" ", 3 - strlen("" + i)) + i + ": " + arrange_string(replace_string(replace_string(retinue[i]["title"], "$N", capitalize(retinue[i]["name"])), "$R", capitalize(retinue[i]["race"])), 70 - strwidth(follower_score_sheet)) + follower_score_sheet );
+        }
+        write("\n%^C246%^/%^C247%^///%^C248%^///%^C249%^///%^C250%^///%^C251%^///%^C252%^///%^C253%^///%^C254%^///%^C255%^////////////////////////%^C255%^/%^C254%^///%^C253%^///%^C252%^///%^C251%^///%^C250%^///%^C249%^///%^C248%^///%^C247%^///%^C246%^/\n");
+
+        break;
+
+    case "recruit":
+        player->generate_recruit_pool(0);
+        area_type = "daemon/rumours_d.c"->check_room_source_type(current_environment) - 1;
+        current_recruitables = player->get_recruit_pool();
+
+        if (area_type == -2)
+        {
+            write("%^C030%^It's unlikely that you'll be able to recruit anybody here.");
             return 1;
         }
 
-        for (i = 0;i<sizeof(whoList);i++)
+        if (!args_one_and_two)
         {
-            who = whoList[i];
-            if (!retinue[who]) {
-                continue;
+            write("");
+            write("\n%^C247%^//%^C248%^///%^C249%^///%^C250%^///%^C251%^///%^C252%^///%^C253%^///%^C254%^///%^C255%^///%^C051%^ Recruitable Followers%^C255%^ ///%^C254%^///%^C253%^///%^C252%^///%^C251%^///%^C250%^///%^C249%^///%^C248%^///%^C247%^//\n");
+            for (i = 0; i < sizeof(current_recruitables[area_type]); ++i)
+            {
+                follower_score_sheet = "     Lv. " + current_recruitables[area_type][i]["level"] + " " + current_recruitables[area_type][i]["race"] + " " + current_recruitables[area_type][i]["class"] + " ";
+                write(arrange_string(" ", 3 - strlen("" + i)) + i + ": " + arrange_string(capitalize(current_recruitables[area_type][i]["name"]), 70 - strwidth(follower_score_sheet)) + follower_score_sheet );    // Oh god why // Spade
             }
-            if (!(whoObj = controller[who])) {
-                continue;
-            }
-            tell_object(TP,"%^BOLD%^You dismiss "+capitalize(who)+".%^RESET%^");
-            tell_room(environment(whoObj),"%^BOLD%^%^GREEN%^"+ capitalize(who)+" leaves the area.%^RESET%^");
-            if(whoObj->query_invis()) whoObj->set_invis();
-            whoObj->saveFollower();
-            whoObj->move(DUMBY);
-//           identify(catch(destruct(whoObj)));
-           all_inventory(whoObj)->remove();
+            write("\n%^C246%^/%^C247%^///%^C248%^///%^C249%^///%^C250%^///%^C251%^///%^C252%^///%^C253%^///%^C254%^///%^C255%^////////////////////////%^C255%^/%^C254%^///%^C253%^///%^C252%^///%^C251%^///%^C250%^///%^C249%^///%^C248%^///%^C247%^///%^C246%^/\n");
 
-           whoObj->remove_without_save();
-         }
+            player->viewed_recruits();
+        }
+        else
+        {
+            if (influence / 5 - 1 < sizeof(retinue))
+            {
+                write("%^C030%^You are not influential enough to attract another follower without first abandoning one.");
+                return 1;
+            }
+            if (!player->can_recruit())
+            {
+                write("%^C030%^You need some time to recollect your thoughts before trying that again.");
+                return 1;
+            }
+
+            sscanf(args_one_and_two, "%d", target_follower_key);
+
+            for ( i = 0; i < influence / 5 - 1; ++i )
+            {
+                if (!mapp(retinue[i]) || !retinue[i])
+                {
+                    player->set_retinue_follower(i, current_recruitables[area_type][target_follower_key]["name"], current_recruitables[area_type][target_follower_key]["title"], current_recruitables[area_type][target_follower_key]["class"], current_recruitables[area_type][target_follower_key]["level"], current_recruitables[area_type][target_follower_key]["race"]);
+                    tell_object(player, "%^C051%^" + capitalize(current_recruitables[area_type][target_follower_key]["name"]) + "%^C030%^ has been assigned to slot %^C051%^" + i + "%^C030%^.");
+                    player->generate_recruit_pool(1);
+                    player->start_recruiting_cooldown();
+                    return 1;
+                }
+            }
+            return 1;
+        }
         break;
+
+    case "abandon": // Needs a confirmation prompt. // Spade
+        if (!args_one_and_two)
+        {
+            help();
+            return 1;
+        }
+
+        target_followers_array = parse_out_target_followers(args_one_and_two);
+        for (i = 0; i < sizeof(target_followers_array); ++i)
+        {
+            sscanf(target_followers_array[i], "%d", target_follower_key);
+            if (!retinue[target_follower_key] || controller[target_follower_key]) // Active followers cannot abandoned for fear of hurting their feelings.  // Spade
+            {
+                tell_object(player, "%^C030%^Best to send them away first...");
+                continue;
+            }
+            player->remove_retinue(target_follower_key);
+            tell_object(player, "%^C030%^They will wake up without even remembering you.");
+        }
+        break;
+
+    case "rename": // This will eventually need checks and a cooldown.  // Spade
+        if (!arg_one || !arg_two)
+        {
+            help();
+            return 1;
+        }
+
+        target_followers_array = parse_out_target_followers(arg_one);
+        for (i = 0; i < sizeof(target_followers_array); ++i) // Does it make sense that you can rename multiple followers at once? No. Are we going to keep it this way? Yes.   // Spade
+        {
+            sscanf(target_followers_array[i], "%d", target_follower_key);
+            if (!retinue[target_follower_key] || controller[target_follower_key]) // Active followers cannot be renamed on purpose. Needs to be split into two different error messages.    // Spade
+            {
+                tell_object(player, "%^C030%^Such trickery will not work with your follower so near!");
+                continue;
+            }
+            tell_object(player, "%^C051%^" + capitalize(retinue[target_follower_key]["name"]) + "%^C030%^ will wake up believing that their name is %^C051%^" + arg_two + "%^C030%^.");
+            player->set_retinue_follower(target_follower_key, arg_two, retinue[target_follower_key]["title"], retinue[target_follower_key]["class"], retinue[target_follower_key]["level"], retinue[target_follower_key]["race"]);    // Probably deserves its own function in retinue.c
+        }
+        break;
+
     case "title":
-        for (i = 0;i<sizeof(whoList);i++) {
-            who = whoList[i];
-            if (!retinue[who]) {
+        if (!arg_one || !arg_two)
+        {
+            help();
+            return 1;
+        }
+
+        target_followers_array = parse_out_target_followers(arg_one);
+        for (i = 0; i < sizeof(target_followers_array); ++i) 
+        {
+            sscanf(target_followers_array[i], "%d", target_follower_key);
+            if (!retinue[target_follower_key])
+            {
                 continue;
             }
-            if (!(whoObj = controller[who])) {
-                continue;
+            if (strsrch(arg_two, "$N") == -1 && strsrch(arg_two, "$R") == -1)
+            {
+                arg_two = "$N, " + arg_two;
             }
-            if (strsrch(excess, "$N") == -1) {
-                excess = "$N, "+excess;
+            player->set_retinue_follower(target_follower_key, retinue[target_follower_key]["name"], arg_two, retinue[target_follower_key]["class"], retinue[target_follower_key]["level"], retinue[target_follower_key]["race"]);
+            if (target_follower_object)
+            {
+                target_follower_object->set_short(replace_string(replace_string(retinue[target_follower_key]["title"], "$N", capitalize(retinue[target_follower_key]["name"])), "$R", capitalize(retinue[target_follower_key]["race"])));
             }
-            excess = replace_string(excess,"$N",capitalize(whoObj->query_name()));
-            whoObj->set_short(excess);
-            tell_object(TP,"%^BOLD%^You change "+capitalize(whoObj->query_name())+"'s short to be "+excess+".");
+            tell_object(player, "%^C030%^You change %^C051%^" + capitalize(retinue[target_follower_key]["name"]) + "'s%^C030%^ short to be %^C051%^" + arg_two + "%^C030%^.");
         }
         break;
-    default:
-        for (i = 0;i<sizeof(whoList);i++) {
-            who = whoList[i];
-            if (!retinue[who]) {
-                continue;
-            }
-            if (!(whoObj = controller[who])) {
-                continue;
-            }
-            tell_object(TP,"%^BOLD%^You command "+capitalize(who)+" to "+what+".");
-            whoObj->force_me(what);
+
+    case "summon":
+        if (!args_one_and_two)
+        {
+            help();
+            return;
         }
+
+        target_followers_array = parse_out_target_followers(args_one_and_two);
+
+        if(current_environment->query_property("no teleport") || current_environment->query_property("no follower"))
+        {
+            tell_object(player, "%^C030%^Your followers are unable to find their way to your current location.");
+            return 1;
+        }
+
+        for (i = 0; i < sizeof(target_followers_array); ++i)
+        {
+            sscanf(target_followers_array[i], "%d", target_follower_key);
+
+            if (player->check_follower_status(target_follower_key))
+            {
+                tell_object(player, "%^C051%^" + capitalize(retinue[target_follower_key]["name"]) + "%^C030%^ has yet to return from death.");
+                continue;
+            }
+
+            if (sizeof(controller) == player->query_skill("influence") / 10)
+            {
+                tell_object(player, "%^C030%^You simply cannot coordinate a larger group than you currently lead.");
+                continue;
+            }
+
+            if (!mapp(retinue[target_follower_key]))
+            {
+                continue;
+            }
+
+            if (!(target_follower_object = controller[target_follower_key]))
+            {
+                target_follower_object = make_follower(retinue[target_follower_key], target_follower_key);
+                target_follower_object->move(DUMBY); // Maybe this is the problem?
+                controller[target_follower_key] = target_follower_object;
+                target_follower_object->set_followee(player);
+                target_follower_object->restore_follower();
+                target_follower_object->set_name(retinue[target_follower_key]["name"]);
+                target_follower_object->set_short(replace_string(replace_string(retinue[target_follower_key]["title"], "$N", capitalize(retinue[target_follower_key]["name"])), "$R", capitalize(retinue[target_follower_key]["race"])));
+                target_follower_object->move(DUMBY); // Make sure they're there!
+                target_follower_object->set_followee(player);
+                target_follower_object->add_id(lower_case(retinue[target_follower_key]["name"]));
+                target_follower_object->add_id(retinue[target_follower_key]["name"]);
+                target_follower_object->add_id(capitalize(retinue[target_follower_key]["name"]));
+                target_follower_object->add_id(player->query_name() + " retainer");
+                target_follower_object->force_me("wearall");
+            }
+            tell_room(current_environment, "%^C030%^" + player->query_cap_name() + " summons a retainer.", player);
+            temp = new(base_name(this_object()));
+            temp->start_summoning(1, player, target_follower_object);
+            write("%^C030%^You summon %^C051%^"+ target_follower_object->query_cap_name() + "%^C030%^ to you.");
+        }
+        break;
+
+    case "dismiss":
+        if (!args_one_and_two)
+        {
+            help();
+            return 1;
+        }
+
+        target_followers_array = parse_out_target_followers(args_one_and_two);
+        if(!objectp(player))
+        {
+            return 1;
+        }
+
+        if(current_environment->query_property("no teleport") || current_environment->query_property("no follower"))
+		{
+		    tell_object(player, "%^C030%^Your followers are unable to find their way out of your current location.");
+			return 1;
+		}
+
+        for (i = 0; i < sizeof(target_followers_array); ++i)
+        {
+            sscanf(target_followers_array[i], "%d", target_follower_key);
+
+            if (!retinue[target_follower_key] || !(target_follower_object = controller[target_follower_key]) )
+            {
+                continue;
+            }
+
+            tell_object(player, "%^C030%^You dismiss %^C051%^" + target_follower_object->query_cap_name() + "%^C030%^.%^RESET%^");
+            tell_room(environment(target_follower_object),"%^C051%^" + target_follower_object->query_cap_name() + "%^C030%^ leaves the area.%^RESET%^");
+            if(target_follower_object->query_invis()) target_follower_object->set_invis();
+            target_follower_object->move(DUMBY);
+            target_follower_object->remove();
+            map_delete(controller, target_follower_key);
+        }
+        break;
+
+    default:
+        target_followers_array = parse_out_target_followers(command);
+        for (i = 0; i < sizeof(target_followers_array); ++i)
+        {
+            sscanf(target_followers_array[i], "%d", target_follower_key);
+            if (!retinue[target_follower_key] || !(target_follower_object = controller[target_follower_key]))
+            {
+                continue;
+            }
+            tell_object(player, "%^C030%^You command %^C051%^" + target_follower_object->query_cap_name() + "%^C030%^ to %^C051%^" + args_one_and_two + ".");
+            target_follower_object->force_me(args_one_and_two);
+        }
+        break;
     }
 
-    TP->set("current retinue", controller);
+    player->set("current retinue", controller);
     return 1;
 }
 
-void start_summoning(int time, object tp, object whichmob ) {
-           return call_out("summoning",time,tp,whichmob);
-}
-void summoning(object who, object what)
+// Spade TODO: Surely we can do better than this?
+void start_summoning(int time, object tp, object whichmob)
 {
-	if(!objectp(who)) { return; }
-    	if(!objectp(what)) { return; }
+    return call_out("summoning", time, tp, whichmob);
+}
 
-    	tell_room(environment(who),"%^BOLD%^%^GREEN%^"+what->query_cap_name()+" arrives.");
-    	what->move(environment(who));
-    	what->remove_all_properties();
-	what->set_property("knock unconscious", 1);
-    	destruct(TO);
+void summoning(object summoner, object summonee)
+{
+    if(!objectp(summoner) || !objectp(summonee))
+    {
+        return;
+    }
+
+    tell_room(environment(summoner),"%^C051%^" + summonee->query_cap_name() + "%^C030%^ arrives.");
+	summonee->move(environment(summoner));
+    summonee->remove_all_properties();
+	summonee->set_property("knock unconscious", 1);
+    destruct(this_object());
+}
+
+string parse_out_target_followers(string string_of_followers)
+{
+    object player = this_player();
+    mapping retinue = player->get_retinue_mapping();
+    string *retinue_keys_string = ([]);
+    int *retinue_keys_int = ([]);
+    int i;
+
+    if (string_of_followers == "all")
+    {
+        retinue_keys_int = keys(retinue);
+        for(i = 0; i < sizeof(retinue_keys_int); ++i)
+        {
+            retinue_keys_string[i] = retinue_keys_int[i] + "";
+        }
+        return retinue_keys_string;
+    }
+    // Make sure character is a number  // Spade (Todo)
+    else
+    {
+        // Is this typecast really necessary?   // Spade
+        return explode((string)string_of_followers, ",");
+    }
 }

@@ -115,9 +115,6 @@ string vis_name;
 // relation currently (["who knows me":"how they now me"])
 mapping relationships;
 
-mapping retinue;
-int retinue_level;
-
 //Feat stuff
 
 mapping __FEAT_DATA=([]);
@@ -4816,47 +4813,6 @@ string light_blind_fail_message(int blindlight)
     }else {
         return "It is too dark.";
     }
-}
-
-//follower npcs... initially for cavaliers
-
-void set_retinue_follower(string name, string c, int level, string race){
-    if (!retinue) {
-        retinue = ([]);
-    }
-
-    retinue[name] = (["name":name,"class":c,"level":level,"race":race]);
-}
-
-mapping get_retinue_follower(string name){
-    if (!retinue) {
-        retinue = ([]);
-    }
-    return retinue[name];
-}
-
-mapping get_retinue_mapping(){
-    return retinue;
-}
-
-void remove_retinue(string name){
-    if (!retinue) {
-        retinue = ([]);
-    }
-    map_delete(retinue,name);
-}
-
-void reset_retinue(){
-    retinue = ([]);
-    retinue_level= 0;
-}
-
-int get_retinue_level(){
-    return retinue_level;
-}
-
-void set_retinue_level(int l){
-    retinue_level = l;
 }
 
 // Feat Stuff
