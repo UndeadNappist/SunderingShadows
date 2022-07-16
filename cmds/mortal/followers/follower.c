@@ -106,7 +106,7 @@ void heart_beat()
     {
         ++level_up_counter;
 
-        if (level_up_counter > 59)
+        if (level_up_counter > 59 && query_level() < 50)
         {
             set_level(query_level() + 1);
             followee->follower_level_up(slot);
