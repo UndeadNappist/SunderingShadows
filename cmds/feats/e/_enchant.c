@@ -130,7 +130,12 @@ void select_spell(string str, object ob)
 
     spell = str;
 
-    if ((regexp(spell, ".*(cure|cause).*wounds") || regexp(spell, "repair.*undead")|| regexp(spell, (".*(heal|harm)"))) && spell != "aura of healing" && spell != "shadow healing") {
+    if ((regexp(spell, ".*(cure|cause).*wounds") || regexp(spell, "repair.*undead")|| regexp(spell, (".*(heal|harm)"))) && 
+        spell != "aura of healing" && 
+        spell != "shadow healing" &&
+        spell != "celestial healing" &&
+        spell != "infernal healing"
+       ) {
         tell_object(caster,"%^BOLD%^%^RED%^You can not use channeling spells such as harm or heal.");
         write("%^YELLOW%^Enter spell name:");
         write("~q to cancel");
