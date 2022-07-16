@@ -1021,7 +1021,7 @@ void non_combat_action(string action)
             if(!cast_check(TO)) { break; }
             if(!present("snake",ETO))
             {
-                new("/cmds/spells/s/_sticks_into_snakes.c")->use_spell(TO,TO,num,100);
+                load_object("/cmds/spells/s/_sticks_into_snakes.c") && new("/cmds/spells/s/_sticks_into_snakes.c")->use_spell(TO,TO,num,100);
                 TO->remove_property("my_snake_timer");
                 TO->set_property("my_snake_timer",time()+40);
             }

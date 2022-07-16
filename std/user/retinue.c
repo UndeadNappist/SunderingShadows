@@ -77,6 +77,11 @@ void remove_retinue(int slot)
         retinue = ([]);
     }
     
+    if(!mapp(last_follower_death_times))
+    {
+        last_follower_death_times = ([  ]);
+    }
+    
     map_delete(retinue, slot);
     map_delete(last_follower_death_times, slot);
 
