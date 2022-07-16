@@ -966,20 +966,24 @@ void create() {
 		  ]);
 }
 
+//This should really just run quit() on the player...
 void remove()
 {
+  //destruct is already masked to check UID
+  /*
   if(objectp(previous_object()))
   {
     if (geteuid(previous_object()) != UID_ROOT && previous_object() != TO && (query_verb() != "quit" && this_player() != TO)) return;
     log_file("player/player_object_removal","removed: "+TO->query_name()+
 	" "+file_name(previous_object())+".\n");
   }
+  */
   //else if (query_verb() != "quit" && TP != TO) return;
   quit_time = time();
-  destroy_autoload_obj();
+  catch(destroy_autoload_obj());
   CHAT_D->remove_user();
   MULTI_D->quit(query_name());
-  TO->tsh_cleanup();
+  catch(this_object()->tsh_cleanup());
   weaponless_users::remove();
 }
 
@@ -1196,7 +1200,6 @@ void break_all_spells()
         }
     }
 }
-
 
 void new_body()
 {
