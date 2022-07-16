@@ -110,6 +110,7 @@ void remove_retinue(int slot)
 void init_retinue()
 {
     object player = this_player(), old_follower;
+    string retainer_directory;
     int next_slot_to_fill;
     mixed *file_names;
     
@@ -123,7 +124,7 @@ void init_retinue()
     if (!sizeof(retinue) || stringp(keys(retinue)[0]))
     {
         clear_retinue();
-        string retainer_directory = "/d/save/retainers/" + player->query_name() + "/";
+        retainer_directory = "/d/save/retainers/" + player->query_name() + "/";
         mkdir(retainer_directory); // If the directory doesn't exist, make it.
         file_names = get_dir(retainer_directory);
 	    next_slot_to_fill = 0;
