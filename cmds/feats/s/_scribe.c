@@ -114,7 +114,12 @@ void execute_feat()
 
     tmp = MAGIC_D->get_spell_file_name(str);
 
-    if ((regexp(tmp, ".*(cure|cause).*wounds") || regexp(tmp, "repair.*undead") || regexp(tmp, (".*(heal|harm)"))) && str != "aura of healing" && str != "shadow healing") {
+    if ((regexp(tmp, ".*(cure|cause).*wounds") || regexp(tmp, "repair.*undead") || regexp(tmp, (".*(heal|harm)"))) && 
+        str != "aura of healing" && 
+        str != "shadow healing" &&
+        str != "celestial healing" &&
+        str != "infernal healing"
+       ) {
         tell_object(caster,"You puzzle, unsure how to scribe this spell.");
         return 1;
     }
