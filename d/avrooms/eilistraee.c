@@ -17,6 +17,7 @@ void create(){
    set_listen("default","You hear the cries of players.");
 
    set_exits(([
+      "library" : "/d/islands/serakii/rooms/caer/library",
       "lounge" : "/d/dagger/avalounge"
    ]));
 }
