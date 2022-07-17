@@ -180,7 +180,7 @@ int cmd_rumors(string args)
             {
                     
                 if(peep == TP) continue;
-                if(peep->query_invis()) continue;
+                if(peep->query_invis() || peep->query_hidden()) continue;
 
                 if(!objectp(ENV(peep)))
                     continue;
