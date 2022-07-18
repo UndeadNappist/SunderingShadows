@@ -9,6 +9,7 @@
 // Traits
 // Area based dieties
 // Writes and tell_objects need to be moved to message
+// Influence validation needs to check for active followers
 
 #include <std.h>
 
@@ -76,7 +77,7 @@ void remove_retinue(int slot)
     {
         retinue = ([]);
     }
-    
+
     if(!mapp(last_follower_death_times))
     {
         last_follower_death_times = ([  ]);
@@ -115,7 +116,7 @@ void remove_retinue(int slot)
 void init_retinue()
 {
     object player = this_player(), old_follower;
-    string retainer_directory;
+    string retainer_directory = "/d/save/retainers/" + player->query_name() + "/";
     int next_slot_to_fill;
     mixed *file_names;
     
@@ -126,10 +127,8 @@ void init_retinue()
     
     // LEGACY FOLLOWER SUPPORT
     // THIS IS BAD AND SHOULD BE REMOVED ASAP
-    if (!sizeof(retinue) || stringp(keys(retinue)[0]))
+    if (!sizeof(retinue))
     {
-        clear_retinue();
-        retainer_directory = "/d/save/retainers/" + player->query_name() + "/";
         mkdir(retainer_directory); // If the directory doesn't exist, make it.
         file_names = get_dir(retainer_directory);
 	    next_slot_to_fill = 0;
@@ -154,6 +153,30 @@ void init_retinue()
 				rename(retainer_directory + name + "/", retainer_directory + replace_string(name, "_temp", "") + "/");
                 ++next_slot_to_fill;
             }
+        }
+    }
+
+    // Retinue validation
+    for (next_slot_to_fill = 0; next_slot_to_fill < sizeof(next_slot_to_fill); ++next_slot_to_fill)
+    {
+        if (!retinue[next_slot_to_fill]["name"])
+        {
+            retinue[next_slot_to_fill]["name"] = "daemon/names"->getName();
+        }
+
+        if (member_array(retinue[next_slot_to_fill]["class"], CLASSES) == -1)
+        {
+            retinue[next_slot_to_fill]["class"] = CLASSES[random(sizeof(CLASSES))];
+        }
+
+        if (!retinue[next_slot_to_fill]["race"])
+        {
+            retinue[next_slot_to_fill]["race"] = "human";
+        }
+
+        if (!retinue[next_slot_to_fill]["level"])
+        {
+            retinue[next_slot_to_fill]["level"] = 25;
         }
     }
 }
@@ -400,4 +423,51 @@ void validate_retinue_influence()
     {
         remove_retinue(random(sizeof(retinue)));
     }
+}
+
+int swap_follower_slots(int key_one, int key_two)
+{
+    string retainer_directory = "/d/save/retainers/" + this_player()->query_name() + "/";
+    mapping temp_mapping;
+
+    if (retinue[key_one] && retinue[key_two])
+    {
+        // This swaps data, trust me.   // Spade
+        temp_mapping = retinue[key_two];
+        retinue[key_two] = retinue[key_one];
+        retinue[key_one] = temp_mapping;
+
+        // Ensure the folders exist
+        mkdir(retainer_directory);
+        mkdir(retainer_directory + key_one);
+        mkdir(retainer_directory + key_two);
+        
+        // Ensure the files exist
+        if (file_size(retainer_directory + key_one + ".o") == -1)
+        {
+            if (!write_file(retainer_directory + key_one + ".o", "", 0))
+            {
+                write("%^C030%^Something is wrong and the swap cannot be completed.");
+                return -1;
+            }
+        }
+
+        if (file_size(retainer_directory + key_two + ".o") == -1)
+        {
+            if (!write_file(retainer_directory + key_two + ".o", "", 0))
+            {
+                write("%^C030%^Something is wrong and the swap cannot be completed.");
+                return -1;
+            }
+        }
+
+        // Swap folders
+        rename(retainer_directory + key_one + "/", retainer_directory + key_two + "_temp/");
+        rename(retainer_directory + key_two + "/", retainer_directory + key_one + "/");
+        rename(retainer_directory + key_two + "_temp/", retainer_directory + key_two + "/");
+
+        return 1;
+    }
+
+    return 0;
 }

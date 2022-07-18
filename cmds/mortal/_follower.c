@@ -35,6 +35,7 @@ int help()
         "follower title [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^name%^RESET%^] \n"+
         "follower summon [%^ORANGE%^%^ULINE%^id%^RESET%^] \n"+
         "follower dismiss [%^ORANGE%^%^ULINE%^id%^RESET%^]\n"+
+        "follower swap [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^%^ULINE%^id2%^RESET%^]\n"+
         "follower [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^]\n"+
         "follower [%^ORANGE%^%^ULINE%^id1,id2%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^] \n"+
         "follower all [%^ORANGE%^%^ULINE%^command%^RESET%^] \n\n"+
@@ -177,7 +178,7 @@ int cmd_follower(string raw_arguments)
     string command, args_one_and_two, arg_one, arg_two, *target_followers_array, follower_score_sheet;
     object target_follower_object, temp;
     mapping controller, current_recruitables;
-    int i, target_follower_key, area_type, influence = player->query_skill("influence");
+    int i, target_follower_key, second_target_follower_key, area_type, influence = player->query_skill("influence");
 
     /*  Intentionally removed before cohorts are implemented. There's absolutely no justufication for locking an RP tool behind a feat. // Spade
     if(!FEATS_D->usable_feat(player, "leadership"))
@@ -265,7 +266,11 @@ int cmd_follower(string raw_arguments)
                 return 1;
             }
 
-            sscanf(args_one_and_two, "%d", target_follower_key);
+            if (!sscanf(args_one_and_two, "%d", target_follower_key) || target_follower_key < 0 || sizeof(current_recruitables[area_type]) < target_follower_key)
+            {
+                write("%^C051%^" + args_one_and_two + "%^C030%^ is not a valid ID.");
+                return 1;
+            }
 
             for ( i = 0; i < influence / 5 - 1; ++i )
             {
@@ -292,12 +297,18 @@ int cmd_follower(string raw_arguments)
         target_followers_array = parse_out_target_followers(args_one_and_two);
         for (i = 0; i < sizeof(target_followers_array); ++i)
         {
-            sscanf(target_followers_array[i], "%d", target_follower_key);
-            if (!retinue[target_follower_key] || controller[target_follower_key]) // Active followers cannot abandoned for fear of hurting their feelings.  // Spade
+            if (!sscanf(target_followers_array[i], "%d", target_follower_key))
+            {
+                write("%^C051%^" + target_followers_array[i] + "%^C030%^ is not a valid ID.");
+                continue;
+            }
+
+            if (!retinue[target_follower_key] || controller[target_follower_key])
             {
                 tell_object(player, "%^C030%^Best to send them away first...");
                 continue;
             }
+
             player->remove_retinue(target_follower_key);
             tell_object(player, "%^C030%^They will wake up without even remembering you.");
         }
@@ -313,7 +324,12 @@ int cmd_follower(string raw_arguments)
         target_followers_array = parse_out_target_followers(arg_one);
         for (i = 0; i < sizeof(target_followers_array); ++i) // Does it make sense that you can rename multiple followers at once? No. Are we going to keep it this way? Yes.   // Spade
         {
-            sscanf(target_followers_array[i], "%d", target_follower_key);
+            if (!sscanf(target_followers_array[i], "%d", target_follower_key))
+            {
+                write("%^C051%^" + target_followers_array[i] + "%^C030%^ is not a valid ID.");
+                continue;
+            }
+
             if (!retinue[target_follower_key] || controller[target_follower_key]) // Active followers cannot be renamed on purpose. Needs to be split into two different error messages.    // Spade
             {
                 tell_object(player, "%^C030%^Such trickery will not work with your follower so near!");
@@ -334,7 +350,12 @@ int cmd_follower(string raw_arguments)
         target_followers_array = parse_out_target_followers(arg_one);
         for (i = 0; i < sizeof(target_followers_array); ++i) 
         {
-            sscanf(target_followers_array[i], "%d", target_follower_key);
+            if (!sscanf(target_followers_array[i], "%d", target_follower_key))
+            {
+                write("%^C051%^" + target_followers_array[i] + "%^C030%^ is not a valid ID.");
+                continue;
+            }
+
             if (!retinue[target_follower_key])
             {
                 continue;
@@ -369,7 +390,11 @@ int cmd_follower(string raw_arguments)
 
         for (i = 0; i < sizeof(target_followers_array); ++i)
         {
-            sscanf(target_followers_array[i], "%d", target_follower_key);
+            if (!sscanf(target_followers_array[i], "%d", target_follower_key))
+            {
+                write("%^C051%^" + target_followers_array[i] + "%^C030%^ is not a valid ID.");
+                continue;
+            }
 
             if (player->check_follower_status(target_follower_key))
             {
@@ -399,10 +424,10 @@ int cmd_follower(string raw_arguments)
                 target_follower_object->set_short(replace_string(replace_string(retinue[target_follower_key]["title"], "$N", capitalize(retinue[target_follower_key]["name"])), "$R", capitalize(retinue[target_follower_key]["race"])));
                 target_follower_object->move(DUMBY); // Make sure they're there!
                 target_follower_object->set_followee(player);
-                target_follower_object->add_id(lower_case(retinue[target_follower_key]["name"]));
-                target_follower_object->add_id(retinue[target_follower_key]["name"]);
-                target_follower_object->add_id(capitalize(retinue[target_follower_key]["name"]));
-                target_follower_object->add_id(player->query_name() + " retainer");
+                target_follower_object->add_id(strip_colors(lower_case(retinue[target_follower_key]["name"])));
+                target_follower_object->add_id(strip_colors(retinue[target_follower_key]["name"]));
+                target_follower_object->add_id(strip_colors(capitalize(retinue[target_follower_key]["name"])));
+                target_follower_object->add_id(strip_colors(player->query_name() + " retainer"));
                 target_follower_object->force_me("wearall");
             }
             tell_room(current_environment, "%^C030%^" + player->query_cap_name() + " summons a retainer.", player);
@@ -433,7 +458,11 @@ int cmd_follower(string raw_arguments)
 
         for (i = 0; i < sizeof(target_followers_array); ++i)
         {
-            sscanf(target_followers_array[i], "%d", target_follower_key);
+            if (!sscanf(target_followers_array[i], "%d", target_follower_key))
+            {
+                write("%^C051%^" + target_followers_array[i] + "%^C030%^ is not a valid ID.");
+                continue;
+            }
 
             if (!retinue[target_follower_key] || !(target_follower_object = controller[target_follower_key]) )
             {
@@ -449,16 +478,43 @@ int cmd_follower(string raw_arguments)
         }
         break;
 
+    case "swap":
+        if (!sscanf(arg_one, "%d", target_follower_key))
+        {
+            write("%^C051%^" + target_followers_array[i] + "%^C030%^ is not a valid ID.");
+            return 1;
+        }
+        if (!sscanf(arg_two, "%d", second_target_follower_key))
+        {
+            write("%^C051%^" + target_followers_array[i] + "%^C030%^ is not a valid ID.");
+            return 1;
+        }
+
+        if (player->swap_follower_slots(target_follower_key, second_target_follower_key))
+        {
+            write("%^C030%^The two have swapped places in your mental ledger.");
+        }
+        else
+        {
+            write("%^C030%^You realize that one of those places wasn't populated to begin with. How silly of you.");
+        }
+        break;
+
     default:
         target_followers_array = parse_out_target_followers(command);
         for (i = 0; i < sizeof(target_followers_array); ++i)
         {
-            sscanf(target_followers_array[i], "%d", target_follower_key);
+            if (!sscanf(target_followers_array[i], "%d", target_follower_key))
+            {
+                write("%^C051%^" + target_followers_array[i] + "%^C030%^ is not a valid ID.");
+                continue;
+            }
+
             if (!retinue[target_follower_key] || !(target_follower_object = controller[target_follower_key]))
             {
                 continue;
             }
-            tell_object(player, "%^C030%^You command %^C051%^" + target_follower_object->query_cap_name() + "%^C030%^ to %^C051%^" + args_one_and_two + ".");
+            tell_object(player, "%^C030%^You command %^C051%^" + target_follower_object->query_cap_name() + "%^C030%^ to %^C051%^" + args_one_and_two);
             target_follower_object->force_me(args_one_and_two);
         }
         break;
@@ -509,6 +565,7 @@ string parse_out_target_followers(string string_of_followers)
     else
     {
         // Is this typecast really necessary?   // Spade
+        
         return explode((string)string_of_followers, ",");
     }
 }
