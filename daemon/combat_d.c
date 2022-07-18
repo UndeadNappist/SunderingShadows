@@ -3860,7 +3860,8 @@ void counter_attack(object ob)
     return;
 }
 
-int isPkill(object who)
+//Don;t understand why this is an int function when some object assignments use the value from this....changing to mixed
+mixed isPkill(object who)
 {
     int i, j;
     object killedBy, * attackers, EWHO;
@@ -3944,10 +3945,14 @@ void continue_attack(object who)
         return;
     }
     attackers = who->query_attackers();
+    
+    if(sizeof(attackers))
+        killedBy = attackers[0]->query_property("minion") ? attackers[0]->query_property("minion") : attackers[0];
+    
     who->check_death();
     if (who->query_dead()) {
         who->adjust_combat_mapps("static vars", "dead", 0);
-        who->die((attackers && killedBy ? killedBy : 0));
+        who->die((attackers && killedBy ? killedBy : 0)); //this is always zero???
         if (objectp(who)) {
             who->cease_all_attacks();
         }
@@ -4128,6 +4133,11 @@ varargs int check_death(object who, object pot)
                     return 1;
                 }
                 killedBy = attackers[0];
+                
+                //If minions kill, make the minion's owner the killer instead.
+                if(objectp(killedBy->query_property("minion")))
+                    killedBy = killedBy->query_property("minion");
+                
                 who->set("killedBy", killedBy);
                 who->adjust_combat_mapps("static vars", "dead", 1);
                 return 1;
@@ -4189,7 +4199,7 @@ varargs int check_death(object who, object pot)
                 }
                 if (!objectp(killedBy) && attackers[0]->query_property("spell") && objectp(attackers[0]->query_property("spell"))) {
                     killedBy = attackers[0]->query_property("spell")->query_caster();
-                }
+                }               
                 if (!objectp(killedBy)) {
                     killedBy = attackers[0];
                     who->set("killedBy", killedBy);
