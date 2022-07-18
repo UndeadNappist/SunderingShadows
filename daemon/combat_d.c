@@ -3946,8 +3946,8 @@ void continue_attack(object who)
     }
     attackers = who->query_attackers();
     
-    if(sizeof(attackers))
-        killedBy = attackers[0]->query_property("minion") ? attackers[0]->query_property("minion") : attackers[0];
+    if(sizeof(attackers) && objectp(attackers[0]))
+        killedBy = objectp(attackers[0]->query_property("minion")) ? attackers[0]->query_property("minion") : attackers[0];
     
     who->check_death();
     if (who->query_dead()) {
