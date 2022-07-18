@@ -35,7 +35,7 @@ string long_desc(){
    "to fall into the ice cold water below.  A ship might be "+
    "able to squeeze through the blocks of ice but could also "+
    "easily be crushed if it suddenly freezes.  The glacier"+
-   " flows into the sea from the north.  There are leveral large ice bergs here."+
+   " flows into the sea from the north.  There are several large ice bergs here."+
 "\n");
  
 }
@@ -46,7 +46,7 @@ string night_desc() {
    "to fall into the ice cold water below.  A ship might be "+
    "able to squeeze through the blocks of ice but could also "+
    "easily be crushed if it suddenly freezes.  The glacier"+
-   " flows into the sea from the north.  There are leveral large ice bergs here."+
+   " flows into the sea from the north.  There are several large ice bergs here."+
 "\n");
 }
 
