@@ -2408,12 +2408,12 @@ void perform_action(object obj,string action)
     case "summon fodder":
 
         if(time() < TIMERS["fodder"]) { return; }
-        if(has_fodder() < 3)
+        /*if(has_fodder() < 3)
         {
             TIMERS["fodder"] = time() + 25;
             new("/cmds/spells/s/_sticks_into_snakes")->use_spell(TO,0,level,100,"cleric");
             return;
-        }
+        }*/
 
         break;
 

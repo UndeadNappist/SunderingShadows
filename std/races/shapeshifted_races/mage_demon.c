@@ -48,7 +48,7 @@ int default_descriptions(object obj)
 {
     if(!objectp(obj)) { return 0; }
 
-    obj->set_description("towers at an impressive thirty feet tall. Its whole humanoid body is covered in a fine red fur. Giant black leathery wings extend from it's back and two horns rise above it's head. Its face is vaugely bull like, with horns extending at the side of each of its jaws. Massive teeth fill a large maw.");
+    obj->set_description("towers at an impressive thirty feet tall. Its whole humanoid body is covered in a fine red fur. Giant black leathery wings extend from it's back and two horns rise above it's head. Its face is vaguely bull like, with horns extending at the side of each of its jaws. Massive teeth fill a large maw.");
 
     obj->setDescriptivePhrase("towering $G $R");
 
@@ -102,7 +102,7 @@ int claw_attack(object tp, object targ)
     {
         tell_object(tp,"%^RED%^You %^BOLD%^%^BLACK%^rake%^RESET%^%^RED%^ your massive claws into "+targ->QCN+"'s flesh!");
         tell_object(targ,"%^RED%^"+tp->QCN+" %^BOLD%^%^BLACK%^rakes%^RESET%^%^RED%^ its massive claws into your flesh!");
-        tell_room(ENV(tp),"%^RED%^"+tp->QCN+" %^BOLD^%^BLACK%^rakes%^RESET%^%^RED%^ its massive claws into "+targ->QCN+"'s flesh!",({tp,targ}));
+        tell_room(ENV(tp),"%^RED%^"+tp->QCN+" %^BOLD%^%^BLACK%^rakes%^RESET%^%^RED%^ its massive claws into "+targ->QCN+"'s flesh!",({tp,targ}));
         targ->cause_typed_damage(targ,targ->return_target_limb(),roll_dice(clevel/5,6),"slashing");
     }
     else
