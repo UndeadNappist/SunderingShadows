@@ -28,7 +28,7 @@ void create()
 	set_class("fighter");
 	set_mlevel("fighter",20);
 	set_level(20);
-//   set_property("alignment adjustment",-5);  
+//   set_property("alignment adjustment",-5);
 // too many get summoned so it's an instant alignment change for one attack or being in one brawl *Styx*
    set_property("no dominate",1);
    set_property("no bows",1);
@@ -65,14 +65,6 @@ void create()
 	command("wearall");
 }
 
-void init()
-{
-   ::init();
-   if(present("silver robe",ETO) || present("silver belt",ETO) || present("silver shield",ETO) || present("silvered helm",ETO) || present("light chain",ETO) || present("silver sword",ETO)) {
-      force_me("get all");
-   }
-}
-
 void die(object obj) {
   // You love me, Crystal. You know you do.
   // garrett
@@ -85,4 +77,3 @@ void die(object obj) {
   return ::die(obj);
 
 }
-

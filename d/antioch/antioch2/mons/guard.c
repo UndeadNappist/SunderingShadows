@@ -28,13 +28,13 @@ void create()
         set_class("fighter");
         set_mlevel("fighter",40);
         set_level(40);
-        
+
         set_monster_feats( ({
                              "toughness",
                              "damage resistance",
                              "regeneration",
                          }) );
-//   set_property("alignment adjustment",-5);  
+//   set_property("alignment adjustment",-5);
 // too many get summoned so it's an instant alignment change for one attack or being in one brawl
 //*Styx*
         set_property("no dominate",1);
@@ -70,15 +70,6 @@ void create()
         new(OBJ+"silver_sword")->move(TO);
         command("wield silver sword");
         command("wearall");
-}
-
-void init()
-{
-   ::init();
-   if(present("silver robe",ETO) || present("silver belt",ETO) || present("silver shield",ETO) ||
-   present("silvered helm",ETO) || present("light chain",ETO) || present("silver sword",ETO)) {
-      force_me("get all");
-   }
 }
 
 void die(object obj) {

@@ -113,11 +113,11 @@ int is_bad_race(object live){ // added N's fix for subraces
     if(live->query_unconscious()) { return 0; }
     if(live->id("wild_world_monster")) { return 1; }
     if(query_bad_race(live)) { return 1; }
-    
+
     if(live->query_race() == "shade")
         return 1;
-    
-    if((string)live->query_race() == "elf") { 
+
+    if((string)live->query_race() == "elf") {
         // un-altered fey'ri in natural demonic form
       if((string)live->query("subrace") == "fey'ri" &&
       !live->query_property("altered")) return 1;
@@ -147,16 +147,6 @@ void blow_horn(object ob) {
     broadcast_area(ROOMS, "The warning horn"+
         " blows, alerting the guards!");
     horn = 1;
-}
-
-void init()
-{
-   ::init();
-   if(present("silver robe",ETO) || present("silver belt",ETO) ||
-present("silver shield",ETO) || present("silvered helm",ETO) ||
-present("light chain",ETO) || present("silver sword",ETO)) {
-      force_me("get all");
-   }
 }
 
 int isWatch() {
