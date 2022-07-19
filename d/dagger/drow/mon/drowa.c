@@ -87,7 +87,7 @@ void dart(object targ) {
 	    "stiffen as hard as stone!%^RESET%^"
 	);
 	targ->set_paralyzed(random(30)+10,
-	    "%^GREEN%^The venom still siezes your muscles!%^RESET%^"
+	    "%^GREEN%^The venom still seizes your muscles!%^RESET%^"
 	);
     } else {
 	targ->do_damage("torso",roll_dice(1,6));

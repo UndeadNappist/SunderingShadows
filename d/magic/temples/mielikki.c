@@ -35,7 +35,7 @@ void create(){
          "as if absorbed into nature itself.%^RESET%^\n");
    set_items(([
          ({"oak","tree"}) : "%^GREEN%^This enormous tree looms "+
-            "overhead, casting its watchful gaze across the grove%^RESET%^",
+            "overhead, casting its watchful gaze across the grove.%^RESET%^",
          "altar" : "%^BOLD%^%^WHITE%^The altar has obviously seen better "+
             "days, now cracked and covered with%^RESET%^ %^GREEN%^i%^RESET%^"+
             "%^RED%^v%^RESET%^%^GREEN%^y%^RESET%^ %^BOLD%^%^WHITE%^and"+

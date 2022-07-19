@@ -73,7 +73,7 @@ void stab(object targ) {
 }
 void dart(object targ) {
     string dam;
-    if("daemon/saving_d"->saving_throw(targ,"poison")) {
+    if("daemon/saving_d"->saving_throw(targ,"poison") && !PLAYER_D->immunity_check(targ, "poison")) {
 	dam="hurts";
     } else {
 	dam="poisons";
@@ -94,7 +94,7 @@ void dart(object targ) {
 	    "stiffen as hard as stone!%^RESET%^"
 	);
 	targ->set_paralyzed(random(10)+15,
-	    "%^GREEN%^The venom still siezes your muscles!%^RESET%^"
+	    "%^GREEN%^The venom still seizes your muscles!%^RESET%^"
 	);
     } else {
 	targ->do_damage("torso",roll_dice(1,6));
