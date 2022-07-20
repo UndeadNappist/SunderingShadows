@@ -135,7 +135,7 @@ switch(i)
 ob = new(OBJ"mace");
        ob->move(the_monster);
        ob->set_property("enchantment",4);
-       ob->set_property("monsterwapon",1);
+       ob->set_property("monsterweapon",1);
        command("wield mace");
 }
 

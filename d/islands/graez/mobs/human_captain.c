@@ -134,7 +134,7 @@ switch(i)
     ob = new("/d/antioch/ruins/obj/heavens_mace");
        ob->move(TO);
        ob->set_property("enchantment",4);
-       ob->set_property("monsterwapon",1);
+       ob->set_property("monsterweapon",1);
        command("wield mace");
 }
 
