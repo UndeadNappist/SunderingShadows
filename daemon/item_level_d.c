@@ -343,6 +343,8 @@ varargs int get_bonus_value(string bonus_name, string num, object item, object t
 
     //Misc
     case "fast healing":                    value = num * 28;       break;
+    case "combat maneuver bonus":           value = num * 12;       break;
+    case "combat maneuver defense":         value = num * 12;       break;
     }
 
     return abs(to_int(value));

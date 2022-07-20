@@ -7,7 +7,7 @@ void create() {
     set_properties( ([ "light" : 2, "indoors" : 1 ]) );
     set_short("Inside the walls of the Tower of the Black Dawn.");
      set_long("
-    This is the northwest guard tower.  Benches are built into all four walls, and fireing slits have been cut in the floor and the walls.  An empty weapon rack is built into the north wall.
+    This is the northwest guard tower.  Benches are built into all four walls, and firing slits have been cut in the floor and the walls.  An empty weapon rack is built into the north wall.
 ");
     set_smell("default","There is a strange odor in the air, almost like some sort of spice.");
     set_listen("default","Your footsteps echo loudly through the halls.");

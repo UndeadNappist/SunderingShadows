@@ -8,7 +8,7 @@ void create(){
     set_short("Great orifice.");
     set_long(
       "You have arrived at the orifice to the Crystalline Tower.  A huge shaft of light lies just beyond the orifice.  Within the light, you can see millions of smaller lights speeding upwards in a stream.  You begin to wonder what will happen to you, should you enter the stream of light."+
-      "On either side of the orifice is a statue of a golden warrior, hands outstretched to the heavens."+
+      "On either side of the orifice is a statue of a golden warrior, hands outstretched to the heavens. "+
       "%^BOLD%^%^CYAN%^A thick fog rolls in around you and you can only see the light behind the orifice."
     );
 

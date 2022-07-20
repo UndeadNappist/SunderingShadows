@@ -6,7 +6,7 @@ inherit "/d/common/obj/clothing/magerobe.c";
 void create(){
    ::create();
    set_name("Noble's Tunic");
-   set_id(({"tunic","noble's tunic","green robes","bright green robes","mage robes"}));
+   set_id(({"tunic","noble's tunic","green robe","bright green robe","mage robe","robe"}));
    set_short("%^BOLD%^%^GREEN%^bright green robe%^RESET%^");
    set_long("%^BOLD%^%^GREEN%^These robes are made from an elegant "+
       "yet unknown fabric.  They are long and flowing and are lined "+
