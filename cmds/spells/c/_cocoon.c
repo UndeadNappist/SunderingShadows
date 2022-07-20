@@ -140,6 +140,7 @@ void dest_effect()
         tell_object(caster, color("You wriggle and push your way out. You burst into open, fresh air, a brand new " + arg + "."));
         tell_room(place, "%^GREEN%^The cocoon begins to wriggle then bursts open, revealing a " + arg + ".", caster);
         caster->move_player(place);
+        if(!caster->query("cocooned")) caster->set("cocooned", caster->query_race());
         caster->set_race(arg);
     }
     cocoon_inside->remove();
@@ -147,3 +148,4 @@ void dest_effect()
     
     ::dest_effect();
 }
+

@@ -117,6 +117,11 @@ int confirm_drop(string str, string theclass, int drop, int cost)
         TP->delete("warlock_blast_type");
     }
     
+    if(TP->query("cocooned")){
+        message("info", "As your magic drains, you feel the enchantment over your form weaken and disperse.", TP);
+        TP->set_race(TP->query("cocooned"));
+    }
+    
     if(TP->query("elementalist")) TP->delete("elementalist");
 
     // this should only get called if they have no levels in the class that they abandoned, to remove it from the score sheet
