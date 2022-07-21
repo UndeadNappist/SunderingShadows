@@ -59,6 +59,10 @@ void spell_effect()
     int duration;
     
     ::spell_effect();
+  
+    my_name = caster->query_cap_name();
+    my_poss = caster->query_possessive();
+    my_pron = caster->query_subjective();
     
     tell_object(caster, "%^C063%^You begin to %^C081%^glow%^C063%^ with d%^C069%^a%^C075%^r%^C063%^k e%^C069%^n%^C075%^e%^C081%^r%^C075%^g%^C063%^y as you complete your chant.%^CRST%^");
     tell_room(place, "%^C063%^" + my_name + " begins to %^C081%^glow%^C063%^ with d%^C069%^a%^C075%^r%^C063%^k e%^C069%^n%^C075%^e%^C081%^r%^C075%^g%^C063%^y as " + my_pron + " completes " + my_poss + " chant.%^CRST%^", caster);
