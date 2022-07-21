@@ -165,6 +165,20 @@ string write_prompt()
             else prompt = replace_string(prompt, "$_BI", "");
         }
 
+        if(this_player()->is_class("magus")) {
+            if(this_player()->query_property("magus cast")){
+                prompt = replace_string(prompt, "$_SC", "Spell Combat");
+            } else {
+                prompt = replace_string(prompt, "$_SC", "");
+            }
+
+            if(this_player()->query_property("spell recall")){
+                prompt = replace_string(prompt, "$_SR", "Spell Recall");
+            } else {
+                prompt = replace_string(prompt, "$_SR", "");
+            }
+        }
+
         if(this_player()->is_class("psion") || this_player()->is_class("psywarrior"))
         {
             if(this_player()->query("available focus") == 1)
@@ -212,7 +226,7 @@ string write_prompt()
             prompt = replace_string(prompt, "$P",
                                     "0");
         }
-        
+
         prompt = replace_string(prompt, "$EL", strlen(this_player()->query("elementalist")) ? this_player()->query("elementalist") : "none");
         prompt = replace_string(prompt, "$D", path );
         prompt = replace_string(prompt, "$h",
@@ -229,7 +243,9 @@ string write_prompt()
         prompt = replace_string(prompt, "$x", ""+this_player()->query_internal_encumbrance());
         prompt = replace_string(prompt, "$X", ""+this_player()->query_max_internal_encumbrance());
         prompt = replace_string(prompt, "$i", ""+hunger2str(this_player()));
+        prompt = replace_string(prompt, "$_HP", ""+hunger_percent(this_player()));
         prompt = replace_string(prompt, "$o", ""+thirst2str(this_player()));
+        prompt = replace_string(prompt, "$_TP", ""+thirst_percent(this_player()));
         prompt = replace_string(prompt, "$T", ""+EVENTS_D->query_time_of_day());
         prompt = replace_string(prompt, "$t", ""+sprintf("%2d",hour(time()))+":"+sprintf("%.2d",minutes(time())));
         prompt = replace_string(prompt, "$B", ""+bloodlust2string(this_player()));
@@ -419,4 +435,24 @@ string thirst2str(object player)
     if(perc > 100/6)
         return "%^RED%^Very thirsty%^RESET%^";
     return "%^RED%^%^BOLD%^Parched%^RESET%^";
+}
+
+string hunger_percent(object player) {
+    int current, percent, max;
+
+    max = player->query_formula();
+    current = player->query_stuffed();
+    percent = current * 100 / max;
+
+    return percent + "%";
+}
+
+string thirst_percent(object player) {
+    int current, percent, max;
+
+    max = player->query_formula();
+    current = player->query_quenched();
+    percent = current * 100 / max;
+
+    return percent + "%";
 }

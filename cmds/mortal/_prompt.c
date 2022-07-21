@@ -46,7 +46,9 @@ Available codes:
   %^MAGENTA%^$h%^WHITE%^ hp
   %^MAGENTA%^$H%^WHITE%^ maximum hp
   %^MAGENTA%^$i%^WHITE%^ hunger level
+  %^MAGENTA%^$_HP%^WHITE%^ hunger percent
   %^MAGENTA%^$o%^WHITE%^ thirst level
+  %^MAGENTA%^$_TP%^WHITE%^ thirst percent
   %^MAGENTA%^$s%^WHITE%^ stamina percent
   %^MAGENTA%^$S%^WHITE%^ stamina string
   %^MAGENTA%^$x%^WHITE%^ encumbrance level
@@ -60,6 +62,8 @@ Additional codes:
   %^MAGENTA%^$_EW%^WHITE%^ eldritch warfare
   %^MAGENTA%^$_PF%^WHITE%^ psionic focus
   %^MAGENTA%^$_BI%^WHITE%^ bardic inspiration
+  %^MAGENTA%^$_SC%^WHITE%^ spell combat
+  %^MAGENTA%^$_SR%^WHITE%^ spell recall
   %^MAGENTA%^$EL%^WHITE%^ elementalist
   %^MAGENTA%^$r%^WHITE%^ rage status
   %^MAGENTA%^$E%^WHITE%^ eldritch essence
