@@ -17,10 +17,10 @@ switch(i)
 {
         case 0 :
 
-    set_name("amored human battle priest");
+    set_name("armored human battle priest");
     set_short("%^C243%^armored %^C111%^human %^C038%^battle priest%^CRST%^");
     set_long("This %^C068%^priest%^CRST%^, a veteran of a hundred campaigns is dressed in %^C242%^heavy armor%^CRST%^ adorned with %^C031%^sigils %^CRST%^of his faith. He walks with the assuredness of one that knows their cause is %^C255%^just %^CRST%^and %^C226%^true %^CRST%^and that they are all that stands between the humans of %^C231%^Graez %^CRST%^and the ravaging %^C093%^undead%^CRST%^. In one hand he wears a %^C067%^large shield%^CRST%^ and in the other a %^C250%^glowing mace%^CRST%^.");
-    set_id(({"captain","human captain","armored human battle priest","battle priest","priest","amored priest"}));
+    set_id(({"captain","human captain","armored human battle priest","battle priest","priest","armored priest"}));
 
     set_class("fighter");
     set_guild_level("fighter", 25);
