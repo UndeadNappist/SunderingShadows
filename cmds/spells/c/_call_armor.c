@@ -99,6 +99,7 @@ void spell_effect(int prof)
       mylevel = clevel;
       spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 6;
       set_end_time();
+      addSpellToCaster();
       call_out("dest_effect",spell_duration);
 }
 
