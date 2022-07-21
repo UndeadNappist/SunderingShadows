@@ -1416,7 +1416,7 @@ string corn_desc(){
               +"%^ORANGE%^ground%^BOLD%^%^WHITE%^ has been made ready for the next crop.%^RESET%^";
     break;
   case "renewal":
-    corndesc = "%^GREEN%^The crop is newly sown, and tiny seedlings are sprouting up%^RESET%^";
+    corndesc = "%^GREEN%^The crop is newly sown, and tiny seedlings are sprouting up.%^RESET%^";
     break;
   case "springstime":
     corndesc = "%^GREEN%^Young m%^ORANGE%^a%^GREEN%^i%^BOLD%^%^YELLOW%^z%^RESET%^%^GREEN%^e"
@@ -1432,7 +1432,7 @@ string corn_desc(){
               +" fully grown and workers are have already begun harvesting them.%^RESET%^";
     break;
   case "summerstime":
-    corndesc = "%^GREEN%^The crop is newly sown, and tiny seedlings are sprouting up%^RESET%^";
+    corndesc = "%^GREEN%^The crop is newly sown, and tiny seedlings are sprouting up.%^RESET%^";
     break;
   case "growingdays":
     corndesc = "%^GREEN%^Young m%^ORANGE%^a%^GREEN%^i%^BOLD%^%^YELLOW%^z%^RESET%^%^GREEN%^e"
@@ -1445,7 +1445,7 @@ string corn_desc(){
     break;
   case "autumnstime":
     corndesc = "%^GREEN%^The m%^ORANGE%^a%^GREEN%^i%^BOLD%^%^YELLOW%^z%^RESET%^%^GREEN%^e plants are"
-              +" fully grown and workers are have already begun harvesting them";
+              +" fully grown and workers are have already begun harvesting them.%^RESET%^";
     break;
   case "colddays":
     corndesc = "%^BOLD%^%^WHITE%^It is the cold season and no crop grows here now.%^RESET%^";

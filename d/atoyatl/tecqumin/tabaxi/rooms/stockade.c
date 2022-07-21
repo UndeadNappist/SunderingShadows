@@ -23,7 +23,7 @@ void create() {
           +" the side of the gate is the lever that activates the gate mechanism. You could use it to"
           +" open or close the gate. North, you can see the central area of the stockade. Further"
           +" north appears to be the main living area. To the east there is an area that looks like"
-          +" it has been out of use for a while. To the west and north there appears to be a communal"
+          +" it has been out of use for a while. To the east and north there appears to be a communal"
           +" eating area.");
   set_exits( ([ "west": TABAXROOM + "southwest_corner",
                "east": TABAXROOM + "southeast_corner",
