@@ -45,6 +45,7 @@ spell_effect(int prof)
     }
 
     if (target->is_corpse()) {
+        target->remove();
         TO->explode();
         TO->remove();
         return;
@@ -69,7 +70,7 @@ void explode()
         if (!objectp(attackers[i])) {
             continue;
         }
-        tell_object(attackers[i], "%^GREEN%^%^BOLD%^Youre scorched by the acid!%^RESET%^");
+        tell_object(attackers[i], "%^GREEN%^%^BOLD%^You are scorched by the acid!%^RESET%^");
         damage_targ(attackers[i], attackers[i]->return_target_limb(), sdamage * 3 / 4, "acid");
     }
 }
