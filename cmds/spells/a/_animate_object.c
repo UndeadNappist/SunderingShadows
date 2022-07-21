@@ -148,6 +148,7 @@ void spell_effect(int prof)
         dest_effect();
         return;
     }
+    addSpellToCaster();
     spell_successful();
 }
 
