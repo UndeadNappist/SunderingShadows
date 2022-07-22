@@ -223,7 +223,7 @@ int cmd_follower(string raw_arguments)
         for (i = 0; i < sizeof(retinue); ++i)
         {
             follower_score_sheet = "     Lv. " + retinue[i]["level"] + " " + retinue[i]["race"] + " " + retinue[i]["class"] + " ";
-            write(arrange_string(" ", 3 - strlen("" + i)) + i + ": " + arrange_string(replace_string(replace_string(retinue[i]["title"], "$N", capitalize(retinue[i]["name"])), "$R", capitalize(retinue[i]["race"])), 70 - strwidth(follower_score_sheet)) + follower_score_sheet );
+            write(arrange_string(" ", 3 - strlen("" + i)) + i + ": " + arrange_string(get_full_follower_short(retinue, i), 70 - strwidth(follower_score_sheet)) + follower_score_sheet );
         }
         write("\n%^C246%^/%^C247%^///%^C248%^///%^C249%^///%^C250%^///%^C251%^///%^C252%^///%^C253%^///%^C254%^///%^C255%^////////////////////////%^C255%^/%^C254%^///%^C253%^///%^C252%^///%^C251%^///%^C250%^///%^C249%^///%^C248%^///%^C247%^///%^C246%^/\n");
 
@@ -360,14 +360,14 @@ int cmd_follower(string raw_arguments)
             {
                 continue;
             }
-            if (strsrch(arg_two, "$N") == -1 && strsrch(arg_two, "$R") == -1)
+            if (strsrch(arg_two, "$N") == -1 && strsrch(arg_two, "$R") == -1 && strsrch(arg_two, "$r") == -1)
             {
                 arg_two = "$N, " + arg_two;
             }
             player->set_retinue_follower(target_follower_key, retinue[target_follower_key]["name"], arg_two, retinue[target_follower_key]["class"], retinue[target_follower_key]["level"], retinue[target_follower_key]["race"]);
             if (target_follower_object)
             {
-                target_follower_object->set_short(replace_string(replace_string(retinue[target_follower_key]["title"], "$N", capitalize(retinue[target_follower_key]["name"])), "$R", capitalize(retinue[target_follower_key]["race"])));
+                target_follower_object->set_short(get_full_follower_short(retinue, target_follower_key));
             }
             tell_object(player, "%^C030%^You change %^C051%^" + capitalize(retinue[target_follower_key]["name"]) + "'s%^C030%^ short to be %^C051%^" + arg_two + "%^C030%^.");
         }
@@ -421,7 +421,7 @@ int cmd_follower(string raw_arguments)
                 target_follower_object->set_followee(player);
                 target_follower_object->restore_follower();
                 target_follower_object->set_name(retinue[target_follower_key]["name"]);
-                target_follower_object->set_short(replace_string(replace_string(retinue[target_follower_key]["title"], "$N", capitalize(retinue[target_follower_key]["name"])), "$R", capitalize(retinue[target_follower_key]["race"])));
+                target_follower_object->set_short();
                 target_follower_object->move(DUMBY); // Make sure they're there!
                 target_follower_object->set_followee(player);
                 target_follower_object->add_id(strip_colors(lower_case(retinue[target_follower_key]["name"])));
@@ -568,4 +568,9 @@ string parse_out_target_followers(string string_of_followers)
         
         return explode((string)string_of_followers, ",");
     }
+}
+
+string get_full_follower_short(mapping retinue, int slot)
+{
+    return replace_string(replace_string(replace_string(retinue[slot]["title"], "$r", lower_case(retinue[slot]["race"])), "$N", capitalize(retinue[slot]["name"])), "$R", capitalize(retinue[slot]["race"]));
 }
