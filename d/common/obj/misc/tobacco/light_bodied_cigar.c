@@ -12,7 +12,7 @@ void create()
     lit = 0;
     hasmsgs = 1;
     tracker = 0;
-    mymsgs = ({ "%^RESET%^%^ORANGE%^You enjoy the light and creamy taste of the tobacco.%^RESET%^"});
-    yourmsgs = ({"%^RESET%^%^ORANGE%^You smell the light and creamy aroma of the burning tobacco.%^RESET%^"});
+    mymsgs = ({ "%^RESET%^%^CRST%^%^C101%^You enjoy the %^C102%^light%^C101%^ and %^C102%^creamy%^C101%^ taste of the %^C100%^t%^C101%^o%^C102%^b%^C100%^ac%^C101%^c%^C100%^o%^RESET%^%^C094%^.%^CRST%^"});
+    yourmsgs = ({"%^CRST%^%^RESET%^%^C103%^You smell a %^C243%^m%^C244%^i%^C245%^l%^C246%^d %^C243%^a%^C244%^r%^C245%^o%^C246%^m%^C243%^a%^RESET%^%^C103%^ of burning %^C100%^t%^C101%^o%^C102%^b%^C100%^ac%^C101%^c%^C100%^o%^RESET%^%^C103%^.%^CRST%^"});
     intox = 0;
 }
