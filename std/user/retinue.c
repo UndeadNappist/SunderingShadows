@@ -3,8 +3,6 @@
 
 // TODO:
 // Fix current race/class combos
-// Move title code to its own function
-// $r for lowercase race in title
 // More classes
 // Traits
 // Area based dieties
