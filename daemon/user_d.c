@@ -178,22 +178,31 @@ void init_ki(object ob)
 int spend_pool(object ob, int amount, string pool_type)
 {
     int avail;
-    if (!intp(amount)) {
+
+    if (!intp(amount))
+    {
         return 0;
     }
-    if (!objectp(ob)) {
+    if (!objectp(ob))
+    {
         return 0;
     }
     avail = (int)ob->query("available " + pool_type);
-    if (amount > avail) {
+    if (amount > avail)
+    {
         return 0;
     }
     avail -= amount;
 
     if(pool_type == "focus" && avail < 1)
+    {
         tell_object(ob, "%^BOLD%^You lose your psionic focus.%^RESET%^");
+    }
 
     ob->set("available " + pool_type, avail);
+
+    ob->gmcp_update_character_resources(([pool_type + "_pool": avail, pool_type + "_pool_max": (int)ob->query("maximum " + pool_type)]));
+
     return 1;
 }
 
@@ -298,6 +307,9 @@ varargs void regenerate_pool(object ob, int amount, int pass, string pool_type)
         }
         ob->set("last " + pool_type + " regen", time() + delay);
     }
+
+    ob->gmcp_update_character_resources(([pool_type + "_pool": avail, pool_type + "_pool_max": (int)ob->query("maximum " + pool_type)]));
+
     return;
 }
 
@@ -373,6 +385,9 @@ void init_pool(object ob, string pool_type)
     }
     ob->set("available " + pool_type, avail);
     ob->set("maximum " + pool_type, newmax);
+
+    ob->gmcp_update_character_resources(([pool_type + "_pool": avail, pool_type + "_pool_max": (int)ob->query("maximum " + pool_type)]));
+
     return;
 }
 //END of Generic Resource
@@ -893,4 +908,4 @@ int is_pk_race_player(object ob)
     }
 
     return 0;
-}
+} 

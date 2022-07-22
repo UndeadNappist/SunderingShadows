@@ -326,107 +326,135 @@ void reinit_path()
 void heart_beat()
 {
     int myskill, mylevel, regen_amt, i;
-    object attacker;
+    object me = this_object(), attacker;
 
-    if (!objectp(TO)) {
+    if (!objectp(me))
+    {
         return;
     }
 
-    POISON_D->ProcessPoisons(TO);
+    POISON_D->ProcessPoisons(me);
 
     // new stab resets available chances once per round.
-    if (objectp(TO) && sizeof(TO->query_attackers())) {
-        if (TO->query_property("stabs_available")) {
-            TO->remove_property("stabs_available");
+    if (objectp(me) && sizeof(me->query_attackers()))
+    {
+        if (me->query_property("stabs_available")) 
+        {
+            me->remove_property("stabs_available");
         }
-        if (FEATS_D->usable_feat(TO, "combat reflexes")) {
+        if (FEATS_D->usable_feat(TO, "combat reflexes"))
+        {
             /*            i = (max(({TO->query_guild_level("thief"),
                                             TO->query_class_level("thief") + TO->query_class_level("arcane_trickster")
                                             }))+9)/10; */
                                             // there's a lib query for this now to get ANY thief PrC inherits, let's use that for efficiency! N, 1/3/20
-            i = (TO->query_prestige_level("thief") + 9) / 10;
-            TO->set_property("stabs_available", i);
+            i = (me->query_prestige_level("thief") + 9) / 10;
+            me->set_property("stabs_available", i);
         }
     }
-    if (TO->is_class("monk")) {
-        USER_D->regenerate_pool(TO, (1 + random(2)), 1, "ki");
-    }
-    if (TO->is_class("magus")) {
-        USER_D->regenerate_pool(TO, (1 + random(2)), 1, "arcana");
-    }
-    if (TO->is_class("paladin") || TO->is_class("cleric")) {
-        USER_D->regenerate_pool(TO, 1, 1, "grace");
-    }
-    if (this_object()->is_class("psion") || this_object()->is_class("psywarrior"))
+    if (me->is_class("monk"))
     {
-        USER_D->regenerate_pool(this_object(), 1, 1, "focus");
+        USER_D->regenerate_pool(me, (1 + random(2)), 1, "ki");
+    }
+    if (me->is_class("magus"))
+    {
+        USER_D->regenerate_pool(me, (1 + random(2)), 1, "arcana");
+    }
+    if (me->is_class("paladin") || me->is_class("cleric"))
+    {
+        USER_D->regenerate_pool(me, 1, 1, "grace");
+    }
+    if (me->is_class("psion") || me->is_class("psywarrior"))
+    {
+        USER_D->regenerate_pool(me, 1, 1, "focus");
     }
 
     //enhancement effects
-    "/cmds/mortal/_enhance.c"->run_enhances_timer(TO, "weapon");
-    "/cmds/mortal/_enhance.c"->run_enhances_timer(TO, "armor");
+    "/cmds/mortal/_enhance.c"->run_enhances_timer(me, "weapon");
+    "/cmds/mortal/_enhance.c"->run_enhances_timer(me, "armor");
 
-    if (used_stamina > 0) {
-        if (!userp(TO)) {
+    if (used_stamina > 0)
+    {
+        if (!userp(me))
+        {
             used_stamina -= 10;
-            if (used_stamina < 0) {
+            if (used_stamina < 0)
+            {
                 used_stamina = 0;
             }
             return;
         }
-        if (!query_property("inactive")) {
+        if (!query_property("inactive"))
+        {
             myskill = query_skill("endurance");
-            if (sizeof(query_attackers()) < 1) {
-                if (myskill < 0) {
+            if (sizeof(query_attackers()) < 1)
+            {
+                if (myskill < 0)
+                {
                     myskill = 1;
                 }
                 used_stamina -= ((myskill / 4) + 2);
-                if (used_stamina < 0) {
+                if (used_stamina < 0)
+                {
                     used_stamina = 0;
                 }
-            } else {
+            }
+            else
+            {
                 used_stamina -= ((myskill / 4) + 2);
-                if (used_stamina < 0) {
+                if (used_stamina < 0)
+                {
                     used_stamina = 0;
                 }
             }
         }
-        if (query_condition() < 0) {
+        if (query_condition() < 0)
+        {
             set_condition(query_max_stamina());
         }
+        me->gmcp_update_character_vitals(([ "stamina": query_max_stamina() - used_stamina, "max_stamina": query_max_stamina() ]));
     }
 
-    if (!(living_ticker % 3)) {
+    if (!(living_ticker % 3))
+    {
         //Central way to remove instant feat locks when out of combat
-        if(!this_object()->query_current_attacker())
-            this_object()->remove_property("using instant feat");
+        if(!me->query_current_attacker())
+        {
+            me->remove_property("using instant feat");
+        }
         
-        if (FEATS_D->usable_feat(this_object(), "regeneration")) {
-            if (query_hp() < query_max_hp()) {
-                regen_amt = roll_dice(1, this_object()->query_level()) / 2 + 1;
-                if(this_object()->query_property("fester")) regen_amt = regen_amt / 2;
+        if (FEATS_D->usable_feat(me, "regeneration"))
+        {
+            if (query_hp() < query_max_hp())
+            {
+                regen_amt = roll_dice(1, me->query_level()) / 2 + 1;
+                if(me->query_property("fester")) regen_amt = regen_amt / 2;
                 add_hp(regen_amt);
             }
         }
-        if (query_property("fast healing")) {
-            if (query_hp() < query_max_hp()) {
-                regen_amt = query_property("fast healing") * roll_dice(1, this_object()->query_level() / 2 + 1);
-                if(this_object()->query_property("fester")) regen_amt = regen_amt / 2;
+        if (query_property("fast healing"))
+        {
+            if (query_hp() < query_max_hp())
+            {
+                regen_amt = query_property("fast healing") * roll_dice(1, me->query_level() / 2 + 1);
+                if(me->query_property("fester")) regen_amt = regen_amt / 2;
                 add_hp(regen_amt);
             }
         }
 
-        if(this_object()->is_class("metamind"))
+        if(me->is_class("metamind"))
         {
-            if(this_object()->query("available focus"))
+            if(me->query("available focus"))
+            {
                 add_mp(1);
+            }
         }
 
-        if(FEATS_D->usable_feat(this_object(), "psychic vampire") && !avatarp(this_object()) && !wizardp(this_object()) && !this_object()->query("no pk"))
+        if(FEATS_D->usable_feat(me, "psychic vampire") && !avatarp(me) && !wizardp(me) && !me->query("no pk"))
         {
-            object targs = all_inventory(environment(this_object()));
+            object targs = all_inventory(environment(me));
             targs = filter_array(targs, (: userp($1) :));
-            targs -= ({ this_object() });
+            targs -= ({ me });
 
             foreach(object ob in targs)
             {
@@ -446,84 +474,86 @@ void heart_beat()
             add_mp(sizeof(targs));
         }
         
-        if(this_object()->is_shade() &&
+        if(me->is_shade() &&
         !random(25) &&
-        !avatarp(this_object()) &&
-        !wizardp(this_object()) &&
-        !this_object()->query_hidden() &&
-        !this_object()->query_property("altered") &&
-        !this_object()->query_invis())
+        !avatarp(me) &&
+        !wizardp(me) &&
+        !me->query_hidden() &&
+        !me->query_property("altered") &&
+        !me->query_invis())
         {
-            object room = environment(this_object());
+            object room = environment(me);
             
             switch(total_light(room))
             {
                 case 0..1:
-                tell_object(this_object(), "%^BLACK%^BOLD%^Whisps of darkness coalesce from the shadows around you.%^RESET%^");
-                tell_room(room, "%^BOLD%^BLACK%^Whisps of darkness coalesce from the shadows around " + this_object()->query_cap_name(), this_object());
+                tell_object(me, "%^BLACK%^BOLD%^Whisps of darkness coalesce from the shadows around you.%^RESET%^");
+                tell_room(room, "%^BOLD%^BLACK%^Whisps of darkness coalesce from the shadows around " + me->query_cap_name(), me);
                 break;
                 case -5..-1:
-                tell_object(this_object(), "%^BOLD%^BLACK%^You feel your body meld with the darkness around you.");
-                tell_room(room, "%^BOLD%^BLACK%^" + this_object()->query_cap_name() + "'s body seems to meld with the darkness around " + this_object()->query_objective() + ".", this_object());
+                tell_object(me, "%^BOLD%^BLACK%^You feel your body meld with the darkness around you.");
+                tell_room(room, "%^BOLD%^BLACK%^" + me->query_cap_name() + "'s body seems to meld with the darkness around " + me->query_objective() + ".", me);
                 break;
                 case -10..-6:
-                tell_object(this_object(), "%^BOLD%^BLACK%^You are engulfed in a miasma of shadowy energy.");
-                tell_room(room, "%^BOLD%^BLACK%^" + this_object()->query_cap_name() + " is engulfed in a miasma of shadowy energy.", this_object());
+                tell_object(me, "%^BOLD%^BLACK%^You are engulfed in a miasma of shadowy energy.");
+                tell_room(room, "%^BOLD%^BLACK%^" + me->query_cap_name() + " is engulfed in a miasma of shadowy energy.", me);
                 break;
             }
         }
         
         //Screen Reader Support. Tells screen reader users in the room, briefly, what we are attacking.
-        attacker = this_object()->query_current_attacker();
+        attacker = me->query_current_attacker();
         
-        if(attacker && userp(this_object()))
+        if(attacker && userp(me))
         {
             object *readers;
             
-            readers = filter_array(all_inventory(environment(this_object())), (: $1->query("reader") :));
+            readers = filter_array(all_inventory(environment(me)), (: $1->query("reader") :));
             
             foreach(object person in readers)
-                tell_object(person, this_object()->QCN + " is fighting " + attacker->QCN + ".");
+                tell_object(person, me->QCN + " is fighting " + attacker->QCN + ".");
         }   
 
-        if(this_object()->is_undead())
-            this_object()->remove_property("rend");
-        
-        if(PLAYER_D->immunity_check(this_object(), "rend"))
-            this_object()->remove_property("rend");
-
-        if(this_object()->query_property("rend"))
+        if(me->is_undead())
         {
-            tell_room(environment(this_object()), "%^RED%^BOLD%^" + this_object()->QCN + "'s wounds bleed profusely!%^RESET%^", ({ this_object() }));
-            tell_object(this_object(), "%^RED%^BOLD%^Your wounds bleed profusely!%^RESET%^");
-            this_object()->cause_typed_damage(this_object(), "torso", roll_dice(query_property("rend"), this_object()->query_level() / 5 + 1), "untyped");
-            this_object()->set_property("rend", -1);
-            if(this_object()->query_property("rend") <= 0)
+            me->remove_property("rend");
+        }
+        
+        if(PLAYER_D->immunity_check(me, "rend"))
+        me->remove_property("rend");
+
+        if(me->query_property("rend"))
+        {
+            tell_room(environment(me), "%^RED%^BOLD%^" + me->QCN + "'s wounds bleed profusely!%^RESET%^", ({ me }));
+            tell_object(me, "%^RED%^BOLD%^Your wounds bleed profusely!%^RESET%^");
+            me->cause_typed_damage(me, "torso", roll_dice(query_property("rend"), me->query_level() / 5 + 1), "untyped");
+            me->set_property("rend", -1);
+            if(me->query_property("rend") <= 0)
             {
-                tell_room(environment(this_object()), "%^WHITE%^BOLD%^" + this_object()->QCN + "'s wounds stop bleeding.%^RESET%^", ({ this_object() }));
-                tell_object(this_object(), "%^WHITE%^BOLD%^Your wounds stop bleeding.%^RESET%^");
-                this_object()->remove_property("rend");
+                tell_room(environment(me), "%^WHITE%^BOLD%^" + me->QCN + "'s wounds stop bleeding.%^RESET%^", ({ me }));
+                tell_object(me, "%^WHITE%^BOLD%^Your wounds stop bleeding.%^RESET%^");
+                me->remove_property("rend");
             }
         }
 
         if (is_vampire()) {
-            if (TO->is_in_sunlight()) {
+            if (me->is_in_sunlight()) {
                 int todamage = query_max_hp() / 4 + 1;
                 if (!query_property("sunlight_umbrella")) {
-                    if (TO->query_hp() < -(TO->query_max_hp() * 4 / 5)) {
-                        TO->add_death("Sunlight");
-                        TO->die();
+                    if (me->query_hp() < -(me->query_max_hp() * 4 / 5)) {
+                        me->add_death("Sunlight");
+                        me->die();
                     }else {
-                        TO->cause_typed_damage(TO, "torso", todamage, "divine");
-                        tell_object(TO, "%^ORANGE%^The sun burns your putrid flesh!");
+                        me->cause_typed_damage(me, "torso", todamage, "divine");
+                        tell_object(me, "%^ORANGE%^The sun burns your putrid flesh!");
                     }
                 }
             }
             if (!random(10)) {
-                if (TO->is_vampire()) {
+                if (me->is_vampire()) {
                     if (query_bloodlust() < (5000)) {
                         write("%^RED%^Bloodlust drives you insane.");
-                        tell_room(ETO, "%^RED%^" + TO->QCN + "'s eyes glow dark red.", TO);
+                        tell_room(environment(me), "%^RED%^" + me->QCN + "'s eyes glow dark red.", me);
                     }
                 }
             }
@@ -901,53 +931,72 @@ void do_healing(int x)
 
 int calculate_healing()
 {
+    object me = this_object();
     string msg;
-    if (query_intox() && !(TO->query_property("inactive"))) {
+    if (query_intox() && !(me->query_property("inactive")))
+    {
         healing["intox"]--;
-        if (TO->is_undead()) {
+        if (me->is_undead())
+        {
             healing["intox"] = 0;
         }
-        if (TO->query_race() == "sourlforged") {
+        if (me->query_race() == "soulforged")
+        {
             healing["intox"] = 0;
         }
-        if (healing["intox"] < HEALING_FORMULA / 3) {
+        if (healing["intox"] < HEALING_FORMULA / 3)
+        {
             tolerance_flag = 0;
         }
-        if (healing["intox"] < 0) {
+        if (healing["intox"] < 0)
+        {
             healing["intox"] = 0;
         }
-        if (!healing["intox"]) {
+        if (!healing["intox"])
+        {
             write("You are not intoxicated..");
-        }else if ((healing["intox"] > HEALING_FORMULA) && !query_tripped() && !query_unconscious()) {
-            if (!random(5)) {
+        }
+        else if ((healing["intox"] > HEALING_FORMULA) && !query_tripped() && !query_unconscious())
+        {
+            if (!random(5))
+            {
                 write("You begin to be sick and vomit from your excessive drinking.");
-                tell_room(ETO, TPQCN + " begins to be sick and vomit from the drinking.", TO);
+                tell_room(environment(me), TPQCN + " begins to be sick and vomit from the drinking.", me);
                 do_damage("torso", roll_dice(1, 4));
                 set_tripped(1, "The alcohol is revolting against you.");
                 healing["intox"] -= roll_dice(4, 5);
-            } else if (!random(4)) {
+            } 
+            else if (!random(4))
+            {
                 write("You feel a wave of nausea that suddenly brings a blanket of darkness.");
                 say(query_cap_name() + " suddenly gets a blank look on " + query_possessive() + " face.");
                 write("You pass out cold into your drink.");
                 say(query_cap_name() + " passes out cold, face first into " + query_possessive() + " drink.");
                 set_unconscious((healing["intox"] - HEALING_FORMULA) / 70 + 1, "You have passed out cold, you're sleeping off part of your drinking binge.");
-                if (query_unconscious() > 8) {
+                if (query_unconscious() > 8)
+                {
                     set_unconscious(8, "You have passed out cold, you're sleeping off part of your drinking binge.");
                 }
                 healing["intox"] = HEALING_FORMULA;
             }
-            if (!tolerance_flag) {
+            if (!tolerance_flag)
+            {
                 tolerance += 1;
                 tolerance_flag = 1;
             }
-        } else if (!userp(TO)) {
-            if (2 > random(101)) {
+        }
+        else if (!userp(me))
+        {
+            if (2 > random(101))
+            {
                 string* drunkemotes = ({ "stumble", "hiccup", "look", "burp", "grin", "blink", "sway" });
                 msg = drunkemotes[random(sizeof(drunkemotes))];
-                if (userp(TO)) {
-                    tell_object(TO, "You " + msg + (msg == "look" ? " drunk." : "."));
-                    tell_room(ETO, "" + TPQCN + " " + msg + "s" + (msg == "look" ? " drunk." : "."), TO);
-                }else {
+                if (userp(me))
+                {
+                    tell_object(me, "You " + msg + (msg == "look" ? " drunk." : "."));
+                    tell_room(environment(me), "" + TPQCN + " " + msg + "s" + (msg == "look" ? " drunk." : "."), me);
+                }
+                else {
                     write("You " + msg + (msg == "look" ? " drunk." : "."));
                     say(query_cap_name() + " " + msg + "s" + (msg == "look" ? " drunk." : "."));
                 }
@@ -955,36 +1004,47 @@ int calculate_healing()
         }
     }
 
-    if (!(TO->query_property("sustenance") ||
-          TO->query_property("inactive") ||
-          FEATS_D->usable_feat(TO, "timeless body") ||
-          TO->is_undead() ||
-          TO->query_race() == "soulforged"
-          )) {
+    if (!(me->query_property("sustenance") ||
+          me->query_property("inactive") ||
+          FEATS_D->usable_feat(me, "timeless body") ||
+          me->is_undead() ||
+          me->query_race() == "soulforged"
+          ))
+    {
         healing["stuffed"]--;
         healing["quenched"]--;
-        if (healing["stuffed"] < 0) {
+        if (healing["stuffed"] < 0)
+        {
             healing["stuffed"] = 0;
         }
-        if (healing["quenched"] < 0) {
+        if (healing["quenched"] < 0)
+        {
             healing["quenched"] = 0;
         }
     }
 
-    if (query_bloodlust()) {
-        if (TO->is_vampire()) {
-            if (!TO->query_property("inactive")) {
+    if (query_bloodlust())
+    {
+        if (me->is_vampire())
+        {
+            if (!me->query_property("inactive"))
+            {
                 healing["bloodlust"] -= random(2) + 1;
                 if (healing["bloodlust"] < 0) {
                     healing["bloodlust"] = 0;
                 }
+                me->gmcp_update_character_vitals(([ "bloodlust": healing["bloodlust"] ]));
             }
         }
     }
 
-    if (query_poisoning()) {
+    if (query_poisoning())
+    {
         add_poisoning(-1);
     }
+
+    me->gmcp_update_character_survival(([ "intox": healing["intox"], "hunger": healing["stuffed"], "thirst": healing["quenched"] ]));
+
     return query_intox() + query_stuffed() + query_quenched();
 }
 
@@ -1154,35 +1214,50 @@ void set_alignment(int x)
 
 int add_intox(int x)
 {
-    if (x > 0) {
+    if (x > 0)
+    {
         x = x * 3 + x / 2;
     }
-    if (healing["intox"] > HEALING_FORMULA) {
+    if (healing["intox"] > HEALING_FORMULA)
+    {
         return 0;
     }
     healing["intox"] += x;
-    if (healing["intox"] < 0) {
+    if (healing["intox"] < 0)
+    {
         healing["intox"] = 0;
     }
+
+    this_object()->gmcp_update_character_survival(([ "intox": healing["intox"] ]));
+
     return 1;
 }
 
 int add_stuffed(int x)
 {
-    if (x > 0) {
+    if (x > 0)
+    {
         x = x * 250;
     }
-    if ((HEALING_FORMULA - healing["stuffed"]) < (HEALING_FORMULA / 6)) {
+    if ((HEALING_FORMULA - healing["stuffed"]) < (HEALING_FORMULA / 6))
+    {
         return 0;
     }
-    if (x + healing["stuffed"] > HEALING_FORMULA) {
+    if (x + healing["stuffed"] > HEALING_FORMULA)
+    {
         healing["stuffed"] = HEALING_FORMULA;
-    } else {
+    } 
+    else
+    {
         healing["stuffed"] += x;
     }
-    if (healing["stuffed"] < 0) {
+    if (healing["stuffed"] < 0)
+    {
         healing["stuffed"] = 0;
     }
+
+    this_object()->gmcp_update_character_survival(([ "hunger": healing["stuffed"] ]));
+
     return 1;
 }
 
@@ -1195,41 +1270,62 @@ int set_stuffed(int x)
 int set_quenched(int x)
 {
     healing["quenched"] = x;
+
+    this_object()->gmcp_update_character_survival(([ "thirst": healing["quenched"] ]));
+
     return 1;
 }
 
 int add_quenched(int x)
 {
-    if (x > 0) {
+    if (x > 0)
+    {
         x = x * 250;
     }
-    if ((HEALING_FORMULA - healing["quenched"]) < (HEALING_FORMULA / 6)) {
+    if ((HEALING_FORMULA - healing["quenched"]) < (HEALING_FORMULA / 6))
+    {
         return 0;
     }
-    if (x + healing["quenched"] > HEALING_FORMULA) {
+    if (x + healing["quenched"] > HEALING_FORMULA)
+    {
         healing["quenched"] = HEALING_FORMULA;
-    } else {
+    }
+    else
+    {
         healing["quenched"] += x;
     }
-    if (healing["quenched"] < 0) {
+    if (healing["quenched"] < 0)
+    {
         healing["quenched"] = 0;
     }
+
+    this_object()->gmcp_update_character_survival(([ "thirst": healing["quenched"] ]));
+
     return 1;
 }
 
 int add_bloodlust(int x)
 {
-    if (!TO->is_vampire()) {
+    object me = this_object();
+
+    if (!me->is_vampire())
+    {
         return 1;
     }
-    if (x + healing["bloodlust"] > 20000) {
+    if (x + healing["bloodlust"] > 20000)
+    {
         healing["bloodlust"] = 20000;
-    } else {
+    } else
+    {
         healing["bloodlust"] += x;
     }
-    if (healing["bloodlust"] < 0) {
+    if (healing["bloodlust"] < 0)
+    {
         healing["bloodlust"] = 0;
     }
+
+    me->gmcp_update_character_vitals(([ "bloodlust": healing["bloodlust"] ]));
+
     return 1;
 }
 
@@ -2160,22 +2256,30 @@ int query_encumbrance_percent()
 
 void increment_stamina(int x)
 {
-    if (TO->is_undead()) {
+    object me = this_object();
+
+    if (me->is_undead())
+    {
         return;
     }
     used_stamina += x;
-    if (used_stamina < 0) {
+    if (used_stamina < 0)
+    {
         used_stamina = 0;
     }
-    if (query_condition() < 0) {
+    if (query_condition() < 0)
+    {
         send_paralyzed_message("info", TO);
         used_stamina = query_max_stamina();
     }
+
+    me->gmcp_update_character_vitals(([ "stamina": query_max_stamina() - used_stamina, "max_stamina": query_max_stamina() ]));
 }
 
 void use_stamina(int x)
 {
-    if (!x) {
+    if (!x)
+    {
         x = 1;
     }
     x = x * (query_encumbrance_percent() / 25 + 1);
@@ -2183,6 +2287,8 @@ void use_stamina(int x)
     //had redundant code that did the same thing as the following function
     //Saide - June 2016
     increment_stamina(x);
+
+    this_object()->gmcp_update_character_vitals(([ "stamina": query_max_stamina() - used_stamina, "max_stamina": query_max_stamina() ]));
 }
 
 void continue_attack()
@@ -2215,11 +2321,15 @@ int query_used_stamina()
 void reset_condition()
 {
     used_stamina = 0;
+
+    this_object()->gmcp_update_character_vitals(([ "stamina": query_max_stamina() - used_stamina, "max_stamina": query_max_stamina() ]));
 }
 
 void set_condition(int x)
 {
     used_stamina = x;
+
+    this_object()->gmcp_update_character_vitals(([ "stamina": query_max_stamina() - used_stamina, "max_stamina": query_max_stamina() ]));
 }
 
 int query_condition()
