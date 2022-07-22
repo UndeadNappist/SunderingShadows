@@ -261,7 +261,6 @@ switch(faction)
 	case 1:
 {
 
-    ::init();
     if(TP->query_true_invis()) return;
     if((int)TP->query_race() == "undead")
     {
@@ -273,7 +272,6 @@ switch(faction)
  	break;
 	case 2:
 
-    ::init();
     if(TP->query_true_invis()) return;
     if((int)TP->query_race() != "undead")
     {
