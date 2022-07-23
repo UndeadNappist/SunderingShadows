@@ -365,7 +365,7 @@ int cmd_follower(string raw_arguments)
                 arg_two = "$N, " + arg_two;
             }
             player->set_retinue_follower(target_follower_key, retinue[target_follower_key]["name"], arg_two, retinue[target_follower_key]["class"], retinue[target_follower_key]["level"], retinue[target_follower_key]["race"]);
-            if (target_follower_object)
+            if (target_follower_object = controller[target_follower_key])
             {
                 target_follower_object->set_short(get_full_follower_short(retinue, target_follower_key));
             }
@@ -512,6 +512,7 @@ int cmd_follower(string raw_arguments)
 
             if (!retinue[target_follower_key] || !(target_follower_object = controller[target_follower_key]))
             {
+                message("info", "%^C030%^A follower with an ID of %^C051%^" + target_follower_key + "%^C030%^ either isn't present, or isn't a part of your retinue.", player);
                 continue;
             }
             tell_object(player, "%^C030%^You command %^C051%^" + target_follower_object->query_cap_name() + "%^C030%^ to %^C051%^" + args_one_and_two);
