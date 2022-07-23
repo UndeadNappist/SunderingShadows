@@ -47,7 +47,7 @@ mixed cmd_cooldowns(string args)
                 time_output = sprintf("%2ds", seconds);      
             
             //time_output = sprintf("%s%s%s", hours ? hours + "h " : "", minutes ? minutes + "m " : "", seconds + "s");
-            tell_object(who, sprintf("  %s%-19s%s - %s%s%s", YEL, capitalize(str), NOR, HIN, time_output, NOR));
+            tell_object(who, sprintf("  %s%-19s%s - %s%s%s", HIY, capitalize(str), NOR, HIN, time_output, NOR));
             //tell_object(who, sprintf("   %s%-13s%s : %s%6d%s sec\n",YEL,capitalize(str),NOR,HIN,(cooldowns[str] - time()),NOR));
         }
     }
