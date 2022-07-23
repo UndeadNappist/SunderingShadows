@@ -36,7 +36,7 @@ int help()
         "follower summon [%^ORANGE%^%^ULINE%^id%^RESET%^] \n"+
         "follower dismiss [%^ORANGE%^%^ULINE%^id%^RESET%^]\n"+
         "follower swap [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^%^ULINE%^id2%^RESET%^]\n"+
-        "follower [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^]\n"+
+        "follower [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^] OR follower command [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^]\n"+
         "follower [%^ORANGE%^%^ULINE%^id1,id2%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^] \n"+
         "follower all [%^ORANGE%^%^ULINE%^command%^RESET%^] \n\n"+
 
@@ -336,7 +336,7 @@ int cmd_follower(string raw_arguments)
                 continue;
             }
             tell_object(player, "%^C051%^" + capitalize(retinue[target_follower_key]["name"]) + "%^C030%^ will wake up believing that their name is %^C051%^" + arg_two + "%^C030%^.");
-            player->set_retinue_follower(target_follower_key, arg_two, retinue[target_follower_key]["title"], retinue[target_follower_key]["class"], retinue[target_follower_key]["level"], retinue[target_follower_key]["race"]);    // Probably deserves its own function in retinue.c
+            player->set_retinue_follower(target_follower_key, lower_case(arg_two), retinue[target_follower_key]["title"], retinue[target_follower_key]["class"], retinue[target_follower_key]["level"], retinue[target_follower_key]["race"]);    // Probably deserves its own function in retinue.c
         }
         break;
 
@@ -365,7 +365,7 @@ int cmd_follower(string raw_arguments)
                 arg_two = "$N, " + arg_two;
             }
             player->set_retinue_follower(target_follower_key, retinue[target_follower_key]["name"], arg_two, retinue[target_follower_key]["class"], retinue[target_follower_key]["level"], retinue[target_follower_key]["race"]);
-            if (target_follower_object)
+            if (target_follower_object = controller[target_follower_key])
             {
                 target_follower_object->set_short(get_full_follower_short(retinue, target_follower_key));
             }
@@ -421,7 +421,7 @@ int cmd_follower(string raw_arguments)
                 target_follower_object->set_followee(player);
                 target_follower_object->restore_follower();
                 target_follower_object->set_name(retinue[target_follower_key]["name"]);
-                target_follower_object->set_short();
+                target_follower_object->set_short(get_full_follower_short(retinue, target_follower_key));
                 target_follower_object->move(DUMBY); // Make sure they're there!
                 target_follower_object->set_followee(player);
                 target_follower_object->add_id(strip_colors(lower_case(retinue[target_follower_key]["name"])));
@@ -500,6 +500,33 @@ int cmd_follower(string raw_arguments)
         }
         break;
 
+    case "command":
+        if (!arg_one || !arg_two)
+        {
+            help();
+            return 1;
+        }
+
+        target_followers_array = parse_out_target_followers(arg_one);
+
+        for (i = 0; i < sizeof(target_followers_array); ++i)
+        {
+            if (!sscanf(target_followers_array[i], "%d", target_follower_key))
+            {
+                write("%^C051%^" + target_followers_array[i] + "%^C030%^ is not a valid ID.");
+                continue;
+            }
+
+            if (!retinue[target_follower_key] || !(target_follower_object = controller[target_follower_key]))
+            {
+                message("info", "%^C030%^A follower with an ID of %^C051%^" + target_follower_key + "%^C030%^ either isn't present, or isn't a part of your retinue.", player);
+                continue;
+            }
+            tell_object(player, "%^C030%^You command %^C051%^" + target_follower_object->query_cap_name() + "%^C030%^ to %^C051%^" + arg_two);
+            target_follower_object->force_me(arg_two);
+        }
+        break;
+
     default:
         target_followers_array = parse_out_target_followers(command);
         for (i = 0; i < sizeof(target_followers_array); ++i)
@@ -512,6 +539,7 @@ int cmd_follower(string raw_arguments)
 
             if (!retinue[target_follower_key] || !(target_follower_object = controller[target_follower_key]))
             {
+                message("info", "%^C030%^A follower with an ID of %^C051%^" + target_follower_key + "%^C030%^ either isn't present, or isn't a part of your retinue.", player);
                 continue;
             }
             tell_object(player, "%^C030%^You command %^C051%^" + target_follower_object->query_cap_name() + "%^C030%^ to %^C051%^" + args_one_and_two);

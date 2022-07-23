@@ -4,7 +4,7 @@
 #include <std.h>
 #include <daemons.h>
 
-#define DEITIES ({ "nimnavanon", "seija" })
+#define DEITIES ({ "nimnavanon", "seija", "eucalia" })
 
 inherit "/d/common/obj/weapon/giant_hammer.c";
 

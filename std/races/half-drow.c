@@ -150,7 +150,8 @@ int is_pk_race()
 
 string* query_subraces(object who)
 {
-    return "/std/races/human"->query_subraces(who);
+    //return "/std/races/human"->query_subraces(who);
+    return ({  });
 }
 
 string *query_languages(string subrace)
