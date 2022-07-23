@@ -36,7 +36,7 @@ int help()
         "follower summon [%^ORANGE%^%^ULINE%^id%^RESET%^] \n"+
         "follower dismiss [%^ORANGE%^%^ULINE%^id%^RESET%^]\n"+
         "follower swap [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^%^ULINE%^id2%^RESET%^]\n"+
-        "follower [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^]\n"+
+        "follower [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^] OR follower command [%^ORANGE%^%^ULINE%^id%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^]\n"+
         "follower [%^ORANGE%^%^ULINE%^id1,id2%^RESET%^] [%^ORANGE%^%^ULINE%^command%^RESET%^] \n"+
         "follower all [%^ORANGE%^%^ULINE%^command%^RESET%^] \n\n"+
 
@@ -497,6 +497,33 @@ int cmd_follower(string raw_arguments)
         else
         {
             write("%^C030%^You realize that one of those places wasn't populated to begin with. How silly of you.");
+        }
+        break;
+
+    case "command":
+        if (!arg_one || !arg_two)
+        {
+            help();
+            return 1;
+        }
+
+        target_followers_array = parse_out_target_followers(arg_one);
+
+        for (i = 0; i < sizeof(target_followers_array); ++i)
+        {
+            if (!sscanf(target_followers_array[i], "%d", target_follower_key))
+            {
+                write("%^C051%^" + target_followers_array[i] + "%^C030%^ is not a valid ID.");
+                continue;
+            }
+
+            if (!retinue[target_follower_key] || !(target_follower_object = controller[target_follower_key]))
+            {
+                message("info", "%^C030%^A follower with an ID of %^C051%^" + target_follower_key + "%^C030%^ either isn't present, or isn't a part of your retinue.", player);
+                continue;
+            }
+            tell_object(player, "%^C030%^You command %^C051%^" + target_follower_object->query_cap_name() + "%^C030%^ to %^C051%^" + arg_two);
+            target_follower_object->force_me(arg_two);
         }
         break;
 
