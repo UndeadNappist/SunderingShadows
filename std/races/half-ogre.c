@@ -136,7 +136,8 @@ string *query_hair_colors(string subrace) {
 
 string* query_subraces(object who)
 {
-    return "/std/races/human"->query_subraces(who);
+    //return "/std/races/human"->query_subraces(who);
+    return ({  });
 }
 
 string *query_eye_colors(string who) { return ({"blue", "brown", "gray"}); }
