@@ -318,25 +318,33 @@ int query_spellTurning() {
 
 void add_hp(int x)
 {
+    object me = this_object();
     int num;
 
     player_data["general"]["hp"] += x;
 
-    if (player_data["general"]["hp"] > query_max_hp()) {
+    if (player_data["general"]["hp"] > query_max_hp())
+    {
         player_data["general"]["hp"] = query_max_hp();
     }
 
     //if(player_data["general"]["hp"] > player_data["general"]["max_hp"]) player_data["general"]["hp"] = player_data["general"]["max_hp"];
     // if(player_data["general"]["hp"] < 1) this_object()->die();
     //   player_data["general"]["hp"] = 0;
-    if (x >= 0) {
+    if (x >= 0)
+    {
         return;
     }
-    if (query_max_hp()) {
+    if (query_max_hp())
+    {
         message("damage", "%^BOLD%^%^RED%^Hp: %^RESET%^" + query_hp() + " " + (query_hp() * 100) / query_max_hp() + "%", TO);
-    } else {
+    }
+    else
+    {
         message("damage", "%^BOLD%^%^RED%^Hp: %^RESET%^" + query_hp() + " ERROR! Contact a Wiz!", TO);
     }
+
+    me->gmcp_update_character_vitals(([ "cur_hp": query_hp(), "max_hp": query_max_hp() ]));
 }
 
 void set_max_sp(int x)
@@ -350,6 +358,8 @@ void set_max_mp(int x)
         magic = ([]);
     }
     magic["max points"] = x;
+
+    this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
 }
 
 int query_max_mp()
@@ -379,20 +389,26 @@ void set_mp(int x)
     if (magic["points"] < 0) {
         magic["points"] = 0;
     }
+
+    this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
 }
 
 void add_mp(int x)
 {
-    if (!magic) {
+    if (!magic)
+    {
         magic = ([ "points" : 0, "max points" : 0 ]);
     }
     magic["points"] += x;
-    if (magic["points"] > magic["max points"]) {
+    if (magic["points"] > magic["max points"])
+    {
         magic["points"] = magic["max points"];
     }
-    if (magic["points"] < 0) {
+    if (magic["points"] < 0)
+    {
         magic["points"] = 0;
     }
+    this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
 }
 
 int query_mp()
@@ -1187,86 +1203,111 @@ int cause_damage_to(object vic, string limb, int damage)
 
 int do_damage(string limb, int damage)
 {
-    object myspl, attacker;
+    object myspl, attacker, me = this_object();
     int i, num, layers, lvladj, mypsi, mod;
     string real_limb, file, myrace, subrace;
     mapping logdata;
 
     real_limb = return_real_limb(); // used for armor decay when shifted
 
-    if (sizeof(fake_limbs)) {
-        if (member_array(limb, fake_limbs) == -1) {
-            limb = TO->return_target_limb();
+    if (sizeof(fake_limbs))
+    {
+        if (member_array(limb, fake_limbs) == -1)
+        {
+            limb = me->return_target_limb();
         }
-    }else if (member_array(limb, limbs) < 0) {
-        limb = TO->return_target_limb();
+    }
+    else if (member_array(limb, limbs) < 0)
+    {
+        limb = me->return_target_limb();
         real_limb = limb;
-    }else {
+    }
+    else
+    {
         real_limb = limb;
     }
 
-    /*if (damage > 0 && TO->isPkill())
+    /*if (damage > 0 && me->isPkill())
        {
        damage = ((damage*PK_DAMAGE_PERCENTAGE)/100);
        }*/
 
     // added to stop doing damage in pkills when a player is at -100% health.  Should prevent
     // MOST accidental pkills -Ares 4/12/06
-    if (query_hp() < (-1 * query_max_hp())) {
+    if (query_hp() < (-1 * query_max_hp()))
+    {
         if (damage > 0) {
             damage = 0;
         }                              // stuck this here so they'll heal if they're knocked out below -100% -Ares
     }
-    if (!objectp(attacker = TO->query_property("beingDamagedBy"))) {
+    if (!objectp(attacker = me->query_property("beingDamagedBy")))
+    {
         attacker = previous_object();
     }
-    damage = (int)COMBAT_D->damage_adjustment(attacker, TO, damage);
+    damage = (int)COMBAT_D->damage_adjustment(attacker, me, damage);
 
-    TO->set_magic_attack(0); // needed to keep track of bypassing stoneskin for the typed damage function -Ares
-    TO->set_spell_attack(0);
+    me->set_magic_attack(0); // needed to keep track of bypassing stoneskin for the typed damage function -Ares
+    me->set_spell_attack(0);
 
-    if (query_property("memorizing") && (damage > 0)) {
+    if (query_property("memorizing") && (damage > 0))
+    {
         remove_property("memorizing");
-        message("damage", "%^BOLD%^%^GREEN%^Your foe interrupts your mental activity!", TO);
+        message("damage", "%^BOLD%^%^GREEN%^Your foe interrupts your mental activity!", me);
     }
 
-    if (query_extra_hp() && damage > 0) {
+    if (query_extra_hp() && damage > 0)
+    {
         add_extra_hp(-1 * damage);
         //if(query_extra_hp() < 0)    player_data["general"]["hp"] += query_extra_hp();
-        if (query_extra_hp() < 0) {
+        if (query_extra_hp() < 0)
+        {
             player_data["general"]["hp"] += query_extra_hp();
             add_extra_hp(0 - query_extra_hp());
         }
-    }else {
-        if (!intp(player_data["general"]["hp"])) {
+    }
+    else
+    {
+        if (!intp(player_data["general"]["hp"]))
+        {
             init_limb_data();
         }
         player_data["general"]["hp"] -= damage;
     }
 
-    if (damage > 0 && userp(TO)) {
-        if (!mapp(body) || !mapp(body[real_limb]) || !pointerp(body[real_limb]["armour_ob"])) {
+    if (damage > 0 && userp(me))
+    {
+        if (!mapp(body) || !mapp(body[real_limb]) || !pointerp(body[real_limb]["armour_ob"]))
+        {
             augment_body(0);
         }
-        if (body[real_limb]["armour_ob"]) {
+        if (body[real_limb]["armour_ob"])
+        {
             body[real_limb]["armour_ob"]->decay();
         }
     }
 
-    num = TO->query_max_hp();
+    num = me->query_max_hp();
 
     if (num < player_data["general"]["hp"]) {
         player_data["general"]["hp"] = num;
     }
 
-    if (query_max_hp()) {
-        message("damage", "%^BOLD%^%^RED%^Hp: %^RESET%^" + query_hp() + "    " + (query_hp() * 100) / query_max_hp() + "%", TO);
-    }else {
-        message("damage", "%^BOLD%^%^RED%^Hp: %^RESET%^" + query_hp() + "    ERROR! Contact a Wiz!", TO);
+    if (query_max_hp())
+    {
+        message("damage", "%^BOLD%^%^RED%^Hp: %^RESET%^" + query_hp() + "    " + (query_hp() * 100) / query_max_hp() + "%", me);
     }
-    if (TO->query_property("damage tester")) {
-        tell_object(TO, "%^BOLD%^%^RED%^You took " + damage + " damage and received melee DR of " + mod + ".");
+    else
+    {
+        message("damage", "%^BOLD%^%^RED%^Hp: %^RESET%^" + query_hp() + "    ERROR! Contact a Wiz!", me);
     }
+
+    if (me->query_property("damage tester"))
+    {
+        tell_object(me, "%^BOLD%^%^RED%^You took " + damage + " damage and received melee DR of " + mod + ".");
+    }
+
+    me->gmcp_update_character_vitals(([ "cur_hp": query_hp(), "max_hp": query_max_hp() ]));
+
     return damage;
 }
 
@@ -2555,26 +2596,40 @@ int is_on_limb(string theLimb, string type)
 
 void add_exp(int x)
 {
+    object me = this_object();
     int exp_diff, tot_exp;
-    if (TO->query("new_class_type")) {
-        if (!intp(player_data["general"]["new_experience"])) {
+    
+    if (me->query("new_class_type"))
+    {
+        if (!intp(player_data["general"]["new_experience"]))
+        {
             player_data["general"]["new_experience"] = 0;
         }
         //should allow a player to get enough total experience to be 1 point away from 51 - a level above the current cap - Saide - May 2017
         tot_exp = player_data["general"]["new_experience"];
-        if (tot_exp >= (total_exp_for_level((CHARACTER_LEVEL_CAP + 1)) - 1) && x > 0) {
+        if (tot_exp >= (total_exp_for_level((CHARACTER_LEVEL_CAP + 1)) - 1) && x > 0)
+        {
+            me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+            
             return;
         }
+        
         exp_diff = (total_exp_for_level((CHARACTER_LEVEL_CAP + 1)) - 1) - tot_exp;
-        if (x > exp_diff && x > 0) {
+        if (x > exp_diff && x > 0)
+        {
             x = exp_diff;
         }
         //if(x <= 0) x = 0;
         player_data["general"]["new_experience"] += x;
+
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+
         return;
     }
 
     player_data["general"]["experience"] += x;
+
+    me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
 }
 
 int query_exp()
@@ -2591,11 +2646,18 @@ int query_exp()
 
 void set_exp(int x)
 {
-    if (TO->query("new_class_type")) {
-        if (!intp(player_data["general"]["new_experience"])) {
+    object me = this_object();
+
+    if (me->query("new_class_type"))
+    {
+        if (!intp(player_data["general"]["new_experience"]))
+        {
             player_data["general"]["new_experience"] = 0;
         }
         player_data["general"]["new_experience"] = x;
+        
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+
         return;
     }
 
@@ -2607,44 +2669,68 @@ void set_exp(int x)
     }
 
     player_data["general"]["experience"] = x;
+
+    me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
 }
 
 void set_general_exp(string type, int x)
 {
-    if (TO->query("new_class_type")) {
-        if (!intp(player_data["general"]["new_experience"])) {
+    object me = this_object();
+
+    if (me->query("new_class_type"))
+    {
+        if (!intp(player_data["general"]["new_experience"]))
+        {
             player_data["general"]["new_experience"] = 0;
         }
         player_data["general"]["new_experience"] = x;
+
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+
         return;
     }
 
-    if (intp(player_data["general"]["experience"]) && player_data["general"]["experience"] > 0) {
+    if (intp(player_data["general"]["experience"]) && player_data["general"]["experience"] > 0)
+    {
         error("Tried to reset the experience of " + query_name() + " without clearing the existing exp");
     }
-    if (!mapp(player_data["general"]["experience"])) {
+    if (!mapp(player_data["general"]["experience"]))
+    {
         player_data["general"]["experience"] = ([]);
     }
     player_data["general"]["experience"][type] = x;
+
+    me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
 }
 
 void add_general_exp(string type, int x)
 {
-    if (TO->query("new_class_type")) {
-        if (!intp(player_data["general"]["new_experience"])) {
+    object me = this_object();
+
+    if (this_object()->query("new_class_type"))
+    {
+        if (!intp(player_data["general"]["new_experience"]))
+        {
             player_data["general"]["new_experience"] = 0;
         }
         player_data["general"]["new_experience"] += x;
+
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+
         return;
     }
 
-    if (intp(player_data["general"]["experience"]) && player_data["general"]["experience"] > 0) {
+    if (intp(player_data["general"]["experience"]) && player_data["general"]["experience"] > 0)
+    {
         error("Tried to reset the experience of " + query_name() + " without clearing the existing exp");
     }
-    if (!mapp(player_data["general"]["experience"])) {
+    if (!mapp(player_data["general"]["experience"]))
+    {
         player_data["general"]["experience"] = ([]);
     }
     player_data["general"]["experience"][type] += x;
+
+    me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
 }
 
 int get_general_exp(string type)

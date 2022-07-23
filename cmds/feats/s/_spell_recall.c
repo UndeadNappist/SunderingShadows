@@ -59,7 +59,7 @@ void execute_feat()
 
     tell_object(caster, "You ready your inner arcana to become magic.");
     caster->set_property("spell recall", 1);
-    
+    caster->gmcp_update_character_resources(([ "spell_recall": 1 ]));
     return;
 }
 
@@ -68,6 +68,7 @@ void dest_effect()
     if(objectp(caster))
     {
         caster->remove_property("spell recall");
+        caster->gmcp_update_character_resources(([ "spell_recall": 0 ]));
     }
     ::dest_effect();
     remove_feat(TO);

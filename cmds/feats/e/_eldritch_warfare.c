@@ -111,18 +111,27 @@ void execute_feat()
     caster->set_property("active_feats",({TO}));
     caster->set_property("cast and attack",1);
     caster->set_property("warfare type", arg);
+
+    caster->gmcp_update_character_resources(([ "eldritch essence": arg ]));
+
     return;
 }
 
 void dest_effect()
 {
+    object me = this_object();
+
     if(objectp(caster))
     {
-        caster->remove_property_value("active_feats",({TO}));
+        caster->remove_property_value("active_feats", ({me}));
         caster->remove_property("cast and attack");
         tell_object(caster,"%^BOLD%^%^BLUE%^Your concentration on eldritch warfare fades.");
     }
+
+    me->gmcp_update_character_resources(([ "eldritch warfare": "None" ]));
+
     ::dest_effect();
-    remove_feat(TO);
+    remove_feat(me);
+
     return;
 }

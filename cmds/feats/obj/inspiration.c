@@ -69,6 +69,7 @@ object setup_inspiration(object mycaster, int myclevel, string inspiration)
     if (inspiration == "nothing") {
         if (objectp(inspiration)) {
             inspiration->remove();
+            mycaster->gmcp_update_character_resources(([ "inspiration": "Nothing" ]));
         }
 
         return 0;
@@ -101,6 +102,8 @@ void activate_inspiration(object mycaster, int myclevel, string inspiration)
     tell_room(ENV(caster), "%^CYAN%^The r%^BOLD%^%^BLACK%^a%^RESET%^%^CYAN%^p%^BOLD%^t%^WHITE%^u%^CYAN%^r%^BLACK%^e %^RESET%^%^MAGENTA%^o%^BOLD%^f %^WHITE%^m%^MAGENTA%^u%^RESET%^%^MAGENTA%^s%^BOLD%^i%^WHITE%^c %^MAGENTA%^f%^RESET%^%^MAGENTA%^ills %^CYAN%^the a%^BOLD%^i%^RESET%^%^CYAN%^r %^BOLD%^%^BLACK%^a%^RESET%^%^CYAN%^r%^BOLD%^%^BLACK%^o%^RESET%^%^CYAN%^u%^BOLD%^%^BLACK%^n%^RESET%^%^CYAN%^d%^CYAN%^%^BOLD%^ " + caster->QCN + "%^RESET%^%^CYAN%^.");
 
     allies_watch();
+
+    caster->gmcp_update_character_resources(([ "inspiration": inspiration ]));
 }
 
 void change_inspiration(string inspiration)

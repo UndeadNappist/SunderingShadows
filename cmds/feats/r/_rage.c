@@ -126,6 +126,8 @@ void execute_feat()
     call_out("enable_rage", ROUND_LENGTH);
 
     ::execute_feat();
+
+    caster->gmcp_update_character_resources(([ "raging": 1 ]));
     return;
 }
 
@@ -400,7 +402,11 @@ void dest_effect()
             activate_rage(-1);
         }
     }
+
+    this_object()->gmcp_update_character_resources(([ "raging": 0 ]));
+
     ::dest_effect();
     remove_feat(TO);
+
     return;
 }
