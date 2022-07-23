@@ -421,7 +421,7 @@ int cmd_follower(string raw_arguments)
                 target_follower_object->set_followee(player);
                 target_follower_object->restore_follower();
                 target_follower_object->set_name(retinue[target_follower_key]["name"]);
-                target_follower_object->set_short();
+                target_follower_object->set_short(get_full_follower_short(retinue, target_follower_key));
                 target_follower_object->move(DUMBY); // Make sure they're there!
                 target_follower_object->set_followee(player);
                 target_follower_object->add_id(strip_colors(lower_case(retinue[target_follower_key]["name"])));

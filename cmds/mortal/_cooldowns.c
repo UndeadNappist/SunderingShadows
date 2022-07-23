@@ -11,7 +11,9 @@
 #include <daemons.h>
 
 //#define LINE sprintf("%s[ Cooldowns ]%s\n", "*=*=*=*=*=*", "*=*=*=*=*=*")
-#define LINE "%^BOLD%^============[ %^CYAN%^Cooldowns%^WHITE%^ ]============%^RESET%^\n"
+//#define LINE "%^BOLD%^============[ %^CYAN%^Cooldowns%^WHITE%^ ]============%^RESET%^\n"
+#define LINE "%^BOLD%^BLUE%^-------------------=%^CYAN%^< %^WHITE%^Cooldowns %^CYAN%^>%^BLUE%^=--------------------%^RESET%^\n"
+#define LINE2 "%^BOLD%^BLUE%^------------------------------------------------------%^RESET%^\n"
 
 inherit DAEMON;
 
@@ -35,10 +37,10 @@ mixed cmd_cooldowns(string args)
             tell_object(who, sprintf("   %s%-13s%s : %s%6d%s sec\n",YEL,capitalize(str),NOR,HIN,(cooldowns[str] - time()),NOR));
         }
     }
-    else
-        write("                %^BOLD%^None%^RESET%^\n");
+    //else
+    //    write("                %^BOLD%^None%^RESET%^\n");
     
-    write(LINE);
+    write(LINE2);
     return 1;
 }
     
