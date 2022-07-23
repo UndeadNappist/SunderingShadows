@@ -465,3 +465,20 @@ mixed * keys_unique_mons() { return keys(unique_mons_where); }
 mapping query_cloned_mons() { return cloned_mons_where; }
 mapping query_deployed_mons() { return deployed_mons; }
 object * query_death_watchers() {return death_watchers;}
+
+void refresh() // Probably could be named better...
+{
+    // Create local mappings.
+    mapping unique_reload_mons_where, cloned_reload_mons_where;
+    unique_reload_mons_where=load_mons_db("/daemon/save/monsters_unique.db");
+    cloned_reload_mons_where=load_mons_db("/daemon/save/monsters_cloned.db");
+	// Maybe we only need to place_mons for this. 
+    unique_reload_mons_where = unique_reload_mons_where - unique_mons_where;
+    cloned_reload_mons_where = cloned_reload_mons_where - cloned_mons_where;
+	// Guessing at this. It's been a decade.
+    place_mons(unique_reload_mons_where); // Side effects to
+    place_mons(cloned_reload_mons_where);   // to_be_placed mapping.
+
+    // Probably should remove monsters not found in the mapping.
+
+}
