@@ -336,7 +336,7 @@ int cmd_follower(string raw_arguments)
                 continue;
             }
             tell_object(player, "%^C051%^" + capitalize(retinue[target_follower_key]["name"]) + "%^C030%^ will wake up believing that their name is %^C051%^" + arg_two + "%^C030%^.");
-            player->set_retinue_follower(target_follower_key, arg_two, retinue[target_follower_key]["title"], retinue[target_follower_key]["class"], retinue[target_follower_key]["level"], retinue[target_follower_key]["race"]);    // Probably deserves its own function in retinue.c
+            player->set_retinue_follower(target_follower_key, lower_case(arg_two), retinue[target_follower_key]["title"], retinue[target_follower_key]["class"], retinue[target_follower_key]["level"], retinue[target_follower_key]["race"]);    // Probably deserves its own function in retinue.c
         }
         break;
 
