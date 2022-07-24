@@ -10,7 +10,8 @@
 
 #define NO_EFFECT -100
 #define TRACK_SPELLS 1
-#define HEADER sprintf("%s---------------------------=%s<%s%|21s%s>%s=----------------------------%s\n", HIB, HIC, HIW, capitalize(spell_name), HIC, HIB, NOR)
+//#define HEADER sprintf("%s---------------------------=%s<%s%|21s%s>%s=----------------------------%s\n", HIB, HIC, HIW, capitalize(spell_name), HIC, HIB, NOR)
+#define HEADER sprintf("%s%s=%s<%s%|20s%s>%s=%s%s\n", HIB, repeat_string("-", ((to_int(this_player()->getenv("SCREEN")) - 24) / 2)),HIC, HIW, capitalize(spell_name), HIC, HIB, repeat_string("-",((to_int(this_player()->getenv("SCREEN")) - 24) / 2)), NOR)
 #define SUBHEAD "%^BLACK%^BOLD%^" + repeat_string("-", to_int(this_player()->getenv("SCREEN"))) + "%^RESET%^"
 //#define SUBHEAD "%^BLACK%^BOLD%^" + sprintf("%'-'" + sprintf("%d", to_int(this_player()->getenv("SCREEN"))) + "s", "") + "%^RESET%^"
 //#define SUBHEAD "%^BOLD%^BLACK%^--------------------------------------------------------------------------------%^RESET%^"
