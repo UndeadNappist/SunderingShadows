@@ -10,8 +10,9 @@
 
 #define NO_EFFECT -100
 #define TRACK_SPELLS 1
-#define HEADER sprintf("%s-----------------=<%|17s>=------------------%s", HIB, spell_name, NOR)
-#define FOOTER "%^BOLD%^BLUE%^---------------------------------------------------------------------------------%^RESET%^"
+#define HEADER sprintf("%s---------------------------=%s<%s%|21s%s>%s=----------------------------%s\n", HIB, HIC, HIW, capitalize(spell_name), HIC, HIB, NOR)
+#define SUBHEAD "%^BOLD%^BLACK%^--------------------------------------------------------------------------------%^RESET%^"
+#define FOOTER "%^BOLD%^BLUE%^--------------------------------------------------------------------------------%^RESET%^"
 
 inherit DAEMON;
 
@@ -4235,7 +4236,7 @@ void help()
 {
     string* classkeys, printclass, * compskeys, printcomps;
     string quickname;
-    int i;
+    int i, reader;
     
     /*
     if (mapp(MAGIC_D->query_index_row(spell_name))) {
@@ -4243,9 +4244,12 @@ void help()
     }
     */
     
-    write(HEADER);
+    reader = this_player()->query("reader");
+    
+    !reader && printf(HEADER);
+    !reader && write(SUBHEAD);
     //write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + (quickname ? (" (" + quickname + ")") : ""));
-    write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + "%^RESET%^");
+    //write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + "%^RESET%^");
     classkeys = keys(spell_levels);
 
     if (!sizeof(classkeys)) {
@@ -4270,7 +4274,9 @@ void help()
             }
         }
     }
-    write("%^BOLD%^%^RED%^Class:%^RESET%^ " + (affixed_level ? ("(L" + affixed_level + " fixed) ") : "") + printclass);
+    
+    printf("%s%10s %s%s%s\n", HIR, "Class:", HIB, affixed_level ? ("(L" + affixed_level + " fixed) ") : "") + printclass, NOR);
+    //write("%^BOLD%^%^RED%^Class:%^RESET%^ " + (affixed_level ? ("(L" + affixed_level + " fixed) ") : "") + printclass);
 
     if (spell_sphere) {
         write("%^BOLD%^%^RED%^Sphere:%^RESET%^ " + spell_sphere + (spell_domain ? (" [" + spell_domain + "]") : "") + ((evil_spell || blood_magic) ? " [evil]" : "") + (blood_magic ? " [blood]" : "")+ (mental_spell ? " [mind-affecting]" : ""));
@@ -4370,7 +4376,7 @@ void help()
             write(printcomps);
         }
     }
-    write(FOOTER);
+    !reader && write(FOOTER);
 }
 
 int query_has_been_cast()
