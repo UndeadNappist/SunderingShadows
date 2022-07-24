@@ -4275,41 +4275,63 @@ void help()
         }
     }
     
-    printf("%s%10s %s%s%s\n", HIR, "Class:", HIB, affixed_level ? ("(L" + affixed_level + " fixed) ") : "") + printclass, NOR);
+    printf("%s%-17s %s%s%s\n", HIR, "Class:", HIW, affixed_level ? ("(L" + affixed_level + " fixed) ") + printclass : "" + printclass, NOR);
     //write("%^BOLD%^%^RED%^Class:%^RESET%^ " + (affixed_level ? ("(L" + affixed_level + " fixed) ") : "") + printclass);
 
+    spell_sphere && printf("%s%-17s %s%s%s\n", HIR, "Sphere:", HIW, capitalize(spell_sphere) + (spell_domain ? (" [" + spell_domain + "]") : "") + ((evil_spell || blood_magic) ? " [evil]" : ""), NOR);
+    /*
     if (spell_sphere) {
         write("%^BOLD%^%^RED%^Sphere:%^RESET%^ " + spell_sphere + (spell_domain ? (" [" + spell_domain + "]") : "") + ((evil_spell || blood_magic) ? " [evil]" : "") + (blood_magic ? " [blood]" : "")+ (mental_spell ? " [mind-affecting]" : ""));
     }
+    */
 
+    sizeof(divine_domains) && printf("%s%-17s %s%s%s\n", HIR, "Divine Domains:", HIW, capitalize(implode(divine_domains, ", ")), NOR);
+    /*
     if (sizeof(divine_domains)) {
         write("%^BOLD%^%^RED%^Domains:%^RESET%^ " + implode(divine_domains, ", "));
     }
-
+    */
+    sizeof(oracle_mystery) && printf("%s%-17s %s%s%s\n", HIR, "Oracle Mysteries:", HIW, implode(oracle_mystery, ", "), NOR);
+    /*
     if (sizeof(oracle_mystery)) {
         write("%^BOLD%^%^RED%^Mysteries:%^RESET%^ " + implode(oracle_mystery, ", "));
     }
-
+    */
+    mydiscipline && printf("%s%-17s %s%s%s\n", HIR, "Psionic Discipline:", HIW, mydiscipline, NOR);
+    /*
     if (mydiscipline) {
         write("%^BOLD%^%^RED%^Discipline:%^RESET%^ " + mydiscipline);
     }
+    */
 
+    /*
     if (verbal_comp || somatic_comp) {
         write("%^BOLD%^%^RED%^Components:%^RESET%^ " + (verbal_comp ? "Verbal " : "") + (somatic_comp ? "Somatic " : ""));
     }
+    */
+    save_type && printf("%s%-17s %s%s%s\n", HIR, "Saving Throw:", HIW, capitalize(save_type), NOR);
+    /*
     if (save_type) {
         write("%^BOLD%^%^RED%^Saving throw:%^RESET%^ " + save_type);
     }
+    */
+    bonus_type && printf("%s%-17s %s%s%s\n", HIR, "Bonus Type:", HIW, capitalize(implode(bonus_type, ", ")), NOR);
+    /*
     if(sizeof(bonus_type)) {
         write("%^BOLD%^%^RED%^Bonus type:%^RESET%^ " + implode(bonus_type, ", "));
     }
+    */
+    damage_desc && printf("%s%-17s %s%s%s\n", HIR, "Spell Effect:", HIW, damage_desc, NOR);
+    /*
     if (stringp(damage_desc)) {
         write("%^BOLD%^%^RED%^Spell effect:%^RESET%^ " + damage_desc);
     }
+    */
     if (!description) {
         description = "file a bug report - not initialized";
     }
-
+    printf("%s%-17s %s%s%s\n", HIR, "Syntax:", HIW, syntax ? syntax : "cast CLASS " + spell_name + (target_required ? "on TARGET\n" : "\n"), NOR);
+    /*
     if (syntax) {
         write("%^BOLD%^%^RED%^Syntax:%^RESET%^ " + syntax + "\n");
     } else {
@@ -4319,8 +4341,9 @@ void help()
             write("%^BOLD%^%^RED%^Syntax:%^RESET%^ cast CLASS " + spell_name + "\n");
         }
     }
+    */
 
-    write(description + "\n");
+    write("\n" + description + "\n");
 
     if (peace) {
         write("%^BOLD%^%^RED%^Can be cast only at peace.%^RESET%^");
