@@ -243,7 +243,7 @@ void special_attack(object target)
     if(!target || !objectp(target))
         return;
 
-    tname = target->query_name();
+    tname = target->query_cap_name();
     aname = capitalize(this_object()->query_name());
     room = environment(this_object());
 
