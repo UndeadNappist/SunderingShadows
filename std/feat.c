@@ -818,10 +818,12 @@ void help(){
     if (stringp(feat_desc))
         write("\n"+feat_desc+"\n");
     !reader && write(FOOTER);
-    if (allow_shifted())
-        write("%^BOLD%^%^WHITE%^Shapeshift: %^RESET%^This feat won't deactivate in shapeshifted form.");
-    if (psionic)
-        write("%^BOLD%^%^WHITE%^Psionic: %^RESET%^This is a psionic feat. It will improve your psionic body ability.");
+    allow_shifted() && printf("%s%-11s %s%s%s\n", HIW, "Shapeshift:", NOR, "This feat won't deactivate in shapeshifted forms.", NOR);
+    psionic && printf("%s%-11s %s%s%s\n", HIW, "Psionic:", NOR, "This is a psionic feat and will improve your psionic body ability.", NOR);
+    //if (allow_shifted())
+    //    write("%^BOLD%^%^WHITE%^Shapeshift: %^RESET%^This feat won't deactivate in shapeshifted form.");
+    //if (psionic)
+    //    write("%^BOLD%^%^WHITE%^Psionic: %^RESET%^This is a psionic feat. It will improve your psionic body ability.");
     
     !reader && write(FOOTER);
 }
