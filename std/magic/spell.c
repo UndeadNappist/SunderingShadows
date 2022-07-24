@@ -11,8 +11,11 @@
 #define NO_EFFECT -100
 #define TRACK_SPELLS 1
 #define HEADER sprintf("%s---------------------------=%s<%s%|21s%s>%s=----------------------------%s\n", HIB, HIC, HIW, capitalize(spell_name), HIC, HIB, NOR)
-#define SUBHEAD "%^BOLD%^BLACK%^--------------------------------------------------------------------------------%^RESET%^"
-#define FOOTER "%^BOLD%^BLUE%^--------------------------------------------------------------------------------%^RESET%^"
+#define SUBHEAD "%^BLACK%^BOLD%^" + repeat_string("-", to_int(this_player()->getenv("SCREEN"))) + "%^RESET%^"
+//#define SUBHEAD "%^BLACK%^BOLD%^" + sprintf("%'-'" + sprintf("%d", to_int(this_player()->getenv("SCREEN"))) + "s", "") + "%^RESET%^"
+//#define SUBHEAD "%^BOLD%^BLACK%^--------------------------------------------------------------------------------%^RESET%^"
+//#define FOOTER "%^BOLD%^BLUE%^--------------------------------------------------------------------------------%^RESET%^"
+#define FOOTER "%^BLUE%^BOLD%^" + repeat_string("-", to_int(this_player()->getenv("SCREEN"))) + "%^RESET%^"
 
 inherit DAEMON;
 
@@ -2908,7 +2911,7 @@ void define_base_damage(int adjust)
 
         slevel = slevel < 1 ? 1 : slevel;
 
-        if (slevel < 1) {
+        if (slevel < 1 || spell_type == "cantrip") {
             sdamage = roll_dice(clevel, 5);
             if(caster && caster->query_property("maximize spell") && !abnormal_cast)
             {
@@ -2933,9 +2936,10 @@ void define_base_damage(int adjust)
                 sdamage = clevel * 8;
             }
         }
-
+        /*
         if(spell_type == "cantrip")
             sdamage = roll_dice(1 + clevel / 2, 6);
+        */
 
         if(spell_type == "psion")
         {
