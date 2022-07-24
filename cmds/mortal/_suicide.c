@@ -153,6 +153,7 @@ nomask private int really_suicide(string typed_password)
     }
     write("multi_d");
     message("notify", "%^YELLOW%^<< " + TP->query_name() + " has committed suicide! >>\n", filter_array(users(), "wizuserp", TO));
+    write("notify world");
     "/cmds/avatar/_note.c"->cmd_note("ckpt " + TP->query_name() + " committed suicide!\n");
     write("notified");
     TP->remove();
