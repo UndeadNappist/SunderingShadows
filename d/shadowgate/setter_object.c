@@ -183,6 +183,7 @@ _finalize(){
         }
 
         call_other(TO, "build_" + i);
+        write(i + " done!");
     }
     write("character sheet complete");
     build_height();
@@ -1144,8 +1145,12 @@ build_class()
     ETO->set("active_class", char_sheet["class"]);
     ETO->set("new_class_type", 1);
     ETO->set_posed(char_sheet["class"]);
+    
+    write("build_class before advance");
 
     ADVANCE_D->advance(TP,char_sheet["class"]);
+    
+    write("build_class after advance");
 }
 
 build_gender()
