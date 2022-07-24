@@ -1,6 +1,7 @@
 #include <std.h>
 #include <spell.h>
 #include <magic.h>
+#include <ansi.h>
 #include <daemons.h>
 #include <schoolspells.h>
 #include <psions.h>
@@ -9,6 +10,8 @@
 
 #define NO_EFFECT -100
 #define TRACK_SPELLS 1
+#define HEADER sprintf("%s-----------------=<%|17s>=------------------%s", HIB, spell_name, NOR)
+#define FOOTER "%^BOLD%^BLUE%^---------------------------------------------------------------------------------%^RESET%^"
 
 inherit DAEMON;
 
@@ -4233,11 +4236,14 @@ void help()
     string* classkeys, printclass, * compskeys, printcomps;
     string quickname;
     int i;
-
+    
+    /*
     if (mapp(MAGIC_D->query_index_row(spell_name))) {
         quickname = MAGIC_D->query_index_row(spell_name)["quick"];
     }
-
+    */
+    
+    write(HEADER);
     //write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + (quickname ? (" (" + quickname + ")") : ""));
     write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + "%^RESET%^");
     classkeys = keys(spell_levels);
@@ -4364,6 +4370,7 @@ void help()
             write(printcomps);
         }
     }
+    write(FOOTER);
 }
 
 int query_has_been_cast()
