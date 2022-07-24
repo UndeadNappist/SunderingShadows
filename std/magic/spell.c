@@ -4238,16 +4238,15 @@ void help()
     string quickname;
     int i, reader;
     
-    /*
     if (mapp(MAGIC_D->query_index_row(spell_name))) {
         quickname = MAGIC_D->query_index_row(spell_name)["quick"];
     }
-    */
     
     reader = this_player()->query("reader");
     
     !reader && printf(HEADER);
     !reader && write(SUBHEAD);
+    quickname && printf("%s%-17s %s%s%s\n", HIR, "Quickname:", HIW, quickname, NOR);
     //write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + (quickname ? (" (" + quickname + ")") : ""));
     //write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + "%^RESET%^");
     classkeys = keys(spell_levels);
