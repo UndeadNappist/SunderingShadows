@@ -4291,7 +4291,7 @@ void help()
         write("%^BOLD%^%^RED%^Domains:%^RESET%^ " + implode(divine_domains, ", "));
     }
     */
-    sizeof(oracle_mystery) && printf("%s%-17s %s%s%s\n", HIR, "Oracle Mysteries:", HIW, implode(oracle_mystery, ", "), NOR);
+    sizeof(oracle_mystery) && printf("%s%-17s %s%s%s\n", HIR, "Oracle Mysteries:", HIW, capitalize(implode(oracle_mystery, ", ")), NOR);
     /*
     if (sizeof(oracle_mystery)) {
         write("%^BOLD%^%^RED%^Mysteries:%^RESET%^ " + implode(oracle_mystery, ", "));
