@@ -11,12 +11,12 @@
 #define NO_EFFECT -100
 #define TRACK_SPELLS 1
 //#define HEADER sprintf("%s---------------------------=%s<%s%|21s%s>%s=----------------------------%s\n", HIB, HIC, HIW, capitalize(spell_name), HIC, HIB, NOR)
-#define HEADER sprintf("%s%s=%s<%s%|20s%s>%s=%s%s\n", HIB, repeat_string("-", ((to_int(this_player()->getenv("SCREEN")) - 24) / 2)),HIC, HIW, capitalize(spell_name), HIC, HIB, repeat_string("-",((to_int(this_player()->getenv("SCREEN")) - 24) / 2)), NOR)
-#define SUBHEAD "%^BLACK%^BOLD%^" + repeat_string("-", to_int(this_player()->getenv("SCREEN"))) + "%^RESET%^"
+#define HEADER sprintf("%s%s=%s<%s%|20s%s>%s=%s%s\n", HIB, repeat_string("-", ((width - 24) / 2)),HIC, HIW, capitalize(spell_name), HIC, HIB, repeat_string("-",(width - 24) / 2), NOR)
+#define SUBHEAD "%^BLACK%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
 //#define SUBHEAD "%^BLACK%^BOLD%^" + sprintf("%'-'" + sprintf("%d", to_int(this_player()->getenv("SCREEN"))) + "s", "") + "%^RESET%^"
 //#define SUBHEAD "%^BOLD%^BLACK%^--------------------------------------------------------------------------------%^RESET%^"
 //#define FOOTER "%^BOLD%^BLUE%^--------------------------------------------------------------------------------%^RESET%^"
-#define FOOTER "%^BLUE%^BOLD%^" + repeat_string("-", to_int(this_player()->getenv("SCREEN"))) + "%^RESET%^"
+#define FOOTER "%^BLUE%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
 
 inherit DAEMON;
 
@@ -4241,13 +4241,17 @@ void help()
 {
     string* classkeys, printclass, * compskeys, printcomps;
     string quickname;
-    int i, reader;
+    int i, reader, width;
     
     if (mapp(MAGIC_D->query_index_row(spell_name))) {
         quickname = MAGIC_D->query_index_row(spell_name)["quick"];
     }
     
     reader = this_player()->query("reader");
+    
+    width = to_int(this_player()->get_env("SCREEN"));
+    width = max( ({ 80, width }) );
+    width = min( ({ 120, width }) );
     
     !reader && printf(HEADER);
     !reader && write(SUBHEAD);

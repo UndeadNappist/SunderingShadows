@@ -6,9 +6,13 @@
 #include <dirs.h>
 #include <ansi.h>
 
-#define HEADER sprintf("%s---------------------------=%s<%s%|21s%s>%s=----------------------------%s\n", HIB, HIC, HIW, capitalize(feat_name), HIC, HIB, NOR)
-#define SUBHEAD "%^BOLD%^BLACK%^--------------------------------------------------------------------------------%^RESET%^"
-#define FOOTER "%^BOLD%^BLUE%^--------------------------------------------------------------------------------%^RESET%^"
+//#define HEADER sprintf("%s---------------------------=%s<%s%|21s%s>%s=----------------------------%s\n", HIB, HIC, HIW, capitalize(feat_name), HIC, HIB, NOR)
+//#define SUBHEAD "%^BOLD%^BLACK%^--------------------------------------------------------------------------------%^RESET%^"
+//#define FOOTER "%^BOLD%^BLUE%^--------------------------------------------------------------------------------%^RESET%^"
+
+#define HEADER sprintf("%s%s=%s<%s%|20s%s>%s=%s%s\n", HIB, repeat_string("-", ((width - 24) / 2)),HIC, HIW, capitalize(feat_name), HIC, HIB, repeat_string("-",(width - 24) / 2), NOR)
+#define SUBHEAD "%^BLACK%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
+#define FOOTER "%^BLUE%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
 
 inherit DAEMON;
 
@@ -781,12 +785,16 @@ void help(){
         prereq,
         desc;
         
-    int reader;
+    int reader, width;
     
     reader = this_player()->query("reader");
     
     if(!feat_name)
         return;
+    
+    width = to_int(this_player()->get_env("SCREEN"));
+    width = max( ({ 80, width }) );
+    width = min( ({ 120, width }) );
     
     !reader && printf(HEADER);
     !reader && write(SUBHEAD);

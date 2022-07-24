@@ -1136,11 +1136,15 @@ build_class()
     ETO->set_guild_level(char_sheet["class"], 1);
     ETO->set_mlevel(char_sheet["class"], 1);
     ETO->new_body();
+    write("new body");
     ETO->set_max_mp(0);
     ETO->set_mp(0);
     ETO->set_hp(20);
+    write("class sheet done");
     ETO->init_spellcaster();
+    write("init spellcaster");
     ETO->add_exp(1);
+    write("add exp");
 
     ETO->set("active_class", char_sheet["class"]);
     ETO->set("new_class_type", 1);
