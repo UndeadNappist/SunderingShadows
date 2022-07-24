@@ -4343,6 +4343,8 @@ void help()
     */
 
     write("\n" + description + "\n");
+    
+    !reader && write(FOOTER);
 
     if (peace) {
         write("%^BOLD%^%^RED%^Can be cast only at peace.%^RESET%^");
