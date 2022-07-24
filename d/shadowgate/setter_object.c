@@ -166,12 +166,15 @@ _finalize(){
     }
 
     ETO->convert_relationships();
+    write("relationships converted");
 
     if (objectp(to_object("/daemon/description_d")))
         if (desc = new("/daemon/description_d")) {
             desc->new_description_profile(ETO);
                 destruct(desc);
             }
+            
+    write("description daemon done");
 
     foreach(i in ROLL_CHAIN)
     {
@@ -181,9 +184,10 @@ _finalize(){
 
         call_other(TO, "build_" + i);
     }
+    write("character sheet complete");
     build_height();
     build_weight();
-
+    write("height and weight complete");
     set_long("%^WHITE%^%^BOLD%^This strange object radiates power the likes of which you have never before
 seen. It seems to be dormant at the time.");
 
