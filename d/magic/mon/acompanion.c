@@ -84,7 +84,7 @@ target = present(str, environment(this_player()));
     if(!target || !objectp(target))
         return 1;
 
-    tname = target->query_name();
+    tname = target->query_cap_name();
     aname = capitalize(this_object()->query_name());
     room = environment(this_object());
 
