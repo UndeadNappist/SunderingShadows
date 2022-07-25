@@ -142,20 +142,15 @@ nomask private int really_suicide(string typed_password)
     message("my_action", "You leave this reality, and the bunnies, piglets and unicorns lead you off to the happy little afterlife for lost characters.", TP);
     message("other_action", TPQCN + " just committed suicide!!!", environment(TP), ({ TP }));
     TP->move("/d/shadowgate/void");
-    write("moved to void");
     rm("/d/save/background/" + TP->query_true_name());
     rm("/d/save/background/" + TP->query_true_name() + ".htm");
     "/daemon/save_d"->remove_name(name);
     "/daemon/guilds_d.c"->delete_player(name);
-    write("traces removed");
     if (TP->query_base_character_level() > 15) {
         "/daemon/multi_d"->add_name(name, 2);
     }
-    write("multi_d");
     message("notify", "%^YELLOW%^<< " + TP->query_name() + " has committed suicide! >>\n", filter_array(users(), "wizuserp", TO));
-    write("notify world");
     "/cmds/avatar/_note.c"->cmd_note("ckpt " + TP->query_name() + " committed suicide!\n");
-    write("notified");
     TP->remove();
     return 1;
 }

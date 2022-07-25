@@ -166,15 +166,12 @@ _finalize(){
     }
 
     ETO->convert_relationships();
-    write("relationships converted");
 
     if (objectp(to_object("/daemon/description_d")))
         if (desc = new("/daemon/description_d")) {
             desc->new_description_profile(ETO);
                 destruct(desc);
             }
-            
-    write("description daemon done");
 
     foreach(i in ROLL_CHAIN)
     {
@@ -183,12 +180,9 @@ _finalize(){
         }
 
         call_other(TO, "build_" + i);
-        write(i + " done!");
     }
-    write("character sheet complete");
     build_height();
     build_weight();
-    write("height and weight complete");
     set_long("%^WHITE%^%^BOLD%^This strange object radiates power the likes of which you have never before
 seen. It seems to be dormant at the time.");
 
@@ -1140,21 +1134,14 @@ build_class()
     ETO->set_max_mp(0);
     ETO->set_mp(0);
     ETO->set_hp(20);
-    write("class sheet done");
     ETO->init_spellcaster();
-    write("init spellcaster");
     ETO->add_exp(1);
-    write("add exp");
 
     ETO->set("active_class", char_sheet["class"]);
     ETO->set("new_class_type", 1);
     ETO->set_posed(char_sheet["class"]);
-    
-    write("build_class before advance");
 
     ADVANCE_D->advance(TP,char_sheet["class"]);
-    
-    write("build_class after advance");
 }
 
 build_gender()

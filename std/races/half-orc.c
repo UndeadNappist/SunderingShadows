@@ -125,8 +125,8 @@ mapping weight_values(string gender, int height) {
 
 string* query_subraces(object who)
 {
-    return "/std/races/human"->query_subraces(who) + "/std/races/orc"->query_subraces(who);
-    //return ({  });
+    //return "/std/races/human"->query_subraces(who) + "/std/races/orc"->query_subraces(who);
+    return ({  });
 }
 
 string* query_hair_colors(string subrace)
