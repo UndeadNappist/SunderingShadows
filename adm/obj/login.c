@@ -228,7 +228,11 @@ protected int is_copy() {
     seteuid(UID_LOG);
     log_file("player/enter", sprintf("%s (exec): %s\n", __Name, ctime(time())));
     seteuid(getuid());
-    if (exec(ob, this_object())) ob->restart_heart();
+    if (exec(ob, this_object()))
+    {
+        ob->restart_heart();
+        ob->query_clients_gmcp_compatability();
+    }
     else message("logon", "Problem reconnecting.\n", this_object());
     internal_remove();
     return 1;
