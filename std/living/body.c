@@ -344,7 +344,10 @@ void add_hp(int x)
         message("damage", "%^BOLD%^%^RED%^Hp: %^RESET%^" + query_hp() + " ERROR! Contact a Wiz!", TO);
     }
 
-    me->gmcp_update_character_vitals(([ "cur_hp": query_hp(), "max_hp": query_max_hp() ]));
+    if (me->is_player())
+    {
+        me->gmcp_update_character_vitals(([ "cur_hp": query_hp(), "max_hp": query_max_hp() ]));
+    }
 }
 
 void set_max_sp(int x)
@@ -354,12 +357,17 @@ void set_max_sp(int x)
 
 void set_max_mp(int x)
 {
+    object me = this_object();
+
     if (!magic) {
         magic = ([]);
     }
     magic["max points"] = x;
 
-    this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
+    if (me->is_player())
+    {
+        this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
+    }
 }
 
 int query_max_mp()
@@ -372,6 +380,8 @@ int query_max_mp()
 
 void set_mp(int x)
 {
+    object me = this_object();
+
     if (!query_max_mp()) {
         magic["max points"] = x;
     }
@@ -390,11 +400,16 @@ void set_mp(int x)
         magic["points"] = 0;
     }
 
-    this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
+    if (me->is_player())
+    {
+        this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
+    }
 }
 
 void add_mp(int x)
 {
+    object me = this_object();
+    
     if (!magic)
     {
         magic = ([ "points" : 0, "max points" : 0 ]);
@@ -408,7 +423,11 @@ void add_mp(int x)
     {
         magic["points"] = 0;
     }
-    this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
+
+    if (me->is_player())
+    {
+        this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
+    }
 }
 
 int query_mp()
@@ -1306,7 +1325,10 @@ int do_damage(string limb, int damage)
         tell_object(me, "%^BOLD%^%^RED%^You took " + damage + " damage and received melee DR of " + mod + ".");
     }
 
-    me->gmcp_update_character_vitals(([ "cur_hp": query_hp(), "max_hp": query_max_hp() ]));
+    if (me->is_player())
+    {
+        me->gmcp_update_character_vitals(([ "cur_hp": query_hp(), "max_hp": query_max_hp() ]));
+    }
 
     return damage;
 }
@@ -2609,8 +2631,11 @@ void add_exp(int x)
         tot_exp = player_data["general"]["new_experience"];
         if (tot_exp >= (total_exp_for_level((CHARACTER_LEVEL_CAP + 1)) - 1) && x > 0)
         {
-            me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
-            
+            if (me->is_player())
+            {
+                me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+            }
+
             return;
         }
         
@@ -2622,14 +2647,20 @@ void add_exp(int x)
         //if(x <= 0) x = 0;
         player_data["general"]["new_experience"] += x;
 
-        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        if (me->is_player())
+        {
+            me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        }
 
         return;
     }
 
     player_data["general"]["experience"] += x;
 
-    me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+    if (me->is_player())
+    {
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+    }
 }
 
 int query_exp()
@@ -2656,7 +2687,10 @@ void set_exp(int x)
         }
         player_data["general"]["new_experience"] = x;
         
-        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        if (me->is_player())
+        {
+            me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        }
 
         return;
     }
@@ -2670,7 +2704,7 @@ void set_exp(int x)
 
     player_data["general"]["experience"] = x;
 
-    if (me->query_race() != "unborn")   // If anyone can tell me why I need to do this or character creation will break, I would blow you a kiss.  // Spade
+    if (me->is_player() && me->query_race() != "unborn")   // If anyone can tell me why I need to do this or character creation will break, I would blow you a kiss.  // Spade
     {
         me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
     }
@@ -2688,7 +2722,10 @@ void set_general_exp(string type, int x)
         }
         player_data["general"]["new_experience"] = x;
 
-        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        if (me->is_player())
+        {
+            me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        }
 
         return;
     }
@@ -2703,7 +2740,10 @@ void set_general_exp(string type, int x)
     }
     player_data["general"]["experience"][type] = x;
 
-    me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+    if (me->is_player())
+    {
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+    }
 }
 
 void add_general_exp(string type, int x)
@@ -2718,7 +2758,10 @@ void add_general_exp(string type, int x)
         }
         player_data["general"]["new_experience"] += x;
 
-        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        if (me->is_player())
+        {
+            me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        }
 
         return;
     }
@@ -2733,7 +2776,10 @@ void add_general_exp(string type, int x)
     }
     player_data["general"]["experience"][type] += x;
 
-    me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+    if (me->is_player())
+    {
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+    }
 }
 
 int get_general_exp(string type)
