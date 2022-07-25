@@ -123,6 +123,10 @@ int board(string str)
     if(!id(str))
      if (TO != present(str,ETO))
        return 0;
+    if(TP->query_bound() || TP->query_unconscious() || TP->query_tripped() || TP->query_paralyzed()){
+        TP->send_paralyzed_message("info",TP);
+      	return 1;
+   	}
     tell_room(ETP,"%^BOLD%^"+TPQCN+" boards a small boat.",TP);
     write("%^BOLD%^You board a boat.");
     TP->move_player(boat_room);

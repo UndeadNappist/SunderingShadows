@@ -2622,14 +2622,14 @@ void add_exp(int x)
         //if(x <= 0) x = 0;
         player_data["general"]["new_experience"] += x;
 
-        //me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
 
         return;
     }
 
     player_data["general"]["experience"] += x;
 
-    //me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+    me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
 }
 
 int query_exp()
@@ -2656,7 +2656,7 @@ void set_exp(int x)
         }
         player_data["general"]["new_experience"] = x;
         
-        //me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
 
         return;
     }
@@ -2670,7 +2670,10 @@ void set_exp(int x)
 
     player_data["general"]["experience"] = x;
 
-    //me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+    if (me->query_race() != "unborn")   // If anyone can tell me why I need to do this or character creation will break, I would blow you a kiss.  // Spade
+    {
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+    }
 }
 
 void set_general_exp(string type, int x)
@@ -2685,7 +2688,7 @@ void set_general_exp(string type, int x)
         }
         player_data["general"]["new_experience"] = x;
 
-        //me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
 
         return;
     }
@@ -2700,7 +2703,7 @@ void set_general_exp(string type, int x)
     }
     player_data["general"]["experience"][type] = x;
 
-    //me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+    me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
 }
 
 void add_general_exp(string type, int x)
@@ -2715,7 +2718,7 @@ void add_general_exp(string type, int x)
         }
         player_data["general"]["new_experience"] += x;
 
-        //me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
 
         return;
     }
@@ -2730,7 +2733,7 @@ void add_general_exp(string type, int x)
     }
     player_data["general"]["experience"][type] += x;
 
-    //me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+    me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
 }
 
 int get_general_exp(string type)

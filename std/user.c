@@ -1299,6 +1299,8 @@ void setup()
     string tmp;
     object ob;
 
+    query_clients_gmcp_compatability();
+
     set_living_name(query_name());
     seteuid(getuid());
     set_heart_beat(1);
