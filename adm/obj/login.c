@@ -228,11 +228,7 @@ protected int is_copy() {
     seteuid(UID_LOG);
     log_file("player/enter", sprintf("%s (exec): %s\n", __Name, ctime(time())));
     seteuid(getuid());
-    if (exec(ob, this_object()))
-    {
-        ob->restart_heart();
-        ob->query_clients_gmcp_compatability();
-    }
+    if (exec(ob, this_object())) ob->restart_heart();
     else message("logon", "Problem reconnecting.\n", this_object());
     internal_remove();
     return 1;
@@ -259,6 +255,7 @@ protected void disconnect_copy(string str, object ob) {
     exec(ob, this_object());
     destruct(tmp);
     message("logon", "\nAllowing relog.\n", ob);
+    ob->query_clients_gmcp_compatability();
     internal_remove();
 }
 

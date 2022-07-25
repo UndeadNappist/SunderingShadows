@@ -13,6 +13,10 @@ void query_clients_gmcp_compatability()
     {
         gmcp_enabled = 1;
     }
+    else
+    {
+        gmcp_enabled = 0;
+    }
 }
 
 int query_gmcp_enabled()
