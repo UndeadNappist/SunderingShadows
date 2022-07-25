@@ -183,7 +183,6 @@ _finalize(){
     }
     build_height();
     build_weight();
-
     set_long("%^WHITE%^%^BOLD%^This strange object radiates power the likes of which you have never before
 seen. It seems to be dormant at the time.");
 
@@ -1131,6 +1130,7 @@ build_class()
     ETO->set_guild_level(char_sheet["class"], 1);
     ETO->set_mlevel(char_sheet["class"], 1);
     ETO->new_body();
+    write("new body");
     ETO->set_max_mp(0);
     ETO->set_mp(0);
     ETO->set_hp(20);

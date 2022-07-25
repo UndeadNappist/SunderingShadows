@@ -566,7 +566,7 @@ You can manipulate numerous mud settings:
 %^CYAN%^columns %^GREEN%^%^ULINE%^NUMBER%^RESET%^\n  Set how many maximum columns you do want to see where multicolumn output is appliable and screen width allows. %^ULINE%^Default value: 0%^RESET%^\n
 %^CYAN%^vcolumns %^GREEN%^on|off%^RESET%^\n  Set whether you want to sort columns vertically. %^ULINE%^Default value: off%^RESET%^\n
 %^CYAN%^scrlines %^GREEN%^%^ULINE%^NUMBER%^RESET%^\n  Set how many lines appear for paged information. %^ULINE%^Default value: 20%^RESET%^\n
-%^CYAN%^scrwidth %^GREEN%^%^ULINE%^NUMBER%^RESET%^\n  Set screen width for text wrapping. %^ULINE%^Default value: 75%^RESET%^\n
+%^CYAN%^scrwidth %^GREEN%^%^ULINE%^NUMBER%^RESET%^\n  Set screen width for text wrapping. Formatting in game is made for 80. %^ULINE%^Default value: 80%^RESET%^\n
 %^CYAN%^term %^GREEN%^"+implode(TERMINAL_D->query_terms(),"|")+"%^RESET%^\n  This will set your current terminal to a given value. The value 'unknown' sets terminal to the one without colors. If you can't see bold black color, terinal with %^ORANGE%^no-black%^RESET%^ such as %^ORANGE%^ansi-no-black%^RESET%^ might aid you. Terminals with no-bg setting disable background colors. %^ULINE%^Default value is set on first login.%^RESET%^\n
 To see current values use %^ORANGE%^<set>%^RESET%^ without arguments.
 

@@ -4,6 +4,15 @@
 #include <daemons.h>
 #include <magic.h>
 #include <dirs.h>
+#include <ansi.h>
+
+//#define HEADER sprintf("%s---------------------------=%s<%s%|21s%s>%s=----------------------------%s\n", HIB, HIC, HIW, capitalize(feat_name), HIC, HIB, NOR)
+//#define SUBHEAD "%^BOLD%^BLACK%^--------------------------------------------------------------------------------%^RESET%^"
+//#define FOOTER "%^BOLD%^BLUE%^--------------------------------------------------------------------------------%^RESET%^"
+
+#define HEADER sprintf("%s%s=%s<%s%|20s%s>%s=%s%s\n", HIB, repeat_string("-", ((width - 24) / 2)),HIC, HIW, capitalize(feat_name), HIC, HIB, repeat_string("-",(width - 24) / 2), NOR)
+#define SUBHEAD "%^BLACK%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
+#define FOOTER "%^BLUE%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
 
 inherit DAEMON;
 
@@ -775,7 +784,28 @@ void help(){
         syntax,
         prereq,
         desc;
-
+        
+    int reader, width;
+    
+    reader = this_player()->query("reader");
+    
+    if(!feat_name)
+        return;
+    
+    width = to_int(this_player()->get_env("SCREEN"));
+    width = max( ({ 80, width }) );
+    width = min( ({ 120, width }) );
+    
+    !reader && printf(HEADER);
+    !reader && write(SUBHEAD);
+    
+    feat_type && printf("%s%-17s %s%s%s\n", HIY, "Type:", HIW, capitalize(feat_type), NOR);
+    feat_category && printf("%s%-17s %s%s%s\n", HIY, "Category:", HIW, capitalize(feat_category), NOR);
+    feat_prereq && printf("%s%-17s %s%s%s\n", HIY, "Prerequisites:", HIW, feat_prereq, NOR);
+    save_type && printf("%s%-17s %s%s%s\n", HIY, "Saving Throw:", HIW, save_type, NOR);
+    feat_effect && printf("%s%-17s %s%s%s\n", HIY, "Effect:", HIW, feat_effect, NOR);
+    feat_syntax && printf("%s%-17s %s%s%s\n", HIY, "Syntax:", HIW, feat_syntax, NOR);
+    /*
     if (stringp(feat_name))
         write("%^BOLD%^%^WHITE%^Name:%^RESET%^ "+capitalize(feat_name));
     else
@@ -792,10 +822,16 @@ void help(){
         write("%^BOLD%^%^WHITE%^Effect:%^RESET%^ "+feat_effect);
     if (stringp(feat_syntax))
         write("%^BOLD%^%^WHITE%^Syntax:%^RESET%^ "+feat_syntax);
+    */
     if (stringp(feat_desc))
         write("\n"+feat_desc+"\n");
-    if (allow_shifted())
-        write("%^BOLD%^%^WHITE%^Shapeshift: %^RESET%^This feat won't deactivate in shapeshifted form.");
-    if (psionic)
-        write("%^BOLD%^%^WHITE%^Psionic: %^RESET%^This is a psionic feat. It will improve your psionic body ability.");
+    !reader && write(FOOTER);
+    allow_shifted() && printf("%s%-11s %s%s%s\n", HIW, "Shapeshift:", NOR, "This feat won't deactivate in shapeshifted forms.", NOR);
+    psionic && printf("%s%-11s %s%s%s\n", HIW, "Psionic:", NOR, "This is a psionic feat and will improve your psionic body ability.", NOR);
+    //if (allow_shifted())
+    //    write("%^BOLD%^%^WHITE%^Shapeshift: %^RESET%^This feat won't deactivate in shapeshifted form.");
+    //if (psionic)
+    //    write("%^BOLD%^%^WHITE%^Psionic: %^RESET%^This is a psionic feat. It will improve your psionic body ability.");
+    
+    !reader && write(FOOTER);
 }

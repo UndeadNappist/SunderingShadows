@@ -11,9 +11,9 @@
 #include <daemons.h>
 
 //#define LINE sprintf("%s[ Cooldowns ]%s\n", "*=*=*=*=*=*", "*=*=*=*=*=*")
-//#define LINE "%^BOLD%^============[ %^CYAN%^Cooldowns%^WHITE%^ ]============%^RESET%^\n"
 #define LINE "%^BOLD%^BLUE%^-------------------=%^CYAN%^< %^WHITE%^Cooldowns %^CYAN%^>%^BLUE%^=--------------------%^RESET%^"
 #define LINE2 "%^BOLD%^BLUE%^------------------------------------------------------%^RESET%^"
+#define LINE3 "%^BOLD%^BLACK%^------------------------------------------------------%^RESET%^"
 
 inherit DAEMON;
 
@@ -30,6 +30,7 @@ mixed cmd_cooldowns(string args)
     
     write("\n");
     write(LINE);
+    write(LINE3);
     
     if(sizeof(keys))
     {

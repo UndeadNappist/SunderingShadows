@@ -1,6 +1,7 @@
 #include <std.h>
 #include <spell.h>
 #include <magic.h>
+#include <ansi.h>
 #include <daemons.h>
 #include <schoolspells.h>
 #include <psions.h>
@@ -9,6 +10,13 @@
 
 #define NO_EFFECT -100
 #define TRACK_SPELLS 1
+//#define HEADER sprintf("%s---------------------------=%s<%s%|21s%s>%s=----------------------------%s\n", HIB, HIC, HIW, capitalize(spell_name), HIC, HIB, NOR)
+#define HEADER sprintf("%s%s=%s<%s%|20s%s>%s=%s%s\n", HIB, repeat_string("-", ((width - 24) / 2)),HIC, HIW, capitalize(spell_name), HIC, HIB, repeat_string("-",(width - 24) / 2), NOR)
+#define SUBHEAD "%^BLACK%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
+//#define SUBHEAD "%^BLACK%^BOLD%^" + sprintf("%'-'" + sprintf("%d", to_int(this_player()->getenv("SCREEN"))) + "s", "") + "%^RESET%^"
+//#define SUBHEAD "%^BOLD%^BLACK%^--------------------------------------------------------------------------------%^RESET%^"
+//#define FOOTER "%^BOLD%^BLUE%^--------------------------------------------------------------------------------%^RESET%^"
+#define FOOTER "%^BLUE%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
 
 inherit DAEMON;
 
@@ -2904,7 +2912,7 @@ void define_base_damage(int adjust)
 
         slevel = slevel < 1 ? 1 : slevel;
 
-        if (slevel < 1) {
+        if (slevel < 1 || spell_type == "cantrip") {
             sdamage = roll_dice(clevel, 5);
             if(caster && caster->query_property("maximize spell") && !abnormal_cast)
             {
@@ -2929,9 +2937,10 @@ void define_base_damage(int adjust)
                 sdamage = clevel * 8;
             }
         }
-
+        /*
         if(spell_type == "cantrip")
             sdamage = roll_dice(1 + clevel / 2, 6);
+        */
 
         if(spell_type == "psion")
         {
@@ -4232,14 +4241,23 @@ void help()
 {
     string* classkeys, printclass, * compskeys, printcomps;
     string quickname;
-    int i;
-
+    int i, reader, width;
+    
     if (mapp(MAGIC_D->query_index_row(spell_name))) {
         quickname = MAGIC_D->query_index_row(spell_name)["quick"];
     }
-
+    
+    reader = this_player()->query("reader");
+    
+    width = to_int(this_player()->get_env("SCREEN"));
+    width = max( ({ 80, width }) );
+    width = min( ({ 120, width }) );
+    
+    !reader && printf(HEADER);
+    !reader && write(SUBHEAD);
+    quickname && printf("%s%-17s %s%s%s\n", HIR, "Quickname:", HIW, quickname, NOR);
     //write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + (quickname ? (" (" + quickname + ")") : ""));
-    write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + "%^RESET%^");
+    //write("%^BOLD%^%^RED%^Spell:%^RESET%^ " + spell_name + "%^RESET%^");
     classkeys = keys(spell_levels);
 
     if (!sizeof(classkeys)) {
@@ -4264,40 +4282,64 @@ void help()
             }
         }
     }
-    write("%^BOLD%^%^RED%^Class:%^RESET%^ " + (affixed_level ? ("(L" + affixed_level + " fixed) ") : "") + printclass);
+    
+    printf("%s%-17s %s%s%s\n", HIR, "Class:", HIW, affixed_level ? ("(L" + affixed_level + " fixed) ") + printclass : "" + printclass, NOR);
+    //write("%^BOLD%^%^RED%^Class:%^RESET%^ " + (affixed_level ? ("(L" + affixed_level + " fixed) ") : "") + printclass);
 
+    spell_sphere && printf("%s%-17s %s%s%s\n", HIR, "Sphere:", HIW, capitalize(spell_sphere) + (spell_domain ? (" [" + spell_domain + "]") : "") + ((evil_spell || blood_magic) ? " [evil]" : ""), NOR);
+    /*
     if (spell_sphere) {
         write("%^BOLD%^%^RED%^Sphere:%^RESET%^ " + spell_sphere + (spell_domain ? (" [" + spell_domain + "]") : "") + ((evil_spell || blood_magic) ? " [evil]" : "") + (blood_magic ? " [blood]" : "")+ (mental_spell ? " [mind-affecting]" : ""));
     }
+    */
 
+    sizeof(divine_domains) && printf("%s%-17s %s%s%s\n", HIR, "Divine Domains:", HIW, capitalize(implode(divine_domains, ", ")), NOR);
+    /*
     if (sizeof(divine_domains)) {
         write("%^BOLD%^%^RED%^Domains:%^RESET%^ " + implode(divine_domains, ", "));
     }
-
+    */
+    sizeof(oracle_mystery) && printf("%s%-17s %s%s%s\n", HIR, "Oracle Mysteries:", HIW, capitalize(implode(oracle_mystery, ", ")), NOR);
+    /*
     if (sizeof(oracle_mystery)) {
         write("%^BOLD%^%^RED%^Mysteries:%^RESET%^ " + implode(oracle_mystery, ", "));
     }
-
+    */
+    mydiscipline && printf("%s%-17s %s%s%s\n", HIR, "Psionic Discipline:", HIW, mydiscipline, NOR);
+    /*
     if (mydiscipline) {
         write("%^BOLD%^%^RED%^Discipline:%^RESET%^ " + mydiscipline);
     }
+    */
 
+    /*
     if (verbal_comp || somatic_comp) {
         write("%^BOLD%^%^RED%^Components:%^RESET%^ " + (verbal_comp ? "Verbal " : "") + (somatic_comp ? "Somatic " : ""));
     }
+    */
+    save_type && printf("%s%-17s %s%s%s\n", HIR, "Saving Throw:", HIW, capitalize(save_type), NOR);
+    /*
     if (save_type) {
         write("%^BOLD%^%^RED%^Saving throw:%^RESET%^ " + save_type);
     }
+    */
+    bonus_type && printf("%s%-17s %s%s%s\n", HIR, "Bonus Type:", HIW, capitalize(implode(bonus_type, ", ")), NOR);
+    /*
     if(sizeof(bonus_type)) {
         write("%^BOLD%^%^RED%^Bonus type:%^RESET%^ " + implode(bonus_type, ", "));
     }
+    */
+    damage_desc && printf("%s%-17s %s%s%s\n", HIR, "Spell Effect:", HIW, damage_desc, NOR);
+    /*
     if (stringp(damage_desc)) {
         write("%^BOLD%^%^RED%^Spell effect:%^RESET%^ " + damage_desc);
     }
+    */
     if (!description) {
         description = "file a bug report - not initialized";
     }
-
+    printf("%s%-17s %s%s%s\n", HIR, "Syntax:", HIW, syntax ? syntax : "cast CLASS " + spell_name + (target_required ? "on TARGET\n" : "\n"), NOR);
+    /*
     if (syntax) {
         write("%^BOLD%^%^RED%^Syntax:%^RESET%^ " + syntax + "\n");
     } else {
@@ -4307,8 +4349,11 @@ void help()
             write("%^BOLD%^%^RED%^Syntax:%^RESET%^ cast CLASS " + spell_name + "\n");
         }
     }
+    */
 
-    write(description + "\n");
+    write("\n" + description + "\n");
+    
+    !reader && write(FOOTER);
 
     if (peace) {
         write("%^BOLD%^%^RED%^Can be cast only at peace.%^RESET%^");
@@ -4364,6 +4409,7 @@ void help()
             write(printcomps);
         }
     }
+    !reader && write(FOOTER);
 }
 
 int query_has_been_cast()
