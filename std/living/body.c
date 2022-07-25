@@ -364,7 +364,7 @@ void set_max_mp(int x)
     }
     magic["max points"] = x;
 
-    if (me->is_player())
+    if (userp(me))
     {
         this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
     }
@@ -400,7 +400,7 @@ void set_mp(int x)
         magic["points"] = 0;
     }
 
-    if (me->is_player())
+    if (userp(me))
     {
         this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
     }
