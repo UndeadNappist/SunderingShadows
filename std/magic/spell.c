@@ -4293,19 +4293,19 @@ void help()
     }
     */
 
-    sizeof(divine_domains) && printf("%s%-14s %s%s%s\n", HIR, "Divine Domains:", HIW, capitalize(implode(divine_domains, ", ")), NOR);
+    sizeof(divine_domains) && printf("%s%-14s %s%s%s\n", HIR, "Domains:", HIW, capitalize(implode(divine_domains, ", ")), NOR);
     /*
     if (sizeof(divine_domains)) {
         write("%^BOLD%^%^RED%^Domains:%^RESET%^ " + implode(divine_domains, ", "));
     }
     */
-    sizeof(oracle_mystery) && printf("%s%-14s %s%s%s\n", HIR, "Oracle Mysteries:", HIW, capitalize(implode(oracle_mystery, ", ")), NOR);
+    sizeof(oracle_mystery) && printf("%s%-14s %s%s%s\n", HIR, "Mysteries:", HIW, capitalize(implode(oracle_mystery, ", ")), NOR);
     /*
     if (sizeof(oracle_mystery)) {
         write("%^BOLD%^%^RED%^Mysteries:%^RESET%^ " + implode(oracle_mystery, ", "));
     }
     */
-    mydiscipline && printf("%s%-14s %s%s%s\n", HIR, "Psionic Discipline:", HIW, mydiscipline, NOR);
+    mydiscipline && printf("%s%-14s %s%s%s\n", HIR, "Discipline:", HIW, mydiscipline, NOR);
     /*
     if (mydiscipline) {
         write("%^BOLD%^%^RED%^Discipline:%^RESET%^ " + mydiscipline);
