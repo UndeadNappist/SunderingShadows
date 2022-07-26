@@ -83,7 +83,7 @@ void spell_effect(int prof)
     int mylevel;
 
     myname = caster->QCN;
-    ashort = "%^MAGENTA%^(%^BOLD%^%^BLACK%^s%^RESET%^%^MAGENTA%^h%^BOLD%^a%^RESET%^d%^BOLD%^%^BLACK%^o%^RESET%^%^MAGENTA%^w%^BOLD%^y %^BLACK%^s%^RESET%^%^MAGENTA%^i%^BOLD%^l%^RESET%^h%^BOLD%^%^BLACK%^o%^RESET%^%^MAGENTA%^u%^BOLD%^e%^RESET%^t%^BOLD%^%^BLACK%^t%^RESET%^%^MAGENTA%^e)%^WHITE%^";
+    ashort = " %^MAGENTA%^(%^BOLD%^%^BLACK%^s%^RESET%^%^MAGENTA%^h%^BOLD%^a%^RESET%^d%^BOLD%^%^BLACK%^o%^RESET%^%^MAGENTA%^w%^BOLD%^y %^BLACK%^s%^RESET%^%^MAGENTA%^i%^BOLD%^l%^RESET%^h%^BOLD%^%^BLACK%^o%^RESET%^%^MAGENTA%^u%^BOLD%^e%^RESET%^t%^BOLD%^%^BLACK%^t%^RESET%^%^MAGENTA%^e)%^WHITE%^";
 
     tell_object(caster, "%^BOLD%^%^BLACK%^You focus on the s%^RESET%^%^MAGENTA%^h%^BOLD%^a%^RESET%^d%^BOLD%^%^BLACK%^o%^RESET%^%^MAGENTA%^w%^BOLD%^s%^RESET%^%^CYAN%^, %^BOLD%^%^BLACK%^drawing them to you and s%^RESET%^%^MAGENTA%^u%^BOLD%^b%^RESET%^s%^BOLD%^%^BLACK%^u%^RESET%^%^MAGENTA%^m%^BOLD%^i%^RESET%^n%^BOLD%^%^BLACK%^g your body!%^RESET%^");
     tell_room(place, "%^BOLD%^BLACK%^" + sprintf("%s pulls the shadows towards %s, subsuming %s body!", myname, caster->query_objective(), caster->query_possessive()), ({ caster }));
