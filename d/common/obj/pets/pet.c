@@ -112,6 +112,7 @@ void die(object ob){
 
 int remove(){
     owner && owner->remove_property("pet_summoned");
+    if(query_property("sapient")) message("environment", "%^RESET%^%^CRST%^%^C208%^It lets out a %^C124%^s%^C160%^tr%^C196%^a%^C160%^n%^C124%^g%^C160%^l%^C196%^e%^C160%^d %^C124%^c%^C160%^r%^C124%^y%^RESET%^%^C208%^, trying to %^C202%^flee %^C208%^before the light tightens its hold and drags them back into the bracelet.%^CRST%^", environment(this_object()));
     ::remove();
 }
 
