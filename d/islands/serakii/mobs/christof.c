@@ -121,7 +121,7 @@ create() {
     "A simple glass of %^C075%^water%^CRST%^ in a simple glass.%^CRST%^\n",
     "The %^C094%^coffee%^CRST%^ is simple and strong, served in a clay mug.%^CRST%^\n",
     "This wooden platter has been piled with all matter of %^C126%^meats%^CRST%^. Farmer's sausage, bacon and others.%^CRST%^\n",
-    "This platter is loaded up with different %^C130%^breads%^CRST%^ and butter. Perfect for any meal.%^CRS%^\n",
+    "This platter is loaded up with different %^C130%^breads%^CRST%^ and butter. Perfect for any meal.%^CRST%^\n",
     "%^C225%^This simple plate is loaded with small carefully %^C214%^fried %^C225%^portions of %^C142%^fish%^CRST%^",
 
   }));

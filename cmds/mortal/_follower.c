@@ -222,7 +222,7 @@ int cmd_follower(string raw_arguments)
         write("\n%^C246%^/%^C247%^///%^C248%^///%^C249%^///%^C250%^///%^C251%^///%^C252%^///%^C253%^///%^C254%^///%^C255%^/// %^C051%^Current Followers%^C255%^ ///%^C254%^///%^C253%^///%^C252%^///%^C251%^///%^C250%^///%^C249%^///%^C248%^///%^C247%^///%^C246%^/\n");
         for (i = 0; i < sizeof(retinue); ++i)
         {
-            follower_score_sheet = "     Lv. " + retinue[i]["level"] + " " + retinue[i]["race"] + " " + retinue[i]["class"] + " ";
+            follower_score_sheet = "     %^RESET%^Lv. " + retinue[i]["level"] + " " + retinue[i]["race"] + " " + retinue[i]["class"] + " ";
             write(arrange_string(" ", 3 - strlen("" + i)) + i + ": " + arrange_string(get_full_follower_short(retinue, i), 70 - strwidth(follower_score_sheet)) + follower_score_sheet );
         }
         write("\n%^C246%^/%^C247%^///%^C248%^///%^C249%^///%^C250%^///%^C251%^///%^C252%^///%^C253%^///%^C254%^///%^C255%^////////////////////////%^C255%^/%^C254%^///%^C253%^///%^C252%^///%^C251%^///%^C250%^///%^C249%^///%^C248%^///%^C247%^///%^C246%^/\n");
@@ -246,7 +246,7 @@ int cmd_follower(string raw_arguments)
             write("\n%^C247%^//%^C248%^///%^C249%^///%^C250%^///%^C251%^///%^C252%^///%^C253%^///%^C254%^///%^C255%^///%^C051%^ Recruitable Followers%^C255%^ ///%^C254%^///%^C253%^///%^C252%^///%^C251%^///%^C250%^///%^C249%^///%^C248%^///%^C247%^//\n");
             for (i = 0; i < sizeof(current_recruitables[area_type]); ++i)
             {
-                follower_score_sheet = "     Lv. " + current_recruitables[area_type][i]["level"] + " " + current_recruitables[area_type][i]["race"] + " " + current_recruitables[area_type][i]["class"] + " ";
+                follower_score_sheet = "     %^RESET%^Lv. " + current_recruitables[area_type][i]["level"] + " " + current_recruitables[area_type][i]["race"] + " " + current_recruitables[area_type][i]["class"] + " ";
                 write(arrange_string(" ", 3 - strlen("" + i)) + i + ": " + arrange_string(capitalize(current_recruitables[area_type][i]["name"]), 70 - strwidth(follower_score_sheet)) + follower_score_sheet );    // Oh god why // Spade
             }
             write("\n%^C246%^/%^C247%^///%^C248%^///%^C249%^///%^C250%^///%^C251%^///%^C252%^///%^C253%^///%^C254%^///%^C255%^////////////////////////%^C255%^/%^C254%^///%^C253%^///%^C252%^///%^C251%^///%^C250%^///%^C249%^///%^C248%^///%^C247%^///%^C246%^/\n");

@@ -29,7 +29,7 @@ void create() {
                         +" others, making it hard to know whether they"
                         +" have been worked or not..",
 
-  "ceiling" : "the ceiling is so high up as to be out of sight.", 
+  "ceiling" : "The ceiling is so high up as to be out of sight.", 
 
   "floor" : "The floor is smooth, and relatively free of dirt."
                   +" A large %^RED%^pentagram%^RESET%^ has been drawn"
@@ -57,21 +57,21 @@ void create() {
                  +" %^BOLD%^%^BLACK%^%^crack%^RESET%^"
                  +" in the wall opposite.",
 
-  ({"cracks", "fissures"}):"the larger cracks look big enough for"
+  ({"cracks", "fissures"}):"The larger cracks look big enough for"
                           +" something to go into of come out of, but"
                           +" most of them are way up high in the walls."
                           +" However, one of the larger cracks, standing"
                           +" opposite the little idol, is a little low"
                           +" enough for you to reach it.",
 
-  "crack" : "one of the larger cracks in the wall here is low enough for"
+  "crack" : "One of the larger cracks in the wall here is low enough for"
            +" you to reach it. It looks very dark inside.",
  ]) );
 
   set_exits( ([ "southwest" : TUNNELS + "tun04" ,
 	          "south" : TUNNELS + "tun06"]) );
 
-  set_search("walls","you find many small cracks and fissures in the"
+  set_search("walls","You find many small cracks and fissures in the"
                     +" slate. There appear to be larger cracks higher up"
                     +" on the walls, out of reach, and even one lower"
                     +" down." );

@@ -38,7 +38,8 @@ void create()
     set_overall_ac(-3);
     set_moving(1);
     set_speed(30);
-    set_hp(270+random(150));
+    set_max_hp(270+random(150));
+    set_hp(query_max_hp());
     set("aggressive", 16);
     set_wielding_limbs(({"right hand", "left hand"}));
     new("/d/common/obj/weapon/dagger")->move(this_object());
@@ -76,3 +77,12 @@ void create()
     set_stats("constitution", 18);
     set_nogo(({DDOCK, FRPATH"road1"}));
 }
+
+// Taming DCs: Low - 10, Mid - 25, High - 40, Epic - 55
+// Types of DCs: "survival" for wild creatures (snakes, rats, stags, spiders, etc...)
+//               "spellcraft" for magical creatures (elementals, sprites, will o wisp, etc...)
+//               "dungeoneering" for constructs (clockwork creatures, golems, etc...)
+int is_tamable(){ return 1; }
+int query_tame_DC(){ return 40; }
+string query_DC_type(){ return "spellcraft"; }
+
