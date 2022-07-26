@@ -50,10 +50,6 @@ int abandon_fun(string str){
         tell_object(player, "Syntax: <release PET>");
         return 1;
     }
-    if(player->query_name() != owner){
-        tell_object(player, "%^RESET%^%^CRST%^%^C196%^This bracelet isn't bound to you, and refuses your will.%^CRST%^");
-        return 1;
-    }
     if(member_array(str, pet_list) == -1){
         tell_object(player, "%^RESET%^%^CRST%^%^C059%^You don't seen to have that type of pet.%^CRST%^");
         return 1;
@@ -64,8 +60,8 @@ int abandon_fun(string str){
     }
     
     room = environment(player);
-    tell_object(player, "%^RESET%^%^CRST%^%^C089%^The %^C039%^r%^C045%^u%^C051%^n%^C045%^e%^C039%^s %^RESET%^%^C089%^along your bracelet %^C087%^flare brightly%^C089%^, %^C196%^bu%^C124%^r%^C196%^ni%^C124%^n%^C196%^g %^RESET%^%^C089%^away the bond you had with "+str+"%^RESET%^%^CRST%^%^C089%^.%^CRST%^");
-    tell_room(room, "%^RESET%^%^CRST%^%^C089%^The %^C039%^r%^C045%^u%^C051%^n%^C045%^e%^C039%^s %^RESET%^%^C089%^along "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C089%^'s bracelet %^C087%^flare brightly%^C089%^ for a moment.%^CRST%^", player);
+    tell_object(player, "%^RESET%^%^CRST%^%^C089%^The %^C039%^r%^C045%^u%^C051%^n%^C045%^e%^C039%^s %^RESET%^%^C089%^along your bracelet %^C087%^flare brightly%^C089%^, %^C196%^bu%^C124%^r%^C196%^ni%^C124%^n%^C196%^g %^RESET%^%^C089%^away the bond you had with "+str+"%^RESET%^%^CRST%^%^C089%^. It appears briefly before fleeing out of sight!%^CRST%^");
+    tell_room(room, "%^RESET%^%^CRST%^%^C089%^The %^C039%^r%^C045%^u%^C051%^n%^C045%^e%^C039%^s %^RESET%^%^C089%^along "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C089%^'s bracelet %^C087%^flare brightly%^C089%^ for a moment. A "+str+"%^RESET%^%^CRST%^%^C089%^ appears, quickly fleeing out of sight!%^CRST%^", player);
     remove_pet(str);
     return 1;
 }
@@ -73,6 +69,8 @@ int abandon_fun(string str){
 int exchange_fun(string str){
     string real_name, pet_name, target_name, filename, pet_race, short_desc, long_desc, *input;
     object player_bracelet, target_bracelet, player, target, room;
+    int sapience;
+    
     if(!str) return 0;
     
     input = explode(str, " to ");
@@ -119,8 +117,9 @@ int exchange_fun(string str){
     pet_race = pets[filename]["race"];
     short_desc = pets[filename]["short"];
     long_desc = pets[filename]["long"];
+    sapience = pets[filename]["sapient"];
     remove_pet(pet_name);
-    target_bracelet->add_pet(pet_name, pet_race, short_desc, long_desc);
+    target_bracelet->add_pet(pet_name, pet_race, short_desc, long_desc, sapience);
     
     tell_object(player, "%^RESET%^%^CRST%^%^C030%^An %^C036%^o%^C042%^r%^C036%^b %^C030%^of %^C036%^l%^C042%^igh%^C036%^t %^RESET%^%^C030%^leaves your bracelet, flying through the air and being %^C024%^absorbed %^C030%^by "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C030%^'s bracelet.%^CRST%^");
     tell_object(target, "%^RESET%^%^CRST%^%^C030%^An %^C036%^o%^C042%^r%^C036%^b %^C030%^of %^C036%^l%^C042%^igh%^C036%^t %^RESET%^%^C030%^leaves "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C030%^'s bracelet, flying through the air and being %^C024%^absorbed %^C030%^by your bracelet.%^CRST%^");
@@ -207,6 +206,7 @@ int summon_fun(string str){
     pet_name = pets[filename]["name"];
     pet = new("/d/common/obj/pets/pet");
     pet->setup_pet(player, this_object(), pets[filename]["name"], pets[filename]["race"], pets[filename]["short"], pets[filename]["long"]);
+    if(pets[filename]["sapient"]) pet->set_property("sapient", 1);
     pet->move(environment(player));
     tell_room(environment(player), "%^RESET%^%^CRST%^%^C036%^There is a faint %^C045%^g%^C051%^l%^C045%^o%^C039%^w %^C036%^from "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C036%^'s bracelet, and "+pet->query_short()+"%^RESET%^%^CRST%^%^C036%^ appears before you.%^CRST%^", player);
     tell_object(player, "%^RESET%^%^CRST%^%^C036%^There is a faint %^C045%^g%^C051%^l%^C045%^o%^C039%^w %^C036%^from your bracelet, and "+pet->query_short()+"%^RESET%^%^CRST%^%^C036%^ appears before you.\n\n%^RESET%^%^CRST%^%^C089%^(Please use the <pet> command to interact with your summoned pet.)%^CRST%^");
@@ -231,9 +231,9 @@ int dismiss_fun(string str){
         return 1;
     }
     pet_name = active_pet->query_short();
+    
     tell_room(environment(player), ""+pet_name+" %^RESET%^%^CRST%^%^C039%^g%^C045%^l%^C051%^o%^C045%^w%^C039%^s %^C036%^briefly before returning to "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C036%^'s bracelet.%^CRST%^", player);
     tell_object(player, ""+pet_name+" %^RESET%^%^CRST%^%^C039%^g%^C045%^l%^C051%^o%^C045%^w%^C039%^s %^C036%^briefly before returning to your bracelet.%^CRST%^");
-    active_pet->move("/d/shadowgate/void");
     active_pet->remove();
     player->remove_property("pet_summoned");
     return 1;
@@ -244,14 +244,14 @@ void set_owner(object target){
     return;
 }
 
-void add_pet(string pet_name, string pet_race, string short_desc, string long_desc){
+void add_pet(string pet_name, string pet_race, string short_desc, string long_desc, int sapience){
     string *input, filename;
     
     if(!check_slots(pet_name)) return;
     
     input = explode(pet_name, " ");
     filename = implode(input, "_");
-    pets[filename] = ([ "name":pet_name, "race":pet_race, "short":short_desc, "long":long_desc ]);
+    pets[filename] = ([ "name":pet_name, "race":pet_race, "short":short_desc, "long":long_desc, "sapient":sapience, ]);
     pet_list += ({ pet_name });
     return;
 }
@@ -346,7 +346,7 @@ int tame_fun(string str){
 }
 
 void taming_in_process(string str, object player, object target, int tame_DC, string DC_type){
-    int skill;
+    int skill, sapience;
     string pet_name, pet_race, short_desc, input, input_check, *input_b, *long_desc;
     object room = environment(player);
     
@@ -367,7 +367,7 @@ void taming_in_process(string str, object player, object target, int tame_DC, st
     if((skill + roll_dice(1, 20)) < (tame_DC + 10)){
         tell_object(player, "%^RESET%^%^CRST%^%^C090%^The %^C039%^r%^C045%^u%^C051%^n%^C045%^e%^C039%^s %^RESET%^%^C090%^encircling your bracelet %^C051%^f%^C087%^lar%^C051%^e b%^C087%^rightl%^C051%^y %^RESET%^%^C090%^before winking out suddenly, and the "+str+" shakes itself free and charges at you!%^CRST%^\n");
         tell_room(room, "%^RESET%^%^CRST%^%^C090%^The %^C039%^r%^C045%^u%^C051%^n%^C045%^e%^C039%^s %^RESET%^%^C090%^encircling "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C090%^'s bracelet %^C051%^f%^C087%^lar%^C051%^e b%^C087%^rightl%^C051%^y %^RESET%^%^C090%^before winking out suddenly, and the "+str+" shakes itself free and charges at "+player->query_objective()+"!%^CRST%^\n", player);
-        target->command("kill "+player->query_name()+"");
+        target->force_me("kill "+player->query_name()+"");
         player->remove_property("taming");
         return;
     }
@@ -395,7 +395,8 @@ void taming_in_process(string str, object player, object target, int tame_DC, st
             input_check = "You look over the "+target->query_race()+".";
             input_b = explode(input, input_check);
             long_desc = explode(input_b[1], "They are in top shape.");
-            add_pet(pet_name, pet_race, short_desc, long_desc[0]);
+            sapience = target->is_sapient();
+            add_pet(pet_name, pet_race, short_desc, long_desc[0], sapience);
             target->remove();
             player->remove_property("taming");
             break;
