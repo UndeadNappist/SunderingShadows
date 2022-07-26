@@ -255,6 +255,7 @@ protected void disconnect_copy(string str, object ob) {
     exec(ob, this_object());
     destruct(tmp);
     message("logon", "\nAllowing relog.\n", ob);
+    ob->query_clients_gmcp_compatability();
     internal_remove();
 }
 
