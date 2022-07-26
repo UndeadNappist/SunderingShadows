@@ -106,7 +106,7 @@ void drain(object targ)
 		targ->do_damage("torso",roll_dice(1,5));
     	}
     targ->set_paralyzed(random(10)+8,"%^BOLD%^%^RED%^You feel exhausted");
-    new("/cmds/spells/s/_sticks_into_snakes")->use_spell(TO,0,34,100,"cleric");
+    //new("/cmds/spells/s/_sticks_into_snakes")->use_spell(TO,0,34,100,"cleric");
     return 1;
 }
 void die(object ob)
