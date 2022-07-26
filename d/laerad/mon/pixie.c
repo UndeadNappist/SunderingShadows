@@ -82,7 +82,7 @@ void reset(){
 //               "spellcraft" for magical creatures (elementals, sprites, will o wisp, etc...)
 //               "dungeoneering" for constructs (clockwork creatures, golems, etc...)
 int is_tamable(){ return 1; }
-int is_sentient(){ return 1; }
+int is_sapient(){ return 1; }
 int query_tame_DC(){ return 40; }
 string query_DC_type(){ return "spellcraft"; }
 
