@@ -642,7 +642,7 @@ int move(mixed dest)
             if (draggee->query_ghost()) {
                 draggee = 0;
             } else {
-                draggee->move_player(dest);
+                draggee->move_player(dest,draggee->query_cap_name() + " is dragged along.");
             }
         }
 
