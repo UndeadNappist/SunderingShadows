@@ -4584,7 +4584,7 @@ string getWholeDescriptivePhrase(){
       {
          str = replace_string(str,"$SR",subrace);
       }
-      str = replace_string(str,"$R",query_race());
+      str = replace_string(str,"$R",strlen(this_object()->query_race()) ? this_object()->query_race() : "unknown");
   }
   else
   {
