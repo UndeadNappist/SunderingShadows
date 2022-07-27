@@ -23,7 +23,7 @@ void create()
     set_spell_sphere("alteration");
     set_syntax("cast CLASS cocoon on RACE");
     set_damage_desc("Envelop yourself in a cocoon and become another race");
-    set_description("With this ability, the oracle spins a silvery, silk-threaded cocoon around themselves, entering a stage of metamorphosis. While in the cocoon, the caster will not be able to leave or teleport. When they emerge, they will have become the race of their choice. This ability has a long cooldown.");
+    set_description("With this ability, the oracle spins a silvery, silk-threaded cocoon around themselves, entering a stage of metamorphosis. While in the cocoon, the caster will not be able to leave or teleport. When they emerge, they will have become the race of their choice. This ability has a long cooldown.\n\nCocooning into a pk race will cause your nopk flag to be removed.");
     set_arg_needed();
     set_verbal_comp();
     set_somatic_comp();
