@@ -7,6 +7,15 @@ int               gmcp_enabled = 0; // Indicates whether or not we should be sen
 mapping modules_supported = ([  ]); // Indicates what message we should be sending to the player
 mapping       module_data = ([  ]); // Contains data for supported modules
 
+int check_gmcp()
+{
+    //In-game setting that turns it on/off
+    if(!this_object()->query("gmcp"))
+        return 0;
+    
+    return 1;
+}
+
 void query_clients_gmcp_compatability()
 {
     if (has_gmcp(this_object()))
@@ -21,6 +30,9 @@ void query_clients_gmcp_compatability()
 
 int query_gmcp_enabled()
 {
+    if(!check_gmcp())
+        return 0;
+    
     return gmcp_enabled;
 }
 
@@ -35,6 +47,9 @@ void gmcp(string str)
 // This is a high-frequency call, and should be kept small.
 void gmcp_update_character_vitals(mapping data)
 {
+    if(!check_gmcp())
+        return;
+    
     if (gmcp_enabled)
     {
         int i;
@@ -64,6 +79,11 @@ void gmcp_update_character_vitals(mapping data)
 // This is an even-higher frequency call, and should be kept small.
 void gmcp_update_character_survival(mapping data)
 {
+    if(!check_gmcp())
+    {
+        gmcp_enabled = 0;
+        return;
+    }
     if (gmcp_enabled)
     {
         int i;
@@ -92,6 +112,13 @@ void gmcp_update_character_survival(mapping data)
 
 void gmcp_update_character_resources(mapping data)
 {
+    //In-game setting that turns it on/off
+    if(!this_object()->query("gmcp"))
+    {
+        gmcp_enabled = 0;
+        return;
+    }
+    
     if (gmcp_enabled)
     {
         int i;
@@ -121,5 +148,11 @@ void gmcp_update_character_resources(mapping data)
 // Send a message to the client
 void send_gmcp(string str)
 {
+    if(!check_gmcp())
+    {
+        gmcp_enabled = 0;
+        return;
+    }
+    
     efun::send_gmcp(str);
 }

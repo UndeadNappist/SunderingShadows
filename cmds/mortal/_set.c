@@ -1,7 +1,7 @@
 #include <std.h>
 #include <daemons.h>
 
-string* VALID_SETTINGS = ({ "brief", "brief_combat", "hints", "logon_notify", "persist", "simpleinv", "expgain", "hardcore", "levelcheck", "no_reward", "taxperc", "columns", "vcolumns", "scrlines", "scrwidth", "term", "reader" });
+string* VALID_SETTINGS = ({ "brief", "brief_combat", "hints", "logon_notify", "persist", "simpleinv", "expgain", "hardcore", "levelcheck", "no_reward", "taxperc", "columns", "vcolumns", "scrlines", "scrwidth", "term", "reader", "gmcp" });
 
 object tp;
 
@@ -307,6 +307,30 @@ int get_reader(string val)
     else
         return "off";
 }
+
+int set_gmcp(string val)
+{
+    string* valid_values = ({ "on", "off" });
+    if (member_array(val, valid_values) == -1) {
+        write("%^BOLD%^%^RED%^Invalid value, valid values are:%^RESET%^ " + implode(valid_values, ", "));
+        return 0;
+    }
+    if (val == "on") {
+        this_player()->set("gmcp", 1);
+    }
+    if (val == "off") {
+        this_player()->delete("gmcp");
+    }
+    return 1;
+}
+
+int get_gmcp(string val)
+{
+    if(this_player()->query("reader"))
+        return "on";
+    else
+        return "off";
+}
 /*
 int set_minimap(string val)
 {
@@ -548,6 +572,7 @@ You can manipulate numerous mud settings:
 
 %^CYAN%^brief %^GREEN%^on|off%^RESET%^\n  This will turn on or off display of room's long description. Useful for screenreaders. %^ULINE%^Default value is off.%^RESET%^\n
 %^CYAN%^reader %^GREEN%^on|off%^RESET%^\n This turns on or off additional screen reader support. Work in progress. %^ULINE%^Default value is off.%^RESET%^\n
+%^CYAN%^gmcp %^GREEN%^on|off%^RESET%^\n This turns on or off additional GMCP support. Work in progress. %^ULINE%^Default value is off.%^RESET%^\n
 %^CYAN%^brief_combat %^GREEN%^on|off%^RESET%^\n  This will turn on or off display of verbose combat. %^ULINE%^Default value is on.%^RESET%^\n
 %^CYAN%^hints %^GREEN%^on|off%^RESET%^\n  This will turn on or off display of periodic hints. %^ULINE%^Default value is on.%^RESET%^\n
 %^CYAN%^minimap %^GREEN%^on|off%^RESET%^\n This turns on or off the minimap above the room description. %^ULINE%^Default value is off.%^RESET%^\n
