@@ -132,7 +132,7 @@ string list_users(string *races, object tp)
 
             if (!who[i]->query_alignment()) {
                 display_string = capitalize((string)who[i]->query_name()) + " the unmade";
-            } else if (time() - who[i]->query_login_time() < 600 && !wizardp(who[i])) {
+            } else if (time() - who[i]->query_login_time() < 600 && !wizardp(this_player())) {
                 display_string = "Someone is emerging";
             } else if ((string)who[i]->query_title()) {
                 display_string = (string)who[i]->query_title();
