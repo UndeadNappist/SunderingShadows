@@ -100,6 +100,6 @@ int free_fun(string str) {
     }
     tell_room(ETO,"%^RESET%^RED%^\nThe now freed prisoner runs down the beach to safety...\n%^RESET%^");
     to->move("/d/shadowgate/void");
-    to->remove();
+    //to->remove();
     return 1;
 }
