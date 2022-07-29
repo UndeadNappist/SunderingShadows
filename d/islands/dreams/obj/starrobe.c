@@ -63,5 +63,6 @@ int strike_func(int damage, object what, object who){
       tell_object(who,"%^BLUE%^"+ETOQCN+" rips a star off "+ETO->QP+" robe that takes the shape of a %^BOLD%^%^WHITE%^silver shuriken%^RESET%^%^BLUE%^ which they hurl at you!%^RESET%^");
       who->do_damage("torso",random(4)+6);
    }
+   return damage;
 }
 
