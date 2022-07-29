@@ -7,5 +7,5 @@ create() {
     ::create();
     set_spell_name("monster summoning ix");
     set_spell_level(([ "mage" : 9, "cleric" : 9 ]));
-    set_syntax("cast CLASS monster summoning ix");
+    set_syntax("cast CLASS monster summoning ix (on TYPE)");
 }
