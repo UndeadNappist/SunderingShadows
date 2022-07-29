@@ -112,6 +112,7 @@
     "/d/shadow/room/farm/obj/petal_buckler", \
     "/d/shadow/room/githyanki/obj/obsidion_vambraces", \
     "/d/token_hunt/obj/high/dragonrobe", \
+    "/d/token_hunt/obj/high/forgottensoul", \
     "/d/token_hunt/obj/high/nightydsp", \
     "/d/token_hunt/obj/high/wolfg", \
     "/d/token_hunt/obj/low/creepingmail", \
