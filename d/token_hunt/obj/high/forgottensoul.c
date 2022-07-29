@@ -62,10 +62,11 @@ int remove_func(){
 	return 1;
 }
 int strike_func(int damage, object what, object who){
-	if(random(1000) < 300){
+    if(random(1000) < 300){
 	tell_room(environment(query_worn()),"%^BOLD%^%^BLACK%^"+ETOQCN+"'s eyes glow with a fathomless %^RESET%^%^MAGENTA%^purple aura %^BOLD%^%^BLACK%^as they move between "+who->QCN+"'s defenses and land a telling blow.%^RESET%^",({ETO,who}));
 	tell_object(ETO,"%^BOLD%^%^BLACK%^Knowledge fills your mind and the world seems to fade away as your focus narrows upon "+who->QCN+".  With a movement both %^RESET%^%^MAGENTA%^graceful %^BOLD%^%^BLACK%^and %^RESET%^cunning%^BOLD%^%^BLACK%^, you dart forward, turn and lay a devastating blow upon "+who->QCN+"'s body!%^RESET%^");
 	tell_object(who,"%^BOLD%^%^BLACK%^"+ETOQCN+"'s eyes glow with a fathomless %^RESET%^%^MAGENTA%^purple aura %^BOLD%^%^BLACK%^as they move between your defenses and land a telling blow.%^RESET%^");
-		who->cause_typed_damage(who, "torso", roll_dice(12, 2), "untyped");
-return damage;	}
+        who->cause_typed_damage(who, "torso", roll_dice(12, 2), "untyped");
+    }
+    return damage;
 }
