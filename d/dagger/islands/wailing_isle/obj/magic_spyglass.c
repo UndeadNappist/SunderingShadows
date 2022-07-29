@@ -45,7 +45,7 @@ int view_fun(string str){
         tell_object(player, "%^RESET%^%^CRST%^%^C059%^The lens remains dark, revealing nothing.%^CRST%^");
         return 1;
     }
-    if((string)player->realName(targetname) != "") realname = lower_case((string)player->realName(targetname));
+    if((string)player->realName(targetname) != "") realname = (string)player->realName(targetname);
     else{
 	    tell_object(player,"%^RESET%^%^CRST%^%^C059%^You don't know anyone named "+target+".%^CRST%^");
 	    return 1;
