@@ -13,7 +13,7 @@ create(){
     set_spell_level(([ "mage" : 1, "bard" : 1, "cleric" : 1, "paladin" : 1 ]));
     set_syntax("cast CLASS monster summoning i (on TYPE)");
     set_spell_sphere("conjuration_summoning");
-    set_description("This spell will summon creatures of equivalent power to protect the caster. They will react aggressively to anyone attempting to harm the caster. They will fight till slain, and when the casting time is up, the monsters will vanish. The spell will default to animals, but you can specify either animals, insects, or elementals.");
+    set_description("This spell will summon creatures from other planes to protect the caster, becoming aggressive to anyone attempting to harm the caster. They will return to their home plane when either exhausted or the spell duration is completed. Approaches to the use of this spell vary, as some users put out a call for aid while others coerce these creatures into servitude.\n\nThe spell will default to animals, but you can specify elementals or insects as well.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
@@ -47,6 +47,7 @@ int spell_effect(int prof){
 
         monsters += ({ monster });
 
+        monster->add_id("outsider");
         monster->set("aggressive", 1);
         monster->remove_property("swarm");
         monster->set_mlevel("fighter", clevel);

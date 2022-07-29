@@ -25,7 +25,6 @@ void create()
     set_description("By meditating on a subject, you can recall natural memories and knowledge otherwise inaccessible to you.");
     set_verbal_comp();
     set_somatic_comp();
-    set_arg_needed();
     set_helpful_spell(1);
 }
 

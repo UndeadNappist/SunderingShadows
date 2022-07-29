@@ -37,6 +37,7 @@ void create(){
 
     command("message in %^ORANGE%^shambles in");
     command("message out %^ORANGE%^shambles $D");
+    set_property("no_random_treasure", 1);
 }
 
 void setup_servant(object caster, int clevel)
