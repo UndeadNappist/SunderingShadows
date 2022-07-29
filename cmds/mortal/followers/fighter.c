@@ -16,7 +16,7 @@ void create(){
         set_exp(2000);
         set_body_type(query_race());
         set_gender("male");
-        set_long("This stout fellow is well equiped. He follows his leige lord with dedication and devotion."
+        set_long("This stout fellow is well equipped. He follows his liege lord with dedication and devotion."
                  );
         ob = new("/d/common/obj/potion/healing");
         ob->move(TO);

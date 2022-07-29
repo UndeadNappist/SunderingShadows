@@ -23,7 +23,7 @@ void create(){
                 set_gender("female");
                 break;
         }
-        set_long("This devout priest follows his leige with the intent on adding his spiritual advice."
+        set_long("This devout priest follows his liege with the intent of adding his spiritual advice."
                  );
         set_spells(({"call lightning", "limb attack"}));
         set_spell_chance(90);
