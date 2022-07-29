@@ -1,7 +1,7 @@
 #include <std.h>
 #include "../defs.h"
 
-inherit ROOM;
+inherit VAULT;
 
 
 void create(){
