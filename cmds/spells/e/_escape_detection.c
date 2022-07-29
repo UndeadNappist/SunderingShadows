@@ -80,7 +80,7 @@ void spell_effect(int prof) {
         if(objectp(TO)) TO->remove();
         return;
     }
-    if(temp = target->query_property("block scrying")){
+    /*if(temp = target->query_property("block scrying")){
        if(!objectp(temp)){
           target->remove_property("block scrying");
        }else{
@@ -89,7 +89,14 @@ void spell_effect(int prof) {
             if(objectp(TO)) TO->remove();
             return;
        }
+    }*/
+    if(target->query_property("scry block power"))
+    {
+        tell_object(caster, "There is already scry protection on that.");
+        dest_effect();
+        return;
     }
+    
     if(target == place){
        tell_room(place,"%^RESET%^%^GREEN%^The %^BOLD%^s%^MAGENTA%^h%^RESET%^"
           "%^MAGENTA%^i%^GREEN%^m%^BOLD%^m%^MAGENTA%^e%^RESET%^%^MAGENTA%^r"
@@ -102,22 +109,25 @@ void spell_effect(int prof) {
           "behind a crackling energy around "+target->QCN+".%^RESET%^");
     }
     target->set_property("spelled",({TO}));
-    blocker = SCRY_D->add_block_scrying(target);
+    /*blocker = SCRY_D->add_block_scrying(target);
     if(!objectp(blocker)) {
         tell_object(caster,"%^BOLD%^RED%^Something is wrong that "
             "a wiz might want to look at!");
         dest_effect();
         return;
-    }
+    }*/
     int_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
 
     mylevel = clevel;
 
-    power = mylevel + int_bonus + random(6);
-    blocker->set_block_power(power);
-    duration = 9 * mylevel;
-    spell_successful();
-    spell_duration = (clevel / 2 + roll_dice(1, 20)) * ROUND_LENGTH;
+    //power = mylevel + int_bonus + random(6);
+    power = clevel + int_bonus + query_spell_level(spell_type);
+    
+    //blocker->set_block_power(power);
+    duration = 6 * (int)CLEVEL * ROUND_LENGTH;
+    addSpellToCaster();
+    target->set_property("scry block power", power);
+    spell_duration = duration;
     set_end_time();
     call_out("dest_effect",spell_duration);
     return;

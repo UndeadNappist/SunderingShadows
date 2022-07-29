@@ -156,5 +156,10 @@ void heart_beat()
         }
         return;
     }
+    if(observation_stage > 6){
+        ETO->set_paralyzed(0);
+        TO->remove();
+        return;
+    }
 }
 
