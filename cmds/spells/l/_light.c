@@ -14,7 +14,7 @@ create()
     ::create();
     set_spell_name("light");
     set_spell_level(([ "cantrip" : 1, "paladin" : 1, "assassin" : 1 ]));
-    set_spell_sphere("alteration");
+    set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS light");
     set_description("This will create a small ball of light, which will light your way. You may only possess one ball of light at a time.");
     set_non_living_ok();
