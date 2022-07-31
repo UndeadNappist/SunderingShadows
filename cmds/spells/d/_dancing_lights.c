@@ -10,7 +10,7 @@ void create()
     ::create();
     set_spell_name("dancing lights");
     set_spell_level(([ "cantrip" : 1 ]));
-    set_spell_sphere("alteration");
+    set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS dancing lights");
     set_description("This will create a small gathering of swirling lights, which will illuminate your way.");
     set_helpful_spell(1);
