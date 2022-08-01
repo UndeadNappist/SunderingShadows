@@ -21,7 +21,7 @@ void create()
     set_spell_sphere("invocation_evocation");
     set_syntax("cast cantrip sacred flame on TARGET");
     set_damage_desc("radiant damage on target on failed reflex save");
-    set_description("This spell attempts to burn the target with pure radianct energy. On a failed reflex save, the target takes radiant damage.");
+    set_description("This spell attempts to burn the target with pure radiant energy. On a failed reflex save, the target takes radiant damage.");
     set_target_required(1);
     set_save("reflex");
     set_immunities( ({ "radiant" }) );

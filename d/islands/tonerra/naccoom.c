@@ -10,7 +10,7 @@ create() {
     set("aggressive", 0);
     set_level(1);
     set_long(
-      "   Naccoom is withered from his travels. Standing bent and weak before you. He can sell you what you want. But because he is all thats left of those who collected these rare items that is how it stands."
+      "   Naccoom is withered from his travels, standing bent and weak before you. He can sell you what you want, but because he is all that's left of those who collected these rare items that is how it stands."
     );
     set_gender("male");
     set_alignment(4);
