@@ -31,14 +31,14 @@ void create()
 	set_unwield((:TO,"unwield_func":));
 }
 
-int wield_fun() {
+int wield_func() {
 	if (!ETO->query_property("silent_wield")) {
 		tell_object(ETO, "%^BOLD%^%^BLUE%^The double bladed sword feels well balanced in your hands.");
 	}
 	return 1;
 }
 
-int unwield_fun() {
+int unwield_func() {
 	if (!ETO->query_property("silent_wield")) {
 		tell_object(ETO, "%^BOLD%^%^BLUE%^You set aside the well balanced double bladed sword.");
 	}
