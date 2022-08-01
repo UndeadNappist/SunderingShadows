@@ -61,9 +61,9 @@ int preSpell()
         tell_object(TP, "Only " + replace_string(shadow_school(), "_", "/") + " school spells are allowed!");
         return 0;
     }
-    
+
     reqs = keys(spell_to_cast->query_feats_required("mage"));
-    
+
     if(sizeof(reqs) && member_array(spell_type, reqs) >= 0)
     {
         if(!FEATS_D->usable_feat(caster, reqs[0]))
@@ -72,7 +72,7 @@ int preSpell()
             return 0;
         }
     }
-    
+
     slevel = spell_to_cast->query_spell_level("mage");
     if (slevel > max_level || slevel == 0) {
         tell_object(TP, "This spell is too powerful for " + spell_name + "!");
@@ -81,6 +81,7 @@ int preSpell()
     spell_to_cast->set_shadow_spell(max_level);
     caster->remove_property("spell_casting");
     caster->set_property("spell_casting", spell_to_cast);
+    spell_to_cast->set_spell_source(spell_type);
     spell_to_cast->use_spell(TP, sargs, clevel, 100, "mage");
     call_out("dest_effect", 2);
     return 1;
