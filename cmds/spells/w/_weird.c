@@ -44,6 +44,7 @@ int preSpell()
     {
         nspell = new("/cmds/spells/p/_phantasmal_killer");
         nspell->set_silent_casting(1);
+        nspell->set_spell_source(spell_type);
         nspell->use_spell(caster, ob, clevel, 100, "mage");
     }
     
