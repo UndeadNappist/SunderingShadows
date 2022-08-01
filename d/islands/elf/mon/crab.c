@@ -65,7 +65,7 @@ void sweep(object targ){
   tell_room(ETO,"%^ORANGE%^Dire Crab sweeps a claw across the room!");
   foreach(object ob in critters){
       tell_object(ob, "%^ORANGE%^The crab sweeps a claw across the room hitting you hard." );
-      ob->cause_typed_damwizage(ob, ob->return_target_limb(),random(200),"bludgeoning");
+      ob->cause_typed_damage(ob, ob->return_target_limb(),random(200),"bludgeoning");
   }
   
 }
