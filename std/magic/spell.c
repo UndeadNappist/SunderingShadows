@@ -30,6 +30,7 @@ inherit DAEMON;
 
 string spell_name,
        spell_type,
+       spell_source,
        rspell_name,
        spell_sphere,
        cast_string,
@@ -120,6 +121,7 @@ mapping magic_resisted = ([]);
 
 void set_diety(string who);
 void set_spell_name(string name);
+void set_spell_source(string source);
 void set_spell_level(mapping levels);
 void set_spell_sphere(string sphere);
 void set_components(mapping temp);
@@ -295,6 +297,10 @@ void set_non_living_ok(int ok)
 void set_spell_name(string name)
 {
     spell_name = name;
+}
+
+void set_spell_source(string source) {
+    spell_source = source;
 }
 
 void set_spell_level(mapping levels)
@@ -894,6 +900,7 @@ void wizard_interface(object user, string type, string targ)
         return;
     }
     spell_type = type;
+    spell_source = type;
 
     switch (type) {
     case "psion":
@@ -1441,14 +1448,14 @@ void wizard_interface(object user, string type, string targ)
 
     caster->set_casting(1);
     if (spell_type == "magus") {
-        caster->set_property("magus spell", 1);
+        caster->set_property("magus spell", 1); //flag for battle.c
     }
     else {
         caster->remove_property("magus spell");
     }
 
     if(spell_type == "psywarrior")
-        caster->set_property("psywarrior spell", 1);
+        caster->set_property("psywarrior spell", 1); //flag for battle.c
     else
         caster->remove_property("psywarrior spell");
 
@@ -1572,10 +1579,10 @@ mixed WildMagicArea(object where)
     slev = query_spell_level(spell_type);
     wmlev = slev;
     wmclass = spell_type;
-    
+
     //if(wmclass == "psion" || wmclass == "psywarrior")
     //    return 0;
-    
+
     chaotic_entities = filter_array(all_living(place), (: $1->query_acquired_template() == "chaotic" :));
     //chaotic_presence = sizeof(filter_array(all_living(place), (: $1->query_acquired_template() == "chaotic" :)));
     chaotic_entities -= ({ caster });
@@ -2566,7 +2573,7 @@ void define_clevel()
             clevel = caster->query_base_character_level();
         }
     }
-    
+
     if(shadow_spell)
         spell_sphere = "illusion";
 
@@ -2976,7 +2983,7 @@ void define_base_damage(int adjust)
 
 
     if (!wasreflected) {
-        if (FEATS_D->is_active(caster, "spell combat") && caster->query_property("magus spell")) {
+        if (FEATS_D->is_active(caster, "spell combat") && spell_source && spell_source == "magus") {
             int magus, crit_range;
             /*
             if (caster->is_class("magus") && file_exists("/std/class/magus.c")) {
@@ -3004,7 +3011,7 @@ void define_base_damage(int adjust)
         else if (FEATS_D->is_active(caster, "eldritch warfare")) {
             sdamage = roll_dice(2, sdamage / 4);
         }
-        else if(caster->is_class("psywarrior") && FEATS_D->has_feat(caster, "martial power") && caster->query("available focus") && caster->query_current_attacker())
+        else if(caster->is_class("psywarrior") && FEATS_D->has_feat(caster, "martial power") && caster->query("available focus") && caster->query_current_attacker() && spell_source && spell_source == "psywarrior")
         {
             sdamage = roll_dice(2, sdamage / 4);
         }
@@ -3324,7 +3331,7 @@ varargs int checkMagicResistance(object victim, int mod)
     }
 
     res = (int)victim->query_property("magic resistance");
-    
+
     //Agent of chaos is highly resistant to magic unless it's coming from a lawful, where it's weak.
     if(victim->query_acquired_template() == "chaotic")
     {
@@ -3516,7 +3523,7 @@ varargs int do_save(object targ, int mod, int get_dc)
         if (spell_type == caster->query("base_class"))
             classlvl = caster->query_base_character_level();
     }
-    
+
     if(shadow_spell)
         spell_sphere = "illusion";
 
@@ -4245,17 +4252,17 @@ void help()
     string* classkeys, printclass, * compskeys, printcomps;
     string quickname;
     int i, reader, width;
-    
+
     if (mapp(MAGIC_D->query_index_row(spell_name))) {
         quickname = MAGIC_D->query_index_row(spell_name)["quick"];
     }
-    
+
     reader = this_player()->query("reader");
-    
+
     width = to_int(this_player()->get_env("SCREEN"));
     width = max( ({ 80, width }) );
     width = min( ({ 120, width }) );
-    
+
     !reader && printf(HEADER);
     !reader && write(SUBHEAD);
     quickname && printf("%s%-14s %s%s%s\n", HIR, "Quickname:", HIW, quickname, NOR);
@@ -4285,7 +4292,7 @@ void help()
             }
         }
     }
-    
+
     printf("%s%-14s %s%s%s\n", HIR, "Class:", HIW, affixed_level ? ("(L" + affixed_level + " fixed) ") + printclass : "" + printclass, NOR);
     //write("%^BOLD%^%^RED%^Class:%^RESET%^ " + (affixed_level ? ("(L" + affixed_level + " fixed) ") : "") + printclass);
 
@@ -4355,7 +4362,7 @@ void help()
     */
 
     write("\n" + description + "\n");
-    
+
     !reader && write(FOOTER);
 
     if (peace) {
