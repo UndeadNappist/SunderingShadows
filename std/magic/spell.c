@@ -1573,8 +1573,8 @@ mixed WildMagicArea(object where)
     wmlev = slev;
     wmclass = spell_type;
     
-    if(wmclass == "psion" || wmclass == "psywarrior")
-        return 0;
+    //if(wmclass == "psion" || wmclass == "psywarrior")
+    //    return 0;
     
     chaotic_entities = filter_array(all_living(place), (: $1->query_acquired_template() == "chaotic" :));
     //chaotic_presence = sizeof(filter_array(all_living(place), (: $1->query_acquired_template() == "chaotic" :)));
