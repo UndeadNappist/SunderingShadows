@@ -83,7 +83,7 @@ void execute_feat()
     mod = 5 + BONUS_D->query_stat_bonus(caster, "charisma");
     
     set_save("reflex");
-    if(do_save(target, mod))
+    if(!do_save(target, mod))
     {
         tell_room(place, target->QCN + " fumbles " + target->query_possessive() + " steps with self-conscious footing.", ({ target }));
         tell_object(target, "%^BOLD%^You fumble your steps with self-conscious footing.");
@@ -95,7 +95,7 @@ void execute_feat()
         tell_object(target, "%^BOLD%^You are able to maintain your balance.");
     }
     
-    if(do_save(target, mod))
+    if(!do_save(target, mod))
     {
         tell_room(place, target->QCN + " loses " + target->query_possessive() + " footing and falls down in a crumpled heap.", ({ target }));
         tell_object(target, "%^BOLD%^You lose your footing and fall down in a crumpled heap.");
@@ -108,7 +108,7 @@ void execute_feat()
     }
     
     set_save("will");
-    if(do_save(target, mod))
+    if(!do_save(target, mod))
     {
         tell_room(place, target->QCN + " loses " + target->query_possessive() + " grip on reality and swings wildly.", ({ target }));
         tell_object(target, "%^BOLD%^You lose your grip on reality and swing wildly.");
@@ -120,7 +120,7 @@ void execute_feat()
         tell_object(target, "%^BOLD%^You shrug off the confusion.");
     }
     
-    if(do_save(target, mod))
+    if(!do_save(target, mod))
     {
         tell_room(place, target->QCN + " grips " + target->query_possessive() + " head as the world becomes too big to handle.", ({ target }));
         tell_object(target, "%^BOLD%^You grip your head as the world becomes too big to handle.");
@@ -132,7 +132,7 @@ void execute_feat()
         tell_object(target, "%^BOLD%^You push through the fear.");
     }
     
-    if(do_save(target, mod))
+    if(!do_save(target, mod))
     {
         tell_room(place, target->QCN + " is frozen in place by the futility of " + target->query_possessive() + " existence.", ({ target }));
         tell_object(target, "%^BOLD%^You are frozen in place by the futility of your existence.");
@@ -145,7 +145,7 @@ void execute_feat()
     }
     
     set_save("fort");
-    if(do_save(target, mod))
+    if(!do_save(target, mod))
     {
         tell_room(place, target->QCN + " grabs " + target->query_possessive() + " stomach as self-loathing sets in.", ({ target }));
         tell_object(target, "%^BOLD%^You grab your stomach as self-loathing sets in.");
@@ -157,7 +157,7 @@ void execute_feat()
         tell_object(target, "%^BOLD%^You resist the sickness.");
     }    
 
-    if(do_save(target, mod))
+    if(!do_save(target, mod))
     {
         tell_room(place, target->QCN + " scratches at " + target->query_possessive() + " skin, desperately trying to feel something, anything.", ({ target }));
         tell_object(target, "%^BOLD%^You scratch at your skin, desperately trying to feel something, anything.");
