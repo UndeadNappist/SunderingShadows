@@ -99,7 +99,7 @@ int hit_func(object target) {
             tell_object(ETO,"%^BOLD%^%^WHITE%^As you swing the sword down in a graceful arc, the pommel catches the %^YELLOW%^light %^WHITE%^and reflects it at "+target->query_cap_name()+" in a %^YELLOW%^blinding flash %^WHITE%^of %^YELLOW%^light!%^RESET%^",({environment(ETO),target}));
             tell_object(target, "%^BOLD%^%^WHITE%^As "+ETO->query_cap_name()+" brings the sword down in a graceful arc, the pommel catches the %^YELLOW%^light %^WHITE%^and reflects it at you in a %^YELLOW%^blinding flash %^WHITE%^of %^YELLOW%^light!",({environment(ETO),ETO}));
             target->set_paralyzed(20,"You are trying to get to your feet.");
-            if(!random(3)) target->set_blind(1);
+            if(!random(3)) target->set_temporary_blinded(roll_dice(1, 4));
             else target->set_paralyzed(3+random(4), "%^YELLOW%^You are still trying to recover from the blinding light!");
             break;   
          case 12..14:
