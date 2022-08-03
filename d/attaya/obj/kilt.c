@@ -57,11 +57,11 @@ void init(){
 }
 
 int wearme(){
-   if((string)ETO->query_gender() != "male"){
+   /*if((string)ETO->query_gender() != "male"){
       tell_object(ETO,"%^BLUE%^Try as you might, you just can't fit "+
          "into the kilt!");
       return 0;
-   }
+   }*/
    if((int)ETO->query_highest_level() < 25) {
     tell_object(ETO,"The kilt blows away out of your grasp.");
         return 0;
@@ -70,7 +70,7 @@ int wearme(){
    tell_object(ETO,"%^BOLD%^%^BLACK%^You slip into the wool "+
       "kilt and notice how nice your legs look.");
    tell_room(EETO,"%^BOLD%^%^BLACK%^"+ETOQCN+" slips into the "+
-      "wool kilt, drawing your eyes briefly to his shapely "+
+      "wool kilt, drawing your eyes briefly to "+ETO->QP+" shapely "+
       "legs.",ETO);
    return 1;
 }
@@ -87,7 +87,7 @@ int breeze(string str){
    if(!str){
       tell_object(ETO,"%^BOLD%^%^BLUE%^You feel a comforting breeze blow in, cooling you off.");
       tell_room(EETO,"%^BLUE%^%^BOLD%^"+ETOQCN+"'s kilt blows up as a breeze rushes in"+
-		", answering any questions one might have about what he wears under the kilt!",ETO);
+		", answering any questions one might have about what "+ETO->QS+" wears under the kilt!",ETO);
       return 1;
    }
 }

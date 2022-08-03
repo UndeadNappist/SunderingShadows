@@ -48,10 +48,10 @@ void init(){
 int wear_func(){
    object ob;
    /* Borrowed idea for body type check from /d/antioch/valley/obj/nymph_dress2_in.c.  Removed well-built from restricted list of body types. - Octothorpe 2/2/10 */
-   if((string)TP->query_gender() != "female" || member_array((string)ETO->query_body_type(),({"plump","hardy","stocky","portly","stout","brawny","massive","rotund","heavy"})) != -1 ){
+   /*if((string)TP->query_gender() != "female" || member_array((string)ETO->query_body_type(),({"plump","hardy","stocky","portly","stout","brawny","massive","rotund","heavy"})) != -1 ){
       tell_object(ETO,"Your body will not fit into this.");
       return 0;
-   }
+   }*/
    if(base_name(ETO) == "/d/attaya/mon/callista") return 1;
    if(base_name(ETO) != "/d/attaya/mon/callista"){
       if((int)ETO->query_highest_level() < 25 || member_array("Deadly Beauty, Defeated Callista",ETO->query_mini_quests()) == -1) {   
@@ -67,8 +67,8 @@ int wear_func(){
    else{
       set_item_bonus("dexterity",1);
    }
-   tell_room(EETO,"%^MAGENTA%^"+ETOQCN+" buckles herself into the "+
-      "strapless leather bodice that molds to her curves.",ETO);
+   tell_room(EETO,"%^MAGENTA%^"+ETOQCN+" buckles "+ETO->QP+"self into the "+
+      "strapless leather bodice that molds to "+ETO->QP+" curves.",ETO);
    tell_object(ETO,"%^MAGENTA%^You buckle yourself into the "+
       "strapless leather bodice, feeling the leather mold to "+
 	  "your curves.");
@@ -87,8 +87,8 @@ int jiggle(string str){
    if(!str){
       tell_object(ETO,"%^MAGENTA%^You jiggle your bosom, giggling as "+
          "you show off your ample cleavage.");
-      tell_room(EETO,"%^MAGENTA%^"+ETOQCN+" jiggles her bosom, laughing "+
-         "seductively as she shows off her ample cleavage.",ETO);
+      tell_room(EETO,"%^MAGENTA%^"+ETOQCN+" jiggles "+ETO->QP+" bosom, laughing "+
+         "seductively as "+ETO->QS+" shows off "+ETO->QP+" ample cleavage.",ETO);
       return 1;
    }
 }

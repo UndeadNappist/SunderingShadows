@@ -49,13 +49,13 @@ void create(){
 
 }
 int wear_func(){
-	if((string)ETO->query_gender() == "female") {
+	/*if((string)ETO->query_gender() == "female") {
       	tell_object(ETO,"%^BOLD%^%^BLUE%^You notice the vest would "+
 			"leave you VERY exposed, and rethink your choice.");
              tell_room(environment(ETO),"%^BOLD%^%^BLUE%^"+ETO->QCN+""+
                 	" takes one look at the vest and shakes her head.",ETO);
 		   		 return 0;
-	}
+	}*/
         if((int)ETO->query_highest_level() < 30) {
              tell_object(ETO,"The vest refuses to be worn as weak as you!");
                                  return 0;
@@ -67,8 +67,8 @@ int wear_func(){
         			return 1;
 }
 int remove_func(){
-	  tell_room(environment(ETO),"%^CYAN%^"+ETOQCN+" removes his vest, showing off"+
-		" his naked torso.",ETO);
+	  tell_room(environment(ETO),"%^CYAN%^"+ETOQCN+" removes "+ETO->QP+" vest, showing off"+
+		" "+ETO->QP+" naked torso.",ETO);
         tell_object(ETO,"%^CYAN%^Feeling a need to cool off some, you yank your vest off,"+
 		" feeling the air against your naked chest.");
         			return 1;
@@ -79,7 +79,7 @@ int strike_func(int damage, object what, object who){
 			" "+who->QCN+", lashing out with a quick hit.",({ETO,who}));
         tell_object(ETO,"%^CYAN%^You spin around "+who->QCN+", pressing your advantage forward.");
         tell_object(who,"%^CYAN%^"+ETOQCN+" spins in under a gap in your defenses, pressing"+
-		" forward his advantage.");
+		" forward "+ETO->QP+" advantage.");
 				ETO->execute_attack();
 	}
     return damage;

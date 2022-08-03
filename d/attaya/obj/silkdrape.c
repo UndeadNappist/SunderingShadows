@@ -45,12 +45,12 @@ void create(){
 
 }
 int wear_func(){
-	if((string)ETO->query_gender() == "male") {
+	/*if((string)ETO->query_gender() == "male") {
       	tell_object(ETO,"%^MAGENTA%^You dont think you have shoes to match the top.");
              tell_room(environment(ETO),"%^MAGENTA%^"+ETO->QCN+""+
                 	" takes one look at the top and shakes his head.",ETO);
 		   		 return 0;
-	}
+	}*/
        if((int)ETO->query_highest_level() < 30) {
                tell_object(ETO,"The drape slips away from your body, refusing to be worn by you.");
                              return 0;
@@ -61,18 +61,18 @@ int wear_func(){
         			return 1;
 }
 int remove_func(){
-	  tell_room(environment(ETO),"%^MAGENTA%^"+ETOQCN+" strips out of her top very slowly,"+
-               " almost as if she was teasing you.",ETO);
+	  tell_room(environment(ETO),"%^MAGENTA%^"+ETOQCN+" strips out of "+ETO->QP+" top very slowly,"+
+               " almost as if "+ETO->QS+" was teasing you.",ETO);
         tell_object(ETO,"%^MAGENTA%^You slowly start to pull the top off, enjoying the attention"+
 		" that it brings.");
         			return 1;
 }
 int strike_func(int damage, object what, object who){
         if(!random(10)){
-        tell_room(environment(query_worn()),"%^BOLD%^%^MAGENTA%^"+ETOQCN+" presses her advantage as "+
-			" "+who->QCN+" stares at her breasts.",({ETO,who}));
-        tell_object(ETO,"%^BOLD%^%^MAGENTA%^"+who->QCN+" stares right at your breasts!");
-        tell_object(who,"%^BOLD%^%^MAGENTA%^Your gaze falls to "+ETOQCN+"'s breasts for a moment.");
+        tell_room(environment(query_worn()),"%^BOLD%^%^MAGENTA%^"+ETOQCN+" presses "+ETO->QP+" advantage as "+
+			" "+who->QCN+" stares at "+ETO->QP+" chest.",({ETO,who}));
+        tell_object(ETO,"%^BOLD%^%^MAGENTA%^"+who->QCN+" stares right at your chest!");
+        tell_object(who,"%^BOLD%^%^MAGENTA%^Your gaze falls to "+ETOQCN+"'s chest for a moment.");
 				ETO->execute_attack();
 	}
     return damage;
