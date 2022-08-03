@@ -47,14 +47,14 @@ set_value(1900);
         set_remove((:TO,"remove_func":));
 }
 int wear_func(){
-        if((string)ETO->query_gender() == "male") {
+        /*if((string)ETO->query_gender() == "male") {
         tell_object(ETO,"%^BOLD%^%^BLACK%^How do women manage to get"+
                         " these things on!?!");
         tell_room(environment(ETO),"%^BOLD%^%^BLACK%^"+ETO->QCN+""+
                 " scowls at the numerous eyelets and laces on the bodice, giving up with"+
                         " a frustrated sigh.",ETO);
                 return 0;
-        }
+        }*/
         tell_room(environment(ETO),"%^BOLD%^%^BLACK%^"+ETO->QCN+""+
                 	" %^BOLD%^%^BLACK%^slips into the leather bodysuit, "+
 			"adjusting the laces to create a perfect fit.",ETO);

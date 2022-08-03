@@ -38,11 +38,11 @@ AVATAR
 }
 int wearme(string str){
 
-   if((string)ETO->query_gender() != "male") {
+   /*if((string)ETO->query_gender() != "male") {
       tell_room(environment(ETO),"%^MAGENTA%^"+ETOQCN+" tries to squeeze herself into the shirt but it will not fit!%^RESET%^",ETO);
       tell_object(ETO,"%^MAGENTA%^You try to squeeze into the shirt, but it simply will not fit comfortably over your breasts.  You soon give up and take it off again.%^RESET%^");
       return 0;
-   }
+   }*/
       tell_room(environment(ETO),"%^BLUE%^"+ETOQCN+" slips easily into the shirt.%^RESET%^",ETO);
       tell_object(ETO,"%^BLUE%^Aaaah, a perfect fit.%^RESET%^");
       return 1;
