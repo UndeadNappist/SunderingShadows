@@ -100,6 +100,7 @@ int prerequisites(object player)
         return 0;
     }
 
+    /*
     race = player->query("subrace");
     if (!race) {
         race = player->query_race();
@@ -108,6 +109,7 @@ int prerequisites(object player)
     if (!objectp(race_ob)) {
         return 0;
     }
+    */
     skills = player->query_skills();
 
     base = player->query("base_class");
