@@ -38,7 +38,7 @@ int do_keeper(int mystate) {
    object thatroom;
    switch(mystate) {
 	 case 4: tell_room(TO,"%^BOLD%^%^BLACK%^Another gloomy room. You feel the oppressive weight of this earthen tomb bearing down on you.%^RESET%^"); break;
-     case 0: tell_room(TO,"%^BOLD%^%^BLACK%^As if on queue, the Crypt Keeper's voice rings out again in your head:%^RESET%^"); break;
+     case 0: tell_room(TO,"%^BOLD%^%^BLACK%^As if on cue, the Crypt Keeper's voice rings out again in your head:%^RESET%^"); break;
      case 1: tell_room(TO,"%^BOLD%^%^WHITE%^His booming voice surrounds you: %^RED%^YES, mortal, GIVE UP! Give your soul to ME!"); break;
      case 2: tell_room(TO,"%^BOLD%^%^BLACK%^His insane laughter shakes the walls, almost knocking you off your feet!%^RESET%^"); break;
 	 case 3: tell_room(TO,"%^BOLD%^%^WHITE%^He booms: %^BOLD%^%^RED%^Pitiful mortal, you cannot even find me, let alone KILL me! Your quest is HOPELESS!"); break;
