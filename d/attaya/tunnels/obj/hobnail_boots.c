@@ -12,16 +12,11 @@ string master;
 void create()
 {
   ::create();
-  set_obvious_short("%^RESET%^boots");
-  set_name("hobnail boots");
-  set_short("%^BOLD%^%^BLACK%^c%^RESET%^i%^BOLD%^%^BLACK%^rcl%^RESET%^e"
-           +"%^BOLD%^%^BLACK%^t %^RESET%^of %^CYAN%^c%^RESET%^o%^CYAN%^"
-           +"ntr%^RESET%^o%^CYAN%^l%^RESET%^");
-  set_id(({"circlet","gray circlet","dull circlet","dull gray circlet"}));
-  set_long("A circlet of dull gray metal. It is designed to curve around"
-          +" the wearer's head. The band swells and tapers in a curve. It"
-          +" is widest across the centre of the forehead and tapers"
-          +" somewhat over the temples.");
+  set_obvious_short("%^RESET%^^BOLD%^%^BLACK%^Shiny black boots%^RESET%^");
+  set_name("Hobnail boots");
+  set_short("%^BOLD%^%^BLACK%^Hobnail boots%^RESET%^");
+  set_id(({"boots","hobnail boots","devilkins boots","dancing boots","shiny boots"}));
+  set_long("%^BOLD%^%^BLACK%^Designed from a thick, shiny brand of leather, these durable boots are designed to be worn just over the ankles. %^RESET%^%^CRST%^%^C247%^Steel pieces %^CRST%^%^RESET%^%^BOLD%^%^BLACK%^line both the toes and heel for added protection. A line of short, %^WHITE%^sh%^RESET%^%^CRST%^%^C231%^i%^CRST%^%^BOLD%^%^WHITE%^ny nails %^BLACK%^shaped in a typical horseshoe pattern affixes the soles to the boot itself, creating a tapping sound while moving.%^RESET%^");
   set_lore("");
   set_property("lore difficulty",14);
   set_weight(5);
