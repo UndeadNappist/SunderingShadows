@@ -12,7 +12,7 @@ string master;
 void create()
 {
   ::create();
-  set_obvious_short("%^RESET%^^BOLD%^%^BLACK%^Shiny black boots%^RESET%^");
+  set_obvious_short("%^RESET%^%^BOLD%^%^BLACK%^Shiny black boots%^RESET%^");
   set_name("Hobnail boots");
   set_short("%^BOLD%^%^BLACK%^Hobnail boots%^RESET%^");
   set_id(({"boots","hobnail boots","devilkins boots","dancing boots","shiny boots"}));
