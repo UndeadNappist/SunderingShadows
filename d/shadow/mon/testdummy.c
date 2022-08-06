@@ -18,6 +18,7 @@ void create(){
     set_mlevel("fighter", 1);
     set_hp(10000000);
     set_property("no death", 1);
+    set_property("no bows", 1);
     set_func_chance(100);
     set_funcs(({ "round_cleanup" }));
 }
