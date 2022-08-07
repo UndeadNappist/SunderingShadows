@@ -167,6 +167,7 @@ void create()
     set_items(([ ({ "treasure", "treasures", "the treasures", "at the treasures", "hoard" }) : (: TO, "treasure_desc" :)]));
     set_smell("default", "There's nothing to smell here but dust");
     set_listen("default", "This place is quiet as a tomb");
+    set_property("no teleport", 1);
     set_exits((["west" : ROOMS + "processional"]));
     reset_count = 0;
     when_opened = 0;
