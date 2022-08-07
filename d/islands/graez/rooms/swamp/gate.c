@@ -38,10 +38,5 @@ int slide_func(string str,object who){
    TP->move_player(SWAM"9.c");
    return 1;
 }
-void reset(){
-   ::reset();
-   if(!present("gate")){
-      new(OBJ"archway.c")->move(TO);
-   }
-}
+
 

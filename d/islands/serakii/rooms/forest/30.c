@@ -19,10 +19,4 @@ set_exits(([
 
 }
 
-void reset(){
-   ::reset();
-   if(!present("chunk")){
-      new(OBJ"druid_chunk.c")->move(TO);
-   }
-}
 
