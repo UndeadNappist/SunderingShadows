@@ -51,8 +51,7 @@ Available codes:
   %^MAGENTA%^$_TP%^WHITE%^ thirst percent
   %^MAGENTA%^$s%^WHITE%^ stamina percent
   %^MAGENTA%^$S%^WHITE%^ stamina string
-  %^MAGENTA%^$x%^WHITE%^ encumbrance level
-  %^MAGENTA%^$X%^WHITE%^ maximum encumbrance level
+  %^MAGENTA%^$x%^WHITE%^ approximate encumbrance level
   %^MAGENTA%^$T%^WHITE%^ time of day (word)
   %^MAGENTA%^$t%^WHITE%^ time of day (clock)
   %^MAGENTA%^$_LL%^WHITE%^ light level

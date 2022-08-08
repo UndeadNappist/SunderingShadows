@@ -240,8 +240,7 @@ string write_prompt()
         prompt = replace_string(prompt, "$s", ""+this_object()->query_condition_percent());
         prompt = replace_string(prompt, "$S", ""+this_object()->query_condition_string());
         prompt = replace_string(prompt, "$W", ""+this_object()->query_wimpy()+"%");
-        prompt = replace_string(prompt, "$x", ""+this_player()->query_internal_encumbrance());
-        prompt = replace_string(prompt, "$X", ""+this_player()->query_max_internal_encumbrance());
+        prompt = replace_string(prompt, "$x", ""+encumbrance2str(this_player()));
         prompt = replace_string(prompt, "$i", ""+hunger2str(this_player()));
         prompt = replace_string(prompt, "$_HP", ""+hunger_percent(this_player()));
         prompt = replace_string(prompt, "$o", ""+thirst2str(this_player()));
@@ -392,6 +391,37 @@ string bloodlust2string(object obj)
     max = 20000;
     hunger = obj->query_bloodlust();
     return ""+hunger/200;
+}
+
+string encumbrance2str(object player) {
+    int max = player->query_max_internal_encumbrance();
+    int cur = player->query_internal_encumbrance();
+    int perc = cur*100/max;
+    string enc = "";
+
+    if(perc >= 10 && perc <= 90) {
+        perc = random(1) ? (perc + random(6)) : (perc - random(6));
+    }
+
+    switch(perc) {
+        case 0..25:
+            enc = "Unburdened";
+            break;
+        case 26..50:
+            enc = "Lightly Burdened";
+            break;
+        case 51..75:
+            enc = "Moderately Burdened";
+            break;
+        case 76..100:
+            enc = "Heavily Burdened";
+            break;
+        default:
+            enc = "Overburdened";
+            break;
+    }
+
+    return enc;
 }
 
 string hunger2str(object player)
