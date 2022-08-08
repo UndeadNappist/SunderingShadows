@@ -57,7 +57,7 @@ void set_extra_items()
         ob->move(TO);
     }
 
-    if(TO->is_class("mage") || TO->is_class("psion"))
+    /*if(TO->is_class("mage") || TO->is_class("psion"))
     {
         num = (int)TO->query_level();
         if(TO->is_class("mage"))
@@ -89,7 +89,7 @@ void set_extra_items()
                 ob->remote_set_comp(comps[i],roll_dice(1,num));
             }
         }
-    }
+    }*/
     return;
 }
 
