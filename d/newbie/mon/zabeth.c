@@ -31,7 +31,7 @@ int __Buy_here(mixed str){
    int pgold,cost, success;
 
    if(!str) return notify_fail("%^BOLD%^Syntax: buy <itemname> or <itemnumber>\n");
-   if(!TP->is_class("mage") && !TP->is_class("bard") && !TP->is_class("sorcerer") )
+   if(!TP->is_class("mage"))
       return notify_fail("Sorry, I sell nothing to non-magi such as yourself.");
    if(member_array(str,({"book","spellbook","spell book"})) != -1){
       if(!TP->query_funds("gold",100)){

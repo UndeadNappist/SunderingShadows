@@ -57,7 +57,7 @@ void create() {
 }
 
 int __Pickup(string str){
-        if(TP->is_class("mage") || TP->is_class("bard") || avatarp(TP))
+        if(TP->is_class("mage") || avatarp(TP))
                 return ::__Pickup(str);
         else {
         tell_object(TP, "Greshk snorts: You?  Hahaha, you're not "+
@@ -67,7 +67,7 @@ int __Pickup(string str){
 }
 
 int __Buy(string str){
-        if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP))
+        if(TP->is_class("mage") || avatarp(TP))
                 return ::__Buy(str);
         else {
         tell_object(TP, "Greshk snorts: You?  Hahaha, "+
@@ -77,7 +77,7 @@ int __Buy(string str){
 }
 
 int __List(string str){
-        if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP))
+        if(TP->is_class("mage") || avatarp(TP))
                 return ::__List(str);
         else {
         tell_object(TP, "Greshk snorts: You?  Hahaha, "+
@@ -87,7 +87,7 @@ int __List(string str){
 }
 
 int __Sell(string str){
-        if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP))
+        if(TP->is_class("mage") || avatarp(TP))
                 return ::__Sell(str);
         else {
         tell_object(TP, "Greshk snorts: You?  Hahaha, "+
@@ -97,7 +97,7 @@ int __Sell(string str){
 }
 
 int __Help(string str){
-        if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP))
+        if(TP->is_class("mage") || avatarp(TP))
                 return ::__Help(str);
         else {
         tell_object(TP, "Greshk snorts: You?  "+

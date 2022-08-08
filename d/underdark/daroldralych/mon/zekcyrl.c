@@ -102,21 +102,21 @@ int __Pickup(string str){
 }
 
 int __Buy(string str){
-        if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP)) return ::__Buy(str);
+        if(TP->is_class("mage") || avatarp(TP)) return ::__Buy(str);
         tell_room(ETO,"Zek'cyrl sneers: You?  Begone, you're not worthy of one of these.");
 }
 
 int __List(string str){
-        if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP)) return ::__List(str);
+        if(TP->is_class("mage") || avatarp(TP)) return ::__List(str);
         tell_room(ETO,"Zek'cyrl sneers: You?  Begone, you're not worthy of one of these.");
 }
 
 int __Sell(string str){
-        if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP)) return ::__Sell(str);
+        if(TP->is_class("mage") || avatarp(TP)) return ::__Sell(str);
         tell_room(ETO,"Zek'cyrl sneers: You?  Begone, you're not worthy of one of these.");
 }
 
 int __Help(string str){
-        if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP)) return ::__Help(str);
+        if(TP->is_class("mage") || avatarp(TP)) return ::__Help(str);
         tell_room(ETO,"Zek'cyrl sneers: You?  Begone, you're not worthy of one of these.");
 }

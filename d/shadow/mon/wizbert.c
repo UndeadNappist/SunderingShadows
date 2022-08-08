@@ -75,7 +75,7 @@ spell selling gnome in Shadow's tower of the magi.");
 }
 
 int __Pickup(string str){
-    if(TP->is_class("mage") || TP->is_class("bard") || avatarp(TP)) return
+    if(TP->is_class("mage") || avatarp(TP)) return
 ::__Pickup(str);
     else {
       tell_object(TP, "Wizbert says: You?  Hahaha, you're not worthy of one
@@ -85,7 +85,7 @@ of these.");
 }
 
 int __Buy(string str){
-    if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP)) return
+    if(TP->is_class("mage") || avatarp(TP)) return
 ::__Buy(str);
     else {
       tell_object(TP, "Wizbert says: You?  Hahaha, you're not worthy of one
@@ -95,7 +95,7 @@ of these.");
 }
 
 int __List(string str){ 
-    if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP)) return
+    if(TP->is_class("mage") || avatarp(TP)) return
 ::__List(str);
     else {
       tell_object(TP, "Wizbert says: You?  Hahaha, you're not worthy of one
@@ -105,7 +105,7 @@ of these.");
 }
 
 int __Sell(string str){
-    if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP)) return
+    if(TP->is_class("mage") || avatarp(TP)) return
 ::__Sell(str);
     else {
       tell_object(TP, "Wizbert says: You?  Hahaha, you're not worthy of one
@@ -115,7 +115,7 @@ of these.");
 }
 
 int __Help(string str){
-    if(TP->is_class("mage") || TP->is_class("bard") || TP->is_class("sorcerer") || avatarp(TP)) return
+    if(TP->is_class("mage") || avatarp(TP)) return
 ::__Help(str);
     else {
       tell_object(TP, "Wizbert says: You?  Hahaha, you're not worthy of one
