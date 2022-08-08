@@ -51,7 +51,7 @@ spell_effect()
     target->set_property("shielded_by", caster);
 
     target->set_property("spelled", ({ TO }));
-    spell_duration = (clevel * 5 + roll_dice(1, 20)) * ROUND_LENGTH;
+    spell_duration = (clevel * 3 + roll_dice(1, 20)) * ROUND_LENGTH;
     set_end_time();
     call_out("dest_effect", spell_duration);
     addSpellToCaster();
