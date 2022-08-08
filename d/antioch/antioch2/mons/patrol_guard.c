@@ -149,7 +149,7 @@ void blow_horn(object ob) {
     horn = 1;
 }
 
-void init()
+/*void init()
 {
    ::init();
    if(present("silver robe",ETO) || present("silver belt",ETO) ||
@@ -157,7 +157,7 @@ present("silver shield",ETO) || present("silvered helm",ETO) ||
 present("light chain",ETO) || present("silver sword",ETO)) {
       force_me("get all");
    }
-}
+}*/
 
 int isWatch() {
     return 1;

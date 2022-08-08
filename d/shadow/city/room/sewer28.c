@@ -45,9 +45,11 @@ void init() {
 }
 
 int climb(string str){
-  	if(str == "hole" || str == "through hole"){
+  	if(str != "hole" && str != "through hole") return 0;
+    
 	tell_object(TP,"%^RESET%^%^ORANGE%^You manage to climb over the broken bricks and into a narrow dirt tunnel.%^RESET%^\n");
 	tell_room(ETP,"%^RESET%^%^ORANGE%^"+TPQCN+" climbs over the broken bricks, disappearing to the other side of the wall.%^RESET%^",TP);
 	TP->move_player(ROOMS"dirttunnel18");
-	}
+    return 1;
 }
+

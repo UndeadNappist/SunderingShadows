@@ -91,7 +91,7 @@ void create() {
 
 void agg_func() {
     if (TP->query_invis()) {return;}
-        new("/cmds/spells/s/_sticks_into_snakes.c")->use_spell(TO,TO,17,100,"cleric");
+    //new("/cmds/spells/s/_sticks_into_snakes.c")->use_spell(TO,TO,17,100,"cleric");
     force_me("emoteat "+TPQN+ " %^BLACK%^%^BOLD%^With an evil glint in $M's"+
 " eyes, $M rushes $N.%^RESET%^");
     force_me("kill "+TP->query_name());
