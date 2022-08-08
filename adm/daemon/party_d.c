@@ -211,7 +211,8 @@ int calculate_exp(string group, int exp, object ob)
         return exp;
     }
     
-    my_party = filter_array(party[group], (: objectp(environment($1)) && objectp(environment($2)) && environment($1) == environment($2) :), previous_object());
+    my_party = filter_array(party[group], (: userp($1) && objectp(environment($1)) :));
+    my_party = filter_array(party[group], (: environment($1) == environment($2) :), previous_object());
     party_size = sizeof(my_party);
     
     if(party_size <= 1)
