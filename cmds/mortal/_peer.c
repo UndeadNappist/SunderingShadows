@@ -188,11 +188,10 @@ int do_lp(string str)
         message("Nliving_item", (string)dest->describe_living_contents(({})), this_player());
         message("Ninanimate_item", (string)dest->describe_item_contents(({})), this_player());
     }
-
-    if(!this_player()->query_invis() && !this_player()->query_hidden()) {
-        message("other_action", this_player()->query_cap_name()+" peers "+dirlist[i]+".", current, ({this_player()}));
-    }
-
+/*
+    message("other_action", this_player()->query_cap_name()+
+      " peers "+dirlist[i]+".", current, ({this_player()}));
+*/
     current = dest;
     return 1;
 }
