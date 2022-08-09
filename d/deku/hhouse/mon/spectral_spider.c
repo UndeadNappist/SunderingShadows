@@ -23,7 +23,7 @@ void create()
     "visible on its body, leaking much of its insides onto the floor "+
     "beneath its eight legs. Most of its appendages, including its "+
     "head look as if they have half rotted away, with sections of "+
-    "cuticle missing from its exoskeleton. The eys of this "+
+    "cuticle missing from its exoskeleton. The eyes of this "+
     "creature are a %^BOLD%^%^RED%^deep red%^BOLD%^%^WHITE%^ "+
     "and they, unfortunately, portray a measure of intelligence."+
     "%^RESET%^");
