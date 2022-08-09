@@ -92,7 +92,7 @@ int berserk(object target){
 	force_me("say %^BOLD%^%^BLACK%^Meat is here guys ... %^RED%^Kill the Meat!%^RESET%^");
      tell_room(ETO,"%^RED%^The BloodFang goes into berserk!%^RESET%^\n");
 	force_me("kill "+TP->query_name());
-	new("/cmds/spells/b/_berserker")->use_spell(TO,"bloodfang",45,100,"cleric");
+	new("/cmds/spells/r/_rage")->use_spell(this_object(), 0, 45, 100, "cleric");
 	return 1;
 	
 	
