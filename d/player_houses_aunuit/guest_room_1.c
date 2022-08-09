@@ -1,0 +1,49 @@
+//Maenoh and Balur's House (previously House Rilynath)
+//Replacing Guest Room 1, updated 08/02/22
+
+#include <std.h>
+#include <player_housing.h>
+#include <daemons.h>
+#include "aunuit.h"
+
+inherit VAULT;
+
+void create(){
+   ::create();
+   set_name("Within the Web");
+   set_travel(PAVED_ROAD);
+   set_terrain(BUILT_TUNNEL);
+   set_light(1);
+   set_indoors(1);
+   set_short("%^CRST%^%^RESET%^%^C231%^W%^C230%^i%^C231%^t%^C195%^h%^C231%^i%^RESET%^%^C189%^n %^C231%^t%^C225%^h%^C231%^e %^C255%^W%^C194%^e%^RESET%^%^C231%^b%^CRST%^");
+   set_long("%^CRST%^%^RESET%^%^C231%^L%^C230%^u%^C231%^m%^C189%^i%^C231%^n%^C159%^e%^C231%^s%^RESET%^%^C122%^c%^C231%^e%^C194%^n%^C231%^t %^C195%^s%^C231%^i%^C123%^l%^C231%^v%^C159%^e%^RESET%^%^C231%^r %^C159%^s%^C231%^t%^C255%^r%^C231%^a%^C230%^n%^C231%^d%^C189%^s %^RESET%^%^C231%^surround you on all sides forming a large room from t%^C189%^h%^C231%^i%^C195%^c%^C231%^k %^C225%^w%^C231%^e%^C159%^b%^C231%^b%^C122%^i%^C231%^n%^RESET%^%^C153%^g%^RESET%^%^C231%^, beyond which can be seen a vast network of %^RESET%^%^C189%^e%^C231%^p%^C255%^h%^C231%^e%^C195%^m%^C231%^e%^C159%^r%^C231%^a%^C225%^l %^C231%^g%^C230%^o%^C231%^s%^C189%^s%^C231%^a%^C158%^m%^C231%^e%^RESET%^%^C123%^r %^C231%^suspended within the %^C240%^darkness%^C231%^. The ground beneath your feet is formed from the same s%^C230%^h%^C231%^i%^C159%^m%^C231%^m%^C195%^e%^C231%^r%^C122%^i%^C231%^n%^C225%^g %^C231%^m%^C230%^a%^C231%^t%^C189%^e%^C231%^r%^C255%^i%^C231%^a%^C195%^l%^RESET%^%^C231%^, allowing for a slight give with each step and with enough grip and width to each s%^C230%^t%^C189%^r%^C231%^a%^C122%^n%^RESET%^%^C231%^d that you feel secure enough to walk across the %^C189%^e%^C231%^x%^C195%^p%^C231%^a%^C159%^n%^C231%^s%^C225%^i%^C231%^v%^C122%^e %^C231%^m%^C153%^e%^C231%^s%^C255%^h%^RESET%^%^C231%^. A large %^C255%^c%^C231%^o%^C230%^c%^C189%^o%^C231%^o%^C195%^n %^RESET%^%^C231%^dominates the center of this space; layers of g%^C189%^a%^C231%^u%^C195%^z%^C231%^y %^C230%^w%^C231%^e%^C194%^b %^RESET%^%^C231%^descending from above to %^C250%^shroud %^C231%^it in a %^C244%^g%^C246%^h%^C248%^o%^C250%^s%^C248%^t%^C246%^l%^C244%^y h%^C246%^a%^C248%^z%^C244%^e%^RESET%^%^C231%^. Crawling across the outside surface of the s%^C189%^i%^C231%^l%^C195%^k%^C231%^e%^C122%^n %^C231%^w%^C230%^a%^C231%^l%^C225%^l%^RESET%^%^C231%^s and c%^C189%^e%^C231%^i%^C230%^l%^C231%^i%^C195%^n%^RESET%^%^C231%^g are tiny %^C189%^c%^C231%^r%^C230%^y%^C225%^s%^C231%^t%^C255%^a%^C231%^l%^C159%^l%^C231%^i%^C195%^n%^C231%^e %^C122%^s%^C231%^p%^C153%^i%^C231%^d%^C189%^e%^C231%^r%^RESET%^%^C123%^s %^C231%^that %^C087%^glow %^RESET%^%^C231%^with a %^C051%^c%^C087%^o%^C123%^o%^C087%^l %^C051%^a%^C087%^z%^C123%^u%^C159%^r%^C123%^e %^C087%^l%^C051%^i%^C087%^g%^C123%^h%^C087%^t%^RESET%^%^C231%^. The only exit is an ominous %^C240%^ebony door %^C231%^set within the w%^C189%^e%^RESET%^%^C231%^b.%^CRST%^\n");
+   set_listen("default","%^CRST%^%^RESET%^%^C231%^The t%^C189%^i%^C231%^n%^C230%^k%^C231%^l%^C159%^i%^C231%^n%^C225%^g %^RESET%^%^C231%^s%^C122%^o%^C231%^u%^C159%^n%^C231%^d of c%^C255%^r%^C231%^y%^C225%^s%^C231%^t%^C195%^a%^C231%^l%^RESET%^%^C159%^l%^C231%^i%^C158%^n%^C231%^e %^RESET%^%^C255%^s%^C189%^p%^C231%^i%^C230%^d%^C231%^e%^C195%^r%^RESET%^%^C231%^s %^C251%^s%^C249%^k%^C247%^i%^C245%^t%^C247%^t%^C249%^e%^C251%^r%^C249%^i%^C247%^n%^C245%^g %^RESET%^%^C231%^across the w%^C123%^e%^C231%^b%^RESET%^%^C230%^s %^RESET%^%^C231%^can be heard.%^CRST%^");
+   set_smell("default","%^CRST%^%^RESET%^%^C231%^A %^RESET%^%^C225%^faint %^RESET%^%^C197%^s%^C198%^w%^C199%^e%^C200%^e%^C201%^t %^RESET%^%^C165%^m%^C164%^u%^C163%^s%^C162%^k %^RESET%^%^C231%^hangs in the %^C123%^air %^RESET%^%^C231%^here.%^CRST%^");
+   set_items(([
+      ({"walls","web","webbing","wall"}) : "%^CRST%^%^RESET%^%^C231%^A thick network of g%^C189%^o%^C231%^s%^C195%^s%^C231%^a%^C230%^m%^C231%^e%^C159%^r %^RESET%^%^C231%^w%^C255%^e%^C231%^b%^C225%^b%^C231%^i%^C153%^n%^RESET%^%^C231%^g can be seen through the spaces between the s%^C189%^t%^C231%^r%^C195%^a%^C231%^n%^C158%^d%^RESET%^%^C231%^s extending into the %^C240%^infinite darkness %^RESET%^%^C231%^beyond. Further out along the l%^C189%^i%^C231%^n%^C195%^e%^RESET%^%^C231%^s can be seen %^C250%^humanoid-shaped husks%^C231%^, bound in c%^RESET%^%^C189%^o%^C231%^c%^C153%^o%^C231%^o%^C230%^n%^RESET%^%^C231%^s and c%^C123%^r%^C231%^a%^C189%^w%^C231%^l%^C230%^i%^C231%^n%^C195%^g %^RESET%^%^C231%^with c%^C230%^r%^C231%^y%^C189%^s%^C231%^t%^C195%^a%^C231%^l%^C123%^l%^C231%^i%^C225%^n%^C231%^e %^RESET%^%^C159%^s%^C231%^p%^C158%^i%^C231%^d%^C189%^e%^C231%^r%^C230%^s %^RESET%^%^C231%^that %^C088%^f%^C124%^e%^C160%^a%^C124%^s%^C088%^t%^RESET%^%^C231%^ on what remains.%^CRST%^",
+      "spiders" : "%^CRST%^%^RESET%^%^C231%^Tiny %^RESET%^%^C051%^c%^C087%^r%^C123%^y%^C159%^s%^C123%^t%^C087%^a%^C051%^l%^C087%^l%^C123%^i%^C159%^n%^C123%^e %^C087%^s%^RESET%^%^C051%^p%^C087%^i%^C123%^d%^C159%^e%^C123%^r%^C087%^s %^RESET%^%^C251%^s%^C249%^k%^C247%^i%^C245%^t%^C247%^t%^C249%^e%^C251%^r %^RESET%^%^C231%^across the %^C255%^w%^C231%^e%^C230%^b%^C231%^s all around you, their %^C051%^a%^C087%^z%^C123%^u%^C159%^r%^C123%^e %^RESET%^%^C087%^c%^C051%^a%^C087%^r%^C123%^a%^C159%^p%^C123%^a%^C195%^c%^C087%^e%^C051%^s %^RESET%^%^C123%^glowing %^C231%^with a %^C087%^s%^C123%^o%^C159%^f%^C195%^t %^RESET%^%^C159%^l%^C123%^i%^C087%^g%^C123%^h%^C159%^%^RESET%^%^C231%^. Their tiny %^C159%^fangs %^C087%^g%^C123%^l%^C159%^i%^C195%^s%^C231%^t%^C123%^e%^C087%^n %^RESET%^%^C231%^with %^C255%^venom %^C231%^as they gnash %^C088%^h%^C124%^u%^C160%^n%^C124%^g%^C088%^r%^C124%^i%^C160%^l%^C124%^y%^RESET%^%^C231%^, their many %^C088%^e%^C124%^y%^C160%^e%^C088%^s %^RESET%^%^C231%^always watching you. Despite the spaces between the s%^C230%^t%^C231%^r%^C189%^a%^C231%^n%^C159%^d%^RESET%^%^C231%^s being large enough for them to easily slip through, %^RESET%^%^C244%^something %^C231%^seems to be dissuading them from entering...%^CRST%^",
+      "coccoon" : "%^CRST%^%^RESET%^%^C231%^Suspended from the ceiling, this massive c%^C230%^o%^C231%^c%^C189%^o%^C231%^o%^C159%^n %^RESET%^%^C231%^is split down the middle revealing a %^C255%^s%^C231%^p%^C189%^a%^C231%^c%^C153%^i%^C231%^o%^C195%^u%^C231%^s %^C230%^i%^C231%^n%^C225%^t%^C231%^e%^C158%^r%^C231%^i%^C189%^o%^RESET%^%^C231%^r that could easily fit several full-sized adults. The %^C230%^l%^C231%^a%^C255%^y%^C231%^e%^C189%^r%^C231%^e%^C153%^d %^C231%^w%^C123%^e%^RESET%^%^C231%^b within is %^C159%^soft %^C231%^and %^C189%^pliant%^RESET%^%^C231%^, as c%^C189%^o%^C231%^m%^C123%^f%^C231%^o%^C255%^r%^C231%^t%^C153%^a%^C231%^b%^C230%^l%^RESET%^%^C231%^e as any bed you could find. The whole thing is surrounded by curtains of g%^C255%^a%^C231%^u%^C195%^z%^C231%^y %^C230%^w%^C231%^e%^C225%^b %^C231%^that keep the interior %^RESET%^%^C210%^w%^C216%^a%^C217%^r%^C210%^m%^RESET%^%^C231%^.%^CRST%^"
+   ]));
+   set_exits(([
+      "south" : ROOMS"west_wing"
+   ]));
+   set_door("ebony door","/d/player_houses/aunuit/west_wing","south",0);
+   set_door_description("ebony door","%^CRST%^%^RESET%^%^C244%^This ominous %^C240%^ebony door %^C244%^bears intricate c%^C246%^a%^C248%^r%^C250%^v%^C248%^i%^C246%^n%^C244%^g%^RESET%^%^C246%^s of a %^RESET%^%^C231%^v%^C189%^a%^C231%^s%^C195%^t %^C231%^w%^C230%^e%^RESET%^%^C231%^b%^C244%^, populated by hundreds of tiny %^C051%^a%^C087%^z%^C123%^u%^C159%^r%^C123%^e%^RESET%^%^C244%^-%^C051%^g%^C087%^e%^C123%^m%^C159%^s%^C123%^t%^C087%^o%^C051%^n%^C087%^e %^C123%^s%^C159%^p%^C195%^i%^C159%^d%^C123%^e%^C087%^r%^C051%^s%^RESET%^%^C244%^. At the apex of the %^C231%^w%^C189%^e%^C231%^b%^C159%^b%^C231%^i%^C230%^n%^C231%^g%^RESET%^%^C244%^, a massive %^C240%^spider %^C244%^sits, its eight %^RESET%^%^C088%^r%^C124%^u%^C160%^b%^C088%^y e%^RESET%^%^C124%^y%^C160%^e%^C088%^s %^RESET%^%^C244%^staring down at you as it devours a tiny humanoid figure. The door has a small, spider-shaped %^C240%^iron knob%^RESET%^%^C244%^.%^CRST%^");
+   set_property("teleport proof", TPWARD_LEGENDARY);
+   set_property("scry proof", SCRYWARD_LEGENDARY);
+}  
+
+void reset(){
+    ::reset();
+   switch(random(3)){
+        case 0 : 
+            tell_room(TO,"%^CRST%^%^RESET%^%^C231%^The w%^C189%^e%^C231%^b%^C159%^b%^C231%^e%^C153%^d %^RESET%^%^C231%^room briefly s%^C189%^h%^C231%^a%^C230%^k%^C231%^e%^C195%^s %^C231%^as %^C244%^something %^C231%^massive moves along the outside of it, casting %^C244%^e%^C246%^e%^C248%^r%^C244%^i%^C246%^e %^C248%^s%^C244%^h%^C246%^a%^C248%^d%^C244%^o%^C246%^w%^C248%^s%^RESET%^%^C231%^ through the %^C244%^gaps %^C231%^in the %^g%^C195%^o%^C231%^s%^C159%^s%^C231%^a%^C255%^m%^C231%^e%^C123%^r %^RESET%^%^C231%^s%^C189%^t%^C231%^r%^C153%^a%^C231%^n%^C225%^d%^C231%^s.%^CRST%^");
+            break;
+        case 1 : 
+            tell_room(TO,"%^CRST%^%^RESET%^%^C231%^One of the %^RESET%^%^C051%^c%^C087%^r%^C123%^y%^C159%^s%^C123%^t%^C087%^a%^C051%^l%^C087%^l%^C123%^i%^C159%^n%^C123%^e %^RESET%^%^C231%^s%^RESET%^%^C051%^p%^C087%^i%^C123%^d%^C159%^e%^C123%^r%^C087%^s %^RESET%^%^C231%^peeks in through the %^C195%^w%^C231%^e%^C189%^b%^C231%^b%^C230%^i%^C231%^n%^C123%^g%^RESET%^%^C231%^.%^CRST%^");
+            break;
+        default : 
+            tell_room(TO,"%^CRST%^%^RESET%^%^C231%^You hear the %^RESET%^%^C087%^t%^C123%^i%^C159%^n%^C195%^k%^C159%^l%^C123%^i%^C087%^n%^C123%^g %^RESET%^%^C159%^w%^C195%^h%^C159%^i%^C123%^s%^C087%^p%^C123%^e%^C159%^r %^RESET%^%^C231%^of hundreds of %^RESET%^%^C051%^c%^C087%^r%^C123%^y%^C159%^s%^C123%^t%^C087%^a%^C051%^l%^C087%^l%^C123%^i%^C159%^n%^C123%^e %^C087%^l%^C051%^e%^C087%^g%^C123%^s%^RESET%^%^C231%^ traveling over the outside of the silken %^C230%^w%^C231%^e%^C189%^b%^C231%^b%^C159%^i%^C231%^n%^C153%^g%^RESET%^%^C231%^.%^CRST%^");
+            break;
+    }
+}
