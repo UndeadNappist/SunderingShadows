@@ -5552,6 +5552,7 @@ int test_passive_perception()
         ishidden = targ->query_hidden();
         ismagic = targ->query_magic_hidden();
         stealth = (int)targ->query_skill("stealth");
+        stealth += (int)targ->query_property("chameleoned");
         spellcraft = (int)targ->query_skill("spellcraft");
         if (FEATS_D->usable_feat(player, "spot")) {
             if (ishidden == 1 && ismagic == 0) {
