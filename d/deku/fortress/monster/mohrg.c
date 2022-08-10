@@ -74,6 +74,7 @@ void make_me(int i)
 void create() 
 {
     ::create();
+    set_name("mohrg");
     set_race("mohrg");
     set_gender("neuter");
     set_body_type("human");

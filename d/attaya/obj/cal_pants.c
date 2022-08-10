@@ -86,7 +86,7 @@ int wearme(){
    tell_object(ETO,"%^BOLD%^%^MAGENTA%^You slip into the tight "+
       "leather pants and notice how nice your legs look.");
    tell_room(EETO,"%^BOLD%^%^MAGENTA%^"+ETOQCN+" slips into the "+
-      "tight leather pants, drawing your eyes briefly to "+ETO->QP"+ shapely "+
+      "tight leather pants, drawing your eyes briefly to "+ETO->QP+" shapely "+
       "legs.",ETO);
    return 1;
 }

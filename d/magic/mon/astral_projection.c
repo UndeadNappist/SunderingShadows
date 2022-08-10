@@ -118,14 +118,15 @@ void setup_servant(object caster, int clevel)
     set_skill("perception", clevel);
 
     {
-        string deity = caster->query_diety();
+        string normalizedDeity = "generic";
+        /*string deity = caster->query_diety();
         string normalizedDeity;
         object wpn;
         int ench;
 
         normalizedDeity = replace_string(deity, " ", "_");
         if (deity == "godless")
-            normalizedDeity = "kismet";
+            normalizedDeity = "kismet";*/
 
         wpn = new("/d/magic/obj/weapons/" + normalizedDeity + "");
         ench = clevel / 7;
