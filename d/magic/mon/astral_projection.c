@@ -119,6 +119,8 @@ void setup_servant(object caster, int clevel)
 
     {
         string normalizedDeity = "generic";
+        object wpn;
+        int ench;
         /*string deity = caster->query_diety();
         string normalizedDeity;
         object wpn;
