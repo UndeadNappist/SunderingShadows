@@ -203,6 +203,8 @@ void generate_recruit_pool(int force_flag)
         return;
     }
 
+    recruit_pool = ([0: ([]), 1: ([]), 2: ([])]);
+
     for (i = 0; i < 3; ++i)
     {
         for (j = 0; j < (3 + influence / 20); ++j)
