@@ -51,6 +51,7 @@ void spell_effect(int prof)
          ob->force_me("protect "+caster->query_name());
          ob->force_me("protect "+caster->query_name());
          caster->add_follower(ob);
+         ob->set_property("minion", caster);
          ob->set_property("spelled", ({TO}) );
          ob->set_property("spell_creature", TO);
          ob->set_property("spell", TO);

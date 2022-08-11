@@ -274,6 +274,7 @@ void geon(){
    ob->move(EETO);
    ETO->add_follower(ob);
    ETO->add_protector(ob);
+   ob->set_property("minion", ETO);
    ob->set_property("spelled", ({TO}) );
    ob->set_property("spell_creature", TO);
    ob->set_property("spell", TO);
