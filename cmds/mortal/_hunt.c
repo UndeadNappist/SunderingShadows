@@ -219,7 +219,7 @@ int pick_mons(object who, int diff) {
        break;
     case 2 :	// meadows, garden, grassland, cemetery
 	list1 = ({"squirrel", "rabbit", "rabbit", "fowl", "fowl", "badger", "groundhog", "prairie dog" });
-	list2 = ({"fox", "fox", "weasel", "deer", "deer", "bison", "antelope", "coyotte" });
+	list2 = ({"fox", "fox", "weasel", "deer", "deer", "bison", "antelope", "coyote" });
 	break;
     case 3 :	// mountains
         list1 = ({"mountain goat", "weasel", "rabbit", "fowl", "fowl" }); 

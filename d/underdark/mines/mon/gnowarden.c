@@ -211,7 +211,7 @@ void init(){
    if(TP->query_invis()) return;
    if(mrace == "kobold" || mrace == "drow" || mrace == "goblin" || mrace == "ogre" || mrace == "hook horror" || mrace == "orc" || mrace == "hobgoblin" || mrace == "bugbear" || mrace == "gnoll" || mrace == "ogre" || mrace == "half-ogre" || mrace == "ogre-mage" || mrace == "half-drow"){
       command ("kill "+TPQN);
-   new("/cmds/spells/w/_warriors_constitution.c")->use_spell(TO,TO,29);
+   new("/cmds/spells/f/_false_life.c")->use_spell(TO,TO,29);
    new("/cmds/spells/s/_stoneskin.c")->use_spell(TO,TO,29);
    }
    if(present("bldscl",TP)){
