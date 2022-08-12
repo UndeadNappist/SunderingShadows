@@ -18,10 +18,7 @@ void create() {
     set_mystery("nature");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS liveoak");
-    set_description("Upon casting this spell, the druid calls upon her connection with nature to bring forth the magic inherent in an acorn. The druid tosses the acorn to the ground, where it sprouts into a mighty treant to protect her.
-
-To command the treant, simply: <command treant to action>.
-If the treant lost you and you wish for it to follow you again: <command treant to follow>");
+    set_description("Upon casting this spell, the druid calls upon her connection with nature to bring forth the magic inherent in an acorn. The druid tosses the acorn to the ground, where it sprouts into a mighty treant to protect her.\n\nTo command the treant, simply: <command treant to action>.\nIf the treant lost you and you wish for it to follow you again: <command treant to follow>");
     set_verbal_comp();
     set_somatic_comp();
 }
@@ -34,6 +31,10 @@ string query_cast_string() {
 int preSpell() {
     if (present("ctreedevicex999",caster)) {
         tell_object(caster,"You can only control one treant at a time!\n");
+        return 0;
+    }
+    if(caster->query_property("has_elemental") || caster->query_property("mages_sword")){
+        tell_object(caster,"You already have a powerful summoned creature under your control.");
         return 0;
     }
     return 1;
@@ -52,6 +53,7 @@ void spell_effect(int prof) {
               "stirs "+caster->QP+" hair as "+caster->QS+" begins to whisper.%^RESET%^", caster);
     tell_object(caster,"%^RESET%^%^ORANGE%^With your eyes firmly closed, you begin "+
                 "to whisper an incantation, calling forth the magic in the acorn.%^RESET%^");
+    caster->set_property("has_elemental", 1);
     call_out("next_step",10);
 }
 
@@ -128,7 +130,8 @@ void dest_effect() {
         tree->move("/d/shadowgate/void");
         tree->remove();
     }
-
+    
+    caster->remove_property("has_elemental");
     if(objectp(device))
         device->remove();
     ::dest_effect();

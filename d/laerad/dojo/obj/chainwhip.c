@@ -103,7 +103,7 @@ int hit_fun(object targ) {
            tell_object(targ,"%^BOLD%^%^RED%^The whip bites into you!%^RESET%^");
            break;
          }
-         targ->do_damage(targ->return_target_limb(),roll_dice(3,4));
+         targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(3, 4), "slashing"); 
        }
        break;
 
