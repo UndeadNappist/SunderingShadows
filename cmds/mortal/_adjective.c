@@ -55,6 +55,8 @@ This command sets short description or your character, a phrase that precedes yo
 
 You are required to use automatic racial substitutions %^CYAN%^$R%^RESET%^, for your race, or %^CYAN%^$SR%^RESET%^ in the adjective. If you won't, %^CYAN%^$R%^RESET%^ will be appended to the end of your description.
 
+The base race listed in your adjective should not be modified in a way that obfuscates the proper identifier that would be used to look at or target you. Things such as humanoid for human or demonic for demon should not be used.
+
 In addition to that, you can use %^CYAN%^$G%^RESET%^ to put in your gender.
 
 Your adjective should be something appropriate that someone could tell almost immediately about your character. It should also be fairly short and succinct as well as stable over reasonable periods of time.
