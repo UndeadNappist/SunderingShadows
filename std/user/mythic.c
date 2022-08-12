@@ -7,11 +7,18 @@
 */
 
 mapping mythic = ([ 
-                    "soul power" : 0,
+                    "planar power" : 0,
                     "path"  : 0,
                     "level" : 0,
                  ]);
                  
+
+void reset_mythic()
+{
+    mythic["planar power"] = 0;
+    mythic["path"] = 0;
+    mythic["level"] = 0;
+}
 
 int is_awakened()
 {
