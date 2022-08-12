@@ -83,7 +83,7 @@ void execute_feat()
     message("other spells", "%^C246%^" + caster->query_cap_name() + " attempts to perform a dirty trick on you.%^CRST%^", target);
     message("other spells", "%^C246%^" + caster->query_cap_name() + " attempts to perform a dirty trick on " + target->query_cap_name() + ".%^CRST%^", place, ({ caster, target }));
     
-    caster->use_stamina(roll_dice(1, 6);
+    caster->use_stamina(roll_dice(1, 6));
     caster->set_property("using instant feat", 1);
     spell_kill(target, caster);
     return;
@@ -91,6 +91,9 @@ void execute_feat()
 
 void execute_attack()
 {
+    int bonus, effect, sickened;
+    string my_name, your_name;
+    
     if(!objectp(caster))
     {
         dest_effect();
@@ -105,4 +108,52 @@ void execute_attack()
         dest_effect();
         return;
     }
+    
+    caster->add_cooldown("dirty trick", COOLDOWN);
+    
+    bonus = FEATS_D->has_feat(target, "dirty trick") ? 0 : 2;
+    my_name = caster->query_cap_name();
+    your_name = target->query_cap_name();
+    
+    if(!BONUS_D->combat_maneuver(target, caster, bonus))
+    {
+        message("my spells", my_name + " avoids your dirty trick!", caster);
+        message("other spells", "You avoid the dirty trick!", target);
+        dest_effect();
+        return;
+    }
+    
+    message("my spells", "You feel the impact as your dirty trick lands!", caster);
+    message("other spells", "You feel the impact as the dirty trick lands!", target);
+    message("other spells", my_name + " reels as the dirty trick lands!", place, ({ target, caster }));
+    
+    switch(roll_dice(1,3))
+    {
+        case 1:
+        target->set_temporary_blind(roll_dice(1,6));
+        message("my spells", "Your dirty trick blinds " + your_name + "!", caster);
+        message("other spells", "The dirty trick blinds you!", target);
+        break;
+        case 2:
+        target->set_tripped(roll_dice(1, 6));
+        message("my spells", "Your dirty trick trips " + your_name + "!", caster);
+        message("other spells", "The dirty trick trips you!", target);
+        break;
+        case 3:
+        if(!catch(sickened = load_object("/std/effect/status/sickened")))
+            sickened->apply_effect(target, roll_dice(1, 6), caster);
+        message("my spells", "Your dirty trick sickens " + your_name + "!", caster);
+        message("other spells", "The dirty trick sickens you!", target);
+        break;
+    }
+    
+    dest_effect();
+    return;
+}
+
+void dest_effect()
+{
+    ::dest_effect();
+    this_object() && remove_feat(this_object());
+    return;
 }
