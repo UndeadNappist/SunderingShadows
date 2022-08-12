@@ -50,7 +50,7 @@ void heart_beat()
     
     owner = this_object()->query_property("minion");
     
-    if(!objectp(owner))
+    if(!objectp(owner) || environment(this_object()) != environment(owner))
     {
         die();
         return;
