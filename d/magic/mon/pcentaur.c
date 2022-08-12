@@ -46,7 +46,7 @@ void heart_beat()
     
     ::heart_beat();
     
-    if(!environment(this_object()))
+    if(!objectp(this_object()) || !environment(this_object()))
         return;
     
     owner = this_object()->query_property("minion");
