@@ -130,19 +130,19 @@ void execute_attack()
     {
         case 1:
         target->set_temporary_blind(roll_dice(1,6));
-        message("my spells", "%^YELLOW%^Your dirty trick %^CYAN%^blinds%^YELLOW%^ " + your_name + "!", caster);
-        message("other spells", "%^YELLOW%^The dirty %^CYAN%^trick%^YELLOW%^ blinds you!%^RESET%^", target);
+        message("my spells", "%^YELLOW%^You grab a handful of dirt from the ground and toss it in " + your_name + "'s eyes!", caster);
+        message("other spells", "%^YELLOW%^" + my_name + " grabs a handful of dirt and tosses it in your eyes!%^RESET%^", target);
         break;
         case 2:
         target->set_tripped(roll_dice(1, 6));
-        message("my spells", "%^YELLOW%^Your dirty trick %^CYAN%^trips%^YELLOW%^ " + your_name + "!", caster);
-        message("other spells", "%^YELLOW%^The dirty trick %^CYAN%^trips%^YELLOW%^ you!", target);
+        message("my spells", "%^YELLOW%^You kick the back of " + your_name + "'s leg, knocking them down!%^RESET%^", caster);
+        message("other spells", "%^YELLOW%^" + my_name + " kicks the back of your leg, knocking you down!%^RESET%^", target);
         break;
         case 3:
         if(!catch(sickened = load_object("/std/effect/status/sickened")))
             sickened->apply_effect(target, roll_dice(1, 6), caster);
-        message("my spells", "%^YELLOW%^Your dirty trick %^CYAN%^sickens%^YELLOW%^ " + your_name + "!", caster);
-        message("other spells", "%^YELLOW%^The dirty trick %^CYAN%^sickens%^YELLOW%^ you!", target);
+        message("my spells", "%^YELLOW%^You sucker punch " + your_name + " in the gut!", caster);
+        message("other spells", "%^YELLOW%^" + my_name + " sucker punches you in the gut!", target);
         break;
     }
     
