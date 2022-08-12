@@ -43,5 +43,12 @@ mixed set_mythic(string str, mixed arg)
         return 0;
     
     return mythic[str] = arg;
-}   
+}
+
+int add_planar_power(int x)
+{
+    return mythic["planar power"] += x;
+}
+
+ 
     
