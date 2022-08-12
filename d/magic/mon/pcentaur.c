@@ -37,6 +37,7 @@ OLI
    set_size(1);
    set_overall_ac(0);
    set("magic",1);
+   set_property("no random treasure", 1);
    set_heart_beat(1);
 }
 
