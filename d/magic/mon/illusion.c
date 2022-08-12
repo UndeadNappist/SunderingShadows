@@ -21,6 +21,7 @@ void create(){
    set_weight(10000);
    set_attacks_num(1);
    set_size(1);
+   set_property("no random treasure", 1);
    set("magic",1);
 }
 
