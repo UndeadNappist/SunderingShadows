@@ -226,7 +226,7 @@ int step_9(string str) {
    TP->force_me("help feats");
    tell_object(TP,"\n\n%^RESET%^%^MAGENTA%^The elf continues:%^RESET%^ Ok.  These are the basic commands to "
 "use feats.  As it says, you can use %^YELLOW%^<feats list>%^RESET%^ to list what you have so far - if you try this "
-"later you will see that %^YELLOW%^"+tprof+" weapon profiencity%^RESET%^ is on your list.  Other weapon feats "
+"later you will see that %^YELLOW%^"+tprof+" weapon proficiency%^RESET%^ is on your list.  Other weapon feats "
 "will allow you to use other weapons effectively in combat, while other feats may give you other skills and "
 "abilities, both in and out of combat.  You can also use %^YELLOW%^<feats allowed>%^RESET%^ to see how many "
 "feats you can spend right now - you should get one at level one (now!), and will gain another every three "
