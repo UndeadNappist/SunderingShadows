@@ -9,8 +9,8 @@
 #define DAILY_LIMIT 1000
 
 mapping mythic = ([ 
-                    "planar power" : 0,
-                    "daily planar power" : 0,
+                    "soul power" : 0,
+                    "daily soul power" : 0,
                     "daily count" : 0,
                     "path"  : 0,
                     "level" : 0,
@@ -19,15 +19,15 @@ mapping mythic = ([
 
 void heart_beat()
 {
-    if(mythic["daily planar power"])
+    if(mythic["daily soul power"])
         if(!hour(time()) && !minutes(time()))
-            mythic["daily planar power"] = 0;
+            mythic["daily soul power"] = 0;
 }
         
 
 void reset_mythic()
 {
-    mythic["planar power"] = 0;
+    mythic["soul power"] = 0;
     mythic["path"] = 0;
     mythic["level"] = 0;
 }
@@ -57,18 +57,18 @@ mixed set_mythic(string str, mixed arg)
     return mythic[str] = arg;
 }
 
-int add_planar_power(int x)
+int add_soul_power(int x)
 {
     if(is_awakened())
         return 0;
     
-    if(mythic["daily planar power"] >= DAILY_LIMIT)
+    if(mythic["daily soul power"] >= DAILY_LIMIT)
         return 0;
     
-    if(mythic["daily planar power"] + x >= DAILY_LIMIT)
-        x = DAILY_LIMIT - mythic["daily planar power"];
+    if(mythic["daily soul power"] + x >= DAILY_LIMIT)
+        x = DAILY_LIMIT - mythic["daily soul power"];
     
-    return mythic["planar power"] += x;
+    return mythic["soul power"] += x;
 }
 
  
