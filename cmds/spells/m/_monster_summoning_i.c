@@ -89,6 +89,7 @@ void skin_fun(object monster){
         monster->set_long("%^BOLD%^%^BLACK%^Flapping in the air, this horrifying demon is a %^CYAN%^chilling %^BLACK%^sight to behold. Its eyes are glowing %^RESET%^%^MAGENTA%^v%^BOLD%^i%^RESET%^%^MAGENTA%^ol%^BOLD%^e%^RESET%^%^MAGENTA%^t %^BOLD%^o%^RESET%^%^MAGENTA%^rbs %^BOLD%^%^BLACK%^and its lupine snout is wrinkled in a perpetual snarl, revealing rows of %^RESET%^%^RED%^jagged %^WHITE%^teeth%^BOLD%^%^BLACK%^. Pitch black skin shot through with v%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^ins of %^RESET%^%^MAGENTA%^v%^BOLD%^i%^RESET%^%^MAGENTA%^ol%^BOLD%^e%^RESET%^%^MAGENTA%^t %^BOLD%^%^BLACK%^is stretched over a lean muscular body. Large m%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^mbr%^RESET%^%^MAGENTA%^a%^BOLD%^%^BLACK%^no%^RESET%^%^MAGENTA%^u%^BOLD%^%^BLACK%^s w%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^ngs hold it aloft while wicked claws tip its fingers and toes which it rends at the air with, its hunger for %^RED%^v%^RESET%^%^RED%^i%^BOLD%^ol%^RESET%^%^RED%^e%^BOLD%^nc%^RESET%^%^RED%^e %^BOLD%^%^BLACK%^palpable. %^RESET%^");
         message("info", "%^BLACK%^BOLD%^Reality rips and an abyssal creature claws its way through to protect "+caster->query_cap_name()+"!%^RESET%^", place, caster);
         message("info", "%^BLACK%^BOLD%^Reality rips and an abyssal creature claws its way through to protect you!%^RESET%^", caster);
+        monster->set_name("demon");
         monster->set_race("demon");
         monster->add_id("demon");
         monster->set_property("damage resistance", 1 + clevel / 10);
@@ -132,6 +133,7 @@ void skin_fun(object monster){
                     monster->set_race("viper");
                     monster->set_body_type("snake");
             }
+            monster->set_name("animal");
             monster->add_id("animal");
             break;
         case "elementals" : // mephits - dust, ice, magma, mud, smoke, steam
@@ -161,6 +163,7 @@ void skin_fun(object monster){
                     monster->set_race("mephit");
             }
             monster->set_body_type("humanoid");
+            monster->set_name("elemental");
             monster->add_id("elemental");
             break;
         case "insects" : // giant versions - ant, wasp, centipede, spider, scorpion, mosquito
@@ -195,6 +198,7 @@ void skin_fun(object monster){
                     monster->set_race("mosquito");
                     monster->set_body_type("insectoid-winged");
             }
+            monster->set_name("insect");
             monster->add_id("insect");
             break;
         default :
