@@ -1206,7 +1206,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
             {
                 damage += BONUS_D->new_damage_bonus(attacker, attacker->query_stats("dexterity"));
             }
-            else if(FEATS_D->usable_feat(attacker, "cunning insight"))
+            else if(FEATS_D->usable_feat(attacker, "cunning strikes"))
             {
                 damage += BONUS_D->new_damage_bonus(attacker, attacker->query_stats("charisma"));
             }

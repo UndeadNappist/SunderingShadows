@@ -1,9 +1,8 @@
 %^BOLD%^Astral Pact:%^RESET%^
 
 %^CYAN%^Alignment %^RESET%^        - True Neutral
-%^CYAN%^Damage Resistance %^RESET%^- Void (5 + warlock level / 4)
-%^CYAN%^Damage Resistance %^RESET%^- Cold (5 + warlock level / 4)
-%^CYAN%^Unlocked Feats    %^RESET%^- Dark One's Own Luck
+%^CYAN%^Pact Boon         %^RESET%^- Void Resistance (5 + warlock level / 4)
+%^CYAN%^Pact Boon         %^RESET%^- Cold Resistance (5 + warlock level / 4)
 
 %^CYAN%^Pact Spells:       %^RESET%^
 Dread Star, Frigid Darkness, Banish to the Void, Eye of the Warlock, Doom of Delban

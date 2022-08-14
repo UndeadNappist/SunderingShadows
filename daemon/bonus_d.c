@@ -391,7 +391,7 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current, i
             {
                 to_hit += (query_dex_bonus(who) * -1);
             }
-            else if(FEATS_D->usable_feat(who, "cunning insight"))
+            else if(FEATS_D->usable_feat(who, "cunning strikes"))
             {
                 to_hit += query_stat_bonus(who, "charisma");
             }
@@ -405,7 +405,7 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current, i
         if (FEATS_D->usable_feat(who, "weapon finesse")) {
             to_hit += (query_dex_bonus(who) * -1);
         }
-        else if(FEATS_D->usable_feat(who, "cunning insight"))
+        else if(FEATS_D->usable_feat(who, "cunning strikes"))
         {
             to_hit += query_stat_bonus(who, "charisma");
         }
