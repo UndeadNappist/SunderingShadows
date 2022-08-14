@@ -10,7 +10,7 @@ void create() {
     ::create();
     set_author("nienne");
     set_spell_name("mire the mind");
-    set_spell_level(([ "warlock" : 3 ]));
+    set_spell_level(([ "warlock" : 4 ]));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS mire the mind");
     set_heritage("fey");

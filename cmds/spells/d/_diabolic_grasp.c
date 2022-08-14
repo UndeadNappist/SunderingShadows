@@ -12,7 +12,7 @@ inherit SPELL;
 void create() {
     ::create();
     set_spell_name("diabolic grasp");
-    set_spell_level(([ "warlock" : 3 ]));
+    set_spell_level(([ "warlock" : 4 ]));
     set_heritage("abyssal");
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS diabolic grasp on TARGET");
