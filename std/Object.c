@@ -622,6 +622,10 @@ mixed query_property(string prop)
     }
 
     if (prop == "damage resistance") {
+        if(FEATS_D->usable_feat(this_object(), "planar resilience"))
+        {
+            num += 4;
+        }
         if (FEATS_D->usable_feat(TO, "undead graft")) {
             num += 6;
         }

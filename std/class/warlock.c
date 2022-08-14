@@ -36,7 +36,7 @@ string *class_feats(string myspec) {
 }
 
 mapping class_featmap(string myspec) {
-    return ([ 1 : ({ "simple weapon proficiency", "spell focus", "light armor proficiency", "shadow walk" }), 2 : ({ "prime strike" }), 7 : ({ "damage resistance", }), 8 : ({ "force of personality" }), 9 : ({ "energy resistance" }), 12: ({ "craft magical equipment" }), 14 : ({ "improved damage resistance" }), 17 : ({ "regeneration" }) ]);
+    return ([ 1 : ({ "simple weapon proficiency", "spell focus", "light armor proficiency", "shadow walk" }), 2 : ({ "prime strike" }), 5: ({ "pact bond" }), 8 : ({ "force of personality" }), 11 : ({ "planar resilience" }), 12: ({ "craft magical equipment" }), 14 : ({ "eldritch melding" }), 17 : ({ "regeneration" }) ]);
 }
 
 string *class_skills() {

@@ -6,7 +6,7 @@ void create()
 {
    ::create();
    feat_type("permanent");
-   feat_category("Evasion");
+   feat_category("PactBond");
    feat_name("shadow walk");
    feat_prereq("Warlock L1");
    feat_desc("The warlock is no stranger to the shadows. They have a seemingly innate ability to blend into the shadows around them as they move, making them harder to hit. With this feat, the warlock gains 10% miss chance for a short duration after moving.");
@@ -14,6 +14,8 @@ void create()
    allow_blind(1);
    set_required_for(({}));
 }
+
+int allow_shifted() { return 1; }
 
 int prerequisites(object ob)
 {

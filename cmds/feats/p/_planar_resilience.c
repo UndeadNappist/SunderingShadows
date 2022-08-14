@@ -7,9 +7,9 @@ void create()
    ::create();
    feat_type("permanent");
    feat_category("PactBond");
-   feat_name("prime strike");
-   feat_prereq("Warlock L2");
-   feat_desc("No fool should ever leave their back turned to one who has given his soul for power. With this feat, the warlock gains a +1 attack bonus on all attacks (melee and ranged, including ranged touch attacks) against targets that are vulnerable to them (blind, paralyzed, or fighting someone else).");
+   feat_name("planar resilience");
+   feat_prereq("Warlock L11");
+   feat_desc("Power, this is what it's all about. The power to transcend mere mortality and become something....more. The pact strengthens and your patron lends you its inherent planar resilience, granting you +4 damage resistance.");
    permanent(1);
    allow_blind(1);
    set_required_for(({}));
@@ -21,7 +21,7 @@ int prerequisites(object ob)
 {
     if(!objectp(ob)) { return 0; }
 
-    if((int)ob->query_class_level("warlock") < 2) {
+    if((int)ob->query_class_level("warlock") < 11) {
         dest_effect();
         return 0;
     }
