@@ -1978,9 +1978,9 @@ int query_attack_bonus()
         }        
     }
    
-    if(attacker->is_vulnerable_to(this_object()))
+    if(attacker && attacker->is_vulnerable_to(this_object()))
     {
-        if(FEATS_D->usable_feat(this_object(), "prime strike") && attacker)
+        if(FEATS_D->usable_feat(this_object(), "prime strike"))
             ret += 1;
     }
 
