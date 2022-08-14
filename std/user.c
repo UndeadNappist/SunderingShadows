@@ -894,7 +894,7 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
         if(!this_object()->query_property("shadow walk"))
         {    
             this_object()->set_property("shadow walk", 1);
-            call_out("after_move_effects", ROUND_LENGTH);
+            call_out("after_move_effects", 6);
         }
     }
 
