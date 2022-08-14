@@ -236,6 +236,10 @@ void heart_beat()
             {
                 canfullattack = 1;
             }
+            if(FEATS_D->has_feat(combatants[i], "eldritch focus") && combatants[i]->query_property("warlock spell"))
+            {
+                canfullattack = 1;
+            }
         }
         else {
             canfullattack = 1;

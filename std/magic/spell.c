@@ -1458,6 +1458,11 @@ void wizard_interface(object user, string type, string targ)
         caster->set_property("psywarrior spell", 1); //flag for battle.c
     else
         caster->remove_property("psywarrior spell");
+    
+    if(spell_type == "warlock")
+        caster->set_property("warlock spell", 1);
+    else
+        caster->remove_property("warlock spell");
 
     if (0) {
         if (target) {

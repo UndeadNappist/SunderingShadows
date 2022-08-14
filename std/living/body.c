@@ -795,7 +795,7 @@ int query_resistance(string res)
                 myres += (5 + w_level / 4);
             break;
             case "astral":
-            if(res == "mental" || res == "cold")
+            if(res == "mental" || res == "void")
                 myres += (5 + w_level / 4);
             break;
             case "blade":
