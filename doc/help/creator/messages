@@ -22,6 +22,7 @@ room_description: Text describing area visual iinput
 room_exits: Text describing room exits
 living_item: Text describing a living item
 inanimate_item: Text describing non-living items
+failure: any sort of failure message (you can't do that, you need to wait, etc)
 
 room_description, room_exits, living_item, inanimate_item are ONLY for use by
 the user object
