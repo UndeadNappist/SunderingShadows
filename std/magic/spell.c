@@ -4321,6 +4321,8 @@ void help()
         write("%^BOLD%^%^RED%^Discipline:%^RESET%^ " + mydiscipline);
     }
     */
+    
+    heritage && printf("%s%-14s %s%s%s\n", HIR, "Discipline:", HIW, heritage, NOR);
 
     /*
     if (verbal_comp || somatic_comp) {

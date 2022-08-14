@@ -1,13 +1,15 @@
 #include <priest.h>
 inherit SPELL;
 
+//Warlocky descriptions needed
+
 void create()
 {
     ::create();
-    set_spell_name("alter self");
-    set_spell_level(([ "bard" : 2, "psion" : 2, "psywarrior": 2, "assassin" : 1, "mage" : 2, "druid" : 1, "inquisitor" : 1, "magus" : 2 ]));
+    set_spell_name("mask of many faces");
+    set_spell_level(([ "warlock" : 2 ]));
     set_spell_sphere("alteration");
-    set_syntax("cast CLASS alter self [on [RACE] [0-9]] ");
+    set_syntax("cast CLASS mask of many faces [on [RACE] [0-9]] ");
     set_description("%^RESET%^This spell allows the caster to make major changes to their body and pretend to be be someone else. These are usually sufficient changes that they become unrecognizable even to those they are familiar with. It does not allow for such drastic changes as body size or overall shape, so be aware of races you turn into.
 
 Adjective, description, speech, messages etc will be remembered across castings, so they will only need to be set once in your alternative form. Players will be able to recognise your 'other self' as a unique entity, separate from your usual self.

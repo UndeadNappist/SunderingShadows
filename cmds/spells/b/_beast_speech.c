@@ -12,7 +12,7 @@ int theProf;
 
 void create() {
     ::create();
-    set_spell_name("speak with animals");
+    set_spell_name("beast speech");
     set_spell_level(([ "warlock" : 1 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS beast speech [on TARGET]");
