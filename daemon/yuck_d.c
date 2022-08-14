@@ -274,7 +274,7 @@ void load_inventory(object ob, string path)
             {
                 tell_object(ob,"There is a problem with one of your items. Ignoring.");
                 log_file("BadInv", (string)ob->query_true_name()+": fn : " +fn+"\n");
-                //          rm(fname);
+                rm(fname);
                 continue;
             }
             if (!j) 
