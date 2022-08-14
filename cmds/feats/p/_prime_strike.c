@@ -8,7 +8,7 @@ void create()
    feat_type("permanent");
    feat_category("MeleeAccuracy");
    feat_name("prime strike");
-   feat_prereq("Warlock L1");
+   feat_prereq("Warlock L2");
    feat_desc("No fool should ever leave their back turned to one who has given his soul for power. With this feat, the warlock gains a +1 attack bonus on all attacks (melee and ranged, including ranged touch attacks) against targets that are vulnerable to them (blind, paralyzed, or fighting someone else).");
    permanent(1);
    allow_blind(1);
@@ -19,7 +19,7 @@ int prerequisites(object ob)
 {
     if(!objectp(ob)) { return 0; }
 
-    if((int)ob->query_class_level("warlock") < 1) {
+    if((int)ob->query_class_level("warlock") < 2) {
         dest_effect();
         return 0;
     }

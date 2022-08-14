@@ -198,10 +198,12 @@ int spend_pool(object ob, int amount, string pool_type)
     {
         tell_object(ob, "%^BOLD%^You lose your psionic focus.%^RESET%^");
     }
+    /*
     if(pool_type == "planar_power" && avail < 1)
     {
         tell_object(ob, "%^BOLD%^You spend your planar power.%^RESET%^");
     }
+    */
 
     ob->set("available " + pool_type, avail);
 
@@ -380,6 +382,7 @@ void init_pool(object ob, string pool_type)
         {
             newmax = 1 + FEATS_D->usable_feat(ob, "mental mastery") + FEATS_D->usable_feat(ob, "deep focus");
         }
+        /*
     case "planar_power":
         if(!ob->is_class("warlock"))
         {
@@ -391,6 +394,7 @@ void init_pool(object ob, string pool_type)
         {
             newmax = 1;
         }
+        */
     }
     if (!intp(avail = (int)ob->query("available " + pool_type))) avail = newmax;
     if (intp(oldmax = (int)ob->query("maximum " + pool_type)))
