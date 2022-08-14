@@ -16,7 +16,7 @@ string *restricted_races() { // irrelevant, this is handled in the race files
 
 string *restricted_classes() { return ({ "psion","psywarrior",}); }
 
-int *restricted_alignments() { return ({ 1,2,4,5 }); }
+int *restricted_alignments() { return ({ 1, 2, 4, 7 }); }
 
 string *restricted_gods() { return ({}); }
 
@@ -36,7 +36,7 @@ string *class_feats(string myspec) {
 }
 
 mapping class_featmap(string myspec) {
-    return ([ 1 : ({ "simple weapon proficiency", "spell focus", "light armor proficiency", "shadow walk" }), 2 : ({ "prime strike" }), 5: ({ "pact bond" }), 8 : ({ "force of personality" }), 11 : ({ "planar resilience" }), 12: ({ "craft magical equipment" }), 14 : ({ "eldritch melding" }), 17 : ({ "regeneration" }) ]);
+    return ([ 1 : ({ "simple weapon proficiency", "spell focus", "light armor proficiency", "shadow walk" }), 2 : ({ "prime strike" }), 5: ({ "pact bond" }), 8 : ({ "force of personality" }), 11 : ({ "planar resilience" }), 13: ({ "craft magical equipment" }), 14 : ({ "eldritch melding" }), 17 : ({ "regeneration" }), 31 : ({ "energy siphon" }) ]);
 }
 
 string *class_skills() {

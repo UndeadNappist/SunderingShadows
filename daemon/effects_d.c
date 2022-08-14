@@ -115,6 +115,7 @@ int can_use_check(object caster, string spell, int level)
             
             DC = 20 + lowest_spell_level;
             roll1 = roll_dice(1, 20) + (highest_mental_stat / 2) + (caster->query_skill("spellcraft") / 10);
+            roll1 += (FEATS_D->usable_feat(caster, "eldritch melding") * 5);
             
             if((roll1 < DC || roll1 == 1) && roll1 != 20)
                 return 0;
