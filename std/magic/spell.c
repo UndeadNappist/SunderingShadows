@@ -4322,7 +4322,7 @@ void help()
     }
     */
     
-    heritage && printf("%s%-14s %s%s%s\n", HIR, "Discipline:", HIW, heritage, NOR);
+    heritage && printf("%s%-14s %s%s%s\n", HIR, "Warlock Pact:", HIW, capitalize(heritage), NOR);
 
     /*
     if (verbal_comp || somatic_comp) {

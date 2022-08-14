@@ -13,6 +13,7 @@ void create() {
     set_spell_level(([ "warlock" : 3 ]));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS mire the mind");
+    set_heritage("fey");
     set_description("The caster creates a chilling aura around themselves, which insinuates "
 "itself into the minds of nearby foes, should they not have the willpower to resist. It will "
 "apply itself as a fog upon their thoughts, slowing their combat reactions considerably. "
