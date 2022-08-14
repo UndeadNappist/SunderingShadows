@@ -176,7 +176,8 @@ void roll(){
     tell_room(ETO, "With a rumble, it picks up speed!");
     speed ++;
   }
-  call_out("roll", 4-speed);
+  if(!find_call_out("roll"))
+      call_out("roll", 4-speed);
 }
 
 

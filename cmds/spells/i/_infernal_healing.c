@@ -70,6 +70,8 @@ void spell_effect()
 
 void dest_effect()
 {
+    remove_call_out("dest_effect");
+    
     if (objectp(target)) {
         tell_object(target, "%^BOLD%^%^RED%^Your blood cools down.%^RESET%^");
         target->remove_property_value("spelled", ({ TO }));
