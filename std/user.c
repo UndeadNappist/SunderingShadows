@@ -763,6 +763,12 @@ int query_verbose_combat()
     return user_vars["verbose_combat"];
 }
 
+void after_move_effects()
+{
+    if(this_object()->query_property("shadow walk"))
+        this_object()->remove_property("shadow walk");
+}
+
 varargs void move_player(mixed dest, string msg, int follow_flag)
 {
     object prev;
@@ -881,6 +887,15 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
 
         if (query_followers())
             move_followers(prev);
+    }
+    
+    if(this_object()->is_class("warlock"))
+    {
+        if(!this_object()->query_property("shadow walk"))
+        {    
+            this_object()->set_property("shadow walk", 1);
+            call_out("after_move_effects", ROUND_LENGTH);
+        }
     }
 
     if(!this_object()->query("reader"))

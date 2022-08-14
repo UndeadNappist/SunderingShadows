@@ -1977,6 +1977,12 @@ int query_attack_bonus()
                 ret += 1;
         }        
     }
+   
+    if(attacker->is_vulnerable_to(this_object()))
+    {
+        if(FEATS_D->usable_feat(this_object(), "prime strike") && attacker)
+            ret += 1;
+    }
 
     //Inquisitor Bane
     if(this_object()->query_property("bane weapon") && sizeof(weap) && attacker)
