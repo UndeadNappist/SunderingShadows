@@ -11,19 +11,19 @@ inherit SPELL;
 int benchmark,tally,bonus;
 
 
+//Needs descriptive work
+
 void create()
 {
     ::create();
-    set_spell_name("armor");
-    set_spell_level(([ "mage" : 1, "magus" : 1, "oracle" : 1 ]));
-    set_mystery("spellscar");
+    set_spell_name("armor of shadows");
+    set_spell_level(([ "warlock" : 1 ]));
     set_bonus_type("armor");
     set_spell_sphere("conjuration_summoning");
-    set_syntax("cast CLASS armor [on TARGET]");
+    set_syntax("cast CLASS armor of shadows [on TARGET]");
     set_description("When armor is cast on someone, they will receive an AC bonus of 4.");
     set_verbal_comp();
     set_somatic_comp();
-    set_components(([ "mage" : ([ "blessed leather" : 1, ]), ]));
     set_property("keywords", ({ "defensive", "targeted", "personal" }));
     set_helpful_spell(1);
 }
