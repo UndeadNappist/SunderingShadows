@@ -119,7 +119,7 @@ int can_use_check(object caster, string spell, int level)
             if((roll1 < DC || roll1 == 1) && roll1 != 20)
                 return 0;
         }
-        tell_object(caster, "You manage to figure out how to use the wand.");
+        tell_object(caster, "You manage to figure out how to use this item.");
         return 1;
     }
     
