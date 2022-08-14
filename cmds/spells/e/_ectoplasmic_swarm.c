@@ -76,7 +76,7 @@ void execute_attack() {
          "l%^BLUE%^o%^RESET%^%^BLUE%^r%^BOLD%^%^MAGENTA%^e%^RESET%^%^MAGENTA%^d "
          "%^BOLD%^%^RED%^c%^RESET%^%^ORANGE%^r%^YELLOW%^y%^RESET%^%^GREEN%^s"
          "%^CYAN%^t%^BOLD%^a%^BLUE%^l%^RESET%^%^MAGENTA%^s swarm through the "
-         "%^CYAN%^air%^MAGENTA%^, slashing at their unlucky victims!%^RESET%^", nearbyRoom(place,2));
+         "%^CYAN%^air%^MAGENTA%^, slashing at their unlucky victims!%^RESET%^", place);
 
       damage = sdamage;
         for (i=0;i<j;i++) {
