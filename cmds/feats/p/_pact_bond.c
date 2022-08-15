@@ -19,7 +19,7 @@ mapping valid_types = ([
                          "sprite"        :    ({  3, 18,  8, 12, 12,  7, 1, 14,  }), //fey
                          "gazer"         :    ({  4, 14, 10, 16, 11,  5, 1, 13,  }), //stars
                          "spirit"        :    ({  6, 15, 14, 8, 13,   4, 1, 15,  }), //gloom
-                         "coatl"         :    ({  3, 16, 10, 2, 12,   5, 1, 14,  }), //celestial
+                         //"coatl"         :    ({  3, 16, 10, 2, 12,   5, 1, 14,  }), //celestial
                        ]);
 
 object companion;
@@ -35,7 +35,6 @@ void create()
     feat_desc("Your patron sends an emissary from beyond to aid you. This familiar will follow you through thick and thin and will level up with you. The TYPE of familiar will determine its base stats and natural armor.  The familiar can also assist with touch attack spells, much like spectral hand. The familiar is a non-combat companion, and won't fight or protect you in combat. While the familiar is present, the warlock gains +2 perception and +2 to reflex saves.
 
 The available familiars are as follows:
-%^CYAN%^BOLD%^ Coatl    %^RESET%^: A winged celestial serpent
 %^CYAN%^BOLD%^ Gazer    %^RESET%^: A tiny beholder from the great beyond
 %^CYAN%^BOLD%^ Imp      %^RESET%^: A devilish denizen from the nine hells
 %^CYAN%^BOLD%^ Quasit   %^RESET%^: A demonic hordling from the abyss
