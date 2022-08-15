@@ -19,7 +19,7 @@ create() {
     set_spell_name("vampiric embrace");
     set_spell_level(([ "warlock" : 4 ]));
     set_spell_sphere("necromancy");
-    set_heritage("abyssal");
+    set_heritage("gloom");
     set_syntax("cast CLASS vampiric embrace on TARGET");
     set_damage_desc("negative energy on TARGET, untyped on self");
     set_description("This spell, when cast, will allow the mage to drain a certain amount of hit points from an opponent and add them to his own, if he makes a successful touch attack against the victim. The spell will only heal the caster up to his maximum hit points. Using negative energy, this spell is ineffective against the undead, it heals caster with untyped damage.");
