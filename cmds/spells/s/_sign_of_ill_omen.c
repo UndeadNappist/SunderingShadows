@@ -22,8 +22,7 @@ void create() {
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS sign of ill omen on TARGET");
     set_damage_desc("clevel / 8 to all skills, attack and damage bonus, caster level");
-    set_description("By means of this spell, the caster places a curse upon the target that will weaken them considerably"
-", lowering their defenses and their combat abilities. It is not dispellable by normal magics, but will fade over time.");
+    set_description("Calling upon the power of their patron, the warlock places a fell mark upon his enemy that saps at their strength and leaves them weakened. The mark slowly fades away over time, and is not otherwise dispellable.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
@@ -31,37 +30,34 @@ void create() {
 }
 
 string query_cast_string() {
-    return "%^BLUE%^A dark aura threads its way around "+caster->QCN+"'s fingers as "+
-	caster->QS+" intones a spell.%^RESET%^";
+    return "%^RESET%^%^CRST%^%^C103%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C103%^ raises two fingers, their tips blackened by %^C243%^sh%^C245%^ad%^C247%^ow%^C249%^y t%^C247%^en%^C245%^dr%^C243%^il%^C245%^s %^RESET%^%^C103%^as they trace a %^C118%^s%^C112%^ym%^C106%^b%^C118%^o%^C112%^l %^RESET%^%^C103%^in the air.%^CRST%^";
 }
 
 void spell_effect(int prof) {
     int duration;
     if(target == caster) {
-        tell_object(caster, "%^CYAN%^You realise your error in cursing yourself, and let your spell fade away.%^RESET%^");
-        tell_room(place,"%^CYAN%^The aura around "+caster->QCN+"'s hands weakens and then fades away.%^RESET%^",caster);
+        tell_object(caster, "%^RESET%^%^CRST%^%^C103%^You realize your error in cursing yourself, and let your spell fade away.%^CRST%^");
+        tell_room(place,"%^RESET%^%^CRST%^%^C103%^The %^C243%^a%^C245%^u%^C247%^r%^C249%^a %^RESET%^%^C103%^around "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C103%^'s fingers weakens and then %^C249%^f%^C247%^a%^C245%^d%^C243%^e%^C059%^s %^RESET%^%^C103%^away.%^CRST%^",caster);
         TO->remove();
         return;
     }
     if(target->query_property("cursed")) {
-        tell_object(caster,"%^CYAN%^Your spell slips away from "+target->QCN+", unable to weaken them further!%^RESET%^");
-        tell_room(place,"%^CYAN%^The aura around "+caster->QCN+"'s hands weakens and then fades away.%^RESET%^",caster);
+        tell_object(caster,"%^RESET%^%^CRST%^%^C103%^Your %^C118%^m%^C112%^ar%^C106%^k %^RESET%^%^C103%^fails to take hold on "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C103%^, as similar energies are already present!%^CRST%^");
+        tell_room(place,"%^RESET%^%^CRST%^%^C103%^The %^C243%^a%^C245%^u%^C247%^r%^C249%^a %^RESET%^%^C103%^around "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C103%^'s fingers weakens and then %^C249%^f%^C247%^a%^C245%^d%^C243%^e%^C059%^s %^RESET%^%^C103%^away.%^CRST%^",caster);
         TO->remove();
         return;
     }
     if(do_save(target, 0)){
-        tell_object(target,"%^CYAN%^You manage to shake off the dark aura that starts to grow around you, and it fades "
-"away to nothing!%^RESET%^");
-        tell_room(place,"%^CYAN%^A mirroring aura starts to grow around "+target->QCN+", but then it fades away to "
-"nothing.%^RESET%^",target);
+        tell_object(target,"%^RESET%^%^CRST%^%^C103%^You manage to resist some %^C118%^f%^C112%^ou%^C106%^l %^C118%^s%^C112%^pe%^C106%^l%^C118%^l%^RESET%^%^C103%^, feeling only a momentary weakness.%^CRST%^");
+        tell_room(place,"%^RESET%^%^CRST%^%^C103%^The outline of a %^C118%^s%^C112%^ig%^C106%^i%^C118%^l %^RESET%^%^C103%^begins to form on "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C103%^, but quickly %^C249%^f%^C247%^a%^C245%^d%^C243%^e%^C059%^s %^RESET%^%^C103%^away.%^CRST%^",target);
         TO->remove();
         return;
     }
     bonus = clevel / 8;
     duration = (ROUND_LENGTH * 4 + roll_dice(1, 20)) * clevel;
 
-    tell_object(target,"%^BLUE%^A mirroring aura starts to grow around you, seeping into your skin to taint it a %^RESET%^sic%^GREEN%^k%^RESET%^ly %^BLUE%^pallid hue.  An overwhelming feeling of weakness comes over you.%^RESET%^");
-    tell_room(place,"%^BLUE%^A mirroring aura starts to grow around "+target->QCN+", seeping into "+target->QP+" skin to taint it a %^RESET%^sic%^GREEN%^k%^RESET%^ly %^BLUE%^pallid hue.%^RESET%^",target);
+    tell_object(target,"%^RESET%^%^CRST%^%^C103%^A %^C118%^f%^C112%^el%^C106%^l %^C118%^m%^C112%^ar%^C106%^k %^RESET%^%^C103%^materializes on you, and immediately you feel a measure of your vitality %^C059%^stripped %^C103%^away from you.%^CRST%^");
+    tell_room(place,"%^RESET%^%^CRST%^%^C103%^A %^C118%^f%^C112%^el%^C106%^l %^C118%^m%^C112%^ar%^C106%^k %^RESET%^%^C103%^materializes on "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C103%^, and they seem to look %^C059%^faint %^C103%^and %^C059%^weary%^RESET%^%^C103%^.%^CRST%^",target);
     target->add_damage_bonus((-1) * bonus);
     target->add_attack_bonus((-1) * bonus);
     target->set_property("empowered", (-1) * bonus);
@@ -80,8 +76,8 @@ void spell_effect(int prof) {
 
 void dest_effect() {
     if(objectp(target)) {
-        tell_object(target,"%^CYAN%^The feeling of weakness finally lifts, and with it fades the sickly color of your skin.%^RESET%^");
-        tell_room(environment(target),"%^CYAN%^The sickly color of "+target->QCN+"'s skin fades back into a more healthy shade.%^RESET%^",target);
+        tell_object(target,"%^RESET%^%^CRST%^%^C103%^The %^C118%^f%^C112%^el%^C106%^l %^C118%^m%^C112%^ar%^C106%^k %^RESET%^%^C103%^finally %^C249%^f%^C247%^a%^C245%^d%^C243%^e%^C059%^s %^RESET%^%^C103%^away and your strength returns to your body.%^CRST%^");
+        tell_room(environment(target),"%^RESET%^%^CRST%^%^C103%^The %^C118%^f%^C112%^el%^C106%^l %^C118%^m%^C112%^ar%^C106%^k %^RESET%^%^C103%^finally %^C249%^f%^C247%^a%^C245%^d%^C243%^e%^C059%^s %^RESET%^%^C103%^away from "+target->QCN+"%^RESET%^%^CRST%^%^C103%^'s body.%^CRST%^",target);
         target->add_damage_bonus(bonus);
         target->add_attack_bonus(bonus);
         target->set_property("empowered",bonus);
@@ -93,3 +89,4 @@ void dest_effect() {
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }
+

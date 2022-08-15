@@ -6,8 +6,6 @@ inherit SPELL;
 
 #include <langs.h>
 
-//Needs descriptive work
-
 int theProf;
 
 void create() {
@@ -16,7 +14,7 @@ void create() {
     set_spell_level(([ "warlock" : 1 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS beast speech [on TARGET]");
-    set_description("This will give the caster the ability to understand and speak sylvan tongue.");
+    set_description("Calling upon the knowledge of their patron, the warlock is granted the ability to speak and understand the sylvan language.");
     set_verbal_comp();
 	set_helpful_spell(1);
 }
@@ -35,7 +33,7 @@ void spell_effect(int prof) {
     }
 
     theProf = prof;
-    tell_object(caster,"%^CYAN%^You start to feel knowledge enter your mind that you lacked before.");
+    tell_object(caster,"%^RESET%^%^CRST%^%^C033%^Your patron graces your %^C039%^m%^C045%^i%^C039%^n%^C045%^d %^C033%^with %^C051%^hidden knowledge%^RESET%^%^C033%^...%^CRST%^");
     spell_successful();
 
     for (i =0;i<sizeof(ANIMAL_LANGS);i++) {

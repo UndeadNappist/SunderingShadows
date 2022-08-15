@@ -3,8 +3,6 @@
 #include <spell.h>
 inherit SPELL;
 
-//Warlock descriptions
-
 int bonus;
 
 void create() {
@@ -14,11 +12,12 @@ void create() {
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS fiendish vigor [on TARGET]");
     set_damage_desc("clevel hitpoints bonus");
-    set_description("With this spell, the caster harnesses the flow of negative energies to grant herself a limited ability to avoid death. While this spell is active, the caster is healthier.");
+    set_description("The warlock carves several glyphs into their body, strengthening their bond to their patron to increase their own vigor. This spell does not stack with similar effects.");
     set_components(([
       "mage" : ([ "drop of blood":1, "crane's feather":1, ]),
     ]));
 	set_helpful_spell(1);
+    set_arg_needed(1);
 }
 
 int query_fl_power()
@@ -28,7 +27,7 @@ int query_fl_power()
 
 string query_casting_string()
 {
-    return "%^BLUE%^With a shout and a body wide flex, "+caster->QCN+" starts to cast a spell.";
+    return "%^RESET%^%^CRST%^%^C097%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C097%^ digs into their flesh, carving several %^C196%^b%^C124%^lo%^C196%^od%^C124%^y %^C196%^s%^C124%^i%^C196%^gi%^C124%^l%^C196%^s%^RESET%^%^C097%^.%^CRST%^";
 }
 
 int preSpell()
@@ -37,7 +36,7 @@ int preSpell()
         target = caster;
     if(target->query_property("spell_bonus_hp"))
     {
-        tell_object(caster,"The spell is repelled by similar magic.");
+        tell_object(caster,"%^RESET%^%^CRST%^%^C059%^The spell is repelled by similar magic.%^CRST%^");
         TO->remove();
         return 0;
     }
@@ -61,12 +60,12 @@ void spell_effect()
     }
 
     if (caster == target) {
-        tell_object(caster,"%^BLUE%^You slowly summon inner strength, lending the force of your will to the strength of your body.");
-        tell_room(environment(caster),"%^BLUE%^You see a wave of force surround and strengthen "+caster->QCN+"'s body.",({caster}));
+        tell_object(caster,"%^RESET%^%^CRST%^%^C097%^The %^C196%^b%^C124%^lo%^C196%^od%^C124%^y %^C196%^g%^C124%^l%^C196%^yp%^C124%^h%^C196%^s %^RESET%^%^C097%^flare brightly for a moment, searing pain that slowly subsides and is replaced by a renewed %^C091%^vigor%^C097%^.%^CRST%^");
+        tell_room(environment(caster),"%^RESET%^%^CRST%^%^C097%^The %^C196%^b%^C124%^lo%^C196%^od%^C124%^y %^C196%^g%^C124%^l%^C196%^yp%^C124%^h%^C196%^s %^RESET%^%^C097%^flare brightly on "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C097%^'s body.%^CRST%^",({caster}));
     } else {
-        tell_object(caster,"%^BLUE%^You slowly summon inner strength, lending the force of your will to strengthen "+target->QCN+"'s body.");
-        tell_object(target,"%^BLUE%^You feel the force of "+caster->QCN+"'s will strengthen your body.");
-        tell_room(environment(caster),"%^BLUE%^You see a wave of force surround and strengthen "+target->QCN+"'s body.",({target}));
+        tell_object(caster,"%^RESET%^%^CRST%^%^C097%^The %^C196%^b%^C124%^lo%^C196%^od%^C124%^y %^C196%^g%^C124%^l%^C196%^yp%^C124%^h%^C196%^s %^RESET%^%^C097%^flare brightly for a moment, and you direct those energies towards "+target->QCN+".%^CRST%^");
+        tell_object(target,"%^RESET%^%^CRST%^%^C097%^You feel a strange, alien power flowing from "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C097%^ into you and a renewed sense of %^C091%^vigor%^C097%^.%^CRST%^");
+        tell_room(environment(caster),"%^RESET%^%^CRST%^%^C097%^The %^C196%^b%^C124%^lo%^C196%^od%^C124%^y %^C196%^g%^C124%^l%^C196%^yp%^C124%^h%^C196%^s %^RESET%^%^C097%^flare brightly on "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C097%^'s body.%^CRST%^",({target}));
     }
     bonus = query_fl_power()*clevel;
     target->add_max_hp_bonus(bonus);
