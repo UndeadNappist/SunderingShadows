@@ -11,7 +11,7 @@ mixed query_property(string str) { return ::query_property(str); }
 void create(){
   ::create();
   remove_property("can_hold");
-  set_property("can_hold",({ "giant axe", "giant clublike", "giant hammer", "large hammer", "crossbow", "large clublike", "large axe" }));
+  set_property("can_hold",({ "giant axe", "giant clublike", "giant hammer" }));
   remove_property("can_wear_limbs");
   set_property("can_wear_limbs",({ "waist" , "torso" }));
   remove_property("sheath_size");
