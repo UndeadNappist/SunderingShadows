@@ -816,7 +816,7 @@ varargs int gain_feat(object ob, string type, string feat,int level)
         tell_object(ob,"You have already bought one epic feat, you can't buy another.");
         return 0;
     }
-    if(member_array(type,({"class","racial","martial","magic","other","hybrid","arcana","divinebond", "rage" })) == -1) { return 0; }
+    if(member_array(type,({"class","racial","martial","magic","other","hybrid","arcana","divinebond", "rage", "pact" })) == -1) { return 0; }
 
     add_feat(ob,type,feat,level);
 
@@ -1203,7 +1203,7 @@ string get_feat_type(object ob,string feat)
     if(!stringp(feat))      { return 0; }
     if(!has_feat(ob,feat))  { return 0; }
     if(!is_feat(feat))      { return 0; }
-    tmp = ({ "class","racial","martial","magic","other","hybrid","arcana","divinebond","rage" });
+    tmp = ({ "class","racial","martial","magic","other","hybrid","arcana","divinebond","rage", "pact" });
     for(i=0;i<sizeof(tmp);i++)
     {
         feats = get_feats(ob,tmp[i]);

@@ -1506,10 +1506,6 @@ void setup()
                 {
                     USER_D->init_pool(this_object(), "focus");
                 }
-                if(this_object()->is_class("warlock"))
-                {
-                    USER_D->init_pool(this_object(), "planar power");
-                }
             }
         }
 
