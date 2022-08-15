@@ -13,8 +13,7 @@ void create()
     set_spell_level(([ "warlock" : 3 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS whispers of the grave to TARGET");
-    set_description("This will allow the caster to attempt to establish "+
-        "a mental connection with a deceased individual.");
+    set_description("Calling upon the power of their patron to bridge the barriers between life and death, the warlock is able to establish contact with the recently deceased.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
@@ -23,7 +22,7 @@ void create()
 
 string query_cast_string()
 {
-	return "%^CYAN%^"+YOU+" closes "+MINE+" eyes and concentrates deeply.";
+	return "%^RESET%^%^CRST%^%^C144%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C144%^ closes their eyes as they concentrate. The smell of the %^C245%^g%^C243%^r%^C059%^a%^C243%^v%^C245%^e%^RESET%^%^C144%^, of %^C100%^rot %^C144%^and %^C056%^decay%^RESET%^%^C144%^, seems to permeate the air...%^CRST%^";
 }
 
 void spell_effect(int prof)
@@ -37,8 +36,7 @@ void spell_effect(int prof)
     }
    
     if (!(who = find_player(caster->realName(lower_case(arg))))) {
-      	tell_object(CASTER,capitalize(arg)+" cannot be found within the "+
-            "land of the dead to establish a link.\n");
+      	tell_object(CASTER,capitalize(arg)+" cannot be found within the land of the dead to establish a link.\n");
         TO->remove();
         return;
     }
@@ -48,15 +46,13 @@ void spell_effect(int prof)
     Ccname = CASTER->QCN;
     if (avatarp(who) && !who->query_disguised())
 	{
-      	tell_object(CASTER,capitalize(arg)+" cannot be found within the land "+
-		"of the dead to establish a link.\n");
+      	tell_object(CASTER,capitalize(arg)+" cannot be found within the land of the dead to establish a link.\n");
         	TO->remove();
         	return;
     }
    	if(avatarp(who) && arg == (string)who->query_true_name())
 	{
-      	tell_object(CASTER,capitalize(arg)+" cannot be found within the land of "+
-		"the dead to establish a link.\n");
+      	tell_object(CASTER,capitalize(arg)+" cannot be found within the land of the dead to establish a link.\n");
       	TO->remove();
       	return;
    	}
@@ -68,8 +64,7 @@ void spell_effect(int prof)
     	}
     if (who->query_invis() && (int)who->query_level() > (int)CASTER->query_level())
 	{
-      	tell_object(CASTER,capitalize(arg)+" cannot be found within the land of "+
-            "the dead to establish a link.\n");
+      	tell_object(CASTER,capitalize(arg)+" cannot be found within the land of the dead to establish a link.\n");
         TO->remove();
         return;
     }
@@ -81,8 +76,7 @@ void spell_effect(int prof)
     }
 	if(!who->query_ghost())
 	{
-		tell_object(CASTER,capitalize(arg)+" cannot be found within the land "+
-		"of the dead to establish a link.\n");
+		tell_object(CASTER,capitalize(arg)+" cannot be found within the land of the dead to establish a link.\n");
 		TO->remove();
 		return;
 	}
@@ -115,12 +109,9 @@ void spell_effect(int prof)
         TO->remove();
         return;
     }
-    tell_object(CASTER, "%^RED%^You find "+who->QCN+"%^RED%^ within the "+
-        "land of the dead "+
-        "and establish a mental connection with "+who->QO+"!");
+    tell_object(CASTER, "%^RED%^You find "+who->QCN+"%^RED%^ within the land of the dead and establish a connection with "+who->QO+".");
 
-    tell_object(who, "%^RED%^"+CASTER->QCN+" has reached out from the "+
-        "land of the living and established a mental connection with you!");
+    tell_object(who, "%^RED%^"+CASTER->QCN+" has reached out from the land of the living and established a mental connection with you!");
     addSpellToCaster();
     casterallowed += ({whoname});
     targallowed += ({cname});

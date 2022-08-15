@@ -10,9 +10,6 @@ inherit SPELL;
 
 int benchmark,tally,bonus;
 
-
-//Needs descriptive work
-
 void create()
 {
     ::create();
@@ -21,11 +18,13 @@ void create()
     set_bonus_type("armor");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS armor of shadows [on TARGET]");
-    set_description("When armor is cast on someone, they will receive an AC bonus of 4.");
+    set_damage_desc("+4 to AC");
+    set_description("Calling on their bond to their patron, the warlock draws upon the shadows to bolster their defenses.");
     set_verbal_comp();
     set_somatic_comp();
     set_property("keywords", ({ "defensive", "targeted", "personal" }));
     set_helpful_spell(1);
+    set_arg_needed(1);
 }
 
 int preSpell()
@@ -49,7 +48,7 @@ void spell_effect(int prof)
 
     if (!present(target,environment(caster)))
     {
-        tell_object(caster,"%^BOLD%^Your target is not in this area.\n");
+        tell_object(caster,"%^RESET%^%^CRST%^%^C110%^Your target is not in this area.\n%^CRST%^");
         TO->remove();
         return;
     }
@@ -70,21 +69,15 @@ void spell_effect(int prof)
 
     if (target == caster)
     {
-        tell_object(caster,"%^BOLD%^%^CYAN%^A magical shield shimmers around you as "
-            "the leather vanishes from your hand!");
-        tell_room(place,"%^BOLD%^%^CYAN%^A magical shield shimmers around "
-            ""+caster->QCN+" as the leather vanishes from "+caster->QP+" "
-            "hand!.", caster );
+        tell_object(caster,"%^RESET%^%^CRST%^%^C110%^Focusing your will, the nearby %^C059%^shadows %^C243%^s%^C245%^l%^C247%^i%^C249%^t%^C243%^h%^C245%^e%^C247%^r %^RESET%^%^C110%^towards you, encasing your body before seeming to solidify and %^C104%^bolster %^C110%^you.%^CRST%^");
+        tell_room(place,"%^RESET%^%^CRST%^%^C110%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C110%^ closes their eyes for a moment as the nearby %^C059%^shadows %^C243%^s%^C245%^l%^C247%^i%^C249%^t%^C243%^h%^C245%^e%^C247%^r %^RESET%^%^C110%^towards and encase their body.%^CRST%^", caster );
     }
 
     else
     {
-        tell_object(caster,"%^BOLD%^%^CYAN%^A magical shield shimmers around "
-            ""+target->QCN+" as the leather vanishes from your hand!");
-        tell_object(target,"%^BOLD%^%^CYAN%^A magical shield shimmers around you as "
-            "the leather vanishes from "+caster->QP+" hand!.");
-        tell_room(place,"%^BOLD%^%^CYAN%^A magical shield shimmers around "+target->QCN+" "
-            "as the leather vanishes from "+caster->QCN+"'s hand!.",({caster, target}) );
+        tell_object(caster,"%^RESET%^%^CRST%^%^C110%^Focusing your will, the nearby %^C059%^shadows %^C243%^s%^C245%^l%^C247%^i%^C249%^t%^C243%^h%^C245%^e%^C247%^r %^RESET%^%^C110%^towards "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C110%^, encasing their body.%^CRST%^");
+        tell_object(target,"%^RESET%^%^CRST%^%^C110%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C110%^ closes their eyes for a moment as the nearby %^C059%^shadows %^C243%^s%^C245%^l%^C247%^i%^C249%^t%^C243%^h%^C245%^e%^C247%^r %^RESET%^%^C110%^towards you, encasing your body before seeming to solidify and %^C104%^bolster %^C110%^you.%^CRST%^");
+        tell_room(place,"%^RESET%^%^CRST%^%^C110%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C110%^ closes their eyes for a moment as the nearby %^C059%^shadows %^C243%^s%^C245%^l%^C247%^i%^C249%^t%^C243%^h%^C245%^e%^C247%^r %^RESET%^%^C110%^towards "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C110%^ and encase their body.%^CRST%^",({caster, target}) );
     }
 
     target->add_ac_bonus(bonus);
@@ -105,12 +98,12 @@ void test()
         return;
     }
 
-    if (!target->is_ok_armour("mage"))
+    /*if (!target->is_ok_armour("mage"))
     {
         tell_object(caster,"The spell can not offer protection to those wearing armor.");
         TO->dest_effect();
         return;
-    }
+    }*/
 
     if (!objectp(target))
     {
@@ -131,8 +124,8 @@ void dest_effect()
     {
         target->add_ac_bonus(-1 * bonus);
         target->remove_property_value("spelled", ({TO}) );
-        tell_object(target, "%^CYAN%^The magic shielding around you glows briefly, then fades away.");
-        tell_room(environment(target),"%^CYAN%^"+target->QCN+" glows briefly.", target );
+        tell_object(target, "%^RESET%^%^CRST%^%^C110%^The %^C059%^shadows %^C110%^wreathed about you disperse, leaving you exposed.%^CRST%^");
+        tell_room(environment(target),"%^RESET%^%^CRST%^%^C110%^The %^C059%^shadows %^C110%^wreathed about "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C110%^ disperse.%^CRST%^", target );
         //target->remove_property("armoured");
     }
 
@@ -141,4 +134,4 @@ void dest_effect()
 }
 
 
-string query_cast_string() { return "%^CYAN%^"+caster->QCN+" holds up a piece of leather in the air."; }
+string query_cast_string() { return "%^RESET%^%^CRST%^%^C110%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C110%^ murmurs beseeching words, their hands outstretched to the nearby %^C059%^shadows%^C110%^.%^CRST%^"; }
