@@ -75,10 +75,10 @@ int observe_fun(string str,object who){
       // Success
       tell_room(ETP,"%^BOLD%^"+TPQCN+"%^BOLD%^ walks around the archway. They seem to "+
          "come to some conclusion about it!%^RESET%^",TP);
-      tell_object(TP,"%^%^C134%^As you walk around observing the construction "+
+      tell_object(TP,"%^C134%^As you walk around observing the construction "+
          "and material of the archway you realize that it is in perfect condition "+
-         "but has been drained of power. Your studies mentioned %^C081%^shards^C134%^ created "+
-         "through the freeing of souls. Perhaps if you asked around about %^C081%^shards^C134%^ you might learn more.\n%^RESET%^");
+         "but has been drained of power. Your studies mentioned %^C081%^shards%^C134%^ created "+
+         "through the freeing of souls. Perhaps if you asked around about %^C081%^shards%^C134%^ you might learn more.\n%^RESET%^");
       return 1;
    }
       // Fail

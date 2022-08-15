@@ -26,6 +26,7 @@ void create()
     set_components(([ "mage" : ([ "blessed leather" : 1, ]), ]));
     set_property("keywords", ({ "defensive", "targeted", "personal" }));
     set_helpful_spell(1);
+    set_arg_needed(1);
 }
 
 int preSpell()
@@ -105,12 +106,12 @@ void test()
         return;
     }
 
-    if (!target->is_ok_armour("mage"))
+    /*if (!target->is_ok_armour("mage"))
     {
         tell_object(caster,"The spell can not offer protection to those wearing armor.");
         TO->dest_effect();
         return;
-    }
+    }*/
 
     if (!objectp(target))
     {
