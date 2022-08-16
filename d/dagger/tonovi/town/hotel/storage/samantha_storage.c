@@ -53,7 +53,7 @@ void reset(){
     }
     for (i = 0; i < 6; i++) {
         if (!present("cigarette " + i)){
-            new(OBJ"cigarette.c")->move(TO);
+            new("/d/common/obj/misc/tobacco/cigarette")->move(TO);
         }
     }
     if (!present("cigar box")){

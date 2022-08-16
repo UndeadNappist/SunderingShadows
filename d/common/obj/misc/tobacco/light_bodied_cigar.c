@@ -7,8 +7,8 @@ void create()
     ::create();
     set_name("cigar");
     set_id(({ "cigar", "light cigar", "light bodied cigar", "light-bodied cigar" }));
-    set_short("%^RESET%^%^ORANGE%^light-bodied cigar%^RESET%^");
-    set_long("%^RESET%^This is a hand rolled cigar measuring approximately five and a half inches long by just over half an inch wide, in the shape commonly called a corona.  Bundled, flue-cured leaves make up the filler of this cigar, while a perfect, %^RESET%^%^ORANGE%^light tan %^RESET%^leaf has been used as the wrapper.  The cigar itself smells of %^RESET%^%^ORANGE%^oak%^RESET%^, %^BOLD%^%^WHITE%^cream%^RESET%^, and lightly fired %^BOLD%^%^BLACK%^tobacco%^RESET%^.\n\n%^RESET%^%^ORANGE%^Try smoking it. Douse it to put it out.%^RESET%^");
+    set_short("%^CRST%^%^RESET%^%^C101%^a light-bodied cigar%^CRST%^");
+    set_long("%^CRST%^%^RESET%^%^C101%^This is a hand rolled cigar measuring approximately five and a half inches long by just over half an inch wide, in the shape commonly called a corona. Bundled, flue-cured leaves make up the filler of this cigar, while a perfect, %^C094%^light tan leaf%^C101%^ has been used as the wrapper. The cigar itself smells of %^C136%^oak%^C101%^, %^C137%^cream%^C101%^ and %^C102%^lightly fired %^C100%^tobacco.%^RESET%^\n\n%^C130%^Try smoking it. Douse it to put it out.%^CRST%^");
     lit = 0;
     hasmsgs = 1;
     tracker = 0;

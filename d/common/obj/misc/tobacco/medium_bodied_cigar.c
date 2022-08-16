@@ -7,12 +7,12 @@ void create()
     ::create();
     set_name("cigar");
     set_id(({ "cigar", "medium cigar", "medium bodied cigar", "medium-bodied cigar" }));
-    set_short("%^RESET%^%^ORANGE%^medium-bodied cigar%^RESET%^");
-    set_long("%^RESET%^This is a hand rolled cigar measuring approximately five and a half inches long by just over half an inch wide, in the shape commonly called a corona.  Bundled, flue-cured leaves make up the filler of this cigar, while a perfect, %^RESET%^%^RED%^r%^ORANGE%^e%^RED%^d%^ORANGE%^d%^RED%^i%^ORANGE%^s%^RED%^h%^RESET%^-%^ORANGE%^b%^RED%^r%^ORANGE%^o%^RED%^w%^ORANGE%^n %^RESET%^leaf has been used as the wrapper.  The cigar itself smells of %^RESET%^%^ORANGE%^cedar%^RESET%^, %^BOLD%^%^WHITE%^cream%^RESET%^, and rich yet not overpowering %^BOLD%^%^BLACK%^tobacco%^RESET%^.\n\n%^RESET%^%^ORANGE%^Try smoking it. Douse it to put it out.%^RESET%^");
+    set_short("%^CRST%^%^RESET%^%^C101%^a medium-bodied cigar%^CRST%^");
+    set_long("%^CRST%^%^RESET%^%^C101%^This is a hand rolled cigar measuring approximately five and a half inches long by just over half an inch wide, in the shape commonly called a corona. Bundled, flue-cured leaves make up the filler of this cigar, while a perfect, %^C095%^reddish-brown leaf%^RESET%^%^C101%^ has been used as the wrapper. The cigar itself smells of %^C136%^cedar%^C101%^, %^C137%^cream%^C101%^ and %^C102%^rich %^C100%^tobacco%^RESET%^%^C101%^.%^CRST%^\n\n%^C130%^Try smoking it. Douse it to put it out.%^CRST%^");
     lit = 0;
     hasmsgs = 1;
     tracker = 0;
-    mymsgs = ({ "%^RESET%^%^ORANGE%^You enjoy the pungent, yet not overpowering, taste of the tobacco.%^RESET%^"});
-    yourmsgs = ({"%^RESET%^%^ORANGE%^You smell the pungent, yet not overpowering aroma of the burning tobacco.%^RESET%^"});
+    mymsgs = ({ "%^RESET%^%^CRST%^%^C101%^You enjoy the %^C102%^pungent%^C101%^, yet not overpowering, taste of the %^C100%^t%^C101%^o%^C102%^b%^C100%^ac%^C101%^c%^C100%^o%^RESET%^%^C101%^.%^CRST%^"});
+    yourmsgs = ({"%^CRST%^%^RESET%^%^C103%^You smell an %^C243%^a%^C244%^r%^C245%^o%^C246%^m%^C243%^a%^RESET%^%^C103%^ of burning %^C100%^t%^C101%^o%^C102%^b%^C100%^ac%^C101%^c%^C100%^o%^RESET%^%^C103%^.%^CRST%^"});
     intox = 0;
 }
