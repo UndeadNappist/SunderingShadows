@@ -2,8 +2,13 @@
 //     July 14, 1995
 
 #include <std.h>
+#include <ansi.h>
 #include <new_exp_table.h>
 #include <daemons.h>
+
+//#define HEADER sprintf("%s%s=%s<%s%|18s%s>%s=%s%s\n", HIB, repeat_string("-", ((width - 27) / 2)),HIC, HIW, "Stats", HIC, HIB, repeat_string("-",(width - 27) / 2), NOR)
+#define FOOTER "%^BLUE%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
+#define SUBHEAD "%^BLACK%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
 
 inherit DAEMON;
 
@@ -298,7 +303,7 @@ string stat_display(int stat, int cur_stat)
 int cmd_stats(string person)
 {
     object obj;
-    int age, i, bonus, cstr, cint, cwis, ccon, cdex, ccha;
+    int age, i, bonus, cstr, cint, cwis, ccon, cdex, ccha, reader, width;
     string* tmp, * valid, bstr;
 
     if (!avatarp(TP)) {
@@ -310,6 +315,8 @@ int cmd_stats(string person)
     if (!objectp(obj = find_player(person))) {
         obj = TP;
     }
+    
+    reader = this_player()->query("reader");
 
     if (TP->query("new_class_type")) {
         if (stringp(person) && strsrch(person, "gain") != -1) {
@@ -381,8 +388,15 @@ int cmd_stats(string person)
     ccon = obj->query_stats("constitution");
     CHR = obj->query_base_stats("charisma");
     ccha = obj->query_stats("charisma");
+    
+    width = to_int(this_player()->get_env("SCREEN"));
+    width = max( ({ 80, width }) );
+    width = min( ({ 120, width }) );
+    
+    !reader && write(FOOTER);
+    !reader && write(SUBHEAD);
 
-    str = "\n%^RESET%^%^GREEN%^Str %^RESET%^" + stat_display(STR, cstr) + " (" + mybonus(obj, "strength") + ")";
+    str = "%^RESET%^%^GREEN%^Str %^RESET%^" + stat_display(STR, cstr) + " (" + mybonus(obj, "strength") + ")";
     str += "  %^GREEN%^Dex %^RESET%^" + stat_display(DEX, cdex) + " (" + mybonus(obj, "dexterity") + ")";
     if (obj->is_undead()) {
         str += "  %^GREEN%^Con %^RESET%^--\n";
@@ -405,7 +419,11 @@ int cmd_stats(string person)
         } else if (stat_points_left(obj)) {
             tell_object(obj, "%^RESET%^%^BOLD%^You have %^CYAN%^1%^RESET%^%^BOLD%^ bonus stat point remaining.%^RESET%^");
         }
+        !reader && write(SUBHEAD);
+        tell_object(TP, "%^RESET%^%^BOLD%^Base stats unmodified by item and buff bonuses:%^RESET%^");
+        tell_object(TP, "%^RESET%^%^GREEN%^str :%^RESET%^" + STR + "  %^GREEN%^int :%^RESET%^" + INT + "  %^GREEN%^wis :%^RESET%^" + WIS + "  %^GREEN%^dex :%^RESET%^" + DEX + "  %^GREEN%^con :%^RESET%^" + CON + "  %^GREEN%^cha :%^RESET%^" + CHR + "");
     }else {
+        !reader && write(SUBHEAD);
         tell_object(TP, "%^RESET%^%^BOLD%^Base stats unmodified by age and race are:%^RESET%^");
         STR = obj->query_rolled_stats("strength");
         INT = obj->query_rolled_stats("intelligence");
@@ -416,6 +434,8 @@ int cmd_stats(string person)
 
         tell_object(TP, "%^RESET%^%^GREEN%^str :%^RESET%^" + STR + "  %^GREEN%^int :%^RESET%^" + INT + "  %^GREEN%^wis :%^RESET%^" + WIS + "  %^GREEN%^dex :%^RESET%^" + DEX + "  %^GREEN%^con :%^RESET%^" + CON + "  %^GREEN%^cha :%^RESET%^" + CHR + "");
     }
+    !reader && write(SUBHEAD);
+    !reader && write(FOOTER);
     return 1;
 }
 
