@@ -12,6 +12,7 @@ void create(){
     set_spell_level(([ "cleric" : 5 ]));
     set_spell_sphere("abjuration");
     set_domains("magic");
+    set_mystery("spellscar");
     set_syntax("cast CLASS mystic bolt on TARGET");
     set_description("This spell sends a mystical bolt of energy to ravage the target.  Those standing nearby may be hit "
 "as well.");

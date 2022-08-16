@@ -15,6 +15,7 @@ void create() {
     set_spell_name("imprisonment");
     set_spell_level(([ "mage" : 9, "cleric" : 9 ]));
     set_domains("law");
+    set_mystery("spellscar");
     set_syntax("cast CLASS imprisonment on TARGET");
     set_spell_sphere("abjuration");
     set_description("This spell puts your target into an extraplanar prison, temporarily removing them from existence.");
