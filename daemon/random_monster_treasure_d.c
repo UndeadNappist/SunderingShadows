@@ -200,7 +200,7 @@ mixed get_treasure(string type, int level)
         val = TREASURE_VALUES[type];
         if(o_level > 20)
             val /= 2;
-        MyOb->set_uses((val) + random(val/2));
+        MyOb->set_uses((val/2) + random(val/2));
         tmp = (["object" : MyOb, "points" : val]);
         return tmp;
     }    
