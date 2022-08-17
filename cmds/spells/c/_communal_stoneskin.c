@@ -14,6 +14,7 @@ create()
     set_spell_sphere("abjuration");
     set_syntax("cast CLASS communal stoneskin");
     set_description("This spell applies stoneskin spell to all your followers and party members.");
+    set_bonus_type("body");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);

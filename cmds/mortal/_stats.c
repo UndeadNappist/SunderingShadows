@@ -396,17 +396,17 @@ int cmd_stats(string person)
     !reader && write(FOOTER);
     !reader && write(SUBHEAD);
 
-    str = "%^RESET%^%^GREEN%^Str %^RESET%^" + stat_display(STR, cstr) + " (" + mybonus(obj, "strength") + ")";
-    str += "  %^GREEN%^Dex %^RESET%^" + stat_display(DEX, cdex) + " (" + mybonus(obj, "dexterity") + ")";
+    str = "%^RESET%^%^GREEN%^Str :%^RESET%^" + stat_display(STR, cstr) + " (" + mybonus(obj, "strength") + ")";
+    str += "  %^GREEN%^Dex :%^RESET%^" + stat_display(DEX, cdex) + " (" + mybonus(obj, "dexterity") + ")";
     if (obj->is_undead()) {
-        str += "  %^GREEN%^Con %^RESET%^--\n";
+        str += "  %^GREEN%^Con :%^RESET%^--\n";
     } else {
-        str += "  %^GREEN%^Con %^RESET%^" + stat_display(CON, ccon) + " (" + mybonus(obj, "constitution") + ")\n";
+        str += "  %^GREEN%^Con :%^RESET%^" + stat_display(CON, ccon) + " (" + mybonus(obj, "constitution") + ")\n";
     }
 
-    str += "%^BLUE%^Int %^RESET%^" + stat_display(INT, cint) + " (" + mybonus(obj, "intelligence") + ")";
-    str += "  %^BLUE%^Wis %^RESET%^" + stat_display(WIS, cwis) + " (" + mybonus(obj, "wisdom") + ")";
-    str += "  %^BLUE%^Cha %^RESET%^" + stat_display(CHR, ccha) + " (" + mybonus(obj, "charisma") + ")";
+    str += "%^BLUE%^Int :%^RESET%^" + stat_display(INT, cint) + " (" + mybonus(obj, "intelligence") + ")";
+    str += "  %^BLUE%^Wis :%^RESET%^" + stat_display(WIS, cwis) + " (" + mybonus(obj, "wisdom") + ")";
+    str += "  %^BLUE%^Cha :%^RESET%^" + stat_display(CHR, ccha) + " (" + mybonus(obj, "charisma") + ")";
     if (obj == TP) {
         tell_object(obj, "" + str);
     } else {
@@ -421,10 +421,10 @@ int cmd_stats(string person)
         }
         !reader && write(SUBHEAD);
         tell_object(TP, "%^RESET%^%^BOLD%^Base stats unmodified by item and buff bonuses:%^RESET%^");
-        tell_object(TP, "%^RESET%^%^GREEN%^str :%^RESET%^" + STR + "  %^GREEN%^int :%^RESET%^" + INT + "  %^GREEN%^wis :%^RESET%^" + WIS + "  %^GREEN%^dex :%^RESET%^" + DEX + "  %^GREEN%^con :%^RESET%^" + CON + "  %^GREEN%^cha :%^RESET%^" + CHR + "");
+        tell_object(TP, "%^RESET%^%^GREEN%^Str :%^RESET%^" + STR + "  %^GREEN%^Int :%^RESET%^" + INT + "  %^GREEN%^Wis :%^RESET%^" + WIS + "  %^GREEN%^Dex :%^RESET%^" + DEX + "  %^GREEN%^Con :%^RESET%^" + CON + "  %^GREEN%^Cha :%^RESET%^" + CHR + "");
     }else {
         !reader && write(SUBHEAD);
-        tell_object(TP, "%^RESET%^%^BOLD%^Base stats unmodified by age and race are:%^RESET%^");
+        tell_object(TP, "%^RESET%^%^BOLD%^Base stats unmodified by item and buff bonuses are:%^RESET%^");
         STR = obj->query_rolled_stats("strength");
         INT = obj->query_rolled_stats("intelligence");
         WIS = obj->query_rolled_stats("wisdom");
@@ -432,7 +432,7 @@ int cmd_stats(string person)
         CON = obj->query_rolled_stats("constitution");
         CHR = obj->query_rolled_stats("charisma");
 
-        tell_object(TP, "%^RESET%^%^GREEN%^str :%^RESET%^" + STR + "  %^GREEN%^int :%^RESET%^" + INT + "  %^GREEN%^wis :%^RESET%^" + WIS + "  %^GREEN%^dex :%^RESET%^" + DEX + "  %^GREEN%^con :%^RESET%^" + CON + "  %^GREEN%^cha :%^RESET%^" + CHR + "");
+        tell_object(TP, "%^RESET%^%^GREEN%^Str :%^RESET%^" + STR + "  %^GREEN%^Int :%^RESET%^" + INT + "  %^GREEN%^Wis :%^RESET%^" + WIS + "  %^GREEN%^Dex :%^RESET%^" + DEX + "  %^GREEN%^Con :%^RESET%^" + CON + "  %^GREEN%^Cha :%^RESET%^" + CHR + "");
     }
     !reader && write(SUBHEAD);
     !reader && write(FOOTER);
