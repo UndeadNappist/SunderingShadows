@@ -220,17 +220,17 @@ void helpme(object targ)
 
 //Adapted from Grazzt's goblins, query_invis suggestion from Nienne
 void init(){
-   string mrace=TP->query_race();
-   ::init();
-   if(TP->query_invis()) return;
-   if(mrace == "gnome" || mrace == "svirfneblin" || mrace == "halfling" || mrace == "elf" || mrace == "hook horror" || mrace == "dwarf"){
-      command ("kill "+TPQN);
-      new("/cmds/spells/w/_wall_of_fire.c")->use_spell(TO,0,29,100,"mage");
-   new("/cmds/spells/d/_dragon_scales.c")->use_spell(TO,TO,29,100,"mage");
-   }
-   if(present("gldstr",TP)){
-      command ("kill "+TPQN);
-   } 
+    string mrace=TP->query_race();
+    ::init();
+    if(TP->query_invis()) return;
+    if(mrace == "gnome" || mrace == "svirfneblin" || mrace == "halfling" || mrace == "elf" || mrace == "hook horror" || mrace == "dwarf"){
+        command ("kill "+TPQN);
+        new("/cmds/spells/w/_wall_of_fire.c")->use_spell(TO,0,29,100,"mage");
+        new("/cmds/spells/i/_improved_armor.c")->use_spell(TO,TO,29,100,"mage");
+    }
+    if(present("gldstr",TP)){
+        command ("kill "+TPQN);
+    } 
 }
 
 //Thanks to Nienne for the following code

@@ -29,9 +29,9 @@ void die(object ob)
     object targ;
     int hunted;
     targ = TO->query_current_attacker();
-    if (targ->has_nwp("hunting")) {
+    /*if (targ->has_nwp("hunting")) {
         NWP_D->perform_nwp(targ, "hunting");
-    }
+    }*/
     hunted = targ->get_static("hunted monsters");
     if (hunted > 0) {
         hunted--;
