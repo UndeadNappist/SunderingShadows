@@ -10,7 +10,7 @@ string MYQUEST = "%^BOLD%^%^CYAN%^Achieved:%^BOLD%^%^WHITE%^ "+
                 "Arsh%^BOLD%^%^BLACK%^ee%^WHITE%^v%^BLACK%^a %^BOLD%^%^WHITE%^Wynd%^BLACK%^"+
                 "a%^WHITE%^r%^RESET%^";
                 
-int myPhase, myCount, myChance;
+int myPhase, myCount, myChance, ticker;
 void getImpaled();
 void adjust_me();
 
@@ -50,7 +50,7 @@ void create()
     "%^GREEN%^ hangs heavily over him and he looks %^BOLD%^%^RED%^ENRAGED%^BOLD%^"+
     "%^GREEN%^.%^RESET%^");    
     
-    set_class("monk", 50);    
+    set_class("monk", 60);    
     set("monk way", "way of the fist");
     USER_D->init_ki(TO);
     set_alignment(2);
@@ -77,13 +77,14 @@ void create()
     set_mob_magic_resistance("average");
     set_property("weapon resistance", 4);
 
-    set_hp(8000);
+    set_hp(20000);
 	
-    set_new_exp(40, "boss");
+    set_new_exp(60, "boss");
     set_funcs(({"quivering_palm"}));
     set_func_chance(25);
     set_monster_feats(({
-        "defensive roll", 
+        "defensive roll",
+        "weapon finesse",
         "quivering palm", 
         "tongue of the sun and moon", 
         "diamond body", 
@@ -264,6 +265,13 @@ varargs void impale_them()
     
     tell_object(myTarg, me +"%^BOLD%^%^CYAN%^ motions toward you and "
     "a "+spearSh+" flies through the air toward you!%^RESET%^\n\n");
+    
+    if(myTarg->reflex_save(80))
+    {
+        tell_object(myTarg, "%^GREEN%^BOLD%^You successfully avoid the spear!%^RESET%^");
+        tell_room(ETO, "%^GREEN%^BOLD%^" + myTarg->query_cap_name() + " successfully avoids the spear!%^RESET%^", myTarg);
+        return;
+    }
   
     tell_room(ETO, "%^BOLD%^%^WHITE%^For a very brief instant "+
     "a %^BOLD%^%^CYAN%^g%^BOLD%^%^MAGENTA%^l%^BOLD%^%^YELLOW%^i"+
@@ -515,6 +523,8 @@ void heart_beat()
     ::heart_beat();
     if(!objectp(TO)) return;
     if(!objectp(ETO)) return;
+    
+    ticker++;
 	
     myEnemies = TO->query_attackers();
     me = TO->query_short();
@@ -549,7 +559,8 @@ void heart_beat()
     {
         if(objectp(mon = present("eldebaroshadowevil", ETO))) mon->interact();
     }
-    if(!random(myChance) || check_my_attackers()) 
+    
+    if(!(ticker % 30)) 
     {
         impale_them();
     }
@@ -649,7 +660,7 @@ void wave_of_power(object targ)
     {
         if(!objectp(myEnemies[x])) continue;
         if(ETO != environment(myEnemies[x])) continue;
-        if(myEnemies[x]->reflex_save(50))
+        if(myEnemies[x]->reflex_save(80))
         {
             tell_object(myEnemies[x], "%^BOLD%^%^CYAN%^You manage to "+
             "move out of the way just in time to avoid the force of the "+
