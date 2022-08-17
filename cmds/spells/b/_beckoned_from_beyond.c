@@ -91,7 +91,8 @@ void spell_effect(int prof) {
         mon->set_mlevel("fighter",clevel);
         mon->set_guild_level("fighter",clevel);
         mon->set_attacks_num(0);
-        mon->set_hp(clevel+30);
+        //mon->set_hp(clevel+30);
+        mon->set_hd(clevel, 0); // bringing in line with monster summoning
         mon->set_property("spelled", ({TO}));
         mon->set_property("spell_creature", TO);
         mon->set_property("spell", TO);
