@@ -306,11 +306,12 @@ int bonus_allowed(object tp, object item, string bonus, int amt)
         flat_level = item->query_property("enchantment") * 7;
     }
 
-    if(bonus == "enchantment" && flat_level > (tp->query_base_character_level() - 7))
+    //if(bonus == "enchantment" && flat_level > (tp->query_base_character_level() - 7))
+    if(bonus == "enchantment" && flat_level > (tp->query_base_character_level()))
     {
         db(tp,
                 "%^RESET%^%^BOLD%^%^YELLOW%^You can't create an item with an enchantment that high.  The max level enchantment that "
-                "you can create is %^RESET%^%^BOLD%^%^MAGENTA%^"+((tp->query_base_character_level() - 7) / 7)+"%^RESET%^%^BOLD%^%^YELLOW%^.\n"
+                "you can create is %^RESET%^%^BOLD%^%^MAGENTA%^"+((tp->query_base_character_level()) / 7)+"%^RESET%^%^BOLD%^%^YELLOW%^.\n"
                 );
         return 0;
     }
