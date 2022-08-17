@@ -13,6 +13,7 @@
 #define EXTRA_BONUSES ({ "enchantment","special" })
 
 #define CRAFTING_CLASSES ({ "mage","warlock" }) // classes that are innate crafters get a bonus to their crafting DC check
+#define MAX_ENCHANT 6
 
 inherit DAEMON;
 
@@ -221,7 +222,7 @@ int bonus_allowed(object tp, object item, string bonus, int amt)
 {
     mapping bonuses;
     string *bonus_names,*files,*specials=({});
-    int i, total, value, flat_level;
+    int i, total, value, flat_level, maximum;
 
     if(!objectp(tp) || !objectp(item)) { return 0; }
 
@@ -299,19 +300,20 @@ int bonus_allowed(object tp, object item, string bonus, int amt)
 
     if(bonus && bonus == "enchantment")
     {
-        flat_level = (item->query_property("enchantment") + amt) * 7;
+        flat_level = (item->query_property("enchantment") + amt);
     }
     else
     {
-        flat_level = item->query_property("enchantment") * 7;
+        flat_level = item->query_property("enchantment");
     }
+    
+    maximum = min( ({ this_player()->query_base_character_level() / 7, MAX_ENCHANT }) );
 
-    //if(bonus == "enchantment" && flat_level > (tp->query_base_character_level() - 7))
-    if(bonus == "enchantment" && flat_level > (tp->query_base_character_level()))
+    if(bonus == "enchantment" && (flat_level > maximum))
     {
         db(tp,
                 "%^RESET%^%^BOLD%^%^YELLOW%^You can't create an item with an enchantment that high.  The max level enchantment that "
-                "you can create is %^RESET%^%^BOLD%^%^MAGENTA%^"+((tp->query_base_character_level()) / 7)+"%^RESET%^%^BOLD%^%^YELLOW%^.\n"
+                "you can create is %^RESET%^%^BOLD%^%^MAGENTA%^" + maximum + "%^RESET%^%^BOLD%^%^YELLOW%^.\n"
                 );
         return 0;
     }
