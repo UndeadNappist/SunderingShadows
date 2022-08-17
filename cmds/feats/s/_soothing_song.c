@@ -52,7 +52,9 @@ void execute_feat()
     int delay;
     ::execute_feat();
 
-    if ((int)caster->query_property("using soothing song") > time()) {
+    //if ((int)caster->query_property("using soothing song") > time()) {
+    if(caster->cooldown("soothing song"))
+    {
         tell_object(caster, "You are not prepared to sing the soothing song so soon!");
         dest_effect();
         return;
@@ -64,11 +66,12 @@ void execute_feat()
         return;
     }
 
-    delay = time() + FEATTIMER;
-    delay_messid_msg(FEATTIMER, "%^BOLD%^%^WHITE%^You can sing %^CYAN%^soothing song%^WHITE%^ again.%^RESET%^");
+    //delay = time() + FEATTIMER;
+    //delay_messid_msg(FEATTIMER, "%^BOLD%^%^WHITE%^You can sing %^CYAN%^soothing song%^WHITE%^ again.%^RESET%^");
+    caster->add_cooldown("soothing song", FEATTIMER);
     caster->set_property("using instant feat", 1);
-    caster->remove_property("using soothing song");
-    caster->set_property("using soothing song", delay);
+    //caster->remove_property("using soothing song");
+    //caster->set_property("using soothing song", delay);
 
     tell_object(caster,"%^BOLD%^%^WHITE%^You muse a melody of tranquility.");
     tell_room(place,"%^ORANGE%^As "+caster->QCN+" muses a melody of tranquility.",caster);
