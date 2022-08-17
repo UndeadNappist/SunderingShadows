@@ -317,6 +317,8 @@ int bonus_allowed(object tp, object item, string bonus, int amt)
                 );
         return 0;
     }
+    
+    flat_level *= 7;
 
     if(item->query_property("hit") || item->query_property("struck"))
     {
