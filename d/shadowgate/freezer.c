@@ -26,6 +26,8 @@ void clean_room()
 {
     object* in_here, * to_clean;
     int i;
+    
+    remove_call_out("clean_room");
 
     if (!sizeof(in_here = livings() & all_inventory(this_object()))) {
         old = in_here;
@@ -41,6 +43,7 @@ void clean_room()
     while (i--) {
         to_clean[i]->remove();
     }
+
     call_out("clean_room", MAX_NET_DEAD_TIME);
 }
 

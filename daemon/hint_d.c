@@ -26,6 +26,7 @@ void display_hint()
 {
     object* people, peep;
     people = filter_array(users(), (: !$1->query("no hints") :));
+    
     if (sizeof(people)) {
         string* hints;
         string hint;

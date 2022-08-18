@@ -93,6 +93,8 @@ void dest_effect()
 {
     object deactivate_feat, * active_feats;
     int i;
+    
+    remove_call_out("dest_effect");
 
     if (objectp(caster))
     {

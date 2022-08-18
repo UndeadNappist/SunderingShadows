@@ -414,7 +414,7 @@ protected void receive_message(string cl, string msg)
 }
 
 protected void internal_remove()
-{
+{   
     if (__Player) {
         destruct(__Player);
     }
