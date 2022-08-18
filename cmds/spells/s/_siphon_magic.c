@@ -44,7 +44,7 @@ int preSpell()
     }
     tob = present(stob, caster);
     if (!objectp(tob)) {
-        tell_object(caster, "The Ssecond object is not present.");
+        tell_object(caster, "The second object is not present.");
         return 0;
     }
     if (!(fob->is_weapon() || fob->is_armor())) {
