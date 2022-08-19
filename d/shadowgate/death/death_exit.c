@@ -28,7 +28,7 @@ void create() {
                 "eldebaro" : "/d/islands/common/eldebaro/newrooms/church",
                 "kinaro" : "/d/dagger/kinaro/church",
                 "seneca" : "/d/attaya/newseneca/rooms/cath_nave",
-                "graez" : "/d/undead/rooms/town/church1",
+                "graez" : "/d/islands/graez/rooms/city/church1",
                 "asgard" : "/d/laerad/parnelli/asgard/as72",
                 "antioch" : "/d/antioch/wild/forest/chapel_out",
                 "azha" : "/d/azha/town/church",
