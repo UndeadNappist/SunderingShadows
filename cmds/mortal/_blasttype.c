@@ -1,11 +1,12 @@
 #include <std.h>
+#include <daemons.h>
 inherit DAEMON;
 
 #define BLASTTYPES (({ "frightful", "glacial", "brimstone", "lifedrinker", "vitriolic", "beshadowed", "binding", "utterdark" }))
 
 int cmd_blasttype(string str)
 {
-    string spellname, currenttype;
+    string spellname, currenttype, featname;
     mixed masteredspells;
 
     if (!TP->is_class("warlock")) {
@@ -29,8 +30,10 @@ int cmd_blasttype(string str)
         return 1;
     }
 
-    spellname = str + " blast";
+    //spellname = str + " blast";
+    featname = str + " blast";
 
+    /*
     masteredspells = ({});
     masteredspells += TP->query_mastered_spells("warlock");
 
@@ -41,8 +44,11 @@ int cmd_blasttype(string str)
         tell_object(TP, "%^BOLD%^%^WHITE%^You don't know any essences!%^RESET%^");
         return 1;
     }
-
-    if (currenttype && member_array(currenttype + " blast", masteredspells) == -1) {
+    
+    */
+    //if (currenttype && member_array(currenttype + " blast", masteredspells) == -1) {
+    if(currenttype && !FEATS_D->usable_feat(this_player(), currenttype))
+    {
         TP->delete("warlock_blast_type");
         tell_object(TP,"%^BOLD%^%^WHITE%^Invalid warlock eldritch blast type has been reset!%^RESET%^");
         return 1;
@@ -53,8 +59,10 @@ int cmd_blasttype(string str)
         return 1;
     }
 
-    if (member_array(spellname, masteredspells) == -1) {
-        tell_object(TP, "%^BOLD%^%^WHITE%^You haven't learned that eldritch essence yet.%^RESET%^");
+    //if (member_array(spellname, masteredspells) == -1) {
+    if(!FEATS_D->usable_feat(this_player(), featname))
+    {
+        tell_object(TP, "%^BOLD%^%^WHITE%^You haven't learned that eldritch essence feat yet.%^RESET%^");
         return 1;
     }
 
