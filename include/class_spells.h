@@ -131,7 +131,7 @@ class_spell_storage =
 "warlock":
 ([
     "all":
-        ({"eldritch blast", "eldritch claws", "eldritch bow", "detect magic", "eldritch glaive","eldritch scimitar","eldritch chain","eldritch burst"}),
+        ({"eldritch blast", "eldritch claws", "eldritch bow", "eldritch glaive","eldritch scimitar","eldritch chain","eldritch burst"}),
 ]),
 
 ]);
