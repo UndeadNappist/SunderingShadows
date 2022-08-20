@@ -2962,6 +2962,12 @@ void define_base_damage(int adjust)
             if(FEATS_D->usable_feat(caster, "power specialization"))
                 sdamage += (BONUS_D->query_stat_bonus(caster, "intelligence") * (1 + clevel / 12));
         }
+        
+        if(spell_type == "warlock")
+        {
+            if(target->query_property("warlocks curse") == caster)
+                sdamage += roll_dice(1 + caster->query_class_level("warlock") / 10, 6);
+        }
 
         if(spell_type == "sorcerer")
         {

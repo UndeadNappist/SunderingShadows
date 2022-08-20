@@ -52,7 +52,7 @@ int cmd_smite(string str)
         return 0;
     
     feat = new(base_name(this_object()));
-    feat->setup_feat(this_player(),"");
+    feat->setup_feat(this_player(), str);
     return 1;
 }
 
