@@ -57,7 +57,7 @@ mapping monster_stat_rolls() { return ([ "str" : 0, "dex" : 1, "con" : 0, "int" 
 
 mapping query_racial_innate(string subrace)
 {
-	return (["calm animal" : ({"spell", 0.5, 1, 1, 1, -1})]);
+	return (["calm animal" : ([])]);
 }
 
 int size() { return 2; }
