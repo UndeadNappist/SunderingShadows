@@ -6,7 +6,7 @@ void create()
 {
    ::create();
    feat_type("permanent");
-   feat_category("PactBond");
+   feat_category("PactInvocation");
    feat_name("eldritch sight");
    feat_prereq("Warlock L1");
    feat_desc("Your patron bestows upon you superior vision, so that you may inherently see magical essence as if under the effects of a detect magic spell.");

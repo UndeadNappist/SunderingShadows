@@ -6,7 +6,7 @@ void create()
 {
    ::create();
    feat_type("permanent");
-   feat_category("PactBond");
+   feat_category("PactInvocation");
    feat_name("lifedrinker blast");
    feat_prereq("Warlock L1");
    feat_desc("This feat represents the ability to apply the 'lifedrinker' modifier to your eldritch blast and eldritch strikes. Upon hitting the opponent, you will steal some of the victim's life essence, restoring some of your own. Applying this blasttype also changes the damage type of eldritch blast and eldritch strikes to negative energy. Only one blasttype can be applied at a time and they do not stack.\n\See Also: help blasttype");

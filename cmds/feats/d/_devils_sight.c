@@ -6,7 +6,7 @@ void create()
 {
    ::create();
    feat_type("permanent");
-   feat_category("PactBond");
+   feat_category("PactInvocation");
    feat_name("devils sight");
    feat_prereq("Warlock L1");
    feat_desc("The darkness becomes your friend. Your patron bestows upon you the inherent ability to see in extremes of light and darkness, as if you are under the influence of darkvision.");

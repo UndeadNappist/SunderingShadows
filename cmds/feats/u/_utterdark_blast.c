@@ -6,7 +6,7 @@ void create()
 {
    ::create();
    feat_type("permanent");
-   feat_category("PactBond");
+   feat_category("PactInvocation");
    feat_name("utterdark blast");
    feat_prereq("Warlock L31");
    feat_desc("This feat represents the ability to apply the 'utterdark' modifier to your eldritch blast and eldritch strikes. This blasttype empowers the blast or strike, increasing the size of the damage dice by one. Only one blasttype can be applied at a time and they do not stack.\n\See Also: help blasttype");

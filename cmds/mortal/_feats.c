@@ -1001,7 +1001,7 @@ int validation_messages(object obj, string group, string feat_name) {
                 "This feat can only be selected as a rage feat.%^RESET%^");
             return 1;
         }
-        if ((string)FEATS_D->get_category(feat_name) == "PactBond") {
+        if ((string)FEATS_D->get_category(feat_name) == "PactInvocation") {
             tell_object(obj, "%^RESET%^%^BOLD%^This is a warlock class feat. "
                 "This feat can only be selected as a pact feat.%^RESET%^");
             return 1;

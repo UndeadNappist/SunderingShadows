@@ -6,7 +6,7 @@ void create()
 {
    ::create();
    feat_type("permanent");
-   feat_category("PactBond");
+   feat_category("PactInvocation");
    feat_name("frightful blast");
    feat_prereq("Warlock L1");
    feat_desc("This feat represents the ability to apply the 'frightful' modifier to your eldritch blast and eldritch strikes. Upon hitting the opponent, they must make a will save or be shaken for a few rounds. Only one blasttype can be applied at a time and they do not stack.\n\See Also: help blasttype");
