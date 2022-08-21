@@ -359,6 +359,16 @@ int query_skill(string skill)
     if(skill == "survival" && FEATS_D->has_feat(this_object(), "nature sense"))
         x += 10;
     
+    if(this_object()->is_class("warlock"))
+    {
+        if(skill == "influence" && FEATS_D->usable_feat(this_object(), "beguiling influence"))
+            x += 10;
+    
+        if(skill == "athletics" || skill == "endurance")
+            if(FEATS_D->usable_feat(this_object(), "leaps and bounds"))
+                x += 5;
+    }
+    
     if(skill == "perception" && FEATS_D->usable_feat(this_object(), "danger sense")){
         x += ((this_object()->query_class_level("barbarian") / 10)  + (this_object()->query_class_level("thief") / 10) + 1);
     }
