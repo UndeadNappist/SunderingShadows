@@ -218,6 +218,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     
     //Chronicler gets advantage on saving throws
     if(FEATS_D->usable_feat(ob, "live to tell the tale") ||
+       FEATS_D->usable_feat(ob, "dark ones luck") ||
        FEATS_D->usable_feat(ob, "spellcasting harrier") ||
        (FEATS_D->usable_feat(ob, "perpetual foresight") && ob->query("available focus")))
         roll1 = max( ({ roll1, roll_dice(1, 20) }) );

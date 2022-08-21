@@ -107,7 +107,7 @@ void spell_effect(int prof) {
     tell_object(target,"%^MAGENTA%^"+caster->QCN+" directs a blast of "+descriptor+" to strike you!%^RESET%^");
     tell_room(place,"%^MAGENTA%^"+caster->QCN+" directs a blast of "+descriptor+" to strike "+target->QCN+" squarely!%^RESET%^",({ caster, target }));
 
-    if(FEATS_D->usable_feat(caster, "mystic arcana"))
+    if(FEATS_D->usable_feat(caster, "agonizing blast"))
     {
         agonize = ( caster->query_stats("charisma") - 10 ) / 2;
         agonize *= ( ( clevel / 18 ) + 1 );

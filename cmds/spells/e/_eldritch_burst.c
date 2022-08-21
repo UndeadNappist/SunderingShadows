@@ -98,7 +98,7 @@ void spell_effect(int prof) {
     tell_object(caster,"%^MAGENTA%^You unleash a burst of "+descriptor+"!%^RESET%^");
     tell_room(place,"%^MAGENTA%^"+caster->QCN+" unleashes a burst of "+descriptor+"!%^RESET%^",caster);
 
-    if(FEATS_D->usable_feat(caster, "mystic arcana"))
+    if(FEATS_D->usable_feat(caster, "agonizing blast"))
     {
         agonize = ( caster->query_stats("charisma") - 10 ) / 2;
         agonize *= ( ( clevel / 18 ) + 1 );
