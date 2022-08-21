@@ -9,7 +9,7 @@ void create()
    feat_category("PactInvocation");
    feat_name("agonizing blast");
    feat_prereq("Warlock L1");
-   feat_desc("With this feat, the warlock empowers their eldritch blast, eldritch chain, and eldritch burst to cause more pain and damage. The affected spells gain additional damage based on the warlock's charisma modifier.");
+   feat_desc("With this feat, the warlock empowers their eldritch blast, eldritch chain, and eldritch burst to cause more pain and damage. The affected spells gain additional damage based on the warlock's charisma modifier. This is passive and is not a blast type.");
    permanent(1);
    allow_blind(1);
    set_required_for(({}));
