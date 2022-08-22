@@ -122,10 +122,16 @@ void round_cleanup(){
 }
 
 void check_psize(){
-    object* attackers;
+    object *attackers;
+    int i;
     
     attackers = query_attackers();
-    psize = sizeof(filter_array(attackers, (: userp($1) :)));
+    //psize = sizeof(filter_array(attackers, (: userp($1) :)));
+    psize = 0;
+    for(i = 0; i < sizeof(attackers); i++){
+        if(userp(attackers[i])) psize++;
+        continue;
+    }
     if(!psize) psize = 1;
     return;
 }

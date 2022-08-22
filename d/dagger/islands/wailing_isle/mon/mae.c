@@ -5,7 +5,7 @@
 #include "../defs.h"
 inherit VENDOR;
 
-int offered;
+int offered, choice;
 int delay = COOLDOWN;
 
 void create() {
@@ -29,6 +29,7 @@ void create() {
     force_me("speech speak loudly, with a bit of grit in her voice");
     set_storage_room(STOR"mae_storage");
     offered = 0;
+    choice = random(2) + 1;
 }
 
 void init(){
@@ -42,6 +43,11 @@ void init(){
         force_me("emoteat mutt %^RESET%^%^CRST%^%^C103%^$M lets out a low growl, stepping from around the corner to shoo the mutt away.%^CRST%^");
         force_me("say Get away from there!");
     }
+}
+
+void reset(){
+    ::reset();
+    choice = random(2) + 1;
 }
 
 void catch_say(string str){
@@ -58,7 +64,7 @@ void reply_fun(string str, object player){
     if(!str) return;
     if(!objectp(player)) return;
     
-    if(strsrch(str,"wailing") != -1 || (strsrch(str,"Wailing") != -1 )){
+    if(strsrch(str,"wailing") != -1 ){
         force_me("say You'd think you'd get used to the sound, after a lifetime... but even with that, there's something about this place. It feels like this is where you belong.");
         return;
     }
@@ -77,6 +83,10 @@ void reply_fun(string str, object player){
             force_me("say To be blunt... where's my rum?");
             return;
         }
+        if(quest == 13){
+            force_me("say Hunting down that ink isn't enough?");
+            return;
+        }
         if((player->cooldown("Wailing Isle jobs")) || quest || reputation < 10){
             force_me("say I've heard the harbormaster has some jobs here and there, but you need to be known. He's paranoid, in his way.");
             return;
@@ -92,16 +102,22 @@ void reply_fun(string str, object player){
     
     if(strsrch(str,"give up") != -1 ){
         if(quest == 11){
-            force_me("emote mae %^RESET%^%^CRST%^%^C103%^$M lets out a low grumble, slamming a fist on the the counter.%^CRST%^");
+            force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M lets out a low grumble, slamming a fist on the the counter.%^CRST%^");
             force_me("say FINE! I'll look for someone with a spine, next time.");
             player->set("wailing isle quest", 0);
             return;
         }
         if(quest == 12){
-            force_me("emote "+player->query_name()+" %^RESET%^%^CRST%^%^C103%^$M narrows her eyes at $N.%^CRST%^");
+            force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C103%^$M narrows her eyes at $N.%^CRST%^");
             force_me("say I already heard the cargo went missing. Funny how that works... but I've learned my lesson.");
             player->set("wailing isle quest", 0);
             player->set("wailing isle betrayed mae", 1);
+            return;
+        }
+        if(quest == 13){
+            force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C103%^$M sighs at $N, pinching the bridge of her nose.%^CRST%^");
+            force_me("say If you want something done right... fine.");
+            player->set("wailing isle quest", 0);
             return;
         }
         force_me("say What the hells are ya botherin' me about?");
@@ -109,10 +125,20 @@ void reply_fun(string str, object player){
     }
     
     if(((strsrch(str,"yes") != -1 ) || (strsrch(str,"Yes") != -1 ) || (strsrch(str,"Sure") != -1 ) || (strsrch(str,"Okay") != -1 ) || (strsrch(str,"sure") != -1 ) || (strsrch(str,"okay") != -1 )) && offered && !quest && !player->cooldown("Wailing Isle jobs") && !player->query("wailing isle betrayed mae") && reputation > 9){
-        force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M stands up, slapping a hand down on the counter.%^CRST%^");
-        force_me("say Don't forget: a crate of rum from the Zephyr.");
+        if(choice == 1){
+            force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M stands up, slapping a hand down on the counter.%^CRST%^");
+            force_me("say Don't forget: a crate of rum from the Zephyr.");
+            player->set("wailing isle quest", 11);
+        }
+        if(choice == 2){
+            force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M passes over a small bottle full of some foul smelling liquid.%^CRST%^");
+            force_me("say Remember, you'll want to pour this when you're out in deep water. Good luck getting that ink!");
+            player->set("wailing isle quest", 13);
+            ob = new(OBJ"kraken_bait");
+            ob->move(this_object());
+            force_me("give bait to "+player->query_name()+"");
+        }
         offered = 0;
-        player->set("wailing isle quest", 11);
         player->add_cooldown("Wailing Isle jobs", delay);
         choice = random(2) + 1;
         return;
@@ -151,19 +177,23 @@ void reply_fun(string str, object player){
         return;
     }
     
-    if(strsrch(str,"zephyr") != -1 || strsrch(str,"Zephyr") != -1 ){
-        force_me("say Ah, the Zephyr. A merchant ship that runs the shipping lanes between city ports around the Dagger and Saakrune Sea, though I hear it's from Djyaristan originally.");
-        return;
-    }
-    
     return;
 }
 
 void offer_job(){
     offered = 1;
     force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M leans forward against the counter, glancing about the shop for a wary moment.%^CRST%^");
-    force_me("say Rum has been hard to source, but I heard there's a shipment of it aboard a ship called the Zephyr. I'm not sure where she's docked, but you seem like the type that can get around. Can I count on you for a favor?");
-    call_out("refuse_job", 15);
+    switch(choice){
+        case 1 :
+            force_me("say Rum has been hard to source, but I heard there's a shipment of it aboard a ship called the Zephyr. I'm not sure where she's docked, but you seem like the type that can get around. Can I count on you for a favor?");
+            break;
+        case 2 :
+            force_me("say Kietta's looking for a special kind of ink from a special source, and I can't get away for the hunting. If I give you the bait, can you bring it in? I'll give you a cut of money for the work.");
+            break;
+        default :
+            message("debug", "Something went wrong, please contact Chernobog.", environment(this_object()));
+    }
+    call_out("refuse_job", 10);
     return;
 }
 
@@ -189,7 +219,7 @@ void receive_given_item(object ob){
         force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M easily hoists up the crate and sets it behind the counter.%^CRST%^");
         force_me("say It's one thing to hope, another to trust. Here... a token of gratitude.");
         ob->remove();
-        if(reputation < 40){
+        if(reputation < 50){
             reputation++;
             tell_object(player, "\n%^RESET%^%^CRST%^%^C208%^You feel as if this is earning some reputation for you on the Wailing Isle.%^CRST%^\n");
         }
@@ -205,6 +235,28 @@ void receive_given_item(object ob){
         reward = new(OBJ"rum_bottle");
         reward->move(this_object());
         force_me("give rum bottle to "+player->query_name()+"");
+        
+        xp_reward = exp_for_level(player->query_level() + 1) / 8;
+        player->add_exp(xp_reward);
+        tell_object(player, "\n%^RESET%^%^CRST%^%^C045%^You have gained "+xp_reward+" xp.%^CRST%^\n");
+        return 1;
+    }
+    if((ob->id("quest_item_ink")) && (quest == 13)){
+        force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M accepts the leaking gland, dropping it into an empty crate.%^CRST%^");
+        force_me("say That should keep her stocked for a bit, I think! And I feel like you need this, after going through all that.");
+        ob->remove();
+        if(reputation < 50){
+            reputation++;
+            tell_object(player, "\n%^RESET%^%^CRST%^%^C208%^You feel as if this is earning some reputation for you on the Wailing Isle.%^CRST%^\n");
+        }
+        else tell_object(player, "\n%^RESET%^%^CRST%^%^C196%^You don't feel as if this is earning any more reputation for you on the Wailing Isle.%^CRST%^\n");
+        if(reputation > 49) reputation = 50;
+        player->set("reputation wailing isle", reputation);
+        player->set("wailing isle quest", 0);
+        
+        force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C103%^$M tosses a small pouch towards $N.%^CRST%^");
+        this_object()->add_money("gold", 20000);
+        force_me("give 20000 gold coins to "+player->query_name()+"");
         
         xp_reward = exp_for_level(player->query_level() + 1) / 8;
         player->add_exp(xp_reward);

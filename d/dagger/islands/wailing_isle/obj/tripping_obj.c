@@ -35,7 +35,7 @@ void init(){
     add_action("who_fun","who");
     add_action("say_fun","say");
     
-    ETO->set_property("tripping", 1);
+    victim->set_property("tripping", 1);
 }
 
 void heart_beat(){

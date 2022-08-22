@@ -169,7 +169,7 @@ void reply_fun(string str, object player){
         return;
     }
     
-    if(strsrch(str,"wailing") != -1 || (strsrch(str,"Wailing") != -1 )){
+    if(strsrch(str,"wailing") != -1 ){
         force_me("emoteat astley %^RESET%^%^CRST%^%^C243%^$M sighs, offering a vague shrug.%^CRST%^");
         force_me("say If ya can get over the keenin' of the wind, it's a decent place ta live.");
         return;
