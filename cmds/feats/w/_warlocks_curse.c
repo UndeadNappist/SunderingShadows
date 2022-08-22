@@ -52,6 +52,7 @@ int cmd_warlocks_curse(string str)
 void execute_feat()
 {
     int delay;
+    string my_name, your_name, my_poss;
 
     if(!sizeof(caster->query_attackers()))
     {
@@ -72,10 +73,15 @@ void execute_feat()
         return;
     }
     
+    my_name = caster->query_cap_name();
+    your_name = target->query_cap_name();
+    my_poss = caster->query_possessive();
+    
     ::execute_feat();
   
-    tell_object(caster, "%^BOLD%^You point your finger at your opponent and prepare your foul curse...%^RESET%^");  
-    tell_room(place, caster->query_cap_name() + " begins to invoke a foul curse...", caster);
+    tell_object(caster, "%^C242%^You point your finger and utter an i%^C244%^n%^C246%^s%^C143%^i%^C149%^d%^C155%^i%^C149%^o%^C143%^u%^C242%^s curse of v%^C244%^u%^C246%^l%^C143%^n%^C149%^e%^C155%^r%^C149%^a%^C143%^b%^C246%^i%^C244%^l%^C242%^ity upon " + your_name + "!%^CRST%^");
+    tell_object(target,"%^C242%^" + my_name + " points " + my_poss + " finger and utters an i%^C244%^n%^C246%^s%^C143%^i%^C149%^d%^C155%^i%^C149%^o%^C143%^u%^C242%^s curse of v%^C244%^u%^C246%^l%^C143%^n%^C149%^e%^C155%^r%^C149%^a%^C143%^b%^C246%^i%^C244%^l%^C242%^ity upon you!%^CRST%^");
+    tell_room(place, "%^C242%^" + my_name + " points " + my_poss + " finger and utter an i%^C244%^n%^C246%^s%^C143%^i%^C149%^d%^C155%^i%^C149%^o%^C143%^u%^C242%^s curse of v%^C244%^u%^C246%^l%^C143%^n%^C149%^e%^C155%^r%^C149%^a%^C143%^b%^C246%^i%^C244%^l%^C242%^ity upon " + your_name + "!%^CRST%^", ({ caster, target }));
     caster->set_property("using instant feat",1);
 }
 
@@ -100,9 +106,9 @@ void execute_attack()
     if(!target)
         return;
     
-    tell_object(caster, "You smile in grim satisfaction as your curse takes hold.");
-    tell_object(target, "You feel the dread curse take hold!");
-    tell_room(place, caster->query_cap_name() + " smiles in grim satisfaction as " + caster->query_possessive() + " curse takes hold.", caster);
+    tell_object(caster, "%^C143%^You feel a twinge of satisfaction as your curse takes hold!%^CRST%^");
+    tell_object(target, "%^C143%^You feel the curse sink deep into your soul!%^CRST%^");
+    tell_room(place, "%^C143%^" + caster->query_cap_name() + " smiles in grim satisfaction as " + caster->query_possessive() + " curse takes hold.%^CRST%^", ({ caster, target }));
     target->remove_property("warlocks curse");
     target->set_property("warlocks curse", caster);
     caster->add_cooldown("warlocks curse", FEATTIMER);

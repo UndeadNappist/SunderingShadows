@@ -347,7 +347,7 @@ varargs int damage_adjustment(object attacker, object victim, int damage)
 varargs int typed_damage_modification(object attacker, object targ, string limb, int damage, string type)
 {
     object myEB, chained;
-    int resist_perc, resist, reduction, mod, amt, i;
+    int resist_perc, resist, reduction, mod, amt, i, eldritch_shield;
     float percentage;
     string* alignments, * enemy_alignments;
     string target_align;
@@ -609,6 +609,28 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
                     {
                         if(member_array("good", targ->query_divine_domain()) >= 0)
                              reduction += 5;
+                    }
+                }
+                
+                if(targ->is_class("warlock"))
+                {
+                    if(eldritch_shield = targ->query_property("eldritch shield"))
+                    {
+                        if(eldritch_shield > 0)
+                        {
+                            reduction += eldritch_shield;
+                            eldritch_shield -= damage;
+                            
+                            if(eldritch_shield <= 0)
+                            {
+                                tell_object(targ, "%^MAGENTA%^You feel the eldritch shield fade away.%^RESET%^");
+                                targ->remove_property("eldritch shield");
+                            }
+                        }
+                        else
+                        {
+                            targ->remove_property("eldritch shield");
+                        }
                     }
                 }
 
@@ -1260,12 +1282,6 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     if (critical_hit) {
         damage = crit_damage(attacker, targ, weapon, attacker_size, damage, cant_shot);
     }
-    
-    if(targ && targ->query_property("warlocks curse") == attacker)
-    {
-        int wlvl = attacker->query_class_level("warlock");
-        damage += (roll_dice(1 + wlvl / 10, 6));
-    }
 
     targ && paladin = targ->query_property("paladin smite");
 
@@ -1819,13 +1835,6 @@ void send_messages(object attacker, int magic, object weapon, string what, int x
         you = you + "%^BOLD%^BLACK%^[%^YELLOW%^Accurate%^BLACK%^]%^RESET%^";
         others = others + "%^BOLD%^BLACK%^[%^YELLOW%^Accurate%^BLACK%^]%^RESET%^";
     }
-    
-    if(victim->query_property("warlocks curse") == attacker && x > 0)
-    {
-        me = me + "%^BOLD%^BLACK%^[Curse]%^RESET%^";
-        you = you + "%^BOLD%^BLACK%^[Curse]%^RESET%^";
-        others = others + "%^BOLD%^BLACK%^[Curse]%^RESET%^";
-    }      
 
     if(victim->query_property("paladin smite") == attacker && x > 0)
     {
