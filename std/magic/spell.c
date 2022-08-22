@@ -3038,6 +3038,8 @@ void define_base_damage(int adjust)
 
         //reduction -= (FEATS_D->usable_feat(caster, "spell penetration") * 5);
         //reduction -= (FEATS_D->usable_feat(caster, "greater spell penetration") * 5);
+        reduction -= (FEATS_D->usable_feat(caster, "deteriorating blast") * 10);
+      
         sdamage -= reduction;
 
         if(sdamage < 0)
