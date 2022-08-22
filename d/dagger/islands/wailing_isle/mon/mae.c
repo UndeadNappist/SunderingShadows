@@ -64,7 +64,7 @@ void reply_fun(string str, object player){
     if(!str) return;
     if(!objectp(player)) return;
     
-    if(strsrch(str,"wailing") != -1 ){
+    if(strsrch(str,"wailing") != -1 || (strsrch(str,"Wailing") != -1 )){
         force_me("say You'd think you'd get used to the sound, after a lifetime... but even with that, there's something about this place. It feels like this is where you belong.");
         return;
     }
@@ -177,6 +177,11 @@ void reply_fun(string str, object player){
         return;
     }
     
+    if(strsrch(str,"zephyr") != -1 || strsrch(str,"Zephyr") != -1 ){
+        force_me("say Ah, the Zephyr. A merchant ship that runs the shipping lanes between city ports around the Dagger and Saakrune Sea, though I hear it's from Djyaristan originally.");
+        return;
+    }
+    
     return;
 }
 
@@ -193,7 +198,7 @@ void offer_job(){
         default :
             message("debug", "Something went wrong, please contact Chernobog.", environment(this_object()));
     }
-    call_out("refuse_job", 10);
+    call_out("refuse_job", 15);
     return;
 }
 
