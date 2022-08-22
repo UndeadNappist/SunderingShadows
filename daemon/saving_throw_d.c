@@ -72,6 +72,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
             if(FEATS_D->usable_feat(ob, "divine grace"))
                 mod += 5;
             
+            if(FEATS_D->usable_feat(ob, "shroud of black steel"))
+                mod += 4;
+            
             mod += ob->query_saving_bonus("fortitude");
             mod += (saves[0] * 2);
             max_mod = saves[0];

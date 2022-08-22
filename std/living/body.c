@@ -1408,6 +1408,9 @@ int query_ac()
         if(this_object()->validate_combat_stance("weapon and shield") || this_object()->validate_combat_stance("unarmed and shield"))
             myac += (1 + this_object()->query_base_character_level() / 10);
     }
+    
+    if(FEATS_D->usable_feat(this_object(), "shroud of black steel"))
+        myac += 4;
 
     if(FEATS_D->usable_feat(this_object(), "defensive weapon training"))
     {

@@ -84,13 +84,14 @@ void execute_attack()
     int dam, mod, glvl, opposed;
     object target, attackers;
     
+    caster->remove_property("using instant feat");
+    
     if(!caster || caster->query_unconscious())
     {
         dest_effect();
         return;
     }
     
-    caster->remove_property("using instant feat");
     ::execute_attack();
     
     if(!target)
@@ -105,4 +106,26 @@ void execute_attack()
     target->remove_property("warlocks curse");
     target->set_property("warlocks curse", caster);
     caster->add_cooldown("warlocks curse", FEATTIMER);
+    call_out("finish_curse", ROUNDS * ROUND_LENGTH, target, caster);
+}
+
+void finish_curse(object you, object me)
+{
+    
+    if(you)
+    {
+        if(you->query_property("warlocks curse"))
+        {
+            you->remove_property("warlocks curse");
+            tell_object(you, "%^BOLD%^You feel the warlock's curse fade from you.%^RESET%^");
+            me && tell_object(me, "%^BOLD%^Your warlock curse fades from your foe.%^RESET%^");
+        }
+    }
+    dest_effect();
+}
+
+void dest_effect()
+{
+    ::dest_effect();
+    remove_feat(this_object());
 }
