@@ -1673,7 +1673,7 @@ void display_feats(object ob,object targ, string mytype)
         currentlist -= ({ "RagePower" });
     }
     if (!targ->is_class("warlock") && !avatarp(targ)) {
-        currentlist -= ({ "PactBond" });
+        currentlist -= ({ "PactBond", "PactInvocation" });
     }
     /*
     if (!targ->is_class("thief") && !targ->is_class("bard") && !avatarp(targ)) {

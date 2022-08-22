@@ -5285,6 +5285,14 @@ string *query_player_feats() {
         }
         testmap = ([]);
     }
+    if (mapp(__FEAT_DATA["pact"])) {
+        testmap = __FEAT_DATA["pact"];
+        mykeys = keys(testmap);
+        if (sizeof(mykeys)) {
+            for (i = 0;i < sizeof(mykeys);i++) myreturn += testmap[mykeys[i]];
+        }
+        testmap = ([]);
+    }
     if (mapp(__FEAT_DATA["talent"])) {
         testmap = __FEAT_DATA["talent"];
         mykeys = keys(testmap);

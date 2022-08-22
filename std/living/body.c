@@ -1410,7 +1410,7 @@ int query_ac()
     }
     
     if(FEATS_D->usable_feat(this_object(), "shroud of black steel"))
-        myac += 4;
+        myac += 3;
 
     if(FEATS_D->usable_feat(this_object(), "defensive weapon training"))
     {
