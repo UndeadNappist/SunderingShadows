@@ -157,7 +157,7 @@ void set_teasures()
 void create()
 {
     ::create();
-    set_indoors(0);
+    set_indoors(1);
     set_property("light", 2);
     set_terrain(NAT_TUNNEL);
     set_travel(SLICK_FLOOR);

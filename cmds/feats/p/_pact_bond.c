@@ -136,9 +136,9 @@ void execute_feat()
     
     companion = new("/d/magic/mon/familiar");
     companion->set_race("outsider");
-    companion->set_name(type);
-    companion->set_id( ({ type, "familiar", caster->query_name() + "'s familiar" }) );
-    companion->set_short(sprintf("%s's faithful %s familiar.",capitalize(caster->query_name()),type));
+    companion->set_name(arg);
+    companion->set_id( ({ arg, "familiar", caster->query_name() + "'s familiar" }) );
+    companion->set_short(sprintf("%s's faithful %s familiar.",capitalize(caster->query_name()),arg));
     companion->set_level(class_level);
     companion->set_hd(comp_hd, 14);
     companion->set_attacks_num(2 + class_level / 8);
@@ -157,14 +157,14 @@ void execute_feat()
     companion->set_heart_beat(1);
     
     //Setting companion stats based on type per SRD
-    companion->set_stats("strength", valid_types[type][0] + min( ({ class_level / 5, 6 }) ) );
-    companion->set_stats("dexterity", valid_types[type][1] + min( ({ class_level / 5, 6 }) ) );
-    companion->set_stats("constitution", valid_types[type][2]);
-    companion->set_stats("intelligence", valid_types[type][3]);
-    companion->set_stats("wisdom", valid_types[type][4]);
-    companion->set_stats("charisma", valid_types[type][5]);
-    companion->set_size(valid_types[type][6]);
-    companion->set_overall_ac(0 - comp_ac - valid_types[type][7]);
+    companion->set_stats("strength", valid_types[arg][0] + min( ({ class_level / 5, 6 }) ) );
+    companion->set_stats("dexterity", valid_types[arg][1] + min( ({ class_level / 5, 6 }) ) );
+    companion->set_stats("constitution", valid_types[arg][2]);
+    companion->set_stats("intelligence", valid_types[arg][3]);
+    companion->set_stats("wisdom", valid_types[arg][4]);
+    companion->set_stats("charisma", valid_types[arg][5]);
+    companion->set_size(valid_types[arg][6]);
+    companion->set_overall_ac(0 - comp_ac - valid_types[arg][7]);
   
     //Based on SRD - companion gets "specials" at certain caster levels
     if(class_level >= 3)

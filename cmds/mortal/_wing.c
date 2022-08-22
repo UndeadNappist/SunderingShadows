@@ -31,11 +31,11 @@ int cmd_wing(string args)
         return 1;
     }
 
-    if (TP->query_property("wing delay") + WING_DELAY > time()) {
-        tell_object(TP, "Your wings are tired, you'll have to wait a bit.");
+    if(this_player()->cooldown("wing")){
+        tell_object(TP, "%^BOLD%^%^RED%^Your wings are tired, you'll have to wait a bit.%^RESET%^");
         return 1;
-    }
-
+	}
+    
     if (!(dest = TP->query_rem_room(args))) {
         if (member_array(args, keys(preset_destinations)) != -1) {
             dest = "" + preset_destinations[args];
@@ -67,8 +67,7 @@ int cmd_wing(string args)
         return 1;
     }
 
-    TP->remove_property("wing delay");
-    TP->set_property("wing delay", time());
+    this_player()->add_cooldown("wing", WING_DELAY);
     tell_room(ETP, "%^BOLD%^%^WHITE%^" + TP->QCN + " flaps " + TP->QP + " wings and off " + TP->QS + " goes.%^RESET%^", TP);
 
     {
