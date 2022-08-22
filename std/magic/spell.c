@@ -3026,6 +3026,10 @@ void define_base_damage(int adjust)
         {
             sdamage = roll_dice(2, sdamage / 4);
         }
+        else if(caster->is_class("warlock") && FEATS_D->has_feat(caster, "eldritch focus") && caster->query_current_attacker() && spell_source && spell_source == "warlock")
+        {
+            sdamage = roll_dice(2, sdamage / 4);
+        }
     }
 
     if(objectp(target) && sdamage)

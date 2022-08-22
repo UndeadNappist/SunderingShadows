@@ -10,6 +10,7 @@ void create() {
     set_spell_name("fiendish vigor");
     set_spell_level(([ "warlock" : 2 ]));
     set_spell_sphere("necromancy");
+    set_heritage("abyssal");
     set_syntax("cast CLASS fiendish vigor [on TARGET]");
     set_damage_desc("clevel hitpoints bonus");
     set_description("The warlock carves several glyphs into their body, strengthening their bond to their patron to increase their own vigor. This spell does not stack with similar effects.");
