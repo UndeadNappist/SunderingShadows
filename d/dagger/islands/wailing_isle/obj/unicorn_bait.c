@@ -61,3 +61,4 @@ void summon_fun(object room, int power, object blood){
     blood->remove();
     return;
 }
+

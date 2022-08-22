@@ -146,12 +146,16 @@ void reply_fun(string str, object player){
     if((strsrch(str,"unicorn") != -1 ) && greeted){
         force_me("say Unicorns? Dey be full of power, especially in de horn. Full of de life energies.");
         force_me("emoteat kietta %^RESET%^%^CRST%^%^C101%^$M lets out a long sigh.%^CRST%^");
-        if(reputation < 10 || player->cooldown("Wailing Isle jobs") || quest){
+        if(reputation < 10){
             force_me("say It be some time since I be having powdered horn in me collection.");
             return;
         }
         if(quest == 4){
             force_me("say You have not yet returned de horn from de Moonstone Vale. Are you giving up on de spirits now?");
+            return;
+        }
+        if(quest || player->cooldown("Wailing Isle jobs")){
+            force_me("say It be some time since I be having powdered horn in me collection. Maybe you be helping me wit dis when ye aren't so preoccupied?");
             return;
         }
         force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C101%^$M studies $N shrewdly for a moment, brushing her thumbs over her fingertips.%^CRST%^");

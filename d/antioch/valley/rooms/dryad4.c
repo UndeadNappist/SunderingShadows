@@ -66,7 +66,6 @@ void init()
 {
 	::init();
 	add_action("climb", "climb");
-    add_action("sprinkle_fun", "sprinkle");
 }
 
 int climb(string str)
