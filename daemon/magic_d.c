@@ -320,6 +320,7 @@ void build_index()
                         spelltable["sphere"] = str2->query_spell_sphere(); //aka school
                         spelltable["way"] = str2->query_monk_way();
                         spelltable["discipline"] = str2->query_discipline();
+                        spelltable["heritage"] = str2->query_heritage();
                         spelltable["feats"] = str2->query_feats_required();
                         if(sizeof(str2->query_domains()))
                         {                          
