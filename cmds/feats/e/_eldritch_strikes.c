@@ -24,7 +24,7 @@ void create()
     feat_name("eldritch strikes");
     feat_prereq("Warlock L1");
     feat_syntax("eldritch_strikes");
-    feat_desc("This feat allows the warlock to infuse their current mainhand weapon with eldritch energy, effectively applying their eldritch essence (blast type) to that weapon. This will cause the weapon to periodically perform an extra hit in combat based on the blast type chosen. The essence type changes whenever the warlock changes blasttype.");
+    feat_desc("This feat allows the warlock to infuse their current mainhand weapon with eldritch energy, effectively applying their eldritch essence (blast type) to that weapon. This will cause the weapon to periodically perform an extra hit in combat based on the blast type chosen. The essence type changes whenever the warlock changes blasttype. In addition, the warlock gains a +1 attack roll bonus when wielding this weapon.");
     set_target_required(0);
 }
 
@@ -92,7 +92,7 @@ void execute_feat()
     weapon->set_property("added short", ({ "%^BLACK%^BOLD%^ [%^GREEN%^eldritch%^BLACK%^]%^RESET%^" }) );
     caster->set_property("using instant feat",1);
     caster->remove_property("eldritch strikes");
-    caster->set_property("eldritch strikes", ({ weapon, arg }));
+    caster->set_property("eldritch strikes", ({ weapon, type }));
 }
 
 void execute_attack()

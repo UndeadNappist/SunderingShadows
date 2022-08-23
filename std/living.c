@@ -1983,6 +1983,21 @@ int query_attack_bonus()
         if(FEATS_D->usable_feat(this_object(), "prime strike"))
             ret += 1;
     }
+    
+    if(this_object()->is_class("warlock") && this_object()->query_property("eldritch strikes") && sizeof(weap) && attacker)
+    {
+        mixed *strikes;
+        
+        strikes = this_object()->query_property("eldritch strikes");
+        
+        if(sizeof(strikes) == 2)
+        {
+            if(weap[0] == strikes[0])
+                ret += 1;
+            else if(sizeof(weap) == 2 && weap[1] == strikes[0])
+                ret += 1;
+        }
+    }            
 
     //Inquisitor Bane
     if(this_object()->query_property("bane weapon") && sizeof(weap) && attacker)
