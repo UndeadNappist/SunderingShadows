@@ -803,6 +803,21 @@ mapping query_mastered_bonus()
         }
     }
     
+    if (TO->is_class("warlock")) {
+        string pact = this_object()->query("warlock heritage");
+        tmp["warlock"] = MAGIC_SS_D->query_class_special_spells("warlock", "all");
+        strlen(pact) && tmp["warlock"] += MAGIC_SS_D->query_class_special_spells("warlock", pact);
+
+        if (TO->is_class("hellfire warlock")) {
+            tmp["warlock"] += ({ "brimstone blast" });
+        }
+        if (FEATS_D->usable_feat(TO, "infernal practitioner")) {
+            tmp["warlock"] += ({ "hellfire shield", "infernal rain", "fiery body", "fire storm", "infernal healing", "hurl through hell" });
+        }
+        if(FEATS_D->usable_feat(TO, "book of shadows"))
+            tmp["warlock"] += ({ "mending", "minor creation", "command", "clairvoyance", "rope trick", "unseen servant" });
+    }
+    
     if(sizeof(bonus = this_object()->query_property("bonus_mastered")))
     {
         bonus = distinct_array(bonus);
@@ -828,21 +843,6 @@ mapping query_mastered_bonus()
         if (FEATS_D->usable_feat(TO, "mental fortress")) {
             tmp["psywarrior"] += (({ "timeless body" }));
         }
-    }
-
-    if (TO->is_class("warlock")) {
-        string pact = this_object()->query("warlock heritage");
-        tmp["warlock"] = MAGIC_SS_D->query_class_special_spells("warlock", "all");
-        strlen(pact) && tmp["warlock"] += MAGIC_SS_D->query_class_special_spells("warlock", pact);
-
-        if (TO->is_class("hellfire warlock")) {
-            tmp["warlock"] += ({ "brimstone blast" });
-        }
-        if (FEATS_D->usable_feat(TO, "infernal practitioner")) {
-            tmp["warlock"] += ({ "hellfire shield", "infernal rain", "fiery body", "fire storm", "infernal healing", "hurl through hell" });
-        }
-        if(FEATS_D->usable_feat(TO, "book of shadows"))
-            tmp["warlock"] += ({ "mending", "minor creation", "command", "clairvoyance", "rope trick", "unseen servant" });
     }
 
     return tmp ? tmp : ([]);
