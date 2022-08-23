@@ -72,7 +72,7 @@ int cmd_blasttype(string str)
     }
 
     TP->set("warlock_blast_type", str);
-    tell_object(TP, "%^BOLD%^%^WHITE%^You have set your eldritch essence to " + spellname + ".%^RESET%^");
+    tell_object(TP, "%^BOLD%^%^WHITE%^You have set your eldritch essence to " + featname + ".%^RESET%^");
     return 1;
 }
 
