@@ -1122,6 +1122,16 @@ void wizard_interface(object user, string type, string targ)
                     nodo = 0;
                 }
             }
+            if(spell_type == "warlock")
+            {
+                if(FEATS_D->usable_feat(caster, "planar conditioning"))
+                {
+                    if(sizeof(weaps) && caster->query_property("eldritch strikes") == weaps[0])
+                        nodo = 0;
+                    else if(sizeof(weaps) == 2 && caster->query_property("eldritch strikes") == weaps[1])
+                        nodo = 0;
+                }
+            }
             if (FEATS_D->usable_feat(caster, "eldritch conditioning")) {
                 nodo = 0;
             }
