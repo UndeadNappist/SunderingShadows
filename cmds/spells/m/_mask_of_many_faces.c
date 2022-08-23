@@ -5,7 +5,7 @@ void create()
 {
     ::create();
     set_spell_name("mask of many faces");
-    set_spell_level(([ "warlock" : 2 ]));
+    set_spell_level(([ "warlock" : 1 ]));
     set_spell_sphere("alteration");
     set_syntax("cast CLASS mask of many faces [on [RACE] [0-9]] ");
     set_description("%^RESET%^With this spell, the warlock opens themselves fully to the power of their patron, allowing their very self to be moulded into a new form. This spell allows the caster to make major changes to their body and pretend to be be someone else. These are usually sufficient changes that they become unrecognizable even to those they are familiar with. It does not allow for such drastic changes as body size or overall shape, so be aware of races you turn into.\n\nAdjective, description, speech, messages etc will be remembered across castings, so they will only need to be set once in your alternative form. Players will be able to recognize your 'other self' as a unique entity, separate from your usual self.\n\nYou can have up to caster level / 12 + 1 alternate profiles. To switch between them use numbers from 0 to 9 as the spell argument. Default profile number is 0. The spell will also remember last profile used and will use it by default.");

@@ -831,7 +831,9 @@ mapping query_mastered_bonus()
     }
 
     if (TO->is_class("warlock")) {
+        string pact = this_object()->query("warlock heritage");
         tmp["warlock"] = MAGIC_SS_D->query_class_special_spells("warlock", "all");
+        strlen(pact) && tmp["warlock"] += MAGIC_SS_D->query_class_special_spells("warlock", pact);
 
         if (TO->is_class("hellfire warlock")) {
             tmp["warlock"] += ({ "brimstone blast" });
