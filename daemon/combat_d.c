@@ -1282,6 +1282,12 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     if (critical_hit) {
         damage = crit_damage(attacker, targ, weapon, attacker_size, damage, cant_shot);
     }
+    
+    if(targ && targ->query_property("warlocks curse") == attacker)
+    {
+        int wlvl = attacker->query_class_level("warlock");
+        damage += (roll_dice(1 + wlvl / 10, 6));
+    }
 
     targ && paladin = targ->query_property("paladin smite");
 
@@ -1821,6 +1827,13 @@ void send_messages(object attacker, int magic, object weapon, string what, int x
         others = "%^BOLD%^%^RED%^(Critical) %^RESET%^" + others;
         attacker->reset_critical();
     }
+    
+    if(victim->query_property("warlocks curse") == attacker && x > 0)
+    {
+        me = me + "%^BOLD%^BLACK%^[Curse]%^RESET%^";
+        you = you + "%^BOLD%^BLACK%^[Curse]%^RESET%^";
+        others = others + "%^BOLD%^BLACK%^[Curse]%^RESET%^";
+    }   
 
     if(sneak && x > 0)
     {
