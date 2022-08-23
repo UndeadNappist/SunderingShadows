@@ -135,7 +135,7 @@ class_spell_storage =
     "abyssal":
         ({ "diabolic grasp", "fiendish vigor" }),
     "gloom":
-        ({ "vampiric embrace", "whispers of the grave" }),
+        ({ "vampiric embrace", "whispers of the grave", "armor of shadows", "shadowform" }),
     "fey":
         ({ "mire the mind", "eyebite" }),
         

@@ -16,7 +16,8 @@ void create()
     set_spell_name("armor of shadows");
     set_spell_level(([ "warlock" : 1 ]));
     set_bonus_type("armor");
-    set_spell_sphere("conjuration_summoning");
+    set_heritage("gloom");
+    set_spell_sphere("illusion");
     set_syntax("cast CLASS armor of shadows [on TARGET]");
     set_damage_desc("+4 to AC");
     set_description("Calling on their bond to their patron, the warlock draws upon the shadows to bolster their defenses.");

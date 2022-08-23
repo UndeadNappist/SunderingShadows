@@ -17,7 +17,7 @@ void dest_effect();
 create() {
     ::create();
     set_spell_name("vampiric embrace");
-    set_spell_level(([ "warlock" : 4 ]));
+    set_spell_level(([ "warlock" : 2 ]));
     set_spell_sphere("necromancy");
     set_heritage("gloom");
     set_syntax("cast CLASS vampiric embrace on TARGET");
