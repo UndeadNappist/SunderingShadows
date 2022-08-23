@@ -132,6 +132,13 @@ class_spell_storage =
 ([
     "all":
         ({"eldritch blast","eldritch chain","eldritch burst"}),
+    "abyssal":
+        ({ "diabolic grasp", "fiendish vigor" }),
+    "gloom":
+        ({ "vampiric embrace", "whispers of the grave" }),
+    "fey":
+        ({ "mire the mind", "eyebite" }),
+        
 ]),
 
 ]);
