@@ -73,11 +73,14 @@ void execute_feat()
         return;
     }
     
+    if(!objectp(target))
+        target = caster->query_current_attacker();
+    
+    ::execute_feat();
+    
     my_name = caster->query_cap_name();
     your_name = target->query_cap_name();
     my_poss = caster->query_possessive();
-    
-    ::execute_feat();
   
     tell_object(caster, "%^C242%^You point your finger and utter an i%^C244%^n%^C246%^s%^C143%^i%^C149%^d%^C155%^i%^C149%^o%^C143%^u%^C242%^s curse of v%^C244%^u%^C246%^l%^C143%^n%^C149%^e%^C155%^r%^C149%^a%^C143%^b%^C246%^i%^C244%^l%^C242%^ity upon " + your_name + "!%^CRST%^");
     tell_object(target,"%^C242%^" + my_name + " points " + my_poss + " finger and utters an i%^C244%^n%^C246%^s%^C143%^i%^C149%^d%^C155%^i%^C149%^o%^C143%^u%^C242%^s curse of v%^C244%^u%^C246%^l%^C143%^n%^C149%^e%^C155%^r%^C149%^a%^C143%^b%^C246%^i%^C244%^l%^C242%^ity upon you!%^CRST%^");
