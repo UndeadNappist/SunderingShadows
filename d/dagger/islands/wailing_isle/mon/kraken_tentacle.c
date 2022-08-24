@@ -24,7 +24,7 @@ void create(){
     add_limb("tentacle","torso",0,0,0);
     set_attack_limbs(({"tentacle"}));
     set_base_damage_type("bludgeoning");
-    set_func_chance(33);
+    set_func_chance(25);
     set_funcs(({ "wrap_attack" }));
     set_property("no fear", 1);
     set_property("fear_immunity", 1);
