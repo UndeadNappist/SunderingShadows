@@ -7,7 +7,7 @@
 
 inherit MONSTER;
 
-int powerlevel, counter, tentacles, low_hp;
+int powerlevel, counter, tentacles, low_hp, retreat;
 object stomach;
 
 void create(){
@@ -51,6 +51,8 @@ void create(){
     low_hp = 0;
     stomach = new(ROOMS"kraken_stomach");
     stomach->set_controller(this_object());
+    
+    retreat = time() + 1800;
 }
 
 void set_powerlevel(int pwrlvl){
@@ -74,6 +76,22 @@ void init(){
     ::init();
     player = this_player();
     if(userp(player) && !avatarp(player)) force_me("kill "+player->query_name()+"");
+}
+
+void heart_beat(){
+    object kraken, room;
+    
+    ::heart_beat();
+    
+    if(retreat < time()){
+        kraken = this_object();
+        room = environment(kraken);
+        
+        message("environment", "%^RESET%^%^CRST%^%^C109%^The %^C106%^k%^C112%^r%^C118%^ak%^C112%^e%^C106%^n %^RESET%^%^C109%^ seems to grow bored, withdrawing its tentacles from the ship. It wastes no time in sinking back beneath the %^C111%^w%^C117%^a%^C123%^v%^C111%^e%^C117%^s%^RESET%^%^C109%^, quickly disappearing from sight.%^CRST%^", room);
+        kraken->move("/d/shadowgate/void.c");
+        kraken->remove();
+    }
+    return;
 }
 
 void round_cleanup(){
