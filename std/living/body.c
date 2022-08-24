@@ -792,7 +792,7 @@ int query_resistance(string res)
             break;
             case "gloom":
             if(res == "cold")
-                myres += (5 + w_level / 4);
+                myres += (10 + w_level / 2);
             break;
             case "astral":
             if(res == "mental" || res == "void")
@@ -802,7 +802,7 @@ int query_resistance(string res)
             if(res == "bludgeoning")
                 myres += 5;
             if(res == "force")
-                myres += (5 + w_level / 4);
+                myres += (10 + w_level / 2);
             break;
         }
     }
@@ -1410,7 +1410,7 @@ int query_ac()
     }
     
     if(FEATS_D->usable_feat(this_object(), "shroud of black steel"))
-        myac += 3;
+        myac += 4;
 
     if(FEATS_D->usable_feat(this_object(), "defensive weapon training"))
     {
