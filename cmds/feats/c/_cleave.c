@@ -11,7 +11,7 @@ void create()
     feat_category("MeleeDamage");
     feat_name("cleave");
     feat_prereq("Powerattack, Base Strength 15");
-    feat_desc("This feat gives the ability to hit an additional enemy upon a successful hit. This will happen once per round. This feat requires a weapon to function");
+    feat_desc("This feat gives the ability to hit an additional enemy upon a successful hit. This will happen once per round. This feat requires a melee weapon to function and does not work with long range weapons.");
     permanent(1);
     set_target_required(0);
     set_required_for(({ "great cleave","improved cleave" }));
