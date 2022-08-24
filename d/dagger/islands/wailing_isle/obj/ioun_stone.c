@@ -15,6 +15,8 @@ void create() {
     set_obvious_short("%^RESET%^%^CRST%^%^C116%^small gray stone%^CRST%^");
     set_short("%^RESET%^%^CRST%^%^C116%^basic ioun stone%^CRST%^");
     set_long("%^RESET%^%^CRST%^%^C116%^This small gray stone is smooth to the touch. There seems to be some feeling of inherent potential.%^CRST%^");
+    set_lore("%^RESET%^%^CYAN%^These stones are enchanted by powerful artificers, each type granting benefits to its bearer based on the gemstones or materials used. They are lightweight, sometimes even managing to float off of their own volition, but will maintain a regular orbit once placed nearby one's head.%^RESET%^");
+    set_property("lore difficulty", 30);
     set_weight(1);
     set_value(0);
     set_type("ring");
