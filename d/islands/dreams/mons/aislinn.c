@@ -35,6 +35,7 @@ void create(){
     set_mob_magic_resistance("average");
     set_property("no dominate",1);
     set_property("no death",1);
+    set_property("no fear", 1);
     set_property("no rush",1);
     set_property("swarm",1);
     set_property("no bows",1);
