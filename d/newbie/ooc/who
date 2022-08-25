@@ -4,17 +4,13 @@ Concerning typing <%^BOLD%^who%^RESET%^>...
 
 People on the who listing are currently unknown to you. You will first have to <%^BOLD%^recognize%^RESET%^> them before you will be able to call them by name (including yourself). This allows for player's to provide nicknames, or even false names, rather than their real name. Please see <%^BOLD%^help recognize%^RESET%^> for more information.
 
-2.) What does the letters K, A, and F after some names on the "who" list mean?
+2.) What does the letters NoPK, Gr, and N before some names on the "who" list mean?
 
-In the spirit of fun and fairness, Sundering Shadows has implemented a system to determine who is an appropriate party member for you, as well as who you are able to participate in playerkilling with.
+NoPK - In the spirit of fun and fairness, Sundering Shadows has implemented a system to determine who has opted in to player killing. NoPK are those who are still under protection, and will not engage in conflict RP.
 
-A %^BOLD%^%^GREEN%^K%^RESET%^ means you are free to party with, and engage in pk with, that person.
+Gr - This is a grace flag, which lasts for 10 minutes after logging into Sundering Shadows. Those under the grace flag should not engage or be engaged in any conflict RP.
 
-An %^YELLOW%^A%^RESET%^ means you may adventure with, but not playerkill, that person.
-
-An %^BOLD%^%^RED%^F%^RESET%^ means you are forbidden to participate in both parties
-
-and playerkilling with that person.
+N - Players under level 6 are labled with this while in Offestry, as a new player to the game.
 
 Please see <%^BOLD%^help who%^RESET%^> for more information.
 
