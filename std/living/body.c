@@ -767,45 +767,6 @@ int query_resistance(string res)
     if ((string)TO->query("subrace") == "tiefling" && (res == "cold" || res == "fire" || res == "electricity")) {
         myres += 5;
     }
-    if(this_object()->is_class("warlock"))
-    {
-        int w_level;
-        string pact;
-        
-        w_level = this_object()->query_class_level("warlock");
-        pact = this_object()->query("warlock heritage");
-        
-        switch(pact)
-        {
-            case "abyssal":
-            case "demonic":
-            if(res == "acid" || res == "silver")
-                myres += (5 + w_level / 4);
-            break;
-            case "infernal":
-            if(res == "fire" || res == "silver")
-                myres += (5 + w_level / 4);
-            break;
-            case "fey":
-            if(res == "cold iron" || res == "sonic")
-                myres += (5 + w_level / 4);
-            break;
-            case "gloom":
-            if(res == "cold")
-                myres += (10 + w_level / 2);
-            break;
-            case "astral":
-            if(res == "mental" || res == "void")
-                myres += (5 + w_level / 4);
-            break;
-            case "blade":
-            if(res == "bludgeoning")
-                myres += 5;
-            if(res == "force")
-                myres += (10 + w_level / 2);
-            break;
-        }
-    }
     /*
     if (FEATS_D->usable_feat(TO, "energy resistance")) {
         if ((string)TO->query("warlock heritage") == "celestial" && res == "acid") {
@@ -1137,6 +1098,44 @@ int query_resistance_percent(string res, object source)
             case "boreal":
             if(res == "cold")
                 mod = 20 + sorc_level * 2;
+            break;
+        }
+    }
+    
+    if(this_object()->is_class("warlock"))
+    {
+        int w_level;
+        string pact;
+        
+        w_level = this_object()->query_class_level("warlock");
+        pact = this_object()->query("warlock heritage");
+        
+        switch(pact)
+        {
+            case "abyssal":
+            case "demonic":
+            if(res == "acid" || res == "silver")
+                mod += (10 + w_level);
+            break;
+            case "infernal":
+            if(res == "fire" || res == "silver")
+                mod += (10 + w_level);
+            break;
+            case "fey":
+            if(res == "cold iron" || res == "sonic")
+                mod += (10 + w_level);
+            break;
+            case "gloom":
+            if(res == "cold")
+                mod += (10 + w_level * 2);
+            break;
+            case "astral":
+            if(res == "mental" || res == "void")
+                mod += (10 + w_level);
+            break;
+            case "blade":
+            if(res == "force")
+                mod += (10 + w_level * 2);
             break;
         }
     }
