@@ -21,6 +21,7 @@ void create(){
     set_funcs(({ 
         "round_cleanup" }));
     set_property("no death", 1);
+    set_property("no sleep", 1);
     set_property("no fear", 1);
     set_property("fear_immunity", 1);
     set_property("no knockdown", 1);

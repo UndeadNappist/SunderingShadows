@@ -720,7 +720,8 @@ int immunity_check(object obj, string type)
         if (obj->is_undead()) {
             return 1;
         }
-        
+        if(obj->query_property("no sleep"))
+            return 1;
         if(obj->query_mystery() == "dragon" && obj->query_class_level("oracle") >= 31)
             return 1;
         
