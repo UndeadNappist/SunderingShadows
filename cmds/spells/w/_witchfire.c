@@ -12,11 +12,9 @@ void create() {
     set_spell_name("witchfire");
     set_spell_level(([ "warlock":1 ]));
     set_heritage("fey");
-    set_spell_sphere("combat");
+    set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS witchfire on TARGET");
-    set_description("This spell will outline the target in harmless violet flames.  It makes the target easier to hit "
-"with melee combat, and also makes it impossible for the target to hide by magical or other means until the spell expires "
-"or is dispelled.");
+    set_description("When cast, ghastly tendrils of mist will reach for the target, enshrouding them in an ominous glow. The uncanny illumination will make them more susceptible to melee hits, and make it impossible for them to hide by magical or other means until the spell is dispelled or expires.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
@@ -28,8 +26,8 @@ void heart_beat()
     if(!objectp(target)) { dest_effect(); return; }
     if(!objectp(caster)) { return; }
     if(target->query_invis()) {
-        if((string)TO->query_spell_type() == "potion") tell_object(target,"%^YELLOW%^Your glowing skin gives you away!%^RESET%^");
-        else tell_object(target,"%^BOLD%^%^MAGENTA%^The faerie fire gives away your position!%^RESET%^");
+        if((string)TO->query_spell_type() == "potion") tell_object(target,"%^RESET%^%^CRST%^%^C024%^The %^C031%^strange mist%^C024%^ encapsulating you makes it impossible to hide.%^CRST%^");
+        else tell_object(target,"%^RESET%^%^CRST%^%^C024%^The %^C031%^strange mist%^C024%^ encapsulating you makes it impossible to hide.%^CRST%^");
         target->set_invis(0);
         return;
     }
@@ -38,27 +36,9 @@ void heart_beat()
 
 string query_cast_string()
 {
-    tell_object(caster,"%^BOLD%^%^MAGENTA%^Twinkling motes of light gather"+
-		" in your hands as you sing your prayer.");
-    tell_room(place,"%^BOLD%^%^MAGENTA%^Twinkling motes of light gather"+
-		" in "+caster->QCN+"'s hands as "+caster->QS+" chants in a"+
-		" singsong voice.",caster);
+    tell_object(caster,"%^CRST%^%^RESET%^%^C061%^You shatter a %^C059%^black seed%^C061%^ between your palms, releasing a %^C059%^n%^C060%^a%^C066%^c%^C065%^r%^C059%^e%^C060%^o%^C066%^u%^C065%^s %^C059%^c%^C060%^l%^C066%^o%^C065%^u%^C059%^d%^RESET%^%^C061%^ of %^C059%^dark spores%^C061%^.%^CRST%^");
+    tell_room(place,"%^CRST%^%^RESET%^%^C061%^"+caster-query_cap_name()+" shatters a %^C059%^black seed%^C061%^ between "+caster->query_possessive()+" palms, releasing a %^C059%^n%^C060%^a%^C066%^c%^C065%^r%^C059%^e%^C060%^o%^C066%^u%^C065%^s %^C059%^c%^C060%^l%^C066%^o%^C065%^u%^C059%^d%^RESET%^%^C061%^ of %^C059%^dark spores%^C061%^.%^CRST%^",caster);
     return "display";
-}
-
-int preSpell()
-{
-    if(!objectp(target))
-    {
-        tell_object(caster,"You need a target for this spell.");
-        return 0;
-    }
-    if((int)target->query_property("faerie fire"))
-    {
-        tell_object(caster,"%^MAGENTA%^The target is already outlined in light!");
-        return 0;
-    }
-    return 1;
 }
 
 void spell_effect(int prof) {
@@ -68,32 +48,29 @@ void spell_effect(int prof) {
     bonus = clevel/10;
 
     if(!present(target,place)) {
-        tell_object(caster,"Your target has left the area.");
+        tell_object(caster,"%^CRST%^%^RESET%^%^C067%^Your target has left the area.%^CRST%^");
         if(objectp(TO)) TO->remove();
         return;
     }
     if((string)TO->query_spell_type() == "potion") {
       if((int)target->query_property("faerie fire")) {
-        tell_object(caster,"Your skin's glow intensifies momentarily.");
+        tell_object(caster,"An ominous mist shrouds you in an eerie glow.");
         if(objectp(TO)) TO->remove();
         return;
       }
-      tell_object(target,"%^MAGENTA%^Instead of fading away, your skin starts to sparkle with light!");
-      tell_room(place,"%^MAGENTA%^"+target->QCN+"'s skin starts to sparkle with light!",target);
+      tell_object(target,"Your strange cloud of illumination flickers and flares.");
+      tell_room(place,""+target->QCN+"'s strange illumination flickers and flares.",target);
     }
     else {
-      tell_object(caster,"%^MAGENTA%^You gesture towards "+target->QCN+""+
-                " engulfing "+target->QO+" with the twinkling motes!");
-      tell_object(target,"%^MAGENTA%^With a simple gesture towards you, "+caster->QCN+" " +
-        	"engulfs you in twinkling motes of light!");
-      tell_room(place,"%^MAGENTA%^With a simple gesture "+caster->QCN+" "+
-		"engulfs "+target->QCN+" in twinkling motes of light!",({target,caster}));
+      tell_object(caster,"%^CRST%^%^RESET%^%^C066%^As you part your hands, the %^C059%^spores%^C066%^ weave toward "+target->query_cap_name()+" in ominous %^C073%^tendrils%^RESET%^%^C066%^ of %^C073%^mist%^C066%^, illuminating "+target->query_subjective()+" in an %^C061%^eerie %^C060%^gl%^C061%^o%^RESET%^%^C060%^w%^C066%^.%^CRST%^");
+      tell_object(target,"%^CRST%^%^RESET%^%^C066%^As "+caster->query_cap_name()+" parts "+caster->query_possessive()+" hands, the %^C059%^spores%^C066%^ weave toward you in ominous %^C073%^tendrils%^RESET%^%^C066%^ of %^C073%^mist%^C066%^, illuminating you in an %^C061%^eerie %^C060%^gl%^C061%^o%^RESET%^%^C060%^w%^C066%^.%^CRST%^");
+      tell_room(place,"%^CRST%^%^RESET%^%^C066%^As "+caster->query_cap_name()+" parts "+caster->query_possessive()+" hands, the %^C059%^spores%^C066%^ weave toward toward "+target->query_cap_name()+" in ominous %^C073%^tendrils%^RESET%^%^C066%^ of %^C073%^mist%^C066%^, illuminating "+target->query_subjective()+" in an %^C061%^eerie %^C060%^gl%^C061%^o%^RESET%^%^C060%^w%^C066%^.%^CRST%^",({target,caster}));
     }
     spell_successful();
     target->add_ac_bonus(-1*bonus);
     target->set_property("faerie fire",1);
     target->set_property("spelled",({TO}));
-    target->set_property("added short",({"%^MAGENTA%^ (glowing)%^RESET%^"}));
+    target->set_property("added short",({"%^RESET%^%^CRST%^%^C054%^(%^C060%^illuminated%^C054%^)%^CRST%^"}));
     addSpellToCaster();
     spell_duration = duration;
     set_end_time();
@@ -103,12 +80,10 @@ void spell_effect(int prof) {
 
 void dest_effect(){
     if(objectp(target)) {
-	    tell_room(place,"%^BOLD%^%^MAGENTA%^The twinkling motes of light "+
-		    "around "+target->QCN+" fade away.");
-	    tell_object(target,"%^MAGENTA%^%^BOLD%^The twinkling motes of "+
-		    "light around you fade away.");
-	    target->remove_property("faerie fire");
-	    target->remove_property_value("added short",({"%^MAGENTA%^ (glowing)%^RESET%^"}));
+        tell_room(place,"%^CRST%^%^RESET%^%^C067%^The %^C073%^ghastly mist%^C067%^ slowly dissipates from around "+target->query_cap_name()+", releasing "+target->query_subjective()+" from its %^C060%^ominous%^C067%^ grip.%^CRST%^");
+        tell_object(target,"%^CRST%^%^RESET%^%^C067%^The %^C073%^ghastly mist%^C067%^ slowly dissipates, releasing you from its %^C060%^ominous%^C067%^ grip.");
+        target->remove_property("faerie fire");
+        target->remove_property_value("added short",({"(illuminated)"}));
         target->add_ac_bonus(bonus);
     }
     ::dest_effect();
