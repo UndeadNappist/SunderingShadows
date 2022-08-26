@@ -56,23 +56,26 @@ int wear_fun() {
 }
 
 int contact_me(string str) {
-   if(!TO->query_worn()) {
-     notify_fail("You should be wearing the circlet to activate the spell.\n");
-     return 0;
-   }
-   if(!str) {
-     notify_fail("You should specify who you want to contact.\n");
-     return 0;
-   }
-   if(!charges) {
-     notify_fail("The circlet's power is already depleted.\n");
-     return 0;
-   }
-   charges--;
-   tell_room(ETP,"%^BOLD%^%^BLACK%^The opal %^RESET%^glows %^BOLD%^%^BLACK%^momentarily in "+TP->QCN+
-"'s circlet.%^RESET%^",TP);
-   new("/cmds/spells/t/_telepathy")->use_spell(ETO,str,40,100,"psion");
-   return 1;
+    if(!TO->query_worn()) {
+        notify_fail("You should be wearing the circlet to activate the spell.\n");
+        return 0;
+    }
+    if(!str) {
+        notify_fail("You should specify who you want to contact.\n");
+        return 0;
+    }
+    if(!charges) {
+        notify_fail("The circlet's power is already depleted.\n");
+        return 0;
+    }
+    if(!living(this_player())){
+        notify_fail("The dead are incapable of such actions.\n");
+        return 0;
+    }
+    charges--;
+    tell_room(ETP,"%^BOLD%^%^BLACK%^The opal %^RESET%^glows %^BOLD%^%^BLACK%^momentarily in "+TP->QCN+"'s circlet.%^RESET%^",TP);
+    new("/cmds/spells/t/_telepathy")->use_spell(ETO,str,40,100,"psion");
+    return 1;
 }
 
 int isMagic(){ return 1; }
