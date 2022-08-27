@@ -44,6 +44,12 @@ void init(){
     add_action("douse_fun", "douse");
 }
 
+void reset(){
+    ::reset();
+    
+    if(!present("ambiance device")) new(OBJ"ambiance")->move(this_object());
+}
+
 int douse_fun(string str){
     object player, room;
     player = this_player();
@@ -118,3 +124,4 @@ void bonfire_fun(){
     }
     return;
 }
+

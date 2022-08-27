@@ -16,3 +16,9 @@ void create(){
         ]));
 }
 
+void reset(){
+    ::reset();
+    
+    if(!present("ambiance device")) new(OBJ"ambiance")->move(this_object());
+}
+
