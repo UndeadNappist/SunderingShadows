@@ -30,9 +30,9 @@ spell_effect(int prof)
     int heal_amount;
     
     spell_successful();
-
-    tell_room(place,"Placeholder",target);
-    tell_object(target,"Placeholder",target);
+    tell_object(caster, "%^C060%^You %^C072%^slice%^C066%^ %^C060%^your palm open and pull forth a wriggling %^C078%^abyssal eel%^C060%^, which you toss at %^C078%^" + target->query_cap_name() + "%^C060%^, allowing it to feed on " + target->query_possessive() + " %^C066%^essence%^C060%^!%^CRST%^");
+    tell_room(place,"%^C060%^" + caster->query_cap_name() + " %^C072%^slices%^C066%^ %^C060%^" + caster->query_possessive() + " palm open and pulls forth a wriggling %^C078%^abyssal eel%^C060%^, which " + caster->query_subjective() + " tosses at %^C078%^" + target->query_cap_name() + "%^C060%^, allowing it to feed on " + target->query_possessive() + " %^C066%^essence%^C060%^!%^CRST%^", ({ target, caster }));
+    tell_object(target,"%^C060%^" + caster->query_cap_name() + " %^C072%^slices%^C066%^ %^C060%^" + caster->query_possessive() + " palm open and pulls forth a wriggling %^C078%^abyssal eel%^C060%^, which " + caster->query_subjective() + " tosses at %^C078%^you%^C060%^, allowing it to feed on your %^C066%^essence%^C060%^!%^CRST%^",target);
     heal_amount = target->cause_typed_damage(target, target->return_target_limb(), sdamage, "piercing");
     caster->add_hp(heal_amount);
     num = clevel / 8 + 1;
@@ -58,8 +58,8 @@ void bite_again()
     }
 
     define_base_damage(0);
-    tell_room(ENV(target),"Periodic placeholder",target);
-    tell_object(target,"Periodic placeholder");
+    tell_room(environment(target),"%^C066%^The thirsting maw hungrily feeds on %^C078%^" + target->query_cap_name() + "%^C066%^, stealing " + target->query_possessive() + " %^C078%^very essence%^C066%^!%^CRST%^",target);
+    tell_object(target,"%^C066%^The thirsting maw hungrily feeds on %^C078%^you%^C066%^, stealing your %^C078%^very essence%^C066%^!%^CRST%^");
     heal_amount = target->cause_typed_damage(target, target->return_target_limb(), sdamage / 6, "piercing");
     target->add_hp(heal_amount);
 
@@ -80,10 +80,7 @@ dest_effect()
         remove_call_out("bite_again");
 
     if(objectp(target))
-    {
-        tell_room(environment(target),"End placeholder",target);
-        tell_object(target,"End placeholder");
-    }
+        tell_object(target,"The abyssal maw stops feeding on you and disappears.");
 
     ::dest_effect();
     if(objectp(this_object()))
