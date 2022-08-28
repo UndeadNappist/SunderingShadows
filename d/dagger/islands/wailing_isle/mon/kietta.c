@@ -417,7 +417,7 @@ void receive_given_item(object ob){
         tell_object(player, "\n%^RESET%^%^CRST%^%^C045%^You have gained "+xp_reward+" xp.%^CRST%^\n");
         return 1;
     }
-    if((ob->id("quest_item_ink")){
+    if((ob->id("quest_item_ink"))){
         force_me("say Hmm... I could use dis, but I already have a deal wit Mae.");
         force_me("give "+ids[0]+" to "+player->query_name()+"");
         return 1;
