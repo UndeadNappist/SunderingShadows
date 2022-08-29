@@ -128,7 +128,7 @@ int pour_me(string str){
     +"%^WHITE%^e%^RESET%^rs and sp%^BOLD%^%^WHITE%^a%^RESET%^rkl"
     +"%^BOLD%^%^WHITE%^e%^RESET%^s as if it contained its own source"
     +" of l%^BOLD%^%^YELLOW%^i%^RESET%^%^ORANGE%^g%^RESET%^ht.");
-  tell_room(env, TPQCN + "strains a bit, but manages to tip the urn"
+  tell_room(env, TPQCN + " strains a bit, but manages to tip the urn"
     +" enough to pour a thin stream of %^BOLD%^%^WHITE%^s%^RESET%^i"
     +"%^BOLD%^%^WHITE%^lv%^RESET%^e%^BOLD%^%^WHITE%^ry d%^RESET%^us"
     +"%^BOLD%^%^WHITE%^t%^RESET%^ from its lip. As the %^BOLD%^"

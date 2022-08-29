@@ -2,6 +2,7 @@
 
 %^RESET%^%^CYAN%^Stat requirements:%^RESET%^ 14 charisma
 %^RESET%^%^CYAN%^Alignments allowed:%^RESET%^ LE, TN, NE, CN, CE
+%^RESET%^%^CYAN%^Cannot multiclass with:%^RESET%^ psion, psywarrior
 %^RESET%^%^CYAN%^Hitdice:%^RESET%^ d8
 %^RESET%^%^CYAN%^Saving throws:%^RESET%^ will strong, fort/reflex weak
 %^RESET%^%^CYAN%^Class Skills:%^RESET%^ academics, athletics, influence, spellcraft

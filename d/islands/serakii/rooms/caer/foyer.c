@@ -110,7 +110,7 @@ int func_read(string str){
         tell_room(ETP,"%^C098%^"+TPQCN+" %^C098%^looks up to read the "+
             "western archway...%^CRST%^\n",TP);
         tell_object(TP,"%^C098%^You look up at the writing on the "+
-            "eastern archway.\n\n %^C110%^Bastion of the Voice of "+
+            "western archway.\n\n %^C110%^Bastion of the Voice of "+
             "Serakii%^C098%^.%^RESET%^\n");
         return 1;
     }
