@@ -165,6 +165,7 @@ WOODWORK = ([
                 "short bow":(["file":COMMONFILE"lrweapon/shortbow","units":2,"type":"lrweapon"]),
 
                 "drums":(["file":COMMONFILE"instruments/drum","units":2,"type":"instrument"]),
+                "fiddle":(["file":COMMONFILE"instruments/fiddle","units":2,"type":"instrument"]),
                 "flute":(["file":COMMONFILE"instruments/flute","units":1,"type":"instrument"]),
                 "guitar":(["file":COMMONFILE"instruments/guitar","units":2,"type":"instrument"]),
                 "lap-harp":(["file":COMMONFILE"instruments/lap-harp","units":2,"type":"instrument"]),
