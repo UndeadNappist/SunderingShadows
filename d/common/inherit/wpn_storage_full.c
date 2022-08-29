@@ -39,6 +39,7 @@ if(!present("battle axe"))           new(CWEAP"battle_axe")->move(TO);
 if(!present("broad"))                new(CWEAP"broad")->move(TO); 
 if(!present("medium club"))          new(CWEAP"mclub")->move(TO);
 if(!present("dagger"))               new(CWEAP"dagger")->move(TO); 
+if(!present("falchion"))             new(CWEAP"falchion")->move(TO); 
 if(!present("flail"))                new(CWEAP"flail")->move(TO); 
 if(!present("handaxe"))              new(CWEAP"handaxe")->move(TO); 
 if(!present("knife"))                new(CWEAP"knife")->move(TO); 

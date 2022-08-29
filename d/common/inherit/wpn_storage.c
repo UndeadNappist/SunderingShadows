@@ -31,7 +31,8 @@ void reset() {
   if(!present("medium club"))          new(CWEAP"mclub")->move(TO);
   if(!present("mace"))                 new(CWEAP"mace")->move(TO); 
   if(!present("flail"))                new(CWEAP"flail")->move(TO); 
-  if(!present("shortsword"))           new(CWEAP"shortsword")->move(TO); 
+  if(!present("shortsword"))           new(CWEAP"shortsword")->move(TO);
+  if(!present("falchion"))             new(CWEAP"falchion")->move(TO); 
   if(!present("military_fork"))        new(CWEAP"military_fork")->move(TO); 
   if(!present("mstaff"))               new(CWEAP"mstaff")->move(TO);  			
   if(!present("quarter_staff"))        new(CWEAP"quarter_staff")->move(TO); 

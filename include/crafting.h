@@ -112,6 +112,7 @@ WEAPONSMITH = ([
                    "estoc":(["file":COMMONFILE"weapon/estoc","units":3]),
                    "fan":(["file":COMMONFILE"weapon/fan","units":1]),
                    "falcata":(["file":COMMONFILE"weapon/falcata","units":3]),
+                   "falchion":(["file":COMMONFILE"weapon/falchion","units":3]),
                    "flail":(["file":COMMONFILE"weapon/flail","units":3]),
                    "giant axe":(["file":COMMONFILE"weapon/giant_battle_axe","units":5]),
                    "giant double axe":(["file":COMMONFILE"weapon/giant_double_axe","units":5]),
