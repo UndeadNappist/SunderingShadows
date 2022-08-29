@@ -27,6 +27,7 @@ void create()
              + " heavy. These shields offered unbelievable protection. This is one of those.");
 }
 
+int is_metal() { return 0; }
 int wear_it()
 {
     if ((int)ETO->query_level() < 41) {

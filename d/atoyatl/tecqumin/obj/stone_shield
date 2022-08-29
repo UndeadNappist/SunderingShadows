@@ -23,6 +23,8 @@ void create() {
     +" %^GREEN%^back into the %^BLUE%^v%^BOLD%^%^BLACK%^o%^RESET%^i%^BLUE%^d");
 }
 
+int is_metal() { return 0; }
+
 int wear_it(){
    if((int)ETO->query_level() < 41{
      tell_object(ETO,"You can't seem to settle the shield properly on your arm.");
