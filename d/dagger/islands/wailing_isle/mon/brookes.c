@@ -34,7 +34,7 @@ void create() {
 }
 
 void init(){
-    object player;
+    object player, ship, ship_location;
     
     ::init();
     add_action("hit_fun", "hit");
@@ -42,6 +42,17 @@ void init(){
     add_action("test_rep", "buy");
     add_action("test_rep", "sell");
     add_action("test_rep", "show");
+    
+    ship = find_object_or_load("/d/dagger/islands/wailing_isle/obj/zephyr");
+    if(!environment(ship)){
+        switch(random(4)){
+            case 0 : ship_location = find_object_or_load("/d/shadow/virtual/sea/shadow.dock"); break;
+            case 1 : ship_location = find_object_or_load("/d/shadow/virtual/sea/torm.dock"); break;
+            case 2 : ship_location = find_object_or_load("/d/shadow/virtual/sea/serakii.dock"); break;
+            case 3 : ship_location = find_object_or_load("/d/shadow/virtual/sea/undead.dock"); break;
+        }
+        ship->move(ship_location);
+    }
     
     player = this_player();
     if(player->id("mutt")) force_me("emoteat mutt %^RESET%^%^CRST%^%^C057%^$M gives the mutt an errant kick, sending it whimpering away as it cowers.%^CRST%^");
