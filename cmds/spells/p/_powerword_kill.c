@@ -1,5 +1,3 @@
-//Powerword Kill coded by Bane
-//Revised for school spells by Nienne, 10/09.
 //Rewritten by Tlaloc 2021
 #include <std.h>
 #include <spell.h>
