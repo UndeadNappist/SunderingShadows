@@ -29,8 +29,7 @@ int board_fun(string str){
     
     player = this_player();
     room = environment(this_object());
-    //ship = find_object_or_load("/d/dagger/islands/wailing_isle/room/roaming_ship/deck");
-    ship = find_object_or_load("/realms/chernobog/areas/wailing_isle/room/roaming_ship/deck");
+    ship = find_object_or_load("/d/dagger/islands/wailing_isle/room/roaming_ship/deck");
     
     message("info", "%^RESET%^%^CRST%^%^C027%^You step across the gangplank and board the ship.%^CRST%^\n", player, room);
     message("info", "%^RESET%^%^CRST%^%^C027%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C027%^ steps across the gangplank and boards the ship.%^CRST%^", room, player);
