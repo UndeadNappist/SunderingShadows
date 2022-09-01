@@ -9,7 +9,7 @@ string target_limb;
 
 void create() {
     ::create();
-    set_author("nienne");
+    set_author("tlaloc");
     set_spell_name("powerword kill");
     set_spell_level(([ "mage" : 9, "cleric" : 9 ]));
     set_domains(({ "war" }));

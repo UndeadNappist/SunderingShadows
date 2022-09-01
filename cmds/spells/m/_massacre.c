@@ -18,7 +18,6 @@ object *targets;
 void create()
 {
     ::create();
-    set_author("nienne");
     set_spell_name("massacre");
     set_spell_level(([ "mage" : 9, "cleric" : 9 ]));
     set_domains(({ "evil" }));
