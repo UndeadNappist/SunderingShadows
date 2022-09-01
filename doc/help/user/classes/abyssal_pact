@@ -1,11 +1,11 @@
 %^BOLD%^Abyssal Pact:%^RESET%^
 
 %^CYAN%^Alignment %^RESET%^        - chaotic evil
-%^CYAN%^Pact Boon         %^RESET%^- Silver Resistance (5 + warlock level / 4)
-%^CYAN%^Pact Boon         %^RESET%^- Acid   Resistance (5 + warlock level / 4)
+%^CYAN%^Pact Boon         %^RESET%^- Silver Resistance (10 + warlock level) percent
+%^CYAN%^Pact Boon         %^RESET%^- Acid   Resistance (10 + warlock level) percent
 
 %^CYAN%^Pact Spells:       %^RESET%^
-Diabolic Grasp, Howl of Doom, Harrowstorm, Thirsting Maw
+Diabolic Grasp, Howl of Doom, Harrowstorm, Thirsting Maw, Fiendish Vigor, Soul Theft
 
 %^MAGENTA%^Roleplay Considerations:%^RESET%^
 An abyssal pact is forged by a foul alliance with demons, drawing upon their natures to wield the pain, poison and madness inherent in the forces of the Abyss. Such pacts are particularly common among drow.
