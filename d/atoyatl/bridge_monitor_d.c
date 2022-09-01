@@ -2752,7 +2752,7 @@ string * get_untitled_pic(object ob){
   if (!objectp (ob)){
     return({});
   }
-  race = get_race(ob);
+  race = lower_case(get_race(ob));
   face = query_face(ob);
   weapon = get_weapon(ob);
   switch (race){
