@@ -133,7 +133,7 @@ class_spell_storage =
     "all":
         ({"eldritch blast","eldritch chain","eldritch burst"}),
     "abyssal":
-        ({ "diabolic grasp", "fiendish vigor" }),
+        ({ "diabolic grasp", "fiendish vigor", "howl of doom", "thirsting maw", "soul theft", "harrowstorm" }),
     "gloom":
         ({ "vampiric embrace", "whispers of the grave", "armor of shadows", "shadowform" }),
     "fey":
