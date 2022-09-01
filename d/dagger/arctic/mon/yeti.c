@@ -55,7 +55,7 @@ void create()
 
 void saveth(object obj)
 {
-    if(!ROLLSAVE(obj, PPD))
+    if(!ROLLSAVE(obj, PPD) && (!PLAYER_D->immunity_check(targ, "fear")))
     {
         tell_object(obj,"%^CYAN%^You are frozen with "
         "fear as you stare into the eyes of the yeti!%^RESET%^");
