@@ -510,6 +510,11 @@ mixed query_property(string prop)
                 }
             }
         }
+        
+        if(this_object()->is_class("warlock"))
+        {
+            num += (this_object()->query("burn") / 2);
+        }
 
         if(this_object()->is_class("druid"))
         {
