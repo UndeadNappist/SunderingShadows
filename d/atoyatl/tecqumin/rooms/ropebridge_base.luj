@@ -1757,7 +1757,7 @@ void go_west(object ob){
       if (ob->isKnown(occupier)){
         obstacle = ob->knownAs(occupier);
       } else {
-        obstacle = "a " + "/d/atoyatl/bridge_monitor_d.c"->get_race(occupier);
+        obstacle = "a " + occupier->query_race();
       }
       tell_object(ob, "You can't go any further west at the moment; "
         + obstacle + " is in the way.");
@@ -2052,7 +2052,7 @@ void go_east(object ob){
       if (ob->isKnown(occupier)){
         obstacle = ob->knownAs(occupier);
       } else {
-        obstacle = "a " + "/d/atoyatl/bridge_monitor_d.c"->get_race(occupier);
+        obstacle = "a " + occupier->query_race();
       }
        tell_object(ob, "You can't go any further east at the moment; "
         + obstacle + " is in the way.");
@@ -2243,7 +2243,6 @@ int check_bridge(string str){
 void set_PosDir(object ob, int * PosDir){
   "/d/atoyatl/bridge_monitor_d.c"->set_PosDir(ob, PosDir);
 }
-
 
 void set_pos(object ob, int pos){
   "/d/atoyatl/bridge_monitor_d.c"->set_pos(ob, pos);

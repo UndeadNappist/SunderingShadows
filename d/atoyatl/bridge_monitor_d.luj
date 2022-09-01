@@ -57,20 +57,6 @@ void clean_up() {
   return; 
 } 
 
-string get_race(object targ){
-  string race_var;
-  object shape;
-  race_var = targ->query_race();
-  if (targ->query_acquired_template()) {
-    race_var = capitalize(targ->query_acquired_template() + " " + race_var);
-  }
-  if (objectp(shape = targ->query_property("shapeshifted"))) {
-    race_var = (string)shape->query_shape_race();
-    race_var = capitalize(race_var);
-  }
- return race_var;
-}
-
 
 int can_reach(object ob1, object ob2){
   int width1, width2, face1, face2, e1, e2, w1,w2,
@@ -530,7 +516,7 @@ void check_positions(object checker){
     if (checker->isKnown(critters[i]->query_name())){
       str += checker->knownAs(critters[i]->query_name());
     } else {
-      str += get_race(critters[i]);
+      str += critters[i]->query_race();
     }
     if ((int)critters[i]->query_property("flying", 1)==1){
       str += " " + describe_fliers(critters[i], pos, face);
@@ -2709,7 +2695,7 @@ string get_weapon(object ob){
         weapon = "two handed sword";
       }
       if (wpn->id("shortsword")||wpn->id("short sword")){
-        race = get_race(ob);
+        race = ob->query_race();
         if (race == "halfling" || race == "gnome"){
           weapon = "short sword";
         }
@@ -2733,7 +2719,7 @@ string * get_picture(object ob, object looker){
   if (!objectp(ob)){
     return ({});
   }
-  race = get_race(ob);
+  race = ob->query_race();
   nm = race;
   if (objectp(looker)){
     if (looker->isKnown(ob->query_name())){
@@ -2752,7 +2738,7 @@ string * get_untitled_pic(object ob){
   if (!objectp (ob)){
     return({});
   }
-  race = get_race(ob);
+  race = ob->query_race();
   face = query_face(ob);
   weapon = get_weapon(ob);
   switch (race){
