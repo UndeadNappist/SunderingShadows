@@ -92,7 +92,7 @@ void execute_feat()
     weapon->set_property("added short", ({ "%^BLACK%^BOLD%^ [%^GREEN%^eldritch%^BLACK%^]%^RESET%^" }) );
     caster->set_property("using instant feat",1);
     caster->remove_property("eldritch strikes");
-    caster->set_property("eldritch strikes", ({ weapon, type }));
+    caster->set_property("eldritch strikes", weapon);
 }
 
 void execute_attack()

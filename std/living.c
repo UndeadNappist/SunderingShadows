@@ -1984,19 +1984,24 @@ int query_attack_bonus()
             ret += 1;
     }
     
-    if(this_object()->is_class("warlock") && this_object()->query_property("eldritch strikes") && sizeof(weap) && attacker)
+    if(this_object()->is_class("warlock"))
     {
-        mixed *strikes;
-        
-        strikes = this_object()->query_property("eldritch strikes");
-        
-        if(sizeof(strikes) == 2)
+        if(this_object()->query_property("eldritch strikes") && sizeof(weap) && attacker)
         {
-            if(weap[0] == strikes[0])
-                ret += 1;
-            else if(sizeof(weap) == 2 && weap[1] == strikes[0])
-                ret += 1;
+            object strikes;
+        
+            strikes = this_object()->query_property("eldritch strikes");
+        
+            if(objectp(strikes))
+            {
+                if(weap[0] == strikes)
+                    ret += 1;
+                else if(sizeof(weap) == 2 && weap[1] == strikes)
+                    ret += 1;
+            }
         }
+        
+        ret += this_object()->query("burn");
     }            
 
     //Inquisitor Bane

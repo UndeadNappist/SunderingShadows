@@ -674,6 +674,16 @@ int query_max_hp_base()
         }
         num += mypsi;
     }
+    
+    //Warlock Soul Burn mechanic
+    //More burn lowers max HP but gives other bonuses
+    if(this_object()->is_class("warlock"))
+    {
+        int temp;
+        
+        temp = (player_data["general"]["max_hp"] * 5) / 100;
+        num -= (this_object()->query("burn") * temp);
+    }
 
     myrace = (string)TO->query_race();
     subrace = (string)TO->query("subrace");
@@ -767,28 +777,6 @@ int query_resistance(string res)
     if ((string)TO->query("subrace") == "tiefling" && (res == "cold" || res == "fire" || res == "electricity")) {
         myres += 5;
     }
-    /*
-    if (FEATS_D->usable_feat(TO, "energy resistance")) {
-        if ((string)TO->query("warlock heritage") == "celestial" && res == "acid") {
-            myres += 10;
-        }
-        if ((string)TO->query("warlock heritage") == "fey" && res == "sonic") {
-            myres += 10;
-        }
-        if ((string)TO->query("warlock heritage") == "demonic" && res == "electricity") {
-            myres += 10;
-        }
-        if((string)TO->query("warlock heritage") == "astral" && res == "psychic") {
-            myres += 10;
-        }
-        if ((string)TO->query("warlock heritage") == "gloom" && res == "cold") {
-            myres += 10;
-        }
-        if ((string)TO->query("warlock heritage") == "infernal" && res == "fire") {
-            myres += 10;
-        }
-    }
-    */
 
     if(!stringp(myrace) || !strlen(myrace))
         myrace = "none";
