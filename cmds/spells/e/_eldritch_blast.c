@@ -36,6 +36,13 @@ int preSpell() {
       tell_object(caster,"%^BOLD%^%^WHITE%^You can't channel your own power into yourself!%^RESET%^");
       return 0;
     }
+    
+    if(!USER_D->spend_pool(caster, 1, "burn"))
+    {
+        tell_object(caster, "You cannot cast this invocation at maximum soul burn.");
+        return 0;
+    }
+    
     return 1;
 }
 
