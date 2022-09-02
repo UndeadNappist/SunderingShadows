@@ -903,13 +903,13 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
     //Warlock eldritch strikes stuff
     if(attacker->is_class("warlock") && weapon)
     {
-        string *strikes, type, blasttype, wepname, my_name, your_name, my_poss, your_poss, damage_type;
+        string type, blasttype, wepname, my_name, your_name, my_poss, your_poss, damage_type;
         int glvl, strike_damage;
-        object here, secondary;
+        object here, secondary, strikes;
         
         strikes = attacker->query_property("eldritch strikes");
         
-        if(sizeof(strikes) == 2 && weapon == strikes[0])
+        if(weapon == strikes)
         {
             glvl = attacker->query_guild_level("warlock");
             
