@@ -25,7 +25,7 @@ void create()
     set_syntax("cast CLASS soul theft on TARGET");
     set_damage_desc("death on failed save, divine damage on save, fester and heal");
     set_save("fortitude");
-    set_description("You unleash the power of the Abyss, attempting to greedily grasp the souls of your target and those nearby. The target makes a death save or dies as their soul is torn asunder, feeding you its very essence. Those who make their death save will take normalized divine damage and gaining the fester effect for a short period of time and healing you for a smaller amount.");
+    set_description("You unleash the power of the Abyss, attempting to greedily grasp the souls of your target and those nearby. The target makes a death save or dies as their soul is torn asunder, feeding you its very essence, and reducing your soul burn. Those who make their death save will take normalized divine damage and gaining the fester effect for a short period of time and healing you for a smaller amount.");
     evil_spell(1);
     set_verbal_comp();
     set_target_required(1);
@@ -71,6 +71,7 @@ void spell_effect(int prof)
             tell_room(place,"%^C072%^" + ob->query_cap_name() + "%^C066%^ dies as " + ob->query_possessive() + " %^C078%^soul%^C066%^ is shorn from " + ob->query_possessive() + " %^C078%^flesh%^C066%^!%^CRST%^",({ob}));
             ob->set_hp(-100);
             caster->add_hp(sdamage / 4);
+            USER_D->spend_pool(caster, -1, "burn");
             continue;
         }
         else
