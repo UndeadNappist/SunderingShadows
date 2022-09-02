@@ -212,6 +212,16 @@ string write_prompt()
             prompt = replace_string(prompt, "$z", "");
             prompt = replace_string(prompt, "$Z", "");
         }
+        if((int)TP->query("maximum burn"))
+        {
+            prompt = replace_string(prompt, "$o", "" + (int)TP->query("available burn"));
+            prompt = replace_string(prompt, "$O", "" + (int)TP->query("maximum burn"));
+        }
+        else
+        {
+            prompt = replace_string(prompt, "$o", "");
+            prompt = replace_string(prompt, "$O", "");
+        }
         if ((int)TP->query_mp()) {
             prompt = replace_string(prompt, "$p",
                                     "" + (int)this_player()->query_mp());

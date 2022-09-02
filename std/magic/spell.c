@@ -3323,6 +3323,12 @@ varargs int checkMagicResistance(object victim, int mod)
     */
 
     mod += (int)caster->query_property("spell penetration");
+    
+    if(spell_name == "eldritch blast" || spell_name == "eldritch chain" || spell_name == "eldritch burst")
+    {
+        if(FEATS_D->has_feat(caster, "penetrating blast"))
+            mod += 2;
+    }
 
     if (!objectp(victim)) {
         return 0;
@@ -3345,12 +3351,6 @@ varargs int checkMagicResistance(object victim, int mod)
     {
         tell_room(place, "%^CYAN%^The spell fails to power through the antimagic field.%^RESET%^");
         return 1;
-    }
-
-    if (spell_name == "eldritch blast" || spell_name == "eldritch chain" || spell_name == "eldritch burst") {
-        if ((string)caster->query("warlock_blast_type") == "vitriolic") {
-            return 0;
-        }
     }
 
     if (help_or_harm) {
