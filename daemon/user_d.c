@@ -188,11 +188,22 @@ int spend_pool(object ob, int amount, string pool_type)
         return 0;
     }
     avail = (int)ob->query("available " + pool_type);
-    if (amount > avail)
+    
+    if(pool_type == "burn")
     {
-        return 0;
+        if(amount + avail > ob->query("max burn"))
+            return 0;
+        
+        avail += amount;
     }
-    avail -= amount;
+    else
+    {
+        if (amount > avail)
+        {
+            return 0;
+        }
+        avail -= amount;
+    }
 
     if(pool_type == "focus" && avail < 1)
     {
@@ -253,7 +264,12 @@ varargs void regenerate_pool(object ob, int amount, int pass, string pool_type)
     }
     avail = (int)ob->query("available " + pool_type);
     max = (int)ob->query("maximum " + pool_type);
-    avail += amount;
+    
+    if(pool_type == "burn")
+        avail -= amount;
+    else 
+        avail += amount;
+    
     if (pool_type == "ki") {
         object class_ob;
         class_ob = find_object_or_load(DIR_CLASSES + "/monk.c");
@@ -264,6 +280,9 @@ varargs void regenerate_pool(object ob, int amount, int pass, string pool_type)
     if (avail > max) {
         avail = max;
     }
+    if(avail < 0)
+        avail = 0;
+    
     ob->set("available " + pool_type, avail);
     if (pass) {
         switch (pool_type) {
@@ -309,7 +328,14 @@ varargs void regenerate_pool(object ob, int amount, int pass, string pool_type)
                 delay -= BONUS_D->query_stat_bonus(ob, "intelligence");
             }
             break;
-
+            
+        case "burn":
+            if(ob->is_class("warlock"))
+            {
+                delay = 30;
+                delay -= (FEATS_D->has_feat(ob, "resilient soul") * 12);
+            }
+            break;
         }
         ob->set("last " + pool_type + " regen", time() + delay);
     }
@@ -382,8 +408,8 @@ void init_pool(object ob, string pool_type)
         {
             newmax = 1 + FEATS_D->usable_feat(ob, "mental mastery") + FEATS_D->usable_feat(ob, "deep focus");
         }
-        /*
-    case "planar_power":
+        break;
+    case "burn":
         if(!ob->is_class("warlock"))
         {
             ob->delete("available " + pool_type);
@@ -392,9 +418,10 @@ void init_pool(object ob, string pool_type)
         }
         else
         {
-            newmax = 1;
+            newmax = 1 + ob->query_class_level("warlock") / 10;
+            newmax += (FEATS_D->has_feat(ob, "beyond reason") * 2);
         }
-        */
+        break;
     }
     if (!intp(avail = (int)ob->query("available " + pool_type))) avail = newmax;
     if (intp(oldmax = (int)ob->query("maximum " + pool_type)))
