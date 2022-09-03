@@ -120,8 +120,8 @@ string *query_newbie_stuff(int align)
     if(!intp(align)) return ({});
     switch(align)
     {
-       case 7: heritages = (({ "celestial", "fey" })); break;
-       case 8: heritages = (({ "celestial", "fey", "abyssal", "astral" })); break;
+       case 7: heritages = (({ "fey" })); break;
+       case 8: heritages = (({ "fey", "abyssal", "astral" })); break;
        case 9: heritages = (({ "fey", "abyssal", "gloom" })); break;
        case 5: heritages = (({ "astral", "gloom", "fey" })); break;
        case 6: heritages = (({ "abyssal", "gloom", "infernal", "astral" })); break;

@@ -306,6 +306,8 @@ int can_fly(object ob)
     
     if(ob->query_bloodline() == "celestial" && ob->query_class_level("sorcerer") > 30)
         return 1;
+    if(ob->query_bloodline() == "infernal" && ob->query_class_level("sorcerer") > 30)
+        return 1;
 
     return (member_array(TP->query_visual_race(), flyraces) != -1) ||
         (member_array(TP->query("subrace"), flysubraces) != -1) ||

@@ -178,6 +178,14 @@ string write_prompt()
                 prompt = replace_string(prompt, "$_SR", "");
             }
         }
+        
+        if(this_player()->is_class("warlock"))
+        {
+            if(this_player()->query_property("eldritch shield"))
+                prompt = replace_string(prompt, "$_ES", "Eldritch Shield");
+            else
+                prompt = replace_string(prompt, "$_ES", "");
+        }
 
         if(this_player()->is_class("psion") || this_player()->is_class("psywarrior"))
         {
