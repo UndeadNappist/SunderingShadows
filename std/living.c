@@ -368,6 +368,10 @@ void heart_beat()
     {
         USER_D->regenerate_pool(me, 1, 1, "focus");
     }
+    if (me->is_class("warlock"))
+    {
+        USER_D->regenerate_pool(me, 1, 1, "burn");
+    } 
 
     //enhancement effects
     "/cmds/mortal/_enhance.c"->run_enhances_timer(me, "weapon");

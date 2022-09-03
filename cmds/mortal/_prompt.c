@@ -63,6 +63,7 @@ Additional codes:
   %^MAGENTA%^$_BI%^WHITE%^ bardic inspiration
   %^MAGENTA%^$_SC%^WHITE%^ spell combat
   %^MAGENTA%^$_SR%^WHITE%^ spell recall
+  %^MAGENTA%^$_ES%^WHITE%^ eldritch shield
   %^MAGENTA%^$EL%^WHITE%^ elementalist
   %^MAGENTA%^$r%^WHITE%^ rage status
   %^MAGENTA%^$E%^WHITE%^ eldritch essence
@@ -74,8 +75,8 @@ Additional codes:
   %^MAGENTA%^$Z%^WHITE%^ maximum grace
   %^MAGENTA%^$p%^WHITE%^ power points
   %^MAGENTA%^$P%^WHITE%^ maximum power points
-  %^MAGENTA%^$o%^WHITE%^ soul burn
-  %^MAGENTA%^$O%^WHITE%^ maximum soul burn
+  %^MAGENTA%^$u%^WHITE%^ soul burn
+  %^MAGENTA%^$U%^WHITE%^ maximum soul burn
   %^MAGENTA%^$f%^WHITE%^ lower case shapeshifted form
   %^MAGENTA%^$B%^WHITE%^ blood hunger percent
 

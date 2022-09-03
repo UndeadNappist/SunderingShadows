@@ -222,13 +222,13 @@ string write_prompt()
         }
         if((int)TP->query("maximum burn"))
         {
-            prompt = replace_string(prompt, "$o", "" + (int)TP->query("available burn"));
-            prompt = replace_string(prompt, "$O", "" + (int)TP->query("maximum burn"));
+            prompt = replace_string(prompt, "$u", "" + (int)TP->query("available burn"));
+            prompt = replace_string(prompt, "$U", "" + (int)TP->query("maximum burn"));
         }
         else
         {
-            prompt = replace_string(prompt, "$o", "");
-            prompt = replace_string(prompt, "$O", "");
+            prompt = replace_string(prompt, "$u", "");
+            prompt = replace_string(prompt, "$U", "");
         }
         if ((int)TP->query_mp()) {
             prompt = replace_string(prompt, "$p",
