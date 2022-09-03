@@ -74,6 +74,8 @@ Additional codes:
   %^MAGENTA%^$Z%^WHITE%^ maximum grace
   %^MAGENTA%^$p%^WHITE%^ power points
   %^MAGENTA%^$P%^WHITE%^ maximum power points
+  %^MAGENTA%^$o%^WHITE%^ soul burn
+  %^MAGENTA%^$O%^WHITE%^ maximum soul burn
   %^MAGENTA%^$f%^WHITE%^ lower case shapeshifted form
   %^MAGENTA%^$B%^WHITE%^ blood hunger percent
 
