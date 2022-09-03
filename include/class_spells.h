@@ -85,7 +85,7 @@ class_spell_storage =
     "ghoul":
         ({"chill touch","ray of enfeeblement","vampiric touch","boneshatter","teleport","circle of death","finger of death","horrid wilting"}),
     "infernal":
-        ({"infernal healing","scorcher","fireball","fire shield","mind fog","hellfire ray","finger of death","powerword stun"}),
+        ({"protection from alignment", "scorcher", "charm monster", "hold monster", "domination", "hellfire ray", "greater teleport", "powerword stun", "meteor swarm" }),
     "kobold":
         ({"reduce person","slow","polymorph","acid breath","tar pool","delayed fireball","protection from spells","greater polymorph"}),
     //"possessed":
