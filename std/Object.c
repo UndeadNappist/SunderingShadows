@@ -621,6 +621,9 @@ mixed query_property(string prop)
 
         if(FEATS_D->usable_feat(TO, "greater spell penetration"))
             num += 1;
+        
+        if(this_object()->is_class("warlock") && this_object()->query("maximum burn"))
+            num += (this_object()->query("available burn") / 3);
 
         //num += props["empowered"]; //doesn't seem to do anything
         return (num + TO->query_property("empowered"));
