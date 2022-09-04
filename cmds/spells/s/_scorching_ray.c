@@ -50,6 +50,7 @@ void spell_effect(int prof)
     if(!objectp(target))
     {
         tell_object(caster, "Your target is no longer here.");
+        dest_effect();
         return;
     }
     
@@ -60,6 +61,7 @@ void spell_effect(int prof)
     if(roll < 1)
     {
         tell_object(caster, "You fire a scorching ray at " + target->QCN + " but miss!");
+        dest_effect();
         return;
     }
     
