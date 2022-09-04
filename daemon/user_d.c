@@ -191,7 +191,7 @@ int spend_pool(object ob, int amount, string pool_type)
     
     if(pool_type == "burn")
     {
-        if(amount + avail > ob->query("maximum burn"))
+        if(amount + avail > ob->query("maximum burn") || ob->query("available burn") <= 0)
         {
             //tell_object(find_player("tlaloc"), "amount + avail > ob->query(maximum burn)");
             return 0;
