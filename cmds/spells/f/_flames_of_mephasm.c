@@ -38,6 +38,8 @@ void spell_effect()
     tell_object(target, "%^C166%^" + my_name + " extends a palm towards %^C172%^you%^C166%^ and unleashes a wave of %^C244%^b%^C246%^l%^C248%^a%^C250%^c%^C184%^k%^C178%^e%^C172%^n%^C166%^e%^C244%^d%^C166%^ %^C244%^h%^C246%^e%^C248%^l%^C178%^l%^C172%^i%^C166%^s%^C244%^h%^C166%^ %^C244%^f%^C246%^l%^C248%^a%^C178%^m%^C172%^e%^C166%^s.%^CRST%^");
     tell_room(place, "%^C166%^" + my_name + " extends a palm towards %^C172%^" + your_name + "%^C166%^ and unleashes a wave of %^C244%^b%^C246%^l%^C248%^a%^C250%^c%^C184%^k%^C178%^e%^C172%^n%^C166%^e%^C244%^d%^C166%^ %^C244%^h%^C246%^e%^C248%^l%^C178%^l%^C172%^i%^C166%^s%^C244%^h%^C166%^ %^C244%^f%^C246%^l%^C248%^a%^C178%^m%^C172%^e%^C166%^s upon %^C172%^" + target->query_objective() + ".%^CRST%^", ({ target, caster }));
     
+    spell_kill(target, caster);
+    
     if(do_save(target, 0))
     {
         tell_room(place, "%^BOLD%^" + your_name+ " manages to avoid the flames!%^RESET%^", target);
