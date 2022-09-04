@@ -682,7 +682,7 @@ int query_max_hp_base()
         int temp;
         
         temp = (player_data["general"]["max_hp"] * 5) / 100;
-        num -= (this_object()->query("burn") * temp);
+        num -= (this_object()->query("available burn") * temp);
     }
 
     myrace = (string)TO->query_race();

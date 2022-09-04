@@ -182,8 +182,11 @@ int confirm_drop(string str, string theclass, int drop, int cost)
     if (theclass == "magus") {
         USER_D->init_pool(TP, "arcana");
     }
-    if (theclass == "paladin") {
+    if (theclass == "paladin" || theclass == "cleric") {
         USER_D->init_pool(TP, "grace");
+    }
+    if (theclass == "warlock") {
+        USER_D->init_pool(TP, "burn");
     }
     TP->force_me("fixspells");
     TP->set("hp_array", 0);

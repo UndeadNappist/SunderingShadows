@@ -383,6 +383,10 @@ int advance(object tp, string myclass)
     {
         USER_D->init_pool(tp, "focus");
     }
+    if (tp->is_class("warlock"))
+    {
+        USER_D->init_pool(tp, "burn");
+    }
     return ret;
 }
 

@@ -2005,7 +2005,7 @@ int query_attack_bonus()
             }
         }
         
-        ret += this_object()->query("burn");
+        ret += this_object()->query("available burn");
     }            
 
     //Inquisitor Bane
