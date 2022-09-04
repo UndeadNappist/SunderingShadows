@@ -2,7 +2,7 @@
 #include <daemons.h>
 #include <magic.h>
 
-#define DELAY 12
+#define DELAY 18
 
 inherit FEAT;
 

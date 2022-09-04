@@ -13,6 +13,7 @@ void create()
     ::create();
     set_spell_name("soul flaying");
     set_spell_level(([ "warlock" : 3 ]));
+    set_heritage("infernal");
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS soul flaying on TARGET");
     set_description("You intrusively reach into your opponent's soul, poring through it's worthless history and experiences, using their worst fears against them. As you shred their soul, they are met with unbearable terror and despair, and experience unimaginable agony. The target takes negative energy damage and must make a will save or suffer penalties to their attack, damage, caster level and saving throws for a short time.");
@@ -51,8 +52,8 @@ void spell_effect(int prof)
     }
     if (do_save(target, 0) || mind_immunity_damage(target))
     {
-        tell_object(target, "");
-        tell_room(place, "", target);
+        tell_object(target, "With incredible agony, you manage to fight off the flaying of your soul!");
+        tell_room(place, "Seems to resist the flaying of " + target->query_possessive() + " soul!", target);
         TO->remove();
         return;
     }
