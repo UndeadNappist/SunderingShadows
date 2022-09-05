@@ -9,7 +9,8 @@ void create() {
     ::create();
     set_author("nienne");
     set_spell_name("hungry darkness");
-    set_spell_level(([ "mage" : 7, "warlock" : 4 ]));
+    set_spell_level(([ "warlock" : 4 ]));
+    set_heritage("gloom");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS hungry darkness");
     set_description("This invocation calls a supernatural darkness down within the area, blurring the line between the "

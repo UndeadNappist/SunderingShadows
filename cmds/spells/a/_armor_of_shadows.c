@@ -1,9 +1,3 @@
-//      Armor
-//      Thorn@Shadowgate w/ lots of help from Melnmarn
-//      1/19/95
-//      Wizard Spells
-//      armor.c
-//      Modified and updated by Vashkar
 #include <spell.h>
 #include <daemons.h>
 inherit SPELL;
@@ -16,7 +10,6 @@ void create()
     set_spell_name("armor of shadows");
     set_spell_level(([ "warlock" : 1 ]));
     set_bonus_type("armor");
-    set_heritage("gloom");
     set_spell_sphere("illusion");
     set_syntax("cast CLASS armor of shadows [on TARGET]");
     set_damage_desc("+4 to AC");

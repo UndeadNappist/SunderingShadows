@@ -17,7 +17,7 @@ void create()
     set_spell_sphere("necromancy");
     set_heritage("gloom");
     set_syntax("cast CLASS reanimate");
-    set_description("Animating dead is a pathetic craft for the weak. A true necromancer's art is to change what was into something more potent and powerful that can serve his fell desires and schemes. This spell uses a fallen corpse to make an undead creature from rotting flesh. Such a creature is more potent than lesser skeletons and zombies, and will serve the necromancer until discorporated. This spell, without a doubt, is evil." + ("/cmds/spells/a/_animate_dead"->extra_help()));
+    set_description("Animating dead is a pathetic craft for the weak. A true necromancer's art is to change what was into something more potent and powerful that can serve his fell desires and schemes. This spell uses a fallen corpse to make an undead creature from rotting flesh. Such a creature is more potent than lesser skeletons and zombies, and will serve the warlock until discorporated. This spell, without a doubt, is evil." + ("/cmds/spells/a/_animate_dead"->extra_help()));
     evil_spell(1);
     set_helpful_spell(1);
     set_arg_needed();
@@ -30,8 +30,8 @@ string undead_to_raise()
 
 string query_cast_string()
 {
-    tell_object(caster, "%^BOLD%^%^GREEN%^You cut your %^BOLD%^%^GREEN%^wrists and %^GREEN%^s%^BLACK%^i%^GREEN%^n%^GREEN%^g%^GREEN%^ low in %^GREEN%^f%^BLACK%^ell%^GREEN%^ tongues.%^RESET%^");
-    return "%^BOLD%^%^GREEN%^" + caster->QCN + " cuts " + caster->QP + "%^BOLD%^%^GREEN%^wrists and %^GREEN%^s%^BLACK%^i%^GREEN%^n%^GREEN%^g%^BLACK%^s%^GREEN%^ low in %^GREEN%^f%^BLACK%^ell%^GREEN%^ tongues.%^RESET%^";
+    tell_object(caster, "%^C244%^D%^C075%^a%^C069%^r%^C244%^k e%^C081%^n%^C075%^e%^C069%^r%^C063%^g%^C244%^y begins to form in the area as %^C081%^you%^C244%^ reach out with palms open.%^CRST%^");
+    return "%^C244%^D%^C075%^a%^C069%^r%^C244%^k e%^C081%^n%^C075%^e%^C069%^r%^C063%^g%^C244%^y begins to form in the area as %^C081%^" + caster->query_cap_name() + "%^C244%^ reaches out with palms open.%^CRST%^";
 }
 
 void spell_effect(int prof)
@@ -40,7 +40,7 @@ void spell_effect(int prof)
     int lvl;
 
     if ((int)caster->query_property("raised") > 4) {
-        tell_object(caster, "%^BOLD%^%^BLACK%^A PATHETIC WEAKLING SUCH AS YOURSELF SHALL NOT RAISE MORE!%^RESET%^");
+        tell_object(caster, "%^BOLD%^%^BLACK%^You can't raise any more undead.%^RESET%^");
         TO->remove();
         return;
     }
@@ -48,7 +48,7 @@ void spell_effect(int prof)
     corpses = all_inventory(ENV(caster));
     corpses = filter_array(corpses, (: (int)$1->is_corpse() == 1 :));
     if (!sizeof(corpses)) {
-        tell_object(caster, "%^RESET%^%^BOLD%^%^BLACK%^LIFE'S PUTRID FIRE %^WHITE%^MUS%^BLACK%^T %^WHITE%^BE%^BLACK%^ SNUFFED OUT FIRST!%^RESET%^%^RESET%^");
+        tell_object(caster, "%^RESET%^%^BOLD%^%^BLACK%^There is no corpse here to reanimate.%^RESET%^%^RESET%^");
         TO->remove();
         return;
     }

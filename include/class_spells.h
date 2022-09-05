@@ -137,7 +137,7 @@ class_spell_storage =
     "infernal":
         ({ "scorching ray", "flames of mephasm", "soul flaying" }),
     "gloom":
-        ({ "vampiric embrace", "whispers of the grave", "armor of shadows", "shadowform" }),
+        ({ "vampiric embrace", "whispers of the grave", "armor of shadows", "shadowform", "reanimate" }),
     "fey":
         ({ "mire the mind", "eyebite" }),
         
