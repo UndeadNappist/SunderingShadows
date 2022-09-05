@@ -1114,8 +1114,8 @@ int query_resistance_percent(string res, object source)
                 mod += (10 + w_level);
             break;
             case "gloom":
-            if(res == "cold")
-                mod += (10 + w_level * 2);
+            if(res == "cold" || res == "negative energy")
+                mod += (10 + w_level);
             break;
             case "astral":
             if(res == "mental" || res == "void")
