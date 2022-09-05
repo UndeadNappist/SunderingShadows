@@ -25,7 +25,7 @@ create()
 
 string query_cast_string()
 {
-    return "%^GREEN%^" + caster->QCN + " steps away from " + target->QCN + " and starts a low chant.";
+    return "%^GREEN%^" + caster->query_cap_name() + " steps back and starts a low chant.";
 }
 
 spell_effect(int prof)
