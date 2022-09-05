@@ -111,6 +111,12 @@ void spell_effect(int prof) {
         damage += agonize;
     }
     
+    if(FEATS_D->usable_feat(caster, "repelling blast") && !do_save(target, 0))
+    {
+        set_save("reflex");
+        target->set_tripped(1 + roll_dice(1, 1 + clevel / 10));
+    }
+    
     hellfire = FEATS_D->usable_feat(caster, "hellfire blast");
     
     if(hellfire)
@@ -133,6 +139,12 @@ void spell_effect(int prof) {
         else {
           tell_object(attackers[i],"%^MAGENTA%^You are struck by the full force of the burst!%^RESET%^");
           damage_targ(attackers[i],attackers[i]->return_target_limb(),damage,element);
+          
+          if(FEATS_D->usable_feat(caster, "repelling blast") && !do_save(attackers[i], 0))
+          {
+              set_save("reflex");
+              attackers[i]->set_tripped(1 + roll_dice(1, 1 + clevel / 10));
+          }
           do_secondary(attackers[i]);
         }
     }

@@ -135,7 +135,7 @@ class_spell_storage =
     "abyssal":
         ({ "diabolic grasp", "fiendish vigor", "howl of doom", "thirsting maw", "soul theft", "harrowstorm" }),
     "infernal":
-        ({ "scorching ray", "flames of mephasm" }),
+        ({ "scorching ray", "flames of mephasm", "soul flaying" }),
     "gloom":
         ({ "vampiric embrace", "whispers of the grave", "armor of shadows", "shadowform" }),
     "fey":

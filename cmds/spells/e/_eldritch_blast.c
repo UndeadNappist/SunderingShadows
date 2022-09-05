@@ -117,6 +117,11 @@ void spell_effect(int prof) {
         agonize *= ( ( clevel / 18 ) + 1 );
         damage += agonize;
     }
+    if(FEATS_D->usable_feat(caster, "repelling blast") && !do_save(target, 0))
+    {
+        set_save("reflex");
+        target->set_tripped(1 + roll_dice(1, 1 + clevel / 10));
+    }
     if(FEATS_D->usable_feat(caster,"hellfire blast"))
     {
         tell_room(environment(target),"%^BOLD%^%^BLACK%^The eldritch blast blazes with %^RESET%^%^RED%^in%^BOLD%^%^RED%^f%^RESET%^%^RED%^ern%^BOLD%^%^RED%^a%^RESET%^%^RED%^l %^BOLD%^%^BLACK%^power!%^RESET%^");
