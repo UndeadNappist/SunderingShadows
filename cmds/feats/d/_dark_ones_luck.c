@@ -8,7 +8,7 @@ void create()
    feat_type("permanent");
    feat_category("PactInvocation");
    feat_name("dark ones luck");
-   feat_prereq("Warlock L1");
+   feat_prereq("Warlock L21");
    feat_desc("With this feat, your dark patron bestows a protection of uncanny luck over you, giving you advantage (roll twice, take best result) on all saving throws.");
    permanent(1);
    allow_blind(1);
@@ -21,7 +21,7 @@ int prerequisites(object ob)
 {
     if(!objectp(ob)) { return 0; }
 
-    if((int)ob->query_class_level("warlock") < 1) {
+    if((int)ob->query_class_level("warlock") < 21) {
         dest_effect();
         return 0;
     }
