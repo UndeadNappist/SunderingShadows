@@ -1,4 +1,5 @@
-// infernal rain - port of earthquake spell for hellfire warlock.
+//Reskin and rebuild of infernal rain for infernal pact
+
 #include <spell.h>
 #include <daemons.h>
 #include <magic.h>
@@ -9,23 +10,25 @@ int storm_effects(object obj);
 object storm_room;
 int duration;
 
-void create(){
+void create()
+{
     ::create();
-    set_spell_name("infernal rain");
+    set_spell_name("hellfire");
     set_spell_level(([ "warlock" : 4 ]));
     set_spell_sphere("invocation_evocation");
-    set_syntax("cast CLASS infernal rain");
+    set_heritage("infernal");
+    set_syntax("cast CLASS hellfire");
+    set_damage_desc("untyped damage persistent AOE");
     set_description("This invocation unleashes a storm of hellfire, raining down the wrath of infernal energies upon the "
 "warlock's foes.  The invocation will last several rounds depending upon the level of the warlock, and the warlock must "
 "remain present for the storm to continue.  All those attacking the warlock are subject to the effects of the infernal rain"
-", though they do receive saving throws. Only one area spell or invocation may be maintained by a caster at a time!\n\n"
-"Only a hellfire warlock may harness this invocation.");
+", though they do receive saving throws. Only one area spell or invocation may be maintained by a caster at a time!\n");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
     aoe_spell(1);
     set_aoe_message("%^BOLD%^%^BLACK%^(%^RESET%^%^RED%^aglow %^BOLD%^%^BLACK%^with %^BOLD%^%^RED%^hellfire%^BOLD%^%^BLACK%^)%^RESET%^");
-    set_feats_required(([ "warlock" : "infernal practitioner"]));
+    //set_feats_required(([ "warlock" : "infernal practitioner"]));
 }
 
 string query_cast_string(){
