@@ -12,7 +12,7 @@ void create()
     feat_category("NonCombat");
     feat_name("track");
     feat_syntax("track");
-    feat_prereq("The track feat allows a character to use the track command. The accuracy is dependant on the character's survival skill, and the difficulty of the terrain they're inspecting. The track feat is required for any non-ranger to use this command.");
+    feat_desc("The track feat allows a character to use the track command. The accuracy is dependent on the character's survival skill, and the difficulty of the terrain they're inspecting. The track feat is required for any non-ranger to use this command.");
     set_target_required(0);
 }
 
