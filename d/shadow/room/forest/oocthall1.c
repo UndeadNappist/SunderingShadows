@@ -53,12 +53,11 @@ int retrieve_em(string str)
     return 0;
 }
 
-int return_em(string str)
-{
-    if (!str) {
-        return 0;
-    }
-    if (str == "dummy" || str == "testdummy" || str == "test dummy" || str == "practice dummy") {
+int return_em(string str){
+    object room, *everything;
+    int i;
+    if(!str) return 0;
+    if(str == "dummy" || str == "testdummy" || str == "test dummy" || str == "practice dummy"){
         object dummyobj;
         if (!present("test dummy")) {
             tell_object(TP, "There is no practice dummy to return!");
@@ -71,7 +70,18 @@ int return_em(string str)
             dummyobj->move("/d/shadowgate/void");
             dummyobj->remove();
         }
+        room = this_object();
+        everything = all_living(room);
+        for(i = 0; i < sizeof(everything); i++){
+            if(!userp(everything[i])){
+                message("environment", "Lightning crashes down from on high, obliterating "+everything[i]->query_cap_name()+"!", room);
+                everything[i]->move("/d/shadowgate/void");
+                everything[i]->remove();
+            }
+            continue;
+        }
         return 1;
     }
     return 0;
 }
+
