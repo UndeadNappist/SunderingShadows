@@ -25,7 +25,7 @@ void create()
     set_shape_bonus("damage bonus",3);
     set_shape_bonus("attack bonus",3);
 
-    set_shape_bonus("silver resistance percent", -23);
+    //set_shape_bonus("silver resistance percent", -23);
     set_shape_race("demon");
     set_shape_profile("warlock_abyssal_999");
 }
