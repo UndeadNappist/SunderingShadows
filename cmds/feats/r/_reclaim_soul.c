@@ -16,7 +16,7 @@ void create()
     feat_name("reclaim soul");
     feat_prereq("Warlock L17");
     feat_syntax("reclaim_soul");
-    feat_desc("With this feat, you relinquish some of your vast and dark power to reclaim and mend the shattered and burnt pieces of your broken soul. This feat removes one soul burn. This feat has a small cooldown. You cannot use other feats while using this feat.");
+    feat_desc("With this feat, you relinquish some of your vast and dark power to reclaim and mend the shattered and burnt pieces of your broken soul. This feat removes one soul burn. This feat has a small cooldown.");
 }
 
 int allow_shifted() { return 1; }
@@ -50,12 +50,14 @@ void execute_feat()
 {
     ::execute_feat();
 
+    /*
     if((int)caster->query_property("using instant feat"))
     {
         tell_object(caster,"You are already in the middle of using a feat!");
         dest_effect();
         return;
     }
+    */
 
     if(caster->cooldown("reclaim soul"))
     {
@@ -71,13 +73,14 @@ void execute_feat()
         return;
     }
 
-    caster->set_property("using instant feat", 1);
+    //caster->set_property("using instant feat", 1);
     caster->add_cooldown("reclaim soul", DELAY);
 
     tell_object(caster, "%^C066%^You give up some of your power to mend your soul burn.%^CRST%^");
     tell_object(caster, "%^C072%^You feel a little bit more whole.%^CRST%^");
 }
 
+/*
 void execute_attack()
 {
 
@@ -92,6 +95,7 @@ void execute_attack()
     
     dest_effect();
 }
+*/
 
 void dest_effect()
 {
