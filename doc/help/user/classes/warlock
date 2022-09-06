@@ -6,7 +6,7 @@
 %^RESET%^%^CYAN%^Saving throws:%^RESET%^ will strong, fort/reflex weak
 %^RESET%^%^CYAN%^Class Skills:%^RESET%^ academics, athletics, influence, spellcraft
 %^RESET%^%^CYAN%^Class Feats:%^RESET%^
- %^RESET%^L1: simple weapon proficiency, light armor proficiency, spell focus, shadow walk, pact bond, eldritch strikes
+ %^RESET%^L1: simple weapon proficiency, martial weapon proficiency, light armor proficiency, spell focus, shadow walk, pact bond, eldritch strikes
  %^RESET%^L2: prime strike
  %^RESET%^L3: indomitable
  %^RESET%^L5: warlocks curse
@@ -27,8 +27,8 @@ A warlock is a being whose soul is suffused with perilous magic, whether by will
 
 Warlocks use the %^ORANGE%^<master>%^RESET%^ command to learn their invocations. Then they can just %^ORANGE%^<cast>%^RESET%^ any invocation they know at any time they want.
 
-Warlocks can cast in light armor, but they can't do so while wielding normal weapons. However, they can cast while wielding weapons they have summoned.
+Warlocks can cast in light armor, but they can't do so while wielding normal weapons. However, with pact invocation feats they can learn to cast while wielding.
 
-Warlocks have a degree of versatility and can take both martial and spellcasting paths. Their magic prowess is based on their charisma score.
+Warlocks have a degree of versatility and can take both martial and spellcasting paths. However, it should be noted that the best warlocks mix spellcraft with combat prowess to a greater effect. Their magic prowess is based on their charisma score.
 
-%^RESET%^%^CYAN%^See also: %^RESET%^ feats, stats, skills, spells, cast, buff, prepare, master, warlock heritages, prestige classes, new caster
+%^RESET%^%^CYAN%^See also: %^RESET%^ soul burn, spells, cast, buff, prepare, master, warlock heritages, prestige classes, new caster

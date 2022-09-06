@@ -54,7 +54,7 @@ string reader_output(object targ)
     stringp(targ->query_sphere()) && output += "Sphere: " + targ->query_sphere() + " :: ";
     targ->is_class("sorcerer") && output += "Bloodline: " + targ->query_bloodline() + " :: ";
     targ->is_class("oracle") && output += "Mystery: " + targ->query_mystery() + " :: ";
-    targ->is_class("warlock") && output += "Heritage: " + targ->query("warlock heritage") + " :: ";
+    targ->is_class("warlock") && output += "Pact: " + targ->query("warlock heritage") + " :: ";
     targ->is_class("psion") && output += "Discipline: " + targ->query_discipline() + " :: ";
     targ->is_class("fighter") && output += "Fighter Style: " + targ->query_fighter_style() + " :: ";
     targ->is_class("monk") && output += "Monk Way: " + targ->query("monk way") + " :: ";
@@ -152,7 +152,7 @@ mixed* genoutput(object targ)
     }
     if (targ->is_class("warlock")) {
         if (stringp(targ->query("warlock heritage"))) {
-            output += ({ ({ "Heritage", "%^BOLD%^%^MAGENTA%^" + capitalize(targ->query("warlock heritage")) }) });
+            output += ({ ({ "Pact", "%^BOLD%^%^MAGENTA%^" + capitalize(targ->query("warlock heritage")) }) });
         }
     }
     if (targ->is_class("mage") ||
