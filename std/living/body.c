@@ -1110,11 +1110,11 @@ int query_resistance_percent(string res, object source)
                 mod += (10 + w_level);
             break;
             case "fey":
-            if(res == "cold iron" || res == "sonic")
+            if(res == "force" || res == "sonic")
                 mod += (10 + w_level);
             break;
             case "gloom":
-            if(res == "cold" || res == "negative energy")
+            if(res == "cold" || res == "mental")
                 mod += (10 + w_level);
             break;
             case "astral":
