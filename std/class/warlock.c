@@ -115,7 +115,7 @@ mapping query_class_spells()
     ]));
 }
 
-string newbie_choice() { return "Warlock Heritage"; }
+string newbie_choice() { return "Warlock Pact"; }
 string *query_newbie_stuff(int align)
 {
     string * heritages = ({});

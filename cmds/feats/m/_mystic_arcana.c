@@ -12,9 +12,8 @@ void create() {
 "The warlock taking this feat continues to show greater dedication to their "
 "pact and are reaping greater benefits from that pact. The patron shows the warlock "
 "how to bend their force of ambition and influence into strengthening their spells. "
-"A warlock with this feat applies the 'agonizing blast' trait to their eldritch "
-"blast, eldritch chain, and eldritch burst invocations, which adds damage based on "
-"the warlock's charisma. The patron also shows the warlock how to strengthen the "
+"The warlock gains shadow alteration and shadow conjuration as known spells."
+"The patron shows the warlock how to strengthen the "
 "resilience of their invocations, and the warlock gains a additional resistance to "
 "dispell effects.");
     permanent(1);

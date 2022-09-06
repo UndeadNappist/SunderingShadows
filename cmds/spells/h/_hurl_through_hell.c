@@ -1,6 +1,4 @@
 //This is the spell associated with the
-//Infernal Practicioner Feat
-
 #include <spell.h>
 #include <magic.h>
 
@@ -17,8 +15,9 @@ void create()
     ::create();
     set_spell_name("hurl through hell");
     set_spell_level(([ "warlock" : 4 ]));
+    set_heritage("infernal");
     set_syntax("cast CLASS hurl through hell on TARGET");
-    set_damage_desc("Untyped Damage over several rounds and blind and shaken upon return.");
+    set_damage_desc("Untyped Damage over several rounds and blind and shaken");
     set_description(""
     "This invocation represents the highest level of dominance that a "
     "powerful hellfire warlock can assert over an opponent. This "
@@ -32,7 +31,7 @@ void create()
     set_target_required(1);
     set_property("keywords", ({ "offensive", "targeted", }));
     set_save("will");
-    set_feats_required(([ "warlock" : "infernal practitioner"]));
+    //set_feats_required(([ "warlock" : "infernal practitioner"]));
 }
 
 int preSpell()
