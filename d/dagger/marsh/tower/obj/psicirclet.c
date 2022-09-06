@@ -83,6 +83,10 @@ int contact_em(string str) {
      notify_fail("The circlet's power is already depleted.\n");
      return 0;
    }
+   if(!living(this_player())){
+        notify_fail("The dead are incapable of such actions.\n");
+        return 0;
+    }
    charges1--;
    tell_room(ETP,"%^BOLD%^%^BLUE%^The %^CYAN%^e%^RESET%^%^CYAN%^y%^BOLD%^e %^BLUE%^of "+TP->QCN+
 "'s %^WHITE%^circlet %^BLUE%^closes briefly.%^RESET%^",TP);
@@ -97,6 +101,10 @@ int find_em(string str) { //code off of drow masks
 
     if(!str) {
         notify_fail("What?\n");
+        return 0;
+    }
+    if(!living(this_player())){
+        notify_fail("The dead are incapable of such actions.\n");
         return 0;
     }
     target = lower_case(str);

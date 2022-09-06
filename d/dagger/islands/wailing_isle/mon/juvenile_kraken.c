@@ -233,8 +233,10 @@ void die(){
     room = environment(kraken);
     targets = all_living(room);
     
-    stomach->empty_stomach();
-    stomach->remove();
+    if(stomach){
+        stomach->empty_stomach();
+        stomach->remove();
+    }
     
     while(tentacle = present("kraken tentacle")) tentacle->die();
     

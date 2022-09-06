@@ -35,10 +35,10 @@ void create(){
 		"company returned from their mission to slay the purple worm.");
 	set_property("enchantment",4);
 	set_hit((:TO, "hitme":));
-       set_value(2000);
-     set_wield((:TO,"wield_func":));
+    set_value(2000);
+    set_wield((:TO,"wield_func":));
    	set_unwield((:TO,"unwield_func":));
-        set_property("repairtype",({"weaponsmith", "jeweller"}));
+    set_property("repairtype",({"weaponsmith", "jewelling"}));
 }
 int wield_func(string str) {
      if((int)ETO->query_level() < 30) {
