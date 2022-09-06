@@ -9,7 +9,7 @@ void create()
    feat_category("PactInvocation");
    feat_name("cunning strikes");
    feat_prereq("Warlock L1");
-   feat_desc("Your patron bestows upon you the blessing of the perfect warrior, fueled by your dark and cunning personality. With this feat you will use your Charisma, instead of your Strength as your attack and damage stat.");
+   feat_desc("Your patron bestows upon you the blessing of the perfect warrior, fueled by your dark and cunning personality. With this feat you will use your Charisma, instead of your Strength as your attack and damage stat. This applies ONLY to melee weapons. Ranged weapons will still use your dexterity modifier.");
    permanent(1);
    allow_blind(1);
    set_required_for(({}));

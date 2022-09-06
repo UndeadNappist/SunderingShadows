@@ -16,7 +16,7 @@ int is_curse()
 void create() {
     ::create();
     set_spell_name("eyebite");
-    set_spell_level(([ "mage" : 6, "bard" : 6, "oracle" : 6, "cleric" : 6, "warlock" : 4 ]));
+    set_spell_level(([ "mage" : 6, "bard" : 6, "oracle" : 6, "cleric" : 6, "warlock" : 3 ]));
     set_domains("evil");
     set_heritage("fey");
     set_spell_sphere("necromancy");
