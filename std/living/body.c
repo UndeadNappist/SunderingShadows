@@ -1118,7 +1118,7 @@ int query_resistance_percent(string res, object source)
                 mod += (10 + w_level);
             break;
             case "astral":
-            if(res == "mental" || res == "void")
+            if(res == "cold" || res == "void")
                 mod += (10 + w_level);
             break;
             case "blade":
