@@ -81,7 +81,7 @@ void strik(object targ)
 
    if(!"/daemon/saving_throw_d.c"->reflex_save(targ,-30))
     targ->set_paralyzed(10+random(30),
-     "%^MAGENTA%^Oh god.. the stink...can't...breath..");
+     "%^MAGENTA%^Oh god.. the stink...can't...breathe..");
 	 }
    return 1;
 }
