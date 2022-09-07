@@ -76,6 +76,7 @@ void execute_attack()
     attackers = target_filter(attackers);
     for(i=0;i<sizeof(attackers)&&i<6;i++)
     {
+        if(!attackers[i]->is_undead()) continue;
         if(!do_save(attackers[i],4))
         {
             tell_room(room,"%^WHITE%^"+attackers[i]->QCN+" is pushed away by a force field from "+caster->QCN+".%^RESET%^",({attackers[i]}));
