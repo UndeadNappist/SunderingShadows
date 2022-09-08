@@ -64,7 +64,7 @@ void create()
     }));
     set_mob_magic_resistance("high");
     set_emotes(5, ({
-        "%^MAGENTA%^Daelas says%^RESET%^: I can't e blamed...I had no choice. " ,
+        "%^MAGENTA%^Daelas says%^RESET%^: I can't be blamed...I had no choice. " ,
         "%^MAGENTA%^Daelas says%^RESET%^: I died for my people only to be brought back and forced to obey.",
         "%^MAGENTA%^Daelas says%^RESET%^: The master vampire...the things I was forced to do.",
         "%^MAGENTA%^Daelas says%^RESET%^: I don't even know how many years have passed.  Hundreds?  Thousands?",
@@ -170,7 +170,7 @@ int xlook(string str)
   ((int)TP->query_stats("charisma") < 25))
   {
     force_me("say Stop looking at me, "+TPQCN+
-    "...Nnnnn...I can't stand being judged by those condeming eyes!");
+    "...Nnnnn...I can't stand being judged by those condemning eyes!");
     force_me("hide in shadows");
     force_me("stab "+TPQN);
 
