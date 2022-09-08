@@ -57,6 +57,7 @@ void spell_effect(int prof){
             
         damage_targ(ob, ob->return_target_limb(), temp, "sonic");
     }
+    spell_kill(ob, caster);
     spell_successful();
     dest_effect();
 }

@@ -95,7 +95,7 @@ int can_cast(object target, int spell_level, string spell_type, string spell_nam
                 return 1;
             }
             */
-        }
+        } 
     }
 
 
@@ -142,6 +142,13 @@ int can_cast(object target, int spell_level, string spell_type, string spell_nam
     //Checking if discipline spells could actually be mastered and cast at current level
     if(spell_type == "psion" && spell_level > to_int(ceil(to_float(target->query_prestige_level("psion")) / 2.00)))
         return 0;
+    
+    //Same for warlock
+    if(spell_type == "warlock" && spell_level > 1)
+    {
+        if(spell_level > target->query_prestige_level("warlock") / 4)
+            return 0;
+    }
 
     if (spell_type == "monk") {
         if (x >= spell_level) {

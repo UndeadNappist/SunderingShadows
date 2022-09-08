@@ -80,6 +80,7 @@ void execute_attack()
         ob->cause_typed_damage(ob, ob->return_target_limb(), sdamage / 3, "sonic");
         ob->cause_typed_damage(ob, ob->return_target_limb(), sdamage / 3, "electricity");
         ob->cause_typed_damage(ob, ob->return_target_limb(), sdamage / 3, "force");
+        spell_kill(ob, caster);
     }
     
     place->addObjectToCombatCycle(this_object(),1);

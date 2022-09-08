@@ -8,7 +8,7 @@ int bonus;
 void create() {
     ::create();
     set_spell_name("fiendish vigor");
-    set_spell_level(([ "warlock" : 2 ]));
+    set_spell_level(([ "warlock" : 1 ]));
     set_spell_sphere("necromancy");
     set_heritage("abyssal");
     set_syntax("cast CLASS fiendish vigor [on TARGET]");

@@ -116,7 +116,7 @@ void spell_effect(int prof) {
     spell_successful();
     addSpellToCaster();
     call_out("wings",ROUND_LENGTH);
-    spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH;
+    spell_duration = (10 + clevel + roll_dice(1, 20)) * ROUND_LENGTH;
     set_end_time();
     call_out("dest_effect",spell_duration);
 }
