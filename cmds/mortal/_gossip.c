@@ -1058,7 +1058,85 @@ void enter_editor(string str){
     tell_object(TP, response); 
     return;
     break;
+  case "stop":
+    if (!TP->query_property("tracing")&& !TP->query_property("investigating")&& !TP->query_property("gossipping")) 
+    {
+      tell_object(TP, "You are not currently gossiping");
+      return 1;
+    }
+    if (TP->query_property("tracing"))
+    {
+      TP->remove_property("tracing");
+    }
 
+    if (TP->query_property("investigating"))
+    {
+      TP->remove_property("investigating");
+    }
+    if (TP->query_property("gossipping")) 
+    {
+      TP->remove_property("gossipping");
+    }
+    tell_object(TP, "You stop gossiping");
+    return 1;
+  case "trace":
+    if (!stringp(rest) || strlen(rest)<1)
+    {
+      tell_object(TP, "Trace what?");
+      tell_object(TP, list_commands());
+      return;
+    }
+
+  break;
+
+
+
+  case "stop":
+    if (!TP->query_property("tracing")&& !TP->query_property("investigating")&& !TP->query_property("gossipping")) 
+    {
+      tell_object(TP, "You are not currently gossiping");
+
+      return 1;
+
+    }
+    if (TP->query_property("tracing"))
+    {
+      TP->remove_property("tracing");
+
+    }
+    if (TP->query_property("investigating"))
+    {
+      TP->remove_property("investigating");
+
+    }
+    if (TP->query_property("gossipping")) 
+    {
+      TP->remove_property("gossipping");
+
+
+
+
+
+    }
+
+    tell_object(TP, "You stop gossiping");
+
+    return 1;
+
+
+
+  case "trace":
+    if (!stringp(rest) || strlen(rest)<1)
+    {
+
+      tell_object(TP, "Trace what?");
+
+
+      tell_object(TP, list_commands());
+
+      return;
+
+    }
 
   case "trace":
     if (!stringp(rest) || strlen(rest)<1)
