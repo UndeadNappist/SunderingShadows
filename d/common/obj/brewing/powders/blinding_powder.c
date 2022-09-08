@@ -10,7 +10,7 @@
 
 inherit OBJECT;
 
-int uses;
+int uses,DELAY;
 
 void create() {
    ::create();
@@ -28,6 +28,7 @@ void create() {
    set_value(200);
    set_weight(2);
    uses = random(5) + 5;
+   DELAY = 120;
 }
 
 void init() {
@@ -49,6 +50,13 @@ int find_em(string str)
     object here;
     if(!objectp(TP)) { return 1; }
     if(!objectp(ETP)) { return 1; }
+
+    if(this_player()->cooldown("powder use") && !avatarp(this_player()))
+    {
+        write("You need to wait before using powder again. Type <cooldowns> to see your cooldowns.");
+        return 1;
+    }
+
     if(TP->query_property("shapeshifted"))
     {
         tell_object(TP,"You can't use powder while shapeshifted");
@@ -74,6 +82,7 @@ int find_em(string str)
         "the dust coats everything in the room!%^RESET%^",TP);
     here->set_property("no invis", 1);
     uses -= 2;
+    this_player()->add_cooldown("powder use", DELAY); 
     "/daemon/delay_d"->sleep(base_name(TO),"invis_again",10,({ here }));
     return 1;
 }
@@ -83,12 +92,19 @@ int toss(string str) {
    object ob;
 
    if(!str) return notify_fail("Syntax: toss powder at <target>\n");
+
+    if(this_player()->cooldown("powder use") && !avatarp(this_player()))
+    {
+        write("You need to wait before using powder again. Type <cooldowns> to see your cooldowns.");
+        return 1;
+    }
+
    if(TP->query_property("shapeshifted"))
    {
        tell_object(TP,"You can't use powder while shapeshifted.");
        return 1;
    }
-    if(userp(TP) && !FEATS_D->usable_feat(TP,"tools of the trade")) {
+    if(userp(TP) && !FEATS_D->usable_feat(TP,"tools of the trade") && !avatarp(this_player())) {
         tell_object(TP,"You wouldn't know how to use that!");
         return 1;
     }
@@ -124,15 +140,13 @@ int toss(string str) {
    if(!(ob=present(who,ETP))){
        tell_room(ETP, "%^BOLD%^%^CYAN%^You see "+TPQCN+" reach into a small bag, from which "+TP->query_subjective()+" pulls a handful of powder and throws it in the air!",({TP}));
        tell_room(ETP,"%^BOLD%^%^CYAN%^The cloud of dust formed by the powder billows about but the cloud doesn't seem to hit anything.",ob);
+       this_player()->add_cooldown("powder use", DELAY); 
        uses -= 1;
        return 1;
    }
 
-   if(ob->query_property("powdered")) return notify_fail("Jeez, isn't once enough for a little while?\n");
+   if(ob->query_property("powdered")) return notify_fail("That target is already enveloped in powder!\n");
    
-   if(this_player()->query_property("using device"))
-       return notify_fail("You're already busy using something...");
-
    if(!TP->kill_ob(ob,0)) return 1;
 
    tell_room(ETP, "%^BOLD%^%^CYAN%^You see "+TPQCN+" reach into a small bag, from which "+TP->query_subjective()+" pulls a handful of powder and throws it in the air!",({TP}));
@@ -155,6 +169,7 @@ int toss(string str) {
      tell_object(ob, "%^BOLD%^%^CYAN%^The cloud of dust formed by the powder billows toward you, but you turn your head and avoid the cloud of irritants!\n");
    }
 
+   this_player()->add_cooldown("powder use", delay); 
    uses -=1;
 
    if(uses < 1) {
@@ -164,8 +179,6 @@ int toss(string str) {
       set("coin type","copper");
    }
    
-   this_player()->set_property("using device", 1);
-   call_out("reset using", 6, this_player());
    
    return 1;
 }
