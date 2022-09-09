@@ -18,3 +18,6 @@
 #define LOCKS_GOOD          50
 #define LOCKS_COMMON        40
 #define LOCKS_POOR          30
+
+#define HOUSEBOAT "/std/housing/main_deck"
+#define HOUSEBOAT_OBJECT "/std/housing/house_boat"
