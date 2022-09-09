@@ -8,7 +8,7 @@ void create()
     ::create();
 
     set_attack_limbs(({ "right hand", "left hand" }));
-    set_limbs(({ "mouth", "head", "torso", "waist ", "left arm", "left hand", "right arm", "right hand", "left leg", "left foor", "right leg", "right food", "tail", "maw" }));
+    set_limbs(({ "mouth", "head", "torso", "waist", "left arm", "left hand", "right arm", "right hand", "left leg", "left foot", "right leg", "right food", "tail" }));
     set_base_attack_num(4);
     set_ac_bonus(2);
     set_castable(1);
@@ -30,48 +30,41 @@ void create()
     set_shape_profile("warlock_abyssal_999");
 }
 
-int default_descriptions(object obj)
-{
-    if (!objectp(obj)) {
-        return 0;
-    }
-    obj->set_description("is a strange humanoid resembling its original race. It has wolf-like ears and is covered in dark bluesh fur.");
-    obj->setDescriptivePhrase("lean $R with dark blue fur and fluffy ears");
+int default_descriptions(object obj){
+    if(!objectp(obj)) return 0;
+    
+    obj->set_description("%^RESET%^%^CRST%^%^C124%^is large, hulking, and brutish. Two large %^C100%^b%^C101%^r%^C144%^a%^C100%^n%^C101%^c%^C144%^h%^C100%^e%^C101%^d %^RESET%^%^C124%^sets of %^C144%^h%^C100%^o%^C101%^r%^C144%^n%^C100%^s %^RESET%^%^C124%^erupt from the brow, jagged and sharp over a wrathful visage. %^C244%^Dark %^C103%^gray %^C244%^skin %^RESET%^%^C124%^is taut along a muscular torso, interrupted by coarse %^C058%^br%^C100%^ow%^C058%^ni%^C100%^sh %^C058%^f%^C100%^u%^C058%^r %^RESET%^%^C124%^along the arms and legs, the former terminating in sets of vicious claws while the latter ends above a pair of %^C059%^cl%^C244%^o%^C059%^ve%^C244%^n %^C059%^ho%^C244%^o%^C059%^ve%^C244%^s%^RESET%^%^C124%^.%^CRST%^");
+    obj->setDescriptivePhrase("%^RESET%^%^CRST%^%^C124%^large $R with %^C100%^b%^C101%^r%^C144%^a%^C100%^n%^C101%^c%^C144%^h%^C100%^e%^C101%^d %^C144%^h%^C100%^o%^C101%^r%^C144%^n%^C100%^s %^RESET%^%^C124%^and %^C059%^cl%^C244%^o%^C059%^ve%^C244%^n %^C059%^ho%^C244%^o%^C059%^ve%^C244%^s%^CRST%^");
 
     return 1;
 }
 
 // custom shapeshift messages here, override this function
-int change_into_message(object obj)
-{
-    if (!objectp(obj)) {
-        return 0;
-    }
-    tell_object(obj, "%^RESET%^%^RED%^%^BOLD%^You turn your mind out to the darkness as you focus on the core of your spirit.");
-    tell_object(obj, "%^RESET%^%^RED%^You can feel your body beginning to change, you grow a tail and couple of wolf-like ears!");
-    tell_object(obj, "%^RESET%^%^RED%^%^BOLD%^Your senses heighten, you can feel the pulse of the night, smell countless scents, you can taste the very air. You are werewolf!");
+int change_into_message(object obj){
+    if(!objectp(obj)) return 0;
+    
+    tell_object(obj, "%^RESET%^%^CRST%^%^C208%^You seek a pathway along your bond, calling upon the pact that binds your soul to your patron...%^CRST%^");
+    tell_object(obj, "%^RESET%^%^CRST%^%^C202%^Your plea is answered and the bond strengthens, power flowing through it and into you.%^CRST%^");
+    tell_object(obj, "%^RESET%^%^CRST%^%^C196%^It overwhelms you, pain wracking through your very essence as you are remade to your patron's whim!%^CRST%^");
 
-    tell_room(environment(obj), "%^RESET%^%^RED%^" + obj->QCN + " grows very still and appears to concentrate deeply.", obj);
-    tell_room(environment(obj), "%^RESET%^%^RED%^" + obj->QCN + " begins to change in front of your very eyes and grows a tail and couple of wolf-like ears!", obj);
-    tell_room(environment(obj), "%^RED%^Where " + obj->QCN + " once stood, is now a werewolf!", obj);
+    tell_room(environment(obj), "%^RESET%^%^CRST%^%^C208%^"+obj->QCN+"%^RESET%^%^CRST%^%^C208%^ grows very still and appears to concentrate deeply.%^CRST%^", obj);
+    tell_room(environment(obj), "%^RESET%^%^CRST%^%^C202%^"+obj->QCN+"%^RESET%^%^CRST%^%^C202%^ begins to convulse, pain obvious in their expression as their body begins to warp and twist!%^CRST%^", obj);
+    tell_room(environment(obj), "%^RESET%^%^CRST%^%^C196%^Where "+obj->QCN+"%^RESET%^%^CRST%^%^C196%^ once stood, is now a demon!%^CRST%^", obj);
 
     return 1;
 }
 
 // custom unshapeshift messages here, override this function
-int change_outof_message(object obj)
-{
-    if (!objectp(obj)) {
-        return 0;
-    }
+int change_outof_message(object obj){
+    if(!objectp(obj)) return 0;
 
-    tell_object(obj, "%^RESET%^%^RED%^You relax your focus on the wilds.");
-    tell_object(obj, "%^RESET%^%^RED%^You can feel the sharpness of your senses beginning to fade and the strength returning.");
-    tell_object(obj, "%^RESET%^%^GREEN%^You inhale a breath and stretch as you grow accustomed to the foreign sensation of your another body once again.");
+    tell_object(obj, "%^RESET%^%^CRST%^%^C196%^The power given is suddenly withdrawn...");
+    tell_object(obj, "%^RESET%^%^CRST%^%^C202%^You grit your teeth as yet again, your body is mercilessly remade!");
+    tell_object(obj, "%^RESET%^%^CRST%^%^C208%^With a shuddered breath, you find your former self returned.");
 
-    tell_room(environment(obj), "%^RESET%^%^BOLD%^" + obj->QCN + "'s muscles slacken and " + obj->QS + " gets a far-away look in " + obj->QP + " eyes.", obj);
-    tell_room(environment(obj), "%^RESET%^%^BLUE%^" + obj->QCN + "'s body begins to change shape, elongating and curving!", obj);
-    tell_room(environment(obj), "%^RESET%^%^GREEN%^Where " + obj->QCN + " once stood, now stands a " + obj->query_race() + "!", obj);
+    tell_room(environment(obj), "%^RESET%^%^CRST%^%^C196%^"+obj->QCN+"%^RESET%^%^CRST%^%^C196%^ suddenly begins to shudder, seeming to shrink before your eyes.", obj);
+    tell_room(environment(obj), "%^RESET%^%^CRST%^%^C202%^"+obj->QCN+"%^RESET%^%^CRST%^%^C202%^ begins to convulse, pain obvious in their expression as their body begins to warp and twist!", obj);
+    tell_room(environment(obj), "%^RESET%^%^CRST%^%^C208%^Where "+obj->QCN+"%^RESET%^%^CRST%^%^C208%^ once stood, now stands a "+obj->query_race()+"!", obj);
 
     return 1;
 }
