@@ -8,7 +8,7 @@ void create()
     ::create();
 
     set_attack_limbs(({ "right hand", "left hand" }));
-    set_limbs(({ "mouth", "head", "torso", "waist", "left arm", "left hand", "right arm", "right hand", "left leg", "left foot", "right leg", "right food", "tail" }));
+    set_limbs(({ "mouth", "head", "torso", "waist", "left arm", "left hand", "right arm", "right hand", "left leg", "left foot", "right leg", "right foot" }));
     set_base_attack_num(4);
     set_ac_bonus(2);
     set_castable(1);
