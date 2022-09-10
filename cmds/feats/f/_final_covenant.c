@@ -14,7 +14,7 @@ void create()
     feat_name("final_covenant");
     feat_prereq("Warlock L31");
     feat_syntax("final_covenant");
-    feat_desc("");
+    feat_desc("You've done the work. You've shown your willingness to do the uthinkable. And now you're ready for the final step. You will open your soul to your patron completely, allowing them to enter this world for a short period of time, using you as its glove in the world. With this feat, you fully take on the characteristics of your patron, becoming a fearsome extraplanar creature for a short time. The basic template of this form depends on your patron type.");
     set_target_required(0);
     allow_blind(1);
     set_required_for(({}));
@@ -124,10 +124,13 @@ void dest_effect()
 {
     object shape;
     
-    if(shape = caster->query_property("shapeshifted"))
-        shape->reverse_shape(caster);
-    else if(shape = caster->query_property("altered"))
-        shape->reverse_shape(caster);
+    if(caster)
+    {
+        if(shape = caster->query_property("shapeshifted"))
+            shape->reverse_shape(caster);
+        else if(shape = caster->query_property("altered"))
+            shape->reverse_shape(caster);
+    }
     
     ::dest_effect();
     remove_feat(this_object());

@@ -27,6 +27,8 @@ void create()
     feat_desc("Apply a nefarious curse to your opponents, making it plain for all to see the sheer foolishness of their endeavor. You may apply one curse to a given opponent (they do not stack) which will make them particularly weak to YOUR attacks and spells. The opponent will take an addition 1d6 (plus 1d6 more per 10 warlock levels) damage from any attack or spell you land upon them. This feat has a cooldown.");
 }
 
+int allow_shifted() { return 1; }
+
 int prerequisites(object ob)
 {
     if(ob->query_class_level("warlock") < 5)

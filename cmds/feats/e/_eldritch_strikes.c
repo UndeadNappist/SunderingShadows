@@ -28,7 +28,7 @@ void create()
     set_target_required(0);
 }
 
-int allow_shifted() { return 0; }
+int allow_shifted() { return 1; }
 
 int prerequisites(object ob)
 {
