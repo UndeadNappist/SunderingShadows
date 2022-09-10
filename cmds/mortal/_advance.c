@@ -224,6 +224,13 @@ int can_multiclass(object ob,string myclass) {
         }
     }
     */
+    
+    if(file->is_locked_class())
+    {
+        tell_object(ob, "%^BOLD%^That class is currently locked.%^RESET%^");
+        file->remove_base_class(ob);
+        return 0;
+    }
 
     if(member_array(alignment,bad_alignments) != -1)
     {
@@ -417,8 +424,8 @@ int pick_warlock_heritage(string str,object ob) {
 
     align = ob->query_alignment();
     switch(align) {
-      case 7: heritages = (({ "celestial", "fey" })); break;
-      case 8: heritages = (({ "celestial", "fey", "abyssal", "astral" })); break;
+      case 7: heritages = (({ "fey" })); break;
+      case 8: heritages = (({ "fey", "abyssal", "astral" })); break;
       case 9: heritages = (({ "fey", "abyssal", "gloom" })); break;
       case 5: heritages = (({ "astral", "gloom", "fey" })); break;
       case 6: heritages = (({ "abyssal", "gloom", "infernal", "astral" })); break;
@@ -426,7 +433,7 @@ int pick_warlock_heritage(string str,object ob) {
       default: tell_object(ob,"You have an alignment that does not work for a warlock! Please contact a wiz."); return 1; break;
     }
     switch(str)     {
-      case "celestial":  heritage = "celestial";  break;
+      //case "celestial":  heritage = "celestial";  break;
       case "fey":        heritage = "fey";        break;
       case "abyssal":    heritage = "abyssal";    break;
       case "astral":     heritage = "astral";      break;
