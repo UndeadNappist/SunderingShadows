@@ -10,22 +10,20 @@ void create()
     set_attack_limbs(({ "right hand", "left hand" }));
     set_limbs(({ "mouth", "head", "torso", "waist", "left arm", "left hand", "right arm", "right hand", "left leg", "left foot", "right leg", "right foot", "tail" }));
     set_base_attack_num(4);
-    set_ac_bonus(2);
+    set_ac_bonus(5);
     set_castable(1);
     set_can_talk(1);
     //These can be based on whatever type we choose
     set_shape_bonus("survival", 4);
-    set_shape_bonus("perception", 2);
-    set_shape_bonus("sight bonus", 2);
-    set_shape_bonus("strength", 2);
-    set_shape_bonus("dexterity", 2);
-    set_shape_bonus("constitution", 2);
-    set_shape_bonus("wisdom", 2);
+    set_shape_bonus("athletics", 4);
+    set_shape_bonus("endurance", 4);
 
-    set_shape_bonus("damage bonus",3);
-    set_shape_bonus("attack bonus",3);
+    set_shape_bonus("damage bonus",4);
+    set_shape_bonus("attack bonus",4);
+    set_shape_bonus("spell resistance", 4);
+    set_shape_bonus("damage resistance", 10);
+    set_shape_bonus("spell damage resistance", 10);
 
-    //set_shape_bonus("silver resistance percent", -23);
     set_shape_race("demon");
     set_shape_profile("warlock_abyssal_999");
 }

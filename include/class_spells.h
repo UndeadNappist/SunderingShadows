@@ -134,6 +134,8 @@ class_spell_storage =
         ({"eldritch blast","eldritch chain","eldritch burst"}),
     "abyssal":
         ({ "diabolic grasp", "fiendish vigor", "howl of doom", "thirsting maw", "soul theft", "harrowstorm" }),
+    "astral":
+        ({ "awakened mind" }),
     "infernal":
         ({ "scorching ray", "flames of mephasm", "soul flaying", "hellfire", "hurl through hell", "hellfire shield" }),
     "gloom":
