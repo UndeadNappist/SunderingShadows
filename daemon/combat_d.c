@@ -904,7 +904,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
     if(attacker->is_class("warlock") && weapon)
     {
         string type, blasttype, wepname, my_name, your_name, my_poss, your_poss, damage_type;
-        int glvl, strike_damage;
+        int glvl, strike_damage, ranged;
         object here, secondary, strikes;
         
         strikes = attacker->query_property("eldritch strikes");
@@ -923,23 +923,42 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                 my_poss = attacker->query_possessive();
                 your_poss = target->query_possessive();
                 here = environment(attacker);
+                ranged = weapon->is_lrweapon();
                 
                 weapon->set_property("magic", 1);
                 
                 switch(blasttype)
                 {
                     case "lifedrinker":
-                    tell_object(attacker,"%^RESET%^%^MAGENTA%^You rake your " + wepname + " across " + your_name + ", leeching a t%^GREEN%^as%^MAGENTA%^t%^GREEN%^e %^MAGENTA%^of " + your_poss + " energy!%^RESET%^");
-                    tell_object(target,"%^RESET%^%^MAGENTA%^" + my_name + " rakes " + my_poss + " " + wepname + " across you, and you feel slightly w%^GREEN%^ea%^MAGENTA%^ke%^GREEN%^ne%^MAGENTA%^d!%^RESET%^");
-                    tell_room(here,"%^RESET%^%^MAGENTA%^" + my_name + " rakes " + my_poss + " " + wepname + " across " + your_name + ", and " + target->query_subjective() + " looks slightly w%^GREEN%^ea%^MAGENTA%^ke%^GREEN%^ne%^MAGENTA%^d!%^RESET%^",({ attacker, target }));
+                    if(ranged)
+                    {
+                        tell_object(attacker,"%^RESET%^%^MAGENTA%^You fire your " + wepname + " into " + your_name + ", leeching a t%^GREEN%^as%^MAGENTA%^t%^GREEN%^e %^MAGENTA%^of " + your_poss + " energy!%^RESET%^");
+                        tell_object(target,"%^RESET%^%^MAGENTA%^" + my_name + " fires " + my_poss + " " + wepname + " into you, and you feel slightly w%^GREEN%^ea%^MAGENTA%^ke%^GREEN%^ne%^MAGENTA%^d!%^RESET%^");
+                        tell_room(here,"%^RESET%^%^MAGENTA%^" + my_name + " fires " + my_poss + " " + wepname + " into " + your_name + ", and " + target->query_subjective() + " looks slightly w%^GREEN%^ea%^MAGENTA%^ke%^GREEN%^ne%^MAGENTA%^d!%^RESET%^",({ attacker, target }));
+                    }
+                    else
+                    {
+                        tell_object(attacker,"%^RESET%^%^MAGENTA%^You rake your " + wepname + " across " + your_name + ", leeching a t%^GREEN%^as%^MAGENTA%^t%^GREEN%^e %^MAGENTA%^of " + your_poss + " energy!%^RESET%^");
+                        tell_object(target,"%^RESET%^%^MAGENTA%^" + my_name + " rakes " + my_poss + " " + wepname + " across you, and you feel slightly w%^GREEN%^ea%^MAGENTA%^ke%^GREEN%^ne%^MAGENTA%^d!%^RESET%^");
+                        tell_room(here,"%^RESET%^%^MAGENTA%^" + my_name + " rakes " + my_poss + " " + wepname + " across " + your_name + ", and " + target->query_subjective() + " looks slightly w%^GREEN%^ea%^MAGENTA%^ke%^GREEN%^ne%^MAGENTA%^d!%^RESET%^",({ attacker, target }));
+                    }
                     damage_type = "negative energy";
                     attacker->add_hp(10 + roll_dice(glvl / 4, 4));
                     break;
                     
                     case "brimstone":
-                    tell_object(attacker,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as your " + wepname + " slashes "+your_name+", catching "+target->query_objective()+" alight!%^RESET%^");
-                    tell_object(target,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as "+my_name+"'s " + wepname + " slashes you, and you catch alight!%^RESET%^");
-                    tell_room(here,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as "+my_name+"'s " + wepname + " slashes "+your_name+", catching "+target->query_objective()+" alight!%^RESET%^",({ attacker, target}));
+                    if(ranged)
+                    {
+                        tell_object(attacker,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as your " + wepname + " fires into "+your_name+", catching "+target->query_objective()+" alight!%^RESET%^");
+                        tell_object(target,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as "+my_name+"'s " + wepname + " fires into you, and you catch alight!%^RESET%^");
+                        tell_room(here,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as "+my_name+"'s " + wepname + " fires into "+your_name+", catching "+target->query_objective()+" alight!%^RESET%^",({ attacker, target}));
+                    }
+                    else
+                    {                        
+                        tell_object(attacker,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as your " + wepname + " slashes "+your_name+", catching "+target->query_objective()+" alight!%^RESET%^");
+                        tell_object(target,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as "+my_name+"'s " + wepname + " slashes you, and you catch alight!%^RESET%^");
+                        tell_room(here,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as "+my_name+"'s " + wepname + " slashes "+your_name+", catching "+target->query_objective()+" alight!%^RESET%^",({ attacker, target}));
+                    }
                     damage_type = "fire";
                     secondary = present("eldritch_brimstone_xxx", target);
                     if(!objectp(secondary))
@@ -953,9 +972,18 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                     break;
                     
                     case "glacial":
-                    tell_object(attacker,"%^RESET%^%^MAGENTA%^You unleash a pulse of ch%^BOLD%^%^CYAN%^i%^BOLD%^%^WHITE%^l%^RESET%^%^MAGENTA%^li%^BOLD%^%^CYAN%^n%^RESET%^%^MAGENTA%^g power through the " + wepname + " as it makes contact with "+your_name+", and "+your_poss+" movements seem slowed!%^RESET%^");
-                    tell_object(target,"%^RESET%^%^MAGENTA%^A pulse of ch%^BOLD%^%^CYAN%^i%^BOLD%^%^WHITE%^l%^RESET%^%^MAGENTA%^li%^BOLD%^%^CYAN%^n%^RESET%^%^MAGENTA%^g power surges through you as "+my_name+"'s " + wepname + " makes contact with your body! Your movements grow sluggish!%^RESET%^");
-                    tell_room(here,"%^RESET%^%^MAGENTA%^You can feel a sudden ch%^BOLD%^%^CYAN%^i%^BOLD%^%^WHITE%^l%^RESET%^%^MAGENTA%^l in the air as "+my_name+"'s " + wepname + " makes contact with "+your_poss+" body!%^RESET%^",({ attacker, target }));
+                    if(ranged)
+                    {
+                        tell_object(attacker,"%^RESET%^%^MAGENTA%^You unleash a pulse of ch%^BOLD%^%^CYAN%^i%^BOLD%^%^WHITE%^l%^RESET%^%^MAGENTA%^li%^BOLD%^%^CYAN%^n%^RESET%^%^MAGENTA%^g power through the " + wepname + " as it fires into "+your_name+", and "+your_poss+" movements seem slowed!%^RESET%^");
+                        tell_object(target,"%^RESET%^%^MAGENTA%^A pulse of ch%^BOLD%^%^CYAN%^i%^BOLD%^%^WHITE%^l%^RESET%^%^MAGENTA%^li%^BOLD%^%^CYAN%^n%^RESET%^%^MAGENTA%^g power surges through you as "+my_name+"'s " + wepname + " fires into your body! Your movements grow sluggish!%^RESET%^");
+                        tell_room(here,"%^RESET%^%^MAGENTA%^You can feel a sudden ch%^BOLD%^%^CYAN%^i%^BOLD%^%^WHITE%^l%^RESET%^%^MAGENTA%^l in the air as "+my_name+"'s " + wepname + " fires into "+your_poss+" body!%^RESET%^",({ attacker, target }));
+                    }
+                    else
+                    {
+                        tell_object(attacker,"%^RESET%^%^MAGENTA%^You unleash a pulse of ch%^BOLD%^%^CYAN%^i%^BOLD%^%^WHITE%^l%^RESET%^%^MAGENTA%^li%^BOLD%^%^CYAN%^n%^RESET%^%^MAGENTA%^g power through the " + wepname + " as it makes contact with "+your_name+", and "+your_poss+" movements seem slowed!%^RESET%^");
+                        tell_object(target,"%^RESET%^%^MAGENTA%^A pulse of ch%^BOLD%^%^CYAN%^i%^BOLD%^%^WHITE%^l%^RESET%^%^MAGENTA%^li%^BOLD%^%^CYAN%^n%^RESET%^%^MAGENTA%^g power surges through you as "+my_name+"'s " + wepname + " makes contact with your body! Your movements grow sluggish!%^RESET%^");
+                        tell_room(here,"%^RESET%^%^MAGENTA%^You can feel a sudden ch%^BOLD%^%^CYAN%^i%^BOLD%^%^WHITE%^l%^RESET%^%^MAGENTA%^l in the air as "+my_name+"'s " + wepname + " makes contact with "+your_poss+" body!%^RESET%^",({ attacker, target }));
+                    }
                     damage_type = "cold";
                     secondary = present("eldritch_glacial_xxx", target);
                     if(!objectp(secondary))
@@ -969,9 +997,18 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                     break;
                     
                     case "vitriolic":
-                    tell_object(attacker,"%^RESET%^%^MAGENTA%^Your " + wepname + " seems to melt away as it makes contact with "+your_name+", leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon "+your_poss+" skin that continues to burn! An instant later the glaive reforms, gleaming across the back of your hand!%^RESET%^");
-                    tell_object(target,"%^RESET%^%^MAGENTA%^"+my_name+"'s " + wepname + " seems to melt away as it makes contact with you, leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon your skin that continues to burn! An instant later the " + wepname + " reforms, gleaming across the back of "+my_name+"'s hand!%^RESET%^");
-                    tell_room(here,"%^RESET%^%^MAGENTA%^"+my_name+"'s " + wepname + " seems to melt away as it makes contact with "+your_name+", leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon "+your_poss+" skin that continues to burn! An instant later the " + wepname + " reforms, gleaming across the back of "+my_name+"'s hand!%^RESET%^",({ attacker, target }));
+                    if(ranged)
+                    {
+                        tell_object(attacker,"%^RESET%^%^MAGENTA%^Your " + wepname + " seems to melt away as it fires into "+your_name+", leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon "+your_poss+" skin that continues to burn!%^RESET%^");
+                        tell_object(target,"%^RESET%^%^MAGENTA%^"+my_name+"'s " + wepname + " seems to melt away as it makes contact with you, leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon your skin that continues to burn!%^RESET%^");
+                        tell_room(here,"%^RESET%^%^MAGENTA%^"+my_name+"'s " + wepname + " seems to melt away as it fires into "+your_name+", leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon "+your_poss+" skin that continues to burn!%^RESET%^",({ attacker, target }));
+                    }
+                    else
+                    {                        
+                        tell_object(attacker,"%^RESET%^%^MAGENTA%^Your " + wepname + " seems to melt away as it makes contact with "+your_name+", leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon "+your_poss+" skin that continues to burn! An instant later the " + wepname + " reforms, gleaming across the back of your hand!%^RESET%^");
+                        tell_object(target,"%^RESET%^%^MAGENTA%^"+my_name+"'s " + wepname + " seems to melt away as it makes contact with you, leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon your skin that continues to burn! An instant later the " + wepname + " reforms, gleaming across the back of "+my_name+"'s hand!%^RESET%^");
+                        tell_room(here,"%^RESET%^%^MAGENTA%^"+my_name+"'s " + wepname + " seems to melt away as it makes contact with "+your_name+", leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon "+your_poss+" skin that continues to burn! An instant later the " + wepname + " reforms, gleaming across the back of "+my_name+"'s hand!%^RESET%^",({ attacker, target }));
+                    }
                     damage_type = "acid";
                     secondary = present("eldritch_vitriolic_xxx", target);
                     if(!objectp(secondary))
@@ -985,14 +1022,23 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                     break;
                     
                     case "beshadowed":
-                    tell_object(attacker,"%^RESET%^%^MAGENTA%^A precisely directed hint of %^RESET%^pow%^BOLD%^%^BLACK%^e%^RESET%^r %^MAGENTA%^leaves the " + wepname + " as you plunge it into "+your_name+", and "+target->query_subjective()+" blinks sightlessly!%^RESET%^");
-                    tell_object(target,"%^RESET%^%^MAGENTA%^"+my_name+" plunges "+my_poss+" " + wepname + ", and a %^RESET%^ha%^BOLD%^%^BLACK%^z%^RESET%^e %^MAGENTA%^of darkness briefly blurs your vision!%^RESET%^");
-                    tell_room(here,"%^RESET%^%^MAGENTA%^"+my_name+" plunges "+my_poss+" " + wepname + " it into "+your_name+", and "+target->query_subjective()+" blinks sightlessly!%^RESET%^",({ attacker, target }));
+                    if(ranged)
+                    {
+                        tell_object(attacker,"%^RESET%^%^MAGENTA%^A precisely directed hint of %^RESET%^pow%^BOLD%^%^BLACK%^e%^RESET%^r %^MAGENTA%^leaves the " + wepname + " as you fire it into "+your_name+", and "+target->query_subjective()+" blinks sightlessly!%^RESET%^");
+                        tell_object(target,"%^RESET%^%^MAGENTA%^"+my_name+" fires "+my_poss+" " + wepname + ", and a %^RESET%^ha%^BOLD%^%^BLACK%^z%^RESET%^e %^MAGENTA%^of darkness briefly blurs your vision!%^RESET%^");
+                        tell_room(here,"%^RESET%^%^MAGENTA%^"+my_name+" fires "+my_poss+" " + wepname + " into "+your_name+", and "+target->query_subjective()+" blinks sightlessly!%^RESET%^",({ attacker, target }));
+                    }                    
+                    else
+                    {
+                        tell_object(attacker,"%^RESET%^%^MAGENTA%^A precisely directed hint of %^RESET%^pow%^BOLD%^%^BLACK%^e%^RESET%^r %^MAGENTA%^leaves the " + wepname + " as you plunge it into "+your_name+", and "+target->query_subjective()+" blinks sightlessly!%^RESET%^");
+                        tell_object(target,"%^RESET%^%^MAGENTA%^"+my_name+" plunges "+my_poss+" " + wepname + ", and a %^RESET%^ha%^BOLD%^%^BLACK%^z%^RESET%^e %^MAGENTA%^of darkness briefly blurs your vision!%^RESET%^");
+                        tell_room(here,"%^RESET%^%^MAGENTA%^"+my_name+" plunges "+my_poss+" " + wepname + " it into "+your_name+", and "+target->query_subjective()+" blinks sightlessly!%^RESET%^",({ attacker, target }));
+                    }
                     damage_type = "void";
                     target->set_temporary_blinded(1);
                     break;
                     
-                    case "binding":
+                    case "binding":                         
                     tell_object(attacker,"%^RESET%^%^MAGENTA%^You take a step back and unleash a j%^BOLD%^%^CYAN%^a%^RESET%^%^MAGENTA%^rr%^GREEN%^i%^BOLD%^%^GREEN%^n%^RESET%^%^MAGENTA%^g blast at "+your_name+", knocking "+target->query_objective()+" from "+your_poss+" feet!%^RESET%^");
                     tell_object(target,"%^RESET%^%^MAGENTA%^"+my_name+" takes a step back and unleashes a j%^BOLD%^%^CYAN%^a%^RESET%^%^MAGENTA%^rr%^GREEN%^i%^BOLD%^%^GREEN%^n%^RESET%^%^MAGENTA%^g blast that knocks you from your feet!%^RESET%^");
                     tell_room(here,"%^RESET%^%^MAGENTA%^"+my_name+" takes a step back and unleashes a j%^BOLD%^%^CYAN%^a%^RESET%^%^MAGENTA%^rr%^GREEN%^i%^BOLD%^%^GREEN%^n%^RESET%^%^MAGENTA%^g blast at "+your_name+", knocking "+target->query_objective()+" from "+your_poss+" feet!%^RESET%^%^RESET%^",({ attacker, target }));
