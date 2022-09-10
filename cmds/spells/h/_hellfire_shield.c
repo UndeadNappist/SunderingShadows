@@ -11,15 +11,16 @@ void create(){
     set_spell_name("hellfire shield");
     set_spell_level(([ "warlock" : 3 ]));
     set_spell_sphere("invocation_evocation");
+    set_heritage("infernal");
     set_syntax("cast CLASS hellfire shield");
+    set_damage_desc("fire/divine damage");
     set_description("This spell surrounds the warlock with a searing barrier of hellfire, which will move with the "
-"caster and harm any foes that get too close.  The strength of the flames depends on the level of the caster.\n\n"
-"Only a hellfire warlock may harness this invocation.");
+"caster and harm any foes that get too close.  The strength of the flames depends on the level of the caster.\n\n");
     set_property("magic",1);
     set_casting_time(1);
     set_helpful_spell(1);
     traveling_aoe_spell(1);
-    set_feats_required(([ "warlock" : "infernal practitioner"]));
+    //set_feats_required(([ "warlock" : "infernal practitioner"]));
 }
 
 string query_cast_string(){
@@ -108,7 +109,8 @@ void execute_attack(){
             if(!objectp(attackers[i])) { continue; }
             tell_object(caster,"%^BOLD%^%^RED%^"+attackers[i]->QCN+" gets a little too close to you, and your hellish shield burns "+attackers[i]->QO+" horribly!");
             tell_room(place,"%^BOLD%^%^RED%^"+attackers[i]->QCN+" gets a little too close to "+caster->QCN+", and the hellish shield burns "+attackers[i]->QO+" horribly!",caster);
-            damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage,"untyped");
+            damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage / 2,"fire");
+            damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage / 2,"divine");
         }
     }
     prepend_to_combat_cycle(place);

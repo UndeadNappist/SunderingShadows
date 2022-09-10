@@ -36,6 +36,8 @@ string requirements() // string version, maybe we'll need this, maybe not, can r
     return str;
 }
 
+int is_locked_class() { return 1; }
+
 
 int prerequisites(object player)
 {
