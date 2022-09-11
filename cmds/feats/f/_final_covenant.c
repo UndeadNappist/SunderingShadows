@@ -6,6 +6,8 @@
 
 inherit FEAT;
 
+void reverse_shape();
+
 void create()
 {
     ::create();
@@ -44,7 +46,14 @@ int cmd_final_covenant(string str)
 }
 
 void execute_feat()
-{   
+{
+    if (FEATS_D->is_active(caster, "final covenant"))
+    {
+        tell_object(caster, "%^CYAN%^You let go of your fearsome shape and return to normal.%^RESET%^");
+        reverse_shape();
+        return;
+    }
+    
     if(caster->query_casting())
     {
         tell_object(caster,"%^BOLD%^You can't use final covenant while you're casting a spell.");
@@ -73,6 +82,19 @@ void execute_feat()
     caster->set_property("using instant feat",1);
 }
 
+void reverse_shape()
+{
+    object shape;
+    
+    if(caster)
+    {
+        if(shape = caster->query_property("shapeshifted"))
+            shape->reverse_shape(caster);
+        else if(shape = caster->query_property("altered"))
+            shape->reverse_shape(caster);
+    }
+    dest_effect();
+}
 
 void execute_attack()
 {
@@ -121,17 +143,7 @@ void execute_attack()
 }
 
 void dest_effect()
-{
-    object shape;
-    
-    if(caster)
-    {
-        if(shape = caster->query_property("shapeshifted"))
-            shape->reverse_shape(caster);
-        else if(shape = caster->query_property("altered"))
-            shape->reverse_shape(caster);
-    }
-    
+{   
     ::dest_effect();
     remove_feat(this_object());
     return;
