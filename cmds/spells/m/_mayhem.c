@@ -15,9 +15,10 @@ void create()
     set_spell_level(([ "warlock" : 4 ]));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS mayhem");
+    set_heritage("fey");
     set_damage_desc("AOE confusion over several rounds.");
     set_description(""
-    "The Tome-Bound Master has unlocked the secret of true confusion and madness, "
+    "The Warlock has unlocked the secret of true confusion and madness, "
     "and can unleash that confusion upon a group of unsuspecting victims. Those who "
     "do not make a will savings throw will be confused. This manifests as a purplish "
     "haze that, when breathed in, has the desired effect.");
@@ -27,7 +28,7 @@ void create()
     mental_spell();
     set_save("will");
     set_aoe_message("%^BOLD%^MAGENTA%^(bathed in a cloud of chaos)%^RESET%^");
-    set_feats_required(([ "warlock" : "tome of ancient secrets"]));
+    //set_feats_required(([ "warlock" : "tome of ancient secrets"]));
 }
 
 void spell_effect(int prof)
