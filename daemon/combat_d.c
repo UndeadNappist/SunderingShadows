@@ -1173,6 +1173,16 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
 
     if(!attacker)
         return;
+    
+    if(FEATS_D->has_feat("cornugan smash"))
+    {
+        object eff;
+        
+        if(attacker->query_property("power_attack") && BONUS_D->intimidate_check(target, attacker, 0) && !catch(eff = load_object("/std/effect/status/shaken")))
+        {
+            eff->apply_effect(target, 1);
+        }
+    }
 
     //CLEAVE SECTION
     if(FEATS_D->usable_feat(attacker, "cleave") && objectp(weapon) && !weapon->is_lrweapon())
