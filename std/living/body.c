@@ -781,7 +781,7 @@ int query_resistance(string res)
     if(!stringp(myrace) || !strlen(myrace))
         myrace = "none";
     
-    mlvl = this_object()->query_base_character_level();
+    mylvl = this_object()->query_base_character_level();
     
     if(strsrch(myrace, "genasi") >= 0)
     {

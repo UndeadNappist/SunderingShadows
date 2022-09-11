@@ -3745,7 +3745,7 @@ varargs int do_save(object targ, int mod, int get_dc)
     {
         string targrace = targ->query_race();
 
-        if (targrace == "gnome" && spell_sphere == "illusion") {
+        if ((targrace == "gnome" || targrace == "strix") && spell_sphere == "illusion") {
             DC -= 2;
         }
 

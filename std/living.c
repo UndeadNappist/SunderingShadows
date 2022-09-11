@@ -1981,6 +1981,12 @@ int query_attack_bonus()
                 ret += 1;
         }        
     }
+    
+    if(attacker && this_object()->query_race() == "strix")
+    {
+        if(USER_D->is_valid_enemy(attacker->query_race(), "humans"))
+            ret += 1;
+    }
    
     if(attacker && attacker->is_vulnerable_to(this_object()))
     {
