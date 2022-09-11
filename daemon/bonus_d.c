@@ -715,6 +715,12 @@ int intimidate_check(object victim, object attacker, int mod)
     if(attacker->query_race() == "half-orc" || attacker->query_race() == "orc" || attacker->query_race() == "hobgoblin" || attacker->query_race() == "dragonkin")
         mod += 2;
     
+    if(FEATS_D->has_feat(attacker, "intimidating prowess"))
+        mod += query_stat_bonus(attacker, "strength");
+    
+    if(FEATS_D->has_feat(attacker, "persuasive"))
+        mod += 2;
+    
     result = influence + result;
     result += mod;
     
