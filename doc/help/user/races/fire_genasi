@@ -11,7 +11,8 @@
 
 %^BOLD%^%^BLUE%^Racial Traits:
 %^CYAN%^Fire Affinity%^RESET%^     - +1 caster level to fire damage spells
-%^CYAN%^Planar Resistance%^RESET%^ - +1 spell resistance
+%^CYAN%^Planar Resistance%^RESET%^ - +2 spell resistance
+%^CYAN%^Elemental Resistance       - +5 fire resistance
 %^CYAN%^Low Light Vision%^RESET%^  - +2 to sight bonus to see in the dark
 %^CYAN%^Versatile%^RESET%^         - +4 skill points
 
