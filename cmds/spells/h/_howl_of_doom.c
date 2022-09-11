@@ -54,10 +54,10 @@ void spell_effect(int prof){
             tell_object(ob, "%^BLACK%^BOLD%^You are shaken to your very core by the abyssal howl.%^RESET%^");
             tell_room(place, "%^BLACK%^BOLD%^" + ob->query_cap_name() + " is shaken to the core by the howl.%^RESET%^", caster);
         }
-            
+        spell_kill(ob, caster);
         damage_targ(ob, ob->return_target_limb(), temp, "sonic");
     }
-    spell_kill(ob, caster);
+
     spell_successful();
     dest_effect();
 }
