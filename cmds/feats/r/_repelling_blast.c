@@ -9,7 +9,7 @@ void create()
    feat_category("PactInvocation");
    feat_name("repelling blast");
    feat_prereq("Warlock L1");
-   feat_desc("With this feat, the warlock empowers their eldritch blast, eldritch chain, and eldritch burst to push their enemies back forcefully. If the target or targets does not make a reflex save, they are knocked prone/tripped.");
+   feat_desc("With this feat, the warlock empowers their eldritch blast, eldritch chain, and eldritch burst to push their enemies back forcefully. If the target or targets does not make a reflex save, they are knocked prone/tripped. This is a passive buff to the associated spells and is not a blast type.");
    permanent(1);
    allow_blind(1);
    set_required_for(({}));
