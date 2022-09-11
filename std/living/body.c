@@ -762,7 +762,7 @@ void set_resistance_percent(string res, int num)
 
 int query_resistance(string res)
 {
-    int myres;
+    int myres, mylvl;
     string *domains, myrace, mysubrace;
 
     if (!valid_resistance(res)) {
@@ -781,25 +781,27 @@ int query_resistance(string res)
     if(!stringp(myrace) || !strlen(myrace))
         myrace = "none";
     
+    mlvl = this_object()->query_base_character_level();
+    
     if(strsrch(myrace, "genasi") >= 0)
     {
         switch(myrace)
         {
             case "air genasi":
             if(res == "electricity")
-                myres += 5;
+                myres += (mylvl / 2);
             break;
             case "fire genasi":
             if(res == "fire")
-                myres += 5;
+                myres += (mylvl / 2);
             break;
             case "water genasi":
             if(res == "cold")
-                myres += 5;
+                myres += (mylvl / 2);
             break;
             case "earth genasi":
             if(res == "acid")
-                myres += 5;
+                myres += (mylvl / 2);
             break;
         }
     }
