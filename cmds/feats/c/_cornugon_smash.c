@@ -28,7 +28,7 @@ int prerequisites(object ob)
         return 0;
     }
     
-    if(!FEATS_D->has_feat(caster, "powerattack"))
+    if(!FEATS_D->has_feat(ob, "powerattack"))
         return 0;
     
     return ::prerequisites(ob);

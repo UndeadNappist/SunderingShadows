@@ -131,7 +131,7 @@ void special1(object targ)
 
 void heart_beat()
 {
-    object room;
+    object room, *minions;
     
     ::heart_beat();
     if (!objectp(this_object()))
@@ -151,8 +151,10 @@ void heart_beat()
     if (!this_object()->query_property("has_elemental") )
         new("/cmds/spells/g/_gate")->use_spell(this_object(), "summoning", 50, 100, "mage"); 
     
-    if(present("corpse",room))
-    new("/cmds/spells/c/_create_greater_undead")->use_spell(this_object(), 0, 50, 100, "mage");
+    if(present("corpse",room)){
+        minions = this_object()->query_followers();
+        if(sizeof(minions) < 4) new("/cmds/spells/c/_create_greater_undead")->use_spell(this_object(), 0, 50, 100, "mage");
+    }
     return;
 }
 init()
