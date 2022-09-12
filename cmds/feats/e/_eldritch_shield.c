@@ -15,6 +15,7 @@ void create()
     feat_category("PactBond");
     feat_name("eldritch shield");
     feat_prereq("Warlock L21");
+    feat_syntax("eldritch_shield");
     feat_desc("You have proven yourself a useful pawn and your patron is forced to recognize your dedication. With this feat, you demand your patron make good on their promises. You expend all of your soul burn, gaining a damage absorption shield that will block damage equal to your warlock prestige level times the level of soul burn you currently have. Your soul burn will be fully expended.");
 }
 
