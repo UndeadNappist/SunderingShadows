@@ -8,7 +8,7 @@ void create()
     ::create();
     set_indoors(1);
     set_property("light",2);
-    set_terrain(WOOD_BUILDING);
+    set_terrain(CITY);
     set_travel(PAVED_ROAD);
     set_name("Former Glory");
     set_short("%^RESET%^%^RED%^F%^RED%^o%^BOLD%^%^RED%^rmer%^RESET%^%^ORANGE%^ Glory%^RESET%^");

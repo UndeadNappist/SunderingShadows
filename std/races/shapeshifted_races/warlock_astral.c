@@ -114,7 +114,7 @@ int reverse_shape(object obj)
         return 5;
     }
     obj->set("relationship_profile", shape->query_base_profile());
-    obj->remove_id("shuggoth");
+    obj->remove_id("aberration");
     if (objectp(to_object(DESC_D))) {
         desc = new(DESC_D);
         desc->restore_profile_settings(obj, shape->query_base_profile());

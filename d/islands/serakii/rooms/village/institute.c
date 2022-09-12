@@ -59,8 +59,7 @@ set_listen("default","You hear %^C074%^birds%^CRST%^ singing in the %^C028%^bush
     "Its said these are amongst the very first projects produced "+
     "by students here, and though there may be finer made fittings "+
     "they remain in honour of new beginnings..");
-    set_string("wooden door", "open", "You push against the heavy door and
-it opens slowly.");
+    set_string("wooden door", "open", "You push against the heavy door and it opens slowly.");
     set_string("wooden door", "close", "You close the heavy wooden door slowly.");
 
 }
