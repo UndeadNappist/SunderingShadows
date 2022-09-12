@@ -1174,7 +1174,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
     if(!attacker)
         return;
     
-    if(FEATS_D->has_feat("cornugon smash"))
+    if(FEATS_D->has_feat(attacker, "cornugon smash"))
     {
         object eff;
         

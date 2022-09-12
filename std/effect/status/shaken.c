@@ -17,6 +17,13 @@ void create()
 void status_effect()
 {
     int i;
+    
+    if(!objectp(target))
+    {
+        this_object()->remove();
+        return;
+    }
+    
     if (target->query_property("effect_shaken")) {
         TO->remove();
         return;
