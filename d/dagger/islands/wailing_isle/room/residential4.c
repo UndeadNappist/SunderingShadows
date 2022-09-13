@@ -70,7 +70,7 @@ int squeeze_fun(string str){
     inside = find_object_or_load(ROOMS"house1");
     message("environment", "\n%^CRST%^%^RESET%^%^C058%^Squeezing through the opening between the boards, you make your way into the abandoned house.%^CRST%^", player);
     message("environment", "%^CRST%^%^RESET%^%^C058%^Squeezing through the opening between the boards, "+player->query_cap_name()+"%^CRST%^%^RESET%^%^C058%^ makes their way into the abandoned house.%^CRST%^", room, player);
-    message("environment", "%^CRST%^%^RESET%^%^C058%^queezing through the opening between the boards, "+player->query_cap_name()+"%^CRST%^%^RESET%^%^C058%^ makes their way into the room.%^CRST%^", inside);
+    message("environment", "%^CRST%^%^RESET%^%^C058%^Squeezing through the opening between the boards, "+player->query_cap_name()+"%^CRST%^%^RESET%^%^C058%^ makes their way into the room.%^CRST%^", inside);
     player->move(inside);
     player->force_me("look");
     return 1;
