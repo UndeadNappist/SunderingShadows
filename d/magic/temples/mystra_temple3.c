@@ -120,7 +120,7 @@ void display_painting(){
                 "%^RESET%^%^CRST%^%^C255%^Slowly, a picture of the knight's head is shown, covered in a helm so all you can see are his %^C004%^sad eyes%^RESET%^%^C255%^.%^CRST%^",
                 "%^RESET%^%^CRST%^%^C255%^It zooms out, and the knight sets down his lance and holy symbol of Tyr, before walking away from his knighthood to become something much simpler.%^CRST%^",
                 "%^RESET%^%^CRST%^%^C255%^This image holds for quite a few moments of the man: once a knight, now a mere swordsman.%^CRST%^",
-                "%^RESET%^%^CRST%^%^C255%^After the painting holds still for a while longer, it repaints itself into the same swordsman kneeling before an altar with a large book on it. A holy symbol of is around his neck now.%^CRST%^",
+                "%^RESET%^%^CRST%^%^C255%^After the painting holds still for a while longer, it repaints itself into the same swordsman kneeling before an altar with a large book on it. A holy symbol of Mystra is around his neck now.%^CRST%^",
                 "%^RESET%^%^CRST%^%^C255%^The next image shows him dressed again in the garb of a knight, but different; he is older and wiser than before. He sits atop a great steed and carries a powerful looking lance.%^CRST%^",
                 "%^RESET%^%^CRST%^%^C255%^Acolytes and other adventurers gather behind him, following his leadership. His posture is good, and he looks %^C001%^proud%^RESET%^%^C255%^ to serve his goddess.%^CRST%^",
                 "%^RESET%^%^CRST%^%^C255%^As the magic finishes, the painting returns to its original image.%^CRST%^",

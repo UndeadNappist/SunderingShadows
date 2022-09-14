@@ -48,8 +48,8 @@ int read(string str) {
     message("Ninfo", "The following specials are available today at the Attaya Tavern!\n", this_player());
     message("Ninfo", "%^MAGENTA%^-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-%^RESET%^\n", TP);
     message("Ninfo", "A firebreather\t\t\t"+ (int)ob->get_price("firebreather")+" gold\n", this_player());
-    message("Ninfo", "A felcold\t\t"+(int)ob->get_price("felcold")+" gold\n", this_player());
-    message("Ninfo", "A glistening forcewave\t\t\t"+(int)ob->get_price("forcewave")+" gold\n", this_player());
+    message("Ninfo", "A felcold\t\t\t"+(int)ob->get_price("felcold")+" gold\n", this_player());
+    message("Ninfo", "A glistening forcewave\t\t"+(int)ob->get_price("forcewave")+" gold\n", this_player());
     message("Ninfo", "A mug of water\t\t\t"+(int)ob->get_price("water")+" gold\n", this_player());
     message("Ninfo", "%^MAGENTA%^-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-%^RESET%^\n", TP);
     message("Ninfo", "<buy drink_name> gets you a drink.\n", this_player());
