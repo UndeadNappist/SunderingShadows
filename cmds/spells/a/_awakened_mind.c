@@ -8,7 +8,7 @@ string whoname, whocname, cname, Ccname;
 void create() {
     ::create();
     set_spell_name("awakened mind");
-    set_spell_level(([ "warlock" : 2 ]));
+    set_spell_level(([ "warlock" : 1 ]));
     set_spell_sphere("divination");
     set_heritage("astral");
     set_syntax("cast CLASS awakened mind to TARGET");
