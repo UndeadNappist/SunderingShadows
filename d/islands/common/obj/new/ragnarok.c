@@ -126,7 +126,7 @@ int extra_wield()
         tell_object(ETO,"%^BOLD%^The sword is jolted from your hand!%^RESET%^");
         tell_room(EETO,"%^BOLD%^The sword is jolted from "+ETO->QCN+"'s hand!%^RESET%^",ETO);
         ETO->set_paralyzed(25,"%^RED%^You are vomiting too hard to move!%^RESET%^");
-        ETO->set_blind(1);
+        ETO->set_temporary_blinded(2);
         TO->move(EETO);
         return 0;
     }
