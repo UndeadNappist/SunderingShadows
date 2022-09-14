@@ -3770,15 +3770,21 @@ void internal_execute_attack(object who)
             }
         }
 
-        roll = random(20) + 1;
+        //roll = random(20) + 1;
+        if(who->query_property("touch of chaos") || who->query_property("roll disadvantage"))
+            roll = roll_dice(1, 20, -1);
+        else if(who->query_property("touch of law"))
+            roll = 11;
+        else
+            roll = roll_dice(1, 20);
 
         //Touch of Chaos gives disadvantage
-        if(who->query_property("touch of chaos"))
-            roll = min( ({ roll, random(20) + 1 }) );
+        //if(who->query_property("touch of chaos"))
+        //    roll = min( ({ roll, random(20) + 1 }) );
 
         //Touch of Law makes the roll 11
-        if(who->query_property("touch of law"))
-            roll = 11;
+        //if(who->query_property("touch of law"))
+        //    roll = 11;
 
         if (roll == 1) { //automatic miss on rolls of a one
             fumble = 1;
