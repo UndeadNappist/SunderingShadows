@@ -16,7 +16,8 @@ void create() {
     set_domains("earth");
     set_bonus_type("sacred");
     set_syntax("cast CLASS strength of stone [ON TARGET]");
-    set_description("This spell will imbue the caster with the strength of the earth, slightly empowering both their melee and spell abilities. The spell does not stack with other bless-type spells.");
+    set_damage_desc("bonus to attack and damage, maximum +3");
+    set_description("This spell will imbue the caster with the strength of the earth, slightly empowering their melee abilities. The spell does not stack with other bless-type spells.");
     set_verbal_comp();
     set_helpful_spell(1);
 }

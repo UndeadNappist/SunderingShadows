@@ -11,7 +11,7 @@ void create() {
     set_spell_level(([ "ranger" : 2,"druid" : 3 ]));
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS snare");
-    set_description("By casting this spell, the ranger sets a snare in the location which will harm the first bypasser "
+    set_description("By casting this spell, the ranger sets a snare in the location that will harm the first bypasser "
 "to trigger it. Anyone already present when the spell is cast will be aware of the snare, and may come and go without "
 "disturbing it. Additionally, thieves have a chance to actively search for the snare and can remove it, but they must do "
 "so in the room before the trapped location or they will trigger it.\n\nThe caster's attunement to the wilds will alert "

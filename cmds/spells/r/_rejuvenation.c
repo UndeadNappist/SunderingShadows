@@ -22,7 +22,7 @@ void create(){
 
 string query_cast_string(){
    tell_object(caster,"%^ORANGE%^With a touch of your holy symbol, you "+
-      "begin a worshipful prayer to "+(string)caster->query_diety()+" "+
+      "begin a worshipful prayer to "+capitalize((string)caster->query_diety())+" "+
       "to help heal you.%^RESET%^");
    tell_room(place,"%^ORANGE%^"+caster->QCN+" touches "+caster->QP+" "+
       "holy symbol and calls upon "+caster->QP+" deity's "+
