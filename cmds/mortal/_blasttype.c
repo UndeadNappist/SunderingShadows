@@ -47,7 +47,7 @@ int cmd_blasttype(string str)
     
     */
     //if (currenttype && member_array(currenttype + " blast", masteredspells) == -1) {
-    if(currenttype && !FEATS_D->usable_feat(this_player(), currenttype))
+    if(currenttype && !FEATS_D->usable_feat(this_player(), currenttype + " blast"))
     {
         TP->delete("warlock_blast_type");
         tell_object(TP,"%^BOLD%^%^WHITE%^Invalid warlock eldritch blast type has been reset!%^RESET%^");

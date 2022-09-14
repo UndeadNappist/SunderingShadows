@@ -335,8 +335,8 @@ varargs void regenerate_pool(object ob, int amount, int pass, string pool_type)
         case "burn":
             if(ob->is_class("warlock"))
             {
-                delay = 30;
-                delay -= (FEATS_D->has_feat(ob, "resilient soul") * 12);
+                delay = 60;
+                delay -= (FEATS_D->has_feat(ob, "resilient soul") * 20);
             }
             break;
         }
