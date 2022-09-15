@@ -20,7 +20,7 @@ void create(){
     set_property("no death", 1);
     set_property("no bows", 1);
     set_func_chance(100);
-    set_funcs(({ "round_cleanup" }));
+    //set_funcs(({ "round_cleanup" }));
 }
 
 int do_typed_damage_effects(victim, limb, damage, damage_type){
