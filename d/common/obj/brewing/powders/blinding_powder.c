@@ -10,7 +10,7 @@
 
 inherit OBJECT;
 
-int uses,DELAY;
+int uses, DELAY;
 
 void create() {
    ::create();
@@ -169,7 +169,7 @@ int toss(string str) {
      tell_object(ob, "%^BOLD%^%^CYAN%^The cloud of dust formed by the powder billows toward you, but you turn your head and avoid the cloud of irritants!\n");
    }
 
-   this_player()->add_cooldown("powder use", delay); 
+   this_player()->add_cooldown("powder use", DELAY); 
    uses -=1;
 
    if(uses < 1) {
