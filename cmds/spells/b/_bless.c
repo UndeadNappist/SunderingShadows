@@ -42,7 +42,7 @@ string query_cast_string()
 {
     tell_object(caster,"%^YELLOW%^You begin to chant a delicate prayer.");
 	tell_room(place,"%^YELLOW%^"+caster->QCN+" begins a delicate prayer"+
-		" to "+caster->QP+" diety.",caster);
+		" to "+caster->QP+" deity.",caster);
     return "display";
 }
 

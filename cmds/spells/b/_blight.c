@@ -47,7 +47,7 @@ string query_cast_string()
 {
     tell_object(caster,"%^GREEN%^You begin to chant a delicate prayer.");
     tell_room(place,"%^GREEN%^"+caster->QCN+" begins a delicate prayer"+
-        " to "+caster->QP+" diety.",caster);
+        " to "+caster->QP+" deity.",caster);
     return "display";
 }
 
@@ -68,8 +68,8 @@ void spell_effect(int prof)
     {
         tell_object(caster,"%^BOLD%^%^BLACK%^You call on "+(string)caster->query_diety()+"'s aid and bless "
             ""+target->QCN+".");
-        tell_object(target,"%^BOLD%^%^BLACK%^"+caster->QCN+" calls to "+caster->QP+" diety for aid, blessing you.");
-        tell_room(place,"%^BOLD%^%^BLACK%^"+caster->QCN+" calls to "+caster->QP+" diety for aid, blessing "
+        tell_object(target,"%^BOLD%^%^BLACK%^"+caster->QCN+" calls to "+caster->QP+" deity for aid, blessing you.");
+        tell_room(place,"%^BOLD%^%^BLACK%^"+caster->QCN+" calls to "+caster->QP+" deity for aid, blessing "
             ""+target->QCN+".",({caster,target}));
     }
     target->add_damage_bonus(bonus);
