@@ -40,7 +40,7 @@ int preSpell()
 void spell_effect(int prof)
 {
     int roll;
-    string my_name, your_name;
+    string my_name, your_name, my_poss;
        
     if(!objectp(target))
     {
@@ -53,18 +53,21 @@ void spell_effect(int prof)
     roll = (int)BONUS_D->process_hit(caster, target, 1, 0, 0, 1);
     
     my_name = caster->query_cap_name();
+    my_poss = caster->query_possessive();
     your_name = target->query_cap_name();
     
     if(roll < 1)
     {
-        tell_object(caster, "%^BLACK%^BOLD%^You point your finger and shoot a ball of pure, cold darkness at %^CYAN%^" + your_name + "%^BLACK%^ but miss!%^RESET%^");
+        tell_object(caster, "%^C244%^You point your finger and shoot a ball of pure, cold darkness at %^C057%^" + your_name + "%^C244%^ but miss!%^CRST%^");
+        tell_object(target, "%^C244%^" + my_name " points " + my_poss + " finger and shoots a ball of pure, cold darkness at %^C057%^" + your_name + "%^C244%^ but misses!%^CRST%^");
+        tell_room(place, "%^C244%^" + my_name " points " + my_poss + " finger and shoots a ball of pure, cold darkness at %^C057%^" + your_name + "%^C244%^ but misses!%^CRST%^", ({ caster, target }));
         dest_effect();
         return;
     }
     
-    tell_object(caster, "Your orb of darkness strikes " + your_name + ", enveloping " + target->query_objective() + " in frigid darkness!");
-    tll_object(target, "" + my_name);
-    tell_room(place, "hit message room", ({ caster })); 
+    tell_object(caster, "%^C244%^You hurl a dark orb  at %^C075%^" + your_name + "%^C244%^, enveloping " + target->query_objective() + " in %^C075%^frigid%^C244%^ darkness!%^CRST%^");
+    tell_object(target, "" + my_name + " hurls an orb of darkness orb of darkness at you, enveloping you in frigid darkness!");
+    tell_room(place, "" + my_name + " hurls an orb of darkness orb of darkness at " + your_name + ", enveloping " + target->query_objective() + " in frigid darkness!", ({ caster, target }));
     
     target->cause_typed_damage(target, target->return_target_limb(), sdamage / 2, "void");
     target->cause_typed_damage(target, target->return_target_limb(), sdamage / 2, "cold");
