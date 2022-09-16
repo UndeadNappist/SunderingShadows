@@ -21,7 +21,7 @@ void create()
     set_overall_ac(9);
     set_property("undead",1);
     set_property("no death", 1);
-    set_func_chance(100);
+    //set_func_chance(100);
     //set_funcs(({ "round_cleanup" }));
 }
 

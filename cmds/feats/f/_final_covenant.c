@@ -13,7 +13,7 @@ void create()
     ::create();
     feat_type("instant");
     feat_category("PactBond");
-    feat_name("final_covenant");
+    feat_name("final covenant");
     feat_prereq("Warlock L31");
     feat_syntax("final_covenant");
     feat_desc("You've done the work. You've shown your willingness to do the uthinkable. And now you're ready for the final step. You will open your soul to your patron completely, allowing them to enter this world for a short period of time, using you as its glove in the world. With this feat, you fully take on the characteristics of your patron, becoming a fearsome extraplanar creature for a short time. The basic template of this form depends on your patron type.");
