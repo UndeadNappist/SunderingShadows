@@ -768,7 +768,7 @@ void after_move_effects()
     if(this_object()->query_property("shadow walk"))
     {
         this_object()->remove_property("shadow walk");
-        tell_object(this_object(), "%^BLACK%^The shadow protection fades.%^RESET%^");
+        tell_object(this_object(), "%^BOLD%^%^BLACK%^The shadow protection fades.%^RESET%^");
     }       
 }
 
