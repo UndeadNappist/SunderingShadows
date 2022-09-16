@@ -31,7 +31,7 @@ int default_descriptions(object obj){
     if(!objectp(obj)) return 0;
     
     obj->set_description("%^RESET%^%^CRST%^%^C019%^appears wreathed in %^C059%^d%^C243%^a%^C245%^r%^C243%^k%^C059%^n%^C243%^e%^C245%^s%^C243%^s %^C019%^and %^C026%^s%^C027%^h%^C032%^ad%^C027%^o%^C026%^w%^RESET%^%^C019%^, with indistinct features. Vaguely humanoid, they seem to melt away in the light, but gain focus and depth in its absence. A strange %^C117%^c%^C159%^h%^C231%^i%^C195%^l%^C117%^l %^RESET%^%^C019%^seems to emanate from it, seeking to leech the warmth from its surroundings.%^CRST%^");
-    obj->setDescriptivePhrase("%^RESET%^%^CRST%^%^C026%^s%^C027%^h%^C032%^ado%^C027%^w%^C026%^y %^RESET%^%^C019%^$R, little more than s %^C245%^s%^C243%^i%^C059%^l%^C243%^h%^C245%^o%^C243%^u%^C059%^e%^C243%^t%^C245%^t%^C243%^e%^CRST%^");
+    obj->setDescriptivePhrase("%^RESET%^%^CRST%^%^C026%^s%^C027%^h%^C032%^ado%^C027%^w%^C026%^y %^RESET%^%^C019%^$R, little more than a %^C245%^s%^C243%^i%^C059%^l%^C243%^h%^C245%^o%^C243%^u%^C059%^e%^C243%^t%^C245%^t%^C243%^e%^CRST%^");
 
     return 1;
 }
