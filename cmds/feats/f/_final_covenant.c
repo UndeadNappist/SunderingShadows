@@ -80,6 +80,7 @@ void execute_feat()
     tell_object(caster,"You open yourself to possession by your patron.");
     //tell_room(place,"Shifting into message room",caster);
     caster->set_property("using instant feat",1);
+    caster->set_property("active_feats", ({ this_object() }));
 }
 
 void reverse_shape()
