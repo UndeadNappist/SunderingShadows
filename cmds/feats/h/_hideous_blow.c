@@ -14,7 +14,7 @@
 
 inherit FEAT;
 
-object *weapons;
+object *weapons, weapon;
 
 void create()
 {
@@ -23,7 +23,7 @@ void create()
     feat_category("PactInvocation");
     feat_name("hideous blow");
     feat_syntax("hideous_blow [TARGET]");
-    feat_desc("With this feat you strike your opponent with your weapon, causing weapon damage plus a bonus amount of damage based on your purchased blast types. For instance, if you have purchased the lifedrinker, brimstone and vitriolic invocation feats, this feat will deal additional negative energy, fire, and acid damage. This feat requires melee weapon to be wielded.");
+    feat_desc("With this feat you strike your opponent with your weapon, causing weapon damage plus a bonus amount of damage based on your purchased blast types. For instance, if you have purchased the lifedrinker, brimstone and vitriolic invocation feats, this feat will deal additional negative energy, fire, and acid damage. This feat requires a melee weapon to be wielded.");
 }
 
 int allow_shifted() { return 0; }
@@ -85,6 +85,19 @@ void execute_feat()
         return;
     }
     
+    weapon = weapons[0];
+    
+    if(weapon->is_lrweapon())
+        if(sizeof(weapons) > 1)
+            weapon = weapons[1];
+        
+    if(weapon->is_lrweapon())
+    {
+        tell_object(caster, "You need a melee weapon to use hideous blow.");
+        dest_effect();
+        return;
+    }
+    
     ::execute_feat();
     
     if(!objectp(target))
@@ -115,7 +128,7 @@ void execute_feat()
 void execute_attack()
 {
     int glvl, mod, roll, dmg;
-    string my_name, your_name;
+    string my_name, your_name, wepname;
     
     if(!caster || caster->query_unconscious())
     {
@@ -136,7 +149,7 @@ void execute_attack()
         return;
     }
     
-    if(!pointerp(weapons) || !objectp(weapons[0]))
+    if(!objectp(weapon))
     {
         tell_object(caster, "You have no weapon!");
         dest_effect();
@@ -154,21 +167,40 @@ void execute_attack()
     }
     
     glvl = caster->query_guild_level("warlock");
-    mod = BONUS_D->query_stat_bonus(caster, "charisma") * FEATS_D->has_feat(caster, "agonizing blast");
-    wepname = weapons[0]->query_name();
+    mod = weapon->query_wc();
+    mod += weapon->query_property("enchantment");
+    mod += BONUS_D->query_stat_bonus(caster, "charisma") * FEATS_D->has_feat(caster, "agonizing blast");
+    wepname = weapon->query_name();
     my_name = caster->query_cap_name();
     your_name = target->query_cap_name();
     
-    target->cause_typed_damage(target, target->return_target_limb(), roll_dice(glvl, 6), weapons[0]->query_damage_type());
+    tell_object(caster, "%^C244%^You strike %^C151%^" + your_name + "%^C244%^ with an incredible blow, channeling your %^C133%^d%^C139%^a%^C145%^r%^C133%^k e%^C139%^n%^C145%^e%^C151%^r%^C145%^g%^C133%^y%^C244%^ through your weapon!%^CRST%^!");
+    tell_object(target, "%^C151%^" + my_name + "%^C244%^ strikes you with an incredible blow, channeling %^C133%^dark energy%^C244%^ through " + caster->query_possessive() + " weapon!%^CRST%^");
+    tell_room(place, "%^C151%^" + my_name + "%^C244%^ strikes %^C151%^" + your_name + "%^C244%^ with an incredible blow, channeling %^C139%^dark energy%^C244%^ through " + caster->query_possessive() + " weapon!%^CRST%^", ({ caster, target }));
+    
+    target->cause_typed_damage(target, target->return_target_limb(), 10 + roll_dice(glvl, 4) + mod, weapon->query_damage_type());
     
     if(FEATS_D->has_feat(caster, "lifedrinker blast") && objectp(target))
     {
-        tell_object(attacker,"%^RESET%^%^MAGENTA%^You rake your " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ across " + your_name + "%^CRST%^%^RESET%^%^MAGENTA%^, leeching a t%^GREEN%^as%^MAGENTA%^t%^GREEN%^e %^MAGENTA%^of " + your_poss + " energy!%^RESET%^");
-        tell_object(target,"%^RESET%^%^MAGENTA%^" + my_name + "%^CRST%^%^RESET%^%^MAGENTA%^ rakes " + my_poss + " " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ across you, and you feel slightly w%^GREEN%^ea%^MAGENTA%^ke%^GREEN%^ne%^MAGENTA%^d!%^RESET%^");
-        tell_room(here,"%^RESET%^%^MAGENTA%^" + my_name + "%^CRST%^%^RESET%^%^MAGENTA%^ rakes " + my_poss + " " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ across " + your_name + "%^CRST%^%^RESET%^%^MAGENTA%^, and " + target->query_subjective() + " looks slightly w%^GREEN%^ea%^MAGENTA%^ke%^GREEN%^ne%^MAGENTA%^d!%^RESET%^",({ attacker, target }));
-        target->cause_typed_damage(target, target->return_target_limb(), 5 + glvl, "negative energy");
-        target->add_hp(glvl);
+        target->cause_typed_damage(target, target->query_target_limb(), roll_dice(1, glvl), "negative energy");
+        caster->add_hp(glvl);
     }
+    if(objectp(target) && FEATS_D->has_feat(caster, "brimstone blast"))
+        target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1, glvl), "fire");
+    if(objectp(target) && FEATS_D->has_feat(caster, "glacial blast"))
+        target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1, glvl), "cold");
+    if(objectp(target) && FEATS_D->has_feat(caster, "vitriolic blast"))
+        target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1, glvl), "acid");    
+    if(objectp(target) && FEATS_D->has_feat(caster, "beshadowed blast"))
+        target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1, glvl), "void");
+    if(objectp(target) && FEATS_D->has_feat(caster, "binding blast"))
+        target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1, glvl), "force");
+    if(objectp(target) && FEATS_D->has_feat(caster, "utterdark blast"))
+        target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1, glvl), "void");
+    if(objectp(target) && FEATS_D->has_feat(caster, "hellfire blast"))
+        target->cause_typed_damage(target, target->return_target_limb(), 5 + roll_dice(1, glvl), "divine");
+    
+    dest_effect();
 }
     
     
