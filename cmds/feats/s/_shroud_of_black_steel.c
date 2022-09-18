@@ -9,7 +9,7 @@ void create()
    feat_category("PactInvocation");
    feat_name("shroud of black steel");
    feat_prereq("Warlock L1");
-   feat_desc("With this feat, your sinister patron encases your frail body and life force in an invisible, yet potent shell of dark energy, hard and unforgiving as a carapace of blackened steel. This protection grants you +3 to armor class and +3 to Fortitude saves.");
+   feat_desc("With this feat, your sinister patron encases your frail body and life force in an invisible, yet potent shell of dark energy, hard and unforgiving as a carapace of blackened steel. This protection grants you +4 to armor class and +4 to Fortitude saves.");
    permanent(1);
    allow_blind(1);
    set_required_for(({}));
