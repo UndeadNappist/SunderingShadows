@@ -16,8 +16,9 @@ void create()
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS frigid darkness on TARGET");
     set_damage_desc("cold/void damage on ranged touch attack and lowered AC");
-    set_description("A sphere of darkness shoots out at the target, enveloping them in cold darkness. On a successful ranged touch attack, the target takes both cold and void damage and their defenses are weakened, lowering their armor class for a short time.");
+    set_description("A sphere of void and cold shoots out at the target, enveloping them in frigid darkness. On a successful ranged touch attack, the target takes both cold and void damage and they must make a fortitude save or their defenses are weakened, lowering their armor class for a short time. This does not stack with itself.");
     set_target_required(1);
+    set_save("fort");
     set_immunities( ({ "cold", "void" }) );
 }
 
@@ -59,15 +60,15 @@ void spell_effect(int prof)
     if(roll < 1)
     {
         tell_object(caster, "%^C244%^You point your finger and shoot a ball of pure, cold darkness at %^C057%^" + your_name + "%^C244%^ but miss!%^CRST%^");
-        tell_object(target, "%^C244%^" + my_name " points " + my_poss + " finger and shoots a ball of pure, cold darkness at %^C057%^" + your_name + "%^C244%^ but misses!%^CRST%^");
-        tell_room(place, "%^C244%^" + my_name " points " + my_poss + " finger and shoots a ball of pure, cold darkness at %^C057%^" + your_name + "%^C244%^ but misses!%^CRST%^", ({ caster, target }));
+        tell_object(target, "%^C244%^" + my_name + " points " + my_poss + " finger and shoots a ball of pure, cold darkness at %^C057%^" + your_name + "%^C244%^ but misses!%^CRST%^");
+        tell_room(place, "%^C244%^" + my_name + " points " + my_poss + " finger and shoots a ball of pure, cold darkness at %^C057%^" + your_name + "%^C244%^ but misses!%^CRST%^", ({ caster, target }));
         dest_effect();
         return;
     }
     
     tell_object(caster, "%^C244%^You hurl a dark orb  at %^C075%^" + your_name + "%^C244%^, enveloping " + target->query_objective() + " in %^C075%^frigid%^C244%^ darkness!%^CRST%^");
-    tell_object(target, "" + my_name + " hurls an orb of darkness orb of darkness at you, enveloping you in frigid darkness!");
-    tell_room(place, "" + my_name + " hurls an orb of darkness orb of darkness at " + your_name + ", enveloping " + target->query_objective() + " in frigid darkness!", ({ caster, target }));
+    tell_object(target, "%^C244%^" + my_name + " hurls an orb of darkness orb of darkness at you, enveloping you in frigid darkness!%^CRST%^");
+    tell_room(place, "%^C244%^" + my_name + " hurls an orb of darkness orb of darkness at " + your_name + ", enveloping " + target->query_objective() + " in frigid darkness!%^CRST%^", ({ caster, target }));
     
     target->cause_typed_damage(target, target->return_target_limb(), sdamage / 2, "void");
     target->cause_typed_damage(target, target->return_target_limb(), sdamage / 2, "cold");
@@ -78,6 +79,9 @@ void spell_effect(int prof)
         dest_effect();
         return;
     }
+    
+    if(do_save(target, 0))
+        return;
     
     amount = 1 + clevel / 5;
     target->set_property("frigid darkness", 1);
