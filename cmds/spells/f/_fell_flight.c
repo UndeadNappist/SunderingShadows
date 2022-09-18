@@ -172,6 +172,7 @@ void dest_effect() {
         break;
       }
       tell_object(caster,"%^BOLD%^%^CYAN%^The wings ripple and quite suddenly burst, leaving only a trail of residual energy.%^RESET%^");
+      tell_room(environment(caster), "%^BOLD%^%^CYAN%^"+caster->query_cap_name()+"%^CRST%^%^BOLD%^%^CYAN%^'s wings ripple and quite suddenly burst, leaving only a trail of residual energy.%^RESET%^", caster);
     }
     ::dest_effect();
     if(objectp(TO)) TO->remove();
