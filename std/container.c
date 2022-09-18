@@ -138,7 +138,7 @@ int query_living_visibility(object item, object viewer)
     }
 
     //if (item->query_hidden() && !viewer->true_seeing()) {
-    if(item->query_hidden())
+    if(item->query_hidden() && !avatarp(viewer))
     {
         return 0;
     }
