@@ -13,7 +13,7 @@ void create() {
     set_discipline("kineticist");
     set_damage_desc("clevel/6+5 spell reflection chance.");
     set_syntax("cast CLASS reddopsi");
-    set_description("Talented kineticists can manipulate the area around them, causing spells and powers to rebound upon their originators. While this power holds, it will have a chance to reflect any spells which are directly aimed at the caster, regardless of whether they are hostile or friendly. The ward will not reflect splash damage or AOE, but only direct-targetted spells. This spell will override spell reflection and reflection feats.");
+    set_description("Talented kineticists can manipulate the area around them, causing spells and powers to rebound upon their originators. While this power holds, it will have a chance to reflect any spells that are directly aimed at the caster, regardless of whether they are hostile or friendly. The ward will not reflect splash damage or AOE, but only direct-targetted spells. This spell will override spell reflection and reflection feats.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);

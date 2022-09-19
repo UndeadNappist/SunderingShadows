@@ -117,7 +117,7 @@ void execute_attack()
     
     if(!BONUS_D->combat_maneuver(target, caster, bonus))
     {
-        message("my spells", "%^MAGENTA%^" + my_name + " avoids your dirty trick!", caster);
+        message("my spells", "%^MAGENTA%^" + your_name + " avoids your dirty trick!", caster);
         message("other spells", "%^MAGENTA%^You avoid the dirty trick!", target);
         dest_effect();
         return;

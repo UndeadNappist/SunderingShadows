@@ -11,7 +11,7 @@ void create(){
    set_name("Mordecai Lamoch");
    set_short("%^C171%^Mordecai Lamoch%^C212%^, of the %^C198%^Voice%^CRST%^");
    set_id(({ "mordecai","Mordecai","mordecai lamoch","lamoch","voice","Mordecai Lamoch, of the Voice"}));
-   set_long("This man Dressed in a pure %^C255%^white "+
+   set_long("Dressed in a pure %^C255%^white "+
    "satin robe%^CRST%^, and wearing a %^C255%^satin cap%^CRST%^ "+
    "on his head, this man looks back at you with ill hidden %^C055%^distain%^CRST%^. "+
    "His clothing is the richest fabric, the best cut, and immaculately "+

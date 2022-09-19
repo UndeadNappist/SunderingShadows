@@ -14,7 +14,7 @@ void create() {
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS unseen servant");
     set_mystery("ancestor");
-    set_description("What could be more annoying that doing things yourself?.. Call to your ancestor to summon one of them to open doors before you, carry your luggage or scratch your back.
+    set_description("What could be more annoying than doing things yourself? Call to your ancestors to summon one of them to open doors before you, carry your luggage, or scratch your back.
 
 To remove servant use %^ORANGE%^<dismiss servant>%^RESET%^
 To command servant use %^ORANGE%^<command servant to %^ORANGE%^%^ULINE%^ACTION%^RESET%^%^ORANGE%^>%^RESET%^

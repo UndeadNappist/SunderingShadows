@@ -22,7 +22,7 @@ void create() {
 	" adorn the archer tower for the "
 	"archers to fire their arrows out of. From here you have a nice "
 	"view of the %^GREEN%^forest%^BLUE%^"
-	" which surrounds the stronghold."
+	" that surrounds the stronghold."
         "%^RESET%^"
     );
     set_smell("default","It smells of forest air.");

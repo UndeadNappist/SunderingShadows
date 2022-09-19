@@ -12,7 +12,7 @@ void create()
     feat_category("Psionics");
     feat_name("psionicweapon");
     feat_prereq("Psywarriors L5 or Psion L11");
-    feat_desc("With this feat a psionic character can build a charge of raw psychic energy and deliver an mental damage to every attacker. This feat consumes 1d6 power points when used. This feat uses your psionic focus.");
+    feat_desc("With this feat a psionic character can build a charge of raw psychic energy and deliver a wave of mental damage to every attacker. This feat consumes 1d6 power points when used and uses your psionic focus.");
     feat_syntax("psionicweapon");
     set_required_for(({ "greaterpsionicweapon" }));
     psionic(1);
