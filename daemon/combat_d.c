@@ -2217,7 +2217,7 @@ void do_fumble(object attacker, object weapon)
 
 void miss(object attacker, int magic, object target, string type, string target_thing)
 {
-    int verbose, areader, treader;
+    int verbose, areader, treader, wlvl;
     object *readers, room;
     string a_name, t_name, a_poss;
 
@@ -2270,6 +2270,13 @@ void miss(object attacker, int magic, object target, string type, string target_
         tell_object(attacker, "%^YELLOW%^You miss.%^RESET%^");
 
     tell_room(room, "" + a_name + " misses " + a_poss + " target.", ({ attacker }) + readers);
+    
+    if(target->query_property("warlocks curse") == attacker && FEATS_D->has_feat(attacker, "darkblade jinx"))
+    {
+        wlvl = attacker->query_class_level("warlock");
+        tell_object(attacker, "%^C244%^Your curse still scars " + t_name + "!%^CRST%^");
+        target->cause_typed_damage(target, target->return_target_limb(), roll_dice(1 + wlvl / 10, 6), "untyped");
+    }
     return;
 }
 
