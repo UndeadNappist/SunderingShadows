@@ -1468,6 +1468,9 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         int wlvl = attacker->query_class_level("warlock");
         damage += (roll_dice(1 + wlvl / 10, 6));
     }
+    
+    if(!random(4) && targ && !targ->query_property("warlocks curse") && FEATS_D->has_feat(attacker, "malevolent strike"))
+        targ->set_property("warlocks curse", attacker);
 
     targ && paladin = targ->query_property("paladin smite");
 
