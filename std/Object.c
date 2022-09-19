@@ -798,6 +798,8 @@ mixed query_property(string prop)
         if (FEATS_D->usable_feat(TO, "weapon mastery")) {
             return 1;
         }
+        if(FEATS_D->usable_feat(this_object(), "inevitable steel"))
+            return 1;
     }
 
     if (prop == "sunlight_umbrella") {

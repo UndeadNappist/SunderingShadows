@@ -2271,7 +2271,7 @@ void miss(object attacker, int magic, object target, string type, string target_
 
     tell_room(room, "" + a_name + " misses " + a_poss + " target.", ({ attacker }) + readers);
     
-    if(target->query_property("warlocks curse") == attacker && FEATS_D->has_feat(attacker, "darkblade jinx"))
+    if(!random(2) && target->query_property("warlocks curse") == attacker && FEATS_D->has_feat(attacker, "darkblade jinx"))
     {
         wlvl = attacker->query_class_level("warlock");
         tell_object(attacker, "%^C244%^Your curse still scars " + t_name + "!%^CRST%^");
