@@ -31,6 +31,22 @@ void create()
 
 void weapon_setup(object caster, int clevel)
 {
+    int mychant;
+    
+    if(!objectp(caster))
+        return;
+    
+    powerlevel = clevel * 10;
+    powerlevel = min( ({ powerlevel, 500 }) );
+    powerlevel = max( ({ powerlevel, 100 }) );
+    mychant = min( ({ 10, clevel / 5 }) );
+    tier = 1 + mychant / 2;
+    
+    set_size(caster->query_size() + 1);
+    set_property("enchantment", mychant);
+    set_item_bonus("attack bonus", 1 + (mychant / 2));
+    set_item_bonus("damage bonus", 1 + (mychant / 2));
+/*
     int mychant, mysize;
     if (!objectp(caster)) {
         return;
@@ -58,6 +74,7 @@ void weapon_setup(object caster, int clevel)
     set_item_bonus("attack bonus", tier);
     set_item_bonus("damage bonus", tier);
     tier++; // using this afterwards for dice on specials!
+*/
 }
 
 int wield_func()

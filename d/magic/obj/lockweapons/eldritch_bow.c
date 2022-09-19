@@ -33,7 +33,26 @@ int use_shots(){ return 1; }
 int query_shots(){ return -1; }
 string query_ammo_type(){ return "eldritch arrow"; }
 
-void weapon_setup(object caster,int clevel) {
+void weapon_setup(object caster,int clevel)
+{
+    int mychant;
+    
+    if(!objectp(caster))
+        return;
+    
+    powerlevel = clevel * 10;
+    powerlevel = min( ({ powerlevel, 500 }) );
+    powerlevel = max( ({ powerlevel, 100 }) );
+    mychant = min( ({ 10, clevel / 5 }) );
+    tier = 1 + mychant / 2;
+    
+    set_size(caster->query_size() + 1);
+    set_property("enchantment", mychant);
+    set_item_bonus("attack bonus", 1 + (mychant / 2));
+    set_item_bonus("damage bonus", 1 + (mychant / 2));
+    
+    
+/*    
     int mychant,mysize;
     if(!objectp(caster)) return;
     mycaster = caster;
@@ -41,16 +60,18 @@ void weapon_setup(object caster,int clevel) {
     mysize = (int)caster->query_size()+1;
     set_size(mysize);
     if(powerlevel < 100) powerlevel = 100; // 10% minimum proc rate
-    if(powerlevel > 350) powerlevel = 350; // 35% maximum proc rate
+    if(powerlevel > 5000) powerlevel = 500; // 35% maximum proc rate
     mychant = clevel;
     if(mychant < 1) mychant = 1;
     if(mychant > (int)caster->query_level()) mychant = (int)caster->query_level(); // let's not let the weapon enchant & bonuses exceed what they can reasonably wield!
-    mychant = (mychant-3) / 5; // slightly slower than the normal +1/5; should scale at 8/13/18/23/28/33/38.
+    mychant /= 5; // slightly slower than the normal +1/5; should scale at 8/13/18/23/28/33/38.
+    mychant = min( ({ 10, mychant }) );
     TO->set_property("enchantment",mychant);
     tier = mychant/2; // should give +1 at 13/23/33, caps at +3
     set_item_bonus("attack bonus",tier);
     set_item_bonus("damage bonus",tier);
     tier++; // using this afterwards for dice on specials!
+*/
 }
 
 int wield_func(){

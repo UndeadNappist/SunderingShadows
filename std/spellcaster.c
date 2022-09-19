@@ -814,7 +814,9 @@ mapping query_mastered_bonus()
         if(FEATS_D->usable_feat(TO, "book of shadows"))
             tmp["warlock"] += ({ "mending", "minor creation", "command", "clairvoyance", "rope trick", "unseen servant" });
         if(FEATS_D->usable_feat(TO, "mystic arcana"))
-            tmp["warlock"] += ({ "shadow alteration", "shadow conjuration" });
+            tmp["warlock"] += ({ "shadow alteration", "shadow conjuration" });        
+        if(FEATS_D->usable_feat(this_object(), "inevitable steel"))
+            tmp["warlock"] += ({ "eldritch bow", "eldritch glaive", "eldritch claws", "eldritch scimitar" });
     }
     
     if(sizeof(bonus = this_object()->query_property("bonus_mastered")))
