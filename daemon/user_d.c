@@ -422,7 +422,7 @@ void init_pool(object ob, string pool_type)
         else
         {
             newmax = 2 + ob->query_class_level("warlock") / 10;
-            newmax += (FEATS_D->has_feat(ob, "beyond reason") * 2);
+            newmax += (FEATS_D->has_feat(ob, "beyond reason") * 3);
         }
         break;
     }

@@ -9,7 +9,7 @@ void create()
    feat_category("PactInvocation");
    feat_name("beyond reason");
    feat_prereq("Warlock L21");
-   feat_desc("What is a soul, but a resource? And when it comes to power, resources must be used to their absolute fullest. With this feat, your maximum soul burn is increased by 2.");
+   feat_desc("What is a soul, but a resource? And when it comes to power, resources must be used to their absolute fullest. With this feat, your maximum soul burn is increased by 3.");
    permanent(1);
    allow_blind(1);
    set_required_for(({}));
