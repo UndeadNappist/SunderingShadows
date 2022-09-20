@@ -139,7 +139,7 @@ void execute_attack()
     strlen(file) && catch(shape = new(SHAPE_DIR + file));
     objectp(shape) && shape->init_shape(caster);
     caster->add_cooldown("final covenant", DELAY);
-    call_out("reverse_shape", 60);
+    call_out("reverse_shape", 120);
     
     return;
 }
