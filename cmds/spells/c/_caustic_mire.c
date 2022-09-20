@@ -89,7 +89,7 @@ void execute_attack()
 
 
 void dest_effect() {
-    if(objectp(place)) tell_object(place,"%^RESET%^%^GREEN%^The caustic mire dries up and the acidic fumes dissappate.");
+    if(objectp(place)) tell_object(place,"%^RESET%^%^GREEN%^The caustic mire dries up and the acidic fumes dissipate.");
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }
