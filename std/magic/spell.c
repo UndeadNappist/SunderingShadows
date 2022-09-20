@@ -2786,6 +2786,9 @@ void define_clevel()
             clevel += 2;
         }
     }
+    
+    if(spell_type == "warlock" && FEATS_D->usable_feat(caster, "mystic arcana"))
+        clevel += 2;
 
     if(shadow_spell)
     {
