@@ -93,7 +93,8 @@ int caster_level_calcs(object player, string the_class)
 }
 
 mapping class_featmap(string myspec) {
-    return ([ 1 : ({ "no fear of the flame" }), 4 : ({ "infernal practitioner" }), 7 : ({ "hellfire blast" }), ]);
+    //return ([ 1 : ({ "no fear of the flame" }), 4 : ({ "infernal practitioner" }), 7 : ({ "hellfire blast" }), ]);
+    return ([  ]);
 }
 
 string *class_skills()

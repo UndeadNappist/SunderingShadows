@@ -81,7 +81,7 @@ int cmd_master(string args)
             bonuslimit += 2;
         }
         if (FEATS_D->usable_feat(TP, "tome of ancient secrets")) {
-            bonuslimit += 2;
+            bonuslimit += 4;
         }
         if (FEATS_D->usable_feat(TP, "greater spell knowledge")) {
             bonuslimit += 5;
@@ -247,7 +247,7 @@ int cmd_master(string args)
                 bonuslimit += 2;
             }
             if (FEATS_D->usable_feat(TP, "tome of ancient secrets")) {
-                bonuslimit += 2;
+                bonuslimit += 4;
             }
             if (FEATS_D->usable_feat(TP, "greater spell knowledge")) {
                 bonuslimit += 5;

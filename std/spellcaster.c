@@ -808,9 +808,9 @@ mapping query_mastered_bonus()
         tmp["warlock"] = MAGIC_SS_D->query_class_special_spells("warlock", "all");
         strlen(pact) && tmp["warlock"] += MAGIC_SS_D->query_class_special_spells("warlock", pact);
 
-        if (FEATS_D->usable_feat(TO, "infernal practitioner")) {
-            tmp["warlock"] += ({ "fiery body", "fire storm", "infernal healing" });
-        }
+        //if (FEATS_D->usable_feat(TO, "infernal practitioner")) {
+        //    tmp["warlock"] += ({ "fiery body", "fire storm", "infernal healing" });
+        //}
         if(FEATS_D->usable_feat(TO, "book of shadows"))
             tmp["warlock"] += ({ "mending", "minor creation", "command", "clairvoyance", "rope trick", "unseen servant" });
         if(FEATS_D->usable_feat(TO, "mystic arcana"))
