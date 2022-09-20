@@ -122,7 +122,7 @@ void execute_feat()
     
     tell_object(caster, "%^C244%^You infuse your weapon with chaotic e%^C145%^l%^C151%^d%^C157%^r%^C244%^itch e%^C145%^n%^C151%^e%^C157%^r%^C244%^gy and levy a h%^C145%^i%^C151%^d%^C157%^e%^C244%^ous b%^C145%^l%^C151%^o%^C244%^w at %^C151%^" + target->query_cap_name() + ".%^CRST%^");
     tell_object(target, "%^C244%^" + caster->query_cap_name() + " infuses " + caster->query_possessive() + " weapon with chaotic e%^C145%^l%^C151%^d%^C157%^r%^C244%^itch e%^C145%^n%^C151%^e%^C157%^r%^C244%^gy and levies a h%^C145%^i%^C151%^d%^C157%^e%^C244%^ous b%^C145%^l%^C151%^o%^C244%^w at you!%^CRST%^");
-    tell_object(caster, "%^C244%^" + caster->query_cap_name() + " infuses " + caster->query_possessive() + " weapon with chaotic e%^C145%^l%^C151%^d%^C157%^r%^C244%^itch e%^C145%^n%^C151%^e%^C157%^r%^C244%^gy and levies a h%^C145%^i%^C151%^d%^C157%^e%^C244%^ous b%^C145%^l%^C151%^o%^C244%^w at %^C151%^" + target->query_cap_name() + ".%^CRST%^", ({ caster, target }));
+    tell_room(place, "%^C244%^" + caster->query_cap_name() + " infuses " + caster->query_possessive() + " weapon with chaotic e%^C145%^l%^C151%^d%^C157%^r%^C244%^itch e%^C145%^n%^C151%^e%^C157%^r%^C244%^gy and levies a h%^C145%^i%^C151%^d%^C157%^e%^C244%^ous b%^C145%^l%^C151%^o%^C244%^w at %^C151%^" + target->query_cap_name() + ".%^CRST%^", ({ caster, target }));
 }
 
 void execute_attack()
