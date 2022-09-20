@@ -557,6 +557,9 @@ mixed query_property(string prop)
         if (FEATS_D->usable_feat(TO, "greater spell penetration")) {
             num += 2;
         }
+        if(FEATS_D->usable_feat(this_object(), "mystic arcana"))
+            num += 1;
+        
         if(this_object()->query_race() == "elf" && this_object()->query("subrace") != "szarkai")
             num += 2;
 
@@ -623,7 +626,12 @@ mixed query_property(string prop)
             num += 1;
         
         if(this_object()->is_class("warlock") && this_object()->query("maximum burn"))
+        {
             num += (this_object()->query("available burn") / 3);
+            
+            if(FEATS_D->usable_feat(this_object(), "mystic arcana"))
+                num += 1;
+        }
 
         //num += props["empowered"]; //doesn't seem to do anything
         return (num + TO->query_property("empowered"));
