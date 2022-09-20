@@ -19,7 +19,7 @@ void create() {
 "Instead of wood or metal, however, it is made purely of %^RESET%^%^CYAN%^e%^BOLD%^%^CYAN%^n%^RESET%^%^CYAN%^e%^BOLD%^%^WHITE%^r%^BOLD%^%^CYAN%^g"
 "%^RESET%^%^CYAN%^y%^BOLD%^%^WHITE%^. Shaped like a glaive, it rises from a long and narrow haft that must be at least six or seven feet long. From there, "
 "it broadens and gains a %^YELLOW%^razor-sharp %^BOLD%^%^WHITE%^edge, forming a curved blade of %^RESET%^%^MAGENTA%^lethal %^BOLD%^%^WHITE%^purpose.%^RESET%^\n");
-   set_weapon_prof("simple");   
+   set_weapon_prof("martial");   
    set_value(0);
    set_weight(0);
    set_wield((:TO,"wield_func":));
@@ -38,10 +38,11 @@ void weapon_setup(object caster,int clevel)
     if(!objectp(caster))
         return;
     
+    mycaster = caster;
     powerlevel = clevel * 10;
     powerlevel = min( ({ powerlevel, 500 }) );
     powerlevel = max( ({ powerlevel, 100 }) );
-    mychant = min( ({ 10, clevel / 5 }) );
+    mychant = min( ({ 10, caster->query_base_character_level() / 5 }) );
     tier = 1 + mychant / 2;
     
     set_size(caster->query_size() + 1);

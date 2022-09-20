@@ -17,7 +17,7 @@ void create()
     set_id(({ "eldritch scimitar", "scimitar", "energy scimitar", "scimitar of energy", "radiant scimitar", "radiant energy scimitar", "eldritch_weapon_xxx" }));
     set_short("%^RESET%^%^CYAN%^ra%^BOLD%^%^CYAN%^d%^RESET%^%^CYAN%^ia%^BOLD%^%^CYAN%^n%^RESET%^%^CYAN%^t ene%^BOLD%^%^CYAN%^r%^RESET%^%^CYAN%^gy %^CYAN%^sc%^BOLD%^%^CYAN%^i%^RESET%^%^CYAN%^mi%^BOLD%^%^WHITE%^t%^BOLD%^%^CYAN%^ar%^RESET%^%^CYAN%^%^RESET%^");
     set_long("%^BOLD%^%^WHITE%^This magical construct looks as though it would serve as a weapon of considerable %^RESET%^%^RED%^potency%^BOLD%^%^WHITE%^. Instead of wood or metal, however, it is made purely of %^RESET%^%^CYAN%^e%^BOLD%^%^CYAN%^n%^RESET%^%^CYAN%^e%^BOLD%^%^WHITE%^r%^BOLD%^%^CYAN%^g%^RESET%^%^CYAN%^y%^BOLD%^%^WHITE%^. This weapon, formed by %^RESET%^%^CYAN%^will %^BOLD%^%^WHITE%^of the wielder, has the shape of a curved sword. This scimitar is shorter than a longsword and longer than a shortsword. The outer edge of the scimitar is %^ORANGE%^razor sharp%^WHITE%^, and the back is flat, giving the blade a triangular cross-section.%^RESET%^\n");
-    set_weapon_prof("simple");
+    set_weapon_prof("martial");
     set_value(0);
     set_weight(0);
     set_wield((: TO, "wield_func" :));
@@ -36,13 +36,14 @@ void weapon_setup(object caster, int clevel)
     if(!objectp(caster))
         return;
     
+    mycaster = caster;
     powerlevel = clevel * 10;
     powerlevel = min( ({ powerlevel, 500 }) );
     powerlevel = max( ({ powerlevel, 100 }) );
-    mychant = min( ({ 10, clevel / 5 }) );
+    mychant = min( ({ 10, caster->query_base_character_level() / 5 }) );
     tier = 1 + mychant / 2;
     
-    //set_size(caster->query_size() + 1);
+    set_size(caster->query_size());
     set_property("enchantment", mychant);
     set_item_bonus("attack bonus", 1 + (mychant / 2));
     set_item_bonus("damage bonus", 1 + (mychant / 2));

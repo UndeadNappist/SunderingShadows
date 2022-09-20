@@ -25,6 +25,7 @@ void create() {
    set_wield((:TO,"wield_func":));
    set_hit((:TO,"hit_func":));
    set("no curse",1);
+   set_weapon_prof("martial");
    set_prof_type("magic weapons");
    set_property("able to cast",1);
    powerlevel = 1;
@@ -38,13 +39,14 @@ void weapon_setup(object caster,int clevel)
     if(!objectp(caster))
         return;
     
+    mycaster = caster;
     powerlevel = clevel * 10;
     powerlevel = min( ({ powerlevel, 500 }) );
     powerlevel = max( ({ powerlevel, 100 }) );
-    mychant = min( ({ 10, clevel / 5 }) );
+    mychant = min( ({ 10, caster->query_base_character_level() / 5 }) );
     tier = 1 + mychant / 2;
     
-    //set_size(caster->query_size());
+    set_size(caster->query_size());
     set_property("enchantment", mychant);
     set_item_bonus("attack bonus", 1 + (mychant / 2));
     set_item_bonus("damage bonus", 1 + (mychant / 2));
