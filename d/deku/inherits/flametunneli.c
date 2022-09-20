@@ -61,11 +61,11 @@ void create() {
     set_long("%^RED%^You are inside a tunnel made entirely from "+
     "fire.  The walls and ceiling of this tunnel are "+
     "entirely circular and smooth, the ceiling hangs some "+
-    "undeterminable distance overhead and the walls are far enough "+
+    "indeterminable distance overhead and the walls are far enough "+
     "apart for several wagons to easily pass through.  The floor "+
     "here is jagged and rugged, the fire roaring upward to conceal "+
     "your feet, but the sting from it is light, as if something "+
-    "is keeping it's destructive power at bay.  As you ponder this "+
+    "is keeping its destructive power at bay.  As you ponder this "+
     "you realize that there is a barely visible light %^BLUE%^"+
     "blue%^RESET%^%^RED%^ barrier surrounding the fire on the "+
     "inside of the tunnel.  You realize that just beyond the "+
@@ -86,7 +86,7 @@ void create() {
         "%^RESET%^",
         "ceiling" : "%^RED%^The ceiling here is made from fire and "+
         "covered by a %^BLUE%^blue%^RESET%^%^RED%^ barrier.  "+
-        "It is entirely smooth and hangs some undeterminable "+
+        "It is entirely smooth and hangs some indeterminable "+
         "distance overhead.%^RESET%^",
         "floor" : "%^RED%^The floor is made from a fire that roars "+
         "upward to conceal your feet.  The fire gives it an "+

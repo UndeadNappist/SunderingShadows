@@ -4,7 +4,7 @@ void create()
 {
     ::create();
     set_spell_name("shadow alteration");
-    set_spell_level(([ "mage" : 6, "bard" : 6, "magus" : 6, "cleric" : 6, "oracle" : 6, "warlock" : 4 ]));
+    set_spell_level(([ "mage" : 6, "bard" : 6, "magus" : 6, "cleric" : 6, "oracle" : 6 ]));
     set_domains("darkness");
     set_mystery("shadow");
     set_spell_sphere("illusion");
@@ -13,7 +13,6 @@ void create()
 
 %^BOLD%^%^RED%^E.G.%^RESET%^ <cast mage shadow alteration on haste on friend>");
     set_arg_needed(1);
-    set_feats_required(([ "warlock" : "mystic arcana"]));
 }
 
 string shadow_school()
