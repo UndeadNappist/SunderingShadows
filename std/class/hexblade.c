@@ -146,12 +146,6 @@ int prerequisites(object player)
     {
         return 0;
     }
-    
-    if(player->query_class_level("warlock") < 20)
-    {
-        write("Need 20 levels in warlock");
-        return 0;
-    }
        
     if ((player->query_class_level(base)) < 20)
     {

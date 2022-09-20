@@ -22,7 +22,6 @@ int prerequisites(object ob)
     
     if(ob->query_class_level("hexblade") < 1)
     {
-        dest_effect();
         return 0;
     }
     
