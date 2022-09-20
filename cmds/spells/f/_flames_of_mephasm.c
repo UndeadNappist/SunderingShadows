@@ -6,6 +6,8 @@ inherit SPELL;
 int num;
 string my_name, your_name;
 
+void end_burn();
+
 void create()
 {
     ::create();
@@ -74,21 +76,27 @@ void burn_me()
     damage_targ(target, target->return_target_limb(), sdamage / 6, "fire");
     
     if(num-- <= 0)
-        dest_effect();
+        end_burn();
     else
         call_out("burn_me", ROUND_LENGTH);
 }
 
-void dest_effect()
+void end_burn()
 {
-    remove_call_out("burn_me");
-    
     if(objectp(target))
     {
         place = environment(target);
         tell_object(target, "%^C166%^The hellish flames subside.%^CRST%^");
         tell_room(place, "%^C166%^The hellish flames on " + your_name + " subside.%^CRST%^", target);
     }
+    
+    dest_effect();
+}
+    
+
+void dest_effect()
+{
+    remove_call_out("burn_me");
     
     ::dest_effect();
     if(objectp(this_object()))
