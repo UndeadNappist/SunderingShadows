@@ -3030,15 +3030,15 @@ void define_base_damage(int adjust)
             }
         }
         else if (FEATS_D->is_active(caster, "eldritch warfare")) {
-            sdamage = roll_dice(2, sdamage / 4);
+            sdamage /= 2;
         }
         else if(caster->is_class("psywarrior") && FEATS_D->has_feat(caster, "martial power") && caster->query("available focus") && caster->query_current_attacker() && spell_source && spell_source == "psywarrior")
         {
-            sdamage = roll_dice(2, sdamage / 4);
+            sdamage /= 2;
         }
         else if(caster->is_class("warlock") && FEATS_D->has_feat(caster, "eldritch focus") && caster->query_current_attacker() && spell_source && spell_source == "warlock")
         {
-            sdamage = roll_dice(2, sdamage / 4);
+            sdamage /= 2;
         }
     }
 
