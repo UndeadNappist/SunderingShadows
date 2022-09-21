@@ -41,8 +41,9 @@ void spell_effect(int prof)
     }
     caster->set_property("true metabolism",1);
     tell_object(caster, "%^RED%^You focus your energies so that your body will repair itself!%^RESET%^");
-    if(!FEATS_D->usable_feat(caster,"metabolic perfection"))
+    if(!FEATS_D->usable_feat(caster,"metabolic perfection")) {
         caster->set_property("spelled", ({TO}) );
+    }
     spell_successful();
     addSpellToCaster();
     execute_attack();
@@ -78,7 +79,7 @@ void execute_attack()
         dest_effect();
         return;
     }
-    if(caster->query_unconcious()){
+    if(caster->query_unconcious() && !FEATS_D->usable_feat(caster,"metabolic perfection")){
         dest_effect();
         return;
     }
@@ -86,12 +87,14 @@ void execute_attack()
     if((int)caster->query_hp() < (int)caster->query_max_hp()){
         tell_object(caster,"%^BOLD%^%^CYAN%^You make a mental adjustment, healing some of your wounds!%^RESET%^");
         tell_room(environment(caster),"%^BOLD%^%^CYAN%^Some of "+caster->QCN+"'s wounds seem to heal!%^RESET%^",caster);
-        if(FEATS_D->usable_feat(caster,"metabolic perfection"))
+        if(FEATS_D->usable_feat(caster,"metabolic perfection")) {
             sdamage*=19/5;
+        }
         damage_targ(caster,"torso",-sdamage,"untyped");
     }
-    if(!FEATS_D->usable_feat(caster,"metabolic perfection"))
+    if(!FEATS_D->usable_feat(caster,"metabolic perfection")) {
         counter--;
+    }
     prepend_to_combat_cycle(place);
 }
 
@@ -99,6 +102,9 @@ void execute_attack()
 void dest_effect(){
     remove_call_out("room_check");
     if(objectp(caster)){
+        if(!FEATS_D->usable_feat(caster,"metabolic perfection")) {
+            caster->remove_property_value("spelled", ({TO}) );
+        }
         caster->remove_property("true metabolism");
         tell_object(caster,"%^CYAN%^You feel the hyper awareness of your body's injuries fade away.%^RESET%^");
     }
