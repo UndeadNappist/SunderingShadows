@@ -48,7 +48,7 @@ void spell_effect(int prof)
 
     tell_object(caster, "%^CYAN%^BOLD%^You alter the makeup of your body to absorb the energy from enemy blows!");
 
-    caster->set_property("spelled", this_object());
+    caster->set_property("spelled", ({ this_object() }) );
     caster->set_property("nimbus", 1);
     caster->set_property("added short", ({ "%^CYAN%^BOLD%^ (In an aura of energy)" }) );
     addSpellToCaster();
@@ -121,6 +121,7 @@ void dest_effect()
         caster->remove_property("nimbus");
         caster->add_ac_bonus(-4);
         caster->add_saving_bonus("fortitude", -4);
+        caster->remove_property_value("spelled", ({ this_object() }) );
         caster->remove_property_value("added short", ({ "%^CYAN%^BOLD%^ (In an aura of energy)" }) );
     }
 
