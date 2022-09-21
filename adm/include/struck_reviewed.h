@@ -75,6 +75,7 @@
     "/d/islands/dreams/obj/sunlight_robe", \
     "/d/islands/elf/obj/anklet", \
     "/d/islands/elf/obj/bracers", \
+    "/d/islands/elf/obj/chain", \
     "/d/islands/elf/obj/scale_mail", \
     "/d/islands/elf/obj/shield", \
     "/d/islands/elf/obj/v_gloves", \
