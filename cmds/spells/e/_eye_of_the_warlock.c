@@ -10,6 +10,7 @@ void create(){
     ::create();
     set_spell_name("eye of the warlock");
     set_spell_level(([ "warlock" : 2 ]));
+    set_heritage("astral");
     set_spell_sphere("divination");
     set_syntax("cast CLASS eye of the warlock on TARGET");
     set_description("You utter a dark invocation in an effort to see through the eyes of your target. While you maintain this invocation, you won't be able to see through your own eyes and will effectively be blind.");

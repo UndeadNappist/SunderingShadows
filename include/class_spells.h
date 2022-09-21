@@ -131,17 +131,17 @@ class_spell_storage =
 "warlock":
 ([
     "all":
-        ({"eldritch blast","eldritch chain","eldritch burst"}),
+        ({ "eldritch blast", "eldritch chain", "eldritch burst" }),
     "abyssal":
         ({ "diabolic grasp", "fiendish vigor", "howl of doom", "thirsting maw", "soul theft", "harrowstorm" }),
     "astral":
-        ({ "awakened mind", "frigid darkness" }),
+        ({ "awakened mind", "eye of the warlock", "frigid darkness" }),
     "infernal":
         ({ "scorching ray", "flames of mephasm", "soul flaying", "hellfire", "hurl through hell", "hellfire shield" }),
     "gloom":
         ({ "vampiric embrace", "whispers of the grave", "shadowform", "reanimate", "hungry darkness" }),
     "fey":
-        ({ "mire the mind", "eyebite" }),
+        ({ "mire the mind", "eyebite", "witchfire", "bewitching whispers", "mayhem" }),
         
 ]),
 
