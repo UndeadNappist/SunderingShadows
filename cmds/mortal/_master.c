@@ -77,7 +77,7 @@ int cmd_master(string args)
             if(TP->query_bloodline() == "arcane")
                 bonuslimit += 1;
         }
-        if (FEATS_D->usable_feat(TP, "spell knowledge")) {
+        if (FEATS_D->usable_feat(TP, "spell knowledge") && TP->query_class_level(myclass) >= 21) {
             bonuslimit += 2;
         }
         if (FEATS_D->usable_feat(TP, "tome of ancient secrets")) {
