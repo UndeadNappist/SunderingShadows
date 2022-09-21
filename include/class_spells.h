@@ -135,7 +135,7 @@ class_spell_storage =
     "abyssal":
         ({ "diabolic grasp", "fiendish vigor", "howl of doom", "thirsting maw", "soul theft", "harrowstorm" }),
     "astral":
-        ({ "awakened mind", "eye of the warlock", "frigid darkness" }),
+        ({ "awakened mind", "eye of the warlock", "frigid darkness", "thief of five fates" }),
     "infernal":
         ({ "scorching ray", "flames of mephasm", "soul flaying", "hellfire", "hurl through hell", "hellfire shield" }),
     "gloom":
