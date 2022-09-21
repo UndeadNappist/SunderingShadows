@@ -63,11 +63,11 @@ void spell_effect(int prof)
     caster->set_property("spell damage resistance", 10);
     caster->set_property("gaseous form", 1);
     addSpellToCaster();
-    call_out("test", 2);
     caster->set_property("added short",({" %^BOLD%^%^CYAN%^(translucent)%^RESET%^"}));
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 7;
     set_end_time();
     call_out("dest_effect",spell_duration);
+    call_out("test", 5);
 }
 
 void test()
