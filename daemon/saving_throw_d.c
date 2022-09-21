@@ -21,7 +21,7 @@ void create() { ::create(); }
 
 varargs int do_save(object ob, int dc, string type, raw_save)
 {
-    int *saves,num,save,roll1,i,level,statbonus,mod, *cls_save, max_mod;
+    int *saves,num,save,roll1,i,level,statbonus,mod, *cls_save, max_mod, advantage;
     string *classes,file;
     object rider;
     
@@ -217,14 +217,19 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     if (dc > 0)
         dc *= -1;
 
-    roll1 = roll_dice(1, 20);
+    //Determining advantage or disadvantage
+    advantage = 0;
     
-    //Chronicler gets advantage on saving throws
     if(FEATS_D->usable_feat(ob, "live to tell the tale") ||
-       FEATS_D->usable_feat(ob, "dark ones luck") ||
-       FEATS_D->usable_feat(ob, "spellcasting harrier") ||
-       (FEATS_D->usable_feat(ob, "perpetual foresight") && ob->query("available focus")))
-        roll1 = max( ({ roll1, roll_dice(1, 20) }) );
+        FEATS_D->usable_feat(ob, "dark ones luck") ||
+        FEATS_D->usable_feat(ob, "spellcasting harrier") ||
+        (FEATS_D->usable_feat(ob, "perpetual foresight") && ob->query("available focus")) ||
+        ob->query_property("roll advantage"))
+            advantage++;
+    
+    if(ob->query_property("roll disadvantage")) advantage--;
+    
+    roll1 = roll_dice(1, 20, advantage);
 
     //Touch of Law makes the roll 11
     if(ob->query_property("touch of law"))
