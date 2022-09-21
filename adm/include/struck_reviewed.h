@@ -54,6 +54,7 @@
     "/d/islands/common/eldebaro/ob/ebon_reflector", \
     "/d/islands/common/eldebaro/ob/shroud_of_darkness", \
     "/d/islands/common/eldebaro/ob/stormbringer_armor", \
+    "/d/islands/common/obj/e_chain", \
     "/d/islands/common/obj/harbinger", \
     "/d/islands/common/obj/new/e_chain", \
     "/d/islands/common/obj/new/flameguards", \
