@@ -2013,9 +2013,9 @@ void send_messages(object attacker, int magic, object weapon, string what, int x
     
     if(victim->query_property("warlocks curse") == attacker && x > 0)
     {
-        me = me + "%^BOLD%^BLACK%^[Curse]%^RESET%^";
-        you = you + "%^BOLD%^BLACK%^[Curse]%^RESET%^";
-        others = others + "%^BOLD%^BLACK%^[Curse]%^RESET%^";
+        me = me + "%^RESET%^%^CRST%^%^C059%^[%^C143%^c%^C149%^u%^C155%^r%^C149%^s%^C143%^e%^C059%^]%^CRST%^";
+        you = you + "%^RESET%^%^CRST%^%^C059%^[%^C143%^c%^C149%^u%^C155%^r%^C149%^s%^C143%^e%^C059%^]%^CRST%^";
+        others = others + "%^RESET%^%^CRST%^%^C059%^[%^C143%^c%^C149%^u%^C155%^r%^C149%^s%^C143%^e%^C059%^]%^CRST%^";
     }   
 
     if(sneak && x > 0)
