@@ -73,7 +73,7 @@ int remove_func() {
 }
 
 int strike_func(int damage, object what, object who){
-        if(random(1000) < 400){
+    if(random(1000) < 400){
         tell_room(environment(query_worn()),"%^RESET%^GREEN%^Ethereal vines burst "+
           "out of the %^BOLD%^%^GREEN%^emeralds %^RESET%^%^GREEN%^on "+ETOQCN+" mail, wrapping around "+
           ""+ETO->QP+" body to shield "+ETO->QO+" from "+who->QCN+"'s "+
@@ -84,8 +84,9 @@ int strike_func(int damage, object what, object who){
         tell_object(who,"%^RESET%^%^GREEN%^Ethereal vines burst out of"+
           " the emeralds on "+ETOQCN+"'s mail, wrapping around "+
           ""+ETO->QP+" body, shielding "+ETO->QO+" from your blow.");
-        return (damage*-1);
- }
+        return 0;
+    }
+    return damage;
 }
 
 int is_metal() { return 1; }
