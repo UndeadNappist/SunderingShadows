@@ -72,8 +72,7 @@ void create()
 int wear_me()
 {
 tell_object(ETO,"%^BOLD%^%^BLACK%^The cloak slips around your shoulders weightlessly, the soft spidersilk gently rustling around you.%^RESET%^");
-   tell_room(EETO,"%^BOLD%^%^BLACK%^"+ETOQCN+"%^BOLD%^%^BLACK%^ ties a long dark cloak around "+ETO->QP+" %^BOLD%^%^BLACK%^shoulders,"
-				  "the soft spidersilk gently rustling%^RESET%^.",ETO);
+   tell_room(EETO,"%^BOLD%^%^BLACK%^"+ETOQCN+"%^BOLD%^%^BLACK%^ ties a long dark cloak around "+ETO->QP+" %^BOLD%^%^BLACK%^shoulders, the soft spidersilk gently rustling%^RESET%^.",ETO);
    return 1;
 }
 

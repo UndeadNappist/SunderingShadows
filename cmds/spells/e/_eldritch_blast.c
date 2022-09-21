@@ -212,8 +212,8 @@ void do_secondary(object victim) {
       case "binding":
         set_save("will");
         if(!do_save(victim,0)) {
-          tell_object(victim,"%^BOLD%^%^WHITE%^Your limbs sieze up as the blast impacts you!%^RESET%^");
-          tell_room(environment(victim),"%^BOLD%^%^WHITE%^"+victim->QCN+"'s limbs appear to sieze up as the blast impacts "+victim->QO+"!%^RESET%^",victim);
+          tell_object(victim,"%^BOLD%^%^WHITE%^Your limbs seize up as the blast impacts you!%^RESET%^");
+          tell_room(environment(victim),"%^BOLD%^%^WHITE%^"+victim->QCN+"'s limbs appear to seize up as the blast impacts "+victim->QO+"!%^RESET%^",victim);
           victim->set_paralyzed(((ROUND_LENGTH-1) * 2),"You can't get your body to move!"); // stunned, 1 round - paralyze is x/2+1 duration in seconds.
         }
       break;
