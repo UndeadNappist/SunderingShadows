@@ -49,7 +49,7 @@ int apply(string str)
         "%^BOLD%^%^RED%^bursts %^RESET%^%^RED%^into %^BOLD%^%^RED%^flame%^RESET%^%^RED%^!", ETO);
       target->set_property("oiled","damage bonus fire 5");
       target->remove_property("added short string");
-      target->set_property("added short string",({" %^RESET%^%^RED%^{{%^BOLD%^FLAMING%^RESET%^%^RED%^}}%^RESET%^"}));
+      target->set_property("added short string",({" %^RESET%^%^CRST%^%^C124%^{{%^C202%^w%^C208%^r%^C214%^e%^C220%^a%^C214%^t%^C208%^h%^C202%^e%^C196%^d %^C202%^i%^C208%^n %^C214%^f%^C220%^l%^C214%^a%^C208%^m%^C202%^e%^C124%^}}%^CRST%^"}));
       target->set_property("added short",target->query_property("added short string"));
 
     }

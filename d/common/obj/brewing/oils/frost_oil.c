@@ -51,7 +51,7 @@ int apply(string str) {
         "%^BOLD%^%^CYAN%^ices %^WHITE%^over!%^RESET%^", ETO);
       target->set_property("oiled","damage bonus cold 5");
       target->remove_property("added short string");
-      target->set_property("added short string",({" %^BOLD%^%^WHITE%^{{%^CYAN%^FROSTY%^WHITE%^}}%^RESET%^"}));
+      target->set_property("added short string",({" %^RESET%^%^CRST%^%^C253%^{%^C255%^{%^C069%^r%^C075%^i%^C081%^m%^C087%^e%^C123%^d %^C087%^i%^C081%^n %^C075%^h%^C069%^o%^C075%^a%^C081%^r%^C087%^f%^C123%^r%^C087%^o%^C081%^s%^C075%^t%^C255%^}%^C253%^}%^CRST%^"}));
       target->set_property("added short",target->query_property("added short string"));
 
     }
