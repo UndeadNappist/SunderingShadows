@@ -15,7 +15,7 @@ void create(){
    set_name("Commander Ashton");
    set_short("%^C069%^Ashton%^C067%^, %^C059%^Commander%^C067%^ of the city guard%^CRST%^");
    set_long("Ashton stands before you the very example of a %^C059%^seasoned military "+
-   "commander%^CRST%^. His figures are %^C074%^fine%^CRST%^ and %^C067%^handsome%^CRST%^ "+
+   "commander%^CRST%^. His figure is %^C074%^fine%^CRST%^ and %^C067%^handsome%^CRST%^ "+
    "but marred with enough scars to show that he has been in enough %^C124%^battles%^CRST%^ "+
    "to have earned his commission. His %^C238%^jet black hair%^CRST%^ is short cropped "+
    "and %^C081%^piercing blue eyes%^CRST%^ survey his surroundings with a keen eye. "+

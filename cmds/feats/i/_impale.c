@@ -253,7 +253,7 @@ void execute_attack()
         tell_object(target, "%^BOLD%^%^MAGENTA%^You sidestep " + caster->QCN + "'s attack at the "
                     "last instant, leaving " + caster->QO + " open to attack!%^RESET%^");
         tell_room(place, "%^BOLD%^%^MAGENTA%^" + target->QCN + " sidesteps " + caster->QCN + "'s attack "
-                  "at the last instant, leaving " + caster->QP + " open to attack!%^RESET%^", ({ caster, target }));
+                  "at the last instant, leaving " + caster->QO + " open to attack!%^RESET%^", ({ caster, target }));
         //caster->set_paralyzed(roll_dice(1, 6), "%^YELLOW%^You are trying to get back into "
         //                      "position!%^RESET%^");
         target->execute_attack();

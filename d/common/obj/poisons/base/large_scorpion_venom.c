@@ -30,7 +30,7 @@ int ProcessEffect(object vic, int WhichEffect, int DC)
 		return 0;			
 	}
 	tell_object(vic, "%^BOLD%^%^RED%^The "+TO->query_poison_name()+
-	" eats away are your "+TO->query_effect_type(WhichEffect)+"!%^RESET%^");
+	" eats away at your "+TO->query_effect_type(WhichEffect)+"!%^RESET%^");
 	
 	if((string)TO->query_effect_type(WhichEffect) == "life")
 	{
