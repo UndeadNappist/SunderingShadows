@@ -19,6 +19,7 @@ void create() {
     ::create();
     set_spell_name("sign of ill omen");
     set_spell_level(([ "warlock" : 3 ]));
+    set_heritage("astral");
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS sign of ill omen on TARGET");
     set_damage_desc("clevel / 8 to all skills, attack and damage bonus, caster level");
