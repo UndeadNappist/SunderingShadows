@@ -27,7 +27,7 @@ string* restricted_classes(string subrace)
         return ({ "paladin", "ranger", "psion", "psywarrior", "druid", "inquisitor" });
     }
     switch (subrace) {
-    case "svirfneblin": case "deep gnome": return ({ "paladin", "bard", "druid", "warlock", "inquisitor" }); break;
+    case "svirfneblin": case "deep gnome": return ({ "paladin", "druid", "inquisitor" }); break;
     case "forest gnome": return ({ "paladin", "psion", "psywarrior", "inquisitor" }); break;
     case "rock gnome": return ({ "paladin", "psion", "psywarrior", "inquisitor" }); break;
     case "trixie": return ({ "paladin", "psion", "psywarrior", "inquisitor" }); break;
