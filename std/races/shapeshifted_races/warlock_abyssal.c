@@ -9,7 +9,7 @@ void create()
 
     set_attack_limbs(({ "right hand", "left hand" }));
     set_limbs(({ "mouth", "head", "torso", "waist", "left arm", "left hand", "right arm", "right hand", "left leg", "left foot", "right leg", "right foot", "tail" }));
-    set_base_attack_num(4);
+    set_base_attack_num(5);
     set_ac_bonus(5);
     set_castable(1);
     set_can_talk(1);
@@ -18,8 +18,8 @@ void create()
     set_shape_bonus("athletics", 4);
     set_shape_bonus("endurance", 4);
 
-    set_shape_bonus("damage bonus",4);
-    set_shape_bonus("attack bonus",4);
+    set_shape_bonus("damage bonus",5);
+    set_shape_bonus("attack bonus",5);
     set_shape_bonus("spell resistance", 4);
     set_shape_bonus("damage resistance", 10);
     set_shape_bonus("spell damage resistance", 10);

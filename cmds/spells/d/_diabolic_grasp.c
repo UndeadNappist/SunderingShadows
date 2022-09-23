@@ -1,6 +1,3 @@
-// Modified by Pator@Shadowgate
-// August 25 1995
-
 #include <daemons.h>
 #include <spell.h>
 #include <magic.h>
@@ -49,17 +46,7 @@ void spell_effect(int prof) {
       TO->remove();
       return;
    }
-   /*
-    if (target->query_property("magic resistance")) {
-        if (target->query_property("magic resistance") < random(99) +1) {
-             tell_object(caster,"%^RESET%^%^CRST%^%^C100%^You feel your spell waver against "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ the power dispersing ineffectively.\n%^CRST%^");
-            tell_object(target,"%^RESET%^%^CRST%^%^C100%^You feel a strange power struggle against you before dispersing.\n%^CRST%^");
-            spell_kill(target,caster);
-            TO->remove();
-            return;
-        }
-    }
-    */
+
     if (target->query_size()<2) {
         tell_object(caster,"%^RESET%^%^CRST%^%^C100%^You feel your spell waver against "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ the power dispersing ineffectively.\n%^CRST%^");
         tell_object(target,"%^RESET%^%^CRST%^%^C100%^You feel a strange power struggle against you before dispersing.\n%^CRST%^");
@@ -68,13 +55,6 @@ void spell_effect(int prof) {
         return;
     }
     if(do_save(target,0)) {
-    /*if (SAVING_D->saving_throw(target,"paralyzation_poison_death",-4)||
-        ((string)target->query_race() == "half-elf" && random(100) < 30) ||
-         ((string)target->query_race() == "half-drow" && random(100) < 30) ||
-        ((string)target->query_race() == "beastman" && random(100) < 80) ||
-        ((string)target->query_race() == "firbolg" && random(100) < 15) ||
-        ((string)target->query_race() == "drow" && random(100) < 80) ||
-        ((string)target->query_race() == "elf" && random(100) < 90) ) {*/
         tell_object(caster,"%^RESET%^%^CRST%^%^C100%^You feel your spell waver against "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ the power dispersing ineffectively.\n%^CRST%^");
         tell_object(target,"%^RESET%^%^CRST%^%^C100%^You feel a strange power struggle against you before dispersing.\n%^CRST%^");
         spell_kill(target,caster);

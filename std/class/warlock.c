@@ -14,7 +14,7 @@ string *restricted_races() { // irrelevant, this is handled in the race files
     return ({  });
 }
 
-int is_locked_class() { return 1; }
+int is_locked_class() { return 0; }
 
 string *restricted_classes() { return ({ "psion","psywarrior",}); }
 

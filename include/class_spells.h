@@ -135,11 +135,11 @@ class_spell_storage =
     "abyssal":
         ({ "diabolic grasp", "fiendish vigor", "howl of doom", "thirsting maw", "soul theft", "harrowstorm" }),
     "astral":
-        ({ "awakened mind", "eye of the warlock", "frigid darkness", "thief of five fates", "dread star" }),
+        ({ "awakened mind", "eye of the warlock", "frigid darkness", "thief of five fates", "dread star", "sign of ill omen" }),
     "infernal":
         ({ "scorching ray", "flames of mephasm", "soul flaying", "hellfire", "hurl through hell", "hellfire shield" }),
     "gloom":
-        ({ "vampiric embrace", "whispers of the grave", "shadowform", "reanimate", "hungry darkness" }),
+        ({ "vampiric embrace", "whispers of the grave", "shadowform", "reanimate", "hungry darkness", "pull of the grave" }),
     "fey":
         ({ "mire the mind", "eyebite", "witchfire", "bewitching whispers", "mayhem", "thirsting tendrils" }),
         
