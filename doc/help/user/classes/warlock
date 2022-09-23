@@ -20,12 +20,16 @@
  %^RESET%^Also: one bonus pact feat at level 1, and every 3 levels thereafter
  %^RESET%^Also: one bonus hybrid feat at L21, and every five class levels thereafter
 
-A warlock is a being whose soul is suffused with perilous magic, whether by willing or unwilling means. They do not approach magic through the medium of spells, much as a mage or sorcerer might. Instead, they can invoke magic through simply an act of will, resulting in a limited but powerful array of magical aids, trickery, and powerful blasts of eldrich power. While these effects are not spells, as spell-like abilities they are subject to most of the same factors, and benefit from most of the same feats and other empowerments, unless otherwise specified. Given their simple somatic attributes, warlock invocations can be cast in light armor.
+A warlock is a being whose soul is suffused with dark and perilous magic. They do not approach magic through study or blood, as a mage or sorcerer might. Instead they enter eldritch pacts with powerful extraplanar beings who bestow the dark and arcane knowledge to weave their invocations through an act of will. While these pacts grant them access to a list of spells, their mainstays are eldritch blast, eldritch chain, and eldritch burst.
 
-Warlocks use the %^ORANGE%^<master>%^RESET%^ command to learn their invocations. Then they can just %^ORANGE%^<cast>%^RESET%^ any invocation they know at any time they want.
+Besides spells and invocations, the warlock also is granted a selection of invocation feats, which will inherently strengthen the warlock themselves or add traits to their eldritch blast spells.
+
+Warlocks operate on the soul burn mechanic. As they cast their eldritch blast spells, they gain soul burn, which will trade health for more power.See <help soul burn> for more information on this mechanic.
+
+Warlocks use the %^ORANGE%^<master>%^RESET%^ command to learn their spells. Then they can just %^ORANGE%^<cast>%^RESET%^ any spell they know at any time they want.
 
 Warlocks can cast in light armor, but they can't do so while wielding normal weapons. However, with pact invocation feats they can learn to cast while wielding.
 
-Warlocks have a degree of versatility and can take both martial and spellcasting paths. However, it should be noted that the best warlocks mix spellcraft with combat prowess to a greater effect. Their magic prowess is based on their charisma score.
+The warlock is a hybrid class and mixes combat prowess with spellcasting. For the best results, a warlock should utilize both of these aspects in tandem. Charisma is the warlock's casting stat.
 
-%^RESET%^%^CYAN%^See also: %^RESET%^ soul burn, spells, cast, buff, prepare, master, warlock heritages, prestige classes, new caster
+%^RESET%^%^CYAN%^See also: %^RESET%^ soul burn, spells, cast, master, warlock pacts, prestige classes, new caster
