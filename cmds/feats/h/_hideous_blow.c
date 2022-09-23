@@ -43,15 +43,7 @@ int prerequisites(object ob)
 
 int cmd_hideous_blow(string str)
 {
-    object feat, *weap;
-    
-    weap = this_player()->query_wielded();
-    
-    if(!sizeof(weap))
-    {
-        tell_object(this_player(), "You need a weapon wielded to use this feat.");
-        return 1;
-    }
+    object feat;
     
     feat = new(base_name(this_object()));
     feat->setup_feat(this_player(), str);
@@ -81,6 +73,12 @@ void execute_feat()
     if(!sizeof(weapons = caster->query_wielded()))
     {
         tell_object(caster, "You need a weapon to use hideous blow.");
+        dest_effect();
+        return;
+    }
+    if(caster->cooldown("hideous blow"))
+    {
+        tell_object(caster, "You aren't ready to use hideous blow yet.");
         dest_effect();
         return;
     }
@@ -155,6 +153,8 @@ void execute_attack()
         dest_effect();
         return;
     }
+    
+    caster->add_cooldown("hideous blow", COOLDOWN);
     
     roll = (int)BONUS_D->process_hit(caster, target, 1, 0, 0, 0);
     
