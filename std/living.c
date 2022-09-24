@@ -1996,7 +1996,7 @@ int query_attack_bonus()
     
     if(this_object()->is_class("warlock"))
     {
-        if(this_object()->query_property("eldritch strikes") && sizeof(weap) && attacker)
+        if(this_object()->query_property("eldritch strikes") && sizeof(weap))
         {
             object strikes;
         
