@@ -8,39 +8,29 @@ void create()
     ::create();
     feat_type("permanent");
     feat_category("RagePower");
-    feat_name("moon totem");
-    feat_prereq("Barbarian");
-    feat_desc("While raging, the barbarian gains the effects of darkvision. This feat is mutually exclusive with other totem rage powers.");
+    feat_name("penetrating bite");
+    feat_prereq("Animal Fury");
+    feat_desc("While raging, the barbarian's animal fury bite is able to bypass most resistances and damage reduction. This feat changes the animal fury bite into untyped damage instead piercing.");
     permanent(1);
 }
 
-int allow_shifted()
-{
-    return 1;
-}
+int allow_shifted() { return 1; }
 
 int prerequisites(object ob)
 {
-    if (!objectp(ob)) {
-        return 0;
-    }
-    if (!ob->is_class("barbarian")) {
-        dest_effect();
-        return 0;
-    }
-    
-    if(FEATS_D->has_feat(ob, "beast totem") || 
-    FEATS_D->has_feat(ob, "air totem") ||
-    FEATS_D->has_feat(ob, "celestial totem") ||
-    FEATS_D->has_feat(ob, "spire totem") ||
-    FEATS_D->has_feat(ob, "daemon totem") ||
-    FEATS_D->has_feat(ob, "ancestor totem") ||
-    FEATS_D->has_feat(ob, "spirit totem"))
+    if(!objectp(ob)) { return 0; }
+
+    if(!ob->is_class("barbarian"))
     {
         dest_effect();
         return 0;
     }
-       
+    if(!FEATS_D->usable_feat(ob, "animal fury"))
+    {
+        dest_effect();
+        return 0;
+    }
+    
     return ::prerequisites(ob);
 }
 

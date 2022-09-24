@@ -30,6 +30,7 @@ int prerequisites(object ob)
     }
     
     if(FEATS_D->has_feat(ob, "beast totem") || 
+    FEATS_D->has_feat(ob, "air totem") ||
     FEATS_D->has_feat(ob, "celestial totem") ||
     FEATS_D->has_feat(ob, "spire totem") ||
     FEATS_D->has_feat(ob, "daemon totem") ||

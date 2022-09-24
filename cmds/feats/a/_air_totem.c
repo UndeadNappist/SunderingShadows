@@ -8,9 +8,9 @@ void create()
     ::create();
     feat_type("permanent");
     feat_category("RagePower");
-    feat_name("daemon totem");
+    feat_name("air totem");
     feat_prereq("Barbarian");
-    feat_desc("While raging, the barbarian becomes emboldened by the death of his opponents. When he kills an opponent, he is healed for a small amount of health. This feat is mutually exclusive with other totem rage powers.");
+    feat_desc("While raging, the barbarian is lifted off the ground by a torrent of wind. They are considered flying as if affected by the air walk spell. This feat is mutually exclusive with other totem rage power feats.");
     permanent(1);
 }
 
@@ -29,11 +29,11 @@ int prerequisites(object ob)
         return 0;
     }
     
-    if(FEATS_D->has_feat(ob, "moon totem") ||
-    FEATS_D->has_feat(ob, "air totem") ||
+    if(FEATS_D->has_feat(ob, "moon totem") || 
+    FEATS_D->has_feat(ob, "beast totem") ||
     FEATS_D->has_feat(ob, "celestial totem") ||
     FEATS_D->has_feat(ob, "spire totem") ||
-    FEATS_D->has_feat(ob, "beast totem") ||
+    FEATS_D->has_feat(ob, "daemon totem") ||
     FEATS_D->has_feat(ob, "ancestor totem") ||
     FEATS_D->has_feat(ob, "spirit totem"))
     {
