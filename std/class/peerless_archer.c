@@ -37,7 +37,7 @@ int set_base_class(object obj, string choice)
     if (member_array(choice, classes) == -1) {
         return 0;
     }
-    if(member_array(choice,({"barbarian", "thief", "ranger", "fighter" })) == -1) { return 0; }
+    //if(member_array(choice,({"barbarian", "thief", "ranger", "fighter" })) == -1) { return 0; }
     obj->set("base_class", choice);
     return 1;
 }
@@ -110,7 +110,7 @@ string requirements() // string version, maybe we'll need this, maybe not, can r
 {
     string str;
     str = "Prerequisites:\n"
-        "    Level 20 Fighter, Thief, Barbarian or Ranger"
+        "    Level 20 in Base Class"
         "    20 Base Dexterity\n"
         "    10 Ranks spent in Athletics Skill\n"
         "    Wielding a bow\n"
