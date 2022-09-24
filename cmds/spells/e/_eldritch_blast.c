@@ -24,7 +24,7 @@ void create() {
 "pure planar energy and hurl it at a foe. As it is cast as a ray, it requires a successful ranged "
 "touch attack to hit, and is subject to the usual restrictions of spells and spell-like abilities "
 "(eg/ magic resistance). While initially unremarkable, an accomplished warlock can learn to reshape "
-"such a blast, or to imbue it with various essences.\nSee also: <help blasttype>.");
+"such a blast, or to imbue it with various essences.\nSee also: <help blasttype>, soul burn.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
