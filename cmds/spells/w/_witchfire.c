@@ -37,7 +37,7 @@ void heart_beat()
 string query_cast_string()
 {
     tell_object(caster,"%^CRST%^%^RESET%^%^C061%^You shatter a %^C059%^black seed%^C061%^ between your palms, releasing a %^C059%^n%^C060%^a%^C066%^c%^C065%^r%^C059%^e%^C060%^o%^C066%^u%^C065%^s %^C059%^c%^C060%^l%^C066%^o%^C065%^u%^C059%^d%^RESET%^%^C061%^ of %^C059%^dark spores%^C061%^.%^CRST%^");
-    tell_room(place,"%^CRST%^%^RESET%^%^C061%^"+caster-query_cap_name()+" shatters a %^C059%^black seed%^C061%^ between "+caster->query_possessive()+" palms, releasing a %^C059%^n%^C060%^a%^C066%^c%^C065%^r%^C059%^e%^C060%^o%^C066%^u%^C065%^s %^C059%^c%^C060%^l%^C066%^o%^C065%^u%^C059%^d%^RESET%^%^C061%^ of %^C059%^dark spores%^C061%^.%^CRST%^",caster);
+    tell_room(place,"%^CRST%^%^RESET%^%^C061%^" + caster->query_cap_name() + " shatters a %^C059%^black seed%^C061%^ between " + caster->query_possessive() + " palms, releasing a %^C059%^n%^C060%^a%^C066%^c%^C065%^r%^C059%^e%^C060%^o%^C066%^u%^C065%^s %^C059%^c%^C060%^l%^C066%^o%^C065%^u%^C059%^d%^RESET%^%^C061%^ of %^C059%^dark spores%^C061%^.%^CRST%^",caster);
     return "display";
 }
 
