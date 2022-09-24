@@ -340,7 +340,11 @@ void execute_attack()
             }
 
             dam = (roll_dice(1, 6) * (1 + flevel /  10)) + enchant;
-            caster->cause_typed_damage(target,target->return_target_limb(),dam ,"piercing");
+            
+            if(FEATS_D->usable_feat(caster, "penetrating bite"))
+                target->cause_typed_damage(target, target->return_target_limb(), dam, "untyped");
+            else
+                target->cause_typed_damage(target,target->return_target_limb(),dam ,"piercing");
         }
     }
 
