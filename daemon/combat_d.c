@@ -1196,7 +1196,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
 
         if(sizeof(att) && BONUS_D->process_hit(attacker, att[0], 0, weapon, 0, 0, 0));
         {
-            flvl = 1 + attacker->query_player_level() / 10;
+            flvl = 2 + attacker->query_player_level() / 8;
             flvl += (FEATS_D->usable_feat(attacker, "great cleave") * 2);
             cleave_dmg = flvl + roll_dice(flvl, 1 + weapon->query_wc());
             //cleave_dmg = (weapon->query_wc() + 2) * (1 + flvl / 10);
