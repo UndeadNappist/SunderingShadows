@@ -133,9 +133,10 @@ void execute_attack()
         dest_effect();
         return;
     }
+
+    caster->remove_property("using instant feat");
     
     ::execute_attack();
-    caster->remove_property("using instant feat");
     
     if(!target)
         target = caster->query_current_attacker();
