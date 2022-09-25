@@ -783,26 +783,29 @@ int query_resistance(string res)
     
     mylvl = this_object()->query_base_character_level();
     
-    if(strlen(mysubrace) && strsrch(mysubrace, "genasi") >= 0)
+    if(strlen(mysubrace))
     {
-        switch(mysubrace)
+        if(strsrch(mysubrace, "genasi") >= 0)
         {
-            case "air genasi":
-            if(res == "electricity")
-                myres += (mylvl / 2);
-            break;
-            case "fire genasi":
-            if(res == "fire")
-                myres += (mylvl / 2);
-            break;
-            case "water genasi":
-            if(res == "cold")
-                myres += (mylvl / 2);
-            break;
-            case "earth genasi":
-            if(res == "acid")
-                myres += (mylvl / 2);
-            break;
+            switch(mysubrace)
+            {
+                case "air genasi":
+                if(res == "electricity")
+                    myres += (mylvl / 2);
+                break;
+                case "fire genasi":
+                if(res == "fire")
+                    myres += (mylvl / 2);
+                break;
+                case "water genasi":
+                if(res == "cold")
+                    myres += (mylvl / 2);
+                break;
+                case "earth genasi":
+                if(res == "acid")
+                    myres += (mylvl / 2);
+                break;
+            }
         }
     }
 
