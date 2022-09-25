@@ -783,9 +783,9 @@ int query_resistance(string res)
     
     mylvl = this_object()->query_base_character_level();
     
-    if(strsrch(myrace, "genasi") >= 0)
+    if(strlen(mysubrace) && strsrch(mysubrace, "genasi") >= 0)
     {
-        switch(myrace)
+        switch(mysubrace)
         {
             case "air genasi":
             if(res == "electricity")
