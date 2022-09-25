@@ -46,7 +46,7 @@ void weapon_setup(object caster,int clevel)
     mychant = min( ({ 10, caster->query_base_character_level() / 5 }) );
     tier = 1 + mychant / 2;
     
-    set_size(caster->query_size());
+    //set_size(caster->query_size());
     set_property("enchantment", mychant);
     set_item_bonus("attack bonus", 1 + (mychant / 2));
     set_item_bonus("damage bonus", 1 + (mychant / 2));
