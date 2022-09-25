@@ -142,7 +142,8 @@ void execute_feat()
     }
     
     companion = caster->query_property("animal_companion");
-    pack = caster->query_protectors();
+    pack = caster->query_protectors() + caster->query_followers() + caster->query_property("pack animal");
+    pack = distinct_array(pack);
     pack = filter_array(pack, (: $1->query_pack_member() :));
 
     if(objectp(companion) || sizeof(pack))
@@ -164,6 +165,7 @@ void execute_feat()
             }
 
             pack = ({  });
+            caster->remove_property("pack animal");
         }
 
         return;
@@ -264,6 +266,7 @@ void execute_feat()
 
                 caster->add_follower(pack_animal);
                 caster->add_protector(pack_animal);
+                caster->add_property("pack animal", ({ pack_animal }));
 
                 pack_animal->set_property("minion", caster);
                 pack_animal->move(environment(caster));
