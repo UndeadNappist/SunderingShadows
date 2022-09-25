@@ -184,9 +184,9 @@ void create() {
 
     set_value(17600);
     set_property("no curse",1);
-    set_property("enchantment",5);
-    set_item_bonus("attack bonus",3);
-    set_item_bonus("damage bonus",3);
+    set_property("enchantment",7);
+    set_item_bonus("attack bonus",6);
+    set_item_bonus("damage bonus",6);
     set_item_bonus("sight bonus",3);
     set_weight(6);
     set_weapon_prof("exotic");
