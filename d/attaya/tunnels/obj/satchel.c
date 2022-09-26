@@ -19,9 +19,9 @@ void create()
     set_long((: TO, "long_desc" :));
     set_lore("You have heard something about satchels and other"
              + " containers of this sort prepared by the wiliest of arch"
-             + "-magi to aid them in quckly accessing their usable scrolls."
+             + "-magi to aid them in quickly accessing their usable scrolls."
              + " There's no way of knowing who made this one, but it does"
-             + " all look very well organised");
+             + " all look very well organized");
     set_property("lore difficulty", 25);
     set_value(1000);
     set_cointype("gold");
@@ -40,6 +40,8 @@ void init()
     add_action("check_index", "check");
     add_action("read_satchel", "read");
     add_action("order_scrolls", "order");
+    
+    call_out("check_scroll_index_count",1);
 }
 
 string long_desc()
@@ -103,14 +105,14 @@ int order_scrolls(string str)
 {
     if (str == "scrolls by level") {
         tell_object(TP, "You quickly sort the scrolls into sections according to their level");
-        tell_room(ETP, TPQCN + " quckly shuffles the contents of " + TP->QP + " satchel", TP);
+        tell_room(ETP, TPQCN + " quickly shuffles the contents of " + TP->QP + " satchel", TP);
         order_contents_alphabetically();
         order_contents_by_spell_level();
         return 1;
     }
     if (str == "scrolls alphabetically") {
-        tell_object(TP, "You quickly sort the scrolls into alpabetical order");
-        tell_room(ETP, TPQCN + " quckly shuffles the contents of " + TP->QP + " satchel", TP);
+        tell_object(TP, "You quickly sort the scrolls into alphabetical order");
+        tell_room(ETP, TPQCN + " quickly shuffles the contents of " + TP->QP + " satchel", TP);
         order_contents_alphabetically();
         return 1;
     }
@@ -323,3 +325,18 @@ void order_contents_by_spell_level()
         item->move(TO);
     }
 }
+
+void check_scroll_index_count(){
+    object player = this_player();
+    if(player && collapse_array(all_inventory(player)->is_scroll_index()) > 1){
+        tell_object(player, "%^RESET%^%^CRST%^%^B_RED%^%^BOLD%^%^YELLOW%^You have too many scroll index containers, the limit is one. Lower the amount held as soon as roleplay permits.%^RESET%^");
+        call_out("check_scroll_index_count", 30);
+        return;
+    }
+    remove_call_out("check_scroll_index_count");
+}
+
+int is_scroll_index(){
+    return 1;
+}
+

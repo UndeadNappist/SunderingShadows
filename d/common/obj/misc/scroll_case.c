@@ -42,7 +42,7 @@ void check_scroll_case_count(){
         call_out("check_scroll_case_count", 30);
         return;
     }
-    remove_call_out("check_sack_count");
+    remove_call_out("check_scroll_case_count");
 }
 
 int is_scrollcase(){
