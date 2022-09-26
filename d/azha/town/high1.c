@@ -42,7 +42,7 @@ AZHA
     ob->set_id( ({ "board", "azha board" }) );
     ob->set_board_id("union_board");
     ob->set_queue();
-    ob->set_max_posts(30);
+    ob->set_max_posts(50);
     ob->set_location("/d/azha/town/high1");
     ob->set("short", "Azha Arcane Board Board");
     ob->set("long", "Announcements from and about the Provincial "
