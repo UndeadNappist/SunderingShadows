@@ -135,7 +135,7 @@ mapping weight_values(string gender, int height)
 string *query_hair_colors(string subrace) {
     string *choices = ({});
     choices += ({"olive","crimson","silver","auburn"});
-    choices += ({"green", "brown","red","white"});
+    choices += ({"green", "brown","red","white","black"});
     return choices;
 }
 
