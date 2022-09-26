@@ -284,7 +284,7 @@ void introduce_task()
                     "explain a few more concepts to you. First off, as you explore the world you will "+
                     "encounter some areas that are considered quest areas.\n\n"+WE+" Also, our world is "+
                     "large, sometimes you will not see other players for spans of time, but there is a command "+
-                    "that can help you with.\n\n"+WE+" Finally, as you go into the world you will assume the "+
+                    "that can help you with that.\n\n"+WE+" Finally, as you go into the world you will assume the "+
                     "role of your character, its attributes, skills, and ambitions. You should leave "+
                     "those of your own behind.\n\n"+WE+" When you are ready to continue simply "+
                     "%^YELLOW%^explain quest areas%^RESET%^, %^YELLOW%^explain rumors%^RESET%^, and "+

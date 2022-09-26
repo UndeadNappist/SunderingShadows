@@ -15,7 +15,7 @@ void create() {
     set_long("%^BLUE%^Now you have come to the top of a cavern rift. "
 	"Cobble stepping stairs lead down the side of the rift from "
 	"here to a plateau one hundred feet below. Looking out from the "
-	"rift the scene of magnificant proportions unfolds. The cavern "
+	"rift the scene of magnificent proportions unfolds. The cavern "
 	"has widened into a huge underground hollowed out pocket. At the "
 	"bottom of the rift, in this massive cavern chamber, lies a "
 	"%^BOLD%^%^BLUE%^deep blue lake%^RESET%^%^BLUE%^. Found in the "
@@ -41,7 +41,7 @@ void create() {
 	"and appears quite cold and menacing.",
 	"city":"The city stretches across the island. You can see movement "
 	"within the city.",
-	"temple":"%^BOLD%^%^BLUE%^The temple is forboding looking and you get "
+	"temple":"%^BOLD%^%^BLUE%^The temple is foreboding looking and you get "
 	"the feeling that it watches you. It towers higher than any other "
 	"building in the city.%^RESET%^",
 	"island":"The island lies in the lake and you notice a bridge from the "

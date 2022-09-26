@@ -31,7 +31,7 @@ void create() {
 	"seems to provide the light source within the cavern tunnel.%^RESET%^",
 	"fog":"%^RED%^The fog fills the eastern tunnel. As you look at it "
 	"you hear a slight whisper emerge.%^RESET%^",
-	"skeleton":"The skeleton lays outstreched on the cavern floor. It's "
+	"skeleton":"The skeleton lays outstretched on the cavern floor. It's "
 	"left arm is laying in a manner that appears to be pointing to the "
    "north. It has a grin on its face and the skull stares to the east.",
 	"writing":"%^BLUE%^The writing reads: %^RED%^Help...it "

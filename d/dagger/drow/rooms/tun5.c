@@ -12,7 +12,7 @@ void create() {
     set_long(
 	"%^BLUE%^The tunnel continues to wind along here for about thirty "
 	"feet from the intersection. The %^MAGENTA%^lichen%^BLUE%^ is more "
-	"sparce here and is getting more difficult to see your way "
+	"sparse here and is getting more difficult to see your way "
 	"clearly. %^WHITE%^Cobwebs%^BLUE%^ hang from the ceiling and walls, "
 	"however many of them have been broken as though something disturbed "
 	"them while passing through.%^RESET%^"

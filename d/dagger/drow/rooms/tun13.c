@@ -14,7 +14,7 @@ void create() {
 	"make out your surroundings but can see it is about twenty feet "
 	"in diameter and is bare of any details. Your mind is spinning "
 	"from the constant bombardment of whispering coming to you in "
-	"unintelligble languages.\n%^BLUE%^You think you are losing "
+	"unintelligible languages.\n%^BLUE%^You think you are losing "
 	"your sanity bit by bit.%^RESET%^"
     );
     set_listen("default","The whispers scream into your mind.");

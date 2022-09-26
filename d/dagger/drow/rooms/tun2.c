@@ -13,7 +13,7 @@ void create() {
    "with its depth comes a deeper fear that causes chills to run "
 	"down your spine. Visions of the tunnel around you collapsing "
 	"fills your mind. The same %^MAGENTA%^lichen%^BLUE%^ "
-	"covers the walls here as before and still provides a sufficent "
+	"covers the walls here as before and still provides a sufficient "
 	"light source to see by. You paused at this point in the tunnel, "
 	"fifty more feet deeper than the last time you stopped, as ahead "
 	"the tunnel seems to widen into an intersection.%^RESET%^"

@@ -39,7 +39,7 @@ void spell_effect(int prof)
     
     if(!sizeof(foes))
     {
-        tell_object(caster, "There are no enemies here,");
+        tell_object(caster, "There are no enemies here.");
         return;
     }
     else {
