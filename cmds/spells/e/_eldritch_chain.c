@@ -169,6 +169,7 @@ void spell_effect(int prof) {
     for(i=0;i<sizeof(hits);i++) {
         tell_object(hits[i],"%^MAGENTA%^The blast of "+descriptor+" arcs to hit you!%^RESET%^");
         tell_room(place,"%^MAGENTA%^The blast of "+descriptor+" arcs to hit "+hits[i]->QCN+"!%^RESET%^",hits[i]);
+        spell_kill(hits[i], caster);
         if(hellfire)
         {
             damage_targ(target, target->return_target_limb(), roll_dice(10,6) + damage, "untyped");
