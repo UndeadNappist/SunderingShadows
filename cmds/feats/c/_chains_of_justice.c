@@ -12,7 +12,7 @@
 #include <std.h>
 #include <daemons.h>
 
-#define DELAY 180
+#define DELAY 120
 
 inherit FEAT;
 
