@@ -10,7 +10,7 @@ void create() {
     set_spell_sphere("abjuration");
     set_bonus_type("shield");
     set_syntax("cast CLASS shield");
-    set_description("This spell calls a protective shield into existance before the caster. It negates magic missiles, "
+    set_description("This spell calls a protective shield into existence before the caster. It negates magic missiles, "
 "and provides a small bonus to armor class for its duration. Use of a physical shield will interfere with the spell and "
 "cause it to fade.");
     set_verbal_comp();
