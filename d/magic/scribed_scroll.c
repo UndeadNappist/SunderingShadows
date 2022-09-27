@@ -6,7 +6,7 @@ inherit "/d/magic/scroll";
 
 void create(){
     ::create();
-     set_weight(2);
+     set_weight(1);
 }
 
 int query_value(){

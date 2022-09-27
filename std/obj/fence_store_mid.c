@@ -5,7 +5,7 @@
 inherit "std/room";
 
 #define FENCE_D "/daemon/fence_d"
-#define OKSCROLLS ({ "invisibility","glitterdust","clairvoyance","tongues","monster summoning vi","haste" })
+#define OKSCROLLS ({ "armor of darkness", "detect invisibility", "clairvoyance", "siphon magic", "haste", "alter self" })
 
 int flag;
 int save_contents() { return 1;}
@@ -54,8 +54,8 @@ void reset() {
             ob->move(TO);
         }
     }
-    for(i=0;i<12;i++) { // scroll time!
-        if(!present("safe scroll 12")){
+    for(i=0;i<18;i++) { // scroll time!
+        if(!present("safe scroll 18")){
             ob = new("/d/magic/safe_scroll");
             ob->set_spell_name(OKSCROLLS[random(sizeof(OKSCROLLS))]);
             ob->move(TO);
@@ -92,6 +92,11 @@ void reset() {
 
     if(!present("poison")) POISON_D->QueryPoisonObject("any", "injury")->move(TO);
     if(!present("poison 2")) POISON_D->QueryPoisonObject("any", "contact")->move(TO);
+    
+    if(!present("scroll index")){
+        ob = new("/d/common/obj/misc/scroll_index");
+        ob->move(TO);
+    }
 
     if(!present("playersettabletrapkit")) {
         i = 2 + random(2);
