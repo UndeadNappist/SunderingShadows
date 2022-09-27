@@ -39,8 +39,8 @@ void spell_effect(int prof) {
 
     if(member_array((string)caster->query_race(),PLAYER_D->night_races()) != -1) modifier = -10;
     else modifier = 8;
-    tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+"%^RESET%^%^C244%^'s %^RESET%^%^C241%^pupils %^RESET%^%^C244%^dilate, their %^RESET%^%^C240%^blackness %^RESET%^%^C251%^o%^C250%^v%^C249%^e%^C248%^r%^C247%^w%^C246%^h%^C245%^e%^C244%^l%^C243%^m%^C242%^i%^C241%^n%^C240%^g %^RESET%^%^C244%^all color in the irises.%^CRST%^",caster);
-    tell_object(caster,"%^RESET%^%^C244%^The %^RESET%^%^C022%^w%^C023%^o%^C024%^r%^C025%^l%^C026%^d %^RESET%^%^C244%^around you %^RESET%^%^C245%^d%^C244%^r%^C243%^a%^C242%^i%^C241%^n%^C240%^s %^RESET%^%^C244%^of color and snaps into %^RESET%^%^C051%^c%^C087%^r%^C123%^y%^C159%^s%^C195%^t%^C159%^a%^C123%^l%^C087%^l%^C051%^i%^C087%^n%^C123%^e %^RESET%^%^C159%^c%^C195%^l%^C159%^a%^C123%^r%^C087%^i%^C051%^t%^C087%^y%^RESET%^%^C244%^.%^RESET%^");
+    tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+"%^RESET%^%^C244%^'s %^RESET%^%^C241%^pupils %^RESET%^%^C244%^dilate, their %^RESET%^%^C240%^blackness %^RESET%^%^C251%^o%^C250%^v%^C249%^e%^C248%^r%^C247%^w%^C246%^h%^C245%^e%^C244%^l%^C243%^m%^C242%^i%^C241%^n%^C240%^g %^RESET%^%^C244%^all %^RESET%^%^C196%^c%^C208%^o%^C226%^l%^C118%^o%^C051%^r %^RESET%^%^C244%^in the irises.%^CRST%^",caster);
+    tell_object(caster,"%^RESET%^%^C244%^The %^RESET%^%^C038%^w%^C037%^o%^C036%^r%^C035%^l%^C034%^d %^RESET%^%^C244%^around you %^RESET%^%^C245%^d%^C244%^r%^C243%^a%^C242%^i%^C241%^n%^C240%^s %^RESET%^%^C244%^of %^RESET%^%^C196%^c%^C208%^o%^C226%^l%^C118%^o%^C051%^r %^RESET%^%^C244%^and snaps into %^RESET%^%^C051%^c%^C087%^r%^C123%^y%^C159%^s%^C195%^t%^C159%^a%^C123%^l%^C087%^l%^C051%^i%^C087%^n%^C123%^e %^RESET%^%^C159%^c%^C195%^l%^C159%^a%^C123%^r%^C087%^i%^C051%^t%^C087%^y%^RESET%^%^C244%^.%^RESET%^");
     addSpellToCaster();
     spell_successful();
     caster->add_sight_bonus(modifier);
@@ -50,8 +50,8 @@ void spell_effect(int prof) {
 
 void dest_effect() {
     if(objectp(caster)) {
-        tell_object(caster,"%^MAGENTA%^You blink, and the color drains back into your vision as it loses its clarity.");
-        tell_room(environment(caster),"%^MAGENTA%^"+caster->QCN+" blinks, and suddenly "+caster->QP+" eyes look normal again.%^RESET%^",caster);
+        tell_object(caster,"%^RESET%^%^C244%^You %^RESET%^%^C251%^b%^C252%^l%^C253%^i%^C252%^n%^C251%^k%^RESET%^%^C244%^ and the %^RESET%^%^C196%^c%^C208%^o%^C226%^l%^C118%^o%^C051%^r %^RESET%^%^C244%^floods back into your vision as it loses its %^RESET%^%^C087%^c%^C123%^l%^C159%^a%^C195%^r%^C159%^i%^C123%^t%^C087%^y%^RESET%^%^C244%^.");
+        tell_room(environment(caster),"%^RESET%^%^C244%^"+caster->QCN+" %^RESET%^%^C251%^b%^C252%^l%^C253%^i%^C252%^n%^C251%^k%^RESET%^%^C252%^s %^RESET%^%^C244%^and suddenly, %^RESET%^%^C244%^"+caster->QP+" %^RESET%^%^C244%^eyes look normal again.%^CRST%^",caster);
         caster->add_sight_bonus(-1*modifier);
         caster->remove_property("darkvision");
     }
