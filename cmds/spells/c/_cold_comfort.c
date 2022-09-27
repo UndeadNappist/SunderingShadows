@@ -51,7 +51,7 @@ int preSpell()
 
 string query_cast_string()
 {
-    return "%^BLACK%^BOLD%^" + sprintf("%s calls upon %s ancient and forbidden knowledge", caster->QCN, caster->query_possessive());
+    return "%^RESET%^%^CRST%^%^C038%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C038%^ calls upon "+caster->query_possessive()+" %^C030%^a%^C036%^n%^C045%^c%^C051%^i%^C045%^e%^C036%^n%^C030%^t %^RESET%^%^C038%^and %^C030%^f%^C036%^o%^C045%^r%^C051%^b%^C087%^i%^C051%^d%^C045%^d%^C036%^e%^C030%^n %^RESET%^%^C038%^knowledge.%^CRST%^";
 }
 
 void spell_effect(int prof)
@@ -61,8 +61,8 @@ void spell_effect(int prof)
     
     myname = caster->QCN;
   
-    tell_object(caster, "%^GREEN%^You place a hand upon yourself, enhancing your body with enhanced protection against heat and cold.");
-    tell_room(place, "%^GREEN%^" + sprintf("%s focuses on enhancing %s body with enhanced protection!", myname, caster->query_possessive()), ({ caster }));
+    tell_object(caster, "%^RESET%^%^CRST%^%^C038%^You place a hand upon yourself, enhancing your body with %^C030%^p%^C036%^r%^C045%^o%^C051%^t%^C087%^ec%^C051%^t%^C045%^i%^C036%^o%^C030%^n %^RESET%^%^C038%^against %^C124%^heat %^C038%^and %^C087%^cold%^C038%^.%^CRST%^");
+    tell_room(place, "%^RESET%^%^CRST%^%^C038%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C038%^ focuses on enhancing their body with %^C030%^p%^C036%^r%^C045%^o%^C051%^t%^C087%^ec%^C051%^t%^C045%^i%^C036%^o%^C030%^n%^RESET%^%^C038%^!%^CRST%^", caster);
 
     effect(1);
     spell_successful();
@@ -71,7 +71,7 @@ void spell_effect(int prof)
 
 void dest_effect()
 {
-    tell_object(caster, "%^CYAN%^Your protection from the elements seems to dissapate.");
+    tell_object(caster, "%^RESET%^%^CRST%^%^C038%^Your protection from the elements seems to %^C087%^d%^C051%^is%^C045%^si%^C036%^pa%^C030%^te%^C038%^.%^CRST%^");
     effect(-1);
     ::dest_effect();
     if(objectp(this_object()))
