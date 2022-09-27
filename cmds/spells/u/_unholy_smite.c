@@ -23,7 +23,7 @@ void create() {
 }
 
 string query_cast_string() {
-    return "%^BOLD%^%^BLUE%^"+caster->QCN+" proclaims a divine prayer of smiting.";
+    return "%^RESET%^%^C244%^"+caster->QCN+" %^RESET%^%^C244%^proclaims a %^RESET%^%^C240%^d%^C241%^i%^C242%^v%^C243%^i%^C241%^n%^C240%^e %^RESET%^%^C240%^p%^C241%^r%^C242%^a%^C243%^y%^C241%^e%^C240%^r %^RESET%^%^C244%^of %^RESET%^%^C088%^s%^C124%^m%^C160%^i%^C196%^t%^C160%^i%^C124%^n%^C088%^g%^RESET%^%^C244%^.%^CRST%^";
 }
 
 void spell_effect(int prof){
@@ -31,10 +31,10 @@ void spell_effect(int prof){
     int i,admg;
     attackers = target_selector();
 
-    tell_room(place,"%^BOLD%^%^CYAN%^"+caster->QCN+" raises hand and dark flames burst out of "+caster->QO+" in all directions!%^RESET%^");
+    tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+" %^RESET%^%^C244%^raises hand and %^RESET%^%^C240%^d%^C241%^a%^C241%^r%^C240%^k %^RESET%^%^C240%^f%^C241%^l%^C242%^a%^C243%^m%^C241%^e%^C240%^s %^RESET%^%^C244%^burst out of "+caster->QO+" %^RESET%^%^C244%^in all directions!%^CRST%^");
     if(!sizeof(attackers))
     {
-        tell_object(caster,"%^BOLD%^%^BLUE%^The area is washed with flames but nothing else happens.%^RESET%^");
+        tell_object(caster,"%^BOLD%^%^BLUE%^The area is blanketed with flames but nothing else happens.%^CRST%^");
         dest_effect();
         return;
     }
