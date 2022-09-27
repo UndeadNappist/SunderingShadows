@@ -20,8 +20,8 @@ void create() {
 }
 
 string query_cast_string() {
-    tell_object(caster,"%^MAGENTA%^Passing a hand over your eyes, you draw upon the shadowweave to shroud your vision.%^RESET%^");
-    tell_room(place,"%^MAGENTA%^"+caster->QCN+" passes a hand over "+caster->QP+" eyes and focuses intently.%^RESET%^",caster);
+    tell_object(caster,"%^RESET%^%^C244%^P%^C243%^a%^C242%^s%^C241%^s%^C242%^i%^C243%^n%^RESET%^%^C244%^g a hand %^RESET%^%^C241%^over %^RESET%^%^C244%^your eyes, you draw upon the %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C244%^o%^C243%^w %^RESET%^%^C242%^w%^C241%^e%^C240%^a%^C241%^v%^C242%^e %^RESET%^%^C244%^to %^RESET%^%^C240%^s%^C241%^h%^C242%^r%^C243%^o%^C241%^u%^C240%^d %^RESET%^%^C244%^your %^RESET%^%^C087%^v%^C123%^i%^C159%^s%^C195%^i%^C123%^o%^C087%^n%^RESET%^%^C244%^.%^CRST%^");
+    tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+" %^RESET%^%^C244%^p%^C243%^a%^C242%^s%^C241%^s%^C243%^e%^RESET%^%^C244%^s a hand %^RESET%^%^C241%^over %^RESET%^%^C244%^"+caster->QP+" %^RESET%^%^C244%^eyes and %^RESET%^%^C087%^f%^C123%^o%^C159%^c%^C195%^u%^C159%^s%^C123%^e%^C087%^s %^RESET%^%^C244%^intently.%^CRST%^",caster);
     return "display";
 }
 
@@ -39,8 +39,8 @@ void spell_effect(int prof) {
 
     if(member_array((string)caster->query_race(),PLAYER_D->night_races()) != -1) modifier = -10;
     else modifier = 8;
-    tell_room(place,"%^MAGENTA%^"+caster->QCN+"'s pupils dilate, their blackness overwhelming all color in the irises.%^RESET%^",caster);
-    tell_object(caster,"%^MAGENTA%^The world around you drains of color and snaps into crystalline clarity.%^RESET%^");
+    tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+"%^RESET%^%^C244%^'s %^RESET%^%^C241%^pupils %^RESET%^%^C244%^dilate, their %^RESET%^%^C240%^blackness %^RESET%^%^C251%^o%^C250%^v%^C249%^e%^C248%^r%^C247%^w%^C246%^h%^C245%^e%^C244%^l%^C243%^m%^C242%^i%^C241%^n%^C240%^g %^RESET%^%^C244%^all color in the irises.%^CRST%^",caster);
+    tell_object(caster,"%^RESET%^%^C244%^The %^RESET%^%^C022%^w%^C023%^o%^C024%^r%^C025%^l%^C026%^d %^RESET%^%^C244%^around you %^RESET%^%^C245%^d%^C244%^r%^C243%^a%^C242%^i%^C241%^n%^C240%^s %^RESET%^%^C244%^of color and snaps into %^RESET%^%^C051%^c%^C087%^r%^C123%^y%^C159%^s%^C195%^t%^C159%^a%^C123%^l%^C087%^l%^C051%^i%^C087%^n%^C123%^e %^RESET%^%^C159%^c%^C195%^l%^C159%^a%^C123%^r%^C087%^i%^C051%^t%^C087%^y%^RESET%^%^C244%^.%^RESET%^");
     addSpellToCaster();
     spell_successful();
     caster->add_sight_bonus(modifier);
