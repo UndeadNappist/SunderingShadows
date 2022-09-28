@@ -45,13 +45,13 @@ void spell_effect(int prof)
     int duration;
     duration = (ROUND_LENGTH * 10) * clevel;
 
-    tell_object(caster,"%^BOLD%^%^MAGENTA%^You feel fell powers power warding you from the good!");
-    tell_room(place,"%^BOLD%^%^MAGENTA%^"+caster->QCN+" is suddenly surrounded by halo of darkness!",caster);
+    tell_object(caster,"%^RESET%^%^C105%^You feel %^RESET%^%^C240%^f%^C241%^e%^C242%^l%^C243%^l %^RESET%^%^C244%^p%^C243%^o%^C242%^w%^C241%^e%^C240%^r%^C241%^s %^RESET%^%^C244%^warding you from the %^RESET%^%^C220%^g%^C226%^o%^C227%^o%^C220%^d%^RESET%^%^C105%^!%^CRST%^");
+    tell_room(place,"%^RESET%^%^C105%^"+caster->QCN+" %^RESET%^%^C105%^is suddenly surrounded by %^RESET%^%^C240%^halo of d%^C241%^a%^C242%^r%^C243%^k%^C244%^n%^C242%^e%^C241%^s%^C240%^s%^RESET%^%^C105%^!%^CRST%^",caster);
 
     caster->set_property("spelled", ({TO}));
     caster->set_property("nimbus",1);
     caster->set_property("protection from spells", 1);
-    caster->set_property("added short",({"%^BOLD%^%^BLACK%^ (in a fell halo)%^RESET%^"}));
+    caster->set_property("added short",({"%^RESET%^%^C240%^ (in a f%^RESET%^%^C241%^e%^C242%^l%^C243%^l %^RESET%^%^C244%^h%^C245%^a%^C243%^l%^C241%^o%^RESET%^%^C240%^)%^CRST%^"}));
     addSpellToCaster();
     spell_successful();
     caster->add_saving_bonus("all",4);
@@ -101,11 +101,11 @@ void execute_attack(){
     if(sizeof(attackers))
     {
         define_base_damage(0);
-        tell_room(place,"%^BOLD%^%^BLACK%^The unholy darkness around "+caster->QCN+" falls upon "+caster->QP+" enemies!",({caster,target}));
-        tell_object(caster,"%^BOLD%^%^BLACK%^The unholy darkness around you falls upon your enemies!");
+        tell_room(place,"%^RESET%^%^C105%^The %^RESET%^%^C240%^u%^C241%^n%^C242%^h%^C243%^o%^C241%^l%^C240%^y %^RESET%^%^C240%^d%^C241%^a%^C242%^r%^C243%^k%^C244%^n%^C242%^e%^C241%^s%^C240%^s a%^RESET%^%^C105%^round "+caster->QCN+" %^RESET%^%^C105%^falls upon "+caster->QP+" %^RESET%^%^C105%^enemies!",({caster,target}));
+        tell_object(caster,"%^RESET%^%^C105%^The %^RESET%^%^C240%^u%^C241%^n%^C242%^h%^C243%^o%^C241%^l%^C240%^y %^RESET%^%^C240%^d%^C241%^a%^C242%^r%^C243%^k%^C244%^n%^C242%^e%^C241%^s%^C240%^s %^RESET%^%^C105%^around you falls upon your enemies!%^CRST%^");
         for(i=0;i<sizeof(attackers);i++){
-            tell_object(attackers[i],"%^BOLD%^%^BLACK%^You are scorched by the unholy darkness as you strike "
-                        ""+caster->QCN+"!");
+            tell_object(attackers[i],"%^RESET%^%^C105%^You are %^RESET%^%^C052%^s%^C088%^c%^C124%^o%^C196%^r%^C160%^c%^C124%^h%^C088%^e%^C052%^d %^RESET%^%^C105%^by the %^RESET%^%^C240%^u%^C241%^n%^C242%^h%^C243%^o%^C241%^l%^C240%^y %^RESET%^%^C240%^d%^C241%^a%^C242%^r%^C243%^k%^C244%^n%^C242%^e%^C241%^s%^C240%^s %^RESET%^%^C105%^as you strike "
+                        ""+caster->QCN+"%^RESET%^%^C105%^!%^CRST%^");
             damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage,"divine");
         }
     }
@@ -117,12 +117,12 @@ void dest_effect()
     remove_call_out("room_check");
     if(objectp(caster))
     {
-        tell_object(caster,"%^RESET%^%^BOLD%^The halo around you fades.");
+        tell_object(caster,"%^RESET%^%^C105%^The %^RESET%^%^C240%^halo %^RESET%^%^C105%^around you fades.%^CRST%^");
         caster->remove_property("nimbus");
         caster->remove_property("protection from spells");
         caster->add_ac_bonus(-4);
         caster->add_saving_bonus("all",-4);
-	    caster->remove_property_value("added short",({"%^BOLD%^%^BLACK%^ (in a fell halo)%^RESET%^"}));
+	    caster->remove_property_value("added short",({"%^RESET%^%^C240%^ (in a f%^RESET%^%^C241%^e%^C242%^l%^C243%^l %^RESET%^%^C244%^h%^C245%^a%^C243%^l%^C241%^o%^RESET%^%^C240%^)%^CRST%^"}));
     }
     ::dest_effect();
     if(objectp(TO)) { TO->remove(); }
