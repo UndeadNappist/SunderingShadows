@@ -57,7 +57,7 @@ void spell_effect(int prof)
     inven -= ({ caster });
 
     if (!sizeof(inven)) {
-        tell_object(caster, "%^RESET%^%^C241%^From just beneath the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h %^RESET%^%^C241%^at your feet, you feel the shiver of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^as they find no target to ensnare, and simply %^RESET%^%^C240%^f%^C244%^a%^C248^d%^C252%^e %^RESET%^%^C241%^away.%^CRST%^");
+        tell_object(caster, "%^RESET%^%^C241%^From just beneath the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h %^RESET%^%^C241%^at your feet, you feel the shiver of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^as they find no target to ensnare, and simply %^RESET%^%^C240%^f%^C244%^a%^C248%^d%^C252%^e %^RESET%^%^C241%^away.%^CRST%^");
         dest_effect();
         return;
     }
