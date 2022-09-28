@@ -31,6 +31,7 @@ void create() {
    set_property("id difficulty",30);
    set_weight(0);
    set_limbs(({"head"}));
+   set_size(-1);
    set_ac(0);
    set_value(2000);
    set_type("clothing");
