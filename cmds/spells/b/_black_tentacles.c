@@ -89,11 +89,10 @@ void spell_effect(int prof)
             tell_object(inven[i], "%^RESET%^%^C241%^You stumble as one of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^almost knocks you from your feet!%^CRST%^");
 
             tell_room(place, "%^RESET%^%^C241%^" + inven[i]->QCN +
-                      " %^RESET%^%^C241%^stumbles as a %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e %^RESET%^%^C241%^knocks " + inven[i]->QO + " from " +
+                      " %^RESET%^%^C241%^stumbles as a %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e %^RESET%^%^C241%^knocks " + inven[i]->QO + " %^RESET%^%^C241%^from " +
                       inven[i]->QP + " %^RESET%^%^C241%^feet!%^CRST%^", inven[i]);
 
-            inven[i]->set_tripped(1, "%^BOLD%^%^CYAN%^You're regaining your " +
-                                  "balance!%^RESET%^", 1);
+            inven[i]->set_tripped(1, "%^RESET%^%^C241%^You're regaining your %^RESET%^%^C049%^b%^C050%^a%^C051%^l%^C123%^a%^C051%^n%^C050%^c%^C049%^e%^RESET%^%^C241%^!%^CRST%^", 1);
             continue;
         }
     }
