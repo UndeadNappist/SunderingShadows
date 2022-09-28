@@ -57,8 +57,7 @@ void spell_effect(int prof)
     inven -= ({ caster });
 
     if (!sizeof(inven)) {
-        tell_object(caster, "%^CYAN%^From just beneath the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h %^RESET%^%^C241%^at your feet, you feel the shiver of the tentacles as "
-                    "they find no target to ensnare, and simply fade away.%^RESET%^");
+        tell_object(caster, "%^RESET%^%^C241%^From just beneath the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h %^RESET%^%^C241%^at your feet, you feel the shiver of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^as they find no target to ensnare, and simply %^RESET%^%^C240%^f%^C244%^a%^C248^d%^C252%^e %^RESET%^%^C241%^away.%^CRST%^");
         dest_effect();
         return;
     }
@@ -66,9 +65,7 @@ void spell_effect(int prof)
     CASTER->set_property("black tentacles", 1);
     mydam = 4 + (clevel / 2);
 
-    tell_room(environment(caster), "%^BOLD%^%^BLUE%^Rubbery black tentacles " +
-              "writhe up out of the earth, coiling and "
-              "grasping at anything within reach!%^RESET%^");
+    tell_room(environment(caster), "%^RESET%^%^C240%^R%^C241%^u%^C242%^b%^C241%^b%^C240%^e%^C241%^r%^C242%^y %^RESET%^%^C241%^b%^C240%^l%^C241%^a%^C242%^c%^C241%^k %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^writhe up out of the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h%^RESET%^%^C241%^, coiling and grasping at anything within reach!%^RESET%^");
 
     for (i = 0; i < sizeof(inven); i++) {
         if (!objectp(inven[i])) {

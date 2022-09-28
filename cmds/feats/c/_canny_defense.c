@@ -8,14 +8,7 @@ void create() {
     feat_category("PrestigeDuelist");
     feat_name("canny defense");
     feat_prereq("Duelist L1");
-    feat_desc(""
-"It is said that knowing your self and knowing your enemy will lead "
-"to victory in a thousand battles. The duelist relies not only on the "
-"quickness of their arm, or the discipline of their form, but also on "
-"the sharpness of the mind to anticipate their opponents' moves. "
-"This feat adds your intelligence modifier to your passive armor class "
-"while wearing light or no armor and while not incapacitated. In addition "
-"the duelist gains +4 to their reflex saves.");
+    feat_desc("It is said that knowing your self and knowing your enemy will lead to victory in a thousand battles. The duelist relies not only on the quickness of their arm, or the discipline of their form, but also on the sharpness of the mind to anticipate their opponents' moves. This feat adds your intelligence modifier to your passive armor class while wearing light or no armor and while not incapacitated. In addition the duelist gains +4 to their reflex saves. Finally, the duelist gains the ability to parry ranged attacks, as if they had the deflect arrows feat.");
     permanent(1);
     set_required_for(({}));
 }
