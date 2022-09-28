@@ -76,22 +76,21 @@ void spell_effect(int prof)
             tell_object(inven[i], "%^RESET%^%^C241%^One manages to wrap about your leg and %^RESET%^%^C240%^e%^C241%^n%^C242%^s%^C243%^n%^C242%^a%^C241%^r%^C240%^e %^RESET%^%^C241%^you!%^CRST%^");
 
             tell_room(place, "%^RESET%^%^C241%^One manages to wrap about " +
-                      inven[i]->QCN + "'s leg and %^RESET%^%^C240%^e%^C241%^n%^C242%^s%^C243%^n%^C242%^a%^C241%^r%^C240%^e " +
-                      inven[i]->QO + "%^RESET%^%^C244%^!", inven[i]);
+                      inven[i]->QCN + "%^RESET%^%^C241%^'s leg and ensnare " +
+                      inven[i]->QO + "%^RESET%^%^C241%^!%^CRST%^", inven[i]);
 
             inven[i]->set_property("added short",
-                                   ({ "%^GREEN%^ (entangled)%^RESET%^%^CYAN%^" }));
+                                   ({ "%^RESET%^%^C241%^ (entangled)%^CRST%^" }));
             caught += ({ inven[i] });
             continue;
         }
         if (random((int)inven[i]->query_stats("dexterity") +
                    1) < roll_dice(1, 25) && random(2)) {
-            tell_object(inven[i], "%^CYAN%^You stumble as one of the " +
-                        "tentacles almost knocks you from your feet!");
+            tell_object(inven[i], "%^RESET%^%^C241%^You stumble as one of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^almost knocks you from your feet!%^CRST%^");
 
-            tell_room(place, "%^CYAN%^" + inven[i]->QCN +
-                      " stumbles as a tentacle knocks " + inven[i]->QO + " from " +
-                      inven[i]->QP + " feet!", inven[i]);
+            tell_room(place, "%^RESET%^%^C241%^" + inven[i]->QCN +
+                      " %^RESET%^%^C241%^stumbles as a %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e %^RESET%^%^C241%^knocks " + inven[i]->QO + " from " +
+                      inven[i]->QP + " %^RESET%^%^C241%^feet!%^CRST%^", inven[i]);
 
             inven[i]->set_tripped(1, "%^BOLD%^%^CYAN%^You're regaining your " +
                                   "balance!%^RESET%^", 1);
