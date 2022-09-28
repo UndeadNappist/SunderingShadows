@@ -34,7 +34,7 @@ void spell_effect(int prof){
     tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+" %^RESET%^%^C244%^raises hand and %^RESET%^%^C240%^d%^C241%^a%^C241%^r%^C240%^k %^RESET%^%^C240%^f%^C241%^l%^C242%^a%^C243%^m%^C241%^e%^C240%^s %^RESET%^%^C244%^burst out of "+caster->QO+" %^RESET%^%^C244%^in all directions!%^CRST%^");
     if(!sizeof(attackers))
     {
-        tell_object(caster,"%^BOLD%^%^BLUE%^The area is blanketed with flames but nothing else happens.%^CRST%^");
+        tell_object(caster,"%^RESET%^%^C244%^The area is blanketed with %^RESET%^%^C240%^d%^C241%^a%^C241%^r%^C240%^k %^RESET%^%^C240%^f%^C241%^l%^C242%^a%^C243%^m%^C241%^e%^C240%^s %^RESET%^%^C244%^but nothing else happens.%^CRST%^");
         dest_effect();
         return;
     }
@@ -53,10 +53,10 @@ void spell_effect(int prof){
         }
         else
         {
-            tell_object(attackers[i],"%^BOLD%^%^BLUE%^The darknes covers your eyes, blinding you!%^RESET%^");
+            tell_object(attackers[i],"%^RESET%^%^C244%^The %^RESET%^%^C240%^d%^C241%^a%^C242%^r%^C243%^k%^C244%^n%^C242%^e%^C241%^s%^C240%^s %^RESET%^%^C244%^covers your eyes, %^RESET%^%^C240%^blinding %^RESET%^%^C244%^you!%^CRST%^");
             attackers[i]->set_temporary_blinded(3);
         }
-        tell_object(attackers[i],"%^BOLD%^%^BLUE%^Your soul withers in the dark flames!%^RESET%^");
+        tell_object(attackers[i],"%^RESET%^%^C244%^Your %^RESET%^%^C051%^s%^C087%^ou%^C051%^l %^RESET%^%^C250%^w%^C248%^i%^C246%^t%^C244%^h%^C246%^e%^C248%^r%^C250%^s %^RESET%^%^C244%^in the %^RESET%^%^C240%^d%^C241%^a%^C241%^r%^C240%^k %^RESET%^%^C240%^f%^C241%^l%^C242%^a%^C243%^m%^C241%^e%^C240%^s%^RESET%^%^C244%^!%^CRST%^");
         damage_targ(attackers[i],attackers[i]->return_target_limb(),admg,"divine");
     }
     spell_successful();
