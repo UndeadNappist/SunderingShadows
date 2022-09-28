@@ -74,7 +74,7 @@ void spell_effect(int prof)
         }else {
             "/std/effect/status/cowering"->apply_effect(attackers[i], clevel / 18 + 1);
         }
-        tell_object(attackers[i], "%^RESET%^%^C244%^Your %^RESET%^%^C087%^m%^C123%^i%^C195%^n%^C087%^d %^RESET%^%^C244%^is filled with images of %^RESET%^%^C088%^s%^C124%^u%^C160%^f%^C196%^f%^C160%^e%^C124%^r%^C088%^i%^C124%^n%^C160%^g and horror%^RESET%^%^C244%^!%^CRST%^");
+        tell_object(attackers[i], "%^RESET%^%^C244%^Your %^RESET%^%^C087%^m%^C123%^i%^C195%^n%^C087%^d %^RESET%^%^C244%^is filled with images of %^RESET%^%^C088%^s%^C124%^u%^C160%^f%^C196%^f%^C160%^e%^C124%^r%^C088%^i%^C124%^n%^C160%^g %^RESET%^%^C244%^and %^RESET%^%^C052%^h%^C053%^o%^C054%^r%^C055%^r%^C053%^o%^C052%^r%^RESET%^%^C244%^!%^CRST%^");
         damage_targ(attackers[i], attackers[i]->return_target_limb(), admg, "mental");
     }
     spell_successful();
