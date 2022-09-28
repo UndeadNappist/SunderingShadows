@@ -75,8 +75,8 @@ void execute_attack()
           damage_targ(targ,limb,sdamage/2,"acid");
         }
         else {
-          tell_object(targ,"%^RESET%^%^CRST%^%^C065%^Unable to keep your footing, you %^C064%^slip %^C065%^in the %^C142%^m%^C136%^u%^130%^d%^C065%^!%^CRST%^");
-          tell_room(place,"%^RESET%^%^CRST%^%^C065%^Unable to keep balance, "+targ->query_cap_name()+"%^RESET%^%^CRST%^%^C065%^ %^C064%^slips %^C065%^in the %^C142%^m%^C136%^u%^130%^d%^C065%^!%^CRST%^",({targ}));
+          tell_object(targ,"%^RESET%^%^CRST%^%^C065%^Unable to keep your footing, you %^C064%^slip %^C065%^in the %^C142%^m%^C136%^u%^C130%^d%^C065%^!%^CRST%^");
+          tell_room(place,"%^RESET%^%^CRST%^%^C065%^Unable to keep balance, "+targ->query_cap_name()+"%^RESET%^%^CRST%^%^C065%^ %^C064%^slips %^C065%^in the %^C142%^m%^C136%^u%^C130%^d%^C065%^!%^CRST%^",({targ}));
           targ->set_temporary_blinded(1);
           targ->set_tripped(1,"%^RESET%^%^CRST%^%^C065%^You are struggling to regain your footing!%^CRST%^",4);
           damage_targ(targ,limb,sdamage,"acid");
