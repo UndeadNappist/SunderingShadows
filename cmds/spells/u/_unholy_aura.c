@@ -25,16 +25,16 @@ int preSpell()
 {
     int align = caster->query_true_align();
     if (caster->query_property("nimbus")) {
-        tell_object(caster, "You are still affected by shield of law or another nimbus spell.");
+        tell_object(caster, "%^RESET%^%^C105%^You are still affected by shield of law or another nimbus spell.%^CRST%^");
         return 0;
     }
     if(caster->query_property("protection from spells"))
     {
-        tell_object(caster, "You are already affected by similar magic.");
+        tell_object(caster, "%^RESET%^%^C105%^You are already affected by similar magic.%^CRST%^");
         return 0;
     }
     if (!(align == 3 || align == 6 || align == 9)) {
-        tell_object(caster, "You are of improper alignment to use this spell!");
+        tell_object(caster, "%^RESET%^%^C105%^You are of an improper alignment to use this spell!%^CRST%^");
         return 0;
     }
     return 1;

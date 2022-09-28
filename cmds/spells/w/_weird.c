@@ -16,7 +16,7 @@ void create()
     set_spell_sphere("illusion");
     set_syntax("cast CLASS weird");
     set_damage_desc("mental damage, phantasmal killer, and cowering on failed save");
-    set_description("With this spell, the caster extends fears and horrors from their own mind into the material plane, causing pain and suffering to everything in sight. The phantasmal killer spell is cast on all enemies and their minds assaulted with visions of horror. Only a strong will can withstand this power, and even then will only avoid some of the suffering.");
+    set_description("With this spell, the caster projects fears and horrors from their own mind into the material plane, causing pain and suffering to everything in sight. The phantasmal killer spell is cast on all enemies and their minds assaulted with visions of horror. Only a strong will can withstand this power, and even then will only avoid some of the suffering.");
     set_verbal_comp();
     set_somatic_comp();
     splash_spell(3);
@@ -25,7 +25,7 @@ void create()
 
 string query_cast_string()
 {
-    return "%^CYAN%^" + caster->QCN + " speaks words of arcane horror.";
+    return "%^RESET^%^C244%^" + caster->QCN + " %^RESET%^%^C244%^speaks words of %^RESET%^%^C052%^a%^C053%^r%^C054%^c%^C055%^a%^C053%^n%^C052%^e %^RESET%^%^C052%^h%^C053%^o%^C054%^r%^C055%^r%^C053%^o%^C052%^r%^RESET%^%^C244%^.%^CRST%^";
 }
 
 int preSpell()
@@ -36,7 +36,7 @@ int preSpell()
     
     if(!sizeof(enemies))
     {
-        tell_object(caster, "You aren't fighting anyone.");
+        tell_object(caster, "%^RESET%^%^C244%^You aren't fighting anyone.%^CRST%^");
         return 0;
     }
     
@@ -57,9 +57,9 @@ void spell_effect(int prof)
     int i, admg;
     attackers = target_selector();
 
-    tell_room(place, "%^BOLD%^%^BLUE%^" + caster->QCN + " raises " + caster->QP + " hands and releases waves of horrific images!%^RESET%^");
+    tell_room(place, "%^RESET%^%^C244%^" + caster->QCN + " %^RESET%^%^C244%^raises " + caster->QP + " %^RESET%^%^C244%^hands and releases waves of %^RESET%^%^C052%^h%^C053%^o%^C054%^r%^C055%^r%^C056%^i%^C054%^f%^C053%^i%^C052%^c %^RESET%^%^C052%^i%^C053%^m%^C054%^a%^C055%^g%^C053%^e%^C052%^s%^RESET%^%^C244%^!%^RESET%^");
     if (!sizeof(attackers)) {
-        tell_object(caster, "%^BOLD%^%^BLUE%^The place is filled with images of horrors, but nothing happens.%^RESET%^");
+        tell_object(caster, "%^RESET%^%^C244%^The area is filled with images of unspeakable %^RESET%^%^C052%^h%^C053%^o%^C054%^r%^C055%^r%^C053%^o%^C052%^r%^RESET%^%^C244%^, but nothing happens.%^CRST%^");
         dest_effect();
         return;
     }
@@ -74,7 +74,7 @@ void spell_effect(int prof)
         }else {
             "/std/effect/status/cowering"->apply_effect(attackers[i], clevel / 18 + 1);
         }
-        tell_object(attackers[i], "%^CYAN%^%^BOLD%^Your mind is filled with images of suffering!%^RESET%^");
+        tell_object(attackers[i], "%^RESET%^%^C244%^Your %^RESET%^%^C087%^m%^C123%^i%^C195%^n%^C087%^d %^RESET%^%^C244%^is filled with images of %^RESET%^%^C088%^s%^C124%^u%^C160%^f%^C196%^f%^C160%^e%^C124%^r%^C088%^i%^C124%^n%^C160%^g and horror%^RESET%^%^C244%^!%^CRST%^");
         damage_targ(attackers[i], attackers[i]->return_target_limb(), admg, "mental");
     }
     spell_successful();
