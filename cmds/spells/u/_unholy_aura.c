@@ -45,7 +45,7 @@ void spell_effect(int prof)
     int duration;
     duration = (ROUND_LENGTH * 10) * clevel;
 
-    tell_object(caster,"%^RESET%^%^C105%^You feel %^RESET%^%^C240%^f%^C241%^e%^C242%^l%^C243%^l %^RESET%^%^C244%^p%^C243%^o%^C242%^w%^C241%^e%^C240%^r%^C241%^s %^RESET%^%^C244%^warding you from the %^RESET%^%^C220%^g%^C226%^o%^C227%^o%^C220%^d%^RESET%^%^C105%^!%^CRST%^");
+    tell_object(caster,"%^RESET%^%^C105%^You feel %^RESET%^%^C240%^f%^C241%^e%^C242%^l%^C243%^l %^RESET%^%^C244%^p%^C243%^o%^C242%^w%^C241%^e%^C240%^r%^C241%^s %^RESET%^%^C105%^warding you from the %^RESET%^%^C220%^g%^C226%^o%^C227%^o%^C220%^d%^RESET%^%^C105%^!%^CRST%^");
     tell_room(place,"%^RESET%^%^C105%^"+caster->QCN+" %^RESET%^%^C105%^is suddenly surrounded by %^RESET%^%^C240%^halo of d%^C241%^a%^C242%^r%^C243%^k%^C244%^n%^C242%^e%^C241%^s%^C240%^s%^RESET%^%^C105%^!%^CRST%^",caster);
 
     caster->set_property("spelled", ({TO}));
