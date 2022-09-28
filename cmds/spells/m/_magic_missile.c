@@ -28,7 +28,7 @@ create()
 
 string query_cast_string()
 {
-    return "%^CYAN%^" + caster->query_cap_name() + " draws an arcane symbol in the air and a glowing dart begins to form.";
+    return "%^RESET%^%^CRST%^%^C032%^"+caster->query_cap_name()+" draws an %^C039%^a%^C045%^r%^C051%^ca%^C045%^n%^C039%^e s%^C045%^y%^C051%^mb%^C045%^o%^C039%^l %^C032%^in the air and a %^C220%^gl%^C226%^owi%^C220%^ng d%^C226%^ar%^C220%^t %^RESET%^%^C032%^begins to form.%^CRST%^";
 }
 
 void spell_effect(int prof)
@@ -64,8 +64,8 @@ void spell_effect(int prof)
     else if(num > sizeof(victims))
         multi = 1;
     
-    miss_str = multi ? "missiles" : "missile";
-    verb_str = multi ? "slam" : "slams";
+    miss_str = multi ? "%^C220%^mi%^C226%^ssil%^C220%^es%^C032%^" : "%^C220%^mi%^C226%^ssi%^C220%^le%^C032%^";
+    verb_str = multi ? "%^C020%^slam%^C032%^" : "%^C020%^slams%^C032%^";
 
     c_name = caster->query_cap_name();
     
@@ -77,8 +77,8 @@ void spell_effect(int prof)
     
     //tell_object(caster, "Damage per dart : " + sdamage);
     
-    tell_object(caster, "%^YELLOW%^" + sprintf("You motion with your hands and %smagical %s %s towards your %s.", num > 1 ? "" : "a ", num > 1 ? "missiles" : "missile", num > 1 ? "speed" : "speeds", sizeof(victims) > 1 ? "targets" : "target"));
-    tell_room(caster, "%^YELLOW%^" + sprintf("%s motions with %s hands and %smagical %s %s towards %s %s.", c_name, caster->query_possessive(), num > 1 ? "" : "a ", miss_str, multi ? "speed" : "speeds", caster->query_possessive(), multi ? "targets" : "target"), ({ caster }));
+    tell_object(caster, "%^RESET%^%^CRST%^%^C032%^" + sprintf("You motion with your hands and %smagical %s %s towards your %s.", num > 1 ? "" : "a ", num > 1 ? "missiles" : "missile", num > 1 ? "%^C032%^speed" : "%^C032%^speeds", sizeof(victims) > 1 ? "targets" : "target") + "%^CRST%^");
+    tell_room(caster, "%^RESET%^%^CRST%^%^C032%^" + sprintf("%s motions with %s hands and %smagical %s %s towards %s %s.", c_name, caster->query_possessive(), num > 1 ? "" : "a ", miss_str, multi ? "%^C032%^speed" : "%^C032%^speeds", caster->query_possessive(), multi ? "targets" : "target") + "%^CRST%^", ({ caster }));
     
     foreach(object ob in victims)
     {
@@ -92,18 +92,18 @@ void spell_effect(int prof)
         
         if(objectp(ob) && ob->query_property("spell shield"))
         {
-            tell_object(caster, "%^BOLD%^Your missile is absorbed by " + ob->query_cap_name() + "'s magical shield!");
-            tell_object(ob, "%^BOLD%^The missile is absorbed by your magical shield!");
-            tell_room(place, "%^BOLD%^The missile is absorbed by " + ob->query_cap_name() + "'s magical shield!", ob);
+            tell_object(caster, "%^RESET%^%^CRST%^%^C051%^Your missile is absorbed by "+ob->query_cap_name()+"%^RESET%^%^CRST%^%^C051%^'s magical shield!%^CRST%^");
+            tell_object(ob, "%^RESET%^%^CRST%^%^C051%^The missile is absorbed by your magical shield!%^CRST%^");
+            tell_room(place, "%^RESET%^%^CRST%^%^C051%^The missile is absorbed by "+ob->query_cap_name()+"%^RESET%^%^CRST%^%^C051%^'s magical shield!%^CRST%^", ob);
             continue;
         }
         
         if(!objectp(ob) || !objectp(caster))
             continue;
         
-        tell_object(caster, "%^BOLD%^%^CYAN%^" + sprintf("Your %s %s into %s with arcane force!", miss_str, verb_str, ob->query_cap_name()));
-        tell_object(ob, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into you with arcane force!", miss_str, verb_str));
-        tell_room(place, "%^BOLD%^%^CYAN%^" + sprintf("The %s %s into %s with arcane force!", miss_str, verb_str, ob->query_cap_name()), ({ ob, caster }));
+        tell_object(caster, "%^RESET%^%^CRST%^%^C032%^" + sprintf("Your %s %s into %s with arcane force!", miss_str, verb_str, ob->query_cap_name() + "%^RESET%^%^CRST%^%^C032%^") + "%^CRST%^");
+        tell_object(ob, "%^RESET%^%^CRST%^%^C032%^" + sprintf("The %s %s into you with arcane force!", miss_str, verb_str) + "%^CRST%^");
+        tell_room(place, "%^RESET%^%^CRST%^%^C032%^" + sprintf("The %s %s into %s with arcane force!%^CRST%^", miss_str, verb_str, ob->query_cap_name() + "%^RESET%^%^CRST%^%^C032%^") + "%^CRST%^", ({ ob, caster }));
         //tell_object(caster, "Total damage : " + ((sdamage * num) / sizeof(victims)));
         ob->cause_typed_damage(ob, "torso", sdamage / sizeof(victims), "force");
     }
