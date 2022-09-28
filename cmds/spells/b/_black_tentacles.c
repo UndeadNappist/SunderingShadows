@@ -35,7 +35,7 @@ void create()
 int preSpell()
 {
     if ((int)CASTER->query_property("black tentacles")) {
-        tell_object(CASTER, "%^CYAN%^You are already maintaining such a spell!%^RESET%^");
+        tell_object(CASTER, "%^RESET%^%^C241%^You are already maintaining such a spell!%^CRST%^");
         return 0;
     }
     return 1;
@@ -43,10 +43,8 @@ int preSpell()
 
 string query_cast_string()
 {
-    tell_object(caster, "%^BLUE%^You kneel down, whispering your " +
-                "summons through the earth.%^RESET%^");
-    tell_room(place, "%^BLUE%^Kneeling, " + caster->QCN + " whispers a summoning " +
-              "through the earth.%^RESET%^", caster);
+    tell_object(caster, "%^RESET%^%^C241%^You kneel down, %^RESET%^%^C039%^w%^C045%^h%^C051%^i%^C087%^s%^C123%^p%^C159%^e%^C087%^r%^C051%^i%^C045%^n%^C039%^g %^RESET%^%^C241%^your summons through the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h%^RESET%^%^C241%^.%^CRST%^");
+    tell_room(place, "%^RESET%^%^C241%^Kneeling, " + caster->QCN + " %^RESET%^%^C051%^w%^C087%^h%^C123%^i%^C159%^s%^C195%^p%^C123%^e%^C087%^r%^C051%^s %^RESET%^%^C241%^a summoning through the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h%^RESET%^%^C241%^.%^RESET%^", caster);
     return "display";
 }
 
@@ -59,8 +57,7 @@ void spell_effect(int prof)
     inven -= ({ caster });
 
     if (!sizeof(inven)) {
-        tell_object(caster, "%^CYAN%^From just beneath the earth " +
-                    "at your feet, you feel the shiver of the tentacles as "
+        tell_object(caster, "%^CYAN%^From just beneath the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h %^RESET%^%^C241%^at your feet, you feel the shiver of the tentacles as "
                     "they find no target to ensnare, and simply fade away.%^RESET%^");
         dest_effect();
         return;
