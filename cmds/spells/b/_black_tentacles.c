@@ -65,7 +65,7 @@ void spell_effect(int prof)
     CASTER->set_property("black tentacles", 1);
     mydam = 4 + (clevel / 2);
 
-    tell_room(environment(caster), "%^RESET%^%^C240%^R%^C241%^u%^C242%^b%^C241%^b%^C240%^e%^C241%^r%^C242%^y %^RESET%^%^C241%^b%^C240%^l%^C241%^a%^C242%^c%^C241%^k %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^writhe up out of the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h%^RESET%^%^C241%^, coiling and grasping at anything within reach!%^RESET%^");
+    tell_room(environment(caster), "%^RESET%^%^C240%^R%^C241%^u%^C242%^b%^C241%^b%^C240%^e%^C241%^r%^C242%^y %^RESET%^%^C241%^b%^C240%^l%^C241%^a%^C242%^c%^C241%^k %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^writhe up out of the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h%^RESET%^%^C241%^, coiling and grasping at anything within reach!%^CRST%^");
 
     for (i = 0; i < sizeof(inven); i++) {
         if (!objectp(inven[i])) {
@@ -73,12 +73,11 @@ void spell_effect(int prof)
         }
         if (random((int)inven[i]->query_stats("strength") +
                    roll_dice(1, 20)) < random(clevel + 8)) {
-            tell_object(inven[i], "%^CYAN%^One manages to wrap about your " +
-                        "leg and ensnare you!");
+            tell_object(inven[i], "%^RESET%^%^C241%^One manages to wrap about your leg and %^RESET%^%^C240%^e%^C241%^n%^C242%^s%^C243%^n%^C242%^a%^C241%^r%^C240%^e %^RESET%^%^C241%^you!%^CRST%^");
 
-            tell_room(place, "%^CYAN%^One manages to wrap about " +
-                      inven[i]->QCN + "'s leg and ensnare " +
-                      inven[i]->QO + "!", inven[i]);
+            tell_room(place, "%^RESET%^%^C241%^One manages to wrap about " +
+                      inven[i]->QCN + "'s leg and %^RESET%^%^C240%^e%^C241%^n%^C242%^s%^C243%^n%^C242%^a%^C241%^r%^C240%^e " +
+                      inven[i]->QO + "%^RESET%^%^C244%^!", inven[i]);
 
             inven[i]->set_property("added short",
                                    ({ "%^GREEN%^ (entangled)%^RESET%^%^CYAN%^" }));
