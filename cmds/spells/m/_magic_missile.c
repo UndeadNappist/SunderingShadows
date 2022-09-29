@@ -103,7 +103,7 @@ void spell_effect(int prof)
         
         tell_object(caster, "%^RESET%^%^CRST%^%^C032%^" + sprintf("Your %s %s into %s with arcane force!", miss_str, verb_str, ob->query_cap_name() + "%^RESET%^%^CRST%^%^C032%^") + "%^CRST%^");
         tell_object(ob, "%^RESET%^%^CRST%^%^C032%^" + sprintf("The %s %s into you with arcane force!", miss_str, verb_str) + "%^CRST%^");
-        tell_room(place, "%^RESET%^%^CRST%^%^C032%^" + sprintf("The %s %s into %s with arcane force!%^CRST%^", miss_str, verb_str, ob->query_cap_name() + "%^RESET%^%^CRST%^%^C032%^") + "%^CRST%^", ({ ob, caster }));
+        tell_room(place, "%^RESET%^%^CRST%^%^C032%^" + sprintf("The %s %s into %s with arcane force!", miss_str, verb_str, ob->query_cap_name() + "%^RESET%^%^CRST%^%^C032%^") + "%^CRST%^", ({ ob, caster }));
         //tell_object(caster, "Total damage : " + ((sdamage * num) / sizeof(victims)));
         ob->cause_typed_damage(ob, "torso", sdamage / sizeof(victims), "force");
     }
