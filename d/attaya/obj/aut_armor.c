@@ -72,7 +72,7 @@ void heart_beat(){
 					 "outbursts.  %^RESET%^%^RED%^You feel as "+
 					 "if something terrible has happened to you...%^RESET%^");
                   ETO->set_alignment(9);
-                  KILLING_D->check_align(ETO);
+                  //KILLING_D->check_align(ETO);
 			      //KILLING_D->check_bounty(ETO);
 			   }			   
 			}
