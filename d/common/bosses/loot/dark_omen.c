@@ -11,7 +11,7 @@
 #include <std.h>
 #include <daemons.h>
 
-inherit "/d/common/obj/armour/ring.c";
+inherit "/d/common/obj/jewelry/ring.c";
 
 string owner;
 

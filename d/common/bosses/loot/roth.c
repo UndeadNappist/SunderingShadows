@@ -205,6 +205,7 @@ void set_counter(int num) {
 }
 
 string query_owner() { return OWNER; }
+string set_owner(object ob) { OWNER = ob->query_true_name(); return OWNER; }
 
 void init(){
     ::init();
@@ -313,10 +314,10 @@ int extra_wield() {
         TO->move(EETO);
         return 0;
     }
-   if(ETO->query_property("master weapon")) { //preventing stack up with other "top" weapons
-     tell_object(ETO,"You find it impossible to lift two such mighty weapons!",ETO);
-     return 0;
-   }
+   //if(ETO->query_property("master weapon")) { //preventing stack up with other "top" weapons
+   //  tell_object(ETO,"You find it impossible to lift two such mighty weapons!",ETO);
+   //  return 0;
+   //}
 
     tell_object(ETO,"%^BOLD%^%^WHITE%^You feel the %^RED%^e%^RESET%^%^RED%^ss%^BOLD%^%^RED%^ence%^WHITE%^ of a "
         "%^BOLD%^%^BLACK%^ch%^RESET%^%^MAGENTA%^ao%^BOLD%^%^BLACK%^tic%^WHITE%^ "
