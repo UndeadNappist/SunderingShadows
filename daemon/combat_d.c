@@ -214,7 +214,7 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
                     tell_room(env, "%^RESET%^%^BOLD%^" + v_name + " deflects the attack with " + v_poss + " shield!%^RESET%^", ({ defender }));
                 }
             }
-            if (FEATS_D->usable_feat(victim, "counter")) {
+            if (FEATS_D->usable_feat(victim, "counter") || (attacker->validate_combat_stance("one hander") && FEATS_D->usable_feat(attacker, "elaborate parry"))) {
                 if (random(4)) {
                     counter_attack(victim);
                 }
