@@ -13,13 +13,13 @@ void create(){
         set_long("%^RESET%^%^BOLD%^This %^BLACK%^%^BOLD%^katana styled%^RESET%^%^BOLD%^ "+
 		"blade is unique among its peers as the blade is not formed of metal, but of what "+
 		"looks like %^RESET%^bone%^RESET%^%^BOLD%^. What beast it came from is unknown though "+
-		"how the bone was formed into a perfect blade is the bigger mysterty as there are "+
+		"how the bone was formed into a perfect blade is the bigger mystery as there are "+
 		"no %^RESET%^%^ORANGE%^tool marks%^RESET%^%^BOLD%^ along it. At the base of the "+
 		"blade near the guard is a single %^BLACK%^%^BOLD%^etched symbol%^RESET%^%^BOLD%^ "+
 		"of a feather basked in %^RESET%^%^RED%^flame%^RESET%^%^BOLD%^. The hilt is devoid "+
 		"of a pommel, showing the masterful crafting in its balance. The hilt itself is "+
 		"wrapped in %^RESET%^white%^RESET%^%^BOLD%^ and %^BLACK%^%^BOLD%^black%^RESET%^%^BOLD%^ "+
-		"silk%^RESET%^");
+		"silk.%^RESET%^");
         set_value(15000);
         set_lore(" %^RED%^%^BOLD%^Revan was quite possibly the most feared Solar to the forces "+
 		"of darkness he hunted. To be honest though some of his own kind held an amount of fear "+
