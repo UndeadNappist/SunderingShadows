@@ -2035,11 +2035,30 @@ int query_attack_bonus()
     }
     
     //Paladin capstone
-    ret += this_object()->query_property("hand of the gods");
+    //ret += this_object()->query_property("hand of the gods");
 
     if (FEATS_D->usable_feat(TO, "true strikes") &&
         TO->validate_combat_stance("one hander")) {
         ret += 3;
+    }
+    
+    //Crimson Templar
+    if(FEATS_D->usable_feat(this_object(), "fiendish studies") && attacker)
+    {
+        string *ids = attacker->query_id();
+        int valid;
+        
+        if(member_array(attacker->query_true_align(), ({ 3, 6, 7, 8, 9 })) >= 0)
+        {     
+            foreach(string id in ids)
+            {
+                if(USER_D->is_valid_enemy(id, "outsiders"))
+                    valid = 1;
+            }
+        
+            if(valid)
+                ret += 2;
+        }
     }
 
     if(FEATS_D->usable_feat(TO, "slay the undead") && attacker && attacker->is_undead())
@@ -2137,6 +2156,25 @@ int query_damage_bonus()
 
         if(valid)
             ret += 2;
+    }
+    
+    //Crimson Templar
+    if(FEATS_D->usable_feat(this_object(), "fiendish studies") && attacker)
+    {
+        string *ids = attacker->query_id();
+        int valid;
+        
+        if(member_array(attacker->query_true_align(), ({ 3, 6, 7, 8, 9 })) >= 0)
+        {     
+            foreach(string id in ids)
+            {
+                if(USER_D->is_valid_enemy(id, "outsiders"))
+                    valid = 1;
+            }
+        
+            if(valid)
+                ret += 2;
+        }
     }
 
     //Plant domain gets +2 to unarmed fighting damage
