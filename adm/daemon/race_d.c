@@ -1,4 +1,5 @@
 #include <databases.h>
+#include <daemons.h>
 
 #define LIMB_DIR "/adm/db/races/"
 #define MON_DIR "/adm/db/mon_races/"
