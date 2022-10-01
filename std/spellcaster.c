@@ -1305,6 +1305,7 @@ void InitInnate()
                             "dimension door"  : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
                             "true seeing"     : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
                             "alter self"      : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "fire shield"     : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
                             "greater invisibility"   : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
                         ]);
     }
