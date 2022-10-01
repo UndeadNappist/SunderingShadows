@@ -1297,6 +1297,18 @@ void InitInnate()
                         ]);
     }
     
+    if(FEATS_D->usable_feat(this_object(), "heavenly fire"))
+    {
+        feat_spells += ([
+                            "fiery body"      : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "trial by fire"   : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "dimension door"  : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "true seeing"     : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "alter self"      : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "greater invisibility"   : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                        ]);
+    }
+
     //Class Innates will be drawn from the class files here.
     classes = this_object()->query_classes();
     

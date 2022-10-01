@@ -1515,7 +1515,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
             sneak = attacker->query_prestige_level("thief") / 2;
             //Arcane trickster sneak attack progression
             sneak += (attacker->query_class_level("arcane_trickster") / 3);
-            sneak += (attacker->query_class_level("crimson_templar") / 3);
+            sneak += (1 + attacker->query_class_level("crimson_templar") / 4);
             if(weapon->is_lrweapon())
                 sneak += (1 + attacker->query_class_level("peerless_archer") / 4);
 
@@ -1609,7 +1609,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
             targ->set_property("rend", 1);
     }
     
-    if(sneak && damage && attacker->query_class_level("crimson_templar") > 3)
+    if(sneak && damage && attacker->query_class_level("crimson_templar") >= 4)
     {
         targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(attacker->query_class_level("crimson_templar") / 3, 6), "divine");
     }
