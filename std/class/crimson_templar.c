@@ -10,6 +10,8 @@ void create()
     ::create();
 }
 
+int is_locked_class() { return 1; }
+
 object base_class_ob(object ob)
 {
     object class_ob;
