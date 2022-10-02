@@ -20,7 +20,6 @@ int prerequisites(object ob)
 {
 	if(!FEATS_D->has_feat(ob, "weapon focus")) 
 	{
-		dest_effect();
 		return 0; 
 	}
     return ::prerequisites(ob); 
@@ -61,9 +60,9 @@ void execute_feat()
         return; 
 	} 
         
-	tell_object(target,"%^C107%^" + caster->query_cap_name() + " begins to dance and twirl as they show an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.",({target}));
+	tell_object(target,"%^C107%^" + caster->query_cap_name() + " begins to dance and twirl as they show an awesome display of control. With an abrupt stop they end in an intimidating stance, facing you with a small smile.");
 	tell_object(caster,"%^C107%^You begin your dance, ensuring every moment is visible to your enemies to ensure that they fully appreciate the skill you hold.");
-	tell_room(place,"%^C107%^You see "+caster->QCN+" begin a dazzling display with his weapons.",caster);
+	tell_room(place,"%^C107%^You see "+caster->QCN+" begin a dazzling display with his weapons.", ({ caster, target }));
 	caster->use_stamina(roll_dice(2,6));
 	caster->set_property("using instant feat", 1);
 	//caster->set_property("dazzling_display", 1);
@@ -117,8 +116,6 @@ void execute_attack()
 
         if(!BONUS_D->intimidate_check(targets[i], caster)) 
 		{
-			//tell_object(caster,"%^C107%^You finish your dance - but don't think it worked.");
-			//tell_object(targets[i],"%^C107%^You watch the weapons display with keen interest, however, it %^C160%^fails %^C107%^to inspire much %^C194%^fear at all in you.%^CRST%^");
             tell_object(targets[i], "%^C107%^You shrug off the effects of the dsiplay.%^CRST%^");
             tell_room(place,"%^C190%^"+targets[i]->query_cap_name() + " shrugs off the effects of the display.",targets[i]);
 		    continue; 
@@ -128,12 +125,11 @@ void execute_attack()
 		{
 			//tell_object(caster,"%^C054%^You finish your dance and can tell by the look on your targets face... they are %^C160%^scared.");
 			tell_object(targets[i],"%^C119%^You are shaken by the weapon display!%^CRST%^");
-            tell_room(place,"%^C107%^"+targets[i]->query_cap_name()+" is clearly %^C160%^intimidated %^C107%^by the display.",caster);
+            tell_room(place,"%^C107%^"+targets[i]->query_cap_name()+" is clearly %^C160%^intimidated %^C107%^by the display.",targets[i]);
 			"/std/effect/status/shaken"->apply_effect(targets[i],roll_dice(1, 4));
         }
 
-	    caster->add_attacker(targets[i]);
-	    targets[i]->add_attacker(caster);
+	    spell_kill(caster, targets[i]);
     }
     dest_effect();
     return;
@@ -142,6 +138,6 @@ void execute_attack()
 void dest_effect() 
 {
     ::dest_effect();
-    remove_feat(caster);
+    remove_feat(this_object());
     return;
 }
