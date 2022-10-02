@@ -11,7 +11,7 @@ void create(){
     ::create();
     set_author("nienne");
     set_spell_name("phantasmal killer");
-    set_spell_level(([ "mage" : 4, "magus" : 4, ]));
+    set_spell_level(([ "mage" : 4, "magus" : 4, "warlock" : 4 ]));
     set_spell_sphere("illusion");
     set_spell_domain("illusion");
     set_syntax("cast CLASS phantasmal killer on TARGET");
@@ -20,7 +20,7 @@ void create(){
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
-     // school specific mage spell
+    set_feats_required(([ "warlock" : "tome of ancient secrets"]));
 }
 
 string query_cast_string(){
