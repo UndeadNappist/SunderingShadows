@@ -113,7 +113,6 @@ string requirements() // string version, maybe we'll need this, maybe not, can r
         "    20 Levels"
         "    Lawful Good\n"
         "    Kreysneothosies or Jarmila follower\n"
-        "    16 Base Wisdom\n"
         "    10 Ranks spent in Stealth Skill\n";
 
     return str;
@@ -164,12 +163,6 @@ int prerequisites(object player)
     if(player->query_diety() != "kreysneothosies" && player->query_diety() != "jarmila")
     {
         write("fail deity");
-        return 0;
-    }
-    
-    if(player->query_stats("wisdom") < 16)
-    {
-        write("fail wisdom");
         return 0;
     }
 
