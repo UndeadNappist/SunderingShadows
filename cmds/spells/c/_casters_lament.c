@@ -13,10 +13,7 @@ void create() {
     set_bonus_type("resistance");
     set_damage_desc("+6 to all saves OR shatters magic on cursed item");
     set_syntax("cast CLASS casters lament (on <object> [at <player>])");
-    set_description("This invocation harnesses the greatest of a warlock's natural aptitude for manipulating "
-"magical energies and items. For the first, if cast with no target, it will imbue the warlock with a considerable "
-"resistance to magical attacks. If directed at an item, either in the caster's own inventory or in that of another "
-"player, it can be used to shatter the magic upon a cursed item.");
+    set_description("This invocation harnesses the greatest of a warlock's natural aptitude for manipulating magical energies and items. For the first, if cast with no target, it will imbue the warlock with a considerable resistance to magical attacks. If directed at an item, either in the caster's own inventory or in that of another player, it can be used to shatter the magic upon a cursed item.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
@@ -24,8 +21,8 @@ void create() {
 }
 
 string query_casting_string() {
-    tell_object(caster,"%^MAGENTA%^You voice the words to the incantation, and your fingertips g%^BOLD%^%^MAGENTA%^l%^RESET%^%^MAGENTA%^eam with e%^RED%^ne%^MAGENTA%^r%^RED%^g%^MAGENTA%^y.%^RESET%^");
-    tell_room(place,"%^MAGENTA%^"+caster->QCN+" voices an invocation, and "+caster->QP+" fingertips g%^BOLD%^%^MAGENTA%^l%^RESET%^%^MAGENTA%^eam with e%^RED%^ne%^MAGENTA%^r%^RED%^g%^MAGENTA%^y.%^RESET%^",caster);
+    tell_object(caster, "%^RESET%^%^CRST%^%^C091%^You voice the words to the incantation, and your fingertips %^C099%^g%^C105%^l%^C111%^e%^C105%^a%^C099%^m %^RESET%^%^C091%^with %^C097%^e%^C103%^ne%^C109%^r%^C097%^g%^C103%^y%^C093%^.%^CRST%^");
+    tell_room(place, "%^RESET%^%^CRST%^%^C091%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^ voices an invocation, and "+caster->query_possessive()+" fingertips %^C099%^g%^C105%^l%^C111%^e%^C105%^a%^C099%^m %^RESET%^%^C091%^with %^C097%^e%^C103%^ne%^C109%^r%^C097%^g%^C103%^y%^C093%^.%^CRST%^", caster);
     return "display";
 }
 
@@ -42,8 +39,8 @@ void spell_effect(int prof) {
         return;
       }
       */
-      tell_object(caster,"%^MAGENTA%^You press your hands together and the energy r%^CYAN%^i%^MAGENTA%^pp%^RED%^l%^BOLD%^%^MAGENTA%^e%^RESET%^%^MAGENTA%^s and flows back over itself, down your arms and over your body to encase you in protective spellcraft!%^RESET%^");
-      tell_room(place,"%^MAGENTA%^"+caster->QCN+" presses "+caster->QP+" hands together and the energy r%^CYAN%^i%^MAGENTA%^pp%^RED%^l%^BOLD%^%^MAGENTA%^e%^RESET%^%^MAGENTA%^s and flows back over itself, down "+caster->QP+" arms and over "+caster->QP+" body!%^RESET%^",caster);
+      tell_object(caster, "%^RESET%^%^CRST%^%^C091%^You press your hands together and the %^C097%^e%^C103%^ne%^C109%^r%^C097%^g%^C103%^y %^RESET%^%^C099%^r%^C105%^i%^C111%^p%^C099%^p%^C105%^l%^C111%^e%^C099%^s %^RESET%^%^C091%^and flows back over itself, down your arms and over your body to encase you in %^C103%^protective spellcraft%^C091%^!%^CRST%^");
+      tell_room(place, "%^RESET%^%^CRST%^%^C091%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^ presses "+caster->query_possessive()+" hands together and the %^C097%^e%^C103%^ne%^C109%^r%^C097%^g%^C103%^y %^RESET%^%^C099%^r%^C105%^i%^C111%^p%^C099%^p%^C105%^l%^C111%^e%^C099%^s %^RESET%^%^C091%^and flows back over itself, down "+caster->query_possessive()+" arms and over "+caster->query_possessive()+" body!%^CRST%^", caster);
       wasbuff = 1;
       lower = 6;
       //lower = clevel / 6 + 2;
@@ -64,31 +61,31 @@ void spell_effect(int prof) {
     else {
         if((string)caster->realName(who) != "") who = (string)caster->realName(who);
         if(!ob2 = present(who, place)) {
-            tell_object(caster,"That person isn't here.");
+            tell_object(caster, "%^RESET%^%^CRST%^%^C059%^That person isn't here.%^CRST%^");
             dest_effect();
             return;
         }
         ob = present(what,ob2);
     }
     if (!objectp(ob)) {
-        tell_object(caster,"That object is not present");
+        tell_object(caster, "%^RESET%^%^CRST%^%^C059%^That object is not present.%^CRST%^");
         dest_effect();
         return;
     }
     ench = ob->query_property("enchantment");
     if (ench > -1) {
-        tell_object(caster,"That object is not cursed.");
+        tell_object(caster, "%^RESET%^%^CRST%^%^C059%^That object is not cursed.%^CRST%^");
         dest_effect();
         return;
     }
     if(ob->query_property("no remove") || ob->query_property("no remove curse")) {
-        tell_object(caster,"That curse is too powerful even for you to break.");
+        tell_object(caster, "%^RESET%^%^CRST%^%^C059%^That curse is too powerful even for you to break.%^CRST%^");
         dest_effect();
         return;
     }
     ob->remove_property("enchantment");
-    tell_object(caster,"%^MAGENTA%^You touch your hands to the "+what+" and the energy feeds into it, before s%^RED%^ha%^MAGENTA%^t%^RED%^t%^MAGENTA%^e%^RED%^ri%^MAGENTA%^ng in a b%^BOLD%^%^MAGENTA%^r%^BOLD%^%^WHITE%^i%^RESET%^%^MAGENTA%^ght bur%^BOLD%^%^MAGENTA%^s%^RESET%^%^MAGENTA%^t!%^RESET%^");
-    tell_room(place,"%^MAGENTA%^"+caster->QCN+" touches "+caster->QP+" hands to the "+what+" and the energy feeds into it, before s%^RED%^ha%^MAGENTA%^t%^RED%^t%^MAGENTA%^e%^RED%^ri%^MAGENTA%^ng in a b%^BOLD%^%^MAGENTA%^r%^BOLD%^%^WHITE%^i%^RESET%^%^MAGENTA%^ght bur%^BOLD%^%^MAGENTA%^s%^RESET%^%^MAGENTA%^t!%^RESET%^",caster);
+    tell_object(caster, "%^RESET%^%^CRST%^%^C091%^You touch your hands to the "+what+"%^RESET%^%^CRST%^%^C091%^ and the %^C097%^e%^C103%^ne%^C109%^r%^C097%^g%^C103%^y %^RESET%^%^C091%^feeds into it, before %^C099%^s%^C105%^h%^C111%^a%^C099%^t%^C105%^t%^C111%^e%^C099%^r%^C105%^i%^C111%^n%^C099%^g %^RESET%^%^C091%^in a %^C111%^b%^C117%^r%^C123%^ig%^C117%^h%^C111%^t b%^C117%^u%^C123%^r%^C117%^s%^C111%^t%^C255%^!%^CRST%^");
+    tell_room(place, "%^RESET%^%^CRST%^%^C091%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^ touches "+caster->query_possessive()+" hands to the "+what+"%^RESET%^%^CRST%^%^C091%^ and the %^C097%^e%^C103%^ne%^C109%^r%^C097%^g%^C103%^y %^RESET%^%^C091%^feeds into it, before %^C099%^s%^C105%^h%^C111%^a%^C099%^t%^C105%^t%^C111%^e%^C099%^r%^C105%^i%^C111%^n%^C099%^g %^RESET%^%^C091%^in a %^C111%^b%^C117%^r%^C123%^ig%^C117%^h%^C111%^t b%^C117%^u%^C123%^r%^C117%^s%^C111%^t%^C255%^!%^CRST%^", caster);
     spell_successful();
     dest_effect();
 }
@@ -98,10 +95,11 @@ void dest_effect(){
       if (objectp(caster)) {
         caster->add_saving_bonus("all",-lower);
         caster->remove_property("protection from spells");
-        tell_room(environment(caster),"%^MAGENTA%^Energy flickers briefly around "+caster->QCN+" before waning.%^RESET%^",caster);
-        tell_object(caster,"%^MAGENTA%^A breath of cool air reaches your skin as the protective invocation flickers and wanes!%^RESET%^");
+        tell_room(environment(caster), "%^RESET%^%^CRST%^%^C097%^E%^C103%^ne%^C109%^r%^C097%^g%^C103%^y %^C099%^f%^C105%^l%^C111%^i%^C099%^c%^C105%^k%^C111%^e%^C099%^r%^C105%^s %^RESET%^%^C091%^briefly around "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^ before waning.%^CRST%^", caster);
+        tell_object(caster, "%^RESET%^%^CRST%^%^C091%^A breath of cool air reaches your skin as the %^C103%^protective invocation %^C099%^f%^C105%^l%^C111%^i%^C099%^c%^C105%^k%^C111%^e%^C099%^r%^C105%^s %^RESET%^%^C091%^and wanes!%^CRST%^");
       }
     }
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }
+
