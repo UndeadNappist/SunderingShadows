@@ -87,7 +87,7 @@ void execute_feat()
 
     tell_object(caster, "You reach deep down, into your deepest reserves to overcome your enemies.");
     tell_room(place, caster->QCN + " reaches deep down into their reserves to overcome their enemies.", ({ caster }));
-    caster->add_cooldown("second wind", 600);
+    caster->add_cooldown("second wind", 300);
     caster->set_property("active_feats", ({ TO }));
     caster->set_property("fast healing", power);
     call_out("dest_effect", 48);
