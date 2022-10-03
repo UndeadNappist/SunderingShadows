@@ -129,18 +129,15 @@ int cmd_tell(string str)
     }
 
     if (ob->query_blocked("reply") && !avatarp(TP)) {
-        write(ob->query_cap_name() + " is currently blocking all tells.");
-        return 1;
+        return notify_fail(ob->query_cap_name() + " is currently blocking all tells.");
     }
 
     if (ob->is_player() && !interactive(ob)) {
-        notify_fail(ob->query_cap_name() + " is link-dead and cannot hear you.\n");
-        return 0;
+        return notify_fail(ob->query_cap_name() + " is link-dead and cannot hear you.\n");
     }
 
     if ((member_array(TPQN, ignored) != -1) && !wizardp(TP)) {
-        write(capitalize(ob->query_name()) + " is ignoring you.");
-        return 1;
+        return notify_fail(capitalize(ob->query_name()) + " is ignoring you.");
     }
 
     message("reply", "%^BOLD%^%^RED%^" + namestr + " tells you: %^RESET%^" + msg, ob);
