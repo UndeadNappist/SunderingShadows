@@ -290,7 +290,7 @@ flag player kill as on
 This command lets you adjust some various flags about your character. %^ORANGE%^<flag>%^RESET%^ by itself will show all flags and their current settings.
 
 %^CYAN%^roleplay flag %^RESET%^
-  Will fly a RP flag in your current environment. This will causeyour current room to show up on the who list as a RP FLAG and will show up in the rumorscommand.
+  Will fly a RP flag in your current environment. This will cause your current room to show up on the who list as a RP FLAG and will show up in the rumors command.
 
 %^CYAN%^player kill %^RESET%^
   Will disable your pk immunity and allow you to take part in player kill interactions. Once you are killed out of player kill this flag will automatically turn back on and have a delay before it can be turned back off again, currently the delay is one week of real life time.
