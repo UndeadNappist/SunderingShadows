@@ -1733,10 +1733,11 @@ void heart_beat()
             TO->set("pk_death_time", (time() + PK_DEATH_RL_TIME));
             TO->set_death_time(TO->query("pk_death_time"));
         }
-        if(player_age > ((int)TO->query("pk_death_age") + PK_DEATH_FLAG_LOGIN_TIME) && time() > (int)TO->query("pk_death_time"))
+        /*if(player_age > ((int)TO->query("pk_death_age") + PK_DEATH_FLAG_LOGIN_TIME) && time() > (int)TO->query("pk_death_time"))
         {
             remove_pk_death_flag();
-        }
+        }*/
+        if(time() > (int)TO->query("pk_death_time")) remove_pk_death_flag();
     }
 
     if (player_age > static_user["autosave"]) {
