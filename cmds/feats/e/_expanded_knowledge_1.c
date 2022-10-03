@@ -17,7 +17,7 @@ void create() {
     feat_name("expanded knowledge 1");
     feat_prereq("Psywarrior L11, Psion L1");
     feat_syntax("expanded_knowledge_1 SPELLNAME");
-    feat_desc("This feat allows a psionic character to master an additional power of any level up to one less than he can cast. The selected power may be from any psionic power list, even those normally reserved for a specific discipline.");
+    feat_desc("This feat allows a psionic character to master an additional power of any level up to one less than he can cast. The selected power may be from any psionic power list, even those normally reserved for a specific discipline.\n\nA power added through any expanded knowledge feat can be swapped once every three days. To see what power you have added with this feat, simply use the syntax without naming a power.");
     permanent(1);
     psionic(1);
 }
