@@ -783,6 +783,9 @@ int immunity_check(object obj, string type)
         if(member_array("plague", obj->query_divine_domain()) >= 0)
             return 1;
         
+        if(obj->query_bloodline() == "pestilence" && obj->query_class_level("sorcerer") > 30)
+            return 1;
+        
         if(FEATS_D->has_feat(obj, "undead graft"))
             return 1;
     }
@@ -984,6 +987,9 @@ int immunity_check(object obj, string type)
     case "sickened":
     {
         if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
+            return 1;
+        
+        if(obj->query_bloodline() == "pestilence" && obj->query_class_level("sorcerer") > 30)
             return 1;
         
         if(FEATS_D->has_feat(obj, "internal fortitude") && obj->query_property("raged"))
