@@ -92,6 +92,8 @@ void reset()
 {
     ::reset();
     place_board();
+    
+    if(!present("slot machine")) new("/d/common/immortals/slot_machine")->move(this_object());
 }
 
 void init(){
