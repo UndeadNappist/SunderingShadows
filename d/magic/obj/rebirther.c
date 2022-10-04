@@ -132,6 +132,8 @@ void do_rebirth()
     reborn->force_me("look");
     //reborn->delete("no pk");
     reborn->remove_pk_death_flag();
+    reborn->delete("in_the_afterlife");
+    reborn->delete("just_been_pkilled");
     reborn->set_death_age(0);
     //reborn->set_property("rebirth time",time());
     reborn->add_cooldown("rebirth", 3600);
