@@ -134,6 +134,7 @@ int remove(){
     //This is to catch any lingering (temporary) added shorts
     if(this_object()->is_weapon())
     {
+        this_object()->remove_property("temp_hit_bonus");
         this_object()->remove_property_value("added short",({ "%^RESET%^%^CYAN%^ %^BOLD%^{%^RESET%^%^CYAN%^vibrating%^BOLD%^}%^RESET%^" }));
         this_object()->remove_property_value("added short", ({ "%^CYAN%^BOLD%^ {empowered}%^RESET%^" }) );
         this_object()->remove_property_value("added short",({ "%^RESET%^%^CYAN%^ %^BOLD%^{%^RESET%^%^CYAN%^ablaze%^BOLD%^}%^RESET%^" }));
@@ -142,7 +143,6 @@ int remove(){
         this_object()->remove_property_value("added short", ({ "%^MAGENTA%^ {vampiric}%^RESET%^" }) );
     }
     //
-    !userp(this_object()) && this_object()->remove_property("temp_hit_bonus");
     destruct(this_object());
     return 1;
 }
