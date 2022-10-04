@@ -149,13 +149,13 @@ void do_tentacles()
                 continue;
             }
             if (random(caught[i]->query_stats("strength") + roll_dice(1, 20)) < random(clevel + 8)) {
-                tell_object(caught[i], "%^CYAN%^The tentacle squeezes the life from you!");
-                tell_room(place, "%^CYAN%^The tentacle squeezes around " + caught[i]->QCN + "!", caught[i]);
+                tell_object(caught[i], "%^RESET%^%^C241%^The %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e %^RESET%^%^C241%^s%^C242%^q%^C243%^u%^C242%^e%^C241%^e%^C242%^z%^C243%^e%^C242%^s %^RESET%^%^C241%^the %^RESET%^%^C036%^l%^C037%^i%^C038%^f%^C039%^e %^RESET%^%^C241%^from you!"%^CRST%^);
+                tell_room(place, "%^RESET%^%^C241%^The %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e squeezes around " + caught[i]->QCN + "!", caught[i]);
                 damage_targ(caught[i], caught[i]->return_target_limb(), mydam, "bludgeoning");
             }else {
-                tell_object(caught[i], "%^CYAN%^You rip free of the tentacle!");
+                tell_object(caught[i], "%^RESET%^%^C241%^You %^RESET%^%^C088%^r%^C124%^i%^C088%^p %^RESET%^%^C241%^free of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e%^RESET%^%^C241%^!%^CRST%^");
                 tell_room(place, "%^CYAN%^" + caught[i]->QCN +
-                          " rips free of the tentacle!", caught[i]);
+                          " %^RESET%^%^C088%^r%^C124%^i%^C160%^p%^C088%^s %^RESET%^%^C241%^free of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e%^RESET%^%^C241%^!%^CRST%^", caught[i]);
                 caught[i]->remove_property_value("added short", ({ "%^RESET%^%^C240%^ (%^RESET%^%^C241%^e%^C242%^n%^C243%^t%^C242%^a%^C241%^n%^C242%^g%^C243%^l%^C242%^e%^C241%^d%^RESET%^%^C240%^)%^CRST%^" }));
                 removing += ({ caught[i] });
             }
@@ -170,7 +170,7 @@ void do_tentacles()
             continue;
         }
         if (random((int)inven[i]->query_stats("dexterity") + 1) < roll_dice(1, 25) && random(2)) {
-            tell_object(inven[i], "%^CYAN%^You stumble as one of the " +
+            tell_object(inven[i], "%^CYAN%^You %^RESET%^%^C063%^s%^C069%^t%^C075%^u%^C081%^m%^C075%^b%^C069%^l%^C063%^e%^RESET%^%^C241%^ as one of the " +
                         "tentacles almost knocks you from your feet!");
             tell_room(place, "%^CYAN%^" + inven[i]->QCN +
                       " stumbles as a tentacle knocks " + inven[i]->QO + " from " +
