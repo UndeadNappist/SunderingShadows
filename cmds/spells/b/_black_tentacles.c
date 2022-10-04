@@ -80,16 +80,16 @@ void spell_effect(int prof)
                       inven[i]->QO + "%^RESET%^%^C241%^!%^CRST%^", inven[i]);
 
             inven[i]->set_property("added short",
-                                   ({ "%^RESET%^%^C241%^ (entangled)%^CRST%^" }));
+                                   ({ "%^RESET%^%^C240%^ (%^RESET%^%^C241%^e%^C242%^n%^C243%^t%^C242%^a%^C241%^n%^C242%^g%^C243%^l%^C242%^e%^C241%^d%^RESET%^%^C240%^)%^CRST%^" }));
             caught += ({ inven[i] });
             continue;
         }
         if (random((int)inven[i]->query_stats("dexterity") +
                    1) < roll_dice(1, 25) && random(2)) {
-            tell_object(inven[i], "%^RESET%^%^C241%^You stumble as one of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^almost knocks you from your feet!%^CRST%^");
+            tell_object(inven[i], "%^RESET%^%^C241%^You %^RESET%^%^C063%^s%^C075%^t%^C081%^u%^C087%^m%^C075%^b%^C069%^l%^C063%^e %^RESET%^%^C241%^as one of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^almost knocks you from your feet!%^CRST%^");
 
             tell_room(place, "%^RESET%^%^C241%^" + inven[i]->QCN +
-                      " %^RESET%^%^C241%^stumbles as a %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e %^RESET%^%^C241%^knocks " + inven[i]->QO + " %^RESET%^%^C241%^from " +
+                      " %^RESET%^%^C063%^s%^C069%^t%^C075%^u%^C081%^m%^C087%^b%^C075%^l%^C069%^e%^C063%^s %^RESET%^%^C241%^as a %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e %^RESET%^%^C240%^knocks " + inven[i]->QO + " %^RESET%^%^C241%^from " +
                       inven[i]->QP + " %^RESET%^%^C241%^feet!%^CRST%^", inven[i]);
 
             inven[i]->set_tripped(1, "%^RESET%^%^C241%^You're regaining your %^RESET%^%^C049%^b%^C050%^a%^C051%^l%^C123%^a%^C051%^n%^C050%^c%^C049%^e%^RESET%^%^C241%^!%^CRST%^", 1);
@@ -131,7 +131,7 @@ void do_tentacles()
         }
         if (!present(inven[i], PLACE)) {
             inven[i]->remove_property_value("added short",
-                                            ({ "%^GREEN%^ (entangled)%^RESET%^%^CYAN%^" }));
+                                            ({ "%^RESET%^%^C240%^ (%^RESET%^%^C241%^e%^C242%^n%^C243%^t%^C242%^a%^C241%^n%^C242%^g%^C243%^l%^C242%^e%^C241%^d%^RESET%^%^C240%^)%^CRST%^" }));
             removing += ({ inven[i] });
         }
     }
@@ -156,7 +156,7 @@ void do_tentacles()
                 tell_object(caught[i], "%^CYAN%^You rip free of the tentacle!");
                 tell_room(place, "%^CYAN%^" + caught[i]->QCN +
                           " rips free of the tentacle!", caught[i]);
-                caught[i]->remove_property_value("added short", ({ "%^GREEN%^ (entangled)%^RESET%^%^CYAN%^" }));
+                caught[i]->remove_property_value("added short", ({ "%^RESET%^%^C240%^ (%^RESET%^%^C241%^e%^C242%^n%^C243%^t%^C242%^a%^C241%^n%^C242%^g%^C243%^l%^C242%^e%^C241%^d%^RESET%^%^C240%^)%^CRST%^" }));
                 removing += ({ caught[i] });
             }
         }
