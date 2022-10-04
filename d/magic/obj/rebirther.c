@@ -130,7 +130,7 @@ void do_rebirth()
     reborn->set_hp((int)reborn->query_max_hp());
     reborn->set_heart_beat(1);
     reborn->force_me("look");
-    reborn->delete("no pk");
+    //reborn->delete("no pk");
     reborn->remove_pk_death_flag();
     reborn->set_death_age(0);
     //reborn->set_property("rebirth time",time());
