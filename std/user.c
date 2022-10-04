@@ -1737,6 +1737,7 @@ void heart_beat()
         {
             remove_pk_death_flag();
         }*/
+        if((player_age < (TO->query("pk_death_age") + 600)) && (time() > (TO->query("pk_death_time") - (PK_DEATH_RL_TIME / 2)))) remove_pk_death_flag();
         if(time() > (int)TO->query("pk_death_time")) remove_pk_death_flag();
     }
 
