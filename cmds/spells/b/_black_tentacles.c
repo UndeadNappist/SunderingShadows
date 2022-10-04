@@ -149,7 +149,7 @@ void do_tentacles()
                 continue;
             }
             if (random(caught[i]->query_stats("strength") + roll_dice(1, 20)) < random(clevel + 8)) {
-                tell_object(caught[i], "%^RESET%^%^C241%^The %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e %^RESET%^%^C241%^s%^C242%^q%^C243%^u%^C242%^e%^C241%^e%^C242%^z%^C243%^e%^C242%^s %^RESET%^%^C241%^the %^RESET%^%^C036%^l%^C037%^i%^C038%^f%^C039%^e %^RESET%^%^C241%^from you!"%^CRST%^);
+                tell_object(caught[i], "%^RESET%^%^C241%^The %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e %^RESET%^%^C241%^s%^C242%^q%^C243%^u%^C242%^e%^C241%^e%^C242%^z%^C243%^e%^C242%^s %^RESET%^%^C241%^the %^RESET%^%^C036%^l%^C037%^i%^C038%^f%^C039%^e %^RESET%^%^C241%^from you!%^CRST%^");
                 tell_room(place, "%^RESET%^%^C241%^The %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e squeezes around " + caught[i]->QCN + "!", caught[i]);
                 damage_targ(caught[i], caught[i]->return_target_limb(), mydam, "bludgeoning");
             }else {
@@ -204,3 +204,4 @@ void dest_effect()
         TO->remove();
     }
 }
+
