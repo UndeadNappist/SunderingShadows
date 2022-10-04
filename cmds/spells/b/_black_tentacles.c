@@ -76,7 +76,7 @@ void spell_effect(int prof)
             tell_object(inven[i], "%^RESET%^%^C241%^One manages to wrap about your leg and %^RESET%^%^C240%^e%^C241%^n%^C242%^s%^C243%^n%^C242%^a%^C241%^r%^C240%^e %^RESET%^%^C241%^you!%^CRST%^");
 
             tell_room(place, "%^RESET%^%^C241%^One manages to wrap about " +
-                      inven[i]->QCN + "%^RESET%^%^C241%^'s leg and ensnare " +
+                      inven[i]->QCN + "%^RESET%^%^C241%^'s leg and %^RESET%^%^C240%^e%^C241%^n%^C242%^s%^C243%^n%^C242%^a%^C241%^r%^C240%^e%^RESET%^%^C241%^ " +
                       inven[i]->QO + "%^RESET%^%^C241%^!%^CRST%^", inven[i]);
 
             inven[i]->set_property("added short",
@@ -154,8 +154,8 @@ void do_tentacles()
                 damage_targ(caught[i], caught[i]->return_target_limb(), mydam, "bludgeoning");
             }else {
                 tell_object(caught[i], "%^RESET%^%^C241%^You %^RESET%^%^C088%^r%^C124%^i%^C088%^p %^RESET%^%^C241%^free of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e%^RESET%^%^C241%^!%^CRST%^");
-                tell_room(place, "%^CYAN%^" + caught[i]->QCN +
-                          " %^RESET%^%^C088%^r%^C124%^i%^C160%^p%^C088%^s %^RESET%^%^C241%^free of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e%^RESET%^%^C241%^!%^CRST%^", caught[i]);
+                tell_room(place, "%^RESET%^%^C241%^" + caught[i]->QCN +
+                          " %^RESET%^%^C088%^r%^C124%^i%^C160%^p%^RESET%^%^C088%^s %^RESET%^%^C241%^free of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e%^RESET%^%^C241%^!%^CRST%^", caught[i]);
                 caught[i]->remove_property_value("added short", ({ "%^RESET%^%^C240%^ (%^RESET%^%^C241%^e%^C242%^n%^C243%^t%^C242%^a%^C241%^n%^C242%^g%^C243%^l%^C242%^e%^C241%^d%^RESET%^%^C240%^)%^CRST%^" }));
                 removing += ({ caught[i] });
             }
@@ -170,13 +170,13 @@ void do_tentacles()
             continue;
         }
         if (random((int)inven[i]->query_stats("dexterity") + 1) < roll_dice(1, 25) && random(2)) {
-            tell_object(inven[i], "%^CYAN%^You %^RESET%^%^C063%^s%^C069%^t%^C075%^u%^C081%^m%^C075%^b%^C069%^l%^C063%^e%^RESET%^%^C241%^ as one of the " +
-                        "tentacles almost knocks you from your feet!");
-            tell_room(place, "%^CYAN%^" + inven[i]->QCN +
-                      " stumbles as a tentacle knocks " + inven[i]->QO + " from " +
-                      inven[i]->QP + " feet!", inven[i]);
-            inven[i]->set_tripped(1, "%^BOLD%^%^CYAN%^You're regaining your " +
-                                  "balance!%^RESET%^", 1);
+            tell_object(inven[i], "%^RESET%^%^C241%^You %^RESET%^%^C063%^s%^C069%^t%^C075%^u%^C081%^m%^C075%^b%^C069%^l%^C063%^e%^RESET%^%^C241%^ as one of the " +
+                        "%^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^RESET%^%^C240%^s %^RESET%^%^C241%^almost knocks you from your feet!%^CRST%^");
+            tell_room(place, "%^RESET%^%^C241%^" + inven[i]->QCN +
+                      " %^RESET%^%^C063%^s%^C069%^t%^C075%^u%^C081%^m%^C087%^b%^C075%^l%^C069%^e%^C063%^s %^RESET%^%^C241%^as a %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e %^RESET%^%^C241%^knocks " + inven[i]->QO + " %^RESET%^%^C241%^from " +
+                      inven[i]->QP + " %^RESET%^%^C241%^feet!%^CRST%^", inven[i]);
+            inven[i]->set_tripped(1, "%^RESET%^%^C241%^You're regaining your " +
+                                  "%^RESET%^%^C049%^b%^C050%^a%^C051%^l%^C123%^a%^C051%^n%^C050%^c%^C049%^e%^RESET%^%^C241%^!%^CRST%^", 1);
         }
     }
     call_out("do_tentacles", ROUND_LENGTH);
@@ -186,14 +186,14 @@ void dest_effect()
 {
     int i;
     if (worked) {
-        tell_room(place, "%^CYAN%^The writhing tentacles shiver " +
-                  "and crumble into dust, fading before your eyes.%^RESET%^");
+        tell_room(place, "%^RESET%^%^C241%^The %^RESET%^%^C240%^w%^C241%^r%^C242%^i%^C241%^t%^C240%^h%^C241%^i%^C242%^n%^RESET%^%^C240%^g %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^RESET%^%^C240%^s %^RESET%^%^C051%^s%^C087%^h%^C123%^i%^C159%^v%^C087%^e%^C051%^r " +
+                  "%^RESET%^%^C241%^and crumble into %^RESET%^%^C250%^dust%^RESET%^%^C241%^, %^RESET%^%^C240%^f%^C244%^a%^C248%^d%^C250%^i%^C252%^n%^C254%^g %^RESET%^%^C241%^before your eyes.%^RESET%^");
         for (i = 0; i < sizeof(inven); i++) {
             if (!objectp(inven[i])) {
                 continue;
             }
             inven[i]->remove_property_value("added short",
-                                            ({ "%^GREEN%^ (entangled)%^RESET%^%^CYAN%^" }));
+                                            ({ "%^RESET%^%^C240%^ (%^RESET%^%^C241%^e%^C242%^n%^C243%^t%^C242%^a%^C241%^n%^C242%^g%^C243%^l%^C242%^e%^C241%^d%^RESET%^%^C240%^)%^CRST%^" }));
         }
         if (objectp(CASTER)) {
             CASTER->set_property("black tentacles", -1);
