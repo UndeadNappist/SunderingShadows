@@ -174,3 +174,9 @@ string *query_languages(string subrace)
 {
     return (["required":({"common","sylvan",}),"optional":({"elven","halfling","gnomish",})]);
 }
+
+int is_pk_race()
+{
+    return 1;
+}
+
