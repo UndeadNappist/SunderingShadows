@@ -23,7 +23,7 @@ void create()
     set_property("lore difficulty", 40);
     set_property("id difficulty", 40);   
     set_flag_required("boss avatar");
-    set_max_dex_bonus(5);
+    set_max_dex_bonus(10);
     set_ac(7);
     set_weight(30);
     set_value(10000);
@@ -33,6 +33,14 @@ void create()
     set_limbs( ({ "torso" }) );
     set_wear((:this_object(),"wear_fun":));
     set_remove( (: this_object(),"remove_fun" :) );
+    
+    set_property("lore difficulty", 40);
+    set_property("id difficulty", 40);
+    
+    set_property("enchantment", 7);    
+    set_item_bonus("damage resistance", 10);
+    set_item_bonus("athletics", 7);    
+    
 }
 
 int is_metal() { return 0; }
@@ -41,7 +49,7 @@ int wear_fun()
 {   
     if(!this_player()->is_class("druid"))
     {
-        tell_object(this_player(), "!");
+        tell_object(this_player(), "Only a druid may wear this armor!");
         return 0;
     }
     
@@ -59,7 +67,7 @@ int wear_fun()
         }
     }
     
-    this_player()->set_property("additional_stealth_damage", ({ "force" }));
+    this_player()->set_property("additional stealth damage", ({ "force" }));
     tell_object(this_player(), "");
     
     return 1;
@@ -68,6 +76,6 @@ int wear_fun()
 int remove_fun()
 {
     tell_object(this_player(), "");
-    this_player()->remove_property_value("additional_stealth_damage", ({ "force" }));
+    this_player()->remove_property_value("additional stealth damage", ({ "force" }));
     return 1;
 }
