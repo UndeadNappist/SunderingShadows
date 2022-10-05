@@ -11,7 +11,7 @@ int cmd_reply(string str)
     int quiet, invis;
     string *ignored, *caster_correspond, *targ_correspond;
     string msg = str;
-    object ob;
+    object ob, *telepaths;
 
     reply = (string)this_player()->query("reply");
 
@@ -128,6 +128,41 @@ int cmd_reply(string str)
 
     if (!wizardp(ob) && !wizardp(TP) && !ob->query_true_invis() && !TP->query_true_invis()) {
         CHAT_D->force_chat(TP, "telepathy", "tells " + ob->QCN + " " + str + " ", 1);
+    }
+	
+    //Telepath passive tell detection. Should pick up bits of he conversation, not the whole thing.
+    telepaths = all_inventory(environment(this_player()));
+    telepaths = filter_array(telepaths, (: userp($1) :));
+   
+    if(!this_player()->query("no pk"))
+    {
+        foreach(object obj in telepaths)
+        {
+            int DC;
+        
+            if(obj == this_player())
+                continue;
+            
+            if(obj->query("no pk"))
+                continue;
+        
+            if(this_player()->query_level() > obj->query_level() + 5)
+                continue;
+            
+            if(!FEATS_D->usable_feat(obj, "psychic vampire"))
+                continue;
+        
+            if(this_player()->query_discipline() != "telepath")
+                continue;
+        
+            DC = obj->query_stats("intelligence") - this_player()->query_stats("intelligence");
+            DC += 10;
+        
+            if(roll_dice(1, 20) < DC)
+                continue;
+        
+            tell_object(obj, "%^BOLD%^CYAN%^You pick up a fleeting thought %^WHITE%^. o 0 (" + msg + ")%^RESET%^");
+        }
     }
 
 #include <detect_thoughts.h>
