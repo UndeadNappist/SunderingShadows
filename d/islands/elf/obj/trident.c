@@ -79,7 +79,7 @@ int hit_func(object target) {
             tell_object(ETO,"%^CYAN%^Words of a spell gather in your mind.");
 			tell_object(target,"%^CYAN%^"+ETO->QCN+
 			  " strikes you with a splash of water.");
-			new("/cmds/spells/c/_cloudburst")->use_spell(ETO,target,15,100,"cleric");
+			//new("/cmds/spells/c/_cloudburst")->use_spell(ETO,target,15,100,"cleric");
 			return roll_dice(1,4)+1;
       }
    }
