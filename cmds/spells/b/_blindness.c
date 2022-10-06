@@ -25,26 +25,26 @@ void create() {
 }
 
 string query_cast_string() {
-    return "%^CYAN%^"+caster->QCN+" hisses the syllables of a spell.%^RESET%^";
+    return "%^RESET%^%^C244%^"+caster->QCN+" %^RESET%^%^C045%^h%^C051%^i%^C087%^s%^C081%^s%^C075%^e%^RESET%^%^C069%^s %^RESET%^%^C244%^the syllables of a spell.%^CRST%^";
 }
 
 void spell_effect(int prof) {
     int duration;
     if(target == caster) {
-        tell_object(caster, "%^BLUE%^You realise the error in directing the spell at yourself, and let it fade.%^RESET%^");
-        tell_room(place,"%^BLUE%^"+caster->QCN+"'s spell softly snuffs out.%^RESET%^",caster);
+        tell_object(caster, "%^RESET%^%^C244%^You realise the error in directing the spell at yourself, and let it f%^RESET%^%^C246%^a%^C248%^d%^C250%^e%^RESET%^%^C244%^.%^CRST%^");
+        tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+"%^RESET%^%^C244%^'s spell %^RESET%^%^C250%^s%^C251%^o%^C252%^f%^C253%^t%^C251%^l%^C250%^y %^RESET%^%^C250%^s%^C251%^n%^C252%^u%^C253%^f%^C251%^f%^RESET%^%^C250%^s %^RESET%^%^C244%^out.%^CRST%^",caster);
         TO->remove();
         return;
     }
     if(target->query_blind() || target->query_temporary_blinded()) {
-        tell_object(caster,"%^BLUE%^The sight is already gone from "+target->QCN+"'s eyes!%^RESET%^");
-        tell_room(place,"%^BLUE%^"+caster->QCN+"'s spell softly snuffs out.%^RESET%^",caster);
+        tell_object(caster,"%^RESET%^%^C244%^The %^RESET%^%^C045%^s%^C051%^i%^C087%^g%^C051%^h%^RESET%^%^C045%^t %^RESET%^%^C244%^is already gone from "+target->QCN+"%^RESET%^%^C244%^'s eyes!%^CRST%^");
+        tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+"%^RESET%^%^C244%^'s spell %^RESET%^%^C250%^s%^C251%^o%^C252%^f%^C253%^t%^C251%^l%^C250%^y %^RESET%^%^C250%^s%^C251%^n%^C252%^u%^C253%^f%^C251%^f%^RESET%^%^C250%^s %^RESET%^%^C244%^out.%^RESET%^",caster);
         TO->remove();
         return;
     }
     if(do_save(target)){
-        tell_object(target,"%^BLUE%^Your vision becomes momentarily hazy, but you manage to re-focus.%^RESET%^");
-        tell_room(place,"%^BLUE%^"+target->QCN+" hesitates, but then shakes off the spell.%^RESET%^",target);
+        tell_object(target,"%^RESET%^%^C244%^Your %^RESET%^%^C087%^v%^C123%^i%^C159%^s%^C195%^i%^C123%^o%^RESET%^%^C087%^n %^RESET%^%^C244%^becomes momentarily %^RESET%^%^C241%^h%^C242%^a%^C243%^z%^RESET%^%^C241%^y%^RESET%^%^C244%^, but you manage to %^RESET%^%^C220%^r%^C226%^e%^C227%^-%^C228%^f%^C229%^o%^C227%^c%^C226%^u%^C220%^s%^RESET%^%^C244%^.%^CRST%^");
+        tell_room(place,"%^RESET%^%^C244%^"+target->QCN+" %^RESET%^%^C244%^hesitates, but then shakes off the spell.%^CRST%^",target);
         TO->remove();
         return;
     }

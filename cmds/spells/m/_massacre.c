@@ -49,7 +49,7 @@ void spell_effect(int prof)
     }
     
     tell_object(caster,"%^RESET%^%^C052%^You motion and a w%^RESET%^%^C088%^a%^C124%^v%^RESET%^%^C160%^e %^RESET%^%^C196%^o%^C160%^f %^RESET%^%^C124%^s%^C088%^l%^C124%^a%^C160%^u%^C196%^g%^C160%^h%^C124%^t%^C088%^e%^RESET%^%^C052%^r %^RESET%^%^C088%^r%^C124%^i%^C160%^p%^C196%^p%^C160%^l%^C124%^e%^RESET%^%^C088%^s %^RESET%^%^C052%^away from you, %^RESET%^%^C088%^k%^C124%^i%^C160%^l%^C196%^l%^C160%^i%^C124%^n%^RESET%^%^C088%^g %^RESET%^%^C052%^those in its path!%^CRST%^");
-    tell_room(place,"%^RESET%^%^C052%^"+caster->QCN+" motions and a wave of slaughter ripples outward, killing all those in its path!",({caster}));
+    tell_room(place,"%^RESET%^%^C052%^"+caster->QCN+" %^RESET%^%^C052%^motions and a w%^RESET%^%^C088%^a%^C124%^v%^RESET%^%^C160%^e %^RESET%^%^C196%^o%^C160%^f %^RESET%^%^C124%^s%^C088%^l%^C124%^a%^C160%^u%^C196%^g%^C160%^h%^C124%^t%^C088%^e%^RESET%^%^C052%^r %^RESET%^%^C088%^r%^C124%^i%^C160%^p%^C196%^p%^C160%^l%^C124%^e%^RESET%^%^C088%^s %^RESET%^%^C052%^outward, %^RESET%^%^C088%^k%^C124%^i%^C160%^l%^C196%^l%^C160%^i%^C124%^n%^C088%^g %^RESET%^%^C052%^all those in its path!%^CRST%^",({caster}));
     
     spell_successful();
     spell_kill(target, caster);
@@ -67,15 +67,15 @@ void spell_effect(int prof)
         
         if(!combat_death_save(ob, 0))
         {
-            tell_object(ob,"%^BOLD%^The wave of death rips your soul from your body, leaving a pale after-image!");
-            tell_room(place,"%^BOLD%^"+ob->QCN+"'s soul is ripped from their body, leaving a pale after-image!",({ob}));
+            tell_object(ob,"%^RESET%^%^RESET%^%^C052%^The w%^RESET%^%^C088%^a%^C124%^v%^C160%^e %^RESET%^%^C052%^of %^RESET%^%^C240%^death %^RESET%^%^C052%^r%^C088%^i%^C124%^p%^C160%^s %^RESET%^%^C052%^your %^RESET%^%^C087%^soul %^RESET%^%^C052%^from your body, leaving a %^RESET%^%^C123%^p%^C159%^a%^C195%^l%^C123%^e %^RESET%^%^C087%^a%^C123%^f%^C159%^t%^C123%^e%^RESET%^%^C087%^r-i%^RESET%^%^C123%^m%^C159%^a%^C123g%^RESET%^%^C087%^e%^RESET%^%^C052%^!%^CRST%^");
+            tell_room(place,"%^RESET%^%^C052%^"+ob->QCN+"%^RESET%^%^C052%^'s %^RESET%^%^C087%^soul %^RESET%^%^C052%^is %^RESET%^%^C088%^r%^C124%^i%^C160%^p%^C196%^p%^C124%^e%^RESET%^%^C088%^d %^RESET%^%^C052%^from their body, leaving a %^RESET%^%^C123%^p%^C159%^a%^C195%^l%^C123%^e %^RESET%^%^C087%^a%^C123%^f%^C159%^t%^C123%^e%^RESET%^%^C087%^r-i%^RESET%^%^C123%^m%^C159%^a%^C123g%^RESET%^%^C087%^e%^RESET%^%^C052%^!%^CRST%^",({ob}));
             ob->set_hp(-100);
             continue;
         }
         else
         {
-            tell_object(ob,"%^BOLD%^The wave of death passes through you, and you barely retain your soul!");
-            tell_room(place,"%^BOLD%^The wave of death passes through "+ob->QCN+", and they barely retain their soul!",({ob}));
+            tell_object(ob,"%^RESET%^%^C052%^The w%^RESET%^%^C088%^a%^C124%^v%^C160%^e %^RESET%^%^C052%^of %^RESET%^%^C240%^death %^RESET%^%^C052%^passes through you, and you barely retain your %^RESET%^%^C087%^soul%^RESET%^%^C052%^!%^CRST%^");
+            tell_room(place,"%^RESET%^%^C052%^The w%^RESET%^%^C088%^a%^C124%^v%^C160%^e %^RESET%^%^C052%^of %^RESET%^%^C240%^death %^RESET%^%^C052%^passes through "+ob->QCN+"%^RESET%^%^C052%^, and they barely retain their %^RESET%^%^C087%^soul%^RESET%^%^C052%^!%^CRST%^",({ob}));
             ob && ob->cause_typed_damage(ob, ob->return_target_limb(), sdamage,"divine");
             ob && ob->set_property("fester", sdamage / 2);
             continue;
