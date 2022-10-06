@@ -29,14 +29,14 @@ void create(){
 
 int preSpell(){
     if(caster->query_property("remote scrying")){
-        tell_object(caster,"You are already listening somewhere!");
+        tell_object(caster,"%^RESET%^%^C244%^You are already listening somewhere!%^CRST%^");
         return 0;
     }
     if(avatarp(caster)) return 1; // let avatars use to follow players regardless of timer.
     //if((int)caster->query_property("remote scrying time")+DELAY > time()){
     if(caster->cooldown("remote scrying"))
     {
-        tell_object(caster,"You cannot perform a remote scrying yet.");
+        tell_object(caster,"%^RESET%^%^C244%^You cannot perform a remote scrying yet.%^CRST%^");
         return 0;
     }
     if(caster->query("no pk")){
@@ -47,10 +47,8 @@ int preSpell(){
 }
 
 string query_cast_string(){
-    tell_object(caster,"%^BOLD%^%^BLACK%^As your murmur your prayer, "+
-        "the shadows swirl around you.%^RESET%^");
-    tell_room(place,"%^BOLD%^%^BLACK%^"+caster->QCN+" murmurs a prayer"+
-        " as the shadows swirl around "+caster->QO+".%^RESET%^",caster);
+    tell_object(caster,"%^RESET%^%^C244%^As your m%^C243%^u%^C242%^r%^C241%^m%^C243%^u%^RESET%^%^C244%^r your %^RESET%^%^C075%^p%^C069%^r%^C063%^a%^C069%^y%^C075%^e%^C069%^r%^RESET%^%^C244%^, the %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C242%^o%^C241%^w%^RESET%^%^C240%^s %^RESET%^%^C240%^s%^C241%^w%^C242%^i%^C241%^r%^RESET%^%^C240%^l %^RESET%^%^C244%^around you.%^CRST%^");
+    tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+" %^RESET%^%^C244%^m%^C243%^u%^C242%^r%^C241%^m%^C242%^u%^C243%^r%^RESET%^%^C244%^s a %^RESET%^%^C075%^p%^C069%^r%^C063%^a%^C069%^y%^C075%^e%^C069%^r %^RESET%^%^C244%^as the %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C242%^o%^C241%^w%^RESET%^%^C240%^s %^RESET%^%^C240%^s%^C241%^w%^C242%^i%^C241%^r%^RESET%^%^C240%^l %^RESET%^%^C244%^around "+caster->QO+"%^RESET%^%^C244%^.%^CRST%^",caster);
     return "display";
 }
 
