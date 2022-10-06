@@ -52,18 +52,13 @@ int unwield_func(){
 }
 
 int hit_func(object targ){
-        if(!objectp(targ)) return 0;
-        if(!objectp(ETO)) return 0;
-        if(random(1000) < 250){
-        tell_room(environment(query_wielded()),"%^YELLOW%^With perfect calmness, "+ETOQCN+" points the tip "+
-		"of their "+query_short()+" %^YELLOW%^toward "+targ->QCN+" and sends a %^RED%^burning blaze of light%
-^YELLOW%^ outward toward their enemy!%^RESET%^",({ETO,targ}));
-        tell_object(ETO,"%^YELLOW%^The battle seems hard and harsh, but the weight of victory is in your hands.  "+
-		"Stepping forward, you point the tip of your "+query_short()+" %^YELLOW%^toward "+targ->QCN+" a
-nd with perfect calmness send a %^RED%^burning blaze of light%^YELLOW%^ outward toward your enemy!%^RESET%^");
-        tell_object(targ,"%^YELLOW%^With perfect calmness, "+ETOQCN+" points the tip of their "+query_short()+" %^YELLOW%^toward you!  "+
-		"From the tip, a brilliant light ignites and then bursts into a %^RED%^burning "+
-		"blaze of light%^YELLOW%^ that strikes out at you and burns you to your soul!%^RESET%^");
-         return roll_dice(6, 10)+10;
+    if(!objectp(targ)) return 0;
+    if(!objectp(ETO)) return 0;
+    if(random(1000) < 250){
+        tell_room(environment(query_wielded()),"%^YELLOW%^With perfect calmness, "+ETOQCN+" points the tip of their "+query_short()+" %^YELLOW%^toward "+targ->QCN+" and sends a %^RED%^burning blaze of light%^YELLOW%^ outward toward their enemy!%^RESET%^",({ETO,targ}));
+        tell_object(ETO,"%^YELLOW%^The battle seems hard and harsh, but the weight of victory is in your hands. Stepping forward, you point the tip of your "+query_short()+" %^YELLOW%^toward "+targ->QCN+" and with perfect calmness send a %^RED%^burning blaze of light%^YELLOW%^ outward toward your enemy!%^RESET%^");
+        tell_object(targ,"%^YELLOW%^With perfect calmness, "+ETOQCN+" points the tip of their "+query_short()+" %^YELLOW%^toward you! From the tip, a brilliant light ignites and then bursts into a %^RED%^burning blaze of light%^YELLOW%^ that strikes out at you and burns you to your soul!%^RESET%^");
+        return roll_dice(6, 10)+10;
+    }
 }
-}
+
