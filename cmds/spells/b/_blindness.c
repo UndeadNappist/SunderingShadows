@@ -48,8 +48,8 @@ void spell_effect(int prof) {
         TO->remove();
         return;
     }
-    tell_object(target,"%^BLUE%^Your vision becomes hazy and the world around you fades into gray.%^RESET%^");
-    tell_room(place,"%^BLUE%^"+target->QCN+" blinks, and then stares around sightlessly.%^RESET%^",target);
+    tell_object(target,"%^RESET%^%^C244%^Your %^RESET%^%^C087%^v%^C123%^i%^C159%^s%^C195%^i%^C123%^o%^RESET%^%^C087%^n %^RESET%^%^C244%^becomes %^RESET%^%^C250%^hazy %^RESET%^%^C244%^and the world around you f%^RESET%^%^C243%^a%^C242%^d%^C241%^e%^C240%^s %^RESET%^%^C244%^into %^RESET%^%^C250%^g%^C249%^r%^C249%^a%^C250%^y%^RESET%^%^C244%^.%^CRST%^");
+    tell_room(place,"%^RESET%^%^C244%^"+target->QCN+" %^RESET%^%^C087%^b%^C123%^l%^C159%^i%^C195%^n%^C123%^k%^C087%^s%^RESET%^%^C244%^, and then stares around %^RESET%^%^C240%^sightlessly%^RESET%^%^C244%^.%^CRST%^",target);
     target->set_temporary_blinded(roll_dice(2,4));
     spell_successful();
     dest_effect();

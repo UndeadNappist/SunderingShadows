@@ -23,7 +23,7 @@ void create()
 
 string query_cast_string()
 {
-    return "%^BLUE%^" + caster->QCN + " makes a few passes in the air, whispering in dread undertones.%^RESET%^";
+    return "%^RESET%^%^C055%^" + caster->QCN + " %^RESET%^%^C055%^makes a few passes in the %^RESET%^%^C087%^air%^RESET%^%^C055%^, %^RESET%^%^C057%^w%^C063%^h%^C069%^i%^C075%^s%^C081%^p%^C087%^e%^C081%^r%^C075%^i%^C063%^n%^C057%^g %^RESET%^%^C055%^in %^RESET%^%^C240%^d%^C241%^r%^C242%^e%^C241%^a%^C240%^d %^RESET%^%^C055%^undertones.%^CRST%^";
 }
 
 int preSpell() {
@@ -54,7 +54,7 @@ spell_effect()
 
     damage_targ(target, target->return_target_limb(), sdamage, "mental");
 
-    tell_object(target, "%^BLUE%^A heavy nightmarish vision descends upon you as " + caster->QCN + " completes the spell.");
-    tell_room(ENV(target), "%^BLUE%^" + target->QCN + " shudders and staggers as feeling of dread swipes by the area.", target);
+    tell_object(target, "%^RESET%^%^C055%^A heavy %^RESET%^%^C240%^n%^C241%^i%^C242%^g%^C243%^h%^C244%^t%^C245%^m%^C244%^a%^C243%^r%^C242%^i%^C241%^s%^C240%^h v%^RESET%^%^C241%^i%^C242%^s%^C243%^i%^C241%^o%^C240%^n %^RESET%^%^C055%^descends upon you as " + caster->QCN + " %^RESET%^%^C055%^completes the spell.%^CRST%^");
+    tell_room(ENV(target), "%^RESET%^%^C055%^" + target->QCN + " %^RESET%^%^C057%^s%^C063%^h%^C069%^u%^C075%^d%^C081%^d%^C069%^e%^C063%^r%^C057%^s %^RESET%^%^C055%^and %^RESET%^%^C053%^s%^C054%^t%^C055%^a%^C056%^g%^C057%^g%^C055%^e%^C054%^r%^C053%^s %^RESET%^%^C055%^as feeling of %^RESET%^%^C240%^d%^C241%^r%^C242%^e%^C241%^a%^C240%^d %^RESET%^%^C055%^swipes by the area.%^CRST%^", target);
 
 }
