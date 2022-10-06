@@ -48,8 +48,8 @@ void spell_effect(int prof)
         return;
     }
     
-    tell_object(caster,"%^BOLD%^%^GREEN%^You motion and a wave of slaughter ripples away from you, killing those in its path!");
-    tell_room(place,"%^BOLD%^%^GREEN%^"+caster->QCN+" motions and a wave of slaughter ripples outward, killing all those in its path!",({caster}));
+    tell_object(caster,"%^RESET%^%^C052%^You motion and a w%^RESET%^%^C088%^a%^C124%^v%^RESET%^%^C160%^e %^RESET%^%^C196%^o%^C160%^f %^RESET%^%^C124%^s%^C088%^l%^C124%^a%^C160%^u%^C196%^g%^C160%^h%^C124%^t%^C088%^e%^RESET%^%^C052%^r %^RESET%^%^C088%^r%^C124%^i%^C160%^p%^C196%^p%^C160%^l%^C124%^e%^RESET%^%^C088%^s %^RESET%^%^C052%^away from you, %^RESET%^%^C088%^k%^C124%^i%^C160%^l%^C196%^l%^C160%^i%^C124%^n%^RESET%^%^C088%^g %^RESET%^%^C052%^those in its path!%^CRST%^");
+    tell_room(place,"%^RESET%^%^C052%^"+caster->QCN+" motions and a wave of slaughter ripples outward, killing all those in its path!",({caster}));
     
     spell_successful();
     spell_kill(target, caster);

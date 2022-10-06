@@ -20,8 +20,7 @@ void create(){
     set_spell_level(([ "assassin" : 4, "mage" : 8 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS listening shadow on TARGET");
-    set_description("This will move your shadow to listen to the room you're in or to follow the player indicated. You "
-"receive everything heard by the shadow.");
+    set_description("This will move your shadow to listen to the room you're in or to follow the player indicated. You receive everything heard by the shadow.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
@@ -57,7 +56,7 @@ void spell_effect(int prof){
     int bonus,power;
 
     if (!arg){
-        tell_object(caster,"%^RED%^You leave the shadow here to listen for you.%^RESET%^");
+        tell_object(caster,"%^RESET%^%^C244%^You leave the %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C242%^o%^C241%^w %^RESET%^%^C244%^here to listen for you.%^CRST%^");
         caster->add_cooldown("remote scrying", DELAY);
         if(place->query_property("no scry")){
            tell_object(caster,"Something blocks your attempt!");
@@ -91,8 +90,7 @@ void spell_effect(int prof){
 
     if (ob = find_player(caster->realNameVsProfile(arg))){
         if (objectp(ob) && !wizardp(ob)){
-            tell_object(caster,"%^BOLD%^%^BLACK%^You carefully and silently"+
-		        " send your shadow off to stand watch on "+arg+".%^RESET%^");
+            tell_object(caster,"%^RESET%^%^C244%^You carefully and %^RESET%^%^C250%^s%^C251%^i%^C252%^l%^C253%^e%^C254%^n%^C252%^t%^C251%^l%^C250%^y %^RESET%^%^C244%^send your %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C242%^o%^C241%^w %^RESET%^%^C244%^off to stand %^RESET%^%^C051%^w%^C123%^a%^C159%^t%^C123%^c%^C051%^h %^RESET%^%^C244%^on "+arg+"%^RESET%^%^C244%^.%^CRST%^");
                 
             /*
             if(environment(ob)->query_property("no scry")){
@@ -148,7 +146,7 @@ void dest_effect(){
       //caster->set_property("remote scrying time",time());
     }
     
-    tell_object(caster, "%^BOLD%^%^BLACK%^The listening shadow returns to its proper place.%^RESET%^");
+    tell_object(caster, "%^RESET%^%^C244%^The listening %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C242%^o%^C241%^w %^RESET%^%^C244%^returns to its proper place.%^CRST%^");
     
     ::dest_effect();
     if(objectp(TO)) TO->remove();
