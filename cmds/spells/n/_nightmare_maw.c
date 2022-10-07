@@ -53,8 +53,8 @@ void bite_again()
     }
 
     define_base_damage(0);
-    tell_room(ENV(target),"%^BOLD%^%^BLACK%^The maw continues to nibble on "+target->QCN+"!%^RESET%^",target);
-    tell_object(target,"%^BOLD%^%^BLACK%^The maw nibbles on you!%^RESET%^");
+    tell_room(ENV(target),"%^RESET%^%^C244%^The %^RESET%^%^C240%^maw %^RESET%^%^C244%^continues to %^RESET%^%^C088%^r%^C124%^i%^C088%^p %^RESET%^%^C244%^and %^RESET%^%^C124%^t%^C160%^e%^C196%^a%^C124%^r %^RESET%^%^C244%^into "+target->QCN+"%^RESET%^%^C244%^!%^CRST%^",target);
+    tell_object(target,"%^RESET%^%^C244%^The %^RESET%^%^C240%^maw %^RESET%^%^C244%^continues to %^RESET%^%^C088%^r%^C124%^i%^C088%^p %^RESET%^%^C244%^and %^RESET%^%^C124%^t%^C160%^e%^C196%^a%^C124%^r %^RESET%^%^C244%^into you!%^RESET%^");
     damage_targ(target, target->return_target_limb(), sdamage/6,"slashing");
 
     if(num-- < 0)
@@ -75,8 +75,8 @@ dest_effect()
 
     if(objectp(target))
     {
-        tell_room(ENV(target),"%^BOLD%^%^BLACK%^The maw was nibbling on "+target->QCN+" vanishes.%^RESET%^",target);
-        tell_object(target,"%^BOLD%^%^BLACK%^The maw vanishes!%^RESET%^");
+        tell_room(ENV(target),"%^RESET%^%^C244%^Finally, the vicious maw attacking "+target->QCN+" dissipates in a wisp of %^RESET%^%^C240%^darkness%^C244%^.%^CRST%^",target);
+        tell_object(target,"%^RESET%^%^C244%^The maw vanishes!%^CRST%^");
     }
 
     ::dest_effect();
