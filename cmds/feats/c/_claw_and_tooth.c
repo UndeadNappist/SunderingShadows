@@ -13,7 +13,7 @@ void create()
     feat_name("claw and tooth");
     feat_syntax("claw_and_tooth");
     feat_classes("oracle");
-    feat_desc("");
+    feat_desc("The lunar oracle embraces the wild nature within themselves. When this feat is activated, they gain automatic claw and bite attack attempts every round in combat.");
     allow_tripped(1);
 }
 
