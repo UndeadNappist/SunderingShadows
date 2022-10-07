@@ -81,7 +81,7 @@ int order_scrolls(string str){
     }
     if(str == "scrolls alphabetically"){
         tell_object(player, "%^RESET%^%^CRST%^%^C058%^You quickly sort the scrolls into cases according to alphabetical order.%^CRST%^");
-        tell_room(room, "%^RESET%^%^CRST%^%^C058%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C058%^ quickly shuffles the contents of their satchel.%^CRST%^", player);
+        tell_room(room, "%^RESET%^%^CRST%^%^C058%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C058%^ quickly shuffles the contents of their case.%^CRST%^", player);
         order_contents_alphabetically();
         return 1;
     }
@@ -117,7 +117,7 @@ int index_cast(string str){
     
     if(!objectp(scrollcase) || !objectp(environment(scrollcase)) || !objectp(player)) return 0;
     if(environment(scrollcase) != player){
-        tell_object(player, "%^RESET%^%^CRST%^%^C059%^You have to be holding the satchel to use it properly.%^CRST%^");
+        tell_object(player, "%^RESET%^%^CRST%^%^C059%^You have to be holding the scroll index to use it properly.%^CRST%^");
         return 1;
     }
     if(!str || strlen(str) < 3){
@@ -130,14 +130,14 @@ int index_cast(string str){
     if(sizeof(input) > 1) targetname = implode(input[1..], " on ");
     
     if(!present(spellname, scrollcase)){
-        tell_object(player, "%^RESET%^%^CRST%^%^C196%^There is no scroll with the spell "+spellname+" in the satchel. Or at least, if there is your indexing has gone horribly wrong!%^CRST%^");
-        tell_room(room, "%^RESET%^%^CRST%^%^C196%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C196%^ searches for a scroll in their satchel, but doesn't seem to find what they're is looking for.%^CRST%^", ETO);
+        tell_object(player, "%^RESET%^%^CRST%^%^C196%^There is no scroll with the spell "+spellname+" in the scroll index. Or at least, if there is your indexing has gone horribly wrong!%^CRST%^");
+        tell_room(room, "%^RESET%^%^CRST%^%^C196%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C196%^ searches for a scroll in their scroll index, but doesn't seem to find what they're is looking for.%^CRST%^", ETO);
         return 1;
     }
     tell_object(player, "%^RESET%^%^CRST%^%^C058%^You tap lightly at a %^C100%^button %^C058%^along the case, ejecting a %^C144%^scroll %^C058%^into your awaiting hand!%^CRST%^");
     tell_room(room, "%^RESET%^%^CRST%^%^C058%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C058%^ taps at their case and a %^C144%^scroll %^C058%^springs into their palm!%^CRST%^", player);
     
-    player->force_me("get "+spellname+" from satchel");
+    player->force_me("get "+spellname+" from scroll index");
     if(targetname && sizeof(input) > 1) TP->force_me("use "+spellname+" on "+targetname);
     else TP->force_me("use scroll");
     
