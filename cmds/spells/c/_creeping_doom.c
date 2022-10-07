@@ -94,7 +94,7 @@ void keep_biting(int dur)
 void dest_effect()
 {
     if (find_call_out("keep_biting") != -1)
-        remove_call_out("crawl");
+        remove_call_out("keep_biting");
     
     if(target)
         target->remove_property("creeping doom");
