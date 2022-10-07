@@ -21,15 +21,15 @@ void create()
 
 string query_cast_string()
 {
-    return "%^BOLD%^%^BLACK%^As "+caster->QCN+" chants, a giant black maw forms behind"+caster->QS+".%^RESET%^";
+    return "%^RESET%^%^C244%^As "+caster->QCN+" %^RESET%^%^C105%^c%^C111%^h%^C117%^a%^C153%^n%^C147%^t%^C141%^s%^RESET%^%^C244%^, a %^RESET%^%^C240%^giant black maw %^RESET%^%^C244%^forms behind"+caster->QS+"%^RESET%^%^C244%^.%^CRST%^";
 }
 
 spell_effect(int prof)
 {
     spell_successful();
 
-    tell_room(place,"%^BOLD%^%^BLACK%^As "+caster->QCN+" completes the chant, giant maw floats towards "+target->QCN+" and plunges its teeth into them.",target);
-    tell_object(target,"%^BOLD%^%^BLACK%^As "+caster->QCN+" completes the chant, giant maw floats towards you and plunges its teeth into them.",target);
+    tell_room(place,"%^RESET%^%^C244%^As "+caster->QCN+" %^RESET%^%^C244%^completes the %^RESET%^%^C105%^c%^C111%^h%^C117%^a%^C153%^n%^C147%^t%^RESET%^%^C244%^, a %^RESET%^%^C240%^giant maw %^RESET%^%^C244%^floats towards "+target->QCN+" %^RESET%^%^C244%^and plunges its %^RESET%^%^C240%^t%^C241%^e%^C242%^e%^C241%^t%^C240%^h %^RESET%^%^C244%^into them.%^CRST%^",target);
+    tell_object(target,"%^RESET%^%^C244%^As "+caster->QCN+" %^RESET%^%^C244%^completes the %^RESET%^%^C105%^c%^C111%^h%^C117%^a%^C153%^n%^C147%^t%^RESET%^%^C244%^, a %^RESET%^%^C240%^giant maw %^RESET%^%^C244%^floats towards you and plunges its %^RESET%^%^C240%^t%^C241%^e%^C242%^e%^C241%^t%^C240%^h %^RESET%^%^C244%^into them.%^CRST%^",target);
     damage_targ(target, target->return_target_limb(), sdamage,"slashing");
     num = clevel / 8 + 1;
     if(do_save(target,0))
