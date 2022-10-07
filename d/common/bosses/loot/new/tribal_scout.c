@@ -16,10 +16,10 @@ void create()
 {
     ::create();
     set_name("tribal scout");
-    set_short("IDENTIFIED SHORT");
-    set_obvious_short("NOT IDENTIFIED SHORT");
-    set_long("LONG DESC");
-    set_lore("LORE DESC - ADD IN WHAT IT DOES");
+    set_short("The desert guardian");
+    set_obvious_short("Thick hide armor dusted in sand");
+    set_long("This hide armor is unusally breathable for it's thickness. Soft golden furs dusted with sand are bound together with fine stips of leather, barely concealing the hardier scales beneath. Long sleeves end in cuffs adorned with the thick claws of a desert wyvern. Sand falls from the armor twisting and writhing around it as if caught in the desert wind, apparent waves of heat blend with the sand and in the briefest moments create the mirage of eyes surveying the area.");
+    set_lore("In ages past the desert was even more inhospitible. A massive sand elemental raged against any it all creatures it could find. Many tried to hide in the ground or flee to the sky but it was as if the elemental could see through the grains of sand as if they were it's own eyes. A nomadic druid plead to the creatures of the desert to assist her in binding the elemental and restore harmony to the broken sands. The creatures gathered, each offering up one of their own for her own for the cause. When the elemental struck each of the creatures sacrificed themselves as the spell was woven. The sands tore at her flesh as she wound the creatures together, binding the elemental in chains of blood and soul. When the sandstorm calmed none of the participants could be found, their names lost to the sands. A piece of each still remains and their legacy the desert guardian endures.");
     set_property("lore difficulty", 40);
     set_property("id difficulty", 40);   
     set_flag_required("boss avatar");
