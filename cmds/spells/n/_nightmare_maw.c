@@ -75,8 +75,8 @@ dest_effect()
 
     if(objectp(target))
     {
-        tell_room(ENV(target),"%^RESET%^%^C244%^Finally, the vicious maw attacking "+target->QCN+" dissipates in a wisp of %^RESET%^%^C240%^darkness%^C244%^.%^CRST%^",target);
-        tell_object(target,"%^RESET%^%^C244%^The maw vanishes!%^CRST%^");
+        tell_room(ENV(target),"%^RESET%^%^C244%^Finally, the %^RESET%^%^C088%^v%^C124%^i%^C160%^c%^C196%^i%^C160%^o%^C124%^u%^C088%^s %^RESET%^%^C240%^maw %^RESET%^%^C244%^attacking "+target->QCN+" %^RESET%^%^C240%^d%^C241%^i%^C242%^s%^C243%^s%^C244%^i%^C245%^p%^C246%^a%^C247%^t%^C248%^e%^C249%^s %^RESET%^%^C244%^in a wisp of %^RESET%^%^C240%^darkness%^C244%^.%^CRST%^",target);
+        tell_object(target,"%^RESET%^%^C244%^The %^RESET%^%^C088%^v%^C124%^i%^C160%^c%^C196%^i%^C160%^o%^C124%^u%^C088%^s %^RESET%^%^C240%^maw %^RESET%^%^C240%^d%^C241%^i%^C242%^s%^C243%^s%^C244%^i%^C245%^p%^C246%^a%^C247%^t%^C248%^e%^C249%^s %^RESET%^%^C244%^in a wisp of %^RESET%^%^C240%^darkness%^RESET%^C244%^!%^CRST%^");
     }
 
     ::dest_effect();

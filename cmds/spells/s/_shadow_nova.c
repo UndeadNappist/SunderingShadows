@@ -28,8 +28,8 @@ void create()
 
 string query_cast_string()
 {
-    tell_object(caster,"%^BOLD%^%^CYAN%^You can feel a chill growing in the air as you chant.");
-    tell_room(place,"%^BOLD%^%^CYAN%^A chilling aura surrounds "+caster->QCN+" as "+caster->QS+" begins to chant.",caster);
+    tell_object(caster,"%^RESET%^%^C026%^You can feel a %^RESET%^%^C051%^c%^C087%^h%^C123%^i%^C087%^l%^C051%^l %^RESET%^%^C026%^growing in the %^RESET%^%^C087%^air %^RESET%^%^C026%^as you chant.%^CRST%^");
+    tell_room(place,"%^RESET%^%^C026%^A %^RESET%^%^C051%^c%^C087%^h%^C123%^i%^C159%^l%^C195%^l%^C123%^i%^C087%^n%^C051%^g %^RESET%^%^C051%^a%^C123%^u%^C159%^r%^C051%^a %^RESET%^%^C026%^surrounds "+caster->QCN+" %^RESET%^%^C026%^as "+caster->QS+" %^RESET%^%^C026%^begins to chant.%^CRST%^",caster);
     return "display";
 }
 
@@ -43,22 +43,22 @@ void spell_effect(int prof)
 
     if(!sizeof(attackers))
     {
-        tell_object(caster,"%^MAGENTA%^The area is plunged momentarily into darkness, but nothing else happens.");
+        tell_object(caster,"%^RESET%^%^C242%^The area is plunged into %^RESET%^%^C240%^utter darkness%^RESET%^%^C242%^, but nothing else happens.%^CRST%^");
         dest_effect();
         return;
     }
 
-    tell_room(place,"%^MAGENTA%^The area is plunged momentarily into utter darkness!%^RESET%^");
+    tell_room(place,"%^RESET%^%^C242%^The area is plunged into %^RESET%^%^C240%^utter darkness%^RESET%^%^C242%^, the touch of the %^RESET%^%^C240%^void %^RESET%^%^C045%^c%^C051%^h%^C087%^i%^C123%^l%^C159%^l%^C087%^i%^C051%^n%^C045%^g %^RESET%^%^C242%^your very %^RESET%^%^C159%^soul%^RESET%^%^C242%^!%^CRST%^");
 
     for(i=0;i<sizeof(attackers);i++)
     {
         if(!objectp(attackers[i])) continue;
         if(!do_save(attackers[i],0))
         {
-            tell_object(attackers[i],"%^BOLD%^You blink several times, but complete darkness remains across your vision!%^RESET%^");
+            tell_object(attackers[i],"%^RESET%^%^C241%^You %^RESET%^%^C249%^b%^C250%^l%^C251%^i%^C250%^n%^C249%^k %^RESET%^%^C241%^several times, but your vision remains clouded by complete %^RESET%^%^C240%^darkness%^RESET%^%^C241%^!%^CRST%^");
             attackers[i]->set_temporary_blinded(1);
         }
-        tell_object(attackers[i],"%^BOLD%^%^CYAN%^The darkness burns with an unnatural chill as it passes over and through you!%^RESET%^");
+        tell_object(attackers[i],"%^RESET%^%^C242%^The unnatural chill of the void sears your very soul as it passes over and through you!%^RESET%^");
         damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage,"void");
     }
 
