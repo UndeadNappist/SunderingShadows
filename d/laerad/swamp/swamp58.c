@@ -10,9 +10,9 @@ void create(){
 	"are swarming around you constantly, biting and scratching at your face.  "+
 	"Dead trees poke out of the water along with an uncountable number of lily "+
 	"pads, and other assorted swamp brush.\n"
-      "%^YELLOW%^Someone has put holes in the outer wall of a secret fort. These "
-      "look like murderholes from which attackers could ambush someone _inside_ "
-      "the fort from safety here. What a nasty %^RED%^trap!%^RESET%^\n"
+      //"%^YELLOW%^Someone has put holes in the outer wall of a secret fort. These "
+      //"look like murderholes from which attackers could ambush someone _inside_ "
+      //"the fort from safety here. What a nasty %^RED%^trap!%^RESET%^\n"
     );
     set("night long",
         "You have walked into a very dark and dreary swamp.  The moon shines "+

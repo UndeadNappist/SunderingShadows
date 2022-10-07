@@ -274,7 +274,7 @@ This command will list the skills available on the mud.  The number in brackets 
 
 To add points to a skill use %^ORANGE%^<skills add %^ORANGE%^%^ULINE%^NUMBER%^RESET%^%^ORANGE%^ to %^ORANGE%^%^ULINE%^SKILL%^RESET%^%^ORANGE%^>%^RESET%^. You can only spend limited amount of free points based on your level and class.
 
-To remove poins from a skill use %^ORANGE%^<skills remove %^ORANGE%^%^ULINE%^NUMBER%^RESET%^%^ORANGE%^ from %^ORANGE%^%^ULINE%^SKILL%^RESET%^%^ORANGE%^>%^RESET%^. This will incur a character improvement tax based on your level.
+To remove points from a skill use %^ORANGE%^<skills remove %^ORANGE%^%^ULINE%^NUMBER%^RESET%^%^ORANGE%^ from %^ORANGE%^%^ULINE%^SKILL%^RESET%^%^ORANGE%^>%^RESET%^. This will incur a character improvement tax based on your level.
 
 Your rank in a skill, outside the brackets, is your total modified skill, which you use in your checks. It includes bonuses from:
  * stats:  1 point per 2 past 10, in the appropriate stat
