@@ -39,7 +39,7 @@ void spell_effect(int prof){
 
     if(!tempstr) tempstr = "";
     if(!sscanf(tempstr,"%s",a)){
-        tell_object(caster,"%^BLUE%^You cast your gaze out in search of a suitable patch of shadows, but pause as you realise you have no destination in mind.%^RESET%^");
+        tell_object(caster,"%^RESET%^%^C244%^You cast your %^RESET%^%^C087%^g%^C123%^a%^C159%^z%^C087%^e %^RESET%^%^C244%^out in search of a suitable patch of %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C242%^o%^C241%^w%^C240%^s%^RESET%^%^C244%^, but pause as you realise you have no destination in mind.%^RESET%^");
         tell_room(place, "%^BLUE%^"+caster->QCN+"%^RESET%^%^BLUE%^ glances around.%^RESET%^", caster);
         dest_effect();
         return;
