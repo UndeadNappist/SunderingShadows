@@ -58,7 +58,7 @@ void spell_effect(int prof)
             tell_object(attackers[i],"%^RESET%^%^C241%^You %^RESET%^%^C249%^b%^C250%^l%^C251%^i%^C250%^n%^C249%^k %^RESET%^%^C241%^several times, but your vision remains clouded by complete %^RESET%^%^C240%^darkness%^RESET%^%^C241%^!%^CRST%^");
             attackers[i]->set_temporary_blinded(1);
         }
-        tell_object(attackers[i],"%^RESET%^%^C242%^The unnatural chill of the void sears your very soul as it passes over and through you!%^RESET%^");
+        tell_object(attackers[i],"%^RESET%^%^C242%^The unnatural %^RESET%^%^C051%^c%^C087%^h%^C123%^i%^C087%^l%^C051%^l %^RESET%^%^C242%^of the %^RESET%^%^C240%^void %^RESET%^%^C242%^sears your very %^RESET%^%^C159%^soul%^RESET%^%^C242%^!%^CRST%^");
         damage_targ(attackers[i],attackers[i]->return_target_limb(),sdamage,"void");
     }
 

@@ -59,11 +59,9 @@ void spell_effect(int prof) {
        dest_effect();
        return;
     }
-    tell_object(caster,"%^RESET%^%^BLUE%^You slip just for a second into the shadows, "
-"and use their concealment to stride towards the "+arg+" exit.%^RESET%^");
+    tell_object(caster,"%^RESET%^%^C244%^You step into the %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C242%^o%^C241%^w%^C240%^s%^RESET%^%^C244%^ and use their %^RESET%^%^C240%^concealment %^RESET%^%^C244%^to stride towards the "+arg+" %^RESET%^%^C242%^exit.%^CRST%^");
     if(!caster->query_invis()){
-       tell_room(place,"%^RESET%^%^BLUE%^"+caster->QCN+" glances over the shadows "
-"towards the "+arg+" exit just before "+caster->QS+" vanishes!%^RESET%^",caster);
+       tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+" steps into the %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C242%^o%^C241%^w%^C240%^s %^RESET%^%^C244%^near the "+arg+" exit just before "+caster->QS+" vanishes!%^RESET%^",caster);
     }
     caster->clear_followers();
     caster->move_player(dest);
