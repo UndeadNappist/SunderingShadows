@@ -11,7 +11,7 @@ void create()
     set_author("nienne");
     set_spell_name("flee the scene"); // Mislead
     set_spell_level(([ "warlock" : 2, "bard" : 5, "mage" : 6, "magus" : 5, "cleric" : 5 ]));
-    set_domains(({ "freedom", "trickery" }));
+    set_domains(({ "freedom" }));
     set_spell_sphere("illusion");
     set_syntax("cast CLASS flee the scene on DIRECTION");
     set_description("This spell allows the caster to craft an illusion about themselves, "

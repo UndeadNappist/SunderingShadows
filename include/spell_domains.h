@@ -5,7 +5,7 @@
 #define SPELL_DOMAINS (([\
  "ashra"    : ({ "charm", "nightmare", "darkness", "evil" }), \
  "edea"     : ({ "good", "renewal", "protection", "creation" }), \
- "callamir" : ({ "charm", "travel", "good", "illusion"}), \
+ "callamir" : ({ "charm", "travel", "good", "trickery"}), \
  "cevahir" :  ({ "strength", "war", "repose", "knowledge" }) , \
  "jarmila" :  ({ "renewal", "sun", "fire", "good", }) , \
  "khyron" :   ({ "fire", "destruction", "suffering", "chaos", }) , \
