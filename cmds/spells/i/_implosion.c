@@ -1,54 +1,103 @@
+#include <std.h>
 #include <spell.h>
-#include <daemons.h>
+#include <magic.h>
+#include <priest.h>
 inherit SPELL;
 
 void create()
 {
     ::create();
     set_spell_name("implosion");
-    set_spell_level(([ "cleric" : 9, "psion" : 9 ]));
+    set_spell_level(([ "cleric" : 9 ]));
     set_spell_sphere("invocation_evocation");
-    set_discipline("shaper");
     set_syntax("cast CLASS implosion on TARGET");
-    set_damage_desc("untyped");
-    set_save("fort");
-    set_description("With this spell caster attempts to crush opponent into nothingness.");
+    set_damage_desc("Untyped damage over several rounds. Successful save per round reduces damage by half.");
+    set_description("Calling on your power, you extend a hand and clench it into a fist, inflicting massive crushing force on your target. The target takes untyped damage, and continues to take a lesser amount of crushing damage each round as they are mercilessly squeezed into nothingness.");
+    set_save("fortitude");
+    set_target_required(1);
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
 }
 
 string query_cast_string()
 {
-    return "%^BOLD%^%^WHITE%^" + caster->QCN + " wavers while chanting.%^RESET%^";
+    return "%^CYAN%^"+caster->QCN+" extends "+caster->QP+" hand and recites a prayer.";
 }
 
-spell_effect(int prof)
+void spell_effect(int prof)
 {
-    spell_successful();
-    if (interactive(caster)) {
-        tell_object(caster, "%^BOLD%^%^WHITE%^You extend your hand and will to crush " + target->QCN + "!");
-        tell_room(place, "%^BOLD%^%^WHITE%^" + caster->QCN + " extends hand and wills to crush " + target->QCN + " with " + caster->QP + " spell!", ({ caster }));
+    
+    if(!objectp(caster))
+        return;
+    
+    if(!objectp(target) || environment(target) != place)
+    {
+        tell_object(caster, "Your target is no longer here.");
+        dest_effect(target);
+        return;
     }
     
-    if(do_save(target, 0))
+    if(target->query_property("implosion"))
     {
-        tell_room(place, target->QCN + " is able to resist some of the crushing force!", ({ target }));
-        tell_object(target, "You are able to resist some of the crushing force!");
-        if(FEATS_D->usable_feat(target, "stalwart"))
-            sdamage = 0;
-        else            
-            sdamage /= 2;
+        tell_object(caster, "Your target is already affected by implosion.");
+        dest_effect();
+        return;
     }
+    
+    spell_successful();
+    
+    tell_room(place, "%^C111%^" + caster->query_cap_name() + "%^C248%^ finishes a prayer and clenches a fist, crushing " + target->query_cap_name() + " with unreleneting force!%^CRST%^", target);
+    tell_object(caster, "%^C248%^You finish your prayer and close your hand into a clenched fist, crushing " + target->query_cap_name() + " with unrelenting force!%^CRST%^");
+    tell_object(target, "%^C248%^" + caster->query_cap_name() + " finishes a prayer and crushes you with unrelenting force!%^CRST%^");
+    
+    if(do_save(target, 0))
+        target->cause_typed_damage(target, "torso", sdamage / 2, "untyped");
+    else
+        target->cause_typed_damage(target, "torso", sdamage, "untyped");
+    
+    target->set_property("implosion", 1);
+    
+    call_out("keep_crushing", ROUND_LENGTH, 4);
+}
 
-    damage_targ(target, target->return_target_limb(), sdamage, "untyped");
-    TO->dest_effect();
+void keep_crushing(int dur)
+{
+    if(!objectp(caster) || !objectp(target))
+    {
+        dest_effect();
+        return;
+    }
+    
+    tell_object(target, "%^C248%^The crushing force squeezes you mercilessly!%^CRST%^");
+    tell_room(place, "%^C248%^The crushing force squeezes " + target->query_cap_name() + " mercilessly!%^CRST%^", target);
+    
+    if(do_save(target, 0))
+        target->cause_typed_damage(target, "torso", sdamage / 6, "untyped");
+    else
+        target->cause_typed_damage(target, "torso", sdamage / 3, "untyped");
+    
+    dur--;
+    if(dur <= 0)
+    {
+        dest_effect();
+        return;
+    }
+    
+    call_out("keep_biting", ROUND_LENGTH, dur);
 }
 
 void dest_effect()
 {
-    ::dest_effect();
-    if (objectp(TO)) {
-        TO->remove();
+    if (find_call_out("keep_crushing") != -1)
+        remove_call_out("keep_crushing");
+    
+    if(target)
+    {
+        target->remove_property("implosion");
+        tell_object(target, "%^BOLD%^The crushing force finally relents.%^RESET%^");
     }
+    
+    tell_room(place, "");
+    
+    ::dest_effect();
 }
