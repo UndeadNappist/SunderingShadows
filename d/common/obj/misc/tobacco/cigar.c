@@ -1,14 +1,15 @@
 //generic inheritable cigar by Odin 5/2/2020
+// Chernobog (10/7/22)
+// cleaned up code and removed unused variables
+
 #include <std.h>
 #include <move.h>
 inherit OBJECT;
 
-object ob;
-string* mymsgs, * yourmsgs;
+string *mymsgs, *yourmsgs;
 int lit, hasmsgs, intox, tracker;
 
-void create()
-{
+void create(){
     ::create();
     set_name("cigar");
     set_id(({ "cigar" }));
@@ -24,111 +25,111 @@ void create()
     intox = 0;
 }
 
-void init()
-{
+void init(){
     ::init();
     add_action("extinguish", "douse");
     add_action("smoke", "smoke");
 }
 
-int smoke(string str)
-{
-    if (!id(str)) {
-        notify_fail("Smoke what?\n");
+int smoke(string str){
+    object cigar, player;
+    cigar = this_object();
+    player = environment(cigar);
+    
+    if(!id(str)){
+        tell_object(player, "%^RESET%^%^CRST%^%^C058%^What do you want to smoke?%^CRST%^");
         return 0;
     }
-    if (lit) {
-        notify_fail("You're already smoking it!\n");
+    if(lit){
+        tell_object(player, "%^RESET%^%^CRST%^%^C058%^It is already lit.%^CRST%^");
         return 0;
     }
-    write("You begin smoking your cigar.\n");
-    say(TP->QCN + " begins smoking a cigar.\n", TP);
-    TO->set_property("added short", ({ "%^YELLOW%^ (lit)%^RESET%^" }));
+    tell_object(player, "%^RESET%^%^CRST%^%^C100%^You begin %^C243%^s%^C245%^m%^C247%^o%^C249%^k%^C251%^i%^C253%^n%^C255%^g%^C100%^ your cigar.%^CRST%^");
+    tell_room(environment(player), "%^RESET%^%^CRST%^%^C100%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ begins %^C243%^s%^C245%^m%^C247%^o%^C249%^k%^C251%^i%^C253%^n%^C255%^g%^C100%^ their cigar.%^CRST%^", player);
+    TO->set_property("added short", ({ " %^RESET%^%^CRST%^%^C214%^(%^C202%^l%^C196%^i%^C202%^t%^C214%^)%^CRST%^" }));
     call_out("take_drag", 5);
     TO->set_property("lit cigar", 1);
     lit = 1;
     return 1;
 }
 
-int extinguish(string str)
-{
-    if (!id(str)) {
-        notify_fail("Douse what?\n");
+int extinguish(string str){
+    object cigar, player;
+    cigar = this_object();
+    player = environment(cigar);
+    
+    if(!id(str)){
+        tell_object(player, "%^RESET%^%^CRST%^%^C058%^What do you want to douse?%^CRST%^");
         return 0;
     }
-    if (!lit) {
-        notify_fail("Your cigar is not lit!\n");
+    if(!lit){
+        tell_object(player, "%^RESET%^%^CRST%^%^C058%^The cigar is not lit.%^CRST%^");
         return 0;
     }
-    write("You douse your cigar.\n");
-    say(TP->QCN + " douses a cigar.\n", TP);
+    tell_object(player, "%^RESET%^%^CRST%^%^C058%^You douse your cigar.%^CRST%^");
+    tell_room(environment(player), "%^RESET%^%^CRST%^%^C058%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ douses a cigar.%^CRST%^", player);
     remove_call_out("take_drag");
-    TO->remove_property("lit cigar");
+    cigar->remove_property("lit cigar");
     lit = 0;
-    TO->remove_property_value("added short", ({ "%^YELLOW%^ (lit)%^RESET%^" }));
-    TO->remove_property("added short");
+    cigar->remove_property_value("added short", ({ " %^RESET%^%^CRST%^%^C214%^(%^C202%^l%^C196%^i%^C202%^t%^C214%^)%^CRST%^" }));
+    cigar->remove_property("added short");
     return 1;
 }
 
-void take_drag()
-{
+void take_drag(){
+    object cigar, player, room;
     int i;
-    if (!living(ETO)) {
-        call_out("go out", 2);
+    cigar = this_object();
+    player = environment(cigar);
+    room = environment(player);
+    
+    if(!living(player)) call_out("go out", 2);
+    if(tracker > 30 + random(16)) call_out("go_out", 1);
+    
+    tell_object(player, "%^RESET%^%^CRST%^%^C124%^You take a long, gentle drag from your cigar.%^CRST%^");
+    tell_room(room, "%^RESET%^%^CRST%^%^C124%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C124%^ takes a long, gentle drag from a cigar.%^CRST%^", player);
+    
+    if(intox){
+        player->add_intox(intox);
+        tell_object(player, "%^RESET%^%^CRST%^%^C144%^You start to feel %^C076%^s%^C070%^t%^C064%^r%^C076%^a%^C070%^n%^C064%^g%^C076%^e%^C144%^, and your mind wanders...%^CRST%^");
     }
-    if (tracker > 30 + random(16)) {
-        call_out("go_out", 1);
-    }
-    if (living(ETO)) {
-        tell_object(ETO, "%^RED%^You take a long, gentle drag from your cigar.");
-        tell_room(EETO, "%^RED%^" + ETO->QCN + " takes a long, gentle drag from a cigar.", ETO);
-    }
-    if (intox) {
-        ETO->add_intox(intox);
-        write("You start to feel strange, your mind wanders...");
-    }
-    if (!hasmsgs) {
-        tell_room(EETO, "%^RED%^" + ETO->QCN + " giggles and stares off into the distance.%^RESET%^", ETO);
-    }else {
+    if(hasmsgs){
         i = random(sizeof(mymsgs));
-        tell_object(ETO, mymsgs[i]);
-        tell_room(EETO, yourmsgs[i], ETO);
+        tell_object(player, mymsgs[i]);
+        tell_room(room, yourmsgs[i], player);
     }
     tracker++;
     call_out("take_drag", random(30) + 60);
 }
 
-void go_out()
-{
-    tell_room(EETO, "" + ETO->QCN + "'s cigar goes out, the tobacco finished; " + ETO->QS + " disposes of the remaining butt.\n", TP);
-    tell_object(ETO, "Your cigar goes out, the tobacco finished. You dispose of the remaining butt.\n");
-    TO->remove_property("lit cigar");
+void go_out(){
+    object cigar, player, room;
+    cigar = this_object();
+    player = environment(cigar);
+    room = environment(player);
+    
+    tell_room(room, "%^RESET%^%^CRST%^%^C058%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C058%^'s cigar goes out, the tobacco finished; They dispose of the remaining butt.%^CRST%^\n", player);
+    tell_object(player, "%^RESET%^%^CRST%^%^C058%^Your cigar goes out, the tobacco finished. You dispose of the remaining butt.%^CRST%^\n");
+    cigar->remove_property("lit cigar");
     remove_call_out("take_drag");
     lit = 0;
     intox = 0;
     hasmsgs = 0;
     tracker = 0;
-    TO->remove_property_value("added short", ({ "%^YELLOW%^ (lit)%^RESET%^" }));
-    TO->remove_property("added short");
-    TO->remove();
+    cigar->remove_property_value("added short", ({ " %^RESET%^%^CRST%^%^C214%^(%^C202%^l%^C196%^i%^C202%^t%^C214%^)%^CRST%^" }));
+    cigar->remove_property("added short");
+    cigar->remove();
 }
 
-remove()
-{
+remove(){
     if (lit) {
         lit = 0;
         remove_call_out("take_drag");
-        TO->remove_property("lit cigar");
+        this_object()->remove_property("lit cigar");
     }
     return ::remove();
 }
 
-int get_tracker()
-{
-    return tracker;
-}
-
-int is_cigar(){
-    return 1;
-}
+int get_tracker(){ return tracker;}
+int is_cigar(){ return 1;}
 
