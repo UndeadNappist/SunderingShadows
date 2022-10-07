@@ -61,13 +61,13 @@ void spell_effect(int prof) {
     }
     tell_object(caster,"%^RESET%^%^C244%^You step into the %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C242%^o%^C241%^w%^C240%^s%^RESET%^%^C244%^ and use their %^RESET%^%^C240%^concealment %^RESET%^%^C244%^to stride towards the "+arg+" %^RESET%^%^C242%^exit.%^CRST%^");
     if(!caster->query_invis()){
-       tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+" steps into the %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C242%^o%^C241%^w%^C240%^s %^RESET%^%^C244%^near the "+arg+" exit just before "+caster->QS+" vanishes!%^RESET%^",caster);
+       tell_room(place,"%^RESET%^%^C244%^"+caster->QCN+" steps into the %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C242%^o%^C241%^w%^C240%^s %^RESET%^%^C244%^near the "+arg+" %^RESET%^%^C244%^exit and %^RESET%^%^C240%^vanishes%^RESET%^%^C244%^!%^CRST%^",caster);
     }
     caster->clear_followers();
     caster->move_player(dest);
     caster->add_cooldown("slide time", DELAY);
     if(!caster->query_invis()){
-       tell_room(dest,"%^RESET%^%^BLUE%^"+caster->QCN+" steps quite suddenly from a patch of shadow.%^RESET%^",caster);
+       tell_room(dest,"%^RESET%^%^C244%^"+caster->QCN+" %^RESET%^%^C244%^steps quite suddenly from a patch of %^RESET%^%^C240%^s%^C241%^h%^C242%^a%^C243%^d%^C241%^o%^C240%^w%^RESET%^%^C244%^.%^CRST%^",caster);
     }
     dest_effect();
 }
