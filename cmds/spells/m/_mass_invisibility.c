@@ -10,7 +10,7 @@ create()
     ::create();
     set_spell_name("mass invisibility");
     set_spell_level(([ "mage" : 7, "assassin" : 4, "cleric" : 7, "oracle" : 7 ]));
-    set_domains("illusion");
+    set_domains(({ "illusion", "trickery" }));
     set_mystery("shadow");
     set_spell_sphere("illusion");
     set_syntax("cast CLASS mass invisibility");

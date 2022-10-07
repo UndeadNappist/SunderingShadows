@@ -15,8 +15,9 @@ object detector, blocker;
 void create() {
     ::create();
     set_spell_name("screen");
-    set_spell_level(([ "mage": 8 ]));
+    set_spell_level(([ "mage": 8, "cleric" : 8 ]));
     set_spell_sphere("illusion");
+    set_domains("trickery");
     set_syntax("cast CLASS screen");
     set_description("Upon casting this spell, the user creates a screen of illusion in the area that makes scrying attempts difficult. This screen will actively attempt to block scry attempts, though it will not warn the caster when attempts fail. This scry blocking spell, unlock other such spells, affects the entire room, and stays in that room. It does not move around with the caster. This can be used to create an area (room) that has temporary scry protection that will protect everyone within.");
     set_verbal_comp();

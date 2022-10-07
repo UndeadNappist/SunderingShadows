@@ -2671,7 +2671,7 @@ void define_clevel()
         switch(spell_sphere)
         {
             case "illusion":
-            if(member_array("illusion", domains) >= 0)
+            if(member_array("illusion", domains) >= 0 || member_array("trickery", domains) >= 0)
                 clevel += 1;
             break;
 
