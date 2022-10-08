@@ -115,7 +115,7 @@ int prerequisites(object player)
     if (!player->is_class(base)) {
         return 0;
     }
-    if ((player->query_class_level(base)) < 20) {
+    if (player->query_base_character_level() < 20) {
         return 0;
     }
     if (!FEATS_D->usable_feat(player, "strength of arm")) {
