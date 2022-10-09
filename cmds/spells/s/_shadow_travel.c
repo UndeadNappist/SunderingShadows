@@ -63,7 +63,7 @@ void spell_effect(int prof){
 
     if (environment(caster)->query_property("no teleport")||
         endplace->query_property("no teleport")) {
-        tell_object(caster,"%^BLUE%^You cast your gaze out in search of a suitable patch of shadows, but pause as you sense an interference.%^RESET%^");
+        tell_object(caster,"%^BLUE%^You cast your gaze out in search of a suitable patch of shadows, but pause as you sense an interference.%^CRST%^");
         tell_room(place, "%^BLUE%^"+caster->QCN+"%^RESET%^%^BLUE%^ glances around.%^RESET%^", caster);
         dest_effect();
         return;
