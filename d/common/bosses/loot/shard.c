@@ -10,7 +10,7 @@
 #include <daemons.h>
 
 //Hit interval instead of proc chance. Procs every 5 hits.
-#define HIT_INTERVAL 5
+#define HIT_INTERVAL 3
 
 inherit "/d/common/obj/weapon/dagger.c";
 

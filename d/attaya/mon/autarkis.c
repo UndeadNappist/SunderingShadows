@@ -147,10 +147,7 @@ void die(object ob){
       }
    }
 
-    WORLD_EVENTS_D->inject_event((["A Demon Obliterated!" : (["start message" : "%^BOLD%^%^CYAN%^The power from the shockwave "+
-    "washes over you.... bathing you in its light! You feel something ancient stirring deep within yourself and "+
-    "%^BOLD%^%^YELLOW%^SUDDENLY%^BOLD%^%^CYAN%^ your ability to absorb information is magnified! For the next %^BOLD%^%^CYAN%^"+
-    "four hours%^BOLD%^%^CYAN%^ all experience gained with award an additional %^BOLD%^%^CYAN%^5%^BOLD%^%^WHITE%^!%^RESET%^",
+    WORLD_EVENTS_D->inject_event((["A Demon Obliterated!" : (["start message" : "%^BOLD%^%^CYAN%^The power from the shockwave washes over you.... bathing you in its light! You feel something ancient stirring deep within yourself and %^YELLOW%^SUDDENLY%^CYAN%^ your ability to absorb information is magnified! For the next four hours all experience gained will award an additional %^WHITE%^5%!%^RESET%^",
     "event type" : "exp bonus", "length" : 240, "notification" : "5% Bonus Exp",
     "event name" : "A Demon Obliterated!", "modifier" : 5, "announce" : 1, "announce to" : "world" ]),]));
 

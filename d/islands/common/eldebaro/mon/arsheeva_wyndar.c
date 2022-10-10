@@ -183,10 +183,7 @@ void die(object ob)
         "%^BOLD%^M%^BOLD%^%^WHITE%^o%^BOLD%^%^BLACK%^nst%^WHITE%^ou"+
         "%^BLACK%^s shadows swoop through the clouds, you recognize "+
         "that something %^BOLD%^%^RED%^DREADFUL%^BOLD%^%^BLACK%^ is stirring there!!%^RESET%^", users());
-        WORLD_EVENTS_D->inject_event((["The Winds of Change" : (["start message" : "%^BOLD%^%^WHITE%^The winds of change blow across the "+
-        "face of the world... and suddenly you are %^BOLD%^%^CYAN%^RENEWED%^BOLD%^%^WHITE%^ as a powerful force has been dealt a weaking blow, "+
-        "%^BOLD%^%^RED%^at least for now%^BOLD%^%^WHITE%^... and you are left feeling more hopeful about your future. For the next %^BOLD%^%^CYAN%^"+
-        "four hours%^BOLD%^%^WHITE%^ all experience gained with award an additional %^BOLD%^%^CYAN%^25%^BOLD%^%^WHITE%^!%^RESET%^",
+        WORLD_EVENTS_D->inject_event((["The Winds of Change" : (["start message" : "%^BOLD%^%^WHITE%^The winds of change blow across the face of the world... and suddenly you are %^BOLD%^%^CYAN%^RENEWED%^BOLD%^%^WHITE%^ as a powerful force has been dealt a weakening blow, %^BOLD%^%^RED%^at least for now%^BOLD%^%^WHITE%^... and you are left feeling more hopeful about your future. For the next %^BOLD%^%^CYAN%^four hours%^BOLD%^%^WHITE%^ all experience gained will award an additional %^BOLD%^%^CYAN%^25%%^BOLD%^%^WHITE%^!%^RESET%^",
         "event type" : "exp bonus", "length" : 240, "notification" : "25% Bonus Exp", 
         "event name" : "The Winds of Change", "modifier" : 25, "announce" : 1, "announce to" : "world" ]),]));  
         foreach(object usr in users())
