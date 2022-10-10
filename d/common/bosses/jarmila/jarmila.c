@@ -296,52 +296,44 @@ void check_fate(){
    if(fate_counter == 5) {bork();}
 }  
 
-void bork (object targ){
-
-   bork_control =find_object_or_load(ROOMS"top.c");
-   bork_control->func_bork();    
-   tell_room(ETO,"%^C153%^With a flash of the Phoenix's eyes "+
-   "a heavy mist fills the area!%^CRST%^");
-   return;
+void bork (object targ)
+{
+    object room = environment(this_object());
+    //bork_control =find_object_or_load(ROOMS"top.c");
+    //bork_control->func_bork();
+   
+    if(room)
+    {
+       tell_room(room,"%^C153%^With a flash of the Phoenix's eyes a heavy mist fills the area!%^CRST%^");
+       room->set_property("antimagic field");
+    }
+    return;
 }
-void unbork (object targ){
-
-   bork_control =find_object_or_load(ROOMS"top.c");
-   bork_control->func_unbork();
-   fate_counter = 0;    
-   tell_room(ETO,"%^C153%^The massive phoenix flaps "+
-   "its wings and the mist clears from the area!%^CRST%^");
-   return;
-}
-
-/*
-
-void die(object ob) {
-    int i;
-    object *att;
-
-       ETO->lockdown();
-       new(OBJ"cracked_sunstone")->move(ETO);
-    tell_room(ETO, "%^C160%^The phoenix bursts into an explosion "+
-	"of epic proportions and disappears, though the force of its "+
-	"death has cracked open one of the larger sunstones.%^CRST%^");
-    message("broadcast", "   %^C160%^A great plume of %^C124%^"+
-	"fire%^C160%^ erupts on the horizon and for a moment the "+
-	"entire realm is basked in a %^C226%^g%^C166%^o%^C226%^lden "+
-	"gl%^C166%^o%^C226%^w%^C160%^, then it fades.%^CRST%^", users());
-    att = all_living(ETO);
-    for(i=0;i<sizeof(att);i++){
-      if(!interactive(att[i])) continue;
-      att[i]->set_mini_quest("Challenged the Avatar of "+
-	  "Jarmila", 1000000,"%^C160%^Challenged the Avatar of Jarmila%^CRST%^");
-      tell_object(att[i], "%^C160%^You accomplished: Challenged the Avatar of Jarmila.%^CRST%^\n");
-
-
-}
-    message("broadcast", "%^BLACK%^BOLD%^The balance of power in the world shifts towards %^BOLD%^%^RED%^EVIL!%^RESET%^", users());
-WORLD_EVENTS_D->kill_event("The Avatar of Jarmila has been defeated");
-WORLD_EVENTS_D->inject_event((["The Avatar of Jarmila has been defeated" : (["start message" : "%^RED%^%^BOLD%^The Avatar of Jarmila has been defeated!%^RESET%^", "event type" : "exp bonus", "length" : 720, "notification" : "5% Bonus Exp", "event name" : "The Avatar of Jarmila has been defeated", "modifier" : 5, "announce" : 1, "announce to" : "world", "alignments" : ({ 3, 6, 9 }), ]) ]));
-   TO->remove();
+void unbork (object targ)
+{
+    object room;    
+    //bork_control =find_object_or_load(ROOMS"top.c");
+    //bork_control->func_unbork();
+    fate_counter = 0;
+    
+    if(room)
+    {
+        tell_room(room,"%^C153%^The massive phoenix flaps its wings and the mist clears from the area!%^CRST%^");
+        room->remove_property("antimagic field");
+    }
+    
+    return;
 }
 
-*/
+void boss_death_event()
+{
+    object *attackers;
+    
+    //environment(this_object())->return_exits();
+    
+    tell_room(environment(this_object()), "%%^C160%^The phoenix bursts into an explosion of epic proportions and disappears, though the force of its death has cracked open one of the larger sunstones.%^CRST%^");
+    message("broadcast", "   %^C160%^A great plume of %^C124%^fire%^C160%^ erupts on the horizon and for a moment the entire realm is basked in a %^C226%^g%^C166%^o%^C226%^lden gl%^C166%^o%^C226%^w%^C160%^, then it fades.%^CRST%^%^RESET%^", users());
+    message("broadcast", "%^WHITE%^BOLD%^The balance of power in the world shifts towards %^CYAN%^EVIL%^RESET%^", users());
+    WORLD_EVENTS_D->kill_event("The Avatar of Jarmila has been defeated");
+    WORLD_EVENTS_D->inject_event((["The Avatar of the Jarmila has been defeated" : (["start message" : "%^RED%^%^BOLD%^The Avatar of Jarmila has been defeated!%^RESET%^", "event type" : "exp bonus", "length" : 720, "notification" : "5% Bonus Exp", "event name" : "The Avatar of the Faceless One has been defeated", "modifier" : 5, "announce" : 1, "announce to" : "world", "alignments" : ({ 3, 6, 9 }) ]), ]));
+}
