@@ -55,7 +55,12 @@ void execute_feat()
 {
     int delay;
     string my_name, your_name, my_poss;
-
+    
+    if(!objectp(caster))
+    {
+        dest_effect();
+        return;
+    }
     if(!sizeof(caster->query_attackers()))
     {
         tell_object(caster,"You're not under attack!");

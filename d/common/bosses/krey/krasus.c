@@ -14,6 +14,10 @@
 
 inherit "/d/common/bosses/avatar_boss.c";
 
+int buffed,
+    coreparty,
+    ticker;
+
 mapping checkpoints = ([
                         "shield"  : 0;
                         "spear"   : 0;
@@ -37,9 +41,11 @@ void create()
     set_mlevel("paladin", 65);
     set_class("immortal_defender");
     set_mlevel("immortal_defender", 10);
+    set_class("cleric");
+    set_mlevel("cleric", 65);
     set("base_class", "paladin");
     set_alignment(1);
-    set_damage(16, 8);
+    set_damage(20, 10);
     set_attacks_num(5);
     
     set_stats("strength", 30);
@@ -53,6 +59,43 @@ void create()
     set_overall_ac(-80);
     set_sight_bonus(10);
     set_max_hp(125000);
+    set_hp(125000);
+    
+    set_monster_feats( ({ "damage resistance", "improved damage resistance", "damage reduction", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "dazzling display", "powerattack", "cornugon smash", "intimidating prowess", "parry", "shieldwall", "counter", "weapon bond", "armor bond" }) );
+    
+    set_spells( ({ "shield of law", "stone body", "angelic aspect" }) );
+}
+
+void init()
+{
+    object player, room;
+    
+    ::init();
+    
+    player = this_player();
+    player && room = environment(this_object());
+    
+    if(!player || !room)
+        return;
+    
+    if (wizardp(player) || player->query_true_invis()) {
+        return;
+    }
+    
+    if(!buffed)
+    {
+        command("powerattack max");
+        command("shieldwall max");
+        command("enhance add axiomatic");
+        command("enhance add holy");
+        command("enhance weapon");
+        command("enhance add light fortification")
+        command("enhance armor");
+        new("/cmds/spells/2/_shield_of_law.c")->use_spell(this_object(), 0, 70, 100, "cleric");
+        new("/cmds/spells/s/_stone_body.c")->use_spell(this_object(), 0, 70, 100, "cleric");
+        new("/cmds/spells/a/_angelic_aspect.c")->use_spell(this_object(), 0, 70, 100, "cleric");
+        buffed = 1;
+    }        
 }
     
 
