@@ -14,7 +14,7 @@ void create() {
     feat_name("spinning kick");
     feat_prereq("Unarmed combat or Monk");
     feat_syntax("spinning_kick");
-    feat_desc("Spinning Kick is an instant combat feat. It allows someone skilled in unarmed combat to launch of series of devastating attacks on all enemies within melee range. It requires at least one enemy to work and will use a small amount of stamina.");
+    feat_desc("Spinning Kick is an instant combat feat. It allows someone skilled in unarmed combat to launch of series of devastating attacks on all enemies within melee range. It requires at least one enemy to work and will use a small amount of stamina. This feat requires you to be unarmed to use.");
     set_target_required(0);
 }
 
