@@ -315,6 +315,7 @@ void unbork (object targ)
     //bork_control =find_object_or_load(ROOMS"top.c");
     //bork_control->func_unbork();
     fate_counter = 0;
+    room = environment(this_object());
     
     if(room)
     {
