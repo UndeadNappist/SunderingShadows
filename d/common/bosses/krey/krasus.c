@@ -61,7 +61,7 @@ void create()
     set_max_hp(125000);
     set_hp(125000);
     
-    set_monster_feats( ({ "damage resistance", "improved damage resistance", "damage reduction", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "dazzling display", "powerattack", "cornugon smash", "intimidating prowess", "parry", "shieldwall", "counter", "weapon bond", "armor bond" }) );
+    set_monster_feats( ({ "damage resistance", "improved damage resistance", "damage reduction", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "dazzling display", "powerattack", "cornugon smash", "intimidating prowess", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite" }) );
     
     set_spells( ({ "shield of law", "stone body", "angelic aspect" }) );
 }
