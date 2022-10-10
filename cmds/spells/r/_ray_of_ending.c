@@ -9,11 +9,12 @@ inherit SPELL;
 void create() {
     ::create();
     set_spell_name("ray of ending");
-    set_spell_level(([ "mage" : 9 ]));
+    set_spell_level(([ "mage" : 9, "cleric" : 9 ]));
+    set_domains("repose");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS ray of ending on TARGET");
-    set_damage_desc("untyped");
-    set_description("This devastating spell causes a ray of dark brown mist to lance towards any target in range. The caster must succeed at a touch attack to strike the target with a ray of ending. Any creature struck by a ray of ending must make a saving throw or be erased from existence. When this spell succeeds it always kills the target.");
+    set_damage_desc("untyped damage or death on touch attack");
+    set_description("This devastating spell causes a ray of dark brown mist to lance towards any target in range. The caster must succeed at a touch attack to strike the target with a ray of ending. Any creature struck by a ray of ending must make a saving throw or be erased from existence. Otherwise they take normalized untyped damage.");
     set_save("fort");
     set_verbal_comp();
     set_somatic_comp();
