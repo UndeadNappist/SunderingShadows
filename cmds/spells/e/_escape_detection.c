@@ -135,9 +135,13 @@ void spell_effect(int prof) {
 
 void dest_effect() {
 
-    if(objectp(target)) target->remove_property_value("spelled", ({TO}) );
+    if(objectp(target)){
+        target->remove_property_value("spelled", ({TO}) );
+        target->remove_property("scry block power");
+    }
     if(objectp(blocker)) blocker->self_destruct();
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 
 }
+

@@ -56,7 +56,7 @@ int extra_unwield()
 {
     
     tell_object(owner, "%^C243%^The shadows retreat from you as you set aside the axe.%^CRST%^");
-    tell_room(environment(owner), owner->query_cap_name() + "%^C243%^ unwields the axe and shadows disapate.%^CRST%^", owner);
+    tell_room(environment(owner), owner->query_cap_name() + "%^C243%^ unwields the axe and shadows dissipate.%^CRST%^", owner);
     return 1;
 }
 
@@ -93,7 +93,7 @@ int extra_hit(object target)
     {
         case 0:
         tell_object(player, "%^C124%^You leap forward and use the momentum of your backswing to strike again!%^CRST%^");
-	     tell_room(room,"%^C124%^"+ playername +"%^C124%^ leaps foward and manages another attack!%^CRST%^",player);       
+	     tell_room(room,"%^C124%^"+ playername +"%^C124%^ leaps forward and manages another attack!%^CRST%^",player);       
         player->execute_attack();
         break;
         case 1:
@@ -104,7 +104,7 @@ int extra_hit(object target)
         break;
         case 2:
         tell_object(target, "%^C239%^" + playername + "%^C239%^ holds up their axe and shadows leap out from it to envelop you!%^CRST%^");
-        tell_object(player, "%^C239%^Shadows leap from the axe and entwine" + targetname + "%^C239%^!");
+        tell_object(player, "%^C239%^Shadows leap from the axe and entwine " + targetname + "%^C239%^!");
 	     tell_room(room,"%^C239%^"+ playername +"%^C239%^'s axe bleeds shadows that leap out to envelop "+ targetname +"%^C239%^!%^CRST%^",player,target); 
         target->cause_typed_damage(target, "head", extra_damage(target), "negative energy");
         break;
