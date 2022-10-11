@@ -2,6 +2,7 @@
 // Fishing Net (Cast)
 
 #include <std.h>
+#include <move.h>
 #include "../defs.h"
 
 inherit OBJECT;
@@ -49,7 +50,11 @@ int gather_fun(string str){
     if(uses < 1) tell_room(room, "%^RESET%^%^CRST%^%^C059%^The %^C130%^n%^C136%^e%^C130%^t %^RESET%^%^C059%^has seen too much use and %^C124%^rips%^RESET%^%^C059%^, making itself useless.%^CRST%^\n");
     if(uses > 0){
         net = new(OBJ"fishing_net");
-        net->move(player);
+        if((int)(net->move(player)) != MOVE_OK){
+            tell_object(player, "%^RESET%^%^CRST%^%^C101%^You fumble with the net and drop it to the ground.%^CRST%^");
+            net->move(room);
+        }
+        else net->move(player);
         net->set_uses(uses);
     }
     this_object()->move("/d/shadowgate/void");
