@@ -21,18 +21,17 @@ void create(){
 "v%^BOLD%^%^GREEN%^e%^RESET%^%^GREEN%^getation %^BOLD%^%^BLACK%^fights for survival "
 "along the base of the wall. A giant %^RESET%^%^ORANGE%^set of gates%^BOLD%^%^BLACK%^ "
 "lead into the city.%^RESET%^\n");
-    set_smell("default","%^RESET%^%^ORANGE%^The air carries a thousand scents of a busy city.%^RESET%^");
-    set_listen("default","%^BOLD%^%^BLACK%^This side of the city is uncommonly quiet.%^RESET%^");
+    set_smell("default","%^RESET%^%^CRST%^%^C141%^The air carries a thousand scents of a busy city.%^CRST%^");
+    set_listen("default","%^RESET%^%^CRST%^%^C099%^You hear the bustle of the citizens going about their day.%^CRST%^");
 
     set_exits(([
       "east" : "/d/tharis/road/eroad2",
-      "west" : ROOMS"egate1",
-      "north" : ROOMS"wall22",
+      "west" : ROOMS "egate1",
+      "north" : ROOMS "wall22",
     ]));
     set_items (([
       "vegetation" : "%^RESET%^%^GREEN%^Small shrubs and sparse grass fight for survival.%^RESET%^",
-      "walls" : "%^BLACK%^%^BOLD%^The walls themselves are old, made up from giant blocks of "
-"granite cut and placed%^RESET%^ carefully%^BOLD%^%^BLACK%^.%^RESET%^",
+      "walls" : "%^RESET%^%^C244%^The walls themselves are old but sturdy, made up from giant blocks of %^RESET%^%^C246%^g%^C247%^r%^C248%^a%^C249%^n%^C248%^i%^C247%^t%^C246%^e %^RESET%^%^C244%^precisely cut and fit together.%^CRST%^",
       "gates" : "%^BLACK%^%^BOLD%^Giant gates are held open, yet could lock down to close down the city.%^RESET%^",
     ]));
 }

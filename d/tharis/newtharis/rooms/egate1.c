@@ -10,7 +10,7 @@ void create(){
     set_property("light",2);
     set_name("City Gates");
     set_short("%^RESET%^%^ORANGE%^City Gates%^RESET%^");
-    set_long("%^RESET%^%^BOLD%^%^BLACK%^City walls rise up high above you. "
+    set_long("%^RESET%^%^C244%^The city walls loom high above you. "
 "The walls themselves are old, made up from giant blocks of %^RESET%^%^WHITE%^granite"
 "%^BOLD%^%^BLACK%^ cut and placed carefully. Age has worn the stones smooth "
 "and there is no purchase to climb. There are signs of repaired damage though, as "
@@ -29,7 +29,7 @@ void create(){
     set_items (([
       "fortress" : "%^RESET%^%^C244%^Above the city looms the ever-present %^RESET%^%^C241%^Shadovar fortress%^RESET%^%^C244%^, casting the entire area into a state of perpetual %^RESET%^%^C057%^t%^C056%^w%^C055%^i%^C063%^l%^C062%^i%^C063%^g%^C055%^h%^C057%^t%^RESET%^%^C244%^.%^CRST%^",
       "vegetation" : "%^RESET%^%^GREEN%^Small shrubs and sparse grass fight for survival.%^RESET%^",
-      "walls" : "%^BLACK%^%^BOLD%^The walls themselves are old, made up from giant blocks of granite cut and placed%^RESET%^ carefully%^BOLD%^%^BLACK%^.%^RESET%^",
+      "walls" : "%^RESET%^%^C244%^The walls themselves are old but sturdy, made up from giant blocks of %^RESET%^%^C246%^g%^C247%^r%^C248%^a%^C249%^n%^C248%^i%^C247%^t%^C246%^e %^RESET%^%^C244%^precisely cut and fit together.%^CRST%^",
       "gates" : "%^BLACK%^%^BOLD%^Giant gates are held open, yet could lock down to close down the city.%^RESET%^",
     ]));
 }
