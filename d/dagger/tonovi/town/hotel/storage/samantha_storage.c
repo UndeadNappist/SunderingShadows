@@ -60,7 +60,7 @@ void reset(){
         new(OBJ"cigar_box.c")->move(TO);
     }
     if (!present("cigarette case")){
-        new(OBJ"cigarette_case.c")->move(TO);
+        new("/d/common/obj/misc/tobacco/cigarette_case.c")->move(TO);
     }
 }
 
