@@ -19,17 +19,17 @@ void create(){
 "v%^BOLD%^%^GREEN%^e%^RESET%^%^GREEN%^getation %^BOLD%^%^BLACK%^fights for survival along "
 "the base of the wall. A giant %^RESET%^%^ORANGE%^set of gates%^BOLD%^%^BLACK%^ lead out "
 "of the city.%^RESET%^\n");
-    set_smell("default","%^RESET%^%^ORANGE%^The air carries a thousand scents of a busy city.%^RESET%^");
-    set_listen("default","%^BOLD%^%^BLACK%^This side of the city is uncommonly quiet.%^RESET%^");
+    set_smell("default","%^RESET%^%^CRST%^%^C141%^The air carries a thousand scents of a busy city.%^CRST%^");
+    set_listen("default","%^RESET%^%^CRST%^%^C099%^You hear the bustle of the citizens going about their day.%^CRST%^");
 
     set_exits(([
       "east" : ROOMS"egate2",
       "west" : ROOMS"elf4",
     ]));
     set_items (([
+      "fortress" : "%^RESET%^%^C244%^Above the city looms the ever-present %^RESET%^%^C241%^Shadovar fortress%^RESET%^%^C244%^, casting the entire area into a state of perpetual %^RESET%^%^C057%^t%^C056%^w%^C055%^i%^C063%^l%^C062%^i%^C063%^g%^C055%^h%^C057%^t%^RESET%^%^C244%^.%^CRST%^",
       "vegetation" : "%^RESET%^%^GREEN%^Small shrubs and sparse grass fight for survival.%^RESET%^",
-      "walls" : "%^BLACK%^%^BOLD%^The walls themselves are old, made up from giant blocks of "
-"granite cut and placed%^RESET%^ carefully%^BOLD%^%^BLACK%^.%^RESET%^",
+      "walls" : "%^BLACK%^%^BOLD%^The walls themselves are old, made up from giant blocks of granite cut and placed%^RESET%^ carefully%^BOLD%^%^BLACK%^.%^RESET%^",
       "gates" : "%^BLACK%^%^BOLD%^Giant gates are held open, yet could lock down to close down the city.%^RESET%^",
     ]));
 }

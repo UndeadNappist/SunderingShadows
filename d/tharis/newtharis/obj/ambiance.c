@@ -67,10 +67,10 @@ void heart_beat() {
      if(random(chance)) return;
      switch(random(100)) {
        case 0..24:
-       tell_room(EETO,"%^RESET%^%^CRST%^%^C141%^A %^RESET%^%^C099%^young woman %^RESET%^%^C141%^pushes a stroller down the sidewalk.%^CRST%^");
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C141%^A %^RESET%^%^C099%^young woman %^RESET%^%^C141%^pushes a stroller down the sidewalk. She smiles, revealing sharp %^RESET%^%^C231%^w%^C255%^h%^C015%^i%^C255%^t%^C231%^e %^RESET%^%^C231%^f%^C255%^a%^C015%^n%^C255%^g%^C231%^s%^RESET%^%^C141%^.%^CRST%^");
        break;
        case 25..49:
-       tell_room(EETO,"%^RESET%^%^CRST%^%^C123%^An older gentleman makes his way from tree to tree, picking the ripe %^C196%^f%^C197%^r%^C203%^u%^C202%^i%^C208%^t %^RESET%^%^C123%^and placing it in a %^C094%^wicker basket%^RESET%^%^C123%^.%^CRST%^");
+       tell_room(EETO,"%^RESET%^%^CRST%^%^C123%^An older gentleman makes his way from tree to tree, picking the ripe %^RESET%^%^C196%^f%^C197%^r%^C203%^u%^C202%^i%^C208%^t %^RESET%^%^C123%^and placing it in a %^RESET%^%^C094%^wicker basket%^RESET%^%^C123%^.%^CRST%^");
        break;
        case 50..74:
        tell_room(EETO,"%^RESET%^%^CRST%^%^C028%^A gentle %^C027%^b%^C033%^r%^C039%^e%^C033%^e%^C039%^z%^C027%^e%^RESET%^%^C028%^ blows through the area, rustling the leaves of the %^C196%^f%^C197%^r%^C203%^u%^C202%^i%^C208%^t %^C214%^t%^C131%^r%^C132%^e%^C126%^e%^C127%^s%^RESET%^%^C028%^.%^CRST%^");
