@@ -24,6 +24,6 @@ void create(){
       "northeast" : RPATH "road16",
       "southwest" : RPATH "road14",
       "temple" : "/d/magic/temples/cevahir/cevahir",
-      "northwest" : "/realms/kismet/rooms/phomes/resort", //Uriah's last resort mercenary hall. Leaving this in my realm for now, because it is a WIP. Kismet.
+      "northwest" : "/d/player_houses/uriah/rooms/resort", //Uriah's last resort mercenary hall
    ]));
 }
