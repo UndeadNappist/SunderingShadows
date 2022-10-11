@@ -46,6 +46,7 @@ switch(i)
     set_guild_level("ranger", 22);
     set_mlevel("ranger",22);
     set_attack_bonus(8);
+    set_alignment(1);
 
     set_stats("strength", 20);
     set_stats("dexterity",20);

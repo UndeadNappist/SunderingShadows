@@ -37,6 +37,7 @@ void create(){
    set_guild_level("paladin", 30);
    set_mlevel("paladin",30);
    set_property("swarm",0);
+   set_alignment(1);
    set_monster_feats(({
       "two weapon fighting",
       "improved two weapon fighting",

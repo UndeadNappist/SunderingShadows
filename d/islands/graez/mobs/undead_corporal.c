@@ -55,6 +55,7 @@ switch(i)
     set_property("full attacks",1);
     set_property("no dominate",1);
     set_property("no death",1);
+    set_alignment(9);
 
     set_monster_feats(({
         "weapon focus",

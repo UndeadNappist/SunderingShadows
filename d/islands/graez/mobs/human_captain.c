@@ -28,6 +28,7 @@ switch(i)
     set_class("cleric");
     set_guild_level("cleric", 25);
     set_mlevel("cleric",25);	
+    set_alignment(1);
 	
     set_monster_feats(({
         "perfect caster",

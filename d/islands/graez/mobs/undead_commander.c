@@ -28,6 +28,7 @@ void create(){
    set_class("paladin");
    set_guild_level("paladin", 30);
    set_mlevel("paladin",30);
+   set_alignment(9);
 
    set_monster_feats(({
       "two weapon fighting",

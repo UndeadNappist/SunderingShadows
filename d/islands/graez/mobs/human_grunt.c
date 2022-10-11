@@ -45,7 +45,8 @@ switch(i)
    set_stats("strength", 16);
    set_stats("dexterity",16);
    set_stats("constitution",19);
-    set_new_exp(25,"normal");
+   set_new_exp(25,"normal");
+   set_alignment(1);
 
 
     ob = new("/d/common/obj/armour/chain");
