@@ -23,7 +23,7 @@ void reset(){
     while(!present("medium-bodied cigar 5")) new("/d/common/obj/misc/tobacco/medium_bodied_cigar")->move(storage);
     while(!present("full-bodied cigar 5")) new("/d/common/obj/misc/tobacco/full_bodied_cigar")->move(storage);
     while(!present("cigarette 5")) new("/d/common/obj/misc/tobacco/cigarette")->move(storage);
-    while(!present("case 2")) new(OBJ"cigarette_case")->move(storage);
+    while(!present("case 2")) new("/d/common/obj/misc/tobacco/cigarette_case")->move(storage);
     while(!present("packet of herbs 15")) new("/d/common/obj/brewing/herb_inherit")->move(storage);
     if(!present("herb pouch")) new("/d/common/obj/brewing/herb_pouch")->move(storage);
 }
