@@ -16,7 +16,7 @@ void create(){
 
     set_exits(([
       "east" : ROOMS"egate2",
-      "west" : ROOMS"elf4",
+      "west" : ROOMS"industry",
     ]));
     set_items (([
       "fortress" : "%^RESET%^%^C244%^Above the city looms the ever-present %^RESET%^%^C241%^Shadovar fortress%^RESET%^%^C244%^, casting the entire area into a state of perpetual %^RESET%^%^C057%^t%^C056%^w%^C055%^i%^C063%^l%^C062%^i%^C063%^g%^C055%^h%^C057%^t%^RESET%^%^C244%^.%^CRST%^",

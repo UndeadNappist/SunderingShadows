@@ -22,7 +22,7 @@ void create(){
         ({"building", "academy"}): "%^RESET%^%^CRST%^%^C244%^A sprawling %^C241%^stone building %^C244%^can be seen through the tall %^C241%^iron gates%^C244%^, with two obvious wings and a %^C022%^l%^C028%^u%^C034%^s%^C022%^h %^C022%^c%^C028%^o%^C034%^u%^C040%^rty%^C034%^a%^C028%^r%^C022%^d g%^C028%^a%^C034%^rd%^C028%^e%^RESET%^%^C022%^n %^RESET%^%^C244%^front and center. Based on the %^RESET%^%^C058%^books %^C244%^carried by most of the people traversing the %^C248%^pathways %^C244%^bisecting the quad, this appears to be an academy of some sort.%^CRST%^",
         ]));
     set_exits(([
-        "east" : ROOMS"elf4",
+        "east" : ROOMS"industry",
         "west" : ROOMS"eastplaza",
         ]));
 }
