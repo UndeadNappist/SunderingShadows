@@ -9,11 +9,8 @@ void create(){
     set_property("indoors",0);
     set_property("light",2);
     set_name("City Gates");
-    set_short("%^RESET%^%^ORANGE%^City Gates%^RESET%^");
-    set_long("%^RESET%^%^C244%^The city walls loom high above you. "
-"The walls themselves are old, made up from giant blocks of %^RESET%^%^WHITE%^granite"
-"%^BOLD%^%^BLACK%^ cut and placed carefully. Age has worn the stones smooth "
-"and there is no purchase to climb. There are signs of repaired damage though, as "
+    set_short("%^RESET%^%^C244%^City Gates%^CRST%^");
+    set_long("%^RESET%^%^C244%^The city walls loom high above you. %^RESET%^%^C058%^Age %^RESET%^%^C244%^has worn the stones smooth and there is no purchase to climb. There are signs of repaired damage though, as "
 "some spots are li%^RESET%^%^WHITE%^g%^BOLD%^%^BLACK%^hte%^RESET%^%^WHITE%^r"
 "%^BOLD%^%^BLACK%^ than others. %^RESET%^%^GREEN%^Spar%^BOLD%^%^GREEN%^s%^RESET%^%^GREEN%^e "
 "v%^BOLD%^%^GREEN%^e%^RESET%^%^GREEN%^getation %^BOLD%^%^BLACK%^fights for survival along "
