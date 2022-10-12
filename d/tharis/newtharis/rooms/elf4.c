@@ -25,7 +25,7 @@ void create(){
       "west" : ROOMS "elf3",
    ]));
 }
-//plaques/signs will eventually be changed to a read command.
+
 void init(){
     ::init();
     add_action("read_em", "read");
