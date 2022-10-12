@@ -67,8 +67,8 @@ void spell_effect(int prof)
         
         if(!combat_death_save(ob, 0))
         {
-            tell_object(ob,"%^RESET%^%^RESET%^%^C052%^The w%^RESET%^%^C088%^a%^C124%^v%^C160%^e %^RESET%^%^C052%^of %^RESET%^%^C240%^death %^RESET%^%^C052%^r%^C088%^i%^C124%^p%^C160%^s %^RESET%^%^C052%^your %^RESET%^%^C087%^soul %^RESET%^%^C052%^from your body, leaving a %^RESET%^%^C123%^p%^C159%^a%^C195%^l%^C123%^e %^RESET%^%^C087%^a%^C123%^f%^C159%^t%^C123%^e%^RESET%^%^C087%^r-i%^RESET%^%^C123%^m%^C159%^a%^C123g%^RESET%^%^C087%^e%^RESET%^%^C052%^!%^CRST%^");
-            tell_room(place,"%^RESET%^%^C052%^"+ob->QCN+"%^RESET%^%^C052%^'s %^RESET%^%^C087%^soul %^RESET%^%^C052%^is %^RESET%^%^C088%^r%^C124%^i%^C160%^p%^C196%^p%^C124%^e%^RESET%^%^C088%^d %^RESET%^%^C052%^from their body, leaving a %^RESET%^%^C123%^p%^C159%^a%^C195%^l%^C123%^e %^RESET%^%^C087%^a%^C123%^f%^C159%^t%^C123%^e%^RESET%^%^C087%^r-i%^RESET%^%^C123%^m%^C159%^a%^C123g%^RESET%^%^C087%^e%^RESET%^%^C052%^!%^CRST%^",({ob}));
+            tell_object(ob,"%^RESET%^%^RESET%^%^C052%^The w%^RESET%^%^C088%^a%^C124%^v%^C160%^e %^RESET%^%^C052%^of %^RESET%^%^C240%^death %^RESET%^%^C052%^r%^C088%^i%^C124%^p%^C160%^s %^RESET%^%^C052%^your %^RESET%^%^C087%^soul %^RESET%^%^C052%^from your body, leaving a %^RESET%^%^C123%^p%^C159%^a%^C195%^l%^C123%^e %^RESET%^%^C087%^a%^C123%^f%^C159%^t%^C123%^e%^RESET%^%^C087%^r-i%^RESET%^%^C123%^m%^C159%^a%^C123%^g%^RESET%^%^C087%^e%^RESET%^%^C052%^!%^CRST%^");
+            tell_room(place,"%^RESET%^%^C052%^"+ob->QCN+"%^RESET%^%^C052%^'s %^RESET%^%^C087%^soul %^RESET%^%^C052%^is %^RESET%^%^C088%^r%^C124%^i%^C160%^p%^C196%^p%^C124%^e%^RESET%^%^C088%^d %^RESET%^%^C052%^from their body, leaving a %^RESET%^%^C123%^p%^C159%^a%^C195%^l%^C123%^e %^RESET%^%^C087%^a%^C123%^f%^C159%^t%^C123%^e%^RESET%^%^C087%^r-i%^RESET%^%^C123%^m%^C159%^a%^C123%^g%^RESET%^%^C087%^e%^RESET%^%^C052%^!%^CRST%^",({ob}));
             ob->set_hp(-100);
             continue;
         }
