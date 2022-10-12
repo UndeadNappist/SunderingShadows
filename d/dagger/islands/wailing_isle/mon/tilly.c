@@ -181,7 +181,7 @@ void reply_fun(string str, object player){
         return;
     }
     
-    if((strsrch(str,"wailing") != -1 ) && greeted){
+    if((strsrch(str,"wailing") != -1 || (strsrch(str,"Wailing") != -1 )) && greeted){
         force_me("emoteat tilly %^RESET%^%^CRST%^%^C109%^$M grumbles, shaking a little fist up towards the distant cliffs.%^CRST%^");
         force_me("say If only the weepin' yappy dirt would SHUT UP FOR ONCE!");
         return;
@@ -300,11 +300,11 @@ void offer_job(){
     switch(choice){
         case 1 :
             force_me("say Alright, here's the job: I need someone ta find somethin' fer me. Nothin' big, just a lil' blowfish. I've got a special client lookin' ta buy. So, ya interested?");
-            call_out("refuse_job", 10);
+            call_out("refuse_job", 15);
             break;
         case 2 :
             force_me("say I got a feckin' real gourmet lookin' fer a proper feast, and the chunky monkey wants a huge arse swordfish! And I'm just a lil' girl here, the feck am I supposed ta find one? Help me out?");
-            call_out("refuse_job", 10);
+            call_out("refuse_job", 15);
             break;
         default :
             tell_object(this_player(), "Something is wrong, contact Chernobog!");

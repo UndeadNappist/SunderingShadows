@@ -43,8 +43,7 @@ void init(){
     add_action("test_rep", "sell");
     add_action("test_rep", "show");
     
-    //ship = find_object_or_load("/d/dagger/islands/wailing_isle/obj/zephyr");
-    ship = find_object_or_load("/realms/chernobog/areas/wailing_isle/obj/zephyr");
+    ship = find_object_or_load("/d/dagger/islands/wailing_isle/obj/zephyr");
     if(!environment(ship)){
         switch(random(4)){
             case 0 : ship_location = find_object_or_load("/d/shadow/virtual/sea/shadow.dock"); break;
