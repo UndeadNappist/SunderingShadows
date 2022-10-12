@@ -15,7 +15,7 @@ void create(){
    set_smell("default","%^RESET%^%^CRST%^%^C141%^The air carries a thousand scents of a busy city.%^CRST%^");
    set_listen("default","%^RESET%^%^CRST%^%^C099%^You hear the bustle of the citizens going about their day.%^CRST%^");
    set_items(([
-        "street signs" : "%^RESET%^%^C250%^S%^C249%^i%^C248%^l%^C247%^v%^C249%^e%^C250%^r %^RESET%^%^C250%^p%^C249%^l%^C248%^a%^C247%^q%^C248%^u%^C249%^e%^C250%^s %^RESET%^%^C244%^have been affixed to the %^RESET%^%^C241%^lamp posts %^RESET%^%^C244%^at each corner of the crossroads. The neat, %^RESET%^%^C093%^l%^C099%^u%^C105%^m%^C111%^i%^C153%^n%^C147%^o%^C147%^u%^C141%^s %^RESET%^%^C135%^s%^C129%^c%^C093%^r%^C099%^i%^C105%^p%^C111%^t %^RESET%^%^C244%^that adorns them seems to %^RESET%^%^C093%^s%^C099%^h%^C141%^i%^C135%^f%^C129%^t %^RESET%^%^C244%^before your eyes, some manner of %^RESET%^%^C141%^enchantment %^RESET%^%^C244%^changing it to your native tongue.%^CRST%^",
+        ({"street signs","plaques"}): "%^RESET%^%^C250%^S%^C249%^i%^C248%^l%^C247%^v%^C249%^e%^C250%^r %^RESET%^%^C250%^p%^C249%^l%^C248%^a%^C247%^q%^C248%^u%^C249%^e%^C250%^s %^RESET%^%^C244%^have been affixed to the %^RESET%^%^C241%^lamp posts %^RESET%^%^C244%^at each corner of the crossroads. The neat, %^RESET%^%^C093%^l%^C099%^u%^C105%^m%^C111%^i%^C153%^n%^C147%^o%^C147%^u%^C141%^s %^RESET%^%^C135%^s%^C129%^c%^C093%^r%^C099%^i%^C105%^p%^C111%^t %^RESET%^%^C244%^that adorns them seems to %^RESET%^%^C093%^s%^C099%^h%^C141%^i%^C135%^f%^C129%^t %^RESET%^%^C244%^before your eyes, some manner of %^RESET%^%^C141%^enchantment %^RESET%^%^C244%^changing it to your native tongue.%^CRST%^",
         "fortress": "%^RESET%^%^CRST%^%^C244%^Above the city looms the ever-present %^RESET%^%^C241%^Shadovar fortress%^C244%^, casting the entire area into a state of perpetual %^RESET%^%^C057%^t%^C056%^w%^C055%^i%^C063%^l%^C062%^i%^C063%^g%^C055%^h%^C057%^t%^RESET%^%^C244%^.%^CRST%^",
         ({"north sign", "north plaque"}): "%^RESET%^%^C093%^A%^C099%^r%^C105%^m%^C111%^o%^C153%^r %^RESET%^%^C147%^s%^C141%^m%^C135%^i%^C129%^t%^C128%^h%^CRST%^\n%^RESET%^%^C129%^W%^C135%^e%^C141%^a%^C147%^p%^C111%^o%^C105%^n %^RESET%^%^C099%^s%^C093%^m%^C092%^i%^C091%^t%^C090%^h%^CRST%^\n%^RESET%^%^C088%^F%^C124%^o%^C125%^r%^C126%^g%^C127%^e%^CRST%^",
         ({"south sign", "south plaque"}): "%^RESET%^%^C093%^L%^C099%^u%^C105%^m%^C147%^b%^C141%^e%^C135%^r %^RESET%^%^C129%^m%^C128%^i%^C127%^l%^C126%^l%^CRST%^",
@@ -32,7 +32,16 @@ void create(){
 //plaques/signs will eventually be changed to a read command.
 void init(){
     ::init();
-   // add_action("read_em", "read");
+    add_action("read_em", "read");
     if(!present("tharisambiancexxx",TP)) new(OBJ"ambiance")->move(TP);
+}
+
+int read_em(string str){
+    if(!str) return 0;
+    if(str == "north plaque") {
+        tell_object(TP, "%^RESET%^%^CRST%^%^C250%^The p%^RESET%^%^C249%^l%^C248%^a%^C247%^q%^C249%^u%^C250%^e reads:%^CRST%^\n\n%^RESET%^%^C093%^A%^C099%^r%^C105%^m%^C111%^o%^C153%^r %^RESET%^%^C147%^s%^C141%^m%^C135%^i%^C129%^t%^C128%^h%^CRST%^\n%^RESET%^%^C129%^W%^C135%^e%^C141%^a%^C147%^p%^C111%^o%^C105%^n %^RESET%^%^C099%^s%^C093%^m%^C092%^i%^C091%^t%^C090%^h%^CRST%^\n   %^RESET%^%^C088%^F%^C124%^o%^C125%^r%^C126%^g%^C127%^e%^CRST%^");
+        if(!TP->query_invis() && !TP->query_hidden()) tell_room(TO, "" + TPQCN + " seems to be studying the street signs.");
+        return 1;
+    }
 }
 
