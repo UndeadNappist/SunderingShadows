@@ -21,6 +21,13 @@ void create() {
     set_listen("default","%^RESET%^%^C153%^You hear the bustle of citizens and visitors going about their business.%^CRST%^");
 
     set_items (([
+    ({"glow globes", "sconces"}): "%^RESET%^%^C153%^These %^RESET%^%^C220%^g%^C226%^o%^C227%^l%^C228%^d%^C226%^e%^RESET%^%^C220%^n %^RESET%^%^C178%^s%^C220%^c%^C226%^o%^C227%^n%^C226%^c%^C220%^e%^C178%^s %^RESET%^%^C153%^contain tiny %^RESET%^%^C135%^g%^C134%^l%^C133%^o%^C134%^w %^C135%^g%^C141%^l%^C147%^o%^C153%^b%^C147%^e%^C141%^s %^RESET%^%^C153%^within their %^RESET%^%^C087%^g%^C159%^l%^C123%^a%^C159%^s%^C087%^s %^RESET%^%^C153%^cages, their %^RESET%^%^C135%^d%^C141%^u%^C147%^s%^C153%^k%^C147%^y %^RESET%^%^C141%^l%^C135%^u%^C141%^m%^C147%^i%^C153%^n%^C147%^e%^C141%^s%^C147%^c%^C153%^e allowing the normal-sighted people of the city to move around with relative ease without hindering the %^RESET%^%^C241%^Nyctophiles%^RESET%^%^C230%^.",
+    //({"ceiling", "bas-relief"}): "",
+    //"plants": "",
+    //({"ticketing booths","booths}): "",
+    //"carriages": "",
+    //({"walls","floor","columns"}): "",
+    //({"windows","stained-glass"}): "",
      // ({ "book", "leather book", "leather-bound book" }) : "%^RESET%^This book seems to be in "+
      // "better shape than any of the other paperwork or posters here. It contains the names of "+
      // "the elves who have registered to be in the city.%^RESET%^",
