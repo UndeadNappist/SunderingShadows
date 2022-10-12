@@ -46,7 +46,7 @@ void spell_effect(int prof)
     
     spell_successful();
     
-    tell_room(place, "%^C111%^" + caster->query_cap_name() + "%^C248%^ finishes a prayer and clenches a fist, crushing " + target->query_cap_name() + " with unreleneting force!%^CRST%^", target);
+    tell_room(place, "%^C111%^" + caster->query_cap_name() + "%^C248%^ finishes a prayer and clenches a fist, crushing " + target->query_cap_name() + " with unreleneting force!%^CRST%^", ({ target, caster }));
     tell_object(caster, "%^C248%^You finish your prayer and close your hand into a clenched fist, crushing " + target->query_cap_name() + " with unrelenting force!%^CRST%^");
     tell_object(target, "%^C248%^" + caster->query_cap_name() + " finishes a prayer and crushes you with unrelenting force!%^CRST%^");
     
