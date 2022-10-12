@@ -43,7 +43,8 @@ void init(){
     add_action("test_rep", "sell");
     add_action("test_rep", "show");
     
-    ship = find_object_or_load("/d/dagger/islands/wailing_isle/obj/zephyr");
+    //ship = find_object_or_load("/d/dagger/islands/wailing_isle/obj/zephyr");
+    ship = find_object_or_load("/realms/chernobog/areas/wailing_isle/obj/zephyr");
     if(!environment(ship)){
         switch(random(4)){
             case 0 : ship_location = find_object_or_load("/d/shadow/virtual/sea/shadow.dock"); break;
@@ -297,6 +298,13 @@ void receive_given_item(object ob){
     ids = ob->query_id();
     quest = player->query("wailing isle quest");
     reputation = player->query("reputation wailing isle");
+    
+    if(player->query_hidden() || player->query_invis()){
+        force_me("emoteat brookes %^RESET%^%^CRST%^%^C057%^$M drops it to the ground as he looks about warily.%^CRST%^");
+        force_me("say Someone playing tricks? Highly improper!");
+        force_me("drop "+ids[0]+"");
+        return;
+    }
     
     if((ob->id("quest_item_taxes")) && (quest == 6)){
         force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C057%^$M arches a brow, giving the papers a cursory inspection before stowing them away.%^CRST%^");

@@ -363,6 +363,13 @@ void receive_given_item(object ob){
     quest = player->query("wailing isle quest");
     reputation = player->query("reputation wailing isle");
     
+    if(player->query_hidden() || player->query_invis()){
+        force_me("emoteat kietta %^RESET%^%^CRST%^%^C101%^$M carefully sets it on the counter.%^CRST%^");
+        force_me("say Spirits, I only be accepting dis gift if you reveal yourself to me.");
+        force_me("drop "+ids[0]+"");
+        return;
+    }
+    
     if((ob->id("bone dust")) && (quest == 3)){
         force_me("emoteat kietta %^RESET%^%^CRST%^%^C101%^$M accepts the small pouch of dust with a bow of her head.%^CRST%^");
         force_me("say Dis one accepts your benevolence.");

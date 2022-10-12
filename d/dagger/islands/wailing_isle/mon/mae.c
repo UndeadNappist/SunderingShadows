@@ -38,7 +38,8 @@ void init(){
     ::init();
     add_action("hit_fun", "hit");
     
-    ship = find_object_or_load("/d/dagger/islands/wailing_isle/obj/zephyr");
+    //ship = find_object_or_load("/d/dagger/islands/wailing_isle/obj/zephyr");
+    ship = find_object_or_load("/realms/chernobog/areas/wailing_isle/obj/zephyr");
     if(!environment(ship)){
         switch(random(4)){
             case 0 : ship_location = find_object_or_load("/d/shadow/virtual/sea/shadow.dock"); break;
@@ -230,6 +231,13 @@ void receive_given_item(object ob){
     ids = ob->query_id();
     quest = player->query("wailing isle quest");
     reputation = player->query("reputation wailing isle");
+    
+    if(player->query_hidden() || player->query_invis()){
+        force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M tosses it on the counter.%^CRST%^");
+        force_me("say I'm not going to play these games. Show yourself if you want to deal.");
+        force_me("drop "+ids[0]+"");
+        return;
+    }
     
     if((ob->id("quest_item_crate")) && (quest == 12)){
         force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M easily hoists up the crate and sets it behind the counter.%^CRST%^");
