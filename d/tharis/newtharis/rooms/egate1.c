@@ -7,7 +7,7 @@ void create(){
     set_terrain(STONE_BUILDING);
     set_travel(PAVED_ROAD);
     set_property("indoors",0);
-    set_property("light",2);
+    set_property("light",1);
     set_name("City Gates");
     set_short("%^RESET%^%^C244%^City Gates%^CRST%^");
     set_long("%^RESET%^%^C244%^The %^RESET%^%^C246%^c%^C249%^i%^C252%^t%^C246%^y w%^RESET%^%^C249%^a%^C252%^l%^C249%^l%^RESET%^%^C246%^s %^RESET%^%^C244%^loom high above you, the stones worn smooth with age, making it impossible to find purchase to climb. There are %^RESET%^%^C252%^lighter spots %^RESET%^%^C244%^amongst the massive %^RESET%^%^C246%^s%^C249%^t%^C252%^o%^C250%^n%^RESET%^%^C249%^e%^RESET%^%^C246%^s %^RESET%^%^C244%^where damage has been repaired, %^RESET%^%^C052%^s%^C088%^c%^C124%^a%^C088%^r%^C052%^s %^RESET%^%^C244%^of battles fought long ago. %^RESET%^%^C022%^S%^C028%^p%^C034%^a%^C040%^r%^C028%^s%^C022%^e %^RESET%^%^C022%^v%^C028%^e%^C034%^g%^C040%^e%^C046%^t%^C082%^a%^C040%^t%^C034%^i%^C028%^o%^C022%^n %^RESET%^%^C244%^fights for survival along the base of the walls, which are manned by %^RESET%^%^C240%^soldiers%^RESET%^%^C244%^, %^RESET%^%^C058%^archers%^RESET%^%^C244%^, and %^RESET%^%^C045%^g%^C051%^o%^C087%^l%^C123%^e%^C051%^m%^C045%^s %^RESET%^%^C244%^that keep an eye out for any signs of trouble around the perimeter of the city and the %^RESET%^%^C240%^i%^C241%^m%^C242%^p%^C243%^o%^C244%^s%^C242%^i%^C241%^n%^C240%^g g%^RESET%^%^C241%^a%^C242%^t%^C241%^e%^C240%^s%^RESET%^%^C244%^.%^CRST%^\n");
