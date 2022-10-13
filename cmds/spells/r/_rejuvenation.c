@@ -61,7 +61,6 @@ void spell_effect(int prof){
     tell_room(place,"%^BOLD%^%^ORANGE%^A radiant light bathes "+target->QCN+" briefly.");
     target->set_property("spelled",({TO}));
     target->set_property("fast healing",2);
-    target->set_property("kiss_of_feywild",1);
     target->set_property("rejuvenation",1);
     spell_successful();
     addSpellToCaster();
