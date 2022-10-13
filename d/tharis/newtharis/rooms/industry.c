@@ -34,52 +34,33 @@ void init(){
 
 int read_em(string str){
     if(!str) return 0;
-    if(str == "north plaque") {
+    if(str == "north plaque" || str == "north sign") {
         tell_object(TP, "%^RESET%^%^CRST%^%^C250%^The p%^RESET%^%^C249%^l%^C248%^a%^C247%^q%^C249%^u%^C250%^e reads:%^CRST%^\n\n%^RESET%^%^C093%^A%^C099%^r%^C105%^m%^C111%^o%^C153%^r %^RESET%^%^C147%^s%^C141%^m%^C135%^i%^C129%^t%^C128%^h%^CRST%^\n%^RESET%^%^C129%^W%^C135%^e%^C141%^a%^C147%^p%^C111%^o%^C105%^n %^RESET%^%^C099%^s%^C093%^m%^C092%^i%^C091%^t%^C090%^h%^CRST%^\n   %^RESET%^%^C088%^F%^C124%^o%^C125%^r%^C126%^g%^C127%^e%^CRST%^");
         if(!TP->query_invis() && !TP->query_hidden()) tell_room(TO, "" + TPQCN + " seems to be studying the street signs.");
         return 1;
+        return 0;
     }
     
-    if(str == "north sign") {
-        tell_object(TP, "%^RESET%^%^CRST%^%^C250%^The p%^RESET%^%^C249%^l%^C248%^a%^C247%^q%^C249%^u%^C250%^e reads:%^CRST%^\n\n%^RESET%^%^C093%^A%^C099%^r%^C105%^m%^C111%^o%^C153%^r %^RESET%^%^C147%^s%^C141%^m%^C135%^i%^C129%^t%^C128%^h%^CRST%^\n%^RESET%^%^C129%^W%^C135%^e%^C141%^a%^C147%^p%^C111%^o%^C105%^n %^RESET%^%^C099%^s%^C093%^m%^C092%^i%^C091%^t%^C090%^h%^CRST%^\n   %^RESET%^%^C088%^F%^C124%^o%^C125%^r%^C126%^g%^C127%^e%^CRST%^");
-        if(!TP->query_invis() && !TP->query_hidden()) tell_room(TO, "" + TPQCN + " seems to be studying the street signs.");
-        return 1;
-    }
-    
-    if(str == "south plaque") {
+    if(str == "south plaque" || str == "south sign") {
         tell_object(TP, "%^RESET%^%^CRST%^%^C250%^The p%^RESET%^%^C249%^l%^C248%^a%^C247%^q%^C249%^u%^C250%^e reads:%^CRST%^\n\n%^RESET%^%^C093%^L%^C099%^u%^C105%^m%^C147%^b%^C141%^e%^C135%^r %^RESET%^%^C129%^m%^C128%^i%^C127%^l%^C126%^l%^CRST%^");
         if(!TP->query_invis() && !TP->query_hidden()) tell_room(TO, "" + TPQCN + " seems to be studying the street signs.");
         return 1;
+        return 0;
     }
     
-    if(str == "south sign") {
-        tell_object(TP, "%^RESET%^%^CRST%^%^C250%^The p%^RESET%^%^C249%^l%^C248%^a%^C247%^q%^C249%^u%^C250%^e reads:%^CRST%^\n\n%^RESET%^%^C093%^L%^C099%^u%^C105%^m%^C147%^b%^C141%^e%^C135%^r %^RESET%^%^C129%^m%^C128%^i%^C127%^l%^C126%^l%^CRST%^");
-        if(!TP->query_invis() && !TP->query_hidden()) tell_room(TO, "" + TPQCN + " seems to be studying the street signs.");
-        return 1;
-    }
-    
-    if(str == "east plaque") {
+    if(str == "east plaque" || str == "east sign") {
         tell_object(TP, "%^RESET%^%^CRST%^%^C250%^The p%^RESET%^%^C249%^l%^C248%^a%^C247%^q%^C249%^u%^C250%^e reads:%^CRST%^\n\n%^RESET%^%^C093%^E%^C092%^a%^C091%^s%^C090%^t %^RESET%^%^C089%^G%^C088%^a%^C124%^t%^C125%^e%^CRST%^");
         if(!TP->query_invis() && !TP->query_hidden()) tell_room(TO, "" + TPQCN + " seems to be studying the street signs.");
         return 1;
+        return 0;
     }
     
-    if(str == "east sign") {
-        tell_object(TP, "%^RESET%^%^CRST%^%^C250%^The p%^RESET%^%^C249%^l%^C248%^a%^C247%^q%^C249%^u%^C250%^e reads:%^CRST%^\n\n%^RESET%^%^C093%^E%^C092%^a%^C091%^s%^C090%^t %^RESET%^%^C089%^G%^C088%^a%^C124%^t%^C125%^e%^CRST%^");
-        if(!TP->query_invis() && !TP->query_hidden()) tell_room(TO, "" + TPQCN + " seems to be studying the street signs.");
-        return 1;
-    }
-    
-    if(str == "west plaque") {
+    if(str == "west plaque" || str == "west sign") {
         tell_object(TP, "%^RESET%^%^CRST%^%^C250%^The p%^RESET%^%^C249%^l%^C248%^a%^C247%^q%^C249%^u%^C250%^e reads:%^CRST%^\n\n%^RESET%^%^C099%^T%^C098%^h%^C099%^e %^RESET%^%^C098%^A%^C099%^c%^C141%^a%^C140%^d%^C141%^e%^C099%^m%^C098%^y%^CRST%^");
         if(!TP->query_invis() && !TP->query_hidden()) tell_room(TO, "" + TPQCN + " seems to be studying the street signs.");
         return 1;
+        return 0;
     }
     
-    if(str == "west sign") {
-        tell_object(TP, "%^RESET%^%^CRST%^%^C250%^The p%^RESET%^%^C249%^l%^C248%^a%^C247%^q%^C249%^u%^C250%^e reads:%^CRST%^\n\n%^RESET%^%^C099%^T%^C098%^h%^C099%^e %^RESET%^%^C098%^A%^C099%^c%^C141%^a%^C140%^d%^C141%^e%^C099%^m%^C098%^y%^CRST%^");
-        if(!TP->query_invis() && !TP->query_hidden()) tell_room(TO, "" + TPQCN + " seems to be studying the street signs.");
-        return 1;
-    }
 }
 
