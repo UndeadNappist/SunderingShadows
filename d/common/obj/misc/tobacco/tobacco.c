@@ -22,9 +22,6 @@ void create()
 int use_load()
 {
     loads -= 1;
-    if (living(ETO)) {
-        tell_room(EETO, "%^BOLD%^%^BLACK%^The smoky scent of the tobacco wafts into the air.");
-    }
     if (loads < 1) {
         write("%^BOLD%^%^BLACK%^Your pouch of tobacco is empty, so you discard it!");
         remove();
