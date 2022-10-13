@@ -15,7 +15,7 @@ void create(){
     set_short("%^RESET%^%^CRST%^%^C136%^slender %^C255%^ci%^C252%^g%^C255%^ar%^C252%^e%^C255%^tt%^C252%^e%^CRST%^");
     set_long("%^RESET%^%^CRST%^%^C136%^This is a crude, hand rolled %^C255%^ci%^C252%^g%^C255%^ar%^C252%^e%^C255%^tt%^C252%^e%^RESET%^%^C136%^. Dried, aromatic tobacco has been tucked within a roll of thin parchment paper.\n\n%^RESET%^%^CRST%^%^C059%^Try smoking it. Douse it to put it out.%^CRST%^");
     set_weight(0);
-    set_value(50);
+    set_value(100);
     lit = 0;
     charges = 30 + random(10);
 }
