@@ -207,7 +207,7 @@ int caster_level_calcs(object player, string the_class)
 }
 
 mapping class_featmap(string myspec) {
-    return ([ 1 : ({ "fiendish studies" }), 4 : ({ "heavenly fire" }), 7 : ({ "relentless justice" }), ]);
+    return ([ 1 : ({ "fiendish studies" }), 4 : ({ "heavenly fire" }), 7 : ({ "banishing blade" }), ]);
 }
 
 string *class_skills(object ob) { return base_class_ob(ob)->class_skills(ob); }
