@@ -1169,7 +1169,20 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             }
         }
     }
-    //END AGENT OF CHAOS   
+    //END AGENT OF CHAOS
+    
+    //CRIMSON TEMPLAR
+    if(attacker->is_class("crimson templar") && sizeof(attacker->query_wielded()))
+    {
+        object owner;
+        
+        if(FEATS_D->active_feat(attacker, "banishing blade") && (owner = target->query_property("minion")))
+        {
+            if(objectp(owner) && (owner->query_true_align() == 3 || owner->query_true_align() == 6 || owner->query_true_align() == 9))
+                target && target->die();
+        }
+    }
+    //END CRIMSON TEMPLAR
 
     if(!attacker)
         return;
@@ -3749,7 +3762,6 @@ void internal_execute_attack(object who)
             who->regenerate_ki(4);
         }
     }
-
 
     if (member_array(who, (object*)victim->query_attackers()) == -1) {
         victim->add_attacker(who);
