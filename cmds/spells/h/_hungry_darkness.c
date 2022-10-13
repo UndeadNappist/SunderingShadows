@@ -53,7 +53,7 @@ void execute_attack() {
         dest_effect();
     }
     else {
-        //define_base_damage(0);//lazy re-roll.
+        define_base_damage(0);//lazy re-roll.
         damage = sdamage;
         tell_room(place,"%^RESET%^%^CRST%^%^C019%^The %^C246%^d%^C243%^a%^C059%^rkne%^C243%^s%^C246%^s %^RESET%^%^C019%^moves around you like a living thing, %^C026%^w%^C027%^r%^C032%^i%^C027%^t%^C032%^h%^C027%^in%^C026%^g %^C019%^and %^C026%^m%^C027%^u%^C032%^t%^C027%^t%^C032%^e%^C027%^r%^C032%^i%^C027%^n%^C026%^g%^RESET%^%^C019%^.%^RESET%^");
         event = roll_dice(1,3);
