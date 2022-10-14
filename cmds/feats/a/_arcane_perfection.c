@@ -10,7 +10,7 @@ void create()
     feat_category("Archmage");
     feat_name("arcane perfection");
     feat_prereq("Archmage L7");
-    feat_desc("With the arcane perfection feat, an archmage has achieved near perfection over his ability to use his arcane skills to manipulate the weave. As such, when an archmage with this feat casts a spell, she will have a chance based on her intelligence to retain the spell in memory.");
+    feat_desc("With the arcane perfection feat, an archmage has achieved near perfection over his ability to use his arcane skills to manipulate the weave. As such, when an archmage with this feat casts a spell, she will have a chance based on her casting stat to retain the spell in memory.");
     permanent(1);
 }
 
