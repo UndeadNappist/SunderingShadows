@@ -48,7 +48,7 @@ void execute_feat()
 {
     if (FEATS_D->is_active(caster, "banishing blade "))
     {
-        tell_object(caster, "%^CYAN%^You release the banishing power from your weapons.%^RESET%^");
+        tell_object(caster, "%^RESET%^%^C039%^You r%^C045%^e%^C051%^l%^C087%^e%^C123%^a%^C159%^s%^RESET%^%^C195%^e the %^RESET%^%^C033%^b%^C039%^a%^C045%^n%^C051%^i%^C087%^s%^C051%^h%^C045%^i%^C039%^n%^RESET%^%^C033%^g p%^RESET%^%^C039%^o%^C045%^w%^C039%^e%^RESET%^%^C033%^r %^RESET%^%^C039%^from your weapons.%^CRST%^");
         dest_effect();
         return;
     }    
@@ -79,7 +79,7 @@ void execute_feat()
     
     ::execute_feat();
 
-    tell_object(caster,"%^C039%^You channel your given power and %^C051%^instill%^C039%^ your weapon with %^C051%^holy energy%^CRST%^.");
+    tell_object(caster,"%^C039%^You %^RESET%^%^C015%^channel %^RESET%^%^C039%^your given %^RESET%^%^C033%^p%^C045%^o%^C051%^w%^C045%^e%^C033%^r %^RESET%^%^C039%^and %^RESET%^%^C087%^instill%^RESET%^%^C039%^ your weapon with %^RESET%^%^C220%^h%^C226%^o%^C227%^l%^C220%^y e%^RESET%^%^C226%^n%^C227%^e%^C228%^r%^C226%^g%^RESET%^%^C220%^y%^RESET%^%^C039%^.%^CRST%^");
     caster->set_property("using instant feat",1);
     caster->set_property("active_feats", ({ this_object() }));
 }
@@ -102,8 +102,8 @@ void execute_attack()
     }
         
     
-    tell_object(caster, "%^C039%^You feel white hot energy course through your weapon as you instill it with banishing power.%^CRST%^");
-    tell_room(place, "%^BOLD%^" + caster->query_cap_name() + " instills " + caster->query_possessive() + " with banishing power!%^RESET%^", caster);
+    tell_object(caster, "%^C039%^You feel %^RESET%^%^C015%^w%^C230%^h%^C229%^i%^C228%^t%^C227%^e %^RESET%^%^C229%^h%^C230%^o%^RESET%^%^C015%^t %^RESET%^%^C220%^p%^C226%^o%^C227%^w%^C226%^e%^C220%^r %^RESET%^%^C039%^course through your weapon as you instill it with %^RESET%^%^C033%^b%^C039%^a%^C045%^n%^C051%^i%^C087%^s%^C051%^h%^C045%^i%^C039%^n%^RESET%^%^C033%^g %^RESET%^%^C033%^e%^RESET%^%^C039%^n%^C045%^e%^C051%^r%^C039%^g%^RESET%^%^C033%^y%^RESET%^%^C039%^.%^CRST%^");
+    tell_room(place, "%^RESET%^%^C039%^" + caster->query_cap_name() + "%^RESET%^%^C039%^ %^RESET%^%^C087%^instills%^RESET%^%^C039%^ " + caster->query_possessive() + " %^RESET%^%^C039%^with %^RESET%^%^C033%^b%^C039%^a%^C045%^n%^C051%^i%^C087%^s%^C051%^h%^C045%^i%^C039%^n%^RESET%^%^C033%^g p%^RESET%^%^C039%^o%^C045%^w%^C039%^e%^RESET%^%^C033%^r%^RESET%^%^C039%^!%^CRST%^", caster);
     caster->set_property("banishing blade", 1);
     
     caster->add_cooldown("banishing blade", DELAY);
@@ -117,7 +117,7 @@ void dest_effect()
     if(objectp(caster))
     {
         caster->remove_property("banishing blade");
-        tell_object(caster, "%^CYAN%^The banishing energy fades from your weapon.%^RESET%^");
+        tell_object(caster, "%^RESET%^%^C039%^The %^RESET%^%^C033%^b%^C039%^a%^C045%^n%^C051%^i%^C087%^s%^C051%^h%^C045%^i%^C039%^n%^RESET%^%^C033%^g e%^RESET%^%^C039%^n%^C045%^e%^C051%^r%^C039%^g%^RESET%^%^C033%^y %^RESET%^%^C051%^f%^C087%^a%^C123%^d%^C159%^e%^C195%^s %^RESET%^%^C039%^from your weapon.%^CRST%^");
     }
     
     ::dest_effect();
