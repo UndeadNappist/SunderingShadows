@@ -1,4 +1,5 @@
 #include <std.h>
+#include "../tharis.h"
 inherit OBJECT;
 void init(){
         ::init();
@@ -16,6 +17,6 @@ void create() {
 int read_note(string str){
         if(!str) notify_fail("Read what?");
         if("note" != str) return 0;
-        this_player()->more("/d/tharis/obj/NOTE");
+        this_player()->more(OBJ"NOTE");
         return 1;
 }
