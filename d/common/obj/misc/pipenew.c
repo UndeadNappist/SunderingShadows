@@ -1,53 +1,39 @@
 //updated by Circe 7/11/04 with new desc, etc.
+// Chernobog (10/13/22)
+// cleaned up and removed unused code, converted to new colors
+
 #include <std.h>
 #include <move.h>
+
 inherit OBJECT;
 
-#define WOODS ({ "%^YELLOW%^oak", "%^BOLD%^pine", "%^RESET%^%^ORANGE%^birch", \
-                 "%^BOLD%^%^BLACK%^ash", "%^BOLD%^walnut", "%^RESET%^%^ORANGE%^cypress", \
-                 "%^RESET%^%^ORANGE%^chestnut", "%^RESET%^%^RED%^cherry", \
-                 "%^YELLOW%^hickory", "%^YELLOW%^maple", \
-                 "%^RESET%^%^RED%^teak", "%^RESET%^%^ORANGE%^poplar", "%^RESET%^%^RED%^rose wood", \
-                 "%^RESET%^%^ORANGE%^elm", "%^RESET%^%^ORANGE%^cedar", "%^RESET%^%^RED%^redwood" })
+#define WOODS ({ "%^C144%^o%^C229%^a%^C144%^k", "%^C100%^pine", "%^C253%^b%^C249%^i%^C253%^rc%^C249%^h", "%^C144%^ash", "%^C130%^walnut", "%^C228%^cypress", "%^C136%^chestnut", "%^C124%^c%^C160%^her%^C124%^r%^C160%^y", "%^C144%^h%^C228%^i%^C144%^ck%^C228%^or%^C144%^y", "%^YELLOW%^maple", "%^RESET%^%^RED%^teak", "%^C101%^p%^C144%^o%^C101%^p%^C144%^la%^C101%^r", "%^C160%^r%^C124%^o%^C160%^s%^C124%^e%^C160%^w%^C124%^oo%^C160%^d", "%^C101%^e%^C144%^l%^C101%^m", "%^130%^cedar", "%^C160%^r%^C124%^e%^C160%^dw%^C124%^oo%^C160%^d" })
 
-object ob;
-string tobacco_type, * mymsgs, * yourmsgs, packedshort, litshort;
-int lit, packed, light_time, sp_adjust, con_req, hasmsgs, tobacco, intox, mycharges, tracker;
+string *mymsgs, *yourmsgs;
+int lit, packed, hasmsgs, intox, tracker;
 
-void create()
-{
+void create(){
     int i;
-    string str, WOOD;
     ::create();
     i = random(sizeof(WOODS));
-    WOOD = WOODS[i];
-    if (WOOD == "%^YELLOW%^oak" || WOOD == "%^BOLD%^%^BLACK%^ash" || WOOD == "%^RESET%^%^ORANGE%^elm") {
-        str = "an";
-    }else {
-        str = "a";
-    }
     set_name("wooden pipe");
-    set_id(({ "pipe", "" + WOOD + " pipe", "wooden pipe", "a wooden pipe" }));
-    set_short("a wooden pipe%^RESET%^");
-    set_long("This hand-carved creation is made of seasoned " + WOOD + " %^RESET%^fashioned into a slender pipe and fitted with a %^BOLD%^%^BLACK%^black mouthpiece%^RESET%^.  The bowl of the pipe is deep and decorated with %^ORANGE%^burned scrollwork %^RESET%^that give it an elegant appearance.\n\n%^RESET%^%^ORANGE%^Try packing/filling it with some tobacco, then smoking it. Douse it to put it out. Empty it to get rid of the tobacco in it.%^RESET%^");
+    set_id(({ "wooden pipe", "pipe", "carved "+WOODS[i]+" pipe", ""+WOODS[i]+" pipe" }));
+    set_short("%^RESET%^%^CRST%^%^C130%^a carved "+WOODS[i]+"%^RESET%^%^CRST%^%^C130%^ pipe%^CRST%^");
+    set_long("%^RESET%^%^CRST%^%^C130%^This hand-carved creation is made of seasoned "+WOODS[i]+" %^RESET%^%^C130%^fashioned into a slender pipe and fitted with a %^C059%^black mouthpiece%^C130%^. The bowl of the pipe is deep and decorated with %^C058%^b%^C100%^u%^C101%^r%^C144%^n%^C058%^e%^C100%^d %^C101%^s%^C144%^c%^C058%^r%^C100%^o%^C101%^l%^C144%^l%^C058%^w%^C100%^o%^C100%^r%^C144%^k %^RESET%^%^C130%^that gives it an elegant appearance. You can %^C144%^pack %^C130%^it with tobacco or other herbs if you wish to %^C144%^smoke%^C130%^. When finished, you can %^C144%^douse %^C130%^it and %^C144%^empty %^C130%^it.%^CRST%^");
     set_weight(1);
-    set_value(150);
+    set_value(1500);
+    set_property("repairtype", ({ "woodwork" }));
+    
     packed = 0;
-    tobacco = 0;
     lit = 0;
-    con_req = 0;
-    sp_adjust = 0;
     hasmsgs = 0;
     tracker = 0;
     mymsgs = ({});
     yourmsgs = ({});
     intox = 0;
-    mycharges = 0;
-    set_property("repairtype", ({ "woodwork" }));
 }
 
-void init()
-{
+void init(){
     ::init();
     add_action("extinguish", "douse");
     add_action("smoke", "smoke");
@@ -56,193 +42,181 @@ void init()
     add_action("empty", "empty");
 }
 
-int smoke(string str)
-{
-    if (!id(str)) {
-        notify_fail("Smoke what?\n");
+int smoke(string str){
+    object pipe, player;
+    pipe = this_object();
+    player = environment(pipe);
+    
+    if(!id(str)){
+        tell_object(player, "%^RESET%^%^CRST%^%^C100%^What do you want to smoke?%^CRST%^");
         return 0;
     }
-    if (!packed) {
-        notify_fail("Why would you want to smoke an empty pipe?\n");
+    if(!packed){
+        tell_object(player, "%^RESET%^%^CRST%^%^C100%^There is nothing in the pipe to smoke.%^CRST%^");
         return 0;
     }
-    if (lit) {
-        notify_fail("You're already smoking it!\n");
+    if(lit){
+        tell_object(player, "%^RESET%^%^CRST%^%^C100%^It is already lit.%^CRST%^");
         return 0;
     }
-    if (con_req > this_player()->query_stats("constitution")) {
-        write("You can't smoke this tobacco, it is too strong for you!");
-        write("You unpack the pipe, and drop the contents on the ground.");
-        packed = 0;
-        TO->remove_property_value("added short", ({ "%^BOLD%^%^BLACK%^ (packed)%^RESET%^" }));
-        TO->remove_property("added short");
-        return 1;
-    }
-    write("You begin smoking your pipe.\n");
-    say(TP->QCN + " begins smoking a pipe.\n", TP);
-    TO->remove_property_value("added short", ({ "%^BOLD%^%^BLACK%^ (packed)%^RESET%^" }));
-    TO->remove_property("added short");
-    TO->set_property("added short", ({ "%^YELLOW%^ (lit)%^RESET%^" }));
+    
+    tell_object(player, "%^RESET%^%^CRST%^%^C100%^You light your pipe and begin %^C243%^s%^C245%^m%^C247%^o%^C249%^k%^C251%^i%^C253%^n%^C255%^g%^C100%^.%^CRST%^");
+    tell_room(environment(player), "%^RESET%^%^CRST%^%^C100%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ lights their pipe and begins %^C243%^s%^C245%^m%^C247%^o%^C249%^k%^C251%^i%^C253%^n%^C255%^g%^C100%^.%^CRST%^", player);
+    pipe->remove_property_value("added short", ({ " %^RESET%^%^CRST%^%^C076%^(%^C064%^packed%^C076%^)%^CRST%^" }));
+    pipe->remove_property("added short");
+    pipe->set_property("added short", ({ " %^RESET%^%^CRST%^%^C214%^(%^C202%^l%^C196%^i%^C202%^t%^C214%^)%^CRST%^" }));
     call_out("take_drag", 5);
-    light_time = time();
     set_property("lit pipe", 1);
     lit = 1;
     return 1;
 }
 
-int extinguish(string str)
-{
-    if (!id(str)) {
-        notify_fail("Douse what?\n");
+int extinguish(string str){
+    object pipe, player;
+    pipe = this_object();
+    player = environment(pipe);
+    
+    if(!id(str)){
+        tell_object(player, "%^RESET%^%^CRST%^%^C100%^What do you want to douse?%^CRST%^");
         return 0;
     }
-    if (!lit) {
-        notify_fail("Your pipe is not lit!\n");
+    if(!lit){
+        tell_object(player, "%^RESET%^%^CRST%^%^C100%^The pipe is not lit.%^CRST%^");
         return 0;
     }
-    write("You douse your pipe.\n");
-    say(TP->QCN + " douses a pipe.\n", TP);
-    tobacco -= (light_time - time());
+    
+    tell_object(player, "%^RESET%^%^CRST%^%^C100%^You douse your pipe.%^CRST%^");
+    tell_room(environment(player), "%^RESET%^%^CRST%^%^C100%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ douses a pipe.%^CRST%^", player);
     remove_call_out("take_drag");
-    TO->remove_property("lit pipe");
+    pipe->remove_property("lit pipe");
     lit = 0;
-    TO->remove_property_value("added short", ({ "%^YELLOW%^ (lit)%^RESET%^" }));
-    TO->set_property("added short", ({ "%^BOLD%^%^BLACK%^ (packed)%^RESET%^" }));
+    pipe->remove_property_value("added short", ({ " %^RESET%^%^CRST%^%^C214%^(%^C202%^l%^C196%^i%^C202%^t%^C214%^)%^CRST%^" }));
+    pipe->set_property("added short", ({ " %^RESET%^%^CRST%^%^C076%^(%^C064%^packed%^C076%^)%^CRST%^" }));
     return 1;
 }
 
-int empty(string str)
-{
-    if (!id(str)) {
-        notify_fail("empty what?\n");
+int empty(string str){
+    object pipe, player;
+    pipe = this_object();
+    player = environment(pipe);
+    
+    if(!id(str)){
+        tell_object(player, "%^RESET%^%^CRST%^%^C100%^What do you want to empty?%^CRST%^");
         return 0;
     }
-    if (lit == 1) {
-        notify_fail("You must douse your pipe before emptying it!\n");
+    if(lit == 1){
+        tell_object(player, "%^RESET%^%^CRST%^%^C100%^You must douse your pipe before emptying it!%^CRST%^");
         return 0;
     }
-    write("You empty your pipe.\n");
-    say(TP->QCN + " empties a pipe.\n", TP);
-    tobacco = 0;
+    
+    tell_object(player, "%^RESET%^%^CRST%^%^C100%^You empty your pipe.%^CRST%^");
+    tell_room(environment(player), "%^RESET%^%^CRST%^%^C100%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ empties a pipe.%^CRST%^", player);
     lit = 0;
     packed = 0;
     intox = 0;
     hasmsgs = 0;
-    TO->remove_property_value("added short", ({ "%^BOLD%^%^BLACK%^ (packed)%^RESET%^" }));
-    TO->remove_property("added short");
+    pipe->remove_property_value("added short", ({ " %^RESET%^%^CRST%^%^C076%^(%^C064%^packed%^C076%^)%^CRST%^" }));
+    pipe->remove_property("added short");
     return 1;
 }
 
-void take_drag()
-{
+void take_drag(){
+    object player, room;
     int i;
-    if (!living(ETO)) {
+    
+    player = environment(this_object());
+    room = environment(player);
+    
+    if(!living(player)){
         call_out("go_out", 0);
+        return;
     }
-    if (tracker > 30 + random(16)) {
+    if(tracker > 30 + random(4)){
         call_out("go_out", 0);
+        return;
     }
-    if (living(ETO)) {
-        tell_object(ETO, "%^RED%^You take a long, gentle puff from your pipe.");
-        tell_room(EETO, "%^RED%^" + ETO->QCN + " takes a long, gentle puff from a pipe.", ETO);
+    
+    tell_object(player, "%^RESET%^%^CRST%^%^C100%^You take a long, gentle puff from your pipe.%^CRST%^");
+    tell_room(room, "%^RESET%^%^CRST%^%^C100%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C100% takes a long, gentle puff from a pipe.%^CRST%^", player);
+    if(intox){
+        player->add_intox(intox);
+        tell_object(player, "%^RESET%^%^CRST%^%^C144%^You start to feel %^C076%^s%^C070%^t%^C064%^r%^C076%^a%^C070%^n%^C064%^g%^C076%^e%^C144%^, and your mind wanders...%^CRST%^");
     }
-    if (intox) {
-        ETO->add_intox(intox);
-        write("You start to feel strange, your mind wanders...");
-    }
-    if (!hasmsgs) {
-        tell_room(EETO, "%^RED%^" + ETO->QCN + " giggles and stares off into the distance.%^RESET%^", ETO);
-    }else {
+    if(hasmsgs){
         i = random(sizeof(mymsgs));
-        tell_object(ETO, mymsgs[i]);
-        tell_room(EETO, yourmsgs[i], ETO);
+        tell_object(player, mymsgs[i]);
+        tell_room(room, yourmsgs[i], player);
     }
     tracker++;
     call_out("take_drag", random(30) + 60);
 }
 
-void go_out()
-{
-    tell_room(EETO, "" + ETO->QCN + "'s pipe goes out.\n", TP);
-    tell_object(ETO, "Your pipe goes out.\n");
-    TO->remove_property("lit pipe");
+void go_out(){
+    object pipe, player, room;
+    pipe = this_object();
+    player = environment(pipe);
+    room = environment(player);
+    
+    tell_room(room, "%^RESET%^%^CRST%^%^C059%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^'s pipe goes out.%^CRST%^", player);
+    tell_object(player, "%^RESET%^%^CRST%^%^C059%^Your pipe goes out.%^CRST%^");
+    pipe->remove_property("lit pipe");
     remove_call_out("take_drag");
-    tobacco = 0;
+    
     lit = 0;
     packed = 0;
     intox = 0;
     hasmsgs = 0;
     tracker = 0;
-    TO->remove_property_value("added short", ({ "%^YELLOW%^ (lit)%^RESET%^" }));
-    TO->remove_property("added short");
+    
+    pipe->remove_property_value("added short", ({ " %^RESET%^%^CRST%^%^C214%^(%^C202%^l%^C196%^i%^C202%^t%^C214%^)%^CRST%^" }));
+    pipe->remove_property("added short");
 }
 
-int pack_pipe(string str)
-{
-    string pipe;
+int pack_pipe(string str){
+    object ob, player = this_player();
+    string pipe, tobacco_type;
 
-    if (packed) {
-        notify_fail("Your pipe is already packed!\n");
+    if(!str) return 0;
+    if((sscanf(str, "%s with %s", pipe, tobacco_type)) != 2) return 0;
+    if(pipe != "pipe") return 0;
+    if(packed){
+        tell_object(player, "%^RESET%^%^CRST%^%^C100%^The pipe is already packed.%^CRST%^");
         return 0;
     }
-    if (!str) {
-        return 0;
-    }
-    if ((sscanf(str, "%s with %s", pipe, tobacco_type)) != 2) {
-        return 0;
-    }
-    if (pipe != "pipe") {
-        return 0;
-    }
-    if (tobacco_type == "tobacco") {
-        notify_fail("That is not a valid type of tobacco!\n");
-        return 0;
-    }
-    if (!(ob = present(tobacco_type, TP))) {
-        notify_fail("You can't pack your pipe with " + tobacco_type + "!!!\n");
-        return 0;
-    }
-    if (ob->is_tobacco()) {
-        //con_req = (int)ob->query_con_check();
-        tell_object(TP, "You pack your pipe with " + tobacco_type + " tobacco.");
-        tell_room(ETP, "" + TP->QCN + " packs " + TP->QP + " pipe with some " + tobacco_type + " tobacco.", TP);
-        packed = 1;
-        sp_adjust = ob->use_load();
-        intox = (int)ob->query_intox();
-        if (ob->query_has_messages()) {
-            hasmsgs = 1;
-            mymsgs = ({});
-            mymsgs = (string)ob->query_my_messages();
-            yourmsgs = ({});
-            yourmsgs = (string)ob->query_your_messages();
-        }else {
-            hasmsgs = 0;
-        }
-        TO->remove_property_value("added short", ({ " %^BOLD%^%^BLACK%^(packed)%^RESET%^" }));
-        TO->set_property("added short", ({ " %^BOLD%^%^BLACK%^(packed)%^RESET%^" }));
+    if(!(ob = present(tobacco_type, player))){
+        tell_object(player, "%^RESET%^%^CRST%^%^C100%^You don't see that here.%^CRST%^");
         return 1;
     }
-    tell_object(TP, "You can't pack your pipe with that!");
+    if(!(ob->is_tobacco())){
+        tell_object(player, "%^RESET%^%^CRST%^%^C100%^You can't pack your pipe with that.%^CRST%^");
+        return 1;
+    }
+    
+    tell_object(player, "%^RESET%^%^CRST%^%^C100%^You pack your pipe with "+tobacco_type+".%^CRST%^");
+    tell_room(environment(player), "%^RESET%^%^CRST%^%^C100%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ packs their pipe with some "+tobacco_type+".%^CRST%^", player);
+    packed = 1;
+    ob->use_load();
+    intox = (int)ob->query_intox();
+    if(ob->query_has_messages()){
+        hasmsgs = 1;
+        mymsgs = ({});
+        mymsgs = (string)ob->query_my_messages();
+        yourmsgs = ({});
+        yourmsgs = (string)ob->query_your_messages();
+    }
+    this_object()->remove_property_value("added short", ({ " %^RESET%^%^CRST%^%^C076%^(%^C064%^packed%^C076%^)%^CRST%^" }));
+    this_object()->set_property("added short", ({ " %^RESET%^%^CRST%^%^C076%^(%^C064%^packed%^C076%^)%^CRST%^" }));
     return 1;
 }
 
-remove()
-{
-    if (lit) {
-        call_out("go out", 2);
-    }
-    if (packed) {
-        call_out("empty", 2);
-    }
+remove(){
+    if(lit) call_out("go out", 2);
+    if(packed) call_out("empty", 2);
+    
     return ::remove();
 }
 
-int get_tracker()
-{
-    return tracker;
-}
-
-int is_carving()
-{
+int is_carving(){
     return 1;
 }
+
