@@ -130,7 +130,10 @@ void do_rebirth()
     reborn->set_hp((int)reborn->query_max_hp());
     reborn->set_heart_beat(1);
     reborn->force_me("look");
-    //reborn->delete("no pk");
+    
+    if(reborn->query("just_been_pkilled"))
+        reborn->delete("no pk");
+    
     reborn->remove_pk_death_flag();
     reborn->delete("in_the_afterlife");
     reborn->delete("just_been_pkilled");
