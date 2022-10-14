@@ -5,7 +5,7 @@ inherit VENDOR;
 
 void create() {
     ::create();
-    set_gender("male");
+    set_gender("neuter");
     set_name("Loran");
     set_race("human");
     set_hd(50,8);
