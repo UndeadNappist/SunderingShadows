@@ -32,10 +32,12 @@ int preSpell()
         target = caster;
     }
 
+    /*
     if (target->query_property("no death")) {
         tell_object(caster, "They are already under the influence of a similar effect.");
         return 0;
     }
+    */
     return 1;
 }
 
