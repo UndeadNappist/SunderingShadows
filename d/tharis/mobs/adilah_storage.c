@@ -1,1 +1,0 @@
-inherit "/d/common/inherit/magic_storage.c";
