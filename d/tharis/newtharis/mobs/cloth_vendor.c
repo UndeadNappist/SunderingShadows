@@ -5,9 +5,9 @@ inherit VENDOR;
 
 void create() {
     ::create();
-    set_gender("male");//not a typo
-    set_name("Lialesh");
-    set_race("half-drow");
+    set_gender("male");
+    set_name("Loran");
+    set_race("human");
     set_hd(50,8);
     set_hp(8000);
     set_alignment(5);
@@ -27,8 +27,8 @@ void create() {
                     "greater dispel magic",
                     "powerword kill",
                     "powerword stun"}));
-    set_id(({ "Lialesh", "lialesh", "vendor","tailor","dealer","cloth dealer"}));
-    set_short("%^RESET%^%^CYAN%^Lialesh,%^ORANGE%^ a cloth dealer%^RESET%^");
+    set_id(({ "Loran", "loran", "vendor","tailor","dealer","cloth dealer"}));
+    set_short("%^RESET%^%^C241%^Loran Black%^RESET%^%^C103%^, %^RESET%^%^C144%^cloth %^RESET%^%^C103%^dealer%^CRST%^");
     set_long("%^CYAN%^She is humble femenine figre dressed head-to-toe, hiding her face, in various fabrics that hardly constitute any fashion, yet her feminine grace and manners can be considered alluring by themselves. She has her stall full of various exotic fabrics and line of customers always in front of her. Use %^ORANGE%^<list>%^CYAN%^ to view her wares and %^ORANGE%^<help shop>%^RED%^ to learn how to buy.");
     set_storage_room(STORAGE"cloth_vendor");    
 }
