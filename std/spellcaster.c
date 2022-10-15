@@ -1304,7 +1304,7 @@ void InitInnate()
                             "trial by fire"   : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
                             "dimension door"  : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
                             "true seeing"     : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
-                            "alter self"      : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "angelic aspect"  : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
                             "fire shield"     : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
                             "greater invisibility"   : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
                         ]);

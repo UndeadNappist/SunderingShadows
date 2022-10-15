@@ -12,3 +12,7 @@ void create(){
    ]));
 }
 
+void reset(){
+  ::reset();
+  if(!present("wood vendor")) new(MOBS"wood_vendor.c")->move(TO);
+}

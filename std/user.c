@@ -1034,6 +1034,8 @@ int quit()
     set_magic_hidden(0);
     //YUCK_D->save_inventory(TO);
     //crash_money = 0;
+    if(environment(this_object())->is_demiplane_room())
+        command("leave demiplane");
     if (query_followers()) clear_followers();
     TO->set_property("silent_equip",1);
     message("environment", "We hope you enjoyed playing and will be back soon.", TO);
@@ -1056,12 +1058,25 @@ int quit()
     LAWBOUNTY_D->add_hm_info(TO);
     TO->move("/d/shadowgate/freezer");
     inv = all_inventory(TO);
+    
+    foreach(object ob in inv)
+    {
+        if(!objectp(ob))
+            continue;
+        
+        ob->unequip();
+        ob->strip_temp_values();
+    }
+    
+    /*
     for(x = 0;x < sizeof(inv);x++)
     {
+        if(!objectp(inv[x]))
         if(objectp(inv[x])) {
             inv[x]->unequip();
         }
     }
+    */
     if(catch(YUCK_D->save_inventory(TO)))
         tell_object(this_object(), "Inventory save failed.");
     
