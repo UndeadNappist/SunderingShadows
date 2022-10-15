@@ -83,6 +83,12 @@ void execute_feat()
     if(!objectp(target))
         target = caster->query_current_attacker();
     
+    if(!objectp(target))
+    {
+        dest_effect();
+        return;
+    }
+    
     ::execute_feat();
     
     my_name = caster->query_cap_name();
