@@ -17,6 +17,8 @@ nosave private int no_clean;
 private int size;
 nosave private object last_location;
 
+void strip_temp_values();
+
 void set_size(int x) { size = x;}
 
 int query_size() {
@@ -132,6 +134,14 @@ int remove(){
     //!userp(this_object()) && this_object()->remove_property("added short");
     
     //This is to catch any lingering (temporary) added shorts
+    strip_temp_values();
+    
+    destruct(this_object());
+    return 1;
+}
+
+void strip_temp_values()
+{
     if(this_object()->is_weapon())
     {
         this_object()->remove_property("temp_hit_bonus");
@@ -142,9 +152,6 @@ int remove(){
         this_object()->remove_property_value("added short", ({ "%^BLACK%^BOLD%^ [%^GREEN%^eldritch%^BLACK%^]%^RESET%^" }) );
         this_object()->remove_property_value("added short", ({ "%^MAGENTA%^ {vampiric}%^RESET%^" }) );
     }
-    //
-    destruct(this_object());
-    return 1;
 }
 
 int clean_up(){
