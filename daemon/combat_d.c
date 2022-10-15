@@ -1184,7 +1184,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
     }
     //END CRIMSON TEMPLAR
 
-    if(!attacker)
+    if(!attacker || !target)
         return;
     
     if(FEATS_D->has_feat(attacker, "cornugon smash"))
@@ -1196,6 +1196,19 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             eff->apply_effect(target, 1);
         }
     }
+    
+    //ADDITIONAL STEALTH DAMAGE
+    if(target && attacker->query_property("additional stealth damage"))
+    {
+        if(attacker->query_invis() || attacker->query_hidden())
+        {
+            int bon = 1 + attacker->query_base_character_level() / 20;
+            target && target->cause_typed_damage(target, target->return_target_limb(), bon, attacker->query_property("additional stealth damage"));
+        }
+    }
+    
+    if(!target || !attacker)
+        return;
 
     //CLEAVE SECTION
     if(FEATS_D->usable_feat(attacker, "cleave") && objectp(weapon) && !weapon->is_lrweapon())
