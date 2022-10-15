@@ -785,23 +785,27 @@ int query_resistance(string res)
     
     if(strlen(mysubrace))
     {
-        if(strsrch(mysubrace, "genasi") >= 0)
+        if(strsrch(mysubrace, "genasi") >= 0 || myrace == "dragonkin")
         {
             switch(mysubrace)
             {
                 case "air genasi":
+                case "wind":
                 if(res == "electricity")
                     myres += (mylvl / 2);
                 break;
                 case "fire genasi":
+                case "flame":
                 if(res == "fire")
                     myres += (mylvl / 2);
                 break;
                 case "water genasi":
+                case "wave":
                 if(res == "cold")
                     myres += (mylvl / 2);
                 break;
                 case "earth genasi":
+                case "stone":
                 if(res == "acid")
                     myres += (mylvl / 2);
                 break;
@@ -836,7 +840,7 @@ int query_resistance(string res)
     }
 */
 
-    //Cleric domain-specific resistances
+    //Cleric Domain-specific resistance
     domains = TO->query_divine_domain();
 
     if(sizeof(domains))
