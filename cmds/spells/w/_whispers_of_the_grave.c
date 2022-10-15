@@ -12,7 +12,7 @@ void create()
     set_spell_name("whispers of the grave");
     set_spell_level(([ "warlock" : 1 ]));
     set_spell_sphere("divination");
-    set_heritage("gloom");
+    //set_heritage("gloom");
     set_syntax("cast CLASS whispers of the grave to TARGET");
     set_description("Calling upon the power of their patron to bridge the barriers between life and death, the warlock is able to establish contact with the recently deceased.");
     set_verbal_comp();
