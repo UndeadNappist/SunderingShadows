@@ -2306,6 +2306,14 @@ void miss(object attacker, int magic, object target, string type, string target_
             !treader && tell_object(target, "" + a_name + " missed you.");
             tell_room(room, "" + a_name + " misses " + t_name + "", ({ target, attacker }) + readers);
         }
+        
+        if(!random(2) && target->query_property("warlocks curse") == attacker && FEATS_D->has_feat(attacker, "darkblade jinx"))
+        {
+            wlvl = attacker->query_class_level("warlock");
+            tell_object(attacker, "%^C244%^Your curse still scars " + t_name + "!%^CRST%^");
+            target->cause_typed_damage(target, target->return_target_limb(), roll_dice(1 + wlvl / 10, 6), "untyped");
+        }
+        
         return;
     }
 
@@ -2314,12 +2322,6 @@ void miss(object attacker, int magic, object target, string type, string target_
 
     tell_room(room, "" + a_name + " misses " + a_poss + " target.", ({ attacker }) + readers);
     
-    if(!random(2) && target->query_property("warlocks curse") == attacker && FEATS_D->has_feat(attacker, "darkblade jinx"))
-    {
-        wlvl = attacker->query_class_level("warlock");
-        tell_object(attacker, "%^C244%^Your curse still scars " + t_name + "!%^CRST%^");
-        target->cause_typed_damage(target, target->return_target_limb(), roll_dice(1 + wlvl / 10, 6), "untyped");
-    }
     return;
 }
 
