@@ -2289,6 +2289,13 @@ void miss(object attacker, int magic, object target, string type, string target_
 
     a_name = attacker->query_cap_name();
     a_poss = attacker->query_possessive();
+    
+    if(!random(2) && target && target->query_property("warlocks curse") == attacker && FEATS_D->has_feat(attacker, "darkblade jinx"))
+    {
+        wlvl = attacker->query_class_level("warlock");
+        tell_object(attacker, "%^C244%^Your curse still scars " + t_name + "!%^CRST%^");
+        target->cause_typed_damage(target, target->return_target_limb(), roll_dice(1 + wlvl / 10, 6), "untyped");
+    }
 
     if (objectp(target)) {
         if (interactive(target)) {
@@ -2305,13 +2312,6 @@ void miss(object attacker, int magic, object target, string type, string target_
             !areader && tell_object(attacker, "%^YELLOW%^You miss.%^RESET%^");
             !treader && tell_object(target, "" + a_name + " missed you.");
             tell_room(room, "" + a_name + " misses " + t_name + "", ({ target, attacker }) + readers);
-        }
-        
-        if(!random(2) && target->query_property("warlocks curse") == attacker && FEATS_D->has_feat(attacker, "darkblade jinx"))
-        {
-            wlvl = attacker->query_class_level("warlock");
-            tell_object(attacker, "%^C244%^Your curse still scars " + t_name + "!%^CRST%^");
-            target->cause_typed_damage(target, target->return_target_limb(), roll_dice(1 + wlvl / 10, 6), "untyped");
         }
         
         return;
