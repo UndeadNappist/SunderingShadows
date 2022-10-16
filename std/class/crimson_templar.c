@@ -178,7 +178,7 @@ int prerequisites(object player)
 
 mapping stat_requirements(object ob)
 {
-    return ([ "charisma" : 20 ]);
+    return ([  ]);
 }
 
 int *saving_throws(object ob) { return base_class_ob(ob)->saving_throws(); }
