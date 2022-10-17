@@ -20,7 +20,8 @@ void create(){
     level = 14 + random(8); 
     set_hd(level,8);
 //    set_hp(96);
-    if (TO->query_hp() < 125) set_hp(125);
+    set_max_hp(125);
+    set_hp(query_max_hp());
 //    set_exp(2400);
     set_new_exp(level,"normal");
     set_alignment(5);
@@ -57,3 +58,13 @@ void dive(object targ){
     tell_room(ETO,"%^RED%^The Jaguar leaps at "+targ->query_cap_name()+" but misses!",targ);
     return 1;
 }
+
+// Taming DCs: Low - 10, Mid - 25, High - 40, Epic - 55
+// Types of DCs: "survival" for wild creatures (snakes, rats, stags, spiders, etc...)
+//               "spellcraft" for magical creatures (elementals, sprites, will o wisp, etc...)
+//               "dungeoneering" for constructs (clockwork creatures, golems, etc...)
+int is_sapient(){ return 0; }
+int is_tamable(){ return 1; }
+int query_tame_DC(){ return 25; }
+string query_DC_type(){ return "survival"; }
+
