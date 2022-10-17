@@ -79,7 +79,10 @@ void take_drag(){
     
     player = environment(this_object());
     room = environment(player);
-    if(!living(player)) call_out("go out", 2);
+    if(!living(player)){
+        go_out();
+        return;
+    }
     if(charges < 1) call_out("go_out", 1);
     tell_object(player, "%^RESET%^%^CRST%^%^C250%^Sm%^C248%^ok%^C246%^e g%^C244%^en%^C059%^tl%^C244%^y t%^C246%^ra%^C248%^il%^C250%^s u%^C248%^pw%^C246%^ar%^C244%^ds %^C059%^fr%^C244%^om %^C246%^th%^C248%^e %^RESET%^%^C124%^e%^C196%^m%^C124%^b%^C196%^e%^C124%^r %^RESET%^%^C248%^o%^C250%^f y%^C248%^ou%^C246%^r c%^C244%^ig%^C059%^ar%^C244%^et%^C246%^te%^C248%^.%^CRST%^");
     tell_room(room, "%^RESET%^%^CRST%^%^C250%^Sm%^C248%^ok%^C246%^e g%^C244%^en%^C059%^tl%^C244%^y t%^C246%^ra%^C248%^il%^C250%^s u%^C248%^pw%^C246%^ar%^C244%^ds %^C059%^fr%^C244%^om %^C246%^th%^C248%^e %^RESET%^%^C124%^e%^C196%^m%^C124%^b%^C196%^e%^C124%^r %^RESET%^%^C248%^o%^C250%^f %^RESET%^%^C248%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C248%^'s %^C246%^ci%^C244%^ga%^C059%^re%^C244%^tt%^C246%^e.%^CRST%^", player);
@@ -93,8 +96,12 @@ void go_out(){
     cigarette = this_object();
     player = environment(cigarette);
     room = environment(player);
-    tell_object(player, "%^RESET%^%^CRST%^%^C059%^Your cigarette goes out, and you dispose of the remaining butt.%^CRST%^\n");
-    tell_room(room, "%^RESET%^%^CRST%^%^C059%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C059%^'s cigarette goes out, and "+player->query_subjective()+" disposes of the remaining butt.%^CRST%^\n", player);
+    
+    if(living(player)){
+        tell_object(player, "%^RESET%^%^CRST%^%^C059%^Your cigarette goes out, and you dispose of the remaining butt.%^CRST%^\n");
+        tell_room(room, "%^RESET%^%^CRST%^%^C059%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C059%^'s cigarette goes out, and "+player->query_subjective()+" disposes of the remaining butt.%^CRST%^\n", player);
+    }
+    else tell_room(player, "RESET%^%^CRST%^%^C059%^The cigarette goes out, completely spent.%^CRST%^");
     remove_call_out("take_drag");
     lit = 0;
     cigarette->remove_property_value("added short", ({ "%^RESET%^%^CRST%^ %^C214%^(%^C202%^l%^C196%^i%^C202%^t%^C214%^)%^CRST%^" }));
