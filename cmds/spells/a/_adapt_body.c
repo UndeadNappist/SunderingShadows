@@ -43,7 +43,7 @@ void create()
     set_spell_name("adapt body");
     set_spell_level( ([ "psion" : 5, "psywarrior" : 5 ]) );
     set_spell_sphere("psychometabolism");
-    set_buff_type( ({ "resistance" }) );
+    set_bonus_type( ({ "resistance" }) );
     set_syntax("cast CLASS adapt body");
     set_damage_desc("+10 to fire, cold, electricity, acid, and sonic resistance.");
     set_description("With this power, the psion uses psychometabolism and adjusts their body to better survive in harsh environments. This power increases all elemental resistances.");

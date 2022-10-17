@@ -18,7 +18,7 @@ void create() {
 "price - while active, the mage will be unable to concentrate enough to use offensive spells. This spell does not "
 "work alongside similarly powerful melee spells, such as rage, dance of a thousand cuts, or cunning insight.");
     set_verbal_comp();
-    set_bonus_type(({ "enhancement", "competence" }));
+    set_bonus_type(({ "competence" }));
     set_somatic_comp();
     set_components(([
       "mage" : ([ "fur" : 1, "dung scrapings" : 1, ]),
