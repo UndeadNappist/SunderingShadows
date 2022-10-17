@@ -137,7 +137,7 @@ void take_drag(){
     }
     
     tell_object(player, "%^RESET%^%^CRST%^%^C100%^You take a long, gentle puff from your pipe.%^CRST%^");
-    tell_room(room, "%^RESET%^%^CRST%^%^C100%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C100% takes a long, gentle puff from a pipe.%^CRST%^", player);
+    tell_room(room, "%^RESET%^%^CRST%^%^C100%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ takes a long, gentle puff from a pipe.%^CRST%^", player);
     if(intox){
         player->add_intox(intox);
         tell_object(player, "%^RESET%^%^CRST%^%^C144%^You start to feel %^C076%^s%^C070%^t%^C064%^r%^C076%^a%^C070%^n%^C064%^g%^C076%^e%^C144%^, and your mind wanders...%^CRST%^");
