@@ -14,3 +14,8 @@ void create(){
       "east" : ROOMS"square6",
    ]));
 }
+
+void reset(){
+  ::reset();
+  if(!present("psychic")) new(MOBS"tharis_psychic.c")->move(TO);
+}

@@ -52,9 +52,24 @@ void spell_effect(int prof)
         return;
     }
     
-    ::spell_effect();
+    if(caster->query_property("empower spell"))
+    {
+        caster->remove_property("empower spell");
+        ::spell_effect();
+        caster->set_property("empower spell", 1);
+    }
+    else if(caster->query_property("maximize spell"))
+    {
+        caster->remove_property("maximize spell");
+        ::spell_effect();
+        caster->set_property("maximize spell", 1);
+    }
+    else
+    {
+        ::spell_effect();
+    }
     
-    num = 1 + clevel / 6;
+    num = clevel / 6;
     
     //tell_object(caster, "Number of darts : " + num);
     //tell_object(caster, "Number of opponents : " + sizeof(victims));
@@ -70,10 +85,11 @@ void spell_effect(int prof)
     c_name = caster->query_cap_name();
     
     //Adjusts spell damage formula to scale for number of darts.
+    
     if(query_spell_type() == "mage" || query_spell_type() == "sorcerer")
-        define_base_damage(max( ({ 1, min( ({ num, 9 }) ) })));
+        define_base_damage(max( ({ 0, min( ({ num, 9 }) ) })));
     else
-        define_base_damage(max( ({ 1, min( ({ num, 6 }) ) })));        
+        define_base_damage(max( ({ 0, min( ({ num, 6 }) ) })));        
     
     //tell_object(caster, "Damage per dart : " + sdamage);
     
