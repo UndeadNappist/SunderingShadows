@@ -5,7 +5,7 @@ void create()
 {
     ::create();
     set_spell_name("alter self");
-    set_spell_level(([ "bard" : 2, "psion" : 2, "psywarrior": 2, "assassin" : 1, "mage" : 2, "druid" : 1, "inquisitor" : 1, "magus" : 2, "cleric" : 1 ]));
+    set_spell_level(([ "bard" : 2, "psion" : 2, "psywarrior": 2, "assassin" : 1, "mage" : 2, "inquisitor" : 1, "magus" : 2, "cleric" : 1 ]));
     set_spell_sphere("alteration");
     set_domains("trickery");
     set_syntax("cast CLASS alter self [on [RACE] [0-9]] ");
