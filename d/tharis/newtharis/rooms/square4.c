@@ -11,3 +11,8 @@ void create(){
       "north" : ROOMS"square3",
    ]));
 }
+
+void reset(){
+  ::reset();
+  if(!present("wizard")) new(MOBS"tharis_wizard.c")->move(TO);
+}
