@@ -8,8 +8,6 @@ void create() {
   set_name("Phaeraema Yauntyrr, Tharis city psychic");
   set_race("drow");
   set_alignment(5);
-  //set_hd(50,8);
-  //set_hp(8000);
   set_class("mage");
   set_mlevel("mage",16 + random(3));
   set_guild_level("mage",query_level());
