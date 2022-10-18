@@ -26,7 +26,6 @@ int cmd_flash(){
     }
     if(player->query_disable()) return 1;
     if(undefinedp(player->get_static("flashed")) || (player->get_static("flashed") < time())){
-        tell_object(player, "You don't see an opening, and circle about as you look for an angle.");
         player->set_static("flashed",time()+random(3)+3);
     }
     else{ 
@@ -257,6 +256,8 @@ int cmd_flash(){
         }
         player->set_disable(3,ob);  // was 5, changing to use stamina if try too soon above *Styx*
     }
+    else tell_object(player, "You don't see an opening, and circle about as you look for an angle.");
+    
     return 1;
 }
 
