@@ -172,6 +172,10 @@ void add_tracks(object ob, string action, string direction)
     {
         footprints[0]=(string)shape->query_shape_race()+"&"+action+"&"+direction+"&unknown&"+time();
     }
+    else if(objectp(shape = ob->query_property("altered")))
+    {
+        footprints[0]=(string)shape->query_shape_race()+"&"+action+"&"+direction+"&unknown&"+time();
+    }
     else
     {
         footprints[0]=(string)ob->query_race()+"&"+action+"&"+direction+"&"+ob->query_name()+"&"+time();
