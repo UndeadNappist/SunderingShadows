@@ -1,6 +1,6 @@
 %^CYAN%^THE NOPK FLAG%^RESET%^
 
-%^MAGENTA%^New characters have a %^WHITE%^NOPK flag%^RESET%^ that protects them from aggressive characters.%^RESET%^
+%^MAGENTA%^New characters have a %^WHITE%^NOPK flag%^RESET%^%^MAGENTA%^ that protects them from aggressive characters.%^RESET%^
 
 To opt into PK (player killing), turn the flag off (help set). When you turn this flag off, you signal to the player-base that you are ready to engage in hostile role-play. PK races start with their NOPK flag turned off by default, and can be identified by the red warning at the end of their race file (%^ORANGE%^<help RACE>%^RESET%^).
 
