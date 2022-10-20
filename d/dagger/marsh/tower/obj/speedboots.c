@@ -36,6 +36,7 @@ void create(){
    set_ac(0);
    set_property("enchantment",5);
    set_item_bonus("damage resistance",10);
+   set_item_bonus("athletics", 5);
    set_wear((:TO,"wield_me":));
    set_remove((:TO,"unwield_me":));
    set_heart_beat(1);
@@ -47,13 +48,11 @@ void wield_me(){
         return 0;
     }
     write("Your feet feel lighter than air, and as if you can run for miles.");
-    ETO->add_skill_bonus("athletics",5);
     return 1;
 }
 
 void unwield_me(){
     write("You feel tired and sluggish.");
-    ETO->add_skill_bonus("athletics",-5);
     return 1;
 }
 
