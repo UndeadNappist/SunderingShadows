@@ -36,8 +36,8 @@ int preSpell(){
 }
 
 string query_cast_string(){
-   tell_object(caster,"%^MAGENTA%^You make a brief, subtle motion to the side with one hand.%^RESET%^");
-   tell_room(place,"%^MAGENTA%^"+caster->QCN+" makes a brief, elusory motion to the side with one hand.%^RESET%^",caster);
+   tell_object(caster,"%^MAGENTA%^You make a brief, subtle motion to the side with one hand.%^CRST%^");
+   tell_room(place,"%^MAGENTA%^"+caster->QCN+" makes a brief, elusory motion to the side with one hand.%^CRST%^",caster);
    return "display";
 }
 
