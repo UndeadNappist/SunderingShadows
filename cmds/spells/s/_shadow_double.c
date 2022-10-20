@@ -87,6 +87,7 @@ void make_sword() {
     ob->set_property("spell_creature", TO);
     ob->set_property("minion", caster);
     ob->set_property("effective_enchantment", ((int)CLEVEL / 7));
+    ob->set_mylevel(clevel);
     caster->set_property("mages_sword",ob);
     return;
 }
