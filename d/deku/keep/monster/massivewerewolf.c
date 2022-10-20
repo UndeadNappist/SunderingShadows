@@ -33,4 +33,9 @@ void create()
     set_attacks_num(4);
     MOB_TR_D->do_treasure(TO,"B");    
     set_new_exp(25, "high");
+    if(!random(15)){
+       ob = new("/d/common/obj/brewing/herb_special_inherit");
+       ob->set_herb_name("werebeast fang");
+       ob->move(this_object());
+    }
 }

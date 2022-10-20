@@ -39,6 +39,11 @@ void create()
     set_new_exp(20, "normal");
     set_nogo( ({NO, NO2, NO3, NO4, NO5, NO6, NO7, NO8, NO9, NO10, NO11, NO12, NO13, NO14}) );
     FENC->fix_nogo(TO);
+    if(!random(15)){
+       ob = new("/d/common/obj/brewing/herb_special_inherit");
+       ob->set_herb_name("werebeast fang");
+       ob->move(this_object());
+    }
 }
 
 

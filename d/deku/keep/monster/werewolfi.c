@@ -21,6 +21,11 @@ void create()
     set_max_level(25);
     //add_attack_bonus(3);   
     set_parrying(1);   
+    if(!random(15)){
+       ob = new("/d/common/obj/brewing/herb_special_inherit");
+       ob->set_herb_name("werebeast fang");
+       ob->move(this_object());
+    }
 }
 
 void bite(object targ)
