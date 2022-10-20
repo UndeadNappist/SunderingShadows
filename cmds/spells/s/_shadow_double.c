@@ -36,8 +36,8 @@ int preSpell(){
 }
 
 string query_cast_string(){
-   tell_object(caster,"%^MAGENTA%^You make a brief, subtle motion to the side with one hand.%^CRST%^");
-   tell_room(place,"%^MAGENTA%^"+caster->QCN+" makes a brief, elusory motion to the side with one hand.%^CRST%^",caster);
+   tell_object(caster,"%^RESET%^%^C061%^You make a brief, %^RESET%^%^C244%^s%^C243%^u%^C244%^b%^C245%^t%^C243%^l%^RESET%^%^C242%^e m%^RESET%^%^C243%^o%^C245%^t%^C244%^i%^C243%^o%^RESET%^%^C242%^n %^RESET%^%^C061%^to the side with one hand.%^CRST%^");
+   tell_room(place,"%^RESET%^%^C061%^"+caster->QCN+" %^RESET%^%^C061%^makes a brief, %^RESET%^%^C244%^s%^C243%^u%^C244%^b%^C245%^t%^C243%^l%^RESET%^%^C242%^e m%^RESET%^%^C243%^o%^C245%^t%^C244%^i%^C243%^o%^RESET%^%^C242%^n %^RESET%^%^C061%^to the side with one hand.%^CRST%^",caster);
    return "display";
 }
 
@@ -54,8 +54,8 @@ void spell_effect(int prof){
 void make_sword() {
     object ob, thing;
 
-    tell_object(caster,"%^MAGENTA%^Your shadow moves, as if of its own accord, and rises to stand beside you.%^RESET%^");
-    tell_room(place,"%^MAGENTA%^You see "+caster->QCN+"'s shadow move, as if of its own accord, and rise to stand beside "+caster->QO+".%^RESET%^",caster);
+    tell_object(caster,"%^RESET%^C062%^Your %^RESET%^%^C241%^s%^C242%^h%^C243%^a%^C244%^d%^C242%^o%^RESET%^%^C241%^w %^RESET%^%^C062%^moves, as if of its own accord, and %^RESET%^%^C241%^r%^C242%^i%^C243%^s%^C242%^e%^RESET%^%^C241%^s %^RESET%^%^C062%^to stand beside you.%^CRST%^");
+    tell_room(place,"%^RESET%^%^C062%^You see "+caster->QCN+"%^RESET%^%^C062%^'s %^RESET%^%^C241%^s%^C242%^h%^C243%^a%^C244%^d%^C242%^o%^RESET%^%^C241%^w %^RESET%^%^C062%^move, as if of its own accord, and %^RESET%^%^C241%^r%^C243%^i%^C242%^s%^RESET%^%^C241%^e %^RESET%^%^C062%^to stand beside "+caster->QO+".%^CRST%^",caster);
     control = new("/d/magic/obj/shadowremote");
     control->set_caster(caster);
     control->move(caster);
@@ -95,8 +95,8 @@ void dest_effect() {
     object sword;
 
     if (objectp(caster)) {
-        tell_room(environment(caster),"%^CYAN%^The shadowy being beside "+caster->QCN+" fades away.%^RESET%^",caster);
-        tell_object(caster,"%^CYAN%^The shadow fades away.%^RESET%^");
+        tell_room(environment(caster),"%^RESET%^%^C069%^The %^RESET%^%^C241%^s%^C242%^h%^C243%^a%^C244%^d%^C243%^o%^C242%^w%^RESET%^%^C241%^y b%^RESET%^%^C242%^e%^C243%^i%^C242%^n%^RESET%^%^C241%^g %^RESET%^%^C069%^beside "+caster->QCN+" %^RESET%^%^C240%^f%^C242%^a%^C244%^d%^C245%^e%^RESET%^%^C246%^s a%^RESET%^%^C249%^w%^C252%^a%^RESET%^%^C255%^y%^RESET%^%^C069%^.%^CRST%^",caster);
+        tell_object(caster,"%^RESET%^%^C069%^The %^RESET%^%^C241%^s%^C242%^h%^C243%^a%^C244%^d%^C242%^o%^RESET%^%^C241%^w fades away.%^RESET%^");
     }
 
     if(objectp(control)) {
