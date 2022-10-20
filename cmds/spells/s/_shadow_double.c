@@ -96,7 +96,7 @@ void dest_effect() {
 
     if (objectp(caster)) {
         tell_room(environment(caster),"%^RESET%^%^C069%^The %^RESET%^%^C241%^s%^C242%^h%^C243%^a%^C244%^d%^C243%^o%^C242%^w%^RESET%^%^C241%^y b%^RESET%^%^C242%^e%^C243%^i%^C242%^n%^RESET%^%^C241%^g %^RESET%^%^C069%^beside "+caster->QCN+" %^RESET%^%^C240%^f%^C242%^a%^C244%^d%^C245%^e%^RESET%^%^C246%^s a%^RESET%^%^C249%^w%^C252%^a%^RESET%^%^C255%^y%^RESET%^%^C069%^.%^CRST%^",caster);
-        tell_object(caster,"%^RESET%^%^C069%^The %^RESET%^%^C241%^s%^C242%^h%^C243%^a%^C244%^d%^C242%^o%^RESET%^%^C241%^w %^RESET%^%^C240%^f%^C242%^a%^C244%^d%^C245%^e%^RESET%^%^C246%^s a%^RESET%^%^C249%^w%^C252%^a%^RESET%^%^C255%^y%^RESET%^%^C069%^.%^RESET%^");
+        tell_object(caster,"%^RESET%^%^C069%^The %^RESET%^%^C241%^s%^C242%^h%^C243%^a%^C244%^d%^C242%^o%^RESET%^%^C241%^w %^RESET%^%^C240%^f%^C242%^a%^C244%^d%^C245%^e%^RESET%^%^C246%^s a%^RESET%^%^C249%^w%^C252%^a%^RESET%^%^C255%^y%^RESET%^%^C069%^.%^CRST%^");
     }
 
     if(objectp(control)) {
@@ -110,14 +110,3 @@ void dest_effect() {
     if(objectp(TO)) TO->remove();
 }
 
-void my_special(object target) {
-    if(!objectp(target)) return;
-
-    tell_object(target, "%^RESET%^%^C244%^With a %^RESET%^%^C015%^menacing grin%^RESET%^%^C244%^, the %^RESET%^%^C241%^s%^C242%^h%^C243%^a%^C244%^d%^C242%^o%^C241%^w %^RESET%^%^C244%^darts toward you, its wicked claws %^RESET%^%^C088%^s%^C124%^l%^C160%^a%^C124%^s%^C088%^h%^C124%^i%^C160%^n%^C124%^g %^RESET%^%^C244%^at your own shadow, searing your %^RESET%^%^C231%^s%^C225%^o%^C195%^u%^RESET%^%^C231%^l %^RESET%^%^C244%^with the %^C051%^c%^C087%^h%^C159%^i%^C087%^l%^C051%^l %^RESET%^%^C244%^of the %^RESET%^%^C240%^void%^RESET%^%^C244%^.%^CRST%^");
-
-    tell_room(ETO,"%^RESET%^%^C244%^With a %^RESET%^%^C015%^menacing grin%^RESET%^%^C244%^, the %^RESET%^%^C241%^s%^C242%^h%^C243%^a%^C244%^d%^C242%^o%^C241%^w darts toward "+capitalize(target->QCN)+" %^RESET%^%^C088%^s%^C124%^l%^C160%^a%^C124%^s%^C088%^h%^C124%^i%^C160%^n%^C124%^g %^RESET%^%^C244%^at their shadow with its wicked claws!%^CRST%^",target);
- 
-    TO->set_property("magic",1);
-    target->do_damage("torso",random(40)+(mylevel*2));
-    TO->remove_property("magic");
-}
