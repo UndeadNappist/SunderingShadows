@@ -19,7 +19,7 @@ int prerequisites(object ob)
 {
    if(!objectp(ob)) { return 0; }
 
-   if((int)ob->query_class_level("monk") < 13 || (int)ob->query_alignment() > 3)
+   if((int)ob->query_class_level("monk") < 13)
    {
       dest_effect();
       return 0;

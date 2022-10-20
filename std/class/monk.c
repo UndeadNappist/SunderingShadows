@@ -81,10 +81,10 @@ mapping class_featmap(string myspec)
                5 : ({ "stunning strike" }),
                7 : ({ "evasion", "stillness of mind" }),
                10 : ({ "purity of body" }),
+               13 : ({ "tongue of the sun and moon" }),
                14 : ({ "diamond soul" }),
                15 : ({ "timeless body" }),
                18 : ({ "empty body" }),
-               19 : ({ "tongue of the sun and moon" }),
                20 : ({ "perfect self" }),
                21 : ({ "defensive roll" }),
                31 : ({ "unchained" }), ]);
