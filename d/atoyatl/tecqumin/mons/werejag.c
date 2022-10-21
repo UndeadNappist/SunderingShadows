@@ -196,14 +196,14 @@ void transform(){
       +" taking on human form in the knees, and a steadily reducing coverage"
       +" of patterned fur. Its head is starting to take on human shape, but"
       +" the teeth are still pointed and long, the jaws stretched to"
-      +" accomodate them. Its tail has shortened slightly in length, but is"
+      +" accommodate them. Its tail has shortened slightly in length, but is"
       +" still very furry.");
     set_paralyzed(300, "You are changing shape!");
     form = JAGHUMAN2;
     break;
   case JAGHUMAN2:
     remove_paralyzed();
-    force_me("emote 's tail sontinues to shorten, and its claws and fur begin"
+    force_me("emote 's tail continues to shorten, and its claws and fur begin"
       +" to disappear.");
     set_name("Transforming creature");
     set_short("creature transforming from a jaguar into a human");
@@ -297,7 +297,7 @@ void transform(){
     force_me("emote gives out a mewling sounding cry, as its transformation"
       +" approaches the end. Its body is now almost completely in the shape and"
       +" form of a powerful jungle cat.");
-    set_name("TRansforming creature");
+    set_name("Transforming creature");
     set_short("creature transforming from a jaguar into a human");
     set_long("%^ORANGE%^This %^CYAN%^contorted %^BOLD%^%^BLACK%^b%^RESET%^"
       +"%^ORANGE%^e%^BOLD%^%^YELLOW%^a%^BOLD%^%^BLACK%^st%^RESET%^%^ORANGE%^"
