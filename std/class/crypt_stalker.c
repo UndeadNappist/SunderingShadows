@@ -10,6 +10,8 @@ void create()
     ::create();
 }
 
+int is_locked_class() { return 1; }
+
 string *query_base_classes() { return ({ "ranger" }); }
 
 int is_prestige_class() { return 1; }
