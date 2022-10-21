@@ -408,7 +408,7 @@ int do_monster_study(object myplayer, object monster) {
                 myCheck += (FEATS_D->usable_feat(myplayer, "second favored enemy") * 2);
                 myCheck += (FEATS_D->usable_feat(myplayer, "third favored enemy") * 2);
 
-                if (monster->is_undead() && FEATS_D->usable_feat(myplayer, "resist undead"))
+                if (monster->is_undead() && FEATS_D->usable_feat(myplayer, "gird the soul"))
                     myCheck += 2;
             }
         }

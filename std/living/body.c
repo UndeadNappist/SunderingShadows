@@ -976,6 +976,9 @@ int query_resistance_percent(string res, object source)
         if(res == "electricity" || res == "cold" || res == "acid")
             mod = 100;
     }
+    
+    if(FEATS_D->usable_feat(TO, "gird the soul") && res == "negative energy")
+        mod += 20;
 
     if(FEATS_D->usable_feat(this_object(), "apotheosis"))
     {
@@ -1448,8 +1451,10 @@ int query_ac()
             myac += 2;
     }
 
+    /*
     if(attacker && FEATS_D->usable_feat(TO, "resist undead") && attacker->is_undead())
         myac += 8;
+    */
 
     if (!userp(TO)) {
         return ac - myac;
