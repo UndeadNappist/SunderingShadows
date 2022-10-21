@@ -93,6 +93,6 @@ void receive_given_item(object obj)
 void die(object ob)
 {
     WORLD_EVENTS_D->kill_event("A rare opportunity");
-    WORLD_EVENTS_D->inject_event((["A rare opportunity" : (["start message": "For the next two hours all experience gained will award an additional 15%!","event type" : "exp bonus", "length" : 120, "notification" : "10% Bonus Exp","event name" : "A rare opportunity", "modifier" : 10,"announce" : 1, "announce to" : "world" ]),]));
+    WORLD_EVENTS_D->inject_event((["A rare opportunity" : (["start message": "For the next two hours all experience gained will award an additional 10%!","event type" : "exp bonus", "length" : 120, "notification" : "10% Bonus Exp","event name" : "A rare opportunity", "modifier" : 10,"announce" : 1, "announce to" : "world" ]),]));
     ::die(ob);
 }
