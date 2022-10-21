@@ -71,6 +71,7 @@
     "/d/islands/dinosaur/obj/lg_armor", \
     "/d/islands/dreams/obj/darkcassock", \
     "/d/islands/dreams/obj/moonlight_robe", \
+    "/d/islands/dreams/obj/nightmare_robe", \
     "/d/islands/dreams/obj/rainbowcassock", \
     "/d/islands/dreams/obj/starrobe", \
     "/d/islands/dreams/obj/sunlight_robe", \
