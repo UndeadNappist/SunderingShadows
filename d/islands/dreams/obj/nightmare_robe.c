@@ -62,4 +62,5 @@ int strike_func(int damage, object what, object who){
       tell_object(who,"%^BOLD%^%^BLACK%^A face fights to escape from "+ETOQCN+"'s robe, clawing at you for aid.%^RESET%^");
       who->do_damage(who->return_target_limb(),random(4)+6);
    }
+   return damage;
 }
