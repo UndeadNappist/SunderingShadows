@@ -11,3 +11,4 @@ inherit "/std/user/cooldowns";
 inherit "/std/user/scry";
 inherit "/std/user/gmcp";
 inherit "/std/user/retinue";
+inherit "/std/user/minimap";
