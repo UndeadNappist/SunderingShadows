@@ -12,7 +12,7 @@ void create()
     feat_category("TwoHandedWeapons");
     feat_name("titan grip");
     feat_prereq("Base Strength 19");
-    feat_desc("This reflects your outstanding strength, and permits you to wield very large two-handed weapons that otherwise would be too large for you. With this feat, a small character can wield two-handed large weapons and a medium-sized character can wield giant two-handed weapons.
+    feat_desc("This reflects your outstanding strength, and permits you to wield very large two-handed weapons that otherwise would be too large for you. With this feat, a small character can wield two-handed large weapons and a medium-sized character can wield giant two-handed weapons. This feat is not available to large sized creatures.
 
 %^BOLD%^N.B.:%^RESET%^ This feat won't allow you to wield weapons in one hand that you would normally wield two-handed.");
     permanent(1);
@@ -28,6 +28,12 @@ int prerequisites(object ob)
         dest_effect();
         return 0;
     }
+    if(ob->query_size() > 2)
+    {
+        dest_effect();
+        return 0;
+    }
+    
     return ::prerequisites(ob);
 }
 
