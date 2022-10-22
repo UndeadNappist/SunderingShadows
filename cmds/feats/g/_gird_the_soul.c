@@ -6,10 +6,10 @@ void create() {
     ::create();
     feat_type("permanent");
     feat_category("CryptStalker");
-    feat_name("scour the depths");
-    feat_prereq("Crypt Stalker L4");
+    feat_name("gird the soul");
+    feat_prereq("Crypt Stalker L1");
     feat_desc(""
-"Stalking like a shadow through the domain of their hated enemies, the Crypt Stalker becomes a master of the earthen depths of the world where the undead call home. The Crypt Stalker gains bonuses in caves as if they had the Caves favored terrain. They also gain Rope Trick, Detect Undead, Greater Invisibility, Disrupting Weapon, Undeath Ward and False Future as innate spells.");
+"Crypt stalkers rely on their faith and their unwavering hatred of undead to inure them to the effects of undead attacks. They have studied relentless in their pursuits of the undead and have reaped the benefits. They have gained extensive knowledge of the crypts where the undead often reside. The Crypt Stalker gains the Death Ward feat along with 20% negative energy resistance. Additionally, they gain a bonus when studying undead creatures.");
     permanent(1);
     set_required_for(({}));
 }
@@ -23,7 +23,7 @@ int prerequisites(object ob)
         return 0;
     }
 
-    if ((int)ob->query_class_level("crypt_stalker") < 4)
+    if ((int)ob->query_class_level("crypt_stalker") < 1)
     {
         dest_effect();
         return 0;
