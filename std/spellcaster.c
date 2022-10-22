@@ -1281,13 +1281,14 @@ void InitInnate()
                         ]);
     }
 
-    if (FEATS_D->usable_feat(TO, "slay the undead")) {
+    if (FEATS_D->usable_feat(TO, "scour the depths")) {
         feat_spells += ([
-                            "rope trick" : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
-                            "detect undead" : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
-                            "heart of metal" : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
-                            "disrupting weapon" : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
-                            "undeath ward" : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "rope trick"           : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "false future"         : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),                            
+                            "detect undead"        : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "greater invisibility" : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "disrupting weapon"    : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+                            "undeath ward"         : (["type" : "spell", "daily uses" : -1, "level required" : 0 ]),
                         ]);
     }
 

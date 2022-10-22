@@ -2061,7 +2061,7 @@ int query_attack_bonus()
         }
     }
 
-    if(FEATS_D->usable_feat(TO, "slay the undead") && attacker && attacker->is_undead())
+    if(FEATS_D->usable_feat(TO, "smite the lifeless") && attacker && attacker->is_undead())
         ret += 2;
     
     if(this_object()->query_race() == "nightwing" && total_light(environment(this_object())) > -1)
@@ -2134,7 +2134,7 @@ int query_damage_bonus()
     if(FEATS_D->is_active(this_object(), "rending blows"))
         ret -= 5;
 
-    if(FEATS_D->usable_feat(TO, "slay the undead") && attacker && attacker->is_undead())
+    if(FEATS_D->usable_feat(TO, "smite the lifeless") && attacker && attacker->is_undead())
         ret += 2;
 
     weap = this_object()->query_wielded();

@@ -9,11 +9,7 @@ void create() {
     feat_name("smite the lifeless");
     feat_prereq("Crypt Stalker L7");
     feat_desc(""
-"A Crypt Stalker who is true to his aim can learn how to channels positive energy "
-"into their attacks, separating the necromantic magics from the walking corpse and "
-"utterly destroying the undead creature. This feat gives the Crypt Stalker's critical "
-"hits the ability to cause a death effect on their undead enemies unless a fortitude "
-"save is made.");
+"A Crypt Stalker who is true to his aim can learn how to channels divine into their attacks, separating the necromantic magics from the walking corpse and utterly destroying the undead creature. This feat gives the Crypt Stalker's critical hits additional divine damage. In addition, the Crypt Stalker gains +2 to attack and damage rolls when fighting undead.");
     permanent(1);
     set_required_for(({}));
 }

@@ -265,7 +265,7 @@ int __Shoot(string str) {
             tohitroll += (FEATS_D->usable_feat(TP, "second favored enemy") * 2);
             tohitroll += (FEATS_D->usable_feat(TP, "third favored enemy") * 2);
 
-            if(foe->is_undead() && FEATS_D->usable_feat(TP, "slay the undead"))
+            if(foe->is_undead() && FEATS_D->usable_feat(TP, "smite the lifeless"))
                 tohitroll += 2;
         }
     }

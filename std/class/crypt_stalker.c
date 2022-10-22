@@ -33,7 +33,6 @@ string requirements() // string version, maybe we'll need this, maybe not, can r
     string str;
     str = "Prerequisites:\n"
         "    20 Ranger levels\n"
-        "    16 Wisdom Stat, before equipment modifiers\n";
         "    10 Ranks spent in Survival skill\n";
         "    Undead Favored Enemy\n";
 
@@ -61,9 +60,6 @@ int prerequisites(object player)
     }
 
     if ((player->query_class_level("ranger")) < 20) {
-        return 0;
-    }
-    if (player->query_base_stats("wisdom") < 16) {
         return 0;
     }
     
@@ -107,7 +103,7 @@ int caster_level_calcs(object player, string the_class)
 
 mapping class_featmap(string myspec)
 {
-    return ([ 1 : ({ "resist undead" }), 4 : ({ "slay the undead" }), 7 : ({ "smite the lifeless" }), ]);
+    return ([ 1 : ({ "gird the soul" }), 4 : ({ "scour the depths" }), 7 : ({ "smite the lifeless" }), ]);
 }
 
 string *class_skills()

@@ -1065,7 +1065,7 @@ int quit()
             continue;
         
         ob->unequip();
-        ob->strip_temp_values();
+        objectp(ob) && ob->strip_temp_values();
     }
     
     /*
@@ -5761,7 +5761,7 @@ int is_favored_terrain(object room)
         return 0;
     }
 
-    if (FEATS_D->usable_feat(TO, "resist undead") && USER_D->is_valid_terrain(type, "caves")) {
+    if (FEATS_D->usable_feat(TO, "scour the depths") && USER_D->is_valid_terrain(type, "caves")) {
         return 1;
     }
 

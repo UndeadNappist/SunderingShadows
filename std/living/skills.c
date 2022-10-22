@@ -391,7 +391,7 @@ int query_skill(string skill)
             x += 2;
             x += (FEATS_D->usable_feat(TO, "second favored terrain") * 2);
             x += (FEATS_D->usable_feat(TO, "third favored terrain") * 2);
-            x += (FEATS_D->usable_feat(TO, "resist undead") * 2);
+            x += (FEATS_D->usable_feat(TO, "scour the depths") * 2);
         }
     }
     
