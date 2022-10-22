@@ -331,7 +331,7 @@ int get_gmcp(string val)
     else
         return "off";
 }
-/*
+
 int set_minimap(string val)
 {
     string* valid_values = ({ "on", "off" });
@@ -355,7 +355,7 @@ int get_minimap(string val)
     else
         return "off";
 }
-*/
+
 
 int set_brief_combat(string val)
 {
@@ -575,7 +575,7 @@ You can manipulate numerous mud settings:
 %^CYAN%^gmcp %^GREEN%^on|off%^RESET%^\n This turns on or off additional GMCP support. Work in progress. %^ULINE%^Default value is off.%^RESET%^\n
 %^CYAN%^brief_combat %^GREEN%^on|off%^RESET%^\n  This will turn on or off display of verbose combat. %^ULINE%^Default value is on.%^RESET%^\n
 %^CYAN%^hints %^GREEN%^on|off%^RESET%^\n  This will turn on or off display of periodic hints. %^ULINE%^Default value is on.%^RESET%^\n
-%^CYAN%^minimap %^GREEN%^on|off%^RESET%^\n This turns on or off the minimap above the room description. %^ULINE%^Default value is off.%^RESET%^\n
+%^CYAN%^minimap %^GREEN%^on|off%^RESET%^\n This turns on or off the minimap above the room description. %^ULINE%^Default value is off. (not available)%^RESET%^\n
 %^CYAN%^logon_notify %^GREEN%^on|off%^RESET%^\n  This will turn on or off display of people joining the game. %^ULINE%^Default value is on.%^RESET%^\n
 %^CYAN%^persist %^GREEN%^on|off%^RESET%^\n  Turning persistent login will allow you not to idle out upon reaching a timeout. %^ULINE%^Default value is off.%^RESET%^\n
 %^CYAN%^simpleinv %^GREEN%^on|off%^RESET%^\n  This will turn on or off displaying equipped inventory items in %^ORANGE%^<inventory>%^RESET%^ command. When it is toggled off, you can see equipped inventory in %^ORANGE%^<eq>%^RESET%^. %^ULINE%^Default value is off.%^RESET%^\n
