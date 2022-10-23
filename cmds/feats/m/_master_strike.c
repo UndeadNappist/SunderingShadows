@@ -27,7 +27,7 @@ void create()
     feat_name("master strike");
     feat_prereq("Thief L31");
     feat_syntax("master_strike [TARGET]");
-    feat_desc("With this feat, the thief is able to perform a devastating strike on a vulnerable enemy, fully exploiting that vulnerability. If Master Strike is  used against targets who are vulnerable to sneak attacks (paralyzed, tripped, blind, or attacking someone else), your sneak attack dice are added to the damage. Master strike bypasses physical defenses, like armor class and damage resistance. If the target does not make a fortitude save, they suffer internal bleeding. This feat has a cooldown.");
+    feat_desc("With this feat, the thief is able to perform a devastating strike on a vulnerable enemy, fully exploiting that vulnerability. If Master Strike is  used against targets who are vulnerable to sneak attacks (paralyzed, tripped, blind, or attacking someone else), your sneak attack dice are added to the damage and they become paralyzed. Master strike bypasses physical defenses, like armor class and damage resistance. If the target does not make a fortitude save, they suffer internal bleeding. This feat has a cooldown.");
     set_save("fort");
 }
 
