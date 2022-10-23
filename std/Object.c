@@ -800,6 +800,8 @@ mixed query_property(string prop)
         if (FEATS_D->usable_feat(TO, "earthen blood")) {
             return 1;
         }
+        if(member_array("repose", this_object()->query_divine_domain()) >= 0)
+            return 1;
     }
 
     if (prop == "no disarm") {

@@ -1321,25 +1321,29 @@ int crit_damage(object attacker, object targ, object weapon, int size, int damag
         }
     }else {
         // currently all unarmed attacks have x2 multiplier
-        if (attacker->is_class("monk")) {
+        if (attacker->is_class("monk"))
+        {
             mult += (int)"/std/class/monk.c"->critical_multiplier(attacker);
-
-            if (objectp(targ) &&
-                FEATS_D->usable_feat(attacker, "way of the merciful soul") &&
-                targ->query_hp_percent() < roll_dice(6, 6) &&
-                targ->query_hp_percent() > 0 &&
-                !targ->query_property("no death") &&
-                member_array("repose", targ->query_divine_domain()) < 0 &&
-                !targ->fort_save(attacker->query_guild_level("monk"))
-                ) {
-                tell_object(targ, "%^BOLD%^%^BLUE%^" + a_name + " strikes you swiftly on the forehead and everthing goes black!%^RESET%^");
-                tell_object(attacker, "%^BOLD%^%^BLUE%^You strike " + t_name + " precisely on the forehead and release pure ki into " + t_poss + " mind, granting " + targ->query_objective() + " the mercy of a painless death.");
-                tell_room(environment(targ), "" + a_name + " strikes " + t_name + " swiftly on the head and " + targ->query_subjective() + " drops instantly to the ground!", ({ attacker, targ }));
-                USER_D->spend_ki(attacker, 3);
-                targ->set_hp(-100);
+            
+            if(objectp(targ) && FEATS_D->usable_feat(attacker, "way of the merciful soul") && USER_D->spend_ki(attacker, 3))
+            {
+                if(targ->query_hp_percent() < 25 && !targ->query_property("no death") && !targ->fort_save(attacker->query_guild_level("monk")))
+                {
+                    tell_object(targ, "%^BOLD%^%^BLUE%^" + a_name + " strikes you swiftly on the forehead and everthing goes black!%^RESET%^");
+                    tell_object(attacker, "%^BOLD%^%^BLUE%^You strike " + t_name + " precisely on the forehead and release pure ki into " + t_poss + " mind, granting " + targ->query_objective() + " the mercy of a painless death.");
+                    tell_room(environment(targ), "" + a_name + " strikes " + t_name + " swiftly on the head and " + targ->query_subjective() + " drops instantly to the ground!", ({ attacker, targ }));
+                    targ->set_hp(-100);
+                }
+                else
+                {
+                    tell_object(targ, "%^BOLD%^%^BLUE%^" + a_name + " strikes you swiftly on the forehead!%^RESET%^");
+                    tell_object(attacker, "%^BOLD%^%^BLUE%^You strike " + t_name + " precisely on the forehead and release pure ki into " + t_poss + " mind!");
+                    tell_room(environment(targ), "" + a_name + " strikes " + t_name + " swiftly on the head!", ({ attacker, targ }));
+                    targ->cause_typed_damage(targ, targ->return_target_limb(), 10 + roll_dice(1 + attacker->query_character_level() / 15, 8), "divine");
+                }
             }
         }
-    }
+    }   
 
     mult -= 1;
     //Odin's note that we already dealt normal damage and need to reduce multiplier by one
