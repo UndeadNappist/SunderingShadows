@@ -74,7 +74,7 @@ int pick_fruit(string str)
         return 1;
     }else {
         tell_object(TP,"%^RESET%^%^C240%^A nearby garden keeper waves you away muttering about that being enough for today%^RESET%^.");
-           tell_room(TO,"%^RESET%^%^C240%^As "+TPQCN+" %^RESET%^^%^C240%^tries to pick a fruit from the tree, a nearby gardener waves "+TP->QO+" away, muttering about that being enough for today.",TP);
+           tell_room(TO,"%^RESET%^%^C240%^As "+TPQCN+" %^RESET%^%^C240%^tries to pick a fruit from the tree, a nearby gardener waves "+TP->QO+" away, muttering about that being enough for today.",TP);
         return 1;
     }
 }
