@@ -1,5 +1,6 @@
 #include <std.h>
 #include "../tharis.h"
+
 inherit CVAULT;
 
 void create(){
