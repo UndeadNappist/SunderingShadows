@@ -10,7 +10,7 @@ void create()
     feat_category("GrandmasterOfTheWay");
     feat_name("way of the merciful soul");
     feat_prereq("Grandmaster of The Way L4");
-    feat_desc("With this feat, a grandmaster of the way is able to mercifully end the suffering of enemies below 25% health on a successful critical strike. If the enemy passes a saving throw or if they are immune to death effects, they will instead receive an amount of damage based on monk levels.");
+    feat_desc("With this feat, a grandmaster of the way is able to mercifully end the suffering of enemies below 25% health on a successful critical strike. If the enemy passes a saving throw or if they are immune to death effects, they will instead receive an amount of divine damage based on monk levels.");
     permanent(1);
     set_required_for(({"grandmaster of the way"}));
 }
