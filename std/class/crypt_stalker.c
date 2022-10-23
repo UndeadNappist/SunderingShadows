@@ -10,7 +10,7 @@ void create()
     ::create();
 }
 
-int is_locked_class() { return 1; }
+int is_locked_class() { return 0; }
 
 string *query_base_classes() { return ({ "ranger" }); }
 
