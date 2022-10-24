@@ -803,6 +803,16 @@ mixed query_property(string prop)
         if(member_array("repose", this_object()->query_divine_domain()) >= 0)
             return 1;
     }
+    
+    if (prop == "water breather")
+    {
+        if(this_object()->is_undead())
+            return 1;
+        
+        num += props[prop];
+        
+        return num;
+    }
 
     if (prop == "no disarm") {
         if (FEATS_D->usable_feat(TO, "weapon mastery")) {

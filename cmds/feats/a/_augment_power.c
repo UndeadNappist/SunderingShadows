@@ -14,6 +14,7 @@ void create()
     feat_syntax("augment_power");
     feat_desc("This Psionic feat will cause your next manifested power to be cast at a +4 caster level. Using this feat requires you to be focused and will expend your psionic focus.");
     set_required_for(({ }));
+    allow_blind(1);
     psionic(1);
 }
 

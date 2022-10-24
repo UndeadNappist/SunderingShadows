@@ -973,9 +973,9 @@ int calculate_healing()
             else if (!random(4))
             {
                 write("You feel a wave of nausea that suddenly brings a blanket of darkness.");
-                say(query_cap_name() + " suddenly gets a blank look on " + query_possessive() + " face.");
+                tell_room(environment(me), me->query_cap_name() + " suddenly gets a blank look on " + query_possessive() + " face.", me);
                 write("You pass out cold into your drink.");
-                say(query_cap_name() + " passes out cold, face first into " + query_possessive() + " drink.");
+                tell_room(environment(me), me->query_cap_name() + " passes out cold, face first into " + query_possessive() + " drink.", me);
                 set_unconscious((healing["intox"] - HEALING_FORMULA) / 70 + 1, "You have passed out cold, you're sleeping off part of your drinking binge.");
                 if (query_unconscious() > 8)
                 {
