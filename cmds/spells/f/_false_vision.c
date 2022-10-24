@@ -94,7 +94,8 @@ target->QCN+" as though it were the solid strings of a lute, leaving heavy silen
     blocker->set_block_power(power);
     blocker->set_bard_damager(CLEVEL);
     */
-    duration = 2 * (int)CLEVEL * ROUND_LENGTH;
+    //duration = 2 * (int)CLEVEL * ROUND_LENGTH;
+    duration = 6 * (int)CLEVEL * ROUND_LENGTH;
     spell_duration = duration;
     set_end_time();
     call_out("dest_effect",spell_duration);

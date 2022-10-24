@@ -109,6 +109,13 @@ int check(mixed *args) {
         dest_effect();
         return 1;
     }
+    /*
+    if(!sizeof(mons))
+    {
+        dest_effect();
+        return 1;
+    }
+    */
     j = sizeof(newfoes=caster->query_attackers());
     for (num2=0;num2<j;num2++) {
         wherefound = member_array(newfoes[num2], foes, 0);

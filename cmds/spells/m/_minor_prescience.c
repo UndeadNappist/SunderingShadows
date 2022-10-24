@@ -46,7 +46,7 @@ void spell_effect(int prof){
     bonus = bonus>4?4:bonus;
     target->add_attack_bonus(bonus);
     target->add_damage_bonus(bonus);
-    spell_duration = (clevel / 2 + roll_dice(1, 20)) * ROUND_LENGTH;
+    spell_duration = (10 + (clevel / 2 + roll_dice(1, 20))) * ROUND_LENGTH;
     set_end_time();
     call_out("dest_effect",spell_duration);
     target->set_property("prescienced",1);

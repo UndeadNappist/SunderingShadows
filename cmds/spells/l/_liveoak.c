@@ -118,6 +118,7 @@ void step3() {
     device->set_caster(caster);
     caster->add_follower(ob);
     device->move(caster);
+    device->set_spell(this_object());
     device->set_property("spell",TO);
     device->set_property("spelled", ({TO}) );
     ob->move(place);

@@ -118,6 +118,13 @@ int check(mixed* args)
         dest_effect();
         return 1;
     }
+    
+    if(!objectp(mon))
+    {
+        dest_effect();
+        return 1;
+    }
+    
     j = sizeof(newfoes = caster->query_attackers());
     tracker = 0;
     for (i = 0; i < j; i++) {

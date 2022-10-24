@@ -82,13 +82,14 @@ void heal_pulse()
         return;
     }
     
-    if(caster->query_hp() > caster->query_max_hp() / 2 && target->query_hp() < target->query_max_hp())
+    if(caster->query_hp() > caster->query_max_hp() / 2 && target->query_hp() < target->query_max_hp() && !target->query_property("negative energy affinity"))
     {
         amount = caster->query_max_hp() / 20;
         tell_object(caster, "%^GREEN%^You feel some of your health transfer to " + target->query_cap_name() + ".");
         tell_object(target, "%^GREEN%^You feel yourself healed by the life link.");
         caster->add_hp(-amount);
-        target->cause_typed_damage(target, "torso", amount, "positive energy");
+        //target->cause_typed_damage(target, "torso", amount, "positive energy");
+        target->add_hp(amount);
     }
     call_out("heal_pulse", ROUND_LENGTH);
 }

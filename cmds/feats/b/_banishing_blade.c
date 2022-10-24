@@ -15,7 +15,7 @@ void create()
     feat_name("banishing blade");
     feat_prereq("Crimson Templar L7");
     feat_syntax("banishing_blade");
-    feat_desc("With this feat, the Crimson Templar instills their weapon with holy power, granting it the ability to banish unworthy souls with a mere touch. When using this active feat, your normal weapon strikes will automatically destroy any minion beloning to an evil or chaotic caster/summoner. This feat has a cooldown and limited duration.");
+    feat_desc("With this feat, the Crimson Templar instills their weapon with holy power, granting it the ability to banish unworthy souls with a mere touch. When using this active feat, your normal weapon strikes will automatically destroy any minion beloning to an evil or chaotic caster/summoner. This feat has a cooldown and limited duration. This feat requires a weapon to use.");
     set_target_required(0);
     allow_blind(1);
     set_required_for(({}));
