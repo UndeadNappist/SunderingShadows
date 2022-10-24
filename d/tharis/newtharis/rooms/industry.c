@@ -36,7 +36,7 @@ void init(){
 int read_em(string str){
     if(!str) return 0;
     if(str == "north plaque" || str == "north sign") {
-        tell_object(TP, "%^RESET%^%^CRST%^%^C250%^The p%^RESET%^%^C249%^l%^C248%^a%^C247%^q%^C249%^u%^C250%^e reads:%^CRST%^\n\n%^RESET%^%^C093%^A%^C099%^r%^C105%^m%^C111%^o%^C153%^r %^RESET%^%^C147%^s%^C141%^m%^C135%^i%^C129%^t%^C128%^h%^CRST%^\n%^RESET%^%^C129%^W%^C135%^e%^C141%^a%^C147%^p%^C111%^o%^C105%^n %^RESET%^%^C099%^s%^C093%^m%^C092%^i%^C091%^t%^C090%^h%^CRST%^\n   %^RESET%^%^C088%^F%^C124%^o%^C125%^r%^C126%^g%^C127%^e%^CRST%^");
+        tell_object(TP, "%^RESET%^%^CRST%^%^C250%^The p%^RESET%^%^C249%^l%^C248%^a%^C247%^q%^C248%^u%^C250%^e read:%^CRST%^\n\n%^RESET%^%^C093%^A%^C099%^r%^C105%^m%^C111%^o%^C153%^r%^RESET%^%^C147%^s%^C141%^m%^C135%^i%^C129%^t%^C128%^h%^RESET%^%^C127%^y%^CRST%^\n%^RESET%^%^C129%^W%^C135%^e%^C141%^a%^C147%^p%^C111%^o%^C105%^n%^RESET%^%^C099%^s%^C093%^m%^C099%^i%^C105%^t%^C111%^h%^RESET%^%^C147%^y%^CRST%^\n   %^RESET%^%^C088%^F%^C124%^o%^C125%^r%^C126%^g%^C127%^e%^CRST%^");
         if(!TP->query_invis() && !TP->query_hidden()) tell_room(TO, "" + TPQCN + " seems to be studying the street signs.");
         return 1;
         return 0;
