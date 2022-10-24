@@ -23,7 +23,9 @@ void create()
 
 int preSpell()
 {
-    if (caster->query_property("demand_attempt") + DELAY > time()) {
+    //if (caster->query_property("demand_attempt") + DELAY > time()) {
+    if(caster->cooldown("demand"))
+    {
         tell_object(caster,"%^BOLD%^You recently tried to demand!");
         return 0;
     }
@@ -60,8 +62,9 @@ void spell_effect()
     tell_object(caster,"%^BOLD%^%^WHITE%^You enspell your thoughts and demand "+target->QCN+":%^BOLD%^%^RED%^ "+command+"%^WHITE%^!");
     tell_room(place,"%^BOLD%^%^MAGENTA%^"+caster->QCN+" momentarely closes eyes, concentrating!",caster);
 
-    caster->remove_property("demand_attempt");
-    caster->set_property("demand_attempt", time());
+    //caster->remove_property("demand_attempt");
+    //caster->set_property("demand_attempt", time());
+    caster->add_cooldown("demand", DELAY);
 
     tell_object(target,"%^BOLD%^%^BLUE%^You sense that "+caster->QCN+" tried to telepathically command you from " +ENV(caster)->query_short()+ " to " +command+"%^RESET%^%^BOLD%^%^BLUE%^!");
 

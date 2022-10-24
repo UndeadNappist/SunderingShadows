@@ -23,6 +23,7 @@ int cmd_kill(string str)
 
     if (!str) {
         victim = TP->query_property("last_attacker");
+        /*
         if (!(objectp(victim) && objectp(present(victim, ETP)))) {
             object* livings;
 
@@ -44,6 +45,7 @@ int cmd_kill(string str)
                 victim = livings[random(sizeof(livings))];
             }
         }
+        */
     } else {
         str = lower_case(str);
         victim = present(str, environment(this_player()));
