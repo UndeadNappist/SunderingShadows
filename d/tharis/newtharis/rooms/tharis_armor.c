@@ -24,17 +24,9 @@ void create(){
     set_smell("default","%^RESET%^%^C101%^The scent of various %^RESET%^%^C178%^m%^C184%^e%^C255%^t%^C249%^a%^C245%^l%^RESET%^%^C241%^s%^RESET%^%^C101%^, %^RESET%^%^C242%^leather%^RESET%^%^C101%^, and %^RESET%^%^C184%^oils %^RESET%^%^C101%^fills the room.%^CRST%^");
     set_listen("default","%^RESET%^%^C144%^You hear the crackle of %^RESET%^%^C088%^f%^C124%^i%^C160%^r%^C088%^e %^RESET%^%^C144%^and a %^RESET%^%^C249%^m%^C250%^u%^C251%^t%^C250%^e%^RESET%^%^C249%^d clanging %^RESET%^%^C144%^coming from the forge.%^CRST%^");
     
-    //if(!present("gulthrun"))
-   //{
-    // new(MOBS"gulthrun_armor.c")->move(TO);
-   //}
 }
 
-//void reset()
-//{
-  //::reset();
- // if(!present("gulthrun"))
-  //{
-   // new(MOBS"gulthrun_armor")->move(TO);
-   //}
-//}
+void reset(){
+  ::reset();
+  if(!present("gulthrun")) new(MOBS"gulthrun_armor.c")->move(TO);
+}

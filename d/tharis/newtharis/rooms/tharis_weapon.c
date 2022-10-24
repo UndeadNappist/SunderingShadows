@@ -23,17 +23,10 @@ void create(){
     set_smell("default","%^RESET%^%^C094%^The scent of various %^RESET%^%^C178%^m%^C184%^e%^C255%^t%^C249%^a%^C245%^l%^RESET%^%^C241%^s%^RESET%^%^C094%^, %^RESET%^%^C242%^leather%^RESET%^%^C094%^, and %^RESET%^%^C184%^oils %^RESET%^%^C094%^fills the room.%^CRST%^");
     set_listen("default","%^RESET%^%^C136%^You hear the crackle of %^RESET%^%^C088%^f%^C124%^i%^C160%^r%^C088%^e %^RESET%^%^C136%^and a %^RESET%^%^C249%^m%^C250%^u%^C251%^t%^C250%^e%^RESET%^%^C249%^d clanging %^RESET%^%^C136%^coming from the forge.%^CRST%^");
     
-   //if(!present("bergrom"))
-   //{
-     // new(MOBS"bergrom.c")->move(TO);
-  // }
+
 }
 
-//void reset()
-//{
-  // ::reset();
-  // if(!present("bergrom"))
-  // {
-    //  new(MOBS"bergrom")->move(TO);
-  // }
-//}
+void reset(){
+  ::reset();
+  if(!present("bergrom")) new(MOBS"bergrom_weapon.c")->move(TO);
+}
