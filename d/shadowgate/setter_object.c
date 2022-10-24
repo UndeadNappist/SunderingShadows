@@ -1068,6 +1068,8 @@ select_language(string str)
 
     //prospective = (("/std/races/" + char_sheet["race"])->query_languages(char_sheet["subrace"]))["optional"];
     prospective = generate_language();
+    
+    str = lower_case(str);
 
     if (str == "random") {
         i = maxbonus;
