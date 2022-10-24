@@ -17,7 +17,7 @@ void create(){
     "poster" : "%^RESET%^%^C230%^This %^RESET%^%^C144%^weathered poster %^RESET%^%^C230%^features a very detailed depiction of a %^RESET%^%^C102%^d%^RESET%^%^C103%^u%^C104%^s%^C103%^k%^RESET%^%^C102%^y-skinned Duergar %^RESET%^%^C230%^woman, her %^RESET%^%^C015%^platinum hair %^RESET%^%^C230%^and %^RESET%^%^C015%^beard %^RESET%^%^C230%^meticulously curled. Her plump form is clad only in a %^RESET%^%^C094%^leather apron%^RESET%^%^C230%^, her %^RESET%^%^C103%^voluptuous breasts %^RESET%^%^C230%^barely contained as she hefts a %^RESET%^%^C248%^h%^C249%^a%^C250%^m%^C251%^m%^C250%^e%^C249%^r %^RESET%^%^C230%^in one hand, readying to pound away at a %^RESET%^%^C124%^h%^C160%^o%^C196%^t %^RESET%^%^C202%^i%^C226%^r%^C202%^o%^C196%^n %^RESET%^%^C196%^r%^C160%^o%^C124%^d %^RESET%^%^C230%^she holds against an %^RESET%^%^C247%^anvil%^RESET%^%^C230%^ with a pair of %^RESET%^%^C241%^tongs%^RESET%^%^C230%^. Her %^RESET%^%^C182%^tongue %^RESET%^%^C230%^plays across her %^RESET%^%^C105%^pillow-soft lips %^RESET%^%^C230%^and she winks one heavy-lidded, %^RESET%^%^C231%^milky white eye%^RESET%^%^C230%^.%^CRST%^\n\n                           %^RESET%^%^C160%^Smith's Illustrated%^CRST%^\n                             %^RESET%^%^C160%^A%^C166%^u%^C172%^t%^C178%^u%^C184%^m%^C190%^n%^C226%^s%^C220%^t%^C214%^i%^C208%^m%^C202%^e %^RESET%^%^C196%^7%^C160%^5%^C166%^7%^CRST%^",
      ]));
     set_exits(([
-     // "northeast" : ROOMS"forge",
+      "northeast" : ROOMS"forge",
       "west" : ROOMS"industry2"
    ]));
    

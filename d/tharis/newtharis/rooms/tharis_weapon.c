@@ -16,7 +16,7 @@ void create(){
     ({"cases","weapon racks", "racks"}) : "%^RESET%^%^C136%^Display cases made of %^RESET%^%^C087%^g%^C123%^l%^C159%^a%^C123%^s%^C087%^s %^RESET%^%^C136%^and %^RESET%^%^C248%^m%^C249%^e%^C250%^t%^C249%^a%^C248%^l %^RESET%^%^C136%^as well as %^RESET%^%^C094%^weapon racks %^RESET%^%^C136%^line the shop walls, exhibiting the various %^RESET%^%^C246%^w%^C247%^e%^C248%^a%^C249%^p%^C248%^o%^C247%^n%^C246%^s %^RESET%^%^C136%^for sale.%^CRST%^",
      ]));
     set_exits(([
-      //"southeast" : ROOMS "forge",
+      "southeast" : ROOMS "forge",
       "west" : ROOMS "industry4"
    ]));
    
