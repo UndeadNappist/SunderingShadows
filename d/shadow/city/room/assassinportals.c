@@ -22,7 +22,7 @@ void create()
                    "azha"   :"/d/tharis/road/wroad30",
                    "deku":"/d/deku/forest/dforest15-5",
                    "eldebaro":"/d/islands/common/eldebaro/newrooms/east_oasis15",
-                   "graez":"/d/undead/rooms/town/street12",
+                   "graez":"/d/islands/graez/rooms/city/11",
                    "juran":"/d/shadow/room/forest/owagon26",
                    "kinaro":"/d/dagger/kinaro/path3",
                    "muuldaan":"/d/shadow/room/muuldaan/rooms/path6",

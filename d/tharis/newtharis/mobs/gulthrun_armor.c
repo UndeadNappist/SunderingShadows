@@ -25,30 +25,3 @@ void create() {
    add_dbs(({"gulthrun"}));
    }
 
-__List(str){
-	if(!at_shop()) return 1;
-	return ::__List(str);	
-}
-__Buy(str){
-	if(!at_shop()) return 1;
-	return ::__Buy(str);	
-}
-__Sell(str){
-	if(!at_shop()) return 1;
-	return ::__Sell(str);	
-}
-__Show(str){
-	if(!at_shop()) return 1;
-	return ::__Show(str);	
-}
-__Value(str){
-	if(!at_shop()) return 1;
-	return ::__Value(str);	
-}
-//int at_shop(){
-	//if(file_name(environment(TO)) != ROOMDIR+"armor"){
-		//command("say Come see me in my shop!!\n");
-		//return 0;
-	//}
-	//return 1;
-//}

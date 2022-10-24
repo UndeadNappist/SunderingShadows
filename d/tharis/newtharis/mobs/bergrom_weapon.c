@@ -24,23 +24,3 @@ void create() {
    set_exp(20);
    }
 
-__List(str){
-	if(!at_shop()) return 1;
-	return ::__List(str);	
-}
-__Buy(str){
-	if(!at_shop()) return 1;
-	return ::__Buy(str);	
-}
-__Sell(str){
-	if(!at_shop()) return 1;
-	return ::__Sell(str);	
-}
-__Show(str){
-	if(!at_shop()) return 1;
-	return ::__Show(str);	
-}
-__Value(str){
-	if(!at_shop()) return 1;
-	return ::__Value(str);	
-}

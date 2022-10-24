@@ -8,7 +8,7 @@ void create()
    set_travel(PAVED_ROAD);
    set_terrain(CITY);
    set_travel(PAVED_ROAD);
-  set_short("Steet in northwest Torm");
+  set_short("Street in northwest Torm");
   set_long(
   "Street in northwest Torm.\n"
     "  A walled compound fills your view to the south here."
