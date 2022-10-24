@@ -44,7 +44,7 @@ int cmd_yell(string str) {
    for(i=0, tmp=sizeof(primary); i<tmp; i++) {
       if(!(env = find_object(primary[i]))) continue;
       if(env == ETP) continue;
-      do_yell(env, "You hear a "+TP->query_gender()+" "+TP->query_race()+" yell: ", str, lang);
+      do_yell(env, "You hear someone yell: ", str, lang);
       tmp_arr = (string *)env->query_destinations();
       for(j=0, tmp2 = sizeof(tmp_arr); j<tmp2; j++) {
          if(!(char_arr = (string)env->query_direction(tmp_arr[j])))
