@@ -20,7 +20,7 @@ void create()
 
 A druid with the 'mastery of fang and claw' feat may also use this feat while in wolf form, even if it has not been purchased directly.");
     set_target_required(1);
-    set_required_for(({"daze"}));
+    set_required_for(({}));
 }
 
 int allow_shifted() { return 1; }
