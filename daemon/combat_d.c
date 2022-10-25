@@ -1541,7 +1541,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
             }
         }
 
-        if(attacker->is_class("thief") || attacker->is_class("peerless_archer"))
+        if(attacker->is_class("thief") || attacker->is_class("peerless_archer") || attacker->is_class("crimson_templar"))
         {
             //Sneak attack dice section
             sneak = attacker->query_prestige_level("thief") / 2;
