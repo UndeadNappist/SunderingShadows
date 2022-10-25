@@ -238,7 +238,7 @@ void move_caster(object endplace, int prof){
         for(i=0;i<sizeof(presentparty);i++){ 
             TELEPORT->teleport_object(caster,presentparty[i],endplace,clevel);
         }
-        map_array(presentparty,(:caster->add_follower($1):));
+        if(sizeof(presentparty)) map_array(presentparty,(:caster->add_follower($1):));
     }
     
     if(caster->query_hp() < caster->query_max_hp()){ // the travel heals the caster if injured!
