@@ -28,7 +28,7 @@ void create()
     feat_prereq("Inquisitor L31");
     feat_syntax("chains_of_justice [TARGET]");
     set_save("will");
-    feat_desc("With this feat, the inquisitor enacts divine retribution upon one unlucky foe. The foes must make a will save or be wrapped in divine chains. 20% of all damage the inquisitor takes will instead be inflicted on the target, causing divine damage. The target of this feat must be an existing attacker. This feat has a cooldown.");
+    feat_desc("With this feat, the inquisitor enacts divine retribution upon one unlucky foe. The foes must make a will save or be wrapped in divine chains. 20% of all damage the inquisitor takes will instead be inflicted on the target, causing divine damage. The target of this feat must be an existing attacker. This feat has a cooldown. Inquisitors also gain access to the 'release the hounds' spell with this feat.");
     set_target_required(1);
 }
 
