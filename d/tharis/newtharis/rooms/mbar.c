@@ -9,7 +9,7 @@ void create(){
    set_property("no sticks", 1);
    set_property("light",2);
    set_property("indoors",1);
-   set_short("%^RESET%^%^C130%^The %^RESET%^%^C088%^T%^C124%^u%^C160%^r%^C196%^n%^C202%^i%^C124%^n%^RESET%^%^C088%^g S%^RESET%^%^C124%^p%^C160%^i%^RESET%^%^C088%^t%^CRST%^");
+   set_short("%^RESET%^%^C130%^The %^RESET%^%^C088%^T%^C124%^u%^C160%^r%^C196%^n%^C202%^i%^C124%^n%^RESET%^%^C088%^g S%^RESET%^%^C124%^p%^C160%^i%^RESET%^%^C088%^t %^RESET%^%^C130%^Tavern%^CRST%^");
    set_long("%^RESET%^%^ORANGE%^This tavern is odd for the fact that the room is almost a perfect circle. "
 "Tables are arranged on different tiers facing the center of the circle, where a giant series of "
 "%^BLACK%^%^BOLD%^spits%^RESET%^%^ORANGE%^ are located. Each spit is tended to by its own cook and each "
