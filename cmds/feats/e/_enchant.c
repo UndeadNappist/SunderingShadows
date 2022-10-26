@@ -205,7 +205,10 @@ void select_spell(string str, object ob)
  */
 int maximum_enchant_level()
 {
-    return flevel + caster->query_property("empowered");
+    if(strlen(castclass))
+        return caster->query_guild_level(castclass) + caster->query_property("empowered");
+    else 
+        return flevel + caster->query_property("empowered");
 }
 
 void spell_charges(string str, object ob, string spell, string file)
