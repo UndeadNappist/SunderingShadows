@@ -7,7 +7,7 @@
 
 inherit OBJECT;
 
-#define WOODS ({ "%^C144%^o%^C229%^a%^C144%^k", "%^C100%^pine", "%^C253%^b%^C249%^i%^C253%^rc%^C249%^h", "%^C144%^ash", "%^C130%^walnut", "%^C228%^cypress", "%^C136%^chestnut", "%^C124%^c%^C160%^her%^C124%^r%^C160%^y", "%^C144%^h%^C228%^i%^C144%^ck%^C228%^or%^C144%^y", "%^YELLOW%^maple", "%^RESET%^%^RED%^teak", "%^C101%^p%^C144%^o%^C101%^p%^C144%^la%^C101%^r", "%^C160%^r%^C124%^o%^C160%^s%^C124%^e%^C160%^w%^C124%^oo%^C160%^d", "%^C101%^e%^C144%^l%^C101%^m", "%^130%^cedar", "%^C160%^r%^C124%^e%^C160%^dw%^C124%^oo%^C160%^d" })
+#define WOODS ({ "%^C144%^o%^C229%^a%^C144%^k", "%^C100%^pine", "%^C253%^b%^C249%^i%^C253%^rc%^C249%^h", "%^C144%^ash", "%^C130%^walnut", "%^C228%^cypress", "%^C136%^chestnut", "%^C124%^c%^C160%^her%^C124%^r%^C160%^y", "%^C144%^h%^C228%^i%^C144%^ck%^C228%^or%^C144%^y", "%^YELLOW%^maple", "%^RESET%^%^RED%^teak", "%^C101%^p%^C144%^o%^C101%^p%^C144%^la%^C101%^r", "%^C160%^r%^C124%^o%^C160%^s%^C124%^e%^C160%^w%^C124%^oo%^C160%^d", "%^C101%^e%^C144%^l%^C101%^m", "%^C130%^cedar", "%^C160%^r%^C124%^e%^C160%^dw%^C124%^oo%^C160%^d" })
 
 string *mymsgs, *yourmsgs;
 int lit, packed, hasmsgs, intox, tracker;
