@@ -18,7 +18,9 @@ void create()
 
 You can not use spells that channel positive or negative energy with each cast, such as heal or harm, with this feat.
 
-Enchanting uses gems and gold as material components. Any gem would do, but it will be destroyed on use.");
+Enchanting uses gems and gold as material components. Any gem would do, but it will be destroyed on use.
+ 
+See Also: Magical Devices");
     feat_prereq("Mage, Sorcerer, Psion, Cleric, Druid, Oracle");
     set_target_required(0);
 }
