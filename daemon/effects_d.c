@@ -79,6 +79,7 @@ int can_use_check(object caster, string spell, int level)
     if(lowest_spell_level > this_player()->query_level() / 2)
         valid = 0;
     
+    //Other users have to pass a check to try to cast off-class. Kind of difficult, for a reason.
     if(!valid)
     {   
         //Thieves and bards can use a different roll based on thief level
@@ -107,8 +108,8 @@ int can_use_check(object caster, string spell, int level)
             if((roll1 < DC || roll1 == 1) && roll1 != 20)
                 return 0;
         }
-        //Other users have to pass a check to try to cast off-class. Kind of difficult, for a reason.
-        else if(highest_mental_stat < lowest_spell_level)
+        //else if(highest_mental_stat < lowest_spell_level) // this was part of the old system and was bypassing any rolling for high mental stat characters
+        else
         {
             if(caster->query_skill("spellcraft") < level)
                 return 0;
