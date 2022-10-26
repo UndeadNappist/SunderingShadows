@@ -64,4 +64,8 @@ void create() {
        "This is a small glass of imported wine from the legendary ciy of Cravnari, the sister city to Tharis to the south of the mountains.",
         })
     );
+    set_emotes(2,({
+    "%^RESET%^%^C143%^A %^RESET%^%^C241%^fly b%^RESET%^%^C242%^u%^C243%^z%^C244%^z%^C242%^e%^RESET%^%^C241%^s %^RESET%^%^C143%^near one of the %^RESET%^%^C094%^carcasses%^RESET%^%^C243%^. With a %^RESET%^%^C088%^v%^C124%^i%^C160%^c%^RESET%^%^C196%^i%^C160%^o%^C124%^u%^RESET%^%^C088%^s s%^RESET%^%^C124%^n%^RESET%^%^C160%^a%^C124%^r%^RESET%^%^C088%^l%^RESET%^%^C143%^, Grubb smacks it with the flat of one of his %^RESET%^%^C249%^cleavers%^RESET%^%^C143%^. He looks around slyly before %^RESET%^%^C174%^licking %^RESET%^%^C143%^the %^RESET%^%^C150%^g%^C149%^u%^RESET%^%^C148%^t%^RESET%^%^C150%^s %^RESET%^%^C143%^off the knife.%^CRST%^",
+    "%^RESET%^%^C167%^Grubb shaves a few pieces of %^RESET%^%^C130%^rothe haunch %^RESET%^%^C167%^onto a plate, tossing it unceremoniously onto the counter. A waitress collects the order and brings it to a table of %^RESET%^%^C178%^d%^C220%^r%^C226%^u%^C227%^n%^C226%^k%^RESET%^%^C220%^e%^C178%^n s%^RESET%^%^C220%^a%^C226%^i%^C227%^l%^C226%^o%^C220%^r%^RESET%^%^C178%^s%^RESET%^%^C167%^.%^CRST%^",}), 0);
 } 
+
