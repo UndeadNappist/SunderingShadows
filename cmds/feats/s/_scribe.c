@@ -25,7 +25,9 @@ NUM
 
 To scribe a scroll you must expend five gold coins per spell level and one parchment.
 
-%^BOLD%^N.B.%^RESET%^ Multiclassing characters will use currently %^ULINE%^posed%^RESET%^ class for this feat. Use <pose> to switch it. You can not use spells that channel positive or negative energy with each cast, such as heal or harm, with this feat.");
+%^BOLD%^N.B.%^RESET%^ Multiclassing characters will use currently %^ULINE%^posed%^RESET%^ class for this feat. Use <pose> to switch it. You can not use spells that channel positive or negative energy with each cast, such as heal or harm, with this feat.
+              
+See Also: Magical Devices");
     set_target_required(0);
 }
 
