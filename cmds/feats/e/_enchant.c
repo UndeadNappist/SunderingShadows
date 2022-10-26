@@ -14,7 +14,7 @@ void create()
     feat_name("enchant");
     feat_syntax("enchant ITEM");
     feat_classes(({"mage", "sorcerer", "oracle", "druid", "cleric", "psion"}));
-    feat_desc("This feat allows a caster to enchant weapons or rings with charges of spells they already know. The enchanted item can be used as easily by the caster themselves, as those without training. Creating such an item drains the essence of the mage, however, and should not be taken lightly.
+    feat_desc("This feat allows a caster to enchant weapons or jewelry with charges of spells they already know. The enchanted item can be attempted to be used by anyone, but is subject to use magical device checks if not a class spell of the user. Creating such an item drains the essence of the enchanter, however, and should not be taken lightly.
 
 You can not use spells that channel positive or negative energy with each cast, such as heal or harm, with this feat.
 
