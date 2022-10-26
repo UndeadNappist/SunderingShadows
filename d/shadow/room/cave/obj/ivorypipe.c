@@ -19,15 +19,5 @@ void create()
              );
     set_weight(0);
     set_value(0);
-    packed = 0;
-    tobacco = 0;
-    lit = 0;
-    con_req = 0;
-    sp_adjust = 0;
-    hasmsgs = 0;
-    tracker = 0;
-    mymsgs = ({});
-    yourmsgs = ({});
-    intox = 0;
-    mycharges = 0;
 }
+
