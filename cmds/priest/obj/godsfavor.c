@@ -671,6 +671,14 @@ int now(string str){
             tell_object(player,"%^RESET%^%^CRST%^%^C144%^As the %^C214%^l%^C220%^i%^C226%^g%^C220%^h%^C214%^t %^RESET%^%^C144%^fades, you find yourself in the temple of Edea.%^CRST%^");
             dest_effect();
             break;
+        case "seija":
+            tell_object(player, "%^RESET%^%^CRST%^%^C160%^Ten%^C166%^dri%^C178%^l%^C166%^s %^C178%^of %^C166%^f%^C178%^l%^C166%^a%^C160%^me%^RESET%^%^C100%^ rise, pulled upward by a %^C051%^v%^C255%^or%^C051%^t%^C255%^e%^C051%^x%^C100%^ of %^C252%^wi%^C255%^n%^C252%^d%^C100%^ and %^C130%^s%^C095%^a%^C130%^n%^C136%^d%^RESET%^%^C100%^ to engulf you, just before a %^C027%^la%^C033%^rg%^C039%^e w%^C045%^av%^C039%^e wa%^C033%^sh%^C027%^es%^C100%^ you away.%^CRST%^");
+            tell_room(room, "%^RESET%^%^CRST%^%^C160%^Ten%^C166%^dri%^C178%^l%^C166%^s %^C178%^of %^C166%^f%^C178%^l%^C166%^a%^C160%^me%^RESET%^%^C100%^ rise, pulled upward by a %^C051%^v%^C255%^or%^C051%^t%^C255%^e%^C051%^x%^C100%^ of %^C252%^wi%^C255%^n%^C252%^d%^C100%^ and %^C130%^s%^C095%^a%^C130%^n%^C136%^d%^RESET%^%^C100%^ to engulf "+playername+"%^RESET%^%^CRST%^%^C100%^, just before a %^C027%^la%^C033%^rg%^C039%^e w%^C045%^av%^C039%^e wa%^C033%^sh%^C027%^es%^C100%^ them away.%^CRST%^",player);
+            tell_room(find_object_or_load(where), "%^RESET%^%^CRST%^%^C100%^The %^C027%^la%^C033%^rg%^C039%^e w%^C033%^a%^C027%^ve%^RESET%^%^C100%^ deposits "+playername+" on the %^C095%^gr%^C101%^o%^C136%^u%^C101%^n%^C095%^d%^C100%^.  %^C166%^F%^C172%^l%^C184%^a%^C178%^m%^C172%^e%^C166%^s%^RESET%^%^C100%^ swirl about them, drying them and their things just before a %^C045%^t%^C251%^or%^C255%^r%^C252%^en%^C045%^t%^C051%^ %^C100%^of %^C254%^wi%^C252%^n%^C254%^d%^RESET%^%^C100%^ snuffs them out.%^CRST%^", player);
+            player->move_player(where);
+            tell_object(player, "%^RESET%^%^CRST%^%^C100%^The %^C027%^la%^C033%^rg%^C039%^e w%^C033%^a%^C027%^ve%^RESET%^%^C100%^ deposits you on the %^C095%^gr%^C101%^o%^C136%^u%^C101%^n%^C095%^d%^C100%^.  %^C166%^F%^C172%^l%^C184%^a%^C178%^m%^C172%^e%^C166%^s%^RESET%^%^C100%^ swirl about you, drying you and your things just before a %^C045%^t%^C251%^or%^C255%^r%^C252%^en%^C045%^t%^C051%^ %^C100%^of %^C254%^wi%^C252%^n%^C254%^d%^RESET%^%^C100%^ snuffs them out.%^CRST%^");
+            dest_effect();
+            break;
         default:
             tell_object(player,"You are suddenly whisked away to the "+where+" as you call to "+diety+".");
             tell_room(room,""+playername+" calls to "+diety+" and suddenly disappears!",player);
