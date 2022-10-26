@@ -140,6 +140,11 @@ string* query_subraces(object who)
     return ({  });
 }
 
+int is_pk_race()
+{
+    return 1;
+}
+
 string *query_eye_colors(string who) { return ({"blue", "brown", "gray"}); }
 
 string *query_languages(string subrace)
