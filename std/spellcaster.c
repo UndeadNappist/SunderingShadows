@@ -803,6 +803,12 @@ mapping query_mastered_bonus()
         }
     }
     
+    if(this_object()->is_class("inquisitor"))
+    {
+        if(FEATS_D->usable_feat(this_object(), "chains of justice"))
+            tmp["inquisitor"] += ({ "release the hounds" });
+    }
+    
     if (TO->is_class("warlock")) {
         string pact = this_object()->query("warlock heritage");
         tmp["warlock"] = MAGIC_SS_D->query_class_special_spells("warlock", "all");
