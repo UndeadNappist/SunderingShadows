@@ -104,6 +104,7 @@ int step_3(string str) {
 
 int step_4(string str) {
    if((int)TP->query("newbtutorial2") != 3) return 0;
+   stringp(str) && str = lower_case(str);
    if(!str || str != "crate") {
      tell_object(TP,"%^RESET%^%^MAGENTA%^Shaani shakes her head:%^RESET%^ No no, just type %^YELLOW%^<search "
 "crate>%^RESET%^ by itself.");
@@ -125,6 +126,7 @@ int step_4(string str) {
 
 int step_5(string str) {
    if((int)TP->query("newbtutorial2") != 4) return 0;
+   stringp(str) && str = lower_case(str);
    if(!str || (str != "south" && str != "s")) {
      tell_object(TP,"%^RESET%^%^MAGENTA%^Shaani shakes her head:%^RESET%^ No no, just type %^YELLOW%^<peer "
 "south>%^RESET%^, or %^YELLOW%^<peer s>%^RESET%^, to see where you're going.");
@@ -143,6 +145,7 @@ int step_5(string str) {
 
 int step_6(string str) {
    if((int)TP->query("newbtutorial2") != 5 && (int)TP->query("newbtutorial2") != 6) return 0;
+   stringp(str) && str = lower_case(str);
    if(!str || str != "shaani") {
      tell_object(TP,"%^RESET%^%^MAGENTA%^Shaani shakes her head:%^RESET%^ No no, just type %^YELLOW%^<follow "
 "shaani>%^RESET%^ so we can go to the next room!");
