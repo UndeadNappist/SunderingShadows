@@ -31,7 +31,7 @@ can also use these devices with greater success.
 
 %^MAGENTA%^The Stat Mod used is your highest among CHA, WIS, or INT
 
-%^CYAN%^On-class device user:
+%^CYAN%^On-class magical device user:
 %^YELLOW%^Caster Level = Device Clevel Capped by Spellcraft Skill + Stat Mod
 %^YELLOW%^No Success Check
 
@@ -43,6 +43,6 @@ can also use these devices with greater success.
 %^CYAN%^Thieves/Bards with UMD:%^RESET%^
 %^YELLOW%^Caster Level = Thief/Bard Level + Intelligence/Charisma Mod
 %^YELLOW%^Device DC    = Device Caster Level + Spell Level
-%^YELLOW%^Device Roll   = d20 + Thief/Bard Level + Intelligence/Charisma Mod
+%^YELLOW%^Device Roll  = d20 + Thief/Bard Level + Intelligence/Charisma Mod
 
 See Also: Spellcraft, Cast
