@@ -145,7 +145,8 @@ void special1(object targ)
         tell_room(ETO, "%^BOLD%^%^BLUE%^The Mage Lord Elseroad inflicts a great pain upon"
                   + targ->QCN + "!%^RESET%^", targ);
         dam = roll_dice(10, 10) + 30;
-        targ->do_damage("torso", dam);
+        //targ->do_damage("torso", dam);
+        targ->cause_typed_damage(targ, "torso", dam, "fire");
         targ->set_paralyzed(random(10) + 3, "%^RED%^You are stunned by the blow and" +
                             " are unable to move!%^RESET%^");
         TO->force_me("smirk " + targ->query_name());
@@ -161,11 +162,13 @@ void special1(object targ)
         tell_room(ETO,
                   "%^BOLD%^%^RED%^Lord Elseroad begins pounding "
                   + name + " with flame after flame!%^RESET%^", targ);
-        targ->do_damage("head", roll_dice(4, 5));
+        //targ->do_damage("head", roll_dice(4, 5));
+        targ->cause_typed_damage(targ, "head", roll_dice(4, 5), "fire");
         for (count = 0; count < rand; count++) {
             tell_object(targ, "%^RED%^Sizzle!");
             tell_room(ETO, "%^RED%^" + name + " gets burned!", targ);
-            targ->do_damage("head", roll_dice(1, 5));
+            //targ->do_damage("head", roll_dice(1, 5));
+            targ->cause_typed_damage(targ, "head", roll_dice(1, 5), "fire");
         }
     }else if (num == 3) {
         tell_room(ETO, "%^BOLD%^%^RED%^Lord Elseroad chants a spell, causing" +
