@@ -10,12 +10,7 @@ void create(){
    set_property("light",2);
    set_property("indoors",1);
    set_short("%^RESET%^%^C130%^The %^RESET%^%^C088%^T%^C124%^u%^C160%^r%^C196%^n%^C202%^i%^C124%^n%^RESET%^%^C088%^g S%^RESET%^%^C124%^p%^C160%^i%^RESET%^%^C088%^t %^RESET%^%^C130%^Tavern%^CRST%^");
-   set_long("%^RESET%^%^ORANGE%^This tavern is odd for the fact that the room is almost a perfect circle. "
-"Tables are arranged on different tiers facing the center of the circle, where a giant series of "
-"%^BLACK%^%^BOLD%^spits%^RESET%^%^ORANGE%^ are located. Each spit is tended to by its own cook and each "
-"cooks a different sized animal. Conversations are drowned out by the %^RED%^crackling%^ORANGE%^ of the "
-"many %^RED%^fires%^ORANGE%^ cooking the food, and laughter from tables of happily drinking citizens of "
-"Tharis. There is a counter around the outside of the circle, where waitresses mingle with the customers.");
+   set_long("%^RESET%^%^C130%^This tavern is unique for the fact that the room is unique in design, tables arranged facing the center of the room, where a series of %^RESET%^%^C247%^spits%^RESET%^%^C130%^ are located. The %^RESET%^%^C094%^carcasses %^RESET%^%^C130%^of various animals turn on each spit, their glazed skins %^RESET%^%^C136%^s%^C178%^i%^C220%^z%^C226%^z%^RESET%^%^C227%^l%^C220%^i%^C178%^n%^RESET%^%^C136%^g %^RESET%^%^C130%^as they slowly cook. The drone of conversation and boisterous laughter from patrons deep in their cups competes with the %^RESET%^%^C196%^c%^C202%^r%^C208%^a%^C214%^c%^RESET%^%^C220%^k%^C214%^l%^C208%^i%^RESET%^%^C202%^n%^RESET%^%^C196%^g%^RESET%^%^C130%^ of the many %^RESET%^%^C124%^f%^C160%^i%^C196%^r%^C160%^e%^RESET%^%^C124%^s%^RESET%^%^C130%^. There is a counter around the outside of the circle, where waitresses mingle with the customers.");
    set_smell("default","You smell the searing meat from the spit.");
    set_listen("default","You hear the yells of the crowd currently in here mixed with the popping of fats dropping into the fire.");
 
@@ -47,7 +42,7 @@ int read(string str){
     object ob;
     int i;
     if(str != "menu")  return 0;
-    ob = present("sacretel");
+    ob = present("grubb");
     if(!ob) {
       write("The barkeeper isn't here right now.");
       return 1;
