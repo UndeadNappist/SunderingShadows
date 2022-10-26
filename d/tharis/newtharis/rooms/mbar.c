@@ -33,6 +33,7 @@ void create(){
 
 void reset(){
    ::reset();
+   if(!present("grubb")) find_object_or_load(MOBS"grubb")->move(TO);
    //if(!present("sacretel")) find_object_or_load(MOBS"sacretel")->move(TO);
 }
 
