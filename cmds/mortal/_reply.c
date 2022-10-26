@@ -145,6 +145,9 @@ int cmd_reply(string str)
             
             if(obj->query("no pk"))
                 continue;
+            
+            if(avatarp(this_player()))
+                continue;
         
             if(this_player()->query_level() > obj->query_level() + 5)
                 continue;
