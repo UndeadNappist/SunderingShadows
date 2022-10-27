@@ -6,6 +6,8 @@ inherit WEREWOLF;
 
 void create()
 {
+    object ob;
+    
     ::create();
 
     set_name("Werewolf");

@@ -5,6 +5,8 @@ inherit WEAPONLESS;
 
 void create()
 {
+    object ob;
+    
     ::create();
     set_body_type("humanoid");
     set_gender("male");
