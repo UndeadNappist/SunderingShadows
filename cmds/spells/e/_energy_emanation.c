@@ -84,7 +84,7 @@ void spell_effect(int prof){
    addSpellToCaster();
    spell_successful();
    execute_attack();
-   //call_out("room_check",ROUND_LENGTH);
+   call_out("room_check",ROUND_LENGTH);
 }
 
 void room_check()

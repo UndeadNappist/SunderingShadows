@@ -22,7 +22,7 @@ arealist = ({
             ({"QUEST: Muileann's Restless Soul (Muileann)" ,10,12,}),
             ({"Cryptkeeper's Lair (Muileann)" ,10,12,}),
             ({"Gentleman's Tower (Muileann)" ,10,12,}),
-            ({"Gore's Hoarde" ,10,12,}),
+            ({"Gore's Horde" ,10,12,}),
             ({"Kildare Glen" ,10,12,}),
             ({"Muileann (Muileann)" ,10,12,}),
             ({"Piaf's Farm" ,10,12,}),

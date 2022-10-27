@@ -31,7 +31,7 @@ void create(){
    set_listen("default","It is quiet.");
    set_items(([
       ({"runes", "sigils", "rune", "sigil"}) : "%^BOLD%^%^BLACK%^The magical symbols seem to %^RESET%^%^RED%^twist%^BOLD%^%^BLACK%^ and %^RESET%^%^GREEN%^writhe%^BOLD%^%^BLACK%^ in tortured fashion under your gaze, making it hard to study them closely. They all look ugly and unpleasant, however.%^RESET%^",
-      "floor" : "%^BOLD%^%^BLACK%^The floor slopes up, away from the west wak.  It is made of black slate, and there are two strange looking %^RESET%^d%^BOLD%^%^WHITE%^i%^RESET%^agrams%^BOLD%^%^BLACK%^ engraved upon it and inlaid with %^BOLD%^%^WHITE%^silver%^BOLD%^%^BLACK%^.",
+      "floor" : "%^BOLD%^%^BLACK%^The floor slopes up, away from the west wall.  It is made of black slate, and there are two strange looking %^RESET%^d%^BOLD%^%^WHITE%^i%^RESET%^agrams%^BOLD%^%^BLACK%^ engraved upon it and inlaid with %^BOLD%^%^WHITE%^silver%^BOLD%^%^BLACK%^.",
       "diagram" : "The large one or the small one?",
       "carpet" : "The carpet is a %^GREEN%^rich deep green%^RESET%^ in color, and plush and comfortable to walk on. There is a noticeable absence of trodden-in mud and dirt, even round the doorway.",
       "small diagram" : "This is a %^BOLD%^%^WHITE%^simple circle%^RESET%^, ten feet in diameter, engraved into the floor and %^BOLD%^%^WHITE%^inlaid with silver%^RESET%^.  There is a %^BOLD%^%^BLACK%^brazier%^RESET%^ positioned within the circle, a good few inches away from the edge.",
