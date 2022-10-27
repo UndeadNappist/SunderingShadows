@@ -12,7 +12,7 @@ void create()
     set_spell_name("scintillating pattern");
     set_spell_level(([ "mage" : 8, "cleric" : 8 ]));
     set_spell_sphere("illusion");
-    set_domains("illusion");
+    set_domains(({ "hedonism", "illusion" }));
     set_save("will");
     set_syntax("cast CLASS scintillating pattern");
     set_damage_desc("mass confusion, or staggered on save");
