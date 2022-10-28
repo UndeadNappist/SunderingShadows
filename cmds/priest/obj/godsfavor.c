@@ -5,7 +5,7 @@
 
 inherit OBJECT;
 
-#define ACTIVETEMPLES ({ "jarmila", "kreysneothosies", "lord shadow", "nimnavanon", "lysara", "callamir", "nilith", "kismet", "the faceless one", "cevahir", "seija", "khyron", "ashra", "edea", "eucalia", "mephasm", "ebolek", "velik" })
+#define ACTIVETEMPLES ({ "jarmila", "kreysneothosies", "lord shadow", "nimnavanon", "lysara", "callamir", "nilith", "kismet", "the faceless one", "cevahir", "seija", "khyron", "ashra", "edea" })
 object ob;
 
 void create(){

@@ -14,7 +14,7 @@ void create(){
                 "southwest":ROOMS+"/necro35",
                 "south":ROOMS+"/necro34",
                 "southeast":ROOMS+"/necro33",
-                "east":ROOMS+"/necro26",
+                "east":ROOMS+"/village",
                 "northeast":ROOMS+"/necro32",
                 ]));
 }

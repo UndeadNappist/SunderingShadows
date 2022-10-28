@@ -8,10 +8,10 @@ void create(){
 %^BOLD%^%^BLUE%^To the north one of the tombs is open, faint light comes out of it.
 ");
         set_exits(([
-//                "north":ROOMS+"/library",
+                "north":ROOMS+"/necro15",
                 "northwest":ROOMS+"/necro7",
                 "west":ROOMS+"/necro6",
-//                "southwest":ROOMS+"/necro5",
+                "southwest":ROOMS+"/necro5",
                 "south":ROOMS+"/necro13",
                 "southeast":ROOMS+"/necro22",
                 "east":ROOMS+"/necro23",
