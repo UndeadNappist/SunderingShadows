@@ -2,7 +2,7 @@
 // Yniam Waystation - Hub
 
 #include <std.h>
-#include "../defs.h"
+#include "/d/dagger/yniam/defs.h"
 inherit VAULT;
 
 int bonfire;
@@ -23,6 +23,7 @@ void create(){
         "greenhouse" : "%^RESET%^%^CRST%^%^C250%^C%^C253%^l%^C255%^o%^C253%^u%^C250%^d%^C253%^e%^C250%^d %^C253%^g%^C255%^l%^C253%^a%^C250%^s%^C253%^s panes %^RESET%^%^C101%^make up the greenhouse, though it's possible to see the shadows of worktables covered with %^C064%^potted plants %^C101%^within.%^CRST%^",
         ({"fire pit", "pit"}) : (:this_object(), "firepit_fun":),
         ({"bonfire", "fire"}) : (:this_object(), "bonfire_fun":),
+        "skeletons" : "%^RESET%^%^CRST%^%^C144%^A group of four animated %^C255%^sk%^C250%^e%^C255%^let%^C250%^o%^C255%^n%^C250%^s %^RESET%^%^C144%^dance and play on the stage. %^C172%^I%^C178%^n%^C184%^s%^C172%^t%^C178%^r%^C184%^u%^C172%^m%^C178%^e%^C184%^n%^C172%^t%^C178%^s %^RESET%^%^C144%^are scattered nearby: %^C058%^violins, guitars, horns, and even one large standing bass. %^C144%^They seem to switch freely, indulging in a wide range of musical genres.%^CRST%^",
         ]));
     set_exits(([
         "southwest" : ROOMS"palisade1",
@@ -47,7 +48,9 @@ void init(){
 void reset(){
     ::reset();
     
-    if(!present("ambiance device")) new(OBJ"ambiance")->move(this_object());
+    if(!present("ambiance device")) new("/realms/chernobog/events/vikaelis/liars/mon/ambiance_band")->move(this_object());
+    if(!present("zombie waiter")) new("/realms/chernobog/events/vikaelis/liars/mon/zombie_waiter")->move(this_object());
+    if(!present("serving cart")) new("/realms/chernobog/events/vikaelis/liars/obj/serving_cart")->move(this_object());
 }
 
 int douse_fun(string str){
@@ -89,8 +92,8 @@ string long_fun(){
     object player;
     player = this_player();
     
-    if(!bonfire) longdesc = "%^RESET%^%^CRST%^%^C101%^The tall pointed walls of the %^C058%^palisade %^C101%^encircle this small outpost, offering some manner of protection. %^C059%^Smoke %^RESET%^%^C101%^and the sharp %^C255%^ri%^C252%^n%^C255%^gi%^C252%^n%^C255%^g %^C101%^of %^C243%^m%^C245%^e%^C247%^t%^C245%^a%^C243%^l %^RESET%^%^C101%^encroach from the north, next to a wooden building serving as a %^C136%^meeting hall%^C101%^. On the opposite end of the outpost there is another %^C130%^structure%^C101%^, though it appears to be windowless, and is flanked by a %^C195%^gl%^C231%^as%^C195%^s gre%^C231%^enh%^C195%^o%^C231%^u%^C195%^se %^RESET%^%^C101%^on the side.  A large %^C245%^r%^C248%^i%^C245%^n%^C248%^g %^C245%^of %^C248%^s%^C245%^t%^C248%^o%^C245%^n%^C248%^e%^C245%^s %^RESET%^%^C101%^rests in the middle of the clearing, a grand fire pit stocked and ready for a bonfire.%^CRST%^\n";
-    else longdesc = "%^RESET%^%^CRST%^%^C101%^The tall pointed walls of the %^C058%^palisade %^C101%^encircle this small outpost, offering some manner of protection. %^C059%^Smoke %^RESET%^%^C101%^and the sharp %^C255%^ri%^C252%^n%^C255%^gi%^C252%^n%^C255%^g %^C101%^of %^C243%^m%^C245%^e%^C247%^t%^C245%^a%^C243%^l %^RESET%^%^C101%^encroach from the north, next to a wooden building serving as a %^C136%^meeting hall%^C101%^. On the opposite end of the outpost there is another %^C130%^structure%^C101%^, though it appears to be windowless, and is flanked by a %^C195%^gl%^C231%^as%^C195%^s gre%^C231%^enh%^C195%^o%^C231%^u%^C195%^se %^RESET%^%^C101%^on the side.  A large %^C245%^r%^C248%^i%^C245%^n%^C248%^g %^C245%^of %^C248%^s%^C245%^t%^C248%^o%^C245%^n%^C248%^e%^C245%^s %^RESET%^%^C101%^rests in the middle of the clearing, home to a %^C202%^r%^C196%^o%^C202%^a%^C208%^r%^C202%^i%^C196%^n%^C202%^g %^C208%^b%^C202%^o%^C196%^n%^C202%^f%^C208%^i%^C202%^r%^C196%^e%^RESET%^%^C101%^ that floods the clearing with warmth and light.%^CRST%^\n";
+    if(!bonfire) longdesc = "%^RESET%^%^CRST%^%^C101%^The tall pointed walls of the %^C058%^palisade %^C101%^encircle this small outpost, offering some manner of protection. %^C059%^Smoke %^RESET%^%^C101%^and the sharp %^C255%^ri%^C252%^n%^C255%^gi%^C252%^n%^C255%^g %^C101%^of %^C243%^m%^C245%^e%^C247%^t%^C245%^a%^C243%^l %^RESET%^%^C101%^encroach from the north, next to a wooden building serving as a %^C136%^meeting hall%^C101%^. On the opposite end of the outpost there is another %^C130%^structure%^C101%^, though it appears to be windowless, and is flanked by a %^C195%^gl%^C231%^as%^C195%^s gre%^C231%^enh%^C195%^o%^C231%^u%^C195%^se %^RESET%^%^C101%^on the side.  A large %^C245%^r%^C248%^i%^C245%^n%^C248%^g %^C245%^of %^C248%^s%^C245%^t%^C248%^o%^C245%^n%^C248%^e%^C245%^s %^RESET%^%^C101%^rests in the middle of the clearing, a grand fire pit stocked and ready for a bonfire.%^CRST%^\n\n%^RESET%^%^CRST%^%^C100%^A small %^C144%^stage %^C100%^has been erected off to the side, featuring a quartet of %^C255%^sk%^C250%^e%^C255%^let%^C250%^o%^C255%^ns %^RESET%^%^C100%^playing a variety of %^C172%^i%^C178%^n%^C184%^s%^C172%^t%^C178%^r%^C184%^u%^C172%^m%^C178%^e%^C184%^n%^C172%^t%^C178%^s%^RESET%^%^C100%^.%^CRST%^\n";
+    else longdesc = "%^RESET%^%^CRST%^%^C101%^The tall pointed walls of the %^C058%^palisade %^C101%^encircle this small outpost, offering some manner of protection. %^C059%^Smoke %^RESET%^%^C101%^and the sharp %^C255%^ri%^C252%^n%^C255%^gi%^C252%^n%^C255%^g %^C101%^of %^C243%^m%^C245%^e%^C247%^t%^C245%^a%^C243%^l %^RESET%^%^C101%^encroach from the north, next to a wooden building serving as a %^C136%^meeting hall%^C101%^. On the opposite end of the outpost there is another %^C130%^structure%^C101%^, though it appears to be windowless, and is flanked by a %^C195%^gl%^C231%^as%^C195%^s gre%^C231%^enh%^C195%^o%^C231%^u%^C195%^se %^RESET%^%^C101%^on the side.  A large %^C245%^r%^C248%^i%^C245%^n%^C248%^g %^C245%^of %^C248%^s%^C245%^t%^C248%^o%^C245%^n%^C248%^e%^C245%^s %^RESET%^%^C101%^rests in the middle of the clearing, home to a %^C202%^r%^C196%^o%^C202%^a%^C208%^r%^C202%^i%^C196%^n%^C202%^g %^C208%^b%^C202%^o%^C196%^n%^C202%^f%^C208%^i%^C202%^r%^C196%^e%^RESET%^%^C101%^ that floods the clearing with warmth and light.%^CRST%^\n\n%^RESET%^%^CRST%^%^C100%^A small %^C144%^stage %^C100%^has been erected off to the side, featuring a quartet of %^C255%^sk%^C250%^e%^C255%^let%^C250%^o%^C255%^ns %^RESET%^%^C100%^playing a variety of %^C172%^i%^C178%^n%^C184%^s%^C172%^t%^C178%^r%^C184%^u%^C172%^m%^C178%^e%^C184%^n%^C172%^t%^C178%^s%^RESET%^%^C100%^.%^CRST%^\n";
     return longdesc;
 }
 

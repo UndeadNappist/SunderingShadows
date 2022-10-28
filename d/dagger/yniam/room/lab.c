@@ -2,7 +2,7 @@
 // Yniam Waystation - Lab
 
 #include <std.h>
-#include "../defs.h"
+#include "/d/dagger/yniam/defs.h"
 inherit VAULT;
 
 int occupied, temperment;
@@ -25,7 +25,7 @@ void create(){
         "stoves" : "%^RESET%^%^CRST%^%^C101%^The pair of stoves are huge %^C059%^ir%^C244%^o%^C059%^n %^C101%^beasts, each with a door that can be opened when feeding more fuel to their %^C202%^f%^C196%^i%^C202%^r%^C208%^e%^C202%^s%^C101%^.%^CRST%^",
         ({"cabinets", "shelves"}) : "%^RESET%^%^CRST%^%^C101%^The %^C136%^cabinets %^C101%^and %^C136%^shelves %^C101%^are tall and heavy, fashioned from oak with solid locks at the juncture of their doors. %^C231%^Gl%^C189%^as%^C231%^s pan%^C189%^el%^C231%^s %^RESET%^%^C101%^have been set in the doors to view the assortment of strange materials and chemicals stored within.%^CRST%^",
         ({"ingredients", "chemicals", "materials"}) : "%^RESET%^%^CRST%^%^C065%^Strange %^C064%^herbs %^C101%^and %^C211%^p%^C205%^o%^C199%^wde%^C205%^r%^C211%^s %^RESET%^%^C101%^fill various containers, some %^C244%^dusky %^C101%^or muted in color while others are a %^C033%^v%^C039%^i%^C045%^bra%^C039%^n%^C033%^t %^C111%^as%^C105%^so%^C099%^rt%^C105%^me%^C111%^nt %^C101%^of %^C214%^pi%^C220%^g%^C226%^me%^C220%^n%^C214%^ts%^RESET%^%^C101%^, each with exotic scents wafting about.%^CRST%^",
-        "cages" : (:this_object(), "look_cages":),
+        ({"cage", "cages"}) : (:this_object(), "look_cages":),
         "goblin" : (:this_object(), "look_goblin":),
         ]));
     set_exits(([
@@ -35,10 +35,6 @@ void create(){
 	set_door_description("wooden door","%^RESET%^%^CRST%^%^C058%^This is a simple wooden door with a %^C214%^b%^C220%^ras%^C214%^s d%^C220%^oo%^C214%^r h%^C220%^andl%^C214%^e%^RESET%^%^C058%^. Thick planks give it some heft, making it quite solid.%^CRST%^");
     occupied = random(3);
     temperment = random(3) + 1;
-}
-
-void reset(){
-    if(!present("ambiance device")) new(MON"ambiance")->move(this_object());
 }
 
 void look_cages(){
@@ -57,7 +53,7 @@ void look_goblin(){
     
     if(!occupied) tell_object(player, "%^RESET%^%^CRST%^You do not notice that here.%^CRST%^");
     else{ 
-        tell_object(player, "%^RESET%^%^CRST%^%^C108%^This nasty little %^C064%^goblin %^C108%^is trapped in one of the cages. It is typical of the breed: %^RESET%^%^CRST%^%^C065%^small, green, and foul. %^RESET%^%^C108%^It appears someone has made an attempt to clean this one by dousing it with water.%^CRST%^");
+        tell_object(player, "%^RESET%^%^CRST%^%^C108%^This nasty little %^C064%^goblin %^C108%^is trapped in one of the cages. It is typical of the breed: %^RESET%^%^CRST%^%^C065%^small, green, and foul. %^RESET%^%^C108%^It appears someone has made an attempt to clean this one by dousing it with water. A pair of %^C254%^white bunny ears %^C108%^seem to have been glued to its head, which it tugs and pulls at occasionally.%^CRST%^");
     }
     return;
 }
