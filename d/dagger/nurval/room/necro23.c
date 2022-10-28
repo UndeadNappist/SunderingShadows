@@ -6,7 +6,7 @@ void create(){
         ::create();
         set_exits(([
                 "north":ROOMS+"/necro24",
-//                "northwest":ROOMS+"/necro14",
+                "northwest":ROOMS+"/necro15",
                 "west":ROOMS+"/necro14",
                 "southwest":ROOMS+"/necro13",
                 "south":ROOMS+"/necro22",

@@ -10,7 +10,7 @@ void create(){
 
         set_exits(([
                 "north":ROOMS+"/necro14",
-                "northwest":ROOMS+"/necro6",
+                "northwest":ROOMS+"/necro7",
 //                "west":ROOMS+"/necro5",
                 "southwest":ROOMS+"/necro5",
                 "south":ROOMS+"/necro12",
