@@ -20,7 +20,7 @@
 #define VALID_ENEMY ([ \
                          "aberrations" : ({ "beholder", "illithid", "mind flayer", "aberration" }), \
                          "animals" : ({ "snake", "serpent", "warthog", "jaguar", "wolf", "rat", "tiger", "reptile", "dinosaur", "dino", "spider", "deer", "snake", "horse", "mare", "stallion", "animal" }), \
-                         "constructs" : ({ "construct", "golem", "sandman", "sandling" }), \
+                         "constructs" : ({ "construct", "golem", "sandman", "sandling", "soulforged" }), \
                          "dwarves"  : ({ "dwarf", "dwarves", "duergar", "construct" }), \
                          "dragonkin"  : ({ "dragonkin", "kobold", "draconian", "dragon", "elven-dragon", "dragonet", "pseudodragon", "drake", "wyvern" }), \
                          "elementals" : ({ "elemental", "genasi", "earth genasi", "air genasi", "water genasi", "fire genasi", "efreet", "djinn", "marid", "genie" }), \
@@ -37,5 +37,5 @@
                          "outsiders"  : ({ "deva", "solar", "aasimar", "angel", "demon", "devil", "imp", "tiefling", "githyanki", "githzerai", "outsider", "nightwing", "nightwalker", "shade" }), \
                          "plants" : ({ "plants", "shambler", "shambling mound", "tree", "vine", "plant"}), \
                          "smallfolk"  : ({ "gnome", "halfling", "kender", "derro", "pech", "smallfolk", }), \
-                         "undead"     : ({ "ghost", "skeleton", "lich", "zombie", "ghast", "entity", "spirit", "undead", "wraith", "wight", "nightwalker", "nightwing" }), \
+                         "undead"     : ({ "ghost", "skeleton", "lich", "zombie", "ghast", "entity", "spirit", "undead", "wraith", "wight", "nightwalker", "nightwing", "vampire" }), \
                      ])

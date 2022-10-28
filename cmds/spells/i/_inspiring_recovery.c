@@ -1,5 +1,6 @@
 #include <std.h>
 #include <spell.h>
+#include <daemons.h>
 
 inherit SPELL;
 
@@ -11,7 +12,7 @@ create() {
     set_discipline("egoist");
     set_syntax("cast CLASS inspiring recovery on TARGET");
     set_damage_desc("healing or revive recently deceased");
-    set_description("You channel psychic energy into the target, helping their body repair their wounds or resuscitate them if they're deceased.
+    set_description("You channel psychic energy into the target, helping their body repair their wounds or resuscitate them if they're deceased. Does not work on undead creatures or constructs.
 
 This spell accepts the recognized player's name or their corpse as the TARGET if they are deceased.
 ");
@@ -72,10 +73,10 @@ spell_effect(int prof) {
         }
         if (interactive(caster) ) {
             set_cast_string(caster->QCN+" calls upon the magic!\n");
-            tell_object(caster, "%^ORANGE%^You attempt to raise "+capitalize(arg)+" from the dead.");
-            tell_room(environment(CASTER), "%^ORANGE%^"+caster->QCN+" tries to bring the dead "+capitalize(arg)+" back among the living.", ({ caster, target}));
+            tell_object(caster, "%^ORANGE%^You attempt to resuscitate "+capitalize(arg)+".");
+            tell_room(environment(CASTER), "%^ORANGE%^"+caster->QCN+" tries to resuscitate "+capitalize(arg)+".", ({ caster, target}));
         } else {
-            set_cast_string(caster->QCN+" prays for the gods to raise "+capitalize(arg)+" from the dead!\n");
+            set_cast_string(caster->QCN+" channels psychic energy into "+capitalize(arg)+", attempting to resuscitate them!\n");
         }
         if (!target->query_ghost()) {
             tell_object(caster,capitalize(arg)+" does not need to be revived.");
@@ -88,33 +89,27 @@ spell_effect(int prof) {
             dest_effect();
             return;
         }
-        tell_object(caster,"%^ORANGE%^You can feel the power of magic flow out to "+target->QCN+"'s soul, and know that "+target->QP+" life is in "+target->QP+" own hands now.");
-        tell_room(environment(caster),"The power of "+caster->QCN+"'s spell flows through the area as "+caster->QS+" tries to bring "+target->QCN+" back to life!",caster);
+        tell_object(caster,"%^ORANGE%^You can feel psychic energy flow out to "+target->QCN+"'s body, and know that "+target->QP+" life is in "+target->QP+" own hands now.");
+        tell_room(environment(caster),"The power of "+caster->QCN+"'s psychic energy flows through the area as "+caster->QS+" tries to bring "+target->QCN+" back to life!",caster);
         target->set("RaisingPriestGod",caster->query_property("hidden deity")||caster->query_diety());
         target->set("RaisingPriestAlignment",caster->query_alignment());
         target->set("RaisingRoom",base_name(environment(caster)));
         target->set("RaisingExpLoss",(-10+(random(2)+random(3)+1)));
         target->set("RaisingType","raise dead");
-        tell_object(target,"%^RESET%^%^WHITE%^%^BOLD%^You can feel a pull on your soul. You sense that a faithful of "+capitalize((string)caster->query_diety())+" is trying to return you to life!\nType %^ORANGE%^<accept>%^WHITE%^ to return to life, or %^ORANGE%^<cancel>%^WHITE%^ to die.%^RESET%^");
+        tell_object(target,"%^RESET%^%^WHITE%^%^BOLD%^You can feel a pull on your soul. You sense that psychic energy is trying to return you to consciousness!\nType %^ORANGE%^<accept>%^WHITE%^ to return to life, or %^ORANGE%^<cancel>%^WHITE%^ to die.%^RESET%^");
         corpse->remove();
     }
     else
     {
-        if(caster->is_undead())
+        if(target->is_undead() || USER_D->is_valid_enemy(target->query_race(), "constructs"))
         {
-            tell_room(place,"%^BLUE%^"+caster->QCN+" points "+caster->QP+" hand at "+target->QCN+" and channels a beam of darkness energy into them!");
-            dam_type = "untyped";
-            if(!target->is_undead())
-                set_helpful_spell(0);
+            tell_room(place,"%^BLUE%^"+caster->QCN+" places "+caster->QP+" hand on "+target->QCN+" and channels psychic energy into them, but nothing happens!", caster);
         }
         else
         {
-            tell_room(place,"%^ORANGE%^"+caster->QCN+" points "+caster->QP+" hand at "+target->QCN+" and channels a beam of light into them!");
-            dam_type = "untyped";
-            if(target->is_undead())
-                set_helpful_spell(0);
+            tell_room(place,"%^ORANGE%^"+caster->QCN+" places "+caster->QP+" hand on "+target->QCN+" wills their body to heal!");
+            damage_targ(target, "torso", -sdamage, "untyped");
         }
-        damage_targ(target, "torso", -sdamage, dam_type);
     }
     dest_effect();
 }

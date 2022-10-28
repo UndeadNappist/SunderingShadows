@@ -8,7 +8,7 @@ void create(){
 %^BOLD%^%^BLUE%^A sign in the eastern wall says 'Trading Company'.
 ");
     set_exits(([
-                   "north":ROOMS+"/necro34",
+                   //"north":ROOMS+"/necro34",
                    "south":ROOMS+"/fountain",
                    "east":ROOMS+"/trader",
                    ]));
