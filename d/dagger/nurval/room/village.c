@@ -14,7 +14,7 @@ void create() {
     set_smell("default","Your nose catches smells of dozens of people.");
     set_listen("default","You hear humming noise of village's life.");
     set_exits(([
-       "west" : ROOMS+"/necro29",
+       "west" : ROOMS+"/necro32",
        "north" : ROOMS+"/inn",
        "south" : ROOMS+"/smithy",
        "east" : ROOMS+"/village2",

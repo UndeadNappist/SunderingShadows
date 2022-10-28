@@ -9,13 +9,13 @@ void create(){
 ");
         set_exits(([
                 "north":ROOMS+"/necro30",
-                "northwest":ROOMS+"/necro28",
-                "west":ROOMS+"/necro27",
-                "southwest":ROOMS+"/necro35",
-                "south":ROOMS+"/necro34",
-                "southeast":ROOMS+"/necro33",
+                "northwest":ROOMS+"/necro27",
+                "west":ROOMS+"/necro26",
+                //"southwest":ROOMS+"/necro35",
+                //"south":ROOMS+"/necro34",
+                //"southeast":ROOMS+"/necro33",
                 "east":ROOMS+"/village",
-                "northeast":ROOMS+"/necro32",
+                //"northeast":ROOMS+"/necro32",
                 ]));
 }
 
