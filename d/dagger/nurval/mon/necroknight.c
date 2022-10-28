@@ -27,7 +27,8 @@ void create()
     set_nogo(({"/d/dagger/road/p7",
                     "/d/dagger/road/tempusportal",
                     "/d/dagger/road/road35",
-                    "/d/dagger/road/road25"
+                    "/d/dagger/road/road25",
+                    "/d/islands/graez/rooms/swamp/17",
                     }));
 
     set_level(level);

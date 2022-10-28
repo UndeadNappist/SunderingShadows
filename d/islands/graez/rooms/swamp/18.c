@@ -12,10 +12,27 @@ void create(){
 set_exits(([
 
 "northwest" : SWAM"17",
-"east" : "/d/dagger/nurval/tomb1",
+"east" : "/d/dagger/nurval/room/tomb1",
 
 
 ]));
 
+}
+
+void reset()
+{
+    ::reset();
+    if (!present("guard"))
+        new("/d/dagger/nurval/mon/necroknight")->move(TO);
+    if (!present("guard 2"))
+        new("/d/dagger/nurval/mon/necroknight")->move(TO);
+    if (!present("guard 3"))
+        new("/d/dagger/nurval/mon/necroknight")->move(TO);
+    if (!present("guard 4"))
+        new("/d/dagger/nurval/mon/banshee")->move(TO);
+    if (!present("guard 5"))
+        new("/d/dagger/nurval/mon/banshee")->move(TO);
+    if (!present("guard 6"))
+        new("/d/dagger/nurval/mon/bonewyvern")->move(TO);
 }
 
