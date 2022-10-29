@@ -46,7 +46,7 @@ void create() {
     );
     set_menu_short(
         ({
-	      "Tharisian dark lager",
+	      "Tharisian Dark Lager",
 	      "Fire Roasted Nuts",
 	      "Verbonese Ale",
 	      "Traveler's Meal",
