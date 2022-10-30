@@ -337,6 +337,7 @@ void talk_func(string str, object ob)
     if(!objectp(ob)) { return; }
     if(!stringp(str) || str == "" || str == " ") { return; }
     str = remove_punctuation(str);
+    str = strip_colors(str);
     words = explode(str," ");
     if(!sizeof(words)) { return; }
     for(i=0;i<sizeof(words);i++)
