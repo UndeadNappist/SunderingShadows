@@ -32,7 +32,7 @@ void create(){
         "northwest" : ROOMS"meetinghall",
         "north" : ROOMS"forge",
         "east" : ROOMS"lab",
-        "south" : ROOMS"cacia_shrine",
+        "south" : "/d/magic/temples/cacia/cacia",
         ]));
     set_door("wooden door", ROOMS"lab", "east", 0);
 	set_door_description("wooden door","%^RESET%^%^CRST%^%^C058%^This is a simple wooden door with a %^C214%^b%^C220%^ras%^C214%^s d%^C220%^oo%^C214%^r h%^C220%^andl%^C214%^e%^RESET%^%^C058%^. Thick planks give it some heft, making it quite solid.%^CRST%^");
