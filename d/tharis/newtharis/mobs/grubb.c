@@ -19,15 +19,15 @@ void create() {
     set_currency("silver");
     set_menu(
         ({
-	     "tharisian dark lager","fire roasted nuts","verbonese ale","traveler's meal","spit turned meat","cravnarian wine",
+	     "fire roasted nuts","tharisian dark lager","verbonese ale","traveler's meal","spit turned meat","cravnarian wine",
         }),
-        ({ "alcoholic", "food", "alcoholic","food","food","alcoholic",}),
+        ({ "food", "alcoholic", "alcoholic","food","food","alcoholic",}),
         ({ 30, 30, 15, 15, 20, 25, 65})
     );
     set_my_mess(
         ({
-       "You drink the extremely dark, thick lager and feel it as it rolls down your throat.",
        "You crunch the roasted nuts as your chew.",
+       "You drink the extremely dark, thick lager and feel it as it rolls down your throat.",
        "You drink the golden ale and wince at the slight bite it offers back.",
        "You eat the sparse but painfully healthy meal.",
        "You eat the tender well cooks piece of spicey meat with lust and vigor.",
@@ -36,18 +36,18 @@ void create() {
     );
     set_your_mess(
         ({
+          "crunches on some nuts.",
 	      "pours the thick dark brew down "+TP->query_possessive()+" gullet.",
-   	   "crunches on some nuts.",
 	      "drinks the golden ale slowly.",
 	      "eats the sparse yet healthy looking meal.",
-   	   "tears into the fragrant meat fresh from the spit.",
+          "tears into the fragrant meat fresh from the spit.",
 	      "gulps down the red tinted wine.",
         })
     );
     set_menu_short(
         ({
+          "Fire Roasted Nuts",
 	      "Tharisian Dark Lager",
-	      "Fire Roasted Nuts",
 	      "Verbonese Ale",
 	      "Traveler's Meal",
    	      "Spit Turned Meat",
@@ -56,8 +56,8 @@ void create() {
     );
     set_menu_long(
         ({
-       "This is a dark dark dark brew, famous to Tharis. this brew doesn't even slosh it sorta oozes.",
        "This is a small package of various nuts that are roast along with the meat on the spit.",
+       "This is a dark dark dark brew, famous to Tharis. this brew doesn't even slosh it sorta oozes.",
        "This is the golden ale imported from the city of Verbone across the ocean.",
        "This is a well packaged little meal made of more nutrious stuffs for the active traveler.",
        "This is a grand hunk of sizzling, well spiced meat from the spit at the Turning Spit Tavern.",
