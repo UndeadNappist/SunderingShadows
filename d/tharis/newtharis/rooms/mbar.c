@@ -50,13 +50,13 @@ int read(string str){
     write("The following great foods are served here at the Turning Spit Tavern.");
 
     write("--------------------------------------------------------------------");
-    write("Tharisian Dark Lager\t\t\t\t"+(int)ob->get_price("tharisian dark lager")+" silver");
     write("Fire Roasted Nuts\t\t\t\t"+(int)ob->get_price("fire roasted nuts")+" silver");
-    write("Verbonese Ale\t\t\t\t\t"+ (int)ob->get_price("verbonese ale")+" silver");
     write("Traveler's Meal\t\t\t\t\t"+ (int)ob->get_price("traveler's meal")+" silver");
     write("Spit Turned Meat\t\t\t\t"+ (int)ob->get_price("spit turned meat")+" silver");
+    write("Tharisian Dark Lager\t\t\t\t"+(int)ob->get_price("tharisian dark lager")+" silver");
+    write("Verbonese Ale\t\t\t\t\t"+ (int)ob->get_price("verbonese ale")+" silver");
     write("Cravnarian Wine\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver");
-    write("-----------------------------------------------------------");
+    write("--------------------------------------------------------------------");
     write("<buy dish_name> gets you the food.");
     return 1;
 }
