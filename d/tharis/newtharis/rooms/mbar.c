@@ -15,7 +15,7 @@ void create(){
    set_listen("default","You hear the yells of the crowd currently in here mixed with the popping of fats dropping into the fire.");
 
    set_items(([
-      "spit":"%^RED%^This large turning animal is truly impressive. It looks as if someone has put an entire cow on the spit and and is slow roasting it to perfection. You could only guess that with this sized beast it might take more than a day to cook.",
+      "spits":"%^RESET%^%^C088%^These turning spits hold both full carcasses and limbs of many different animals; pigs, rothe shanks, and lamb turning animal is truly impressive. It looks as if someone has put an entire cow on the spit and and is slow roasting it to perfection. You could only guess that with this sized beast it might take more than a day to cook.",
       "tables":"%^RESET%^%^C094%^Though they're of sturdy make, these tables have seen better days.%^CRST%^",
       "counter":"%^RESET%^%^C058%^This counter is where the waitstaff picks up the orders as they're filled. Some of the regulars also lean against it, drinking and watching the spitmaster as he works.%^CRST%^",
    ]));
