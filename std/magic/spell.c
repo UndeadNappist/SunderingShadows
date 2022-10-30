@@ -2678,6 +2678,8 @@ void define_clevel()
             case "enchantment_charm":
             if(member_array("charm", domains) >= 0)
                 clevel += 1;
+            if(member_array("hedonism", caster->query_divine_domain()) >= 0 && caster->query_intox())
+                clevel += 1;
             break;
 
             case "divination":
@@ -3620,6 +3622,8 @@ varargs int do_save(object targ, int mod, int get_dc)
     if(caster->is_class("cleric"))
     {
         if(member_array("nightmare", caster->query_divine_domain()) >= 0 && spell_sphere == "illusion")
+            DC += 1;
+        if(member_array("hedonism", caster->query_divine_domain()) >= 0 && spell_sphere == "enchantment_charm" && caster->query_intox())
             DC += 1;
     }
 

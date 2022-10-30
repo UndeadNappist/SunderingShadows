@@ -765,9 +765,6 @@ int immunity_check(object obj, string type)
         if (check_aura(obj, "resolve") == 1) {
             return 1;
         }
-        
-        if(member_array("hedonism", obj->query_divine_domain()) >= 0)
-            return 1;
     }
     break;
     

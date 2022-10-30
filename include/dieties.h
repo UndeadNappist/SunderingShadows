@@ -25,6 +25,7 @@
    "mephasm":({"Hellfire/Contracts", ({ 1, 2, 3, 5, 6, 9}), ({2, 3, 6}) }), \
    "velik":({"Freedom/Revolution", ({ 2, 4, 5, 6, 7, 8, 9 }), ({ 5, 7, 8, 9 }) }), \
    "eucalia":({"Growth/Serenity", ({ 1, 4, 5, 7, 8 }), ({ 4, 7, 8 }) }),\
+   "cacia" : ({"Hedonism/Vice", ({ 3, 5, 6, 7, 8, 9}), ({ 6, 8, 9 }) }), \
 ]))
 
 #define PANTHEON DIETIES
