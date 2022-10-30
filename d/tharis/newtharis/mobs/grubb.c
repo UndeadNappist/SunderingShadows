@@ -59,8 +59,8 @@ void create() {
     );
     set_menu_long(
         ({
-       "This is a small package of various nuts that are roast along with the meat on the spit.",
-       "This is a dark dark dark brew, famous to Tharis. this brew doesn't even slosh it sorta oozes.",
+       "This is a small bowl of various nuts that are roast along with the meat on the spit.",
+       "This is a very dark, nearly black, brew famous to Tharis. It is so thick it doesn't even slosh in the glass, instead seeming to ooze.",
        "This is the golden ale imported from the city of Verbone across the ocean.",
        "This is a well packaged little meal made of more nutrious stuffs for the active traveler.",
        "This is a grand hunk of sizzling, well spiced meat from the spit at the Turning Spit Tavern.",
@@ -68,10 +68,10 @@ void create() {
        "Served in a perfectly clear, high stemmed glass with a delicately fluted bowl, this beverage appears to be rather strange; its deep purple coloration periodically shimmers as bubbles float to the surface, tickling the nose of any who inhale them.",
         })
     );
-    set_emotes(2,({
+    set_emotes(3,({
     "%^RESET%^%^C143%^A %^RESET%^%^C241%^fly b%^RESET%^%^C242%^u%^C243%^z%^C244%^z%^C242%^e%^RESET%^%^C241%^s %^RESET%^%^C143%^near one of the %^RESET%^%^C094%^carcasses%^RESET%^%^C143%^. With a %^RESET%^%^C088%^v%^C124%^i%^C160%^c%^RESET%^%^C196%^i%^C160%^o%^C124%^u%^RESET%^%^C088%^s s%^RESET%^%^C124%^n%^RESET%^%^C160%^a%^C124%^r%^RESET%^%^C088%^l%^RESET%^%^C143%^, Grubb smacks it with the flat of one of his %^RESET%^%^C249%^cleavers%^RESET%^%^C143%^. He looks around slyly before %^RESET%^%^C174%^licking %^RESET%^%^C143%^the %^RESET%^%^C150%^g%^C149%^u%^RESET%^%^C148%^t%^RESET%^%^C150%^s %^RESET%^%^C143%^off the knife.%^CRST%^",
     "%^RESET%^%^C167%^Grubb shaves a few pieces of %^RESET%^%^C130%^rothe haunch %^RESET%^%^C167%^onto a plate, tossing it unceremoniously onto the counter. A waitress collects the order and brings it to a table of %^RESET%^%^C178%^d%^C220%^r%^C226%^u%^C227%^n%^C226%^k%^RESET%^%^C220%^e%^C178%^n s%^RESET%^%^C220%^a%^C226%^i%^C227%^l%^C226%^o%^C220%^r%^RESET%^%^C178%^s%^RESET%^%^C167%^.%^CRST%^",
     "%^RESET%^%^C136%^A %^RESET%^%^C124%^r%^C160%^o%^C196%^a%^RESET%^%^C124%^r %^RESET%^%^C136%^of %^RESET%^%^C124%^laughter %^RESET%^%^C136%^erupts from a nearby %^RESET%^%^C094%^table %^RESET%^%^C136%^after a patron %^RESET%^%^C168%^p%^C169%^i%^C170%^n%^C171%^c%^RESET%^%^C170%^h%^C169%^e%^RESET%^%^C168%^s %^RESET%^%^C136%^the rear of a nearby waitress and she returns the favor by upending his %^RESET%^%^C220%^ale %^RESET%^%^C136%^over his head, leaving him %^RESET%^%^C220%^s%^C221%^p%^C222%^u%^C223%^t%^C222%^t%^C221%^e%^C220%^r%^C221%^i%^RESET%^%^C222%^n%^C223%^g%^RESET%^%^C136%^.%^CRST%^",
-    "\"Mmm... mushroom wine is good. Is from the Sihe'di'Ilthquent's private collection!\" hisses Grubb, rubbing his little belly and %^RESET%^%^C058%^b%^C064%^e%^C070%^l%^RESET%^%^C076%^ch%^C070%^i%^C064%^n%^RESET%^%^C058%^g grotesquely.%^CRST%^",}), 0);
+    "\"%^RESET%^%^C136%^Mmm... mushroom wine is good. Is from the Sihe'di'Ilthquent's private cellars!%^RESET%^%^C167%^\" %^RESET%^%^C031%^h%^C037%^i%^C038%^s%^C044%^s%^C037%^e%^RESET%^%^C031%^s %^RESET%^%^C137%^Grubb, rubbing his little %^RESET%^%^C167%^belly %^RESET%^%^C137%^and %^RESET%^%^C148%^b%^C149%^e%^C150%^l%^RESET%^%^C143%^c%^RESET%^%^C142%^h%^C150%^i%^C149%^n%^RESET%^%^C148%^g %^RESET%^%^C137%^grotesquely.%^CRST%^",}), 0);
 } 
 
