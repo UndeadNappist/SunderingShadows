@@ -196,6 +196,8 @@ void mr_ring_check(){
         {
             tell_object(ETO,"%^RED%^Your "+TO->query_short()+" suddenly explodes in a violent shower of fragments!");
             tell_room(EETO,"%^RED%^"+ETO->QCN+"'s "+TO->query_short()+" suddenly explodes in a violent shower of fragments!",ETO);
+            this_object()->remove();
+            /*
             damage = roll_dice(10,10);
             if(sizeof(sacks))
             {
@@ -225,6 +227,7 @@ void mr_ring_check(){
                     }
                 }
             }
+            */
         }
         ETO->set_property("magic",1);
         ETO->do_damage("torso",damage);

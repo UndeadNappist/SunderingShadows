@@ -103,7 +103,7 @@ void execute_attack()
         
     
     tell_object(caster, "%^C039%^You feel %^RESET%^%^C015%^w%^C230%^h%^C229%^i%^C228%^t%^C227%^e %^RESET%^%^C229%^h%^C230%^o%^RESET%^%^C015%^t %^RESET%^%^C220%^p%^C226%^o%^C227%^w%^C226%^e%^C220%^r %^RESET%^%^C039%^course through your weapon as you instill it with %^RESET%^%^C033%^b%^C039%^a%^C045%^n%^C051%^i%^C087%^s%^C051%^h%^C045%^i%^C039%^n%^RESET%^%^C033%^g %^RESET%^%^C033%^e%^RESET%^%^C039%^n%^C045%^e%^C051%^r%^C039%^g%^RESET%^%^C033%^y%^RESET%^%^C039%^.%^CRST%^");
-    tell_room(place, "%^RESET%^%^C039%^" + caster->query_cap_name() + "%^RESET%^%^C039%^ %^RESET%^%^C087%^instills%^RESET%^%^C039%^ " + caster->query_possessive() + " %^RESET%^%^C039%^with %^RESET%^%^C033%^b%^C039%^a%^C045%^n%^C051%^i%^C087%^s%^C051%^h%^C045%^i%^C039%^n%^RESET%^%^C033%^g p%^RESET%^%^C039%^o%^C045%^w%^C039%^e%^RESET%^%^C033%^r%^RESET%^%^C039%^!%^CRST%^", caster);
+    tell_room(place, "%^RESET%^%^C039%^" + caster->query_cap_name() + "%^RESET%^%^C039%^ %^RESET%^%^C087%^instills%^RESET%^%^C039%^ " + caster->query_possessive() + " %^RESET%^%^C039%^weapon with %^RESET%^%^C033%^b%^C039%^a%^C045%^n%^C051%^i%^C087%^s%^C051%^h%^C045%^i%^C039%^n%^RESET%^%^C033%^g p%^RESET%^%^C039%^o%^C045%^w%^C039%^e%^RESET%^%^C033%^r%^RESET%^%^C039%^!%^CRST%^", caster);
     caster->set_property("banishing blade", 1);
     
     caster->add_cooldown("banishing blade", DELAY);
