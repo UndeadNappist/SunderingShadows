@@ -229,9 +229,9 @@ void mr_ring_check(){
             }
             */
         }
-        ETO->set_property("magic",1);
-        ETO->do_damage("torso",damage);
-        ETO->set_property("magic",-1);
+        //ETO->set_property("magic",1);
+        //ETO->do_damage("torso",damage);
+        //ETO->set_property("magic",-1);
         TO->remove();
         return;
     }

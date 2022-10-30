@@ -217,6 +217,8 @@ void deep_chalice_check()
         if (objectp(ETO) && living(ETO) && objectp(EETO)) {
             tell_object(ETO, "%^RED%^Your " + TO->query_short() + " suddenly explodes in a violent shower of fragments!");
             tell_room(EETO, "%^RED%^" + ETO->QCN + "'s " + TO->query_short() + " suddenly explodes in a violent shower of fragments!", ETO);
+            this_object()->remove();
+            /*
             damage = roll_dice(10, 10);
             if (sizeof(sacks)) {
                 for (i = 0; i < sizeof(sacks); i++) {
@@ -248,10 +250,11 @@ void deep_chalice_check()
                     sacks[i]->remove();
                 }
             }
+            */
         }
-        ETO->set_property("magic", 1);
-        ETO->do_damage("torso", damage);
-        ETO->set_property("magic", -1);
+        //ETO->set_property("magic", 1);
+        //ETO->do_damage("torso", damage);
+        //ETO->set_property("magic", -1);
         TO->remove();
         return;
     }
