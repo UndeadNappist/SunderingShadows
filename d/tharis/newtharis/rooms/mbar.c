@@ -56,6 +56,7 @@ int read(string str){
     write("Tharisian Dark Lager\t\t\t\t"+(int)ob->get_price("tharisian dark lager")+" silver");
     write("Verbonese Ale\t\t\t\t\t"+ (int)ob->get_price("verbonese ale")+" silver");
     write("Cravnarian Wine\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver");
+    write("Mushroom Wine\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver");
     write("--------------------------------------------------------------------");
     write("<buy dish_name> gets you the food.");
     return 1;
