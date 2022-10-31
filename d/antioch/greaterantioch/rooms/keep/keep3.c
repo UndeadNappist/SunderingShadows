@@ -38,7 +38,7 @@ void create()
 		"west"	: KEEP"keep6",
 		"out"	: KEEP"keep2",
 	]));
-	set_door("gate","/realms/klieth/greaterantioch/rooms/keep/keep2","out","somekey");
+	set_door("gate",KEEP"keep2","out","somekey");
 	set_open("gate",0);
 	set_string("gate","open","%^RESET%^%^ORANGE%^The massive wooden door lifts up, allowing you entrance.");
     set_lock_description("gate","lock","This is a huge bar across the giant

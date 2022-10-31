@@ -56,6 +56,7 @@ void create()
     set_funcs(({"grab"}));
     set_func_chance(50);
 
+    set_nogo(({ "/d/islands/graez/rooms/swamp/18.c" }));
 }
 
 

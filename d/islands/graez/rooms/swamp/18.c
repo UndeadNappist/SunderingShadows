@@ -28,11 +28,11 @@ void reset()
         new("/d/dagger/nurval/mon/necroknight")->move(TO);
     if (!present("guard 3"))
         new("/d/dagger/nurval/mon/necroknight")->move(TO);
-    if (!present("guard 4"))
+    if (!present("banshee"))
         new("/d/dagger/nurval/mon/banshee")->move(TO);
-    if (!present("guard 5"))
+    if (!present("banshee 2"))
         new("/d/dagger/nurval/mon/banshee")->move(TO);
-    if (!present("guard 6"))
+    if (!present("bonewyvern"))
         new("/d/dagger/nurval/mon/bonewyvern")->move(TO);
 }
 

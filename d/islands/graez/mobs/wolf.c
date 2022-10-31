@@ -37,6 +37,8 @@ create()
     set("aggressive", 30);
     set_moving(1);
     set_speed(40);
+    
+    set_nogo(({ "/d/islands/graez/rooms/swamp/18.c" }));
 }
     
 void bite(object targ) 
