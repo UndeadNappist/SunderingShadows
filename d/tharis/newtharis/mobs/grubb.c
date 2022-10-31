@@ -19,10 +19,10 @@ void create() {
     set_currency("silver");
     set_menu(
         ({
-	     "fire roasted nuts","tharisian dark lager","verbonese ale","traveler's meal","spit turned meat","cravnarian wine", "mushroom wine",
+	     "fire roasted nuts","tharisian dark lager","verbonese ale","traveler's meal","spit turned meat","cravnarian wine", "mushroom wine","water",
         }),
-        ({ "food", "alcoholic", "alcoholic","food","food","alcoholic", "alcoholic",}),
-        ({ 30, 30, 15, 15, 20, 25, 65, 100})
+        ({ "food", "alcoholic", "alcoholic","food","food","alcoholic", "alcoholic","soft drink",}),
+        ({ 30, 30, 15, 15, 20, 25, 100, 10,})
     );
     set_my_mess(
         ({
@@ -33,6 +33,7 @@ void create() {
        "You eat the tender well cooks piece of spicey meat with lust and vigor.",
        "You drink down the red tinted ale quickly in a single gulp.",
        "An acquired taste, this beverage is light and airy with a sweet, lightly spiced boquet, followed by a faintly fungal aftertaste.",
+       "You gulp down the lukewarm water. It has a distinctly mineral taste to it.",
         })
     );
     set_your_mess(
@@ -44,6 +45,7 @@ void create() {
           "tears into the fragrant meat fresh from the spit.",
 	      "gulps down the red tinted wine.",
           "inhales the delicate boquet, their eyes closing before they sip their drink daintily, savouring it with evident relish!",
+          "gulps down the lukewarm water.",
         })
     );
     set_menu_short(
@@ -55,6 +57,7 @@ void create() {
    	      "Spit Turned Meat",
 	      "Cravnarian Wine",
           "Mushroom Wine",
+          "Water",
         })
     );
     set_menu_long(
@@ -66,6 +69,7 @@ void create() {
        "This is a grand hunk of sizzling, well spiced meat from the spit at the Turning Spit Tavern.",
        "This is a small glass of imported wine from the legendary ciy of Cravnari, the sister city to Tharis to the south of the mountains.",
        "Served in a perfectly clear, high stemmed glass with a delicately fluted bowl, this beverage appears to be rather strange; its deep purple coloration periodically shimmers as bubbles float to the surface, tickling the nose of any who inhale them.",
+       "This glass of water isn't exactly crystal clear, tiny motes of something floating in the lukewarm liquid.",
         })
     );
     set_emotes(3,({
