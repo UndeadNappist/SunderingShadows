@@ -5,7 +5,7 @@
 
 inherit OBJECT;
 
-#define ACTIVETEMPLES ({ "jarmila", "kreysneothosies", "lord shadow", "nimnavanon", "lysara", "callamir", "nilith", "kismet", "the faceless one", "cevahir", "seija", "khyron", "ashra", "edea" })
+#define ACTIVETEMPLES ({ "jarmila", "kreysneothosies", "lord shadow", "nimnavanon", "lysara", "callamir", "nilith", "kismet", "the faceless one", "cevahir", "seija", "khyron", "ashra", "edea", "cacia" })
 object ob;
 
 void create(){
@@ -680,7 +680,7 @@ int now(string str){
             dest_effect();
             break;
         default:
-            tell_object(player,"You are suddenly whisked away to the "+where+" as you call to "+diety+".");
+            tell_object(player,"You are suddenly whisked away as you call to "+diety+".");
             tell_room(room,""+playername+" calls to "+diety+" and suddenly disappears!",player);
             tell_room(find_object_or_load(where),""+playername+" suddenly appears before the altar!",player);
             player->move_player(where);
