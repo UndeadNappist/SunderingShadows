@@ -2,7 +2,7 @@
 // Yniam Waystation - Lab
 
 #include <std.h>
-#include "/d/dagger/yniam/defs.h"
+#include "../defs.h"
 inherit VAULT;
 
 int occupied, temperment;
@@ -37,6 +37,10 @@ void create(){
     temperment = random(3) + 1;
 }
 
+void reset(){
+    if(!present("ambiance device")) new(MON"ambiance")->move(this_object());
+}
+
 void look_cages(){
     object player;
     player = this_player();
@@ -53,7 +57,7 @@ void look_goblin(){
     
     if(!occupied) tell_object(player, "%^RESET%^%^CRST%^You do not notice that here.%^CRST%^");
     else{ 
-        tell_object(player, "%^RESET%^%^CRST%^%^C108%^This nasty little %^C064%^goblin %^C108%^is trapped in one of the cages. It is typical of the breed: %^RESET%^%^CRST%^%^C065%^small, green, and foul. %^RESET%^%^C108%^It appears someone has made an attempt to clean this one by dousing it with water. A pair of %^C254%^white bunny ears %^C108%^seem to have been glued to its head, which it tugs and pulls at occasionally.%^CRST%^");
+        tell_object(player, "%^RESET%^%^CRST%^%^C108%^This nasty little %^C064%^goblin %^C108%^is trapped in one of the cages. It is typical of the breed: %^RESET%^%^CRST%^%^C065%^small, green, and foul. %^RESET%^%^C108%^It appears someone has made an attempt to clean this one by dousing it with water.%^CRST%^");
     }
     return;
 }

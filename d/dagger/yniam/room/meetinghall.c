@@ -2,7 +2,7 @@
 // Yniam Waystation - Meeting Hall
 
 #include <std.h>
-#include "/d/dagger/yniam/defs.h"
+#include "../defs.h"
 inherit VAULT;
 
 int tapestry, chandelier, chairs, benches;
@@ -15,7 +15,7 @@ void create(){
     set_property("light", 2);
     set_name("A meeting hall within the waystation");
     set_short("%^RESET%^%^CRST%^%^C046%^A %^C136%^meeting hall %^C046%^within the %^C144%^waystation%^CRST%^");
-    set_long("%^RESET%^%^CRST%^%^C136%^Smooth timber walls frame this structure, varnished and affecting a rugged warmth in the light offered by a large %^C059%^wrought %^C245%^ir%^C247%^o%^C245%^n %^RESET%^%^C214%^ch%^C220%^an%^C226%^de%^C220%^li%^C214%^er %^RESET%^%^C136%^overhead. The focal point is a %^C130%^large oblong table %^C136%^near the far wall, surrounded by six wooden chairs. It is overseen by a large tapestry displayed on the wall behind, that of the %^C144%^Yniam Plains insignia %^C136%^in bold %^C046%^gre%^C040%^e%^C046%^ns %^C136%^and %^C255%^whit%^C252%^e%^C255%^s%^RESET%^%^C136%^. There are wooden banisters in place to bisect the room, with a couple rows of benches leading to the entrance.%^CRST%^\n\nSp%^C250%^i%^C255%^derw%^C250%^e%^C255%^bs %^C060%^stretch across the walls, looping about into funnels at the corners. Bloated %^C059%^arachnids %^C060%^lurk within, while smaller, faster spiders skitter along the webbing.%^CRST%^\n");
+    set_long("%^RESET%^%^CRST%^%^C136%^Smooth timber walls frame this structure, varnished and affecting a rugged warmth in the light offered by a large %^C059%^wrought %^C245%^ir%^C247%^o%^C245%^n %^RESET%^%^C214%^ch%^C220%^an%^C226%^de%^C220%^li%^C214%^er %^RESET%^%^C136%^overhead. The focal point is a %^C130%^large oblong table %^C136%^near the far wall, surrounded by six wooden chairs. It is overseen by a large tapestry displayed on the wall behind, that of the %^C144%^Yniam Plains insignia %^C136%^in bold %^C046%^gre%^C040%^e%^C046%^ns %^C136%^and %^C255%^whit%^C252%^e%^C255%^s%^RESET%^%^C136%^. There are wooden banisters in place to bisect the room, with a couple rows of benches leading to the entrance.%^CRST%^\n");
     set_smell("default", "%^RESET%^%^CRST%^%^C058%^Hints of oak and varnish flit through the air.%^CRST%^");
     set_listen("default", "%^RESET%^%^CRST%^%^C202%^You can hear the occasional hiss of the %^C214%^wax c%^C220%^a%^C226%^ndl%^C220%^e%^C214%^s %^RESET%^%^C202%^overhead.%^CRST%^");
     set_items(([
@@ -23,7 +23,6 @@ void create(){
         ({"table", "chairs"}) : "%^RESET%^%^CRST%^%^C130%^Two large chairs sit central to the table, with two smaller chairs flanking on either side. Each is fashioned from %^C136%^mahogany %^C130%^and shaped by a skillful hand, with the %^C144%^insignia of Yniam %^C130%^carved into the center of each back. The edge of the table facing the rest of the room has been left empty, so that those seated may address supplicants. One of the chairs has been thrown to the side in disarray.%^CRST%^",
         "benches" : "%^RESET%^%^CRST%^%^C130%^These are simple wooden benches, likely here for any supplicants awaiting their turn to address the council. It would appear by the stains present that some of the them have been put to more lascivious use.%^CRST%^",
         ({"tapestry", "insignia"}) : "%^RESET%^%^CRST%^%^C130%^The insignia of %^C144%^Yniam %^C130%^has been picked out in durable cloth, that of an %^C040%^e%^C046%^me%^C040%^r%^C046%^a%^C040%^l%^C046%^d c%^C040%^i%^C046%^rcl%^C040%^e %^C130%^containing a white stylized silhouette of gathered %^C144%^stalks of wheat %^C130%^alongside a %^C136%^pair of barrels%^C130%^. It hangs from a %^C243%^s%^C245%^i%^C247%^lv%^C245%^e%^C243%^r b%^C245%^a%^C243%^r%^RESET%^%^C130%^, suspended by bleached rope%^C130%^.%^CRST%^",
-        ({"webs","spiderwebs"}) : "%^RESET%^%^CRST%^%^C060%^Thin tendrils of %^C255%^we%^C250%^b%^C255%^bin%^C250%^g %^C060%^line the walls in a haphazard mess of gauzy fibers. Plump %^C059%^spiders %^C060%^ with spindly legs lurk along it.%^CRST%^",
         ]));  
     set_exits(([
         "southeast" : ROOMS"outpost_hub",
@@ -38,13 +37,6 @@ void create(){
     place_items();
 }
 
-void reset(){
-    ::reset();
-    
-    if(!present("candy dish")) new("/realms/chernobog/events/vikaelis/liars/obj/candy_dish")->move(this_object());
-    if(!present("ambiance device")) new("/realms/chernobog/events/vikaelis/liars/mon/ambiance_hall")->move(this_object());
-}
-
 void place_long(){
     string long_desc;
     if(chandelier) long_desc = "%^RESET%^%^CRST%^%^C136%^Smooth timber walls frame this structure, varnished and affecting a rugged warmth in the partially %^C059%^ob%^C243%^s%^C059%^cu%^C243%^re%^C059%^d %^RESET%^%^C136%^light offered by a large %^C059%^wrought %^C245%^ir%^C247%^o%^C245%^n %^RESET%^%^C214%^ch%^C220%^an%^C226%^de%^C220%^li%^C214%^er %^RESET%^%^C136%^overhead.";
@@ -55,7 +47,6 @@ void place_long(){
     else long_desc += " It is overseen by a large tapestry displayed on the wall behind, that of the %^C144%^Yniam Plains insignia %^C136%^in bold %^C046%^gre%^C040%^e%^C046%^ns %^C136%^and %^C255%^whit%^C252%^e%^C255%^s%^RESET%^%^C136%^.";
     if(benches) long_desc += " There are wooden banisters in place to bisect the room, with a gathering of scattered and %^C058%^dirty %^RESET%^%^C136%^benches leading to the entrance.%^CRST%^\n";
     else long_desc += " There are wooden banisters in place to bisect the room, with a couple rows of benches leading to the entrance.%^CRST%^\n";
-    long_desc += "\nSp%^C250%^i%^C255%^derw%^C250%^e%^C255%^bs %^C060%^stretch across the walls, looping about into funnels at the corners. Bloated %^C059%^arachnids %^C060%^lurk within, while smaller, faster spiders skitter along the webbing.%^CRST%^\n";
     set_long(long_desc);
     return;
 }
