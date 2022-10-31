@@ -126,7 +126,7 @@ int display_quests(string mtarg, string str)
     int i;
     if(mtarg && avatarp(TP))
     {
-        if(!(mtarg = find_player(str)) || targ->query_highest_level() > TP->query_highest_level())
+        if(!(targ = find_player(mtarg)) || targ->query_highest_level() > TP->query_highest_level())
         {
             tell_object(TP, "That person is not online.\n");
             return 1;
