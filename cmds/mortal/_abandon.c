@@ -193,6 +193,7 @@ int confirm_drop(string str, string theclass, int drop, int cost)
     TP->make_new_hitpoint_rolls(TP);
 //Below should clear spells given by Shadowdancer prestige class ~Circe~ 7/30/19
     TP->InitInnate();
+    this_player()->InitCantrips();
     tell_object(TP, "%^YELLOW%^Finished... You dropped %^BLUE%^" + drop + " %^YELLOW%^levels from "
                 "your %^BLUE%^" + theclass + "%^YELLOW%^ class and were charged %^BLUE%^" + cost + " %^YELLOW%^experience "
                 "points.");
