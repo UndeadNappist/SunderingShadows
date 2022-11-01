@@ -9,7 +9,7 @@ void create()
     feat_type("permanent");
     feat_category("MagicDamage");
     feat_name("spell power");
-    feat_desc("The Spell Power feat will allow the caster to cast spells as if they were more advanced in their spell casting class than they actually are. Warlocks do not need to take any of the prerequisite feats to gain this feat.");
+    feat_desc("With this feat, the caster gains +1 to caster level with all spells.");
     permanent(1);
     set_required_for(({"improved spell power","greater spell power","hardenedminions","magic arsenal"}));
 }
