@@ -50,13 +50,13 @@ int read(string str){
 
     write("%^RESET%^%^C088%^--%^RESET%^%^C124%^--%^C160%^--%^C196%^--%^C202%^--%^C208%^--%^C214%^--%^RESET%^%^C220%^--%^C226%^--%^C220%^--%^C214%^--%^C208%^--%^RESET%^%^C202%^--%^C196%^--%^C160%^--%^C124%^--%^RESET%^%^C088%^--%^C124%^--%^C160%^--%^C196%^--%^RESET%^%^C202%^--%^C208%^--%^C214%^--%^C220%^--%^C226%^--%^RESET%^%^C220%^--%^C214%^--%^C208%^--%^C202%^--%^RESET%^%^C196%^--%^C160%^--%^C124%^--%^C088%^--%^RESET%^%^C124%^--%^CRST%^");
     write("%^RESET%^%^C088%^Fire Roasted Nuts\t\t\t\t"+(int)ob->get_price("fire roasted nuts")+" silver%^CRST%^");
-    write("Traveler's Meal\t\t\t\t\t"+ (int)ob->get_price("traveler's meal")+" silver");
-    write("Spit Turned Meat\t\t\t\t"+ (int)ob->get_price("spit turned meat")+" silver");
-    write("Tharisian Dark Lager\t\t\t\t"+(int)ob->get_price("tharisian dark lager")+" silver");
-    write("Verbonese Ale\t\t\t\t\t"+ (int)ob->get_price("verbonese ale")+" silver");
-    write("Cravnarian Wine\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver");
-    write("Mushroom Wine\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver");
-    write("Water\t\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver");
+    write("%^RESET%^%^C124%^Traveler's Meal\t\t\t\t\t"+ (int)ob->get_price("traveler's meal")+" silver%^CRST%^");
+    write("%^RESET%^%^C160%^Spit Turned Meat\t\t\t\t"+ (int)ob->get_price("spit turned meat")+" silver%^CRST%^");
+    write("%^RESET%^%^C196%^Tharisian Dark Lager\t\t\t\t"+(int)ob->get_price("tharisian dark lager")+" silver%^CRST%^");
+    write("%^RESET%^%^C202%^Verbonese Ale\t\t\t\t\t"+ (int)ob->get_price("verbonese ale")+" silver%^CRST%^");
+    write("%^RESET%^%^C208%^Cravnarian Wine\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver%^CRST%^");
+    write("%^RESET%^%^C214%^Mushroom Wine\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver%^CRST%^");
+    write("%^RESET%^%^C220%^Water\t\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver%^CRST%^");
     write("%^RESET%^%^C088%^--%^RESET%^%^C124%^--%^C160%^--%^C196%^--%^C202%^--%^C208%^--%^C214%^--%^RESET%^%^C220%^--%^C226%^--%^C220%^--%^C214%^--%^C208%^--%^RESET%^%^C202%^--%^C196%^--%^C160%^--%^C124%^--%^RESET%^%^C088%^--%^C124%^--%^C160%^--%^C196%^--%^RESET%^%^C202%^--%^C208%^--%^C214%^--%^C220%^--%^C226%^--%^RESET%^%^C220%^--%^C214%^--%^C208%^--%^C202%^--%^RESET%^%^C196%^--%^C160%^--%^C124%^--%^C088%^--%^RESET%^%^C124%^--%^CRST%^");
     write("<buy dish_name> gets you the food.");
     return 1;

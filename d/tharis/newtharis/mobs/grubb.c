@@ -26,14 +26,14 @@ void create() {
     );
     set_my_mess(
         ({
-       "You crunch the roasted nuts as your chew.",
-       "You drink the extremely dark, thick lager and feel it as it rolls down your throat.",
-       "You drink the golden ale and wince at the slight bite it offers back.",
-       "You eat the sparse but painfully healthy meal.",
-       "You eat the tender well cooks piece of spicey meat with lust and vigor.",
-       "You drink down the red tinted ale quickly in a single gulp.",
-       "An acquired taste, this beverage is light and airy with a sweet, lightly spiced boquet, followed by a faintly fungal aftertaste.",
-       "You gulp down the lukewarm water. It has a distinctly mineral taste to it.",
+       "%^RESET%^%^C144%^You crunch the %^RESET%^%^C088%^r%^C124%^o%^C160%^a%^C196%^s%^C160%^t%^C124%^e%^RESET%^%^C088%^d %^RESET%^%^C094%^nuts %^RESET%^%^C144%^as your chew.%^CRST%^",
+       "%^RESET%^%^C144%^You drink the extremely %^RESET%^%^C241%^dark lager %^RESET%^%^C144%^and feel it roll down your throat.%^CRST%^",
+       "%^RESET%^%^C144%^You drink the %^RESET%^%^C136%^g%^C220%^o%^C226%^l%^C227%^d%^C220%^e%^RESET%^%^C136%^n ale %^RESET%^%^C144%^and wince at the slight bite it offers back.%^CRST%^",
+       "%^RESET%^%^C144%^You eat the sparse but painfully %^RESET%^%^C078%^h%^C079%^e%^C080%^a%^C081%^l%^C080%^t%^C079%^h%^C078%^y %^RESET%^%^C144%^meal.%^CRST%^",
+       "%^RESET%^%^C144%^You eat the tender well cooks piece of spicey meat with lust and vigor.%^CRST%^",
+       "%^RESET%^%^C144%^You throw back the %^RESET%^%^C088%^r%^C124%^e%^C088%^d t%^RESET%^%^C124%^i%^C160%^n%^C124%^t%^C088%^e%^RESET%^%^C124%^d %^RESET%^%^C144%^ale.%^CRST%^",
+       "%^RESET%^%^C144%^An acquired taste, this beverage is light and %^RESET%^%^C087%^a%^C051%^i%^C045%^r%^RESET%^%^C087%^y %^RESET%^%^C144%^with a %^RESET%^%^C005%^sweet%^RESET%^%^C144%^, subtly %^RESET%^%^C094%^spiced %^RESET%^%^C144%^boquet and a faintly %^RESET%^%^C059%^f%^C102%^u%^C101%^n%^C145%^g%^RESET%^%^C102%^a%^C059%^l %^RESET%^%^C144%^aftertaste.%^CRST%^",
+       "%^RESET%^%^C144%^You gulp down the lukewarm %^RESET%^%^C039%^w%^C045%^a%^C051%^t%^C045%^e%^C039%^r%^RESET%^%^C144%^. It has a distinctly %^RESET%^%^C251%^m%^C249%^i%^C252%^n%^C248%^e%^C253%^r%^C247%^a%^RESET%^%^C254%^l %^RESET%^%^C144%^taste to it.%^CRST%^",
         })
     );
     set_your_mess(
