@@ -40,7 +40,7 @@ OLI
 	set_gender("female");
 	set_overall_ac(2);
 	set_emotes(5,({"The harpy's smell makes you queasy.",
-	           "The heinous appearence of the harpy makes you wretch"}),0);
+	           "The heinous appearance of the harpy makes you wretch"}),0);
 	my_charmed = ({});
 	sung_to = ({});
 	add_money("gold",random(100));
@@ -61,7 +61,7 @@ void do_sing(object ob){
 		singing = 1;
 		sung_to += ({ob->query_name()});
 		tell_object(ob,"%^BOLD%^%^CYAN%^The harpy starts to sing to you in an amazing voice!");
-		if(!SAVING_D->saving_throw(ob,"spell",0)){
+		if(!SAVING_D->saving_throw(ob,"spell",0) && !PLAYER_D->immunity_check(ob, "charm")){
 			if(member_array((string)ob->query_race(), ({"elf","beastman"})) == -1){
 				my_charmed += ({(string)ob->query_name()});
 				ob->set_paralyzed(500,"%^BOLD%^You are mesmerized by the lovely song of the harpy!");
