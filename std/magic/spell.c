@@ -78,7 +78,7 @@ int spell_level,
     toattack,
     any_attack,
     hasBeenCast,
-    applied_buff_type,
+    applied_bonus_type,
     preloaded,
     shadow_spell,
     abnormal_cast,
@@ -2364,6 +2364,7 @@ void spell_successful() //revoked exp bonuses from casting. This function seems 
         target->remove_property("spell_bonus_type");
         buffs = distinct_array(buffs + bonus_type);
         target->set_property("spell_bonus_type", buffs);
+        applied_bonus_type = 1;
     }
 
     return 1;
@@ -2440,12 +2441,14 @@ int remove()
         caster->remove_property("travaoe");
     }
 
-    if(sizeof(bonus_type))
+    if(sizeof(bonus_type) && applied_bonus_type)
     {
         if(!target || !objectp(target))
             target = caster;
 
         target && target->remove_property_value("spell_bonus_type", bonus_type);
+        
+        applied_bonus_type = 0;
     }
 
     return ::remove();
@@ -3076,7 +3079,6 @@ int preSpell()
 void spell_effect(int prof)
 {
     spell_successful(); //adding this call to hopefully fix any problems with
-    successful_cast = 1;
     //a spell being reflected and the original caster
     //never being able to cast again - Saide
 }
