@@ -48,8 +48,8 @@ int read(string str){
     }
     write("The following great foods are served here at the Turning Spit Tavern.");
 
-    write("--------------------------------------------------------------------");
-    write("Fire Roasted Nuts\t\t\t\t"+(int)ob->get_price("fire roasted nuts")+" silver");
+    write("%^RESET%^%^C088%^--%^RESET%^%^C124%^--%^C160%^--%^C196%^--%^C202%^--%^C208%^--%^C214%^--%^RESET%^%^C220%^--%^C226%^--%^C220%^--%^C214%^--%^C208%^--%^RESET%^%^C202%^--%^C196%^--%^C160%^--%^C124%^--%^RESET%^%^C088%^--%^C124%^--%^C160%^--%^C196%^--%^RESET%^%^C202%^--%^C208%^--%^C214%^--%^C220%^--%^C226%^--%^RESET%^%^C220%^--%^C214%^--%^C208%^--%^C202%^--%^RESET%^%^C196%^--%^C160%^--%^C124%^--%^C088%^--%^RESET%^%^C124%^--%^CRST%^");
+    write("%^RESET%^%^C088%^Fire Roasted Nuts\t\t\t\t"+(int)ob->get_price("fire roasted nuts")+" silver%^CRST%^");
     write("Traveler's Meal\t\t\t\t\t"+ (int)ob->get_price("traveler's meal")+" silver");
     write("Spit Turned Meat\t\t\t\t"+ (int)ob->get_price("spit turned meat")+" silver");
     write("Tharisian Dark Lager\t\t\t\t"+(int)ob->get_price("tharisian dark lager")+" silver");
@@ -57,7 +57,7 @@ int read(string str){
     write("Cravnarian Wine\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver");
     write("Mushroom Wine\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver");
     write("Water\t\t\t\t\t\t"+ (int)ob->get_price("cravnarian wine")+" silver");
-    write("--------------------------------------------------------------------");
+    write("%^RESET%^%^C088%^--%^RESET%^%^C124%^--%^C160%^--%^C196%^--%^C202%^--%^C208%^--%^C214%^--%^RESET%^%^C220%^--%^C226%^--%^C220%^--%^C214%^--%^C208%^--%^RESET%^%^C202%^--%^C196%^--%^C160%^--%^C124%^--%^RESET%^%^C088%^--%^C124%^--%^C160%^--%^C196%^--%^RESET%^%^C202%^--%^C208%^--%^C214%^--%^C220%^--%^C226%^--%^RESET%^%^C220%^--%^C214%^--%^C208%^--%^C202%^--%^RESET%^%^C196%^--%^C160%^--%^C124%^--%^C088%^--%^RESET%^%^C124%^--%^CRST%^");
     write("<buy dish_name> gets you the food.");
     return 1;
 }
