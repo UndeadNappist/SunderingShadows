@@ -38,19 +38,13 @@ void create()
 
 void drown(object targ)
 {
-   if(!"daemon/saving_d"->saving_throw(targ,"paralyzation_poison_death")) {
       tell_object(targ,"%^BOLD%^%^BLUE%^The water weird pulls you into the "+
          "water!");
       tell_room(ETO,"%^BOLD%^%^BLUE%^The water weird pulls "+targ->query_cap_name()+" "+
          "into the water!",targ);
       tell_object(targ,"%^BOLD%^%^CYAN%^The water weird wraps its body around you "+
          "and squeezes, drowning you!");
-      targ->set_hp(-1);
-      return;
-   }
-   tell_object(targ,"%^BLUE%^The water weird tries to pull you into the pool, but "+
-      "you stand your ground!");
-   tell_room(ETO,"%^BLUE%^"+targ->query_cap_name()+" struggles with the water weird, "+
-      "but keeps "+targ->query_possessive()+" footing!",targ);
+      targ->cause_typed_damage(targ, "torso", roll_dice(10, 6), "cold");
+      
    return;
 }
