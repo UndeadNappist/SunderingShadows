@@ -52,7 +52,7 @@ void create() {
         ({
           "%^RESET%^%^C088%^F%^C124%^i%^C160%^r%^RESET%^%^C088%^e %^RESET%^%^C088%^r%^C124%^o%^C160%^a%^C196%^s%^C160%^t%^C124%^e%^RESET%^%^C088%^d %^RESET%^%^C094%^Nuts%^CRST%^",
 	      "%^RESET%^%^C241%^Tharisian %^RESET%^%^C240%^Dark Lager%^CRST%^",
-	      "%^RESET%^%^C130%^V%^C220%^e%^C226%^r%^C227%^b%^C228%^o%^C227%^n%^C226%^e%^C220%^s%^RESET%^%^C130%^e Ale%^CRST%^",
+	      "%^RESET%^%^C136%^V%^C220%^e%^C226%^r%^C227%^b%^C228%^o%^C227%^n%^C226%^e%^C220%^s%^RESET%^%^C136%^e Ale%^CRST%^",
 	      "%^RESET%^%^C144%^Traveler's %^RESET%^%^C078%^M%^C079%^e%^C080%^a%^RESET%^%^C078%^l%^CRST%^",
    	      "%^RESET%^%^C144%^Spit Turned %^RESET%^%^C088%^M%^C124%^e%^C160%^a%^C088%^t%^CRST%^",
 	      "%^RESET%^%^C088%^C%^C124%^r%^C160%^a%^C196%^v%^C160%^n%^C124%^a%^C088%^r%^C124%^i%^C160%^a%^RESET%^%^C124%^n Wine%^CRST%^",
