@@ -39,6 +39,11 @@ int cmd_spell_combat(string str)
         return 1;
     }
     wielded = (object*)TP->query_wielded();
+    
+    if(!sizeof(wielded))
+        return notify_fail("You need to be wielding at least one weapon to use spell combat.");
+    
+    /*
     if (!sizeof(wielded) || //no weapons
         //wielded[0]->is_lrweapon() || //is ranged
         (sizeof(wielded) == 2 && //using both hands and...
@@ -49,6 +54,7 @@ int cmd_spell_combat(string str)
         tell_object(TP, "%^RESET%^%^BOLD%^You must be wielding a single one-handed melee weapon.%^RESET%^");
         return 1;
     }
+    */
     feat = new(base_name(TO));
     feat->setup_feat(TP, str);
     return 1;

@@ -78,7 +78,7 @@ int spell_level,
     toattack,
     any_attack,
     hasBeenCast,
-    successful_cast;
+    applied_buff_type,
     preloaded,
     shadow_spell,
     abnormal_cast,
@@ -2440,7 +2440,7 @@ int remove()
         caster->remove_property("travaoe");
     }
 
-    if(sizeof(bonus_type) && successful_cast)
+    if(sizeof(bonus_type))
     {
         if(!target || !objectp(target))
             target = caster;
