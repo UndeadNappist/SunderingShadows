@@ -78,6 +78,7 @@ int spell_level,
     toattack,
     any_attack,
     hasBeenCast,
+    successful_cast;
     preloaded,
     shadow_spell,
     abnormal_cast,
@@ -2439,7 +2440,7 @@ int remove()
         caster->remove_property("travaoe");
     }
 
-    if(sizeof(bonus_type))
+    if(sizeof(bonus_type) && successful_cast)
     {
         if(!target || !objectp(target))
             target = caster;
@@ -3075,6 +3076,7 @@ int preSpell()
 void spell_effect(int prof)
 {
     spell_successful(); //adding this call to hopefully fix any problems with
+    successful_cast = 1;
     //a spell being reflected and the original caster
     //never being able to cast again - Saide
 }
