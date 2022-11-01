@@ -65,11 +65,11 @@ void create() {
        "%^RESET%^%^C144%^This is a small %^RESET%^%^C015%^bowl %^RESET%^%^C144%^of various %^RESET%^%^C088%^r%^C124%^o%^C160%^a%^C196%^s%^C160%^t%^C124%^e%^RESET%^%^C088%^d %^RESET%^%^C094%^nuts %^RESET%^%^C144%^.",
        "%^RESET%^%^C144%^This is a very dark, nearly %^RESET%^%^C240%^black%^RESET%^%^C144%^, brew famous to Tharis. It is so thick it doesn't even slosh in the glass, instead seeming to %^RESET%^%^C240%^o%^C241%^o%^C242%^z%^C243%^e%^RESET%^%^C144%^.%^CRST%^",
        "%^RESET%^%^C144%^This is the %^RESET%^%^C136%^g%^C220%^o%^C226%^l%^C227%^d%^C220%^e%^RESET%^%^C136%^n ale %^RESET%^%^C144%^imported from the city of Verbobone.%^CRST%^",
-       "%^RESET%^%^C144%^This is a well packaged little meal made of more nutritious stuffs for the active traveler.%^CRST%^",
-       "%^RESET%^%^C144%^This is a grand hunk of sizzling, well spiced meat from the spit at the Turning Spit Tavern.",
-       "This is a small glass of imported wine from the legendary ciy of Cravnari, the sister city to Tharis to the south of the mountains.",
-       "Served in a perfectly clear, high stemmed glass with a delicately fluted bowl, this beverage appears to be rather strange; its deep purple coloration periodically shimmers as bubbles float to the surface, tickling the nose of any who inhale them.",
-       "This glass of water isn't exactly crystal clear, tiny motes of something floating in the lukewarm liquid.",
+       "%^RESET%^%^C144%^This is a well packaged little meal made of more nutritious stuffs like %^RESET%^%^C094%^nuts%^RESET%^%^C144%^, %^RESET%^%^C052%^b%^C053%^e%^C054%^r%^RESET%^%^C055%^r%^C054%^i%^C053%^e%^C052%^s%^RESET%^%^C144%^, and %^RESET%^%^C220%^c%^C226%^h%^C227%^e%^C228%^e%^C226%^s%^RESET%^%^C220%^e %^RESET%^%^C144%^for the active traveler.%^CRST%^",
+       "%^RESET%^%^C144%^This is a grand hunk of %^RESET%^%^C136%^s%^C178%^i%^C220%^z%^C226%^z%^RESET%^%^C227%^l%^C220%^i%^C178%^n%^RESET%^%^C136%^g%^RESET%^%^C144%^, well spiced meat from the spit at the Turning Spit Tavern.%^CRST%^",
+       "%^RESET%^%^C144%^This is a slender glass of imported %^RESET%^%^C124%^w%^C160%^i%^C196%^n%^RESET%^%^C124%^e %^RESET%^%^C144%^from the legendary city of Cravnari, the sister city to Tharis to the south of the mountains.%^CRST%^",
+       "%^RESET%^%^C144%^Served in a perfectly %^RESET%^%^C195%^clear%^RESET%^%^C144%^, high stemmed glass with a delicately fluted bowl, this beverage appears to be rather strange; its %^RESET%^%^C005%^deep purple %^RESET%^%^C144%^coloration periodically %^RESET%^%^C231%^s%^C189%^h%^C183%^i%^C231%^m%^RESET%^%^C153%^m%^C117%^e%^RESET%^%^C231%^r%^C147%^s %^RESET%^%^C144%^as %^RESET%^%^C053%^b%^C054%^u%^C055%^b%^RESET%^%^C054%^b%^C053%^l%^C054%^e%^C055%^s %^RESET%^%^C144%^float to the surface, tickling the nose of any who inhale them.%^CRST%^",
+       "%^RESET%^%^C144%^This glass of %^RESET%^%^C039%^w%^C045%^a%^C051%^t%^C045%^e%^C039%^r %^RESET%^%^C144%^isn't exactly crystal clear, tiny %^RESET%^%^C250%^m%^C253%^o%^C255%^t%^C253%^e%^RESET%^%^C250%^s %^RESET%^%^C144%^of something floating in the lukewarm liquid.%^CRST%^",
         })
     );
     set_emotes(3,({
