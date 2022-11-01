@@ -30,43 +30,43 @@ void create() {
        "%^RESET%^%^C144%^You drink the extremely %^RESET%^%^C241%^dark lager %^RESET%^%^C144%^and feel it roll down your throat.%^CRST%^",
        "%^RESET%^%^C144%^You drink the %^RESET%^%^C136%^g%^C220%^o%^C226%^l%^C227%^d%^C220%^e%^RESET%^%^C136%^n ale %^RESET%^%^C144%^and wince at the slight bite it offers back.%^CRST%^",
        "%^RESET%^%^C144%^You eat the sparse but painfully %^RESET%^%^C078%^h%^C079%^e%^C080%^a%^C081%^l%^C080%^t%^C079%^h%^C078%^y %^RESET%^%^C144%^meal.%^CRST%^",
-       "%^RESET%^%^C144%^You eat the tender well cooks piece of spicey meat with lust and vigor.%^CRST%^",
-       "%^RESET%^%^C144%^You throw back the %^RESET%^%^C088%^r%^C124%^e%^C088%^d t%^RESET%^%^C124%^i%^C160%^n%^C124%^t%^C088%^e%^RESET%^%^C124%^d %^RESET%^%^C144%^ale.%^CRST%^",
+       "%^RESET%^%^C144%^You eat the tender well-cooked piece of %^RESET%^%^C196%^spicy meat %^RESET%^%^C144%^with %^RESET%^%^C124%^l%^C160%^u%^C196%^s%^RESET%^%^C124%^t %^RESET%^%^C144%^and %^RESET%^%^C037%^v%^C044%^i%^C051%^g%^RESET%^%^C044%^o%^C037%^r%^RESET%^%^C144%^.%^CRST%^",
+       "%^RESET%^%^C144%^You throw back the %^RESET%^%^C088%^r%^C124%^e%^C088%^d t%^RESET%^%^C124%^i%^C160%^n%^C124%^t%^C088%^e%^RESET%^%^C124%^d wine%^RESET%^%^C144%^.%^CRST%^",
        "%^RESET%^%^C144%^An acquired taste, this beverage is light and %^RESET%^%^C087%^a%^C051%^i%^C045%^r%^RESET%^%^C087%^y %^RESET%^%^C144%^with a %^RESET%^%^C005%^sweet%^RESET%^%^C144%^, subtly %^RESET%^%^C094%^spiced %^RESET%^%^C144%^boquet and a faintly %^RESET%^%^C059%^f%^C102%^u%^C101%^n%^C145%^g%^RESET%^%^C102%^a%^C059%^l %^RESET%^%^C144%^aftertaste.%^CRST%^",
        "%^RESET%^%^C144%^You gulp down the lukewarm %^RESET%^%^C039%^w%^C045%^a%^C051%^t%^C045%^e%^C039%^r%^RESET%^%^C144%^. It has a distinctly %^RESET%^%^C251%^m%^C249%^i%^C252%^n%^C248%^e%^C253%^r%^C247%^a%^RESET%^%^C254%^l %^RESET%^%^C144%^taste to it.%^CRST%^",
         })
     );
     set_your_mess(
         ({
-          "crunches on some nuts.",
-	      "pours the thick dark brew down "+TP->query_possessive()+" gullet.",
-	      "drinks the golden ale slowly.",
-	      "eats the sparse yet healthy looking meal.",
-          "tears into the fragrant meat fresh from the spit.",
-	      "gulps down the red tinted wine.",
-          "inhales the delicate boquet, their eyes closing before they sip their drink daintily, savouring it with evident relish!",
-          "gulps down the lukewarm water.",
+          "%^RESET%^%^C144%^crunches on some %^RESET%^%^C094%^nuts%^RESET%^%^C144%^.%^CRST%^",
+	      "%^RESET%^%^C144%^pours the thick %^RESET%^%^C241%^dark brew %^RESET%^%^C144%^down "+TP->query_possessive()+" %^RESET%^%^C144%^gullet.%^CRST%^",
+	      "%^RESET%^%^C144%^drinks the %^RESET%^%^C136%^g%^C220%^o%^C226%^l%^C227%^d%^C220%^e%^RESET%^%^C136%^n ale %^RESET%^%^C144%^slowly.%^CRST%^",
+	      "%^RESET%^%^C144%^eats the sparse yet %^RESET%^%^C078%^h%^C079%^e%^C080%^a%^C081%^l%^C080%^t%^C079%^h%^C078%^y %^RESET%^%^C144%^looking meal.%^CRST%^",
+          "%^RESET%^%^C144%^tears into the fragrant %^RESET%^%^C088%^m%^C124%^e%^C160%^a%^RESET%^%^C088%^t %^RESET%^%^C144%^fresh from the spit.%^CRST%^",
+	      "%^RESET%^%^C144%^gulps down the %^RESET%^%^C088%^r%^C124%^e%^C088%^d t%^RESET%^%^C124%^i%^C160%^n%^C124%^t%^C088%^e%^RESET%^%^C124%^d wine %^RESET%^%^C144%^.%^CRST%^",
+          "%^RESET%^%^C144%^inhales the delicate boquet, their eyes closing before they sip their %^RESET%^%^C005%^drink %^RESET%^%^C144%^daintily, savouring it with evident relish!%^CRST%^",
+          "%^RESET%^%^C144%^gulps down the lukewarm %^RESET%^%^C039%^w%^C045%^a%^C051%^t%^C045%^e%^C039%^r%^RESET%^%^C144%^.%^CRST%^",
         })
     );
     set_menu_short(
         ({
-          "Fire Roasted Nuts",
-	      "Tharisian Dark Lager",
-	      "Verbonese Ale",
-	      "Traveler's Meal",
-   	      "Spit Turned Meat",
-	      "Cravnarian Wine",
-          "Mushroom Wine",
-          "Water",
+          "%^RESET%^%^C088%^F%^C124%^i%^C160%^r%^RESET%^%^C088%^e %^RESET%^%^C088%^r%^C124%^o%^C160%^a%^C196%^s%^C160%^t%^C124%^e%^RESET%^%^C088%^d %^RESET%^%^C094%^Nuts%^CRST%^",
+	      "%^RESET%^%^C241%^Tharisian %^RESET%^%^C240%^Dark Lager%^CRST%^",
+	      "%^RESET%^%^C130%^V%^C220%^e%^C226%^r%^C227%^b%^C228%^o%^C227%^n%^C226%^e%^C220%^s%^RESET%^%^C130%^e Ale%^CRST%^",
+	      "%^RESET%^%^C144%^Traveler's %^RESET%^%^C078%^M%^C079%^e%^C080%^a%^RESET%^%^C078%^l%^CRST%^",
+   	      "%^RESET%^%^C144%^Spit Turned %^RESET%^%^C088%^M%^C124%^e%^C160%^a%^C088%^t%^CRST%^",
+	      "%^RESET%^%^C088%^C%^C124%^r%^C160%^a%^C196%^v%^C160%^n%^C124%^a%^C088%^r%^C124%^i%^C160%^a%^RESET%^%^C124%^n Wine%^CRST%^",
+          "%^RESET%^%^C059%^M%^C102%^u%^C145%^s%^RESET%^%^C102%^h%^C059%^r%^RESET%^%^C102%^o%^C145%^o%^RESET%^%^C102%^m %^RESET%^%^C059%^W%^RESET%^%^C102%^i%^C145%^n%^RESET%^%^C059%^e%^CRST%^",
+          "%^RESET%^%^C039%^W%^C045%^a%^C051%^t%^C045%^e%^C039%^r%^CRST%^",
         })
     );
     set_menu_long(
         ({
-       "This is a small bowl of various nuts that are roast along with the meat on the spit.",
-       "This is a very dark, nearly black, brew famous to Tharis. It is so thick it doesn't even slosh in the glass, instead seeming to ooze.",
-       "This is the golden ale imported from the city of Verbone across the ocean.",
-       "This is a well packaged little meal made of more nutrious stuffs for the active traveler.",
-       "This is a grand hunk of sizzling, well spiced meat from the spit at the Turning Spit Tavern.",
+       "%^RESET%^%^C144%^This is a small %^RESET%^%^C015%^bowl %^RESET%^%^C144%^of various %^RESET%^%^C088%^r%^C124%^o%^C160%^a%^C196%^s%^C160%^t%^C124%^e%^RESET%^%^C088%^d %^RESET%^%^C094%^nuts %^RESET%^%^C144%^.",
+       "%^RESET%^%^C144%^This is a very dark, nearly %^RESET%^%^C240%^black%^RESET%^%^C144%^, brew famous to Tharis. It is so thick it doesn't even slosh in the glass, instead seeming to %^RESET%^%^C240%^o%^C241%^o%^C242%^z%^C243%^e%^RESET%^%^C144%^.%^CRST%^",
+       "%^RESET%^%^C144%^This is the %^RESET%^%^C136%^g%^C220%^o%^C226%^l%^C227%^d%^C220%^e%^RESET%^%^C136%^n ale %^RESET%^%^C144%^imported from the city of Verbobone.%^CRST%^",
+       "%^RESET%^%^C144%^This is a well packaged little meal made of more nutritious stuffs for the active traveler.%^CRST%^",
+       "%^RESET%^%^C144%^This is a grand hunk of sizzling, well spiced meat from the spit at the Turning Spit Tavern.",
        "This is a small glass of imported wine from the legendary ciy of Cravnari, the sister city to Tharis to the south of the mountains.",
        "Served in a perfectly clear, high stemmed glass with a delicately fluted bowl, this beverage appears to be rather strange; its deep purple coloration periodically shimmers as bubbles float to the surface, tickling the nose of any who inhale them.",
        "This glass of water isn't exactly crystal clear, tiny motes of something floating in the lukewarm liquid.",
