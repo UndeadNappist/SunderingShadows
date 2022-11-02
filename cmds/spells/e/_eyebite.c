@@ -22,7 +22,7 @@ void create() {
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS eyebite on TARGET");
     set_damage_desc("sickened, panicked and comatose");
-    set_description("With this spell, the caster imbues her eyes with dread power, glancing upon her enemies as she curses them. This curse works its worst on weaker enemies, paralyzing them in fear. The target creature may become sickened, panicked or even comatose. Effects stack as the power difference increases. A successful will save will negate the effect.");
+    set_description("With this spell, the caster imbues her eyes with dread power, glancing upon her enemies as she curses them. This curse works its worst on weaker enemies, paralyzing them in fear. The target creature may become sickened, panicked or even comatose. Effects stack as the power difference increases. A successful save will negate the effect.");
     set_save("fort");
     set_verbal_comp();
     set_somatic_comp();
