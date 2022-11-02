@@ -97,7 +97,7 @@ void create()
     set_damage(10, 20);
     set_base_damage_type("slashing");
 
-    set_property("weapon resistance", 0);
+    set_property("weapon resistance", 4);
     set_mob_magic_resistance("average");
     set_property("no death", 1);
     set_property("no knockdown", 1);
@@ -106,8 +106,8 @@ void create()
     set_property("no steal", 1);
     set_property("no dominate", 1);
     set_property("no hold", 1);
-    set_property("no paralyze", 0);
-    set_property("no stun", 0);
+    set_property("no paralyze", 1);
+    set_property("no stun", 1);
     set_property("no bows", 1);
 
     set_monster_feats(({
