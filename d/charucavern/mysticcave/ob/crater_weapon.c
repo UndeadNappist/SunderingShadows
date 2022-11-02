@@ -27,7 +27,7 @@ void create()
     set_weapon_prof(myOb->query_weapon_prof());
     set_weapon_speed(myOb->query_weapon_speed());
     set_critical_threat_range(myOb->query_critical_threat_range());
-    set_critical_hit_multiplier(myOb->query_criticial_hit_multiplier());
+    set_critical_hit_multiplier(myOb->query_critical_hit_multiplier());
     set_damage_type(myOb->query_damage_type());
     set_size(myOb->query_size());
     set_cointype("gold");
