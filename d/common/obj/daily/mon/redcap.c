@@ -40,6 +40,7 @@ void create(){
     set_property("hidden inventory", 1);
     set_property("function and attack", 1);
     set_property("darkvision", 1);
+    set_resistance_percent("cold iron", -50);
     set_emotes(20, ({ 
         "%^RESET%^%^CRST%^%^C208%^The redcap %^C202%^flexes %^C208%^his hands, each twitching finger tipped by %^C059%^sha%^C244%^rpe%^C250%^ned %^C255%^tal%^C250%^o%^C255%^ns%^C208%^.%^CRST%^",
         "%^RESET%^%^CRST%^%^C196%^Blood %^C208%^drips from the soaked fabric of the redcap's %^C124%^ha%^C125%^t%^C208%^.%^CRST%^", }), 0);
