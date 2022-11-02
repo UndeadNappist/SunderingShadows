@@ -21,8 +21,8 @@ void create()
 
     if(!query_property("enchantment")) set_property("enchantment", 3);
 
-    set_wc(1, myOb->query_wc());
-    set_large_wc(1, myOb->query_large_wc());
+    set_wc(myOb->query_wc_num(), myOb->query_wc_dice());
+    set_large_wc(myOb->query_large_wc_num(), myOb->query_large_wc_dice());
     set_type(myOb->query_type());
     set_weapon_prof(myOb->query_weapon_prof());
     set_weapon_speed(myOb->query_weapon_speed());
