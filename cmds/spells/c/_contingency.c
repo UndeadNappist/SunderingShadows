@@ -63,8 +63,8 @@ void spell_effect(int prof) {
   }
 
   foreach(myclass in caster->query_classes()) {
+      if (myclass == "monk" || myclass == "warlock" || myclass == "psion" || myclass == "psywarrior") continue;
       newtype = myclass;
-      if (newtype == "monk" || newtype == "warlock" || newtype == "psion" || newtype == "psywarrior") continue;
       if (newtype == "bard" || newtype == "sorcerer" || newtype == "oracle" || newtype == "magus" || newtype == "inquisitor") {
         improv = "level " + spell->query_spell_level(newtype);
         if (caster->can_memorize(newtype, improv) && member_array(orgSpell, caster->query_mastered_spells(newtype)) != -1) {
