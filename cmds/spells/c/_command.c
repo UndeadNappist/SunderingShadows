@@ -1,4 +1,5 @@
 #include <magic.h>
+#include <domination.h>
 
 inherit SPELL;
 
@@ -21,7 +22,7 @@ void create()
 
 void spell_effect()
 {
-    string targ, command;
+    string targ, command, *inputs;
 
     if(sscanf(arg,"%s to %s",targ,command)!=2)
     {
@@ -39,6 +40,14 @@ void spell_effect()
 
     if (!caster->ok_to_kill(target)) {
         if(objectp(TO)) TO->remove();
+        return;
+    }
+    
+    inputs = explode(command, " ");
+    if(member_array(inputs[0], NO_FORCE) >= 0)
+    {
+        tell_object(caster, "That is not a valid command.");
+        dest_effect();
         return;
     }
 

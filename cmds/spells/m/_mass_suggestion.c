@@ -1,4 +1,5 @@
 #include <magic.h>
+#include <domination.h>
 
 inherit SPELL;
 
@@ -22,7 +23,7 @@ void create()
 void spell_effect()
 {
     object *foes;
-    string my_name;
+    string my_name, *inputs;
 
     if(!stringp(arg))
         return;
@@ -32,6 +33,14 @@ void spell_effect()
     if(!sizeof(foes))
     {
         tell_object(caster, "There is no one here.");
+        return;
+    }
+
+    inputs = explode(arg, " ");
+    if(member_array(inputs[0], NO_FORCE) >= 0)
+    {
+        tell_object(caster, "That is not a valid command.");
+        dest_effect();
         return;
     }
     

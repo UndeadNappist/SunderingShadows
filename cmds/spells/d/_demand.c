@@ -1,5 +1,6 @@
 #include <magic.h>
 #include <daemons.h>
+#include <domination.h>
 
 inherit SPELL;
 
@@ -35,7 +36,7 @@ int preSpell()
 
 void spell_effect()
 {
-    string targ, command;
+    string targ, command, *inputs;
 
     if (sscanf(arg, "%s to %s", targ, command) != 2) {
         tell_object(caster, "<" + syntax + ">");
@@ -53,6 +54,14 @@ void spell_effect()
 
     if (!objectp(target)) {
         tell_object(caster, "%^BOLD%^%^RED%^The target of your power is not available!");
+        dest_effect();
+        return;
+    }
+    
+    inputs = explode(command, " ");
+    if(member_array(inputs[0], NO_FORCE) >= 0)
+    {
+        tell_object(caster, "That is not a valid command.");
         dest_effect();
         return;
     }
