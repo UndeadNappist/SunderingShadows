@@ -330,7 +330,7 @@ void fence(object fence, object item, object who)
     {
         item->clear_item_owners();
     }
-    save_item(item);
+    //save_item(item); modern fences don't recycle stolen goods
     item->move("/d/shadowgate/void");
     item->remove();
 }
