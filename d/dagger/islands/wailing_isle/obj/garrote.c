@@ -7,13 +7,15 @@
 
 inherit OBJECT;
 
+int DELAY = 120;
+
 void create() {
     ::create();
     set_name("garrote wire");
     set_id(({"garrote", "wire", "garrote wire"}));
     set_short("%^RESET%^%^CRST%^%^C101%^thin %^C244%^w%^C248%^i%^C244%^r%^C059%^e%^RESET%^%^C101%^ garrote%^CRST%^");
     set_long("%^RESET%^%^CRST%^%^C101%^A long loop of %^C244%^w%^C248%^i%^C244%^r%^C059%^e%^RESET%^%^C101%^ extends from a %^C136%^wooden handle%^C101%^, with a handful of the %^C244%^thin m%^C246%^e%^C248%^t%^C246%^a%^C244%^l cord%^RESET%^%^C101%^ protruding from the end. It has lots of tiny %^C124%^b%^C196%^ar%^C124%^b%^C196%^s %^RESET%^%^C101%^that catch within the handle, allowing the wire to be pulled and the loop tightened without permitting it to loosen. This could easily be used to %^C144%^<garrote> %^C101%^someone.%^CRST%^");
-    set_lore("these are used to choke the shit out of people");
+    set_lore("%^RESET%^%^CYAN%^A dirty tool for dirty jobs. Taking many forms, the garrote has found a home in the hands of rogues who need to deal with a mage quickly and quietly.%^RESET%^");
     set_property("lore difficulty",30);
     set_weight(2);
     set_value(5000);
@@ -56,6 +58,10 @@ int garrote_fun(string str){
         tell_object(player, "%^RESET%^%^CRST%^%^C059%^They are already being strangled!%^CRST%^");
         return 1;
     }
+    if(this_player()->cooldown("garrote use")){
+        tell_object(player, "%^RESET%^%^CRST%^%^059%^You cannot garrote someone so soon!%^CRST%^");
+        return 1;
+    }
     
     playername = player->query_cap_name();
     targetname = target->query_cap_name();
@@ -75,6 +81,9 @@ int garrote_fun(string str){
         garrote = new(OBJ"garrote_obj");
         garrote->move(target);
     }
+    
+    player->set_paralyzed(1, "%^RESET%^%^CRST%^%^C160%^You are busy garroting someone!%^CRST%^");
+    player->add_cooldown("garrote use", DELAY);
     this_object()->remove();
     return 1;
 }
