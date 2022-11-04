@@ -11,7 +11,8 @@ void create(){
     set_exits(([
                    "north":ROOMS+"/healer",
                    //"west":ROOMS+"/necro20",
-                   "west":"/d/islands/graez/rooms/swamp/18",
+                   //"west":"/d/islands/graez/rooms/swamp/18",
+                   "west":"/d/islands/graez/nurval/room/path3",
                    "south":ROOMS+"/bank",
                    "east":ROOMS+"/fountain",
                    ]));
