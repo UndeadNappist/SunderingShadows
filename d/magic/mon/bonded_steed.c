@@ -74,7 +74,7 @@ void init()
 
 int animal_command(string str)
 {
-    string *input;
+    string *input, compacted;
     
     if(this_player() != owner)
         return 0;
@@ -90,16 +90,18 @@ int animal_command(string str)
     switch(input[0])
     {
         case "short":
-        this_object()->set_short(implode(input[1..], " "));
+        compacted = implode(input[1..], " ");
+        this_object()->set_short(compacted);
         tell_object(this_player(), "Your Bonded Steed will now be seen as: \n" + query_short());
         rm(SAVEDIR + "short");
-        write_file(SAVEDIR + "short", query_short());
+        write_file(SAVEDIR + "short", compacted);
         break;
         case "long":
-        this_object()->set_long(implode(input[1..], " "));
+        compacted = implode(input[1..], " ");
+        this_object()->set_long(compacted);
         tell_object(this_player(), "Your Bonded Steed will now be described as: " + query_long());
         rm(SAVEDIR + "long");
-        write_file(SAVEDIR + "long", query_long());
+        write_file(SAVEDIR + "long", compacted);
         break;
         case "command":
         command(implode(input[1..], " "));

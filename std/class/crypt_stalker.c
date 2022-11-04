@@ -35,6 +35,7 @@ string requirements() // string version, maybe we'll need this, maybe not, can r
         "    20 Ranger levels\n"
         "    10 Ranks spent in Survival skill\n";
         "    Undead Favored Enemy\n";
+        "    16 Base Wisdom\n"
 
     return str;
 }
