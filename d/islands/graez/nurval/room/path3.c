@@ -16,8 +16,8 @@ void create(){
 
     set_exits(([
                    
-                   "east":"/d/islands/graez/nurval/room/tomb1"
-                   "west":"/d/islands/graez/nurval/room/path2"
+                   "east":"/d/islands/graez/nurval/room/tomb1",
+                   "west":"/d/islands/graez/nurval/room/path2",
                
                    ]));
  

@@ -15,10 +15,9 @@ void create(){
     set_listen("default","%^C244%^There is an unsettling quiet here.%^CRST%^");
 
     set_exits(([ 
-           
-                  
-                  "east":"/d/islands//graez/nurval/room/path3",
-                  "west":"/d/islands//graez/nurval/room/path1",
+            
+                  "east":"/d/islands/graez/nurval/room/path3",
+                  "west":"/d/islands/graez/nurval/room/path1",
                    ]));
 
 }
