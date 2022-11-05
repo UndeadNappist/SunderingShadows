@@ -231,7 +231,7 @@ int cmd_cast(string str)
             }
         }
     }
-    spell = str2;
+    spell = lower_case(str2);
     spell = MAGIC_D->expand_quick_name(spell);
     
     if(type == "druid" || type == "cleric")
