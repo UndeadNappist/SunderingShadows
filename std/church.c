@@ -355,7 +355,6 @@ int __Read_me(string str)
 %^MAGENTA%^The church performs the following tasks, most for a fee of course:%^RESET%^
 
   %^ORANGE%^<request symbol>%^RESET%^          Get a new holy symbol
-  %^ORANGE%^<new symbol>%^RESET%^              Receive a fancy holy symbol, if your temple has one
   %^ORANGE%^<recover>%^RESET%^                 Return your wedding ring
   %^ORANGE%^<identify curse on %^ORANGE%^%^ULINE%^ITEM%^RESET%^%^ORANGE%^>%^RESET%^  Will tell you if an item is cursed
   %^ORANGE%^<revoke curse from %^ORANGE%^%^ULINE%^ITEM%^RESET%^%^ORANGE%^>%^RESET%^  Will remove curses from an item, one level at a time
