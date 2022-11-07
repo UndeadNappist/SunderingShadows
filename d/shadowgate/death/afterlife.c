@@ -144,10 +144,10 @@ void create()
 		"living objects.  There are no trees, no grass, no water, nor earth.  "+
 		"Instead, it is a haze of nothingness where you have been sent while "+
 		"Lysara decides your fate.  Around you float the lost souls of others "+
-	    "awaiting their time in front of the Lord of the Dead, and the sheer numbers "+
+	    "awaiting their time in front of She Who Sees Beyond, and the sheer numbers "+
       	"of them give you a sinking feeling.  While here, you are able to think upon "+
 		"your life and decide what you have done that might be worthy of "+
-		"his good graces, for you know she holds your future in his hands.  "+
+		"her good graces, for you know she holds your future in her hands.  "+
 		"All you can do is sit here and hope that someone or something comes "+
 		"to plead your case so that you may be once again returned to the land "+
 		"of the living and to the things you care most for  You could "+

@@ -517,7 +517,7 @@ void do_death8(object tp){
                     break;
        case "ashra":  tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The whispers coalesce into a single, layered message: %^RESET%^%^C059%^My will has not yet been done. Radiance still pushes back the void, leaving my grasp wanting. Return my servant, that "+tp->QS+" can spread my shadows and darkness. Their service is not yet complete.%^CRST%^\n");
                     break;
-       case "edea":  tell_object(tp,"%^RESET%^%^CRST%^%^C144%^A voice, gentle and warm, speaks from the surrounding radiance: %^RESET%^%^C230%^It is not "+tp->QP+" fault, they were pushing the boundaries of the dark and feel. It is only in the light that life can blossom and bloom, and such sacrifice is noble... and should be rewarded. Grant my devoted chosen another chance.%^CRST%^\n");
+       case "edea":  tell_object(tp,"%^RESET%^%^CRST%^%^C144%^A voice, gentle and warm, speaks from the surrounding radiance: %^RESET%^%^C230%^It is not "+tp->QP+" fault, they were pushing at the boundaries of the dark. It is only in the light that life can blossom and bloom, and such sacrifice is noble... and should be rewarded. Grant my devoted chosen another chance.%^CRST%^\n");
                     break;
        case "khyron":  tell_object(tp,"%^CRST%^%^RESET%^%^C060%^A voice roars over the howling wind:%^RESET%^ "+capitalize(tp->QS)+" must continue to spread my might until all the world fears the coming storm! Release "+tp->QO+".%^CRST%^\n");
                     break;
