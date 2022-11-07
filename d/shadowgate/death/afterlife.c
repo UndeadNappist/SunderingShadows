@@ -147,7 +147,7 @@ void create()
 	    "awaiting their time in front of the Lord of the Dead, and the sheer numbers "+
       	"of them give you a sinking feeling.  While here, you are able to think upon "+
 		"your life and decide what you have done that might be worthy of "+
-		"his good graces, for you know he holds your future in his hands.  "+
+		"his good graces, for you know she holds your future in his hands.  "+
 		"All you can do is sit here and hope that someone or something comes "+
 		"to plead your case so that you may be once again returned to the land "+
 		"of the living and to the things you care most for  You could "+
