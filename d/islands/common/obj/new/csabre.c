@@ -19,12 +19,12 @@ void create()
     set_obvious_short("A %^BOLD%^%^CYAN%^cry%^RESET%^st%^BOLD%^%^CYAN%^al %^RESET%^sabre");
 
     set_long(
-        "%^BOLD%^%^CYAN%^This beautiful crystal bladed weapon is truly exquisite. The sabre's blade is made of solid crystal which "
+        "%^BOLD%^%^CYAN%^This beautiful crystal bladed weapon is truly exquisite. The sabre's blade is made of solid crystal that "
         "has been sharpened to a fine edge.  The pommel of the sword looks to be connected to the blade, as if it was a large piece "
-        "of crystal which has a crosspiece and handle fused around it. The pommel is in the image of a carved %^RESET%^%^ORANGE%^horse%^BOLD%^%^CYAN%^."
+        "of crystal that has a crosspiece and handle fused around it. The pommel is in the image of a carved %^RESET%^%^ORANGE%^horse%^BOLD%^%^CYAN%^."
         " The hilt of the blade is made out of a smooth %^BOLD%^%^WHITE%^mi%^RESET%^thr%^BOLD%^%^WHITE%^il %^BOLD%^%^CYAN%^metal."
         " Light and balanced, the sabre's handle is also made from solid mithril with the pommel of the blade extending from the bottom. The "
-        "handle is wrapped in a rough %^BOLD%^%^GREEN%^skin%^BOLD%^%^CYAN%^ of some kind which allows for a stronger grip.");
+        "handle is wrapped in a rough %^BOLD%^%^GREEN%^skin%^BOLD%^%^CYAN%^ of some kind, which allows for a stronger grip.");
 
     set("read", "%^BOLD%^%^WHITE%^Fast as ye maybe - Quicksilver will always bring the wrath of justice to the miscreants%^RESET%^");
     set("langage", "common");

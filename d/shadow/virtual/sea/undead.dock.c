@@ -23,8 +23,7 @@ void create()
         "dock. Right now ships are leaving and entering the dock by the "
         "dozen, many of them conducting business with the merchants of Graez."
         "The money is desperately needed to fund the war against the evil "
-        "Undead Lord, Kartakass. But that is a horrible story which we shall "
-        "not trouble you with now.");
+        "hordes of undead.");
 
     set_exits(([
         //"north"     :"/d/undead/rooms/town/street12",

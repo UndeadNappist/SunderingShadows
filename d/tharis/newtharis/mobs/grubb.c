@@ -39,12 +39,12 @@ void create() {
     set_your_mess(
         ({
           "%^RESET%^%^C144%^crunches on some %^RESET%^%^C094%^nuts%^RESET%^%^C144%^.%^CRST%^",
-	      "%^RESET%^%^C144%^pours the thick %^RESET%^%^C241%^dark brew %^RESET%^%^C144%^down "+TP->query_possessive()+" %^RESET%^%^C144%^gullet.%^CRST%^",
+	      "%^RESET%^%^C144%^pours the thick %^RESET%^%^C241%^dark brew %^RESET%^%^C144%^down their %^RESET%^%^C144%^gullet.%^CRST%^",
 	      "%^RESET%^%^C144%^drinks the %^RESET%^%^C136%^g%^C220%^o%^C226%^l%^C227%^d%^C220%^e%^RESET%^%^C136%^n ale %^RESET%^%^C144%^slowly.%^CRST%^",
 	      "%^RESET%^%^C144%^eats the sparse yet %^RESET%^%^C078%^h%^C079%^e%^C080%^a%^C081%^l%^C080%^t%^C079%^h%^C078%^y %^RESET%^%^C144%^looking meal.%^CRST%^",
           "%^RESET%^%^C144%^tears into the fragrant %^RESET%^%^C088%^m%^C124%^e%^C160%^a%^RESET%^%^C088%^t %^RESET%^%^C144%^fresh from the spit.%^CRST%^",
 	      "%^RESET%^%^C144%^gulps down the %^RESET%^%^C088%^r%^C124%^e%^C088%^d t%^RESET%^%^C124%^i%^C160%^n%^C124%^t%^C088%^e%^RESET%^%^C124%^d wine %^RESET%^%^C144%^.%^CRST%^",
-          "%^RESET%^%^C144%^inhales the delicate boquet, their eyes closing before they sip their %^RESET%^%^C005%^drink %^RESET%^%^C144%^daintily, savouring it with evident relish!%^CRST%^",
+          "%^RESET%^%^C144%^inhales the delicate bouquet, their eyes closing before they sip their %^RESET%^%^C005%^drink %^RESET%^%^C144%^daintily, savouring it with evident relish!%^CRST%^",
           "%^RESET%^%^C144%^gulps down the lukewarm %^RESET%^%^C039%^w%^C045%^a%^C051%^t%^C045%^e%^C039%^r%^RESET%^%^C144%^.%^CRST%^",
         })
     );
