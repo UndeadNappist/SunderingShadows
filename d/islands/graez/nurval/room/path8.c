@@ -4,7 +4,7 @@ void create(){
     ::create();
     set_name("Path through the mountains");
     set_short("%^RESET%^%^C059%^Path through the mountains%^CRST%^");
-    set_long("%^CRST%^This %^RESET%^%^C058%^path %^CRST%^ascends into the mountains that border the %^RESET%^%^C246%^z%^C248%^i%^C246%^g%^C244%^g%^RESET%^%^C246%^u%^RESET%^%^C248%^r%^RESET%^%^C250%^a%^RESET%^%^C246%^t%^CRST%^. The ground is hard-packed %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^RESET%^%^C094%^h%^CRST%^, %^RESET%^%^C241%^devoid %^CRST%^of any %^RESET%^%^C064%^vegetation%^CRST%^. To the southwest the path continues along the looming %^RESET%^%^C240%^walls%^CRST%^ and to the north, it leads up the %^RESET%^%^C059%^mountain%^CRST%^ where the entrance to a %^RESET%^%^C241%^cave %^CRST%^can be seen in the distance.%^CRST%^");
+    set_long("%^CRST%^The %^RESET%^%^C240%^wall %^CRST%^meets the %^RESET%^%^C059%^mountains %^CRST%^here. To the south the %^RESET%^%^C058%^path %^CRST%^continues along the looming %^RESET%^%^C240%^walls%^CRST%^ and to the north, it climbs toward the entrance of a %^RESET%^%^C241%^cave%^CRST%^.%^CRST%^");
     set_items(([
         "sky" : "%^RESET%^%^CRST%^The sky above is %^RESET%^%^C242%^c%^C246%^l%^C248%^o%^C241%^t%^C243%^t%^C245%^e%^C242%^d %^CRST%^with preternatural %^RESET%^%^C240%^darkness%^CRST%^.%^CRST%^",
         "walls": "%^RESET%^%^C244%^These towering walls are %^RESET%^%^C240%^coal-black stone%^RESET%^%^C244%^, a pair of imposing %^RESET%^%^C242%^gates %^RESET%^%^C244%^built into the westernmost side of the them, allowing access to the massive %^RESET%^%^C246%^z%^C248%^i%^C246%^g%^C244%^g%^RESET%^%^C246%^u%^RESET%^%^C248%^r%^RESET%^%^C250%^a%^RESET%^%^C246%^t%^RESET%^%^C244%^.%^CRST%^",
