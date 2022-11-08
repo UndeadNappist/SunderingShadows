@@ -2,7 +2,7 @@
 #include "../inherits/area_stuff.h"
 
 inherit OBJECT;
-int delay;
+int delay = 1800;
 object myRoom;
 
 void create()
@@ -40,13 +40,11 @@ void create()
     "portal is a mystery though, however, there is one obvious way to find "+
     "out and that is to %^BOLD%^%^CYAN%^crawl%^BOLD%^%^WHITE%^ into the door "+
     "and see what happens.%^RESET%^");
-    delay = 0;
-    set_heart_beat(1);
 }
 
 int is_invincible() { return 1; }
 
-void heart_beat()
+/*void heart_beat()
 {
     if(!objectp(TO)) return;
     if(!objectp(ETO)) return;
@@ -60,7 +58,7 @@ void heart_beat()
         "you can now crawl into it again!%^RESET%^");
     }
     return;
-}
+}*/
 
 void init()
 {
@@ -84,8 +82,7 @@ int entry_function(string what)
         ETO->send_paralyzed_message("info", ETO);
         return 1;
     }
-    if(delay)
-    {
+    if(this_player()->cooldown("item - portable door")){
         tell_object(ETO, "%^BOLD%^%^CYAN%^The door fails to respond to your urging "+
         "and you are unable to crawl into it!%^RESET%^");
         return 1;
@@ -109,7 +106,8 @@ int entry_function(string what)
     ETO->move(myRoom);
     ETO->force_me("look");
 	//upping to approximately every 30 minutes
-    delay = 900;
+    this_player()->add_cooldown("item - portable door", delay);
 
     return 1;
 }
+

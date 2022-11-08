@@ -107,7 +107,7 @@ void execute_feat()
         return;
     }
     
-    class_level = caster->query_guild_level("paladin");
+    class_level = caster->query_class_level("paladin");
     comp_hd = class_level + 2;
     comp_ac = class_level + 10;
     
