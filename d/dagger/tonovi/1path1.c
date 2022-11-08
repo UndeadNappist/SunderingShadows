@@ -11,12 +11,10 @@ void create(){
     set_terrain(GRASSLANDS);
     set_travel(DIRT_ROAD);
     set_property("light", 2);
-    //set_short("%^RESET%^%^CRST%^%^C255%^Outside a large inn%^CRST%^");
-    //set_long("%^RESET%^%^CRST%^%^C245%^A towering %^C059%^cathedral%^RESET%^%^C245%^ has been built to the northwest on the very crest of a hill. Oddly enough, the sound of %^C201%^dr%^C207%^u%^C201%^nk%^C207%^e%^C201%^n l%^C207%^au%^C201%^ght%^C207%^e%^C201%^r%^RESET%^%^C245%^ reaches your ears, and you realize this isn't a cathedral at all, but an inn. A %^C059%^%^sign%^RESET%^%^C245%^ hanging above the door proudly declares it to be %^RESET%^%^CRST%^%^C244%^\"T%^C243%^h%^C059%^e %^C196%^B%^C124%^lo%^C196%^od%^C124%^y %^RESET%^%^C124%^S%^C196%^co%^C124%^ur%^C196%^g%^C124%^e%^RESET%^ %^C244%^I%^C243%^n%^C059%^n\"%^RESET%^%^C245%^.%^CRST%^\n");
-    set_short("%^RESET%^%^CRST%^%^C255%^Outside a construction site%^CRST%^");
-    set_long("%^RESET%^%^CRST%^%^C101%^A framework rises up nearby, surrounded by piles of stone and lumber. Workers move about constantly, steadily rebuilding. %^C245%^A %^C059%^%^sign%^RESET%^%^C245%^ hanging above the door proudly declares it to be %^RESET%^%^CRST%^%^C244%^\"T%^C243%^h%^C059%^e %^C196%^B%^C124%^lo%^C196%^od%^C124%^y %^RESET%^%^C124%^S%^C196%^co%^C124%^ur%^C196%^g%^C124%^e%^RESET%^ %^C244%^I%^C243%^n%^C059%^n\"%^RESET%^%^C245%^.%^CRST%^\n");
+    set_short("%^RESET%^%^CRST%^%^C255%^Outside a large inn%^CRST%^");
+    set_long("%^RESET%^%^CRST%^%^C245%^A towering %^C059%^cathedral%^RESET%^%^C245%^ has been built to the northwest on the very crest of a hill. Oddly enough, the sound of %^C201%^dr%^C207%^u%^C201%^nk%^C207%^e%^C201%^n l%^C207%^au%^C201%^ght%^C207%^e%^C201%^r%^RESET%^%^C245%^ reaches your ears, and you realize this isn't a cathedral at all, but an inn. A %^C059%^%^sign%^RESET%^%^C245%^ hanging above the door proudly declares it to be %^RESET%^%^CRST%^%^C244%^\"T%^C243%^h%^C059%^e %^C196%^B%^C124%^lo%^C196%^od%^C124%^y %^RESET%^%^C124%^S%^C196%^co%^C124%^ur%^C196%^g%^C124%^e%^RESET%^ %^C244%^I%^C243%^n%^C059%^n\"%^RESET%^%^C245%^.%^CRST%^\n");
     set_smell("default", "%^RESET%^%^CRST%^%^C214%^There is a faint scent of liquor on the breeze.%^CRST%^");
-    //set_listen("default", "%^RESET%^%^CRST%^%^C126%^Laughter and drunken conversations spill out over the hills.%^CRST%^");
+    set_listen("default", "%^RESET%^%^CRST%^%^C126%^Laughter and drunken conversations spill out over the hills.%^CRST%^");
     set_items(([
         "hills" : "%^RESET%^%^CRST%^%^C156%^You are surrounded by these great majestic green monsters.%^CRST%^",
         "road" : "%^RESET%^%^CRST%^%^C244%^The new road here is just starting to get ruts in it, as is burns an ominous scar across the plains.%^CRST%^",
@@ -25,7 +23,7 @@ void create(){
         ]));
     set_exits( ([
         "north" : "/d/dagger/tonovi/1path2",
-        "inn" : "/d/player_houses/innaeli/rooms/bsb1",
+        "inn" : "/d/player_houses/innaeli/rooms/bar",
         "south" : "/d/dagger/road/road7",
         "northeast" : "/d/dagger/yniam/room/road1",
         ]));
