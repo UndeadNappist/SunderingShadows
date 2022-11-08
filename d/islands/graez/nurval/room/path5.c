@@ -4,7 +4,7 @@ void create(){
     ::create();
     set_name("Along the wall");
     set_short("%^RESET%^%^C241%^Along the wall%^CRST%^");
-    set_long("%^CRST%^This %^RESET%^%^C058%^path %^CRST%^runs parallel to the %^RESET%^%^C240%^walls %^CRST%^surrounding the massive %^RESET%^%^C246%^z%^C248%^i%^C246%^g%^C244%^g%^RESET%^%^C246%^u%^RESET%^%^C248%^r%^RESET%^%^C250%^a%^RESET%^%^C246%^t%^CRST%^. The ground is hard-packed %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^RESET%^%^C094%^h%^CRST%^, %^RESET%^%^C241%^devoid %^CRST%^of any %^RESET%^%^C064%^vegetation%^CRST%^. To the south is a set of imposing %^RESET%^%^C242%^gates%^CRST%^ and to the north, the path leads through the %^RESET%^%^C058%^foothills %^CRST%^and ascends into the %^RESET%^%^C059%^mountains%^CRST%^, where the entrance to a %^RESET%^%^C241%^cave %^CRST%^can be seen in the distance.%^CRST%^");
+    set_long("%^CRST%^This %^RESET%^%^C058%^path %^CRST%^runs parallel to the walls surrounding the massive %^RESET%^%^C246%^z%^C248%^i%^C246%^g%^C244%^g%^RESET%^%^C246%^u%^RESET%^%^C248%^r%^RESET%^%^C250%^a%^RESET%^%^C246%^t%^CRST%^. The ground is hard-packed %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^RESET%^%^C094%^h%^CRST%^, %^RESET%^%^C241%^devoid %^CRST%^of any %^RESET%^%^C064%^vegetation%^CRST%^. To the south the path continues along the looming %^RESET%^%^C240%^walls%^CRST%^ and to the northeast, it leads through the %^RESET%^%^C058%^foothills %^CRST%^and ascends into the %^RESET%^%^C059%^mountains%^CRST%^, where the entrance to a %^RESET%^%^C241%^cave %^CRST%^can be seen in the distance.%^CRST%^");
     set_items(([
         "sky" : "%^RESET%^%^CRST%^The sky above is %^RESET%^%^C242%^c%^C246%^l%^C248%^o%^C241%^t%^C243%^t%^C245%^e%^C242%^d %^CRST%^with preternatural %^RESET%^%^C240%^darkness%^CRST%^.%^CRST%^",
         "walls": "%^RESET%^%^C244%^These towering walls are %^RESET%^%^C240%^coal-black stone%^RESET%^%^C244%^, a pair of imposing %^RESET%^%^C242%^gates %^RESET%^%^C244%^built into the westernmost side of the them, allowing access to the massive %^RESET%^%^C246%^z%^C248%^i%^C246%^g%^C244%^g%^RESET%^%^C246%^u%^RESET%^%^C248%^r%^RESET%^%^C250%^a%^RESET%^%^C246%^t%^RESET%^%^C244%^.%^CRST%^",
@@ -15,8 +15,8 @@ void create(){
     set_listen("default","%^RESET%^%^C244%^There is an unsettling quiet here.%^CRST%^");
 
     set_exits(([
-                "north": "/d/islands/graez/nurval/room/path5",
-                "south": "/d/islands/graez/nurval/room/gates",
+                "northeast": "/d/islands/graez/nurval/room/path6",
+                "south": "/d/islands/graez/nurval/room/path4",
                    ]));
   
 }
