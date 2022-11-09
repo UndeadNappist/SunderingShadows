@@ -4,7 +4,7 @@ void create(){
     ::create();
     set_name("Path through the mountains");
     set_short("%^RESET%^%^C059%^Path through the mountains%^CRST%^");
-    set_long("%^CRST%^The %^RESET%^%^C058%^path %^CRST%^here travels through the %^RESET%^%^C059%^mountains%^CRST%^, large boulders balanced precariously on either side of the trail. To the south the %^RESET%^%^C058%^path %^CRST%^continues along the inside of the towering %^RESET%^%^C240%^walls%^CRST%^ while to the north it veers away from them, continuing to climb toward the entrance of a %^RESET%^%^C241%^cave%^CRST%^.%^CRST%^");
+    set_long("%^CRST%^The %^RESET%^%^C058%^path %^CRST%^here travels through the %^RESET%^%^C059%^mountains%^CRST%^, large %^RESET%^%^C245%^boulders %^CRST%^balanced precariously on top of the %^RESET%^%^C248%^r%^C245%^o%^C242%^c%^RESET%^%^C248%^k w%^RESET%^%^C246%^a%^C242%^l%^C243%^l%^RESET%^%^C248%^s %^CRST%^on either side of the trail. A short distance above you is the cave, a pair of stairs cut into the mountain to allow access to the entrance of a %^RESET%^%^C241%^cave%^CRST%^. To the south the path descends back toward the city walls and the massive ziggurat they protect.CRST%^");
     set_items(([
         "sky" : "%^RESET%^%^CRST%^The sky above is %^RESET%^%^C242%^c%^C246%^l%^C248%^o%^C241%^t%^C243%^t%^C245%^e%^C242%^d %^CRST%^with preternatural %^RESET%^%^C240%^darkness%^CRST%^.%^CRST%^",
         "walls": "%^RESET%^%^C244%^Even from this vantage point, the %^RESET%^%^C240%^cloak-black walls %^RESET%^%^C244%^enclosing the %^RESET%^%^C246%^z%^C248%^i%^C246%^g%^C244%^g%^RESET%^%^C246%^u%^RESET%^%^C248%^r%^RESET%^%^C250%^a%^RESET%^%^C246%^t%^RESET%^%^C244%^ are towering.%^CRST%^",
