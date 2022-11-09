@@ -27,7 +27,7 @@ void create(){
         "south" : "/d/dagger/road/road7",
         "northeast" : "/d/dagger/yniam/room/road1",
         ]));
-    set_door("cathedral door", "/d/player_houses/innaeli/rooms/bsb1", "inn", 0);
+    set_door("cathedral door", "/d/player_houses/innaeli/rooms/bar", "inn", 0);
     set_door_description("cathedral door", "%^RESET%^%^CRST%^%^C059%^The doors are made of thick stone that looks quite heavy. They can be swung open to create a grand entrance into the establishment. Each gray stone door has a centrally placed, large iron knocker, featuring the image of a laughing face although upon closer inspection it appears the mouth is parted into an anguished scream. How inviting!%^CRST%^");
 }
 
