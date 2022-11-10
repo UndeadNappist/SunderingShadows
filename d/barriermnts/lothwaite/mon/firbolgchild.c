@@ -1,4 +1,5 @@
 #include <std.h>
+#include <daemons.h>
 #include "../lothwaite.h"
 inherit MONSTER;
 

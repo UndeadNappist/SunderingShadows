@@ -12,7 +12,7 @@ void create(){
 void init(){
    ::init();
    set_name("crimson rose brooch");
-   set_short("%^RESET%^%^RED%^c%^BOLD%^%^RED%^ri%^RESET%^%^RED%^m%^BOLD%^%^RED%^so%^RESET%^%^RED%^n r%^BOLD%^%^RED%^os%^RESET%^%^RED%^e b%^BOLD%^%^RED%^ro%^RESET%^%^RED%^o%^BOLD%^%^RED%^c%^RESET%^%^RED%^h");
+   set_short("%^RESET%^%^RED%^c%^BOLD%^%^RED%^ri%^RESET%^%^RED%^m%^BOLD%^%^RED%^so%^RESET%^%^RED%^n r%^BOLD%^%^RED%^os%^RESET%^%^RED%^e b%^BOLD%^%^RED%^ro%^RESET%^%^RED%^o%^BOLD%^%^RED%^c%^RESET%^%^RED%^h%^RESET%^");
    set_long("%^BOLD%^%^WHITE%^Gleaming %^RESET%^%^RED%^rose-gold %^BOLD%^%^WHITE%^forms the basis of this brooch, polished to a %^YELLOW%^brilliant %^BOLD%^%^WHITE%^shine. Within the shape it "
 "outlines, of a beautiful %^RESET%^%^MAGENTA%^rose %^BOLD%^%^WHITE%^in bloom, %^RESET%^%^RED%^c%^BOLD%^%^RED%^ri%^RESET%^%^RED%^m%^BOLD%^%^RED%^so%^RESET%^%^RED%^n %^BOLD%^%^WHITE%^enamel has "
 "been used to give a vivid splash of color to its petals, while sparkling %^RESET%^%^GREEN%^e%^BOLD%^%^GREEN%^me%^RESET%^%^GREEN%^r%^BOLD%^%^GREEN%^al%^RESET%^%^GREEN%^d %^BOLD%^%^WHITE%^enamel "
