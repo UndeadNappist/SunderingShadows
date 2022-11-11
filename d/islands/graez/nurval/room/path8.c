@@ -4,6 +4,8 @@ void create(){
     ::create();
     set_name("Path through the mountains");
     set_short("%^RESET%^%^C059%^Path through the mountains%^CRST%^");
+    set_travel(PAVED_ROAD);
+    set_terrain(BUILT_TUNNEL);
     set_long("%^CRST%^Sheer %^RESET%^%^C248%^r%^C245%^o%^C242%^c%^RESET%^%^C248%^k w%^RESET%^%^C246%^a%^C242%^l%^C243%^l%^RESET%^%^C248%^s%^CRST%^ rise up along either side of the %^RESET%^%^C058%^path %^CRST%^here, which continues to climb toward the entrance of a %^RESET%^%^C241%^cave%^CRST%^. To the south the trail continues along the inside of the towering %^RESET%^%^C240%^walls%^CRST%^.%^CRST%^");
     set_items(([
         "sky" : "%^RESET%^%^CRST%^The sky above is %^RESET%^%^C242%^c%^C246%^l%^C248%^o%^C241%^t%^C243%^t%^C245%^e%^C242%^d %^CRST%^with preternatural %^RESET%^%^C240%^darkness%^CRST%^.%^CRST%^",
