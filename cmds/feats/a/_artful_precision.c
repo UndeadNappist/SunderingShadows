@@ -13,7 +13,7 @@ void create() {
 "The duelist carries this mantra with them wherever they go, seeking to "
 "end battles seemingly before they start. The duelist has mastered the art "
 "of striking their opponents in the most vulnerable spots. This feat adds "
-"additional damage to the duelist's opportunistic strikes.");
+"additional damage to the duelist's opportunistic strikes. In addition, the duelist adds their intelligence bonus to their swipe attack roll.");
     permanent(1);
     set_required_for(({}));
 }

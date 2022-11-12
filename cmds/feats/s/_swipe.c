@@ -154,7 +154,7 @@ void execute_feat()
 
 void execute_attack()
 {
-    int damage, timerz, i, DC;
+    int damage, timerz, i, DC, bonus;
     object* keyz, shape, * weapons, myweapon;
     mapping tempmap;
 
@@ -202,8 +202,13 @@ void execute_attack()
     if (sizeof(weapons)) {
         myweapon = weapons[0];
     }
+    
+    bonus = 0;
+    
+    if(FEATS_D->has_feat(caster, "artful precision"))
+        bonus += BONUS_D->query_stat_bonus(caster, "intelligence");
 
-    if (!thaco(target, 0, 1)) {
+    if (!thaco(target, bonus)) {
         tell_object(caster, "%^BOLD%^%^WHITE%^You miss your strike on " + target->QCN +
                     "%^BOLD%^%^WHITE%^!%^RESET%^");
         tell_object(target, caster->QCN + "%^BOLD%^%^WHITE%^ launches a precise strike at you, " +
