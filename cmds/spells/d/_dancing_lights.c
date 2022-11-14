@@ -32,8 +32,8 @@ void spell_effect(int prof)
         return;
     }
 
-    tell_object(caster, "%^BOLD%^%^WHITE%^Gleaming trails of l%^CYAN%^i%^WHITE%^gh%^YELLOW%^t %^WHITE%^spring into existance, following the motion of your fingertips!");
-    tell_room(place, "%^BOLD%^%^WHITE%^Gleaming trails of l%^CYAN%^i%^WHITE%^gh%^YELLOW%^t %^WHITE%^spring into existance, following the motion of " + caster->QCN + "'s fingertips!", caster);
+    tell_object(caster, "%^BOLD%^%^WHITE%^Gleaming trails of l%^CYAN%^i%^WHITE%^gh%^YELLOW%^t %^WHITE%^spring into existence, following the motion of your fingertips!");
+    tell_room(place, "%^BOLD%^%^WHITE%^Gleaming trails of l%^CYAN%^i%^WHITE%^gh%^YELLOW%^t %^WHITE%^spring into existence, following the motion of " + caster->QCN + "'s fingertips!", caster);
 
     level = clevel;
     ob = new("/d/magic/obj/dancinglights");

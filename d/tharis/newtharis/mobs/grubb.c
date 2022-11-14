@@ -26,7 +26,7 @@ void create() {
     );
     set_my_mess(
         ({
-       "%^RESET%^%^C144%^You crunch the %^RESET%^%^C088%^r%^C124%^o%^C160%^a%^C196%^s%^C160%^t%^C124%^e%^RESET%^%^C088%^d %^RESET%^%^C094%^nuts %^RESET%^%^C144%^as your chew.%^CRST%^",
+       "%^RESET%^%^C144%^You crunch the %^RESET%^%^C088%^r%^C124%^o%^C160%^a%^C196%^s%^C160%^t%^C124%^e%^RESET%^%^C088%^d %^RESET%^%^C094%^nuts %^RESET%^%^C144%^as you chew.%^CRST%^",
        "%^RESET%^%^C144%^You drink the extremely %^RESET%^%^C241%^dark lager %^RESET%^%^C144%^and feel it roll down your throat.%^CRST%^",
        "%^RESET%^%^C144%^You drink the %^RESET%^%^C136%^g%^C220%^o%^C226%^l%^C227%^d%^C220%^e%^RESET%^%^C136%^n ale %^RESET%^%^C144%^and wince at the slight bite it offers back.%^CRST%^",
        "%^RESET%^%^C144%^You eat the sparse but painfully %^RESET%^%^C078%^h%^C079%^e%^C080%^a%^C081%^l%^C080%^t%^C079%^h%^C078%^y %^RESET%^%^C144%^meal.%^CRST%^",
