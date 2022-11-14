@@ -3,6 +3,9 @@
 
 #include <std.h>
 #include <spell.h>
+
+#define DELAY 3600
+
 inherit SPELL;
 
 void create() {
@@ -13,7 +16,7 @@ void create() {
     set_syntax("cast CLASS resurrection on TARGET");
     set_description("Praying to their diety for a miracle, a priest can attempt to resurrect a slain ally back to life. The resurrection, if successful, will restore the corpse back to life and full of health. The spell is somewhat draining on the priest, for channeling large ammounts of divine power can be exhausting. The target will suffer significantly less from the death due to the intervention of the priest. Unlike lower spells, this spell will work on targets whose corpse is not present.
 
-This spell will not work on a victim of player kill, you must use raise dead or other such spells.
+This spell has a long cooldown.
 
 The TARGET must be the recognized name of the dead player or their corpse. You don't need to know the name to use this spell on a corpse.");
     set_verbal_comp();
@@ -77,11 +80,19 @@ spell_effect(int prof) {
         set_cast_string("%^CYAN%^"+caster->QCN+" prays to "+caster->QP+" "+
 		"deity to resurrect "+capitalize(arg)+".\n");
     }
+    if(caster->cooldown("resurrection"))
+    {
+        tell_object(caster, "You have to wait longer to use resurrection.");
+        dest_effect();
+        return;
+    }
+    /*
     if (targ->query("just_been_pkilled")) {
         tell_object(caster,capitalize(arg)+" is dead forever and can't be revived.");
         dest_effect();
         return;
     }
+    */
     if (!targ->query_ghost()) {
         tell_object(caster,capitalize(arg)+" does not need to be revived.");
         dest_effect();
@@ -108,6 +119,7 @@ spell_effect(int prof) {
     //targ->move_player(environment(caster));
 	//targ->set_hp(targ->query_max_hp());
 	caster->use_stamina(25);
+    caster->add_cooldown("resurrection", DELAY);
     dest_effect();
 }
 
