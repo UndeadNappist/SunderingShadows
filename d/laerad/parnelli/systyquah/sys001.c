@@ -27,14 +27,14 @@ void create(){
 	"south":"/d/laerad/parnelli/systyquah/sys002"
     ]) );
     set_pre_exit_functions( ({"south"}),({"go_south"}) );
-    set_heart_beat(1);
+    //set_heart_beat(1);
 }
 int go_south(){
     tell_object(TP,"You walk through the cities gates.");
     tell_room(ETO,""+TPQCN+" walks through the city gates.",TP);
     return 1;
 }
-void heart_beat(){
+/*void heart_beat(){
     ::heart_beat();
     people = users();
     i = sizeof(people);
@@ -79,4 +79,5 @@ void final_wave(){
     return 1;
 }
 void reset(){ return 1; }
-void clean_up(){ return 1; }
+void clean_up(){ return 1; }*/
+
