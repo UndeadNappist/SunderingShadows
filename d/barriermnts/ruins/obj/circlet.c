@@ -42,7 +42,7 @@ void init() {
 
 int wear_fun(){
    int modifier;
-   if((int)ETO->query_level() < 15) {
+   if((int)ETO->query_level() < 10) {
      tell_object(ETO,"%^WHITE%^%^BOLD%^You can't make sense of how to use the circlet!%^RESET%^");
      tell_room(EETO,"%^WHITE%^%^BOLD%^"+ETO->QCN+" can't seem to make sense of how to wear the circlet!%^RESET%^",ETO);
      return 0;

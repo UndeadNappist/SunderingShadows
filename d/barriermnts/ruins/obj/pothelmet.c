@@ -36,7 +36,7 @@ void create() {
 }
 
 int wear_fun() {
-   if((int)ETO->query_lowest_level() < 15) {
+   if((int)ETO->query_lowest_level() < 10) {
      tell_object(ETO,"%^BOLD%^%^WHITE%^You need more training to use this item!");
      tell_room(EETO,"%^BOLD%^%^WHITE%^"+ETO->QCN+" can't seem to figure out how to use the helmet.",ETO);
      return 0;

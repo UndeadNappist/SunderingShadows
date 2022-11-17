@@ -250,7 +250,7 @@ void heart_beat() {
                 "%^BOLD%^%^RED%^es%^RESET%^%^RED%^ in %^RESET%^%^ORANGE%^pain%^RESET%^%^RED%^ "
                 "as %^BOLD%^%^BLACK%^t%^RESET%^%^BLUE%^o%^BOLD%^%^BLACK%^rt%^RESET%^%^BLUE%^u%^BOLD%^%^BLACK%^%^red "
                 "s%^CYAN%^o%^BLACK%^uls%^RESET%^%^RED%^ "
-                "courses down "+TO->query_short()+"%^RESET%^",({ETO}));
+                "course down "+TO->query_short()+"%^RESET%^",({ETO}));
             break;
         case 2:
             tell_room(EETO,"%^BOLD%^%^WHITE%^The e%^BLACK%^c%^WHITE%^ho%^BLACK%^i%^WHITE%^ng of a "

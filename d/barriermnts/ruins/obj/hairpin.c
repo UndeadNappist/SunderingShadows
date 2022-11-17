@@ -49,7 +49,7 @@ void init(){
 }
 
 int wear_fun() {
-   if((int)ETO->query_lowest_level() < 15) {
+   if((int)ETO->query_lowest_level() < 10) {
      tell_object(ETO,"%^MAGENTA%^You can't seem to get the hairpin to stay in your hair.%^RESET%^");
      tell_room(EETO,"%^MAGENTA%^"+ETO->QCN+" can't seem to keep the hairpin secured in "+ETO->QP+" hair"
 ".%^RESET%^",ETO);

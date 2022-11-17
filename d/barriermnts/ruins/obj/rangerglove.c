@@ -76,7 +76,7 @@ void reset(){
 }
 
 int wear_fun(){
-   if((int)ETO->query_level() < 15) {
+   if((int)ETO->query_level() < 10) {
      tell_object(ETO,"%^BOLD%^%^WHITE%^You need more training to use these gloves!");
      tell_room(EETO,"%^BOLD%^%^WHITE%^"+ETO->QCN+" can't seem to figure out how to use the gloves.",ETO);
      return 0;

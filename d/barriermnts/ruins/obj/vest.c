@@ -32,11 +32,11 @@ void create() {
 }
 
 int wear_fun() {
-   if((string)ETO->query_gender() == "female") {
+   /*if((string)ETO->query_gender() == "female") {
      tell_object(ETO,"%^WHITE%^%^BOLD%^You realise by looking at the garment that it would not cover "
 "your chest at all, and you think better of wearing such a thing.");
      return 0;
-   }
+   }*/
    tell_object(ETO,"%^ORANGE%^You shrug the vest over each arm, lacing up the loose straps down the "
 "front.%^RESET%^");
    tell_room(EETO,"%^ORANGE%^"+ETO->QCN+" shrugs the vest over each of "+ETO->QP+" arms, and laces up the loose straps down the front.%^RESET%^",ETO);

@@ -45,7 +45,7 @@ void create() {
 
 int wield_fun(){
     int x;
-    if(ETO->query_highest_level() < 15) {
+    if(ETO->query_highest_level() < 10) {
         tell_object(ETO,"%^WHITE%^%^BOLD%^The katar repels your hand forcibly.%^RESET%^");
         return 0;
     }

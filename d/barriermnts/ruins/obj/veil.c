@@ -31,7 +31,7 @@ void create(){
 }
 
 int wear_fun(){
-   if((int)ETO->query_lowest_level() < 17) {
+   if((int)ETO->query_lowest_level() < 15) {
      tell_object(ETO,"%^BOLD%^%^WHITE%^You need more training to use this item!");
      tell_room(EETO,"%^BOLD%^%^WHITE%^The veil doesn't seem to fit "+ETO->QCN+".",ETO);
      return 0;

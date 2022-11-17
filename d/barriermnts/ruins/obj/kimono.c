@@ -33,7 +33,7 @@ void create() {
 }
 
 int wear_fun() {
-   if(ETO->query_highest_level() < 15) {
+   if(ETO->query_highest_level() < 10) {
      tell_object(ETO,"%^WHITE%^%^BOLD%^You can't figure out how to wear the beautiful garment.%^RESET%^");
      return 0;
    }
