@@ -27,11 +27,8 @@ void create(){
         "round_cleanup" }));
     set_property("no death", 1);
     set_property("no sleep", 1);
-    set_property("no fear", 1);
     set_property("fear_immunity", 1);
     set_property("no bows", 1);
-    set_property("no knockdown", 1);
-    set_property("no trip", 1);
     set_property("no tripped", 1);
     set_property("no paralyze", 1);
     set_property("no steal", 1);

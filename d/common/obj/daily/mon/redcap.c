@@ -26,11 +26,8 @@ void create(){
         "round_cleanup" }));
     set_property("no death", 1);
     set_property("no sleep", 1);
-    set_property("no fear", 1);
     set_property("fear_immunity", 1);
     set_property("no bows", 1);
-    set_property("no knockdown", 1);
-    set_property("no trip", 1);
     set_property("no tripped", 1);
     set_property("no paralyze", 1);
     set_property("no steal", 1);
@@ -109,7 +106,6 @@ void bloody_slash(){
             if(SAVING_THROW_D->reflex_save(targ, ((powerlevel * 15) + bloodthirst + handicap))){
                 tell_room(ETO, "%^RESET%^%^CRST%^%^C118%^"+targ->QCN+"%^RESET%^%^CRST%^%^C118%^ barely avoids the razor claws of the redcap!%^CRST%^\n", targ);
                 tell_object(targ, "%^RESET%^%^CRST%^%^C118%^You barely avoid the razor claws of the redcap!%^CRST%^\n");
-                targ->set_property("rend", 1);
                 bloodthirst++;
                 handicap++;
                 return;
