@@ -73,10 +73,10 @@ void spell_effect(int prof)
         tell_room(place, "%^C195%^" + peep->QCN + "'s eyes flinches as the %^C190%^bright light %^C195%^begins to cover them!%^RESET%^", peep);
 
         if (!do_save(peep)) {
-            damage_targ(peep, peep->return_peep_limb(), sdamage, "divine");
+            damage_targ(peep, peep->return_target_limb(), sdamage, "divine");
         } else {
             tell_object(peep, "%^C109%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
-            damage_targ(peep, peep->return_peep_limb(), sdamage / 2, "divine");
+            damage_targ(peep, peep->return_target_limb(), sdamage / 2, "divine");
         }
 
     }
