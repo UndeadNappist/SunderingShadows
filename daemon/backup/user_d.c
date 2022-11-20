@@ -221,7 +221,7 @@ int spend_pool(object ob, int amount, string pool_type)
 
     ob->set("available " + pool_type, avail);
 
-    ob->gmcp_update_character("resources", ([pool_type + "_pool": "" + avail, pool_type + "_pool_max": "" + (int)ob->query("maximum " + pool_type)]));
+    ob->gmcp_update_character_resources(([pool_type + "_pool": avail, pool_type + "_pool_max": (int)ob->query("maximum " + pool_type)]));
 
     return 1;
 }
@@ -343,7 +343,7 @@ varargs void regenerate_pool(object ob, int amount, int pass, string pool_type)
         ob->set("last " + pool_type + " regen", time() + delay);
     }
 
-    ob->gmcp_update_character("resources", ([pool_type + "_pool": "" + avail, pool_type + "_pool_max": "" + (int)ob->query("maximum " + pool_type)]));
+    ob->gmcp_update_character_resources(([pool_type + "_pool": avail, pool_type + "_pool_max": (int)ob->query("maximum " + pool_type)]));
 
     return;
 }
@@ -435,7 +435,7 @@ void init_pool(object ob, string pool_type)
     ob->set("available " + pool_type, avail);
     ob->set("maximum " + pool_type, newmax);
 
-    ob->gmcp_update_character("resources", ([pool_type + "_pool": "" + avail, pool_type + "_pool_max": "" + (int)ob->query("maximum " + pool_type)]));
+    ob->gmcp_update_character_resources(([pool_type + "_pool": avail, pool_type + "_pool_max": (int)ob->query("maximum " + pool_type)]));
 
     return;
 }
@@ -957,4 +957,4 @@ int is_pk_race_player(object ob)
     }
 
     return 0;
-}
+} 
