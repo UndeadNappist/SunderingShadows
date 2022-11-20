@@ -363,6 +363,8 @@ int confirm_add_type(string str, object ob, string feat, string extradata, strin
         tell_object(ob, "%^YELLOW%^Congratulations, you have successfully added "
             "the feat %^BLUE%^" + feat + "%^YELLOW%^!%^RESET%^");
         free = 0;
+        USER_D->init_pool(ob, "grace");
+        USER_D->init_pool(ob, "arcana");
         return 1;
     }
     else {
@@ -380,6 +382,8 @@ int confirm_add_type(string str, object ob, string feat, string extradata, strin
         tell_object(ob, "%^YELLOW%^Congratulations, you have successfully added "
             "the bonus " + feattype + " feat %^BLUE%^" + feat + "%^YELLOW%^!%^RESET%^");
         free = 0;
+        USER_D->init_pool(ob, "grace");
+        USER_D->init_pool(ob, "arcana");
         return 1;
     }
 }
