@@ -80,7 +80,10 @@ void execute_feat()
         obj = query_active_feat("spell combat");
         tell_object(caster,cm("You release your concentration."));
         obj->dest_effect();
-        caster->gmcp_update_character_resources(([ "spell_combat": 0 ]));
+        if (userp(caster))
+        {
+            caster->gmcp_update_character("resources", ([ "spell_combat": 0 ]));
+        }
         return;
     }
     ::execute_feat();
@@ -88,7 +91,10 @@ void execute_feat()
     tell_object(caster,cm("You combine your magical ability and martial prowess."));
     caster->set_property("active_feats",({TO}));
     caster->set_property("magus cast", 1);
-    caster->gmcp_update_character_resources(([ "spell_combat": 1 ]));
+    if (userp(caster))
+    {
+        caster->gmcp_update_character("resources", ([ "spell_combat": 1 ]));
+    }
     
     return;
 }
@@ -104,7 +110,7 @@ void dest_effect()
         tell_object(caster,"%^BOLD%^%^BLUE%^Your concentration fades.");
     }
 
-    me->gmcp_update_character_resources(([ "spell_combat": 0 ]));
+    me->gmcp_update_character("resources", ([ "spell_combat": 0 ]));
 
     ::dest_effect();
     remove_feat(me);

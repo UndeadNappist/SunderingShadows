@@ -69,7 +69,10 @@ object setup_inspiration(object mycaster, int myclevel, string inspiration)
     if (inspiration == "nothing") {
         if (objectp(inspiration)) {
             inspiration->remove();
-            mycaster->gmcp_update_character_resources(([ "inspiration": "Nothing" ]));
+            if (userp(mycaster))
+            {
+                mycaster->gmcp_update_character("resources", ([ "inspiration": "Nothing" ]));
+            }
         }
 
         return 0;
@@ -103,7 +106,7 @@ void activate_inspiration(object mycaster, int myclevel, string inspiration)
 
     allies_watch();
 
-    caster->gmcp_update_character_resources(([ "inspiration": inspiration ]));
+    caster->gmcp_update_character("resources", ([ "inspiration": inspiration ]));
 }
 
 void change_inspiration(string inspiration)

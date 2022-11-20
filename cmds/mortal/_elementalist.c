@@ -37,13 +37,19 @@ int cmd_elementalist(string str)
       case "reset":
       if(me->query("elementalist")) me->delete("elementalist");
       tell_object(me, "%^BOLD%^%^WHITE%^Your spells will now all be cast as their default elements.%^RESET%^");
-      me->gmcp_update_character_resources(([ "elementalist": "none" ]));
+      if (userp(me))
+      {
+        me->gmcp_update_character("resources", ([ "elementalist": "none" ]));
+      }
       break;
 
       default:
       me->set("elementalist",str);
       tell_object(me, "%^BOLD%^%^WHITE%^All of your elemental spells will now be cast as "+str+".%^RESET%^");
-      me->gmcp_update_character_resources(([ "spell_combat": str ]));
+      if (userp(me))
+      {
+        me->gmcp_update_character("resources", ([ "elementalist": str ]));
+      }
       break;
     }
     return 1;

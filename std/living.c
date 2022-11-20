@@ -416,7 +416,11 @@ void heart_beat()
         {
             set_condition(query_max_stamina());
         }
-        me->gmcp_update_character_vitals(([ "stamina": query_max_stamina() - used_stamina, "max_stamina": query_max_stamina() ]));
+
+        if (userp(me))
+        {
+            me->gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
+        }
     }
 
     if (!(living_ticker % 3))
@@ -1037,7 +1041,11 @@ int calculate_healing()
                 if (healing["bloodlust"] < 0) {
                     healing["bloodlust"] = 0;
                 }
-                me->gmcp_update_character_vitals(([ "bloodlust": healing["bloodlust"] ]));
+
+                if (userp(me))
+                {
+                    me->gmcp_update_character("survival", ([ "bloodlust": "" + healing["bloodlust"] ]));
+                }
             }
         }
     }
@@ -1047,7 +1055,10 @@ int calculate_healing()
         add_poisoning(-1);
     }
 
-    me->gmcp_update_character_survival(([ "intox": healing["intox"], "hunger": healing["stuffed"], "thirst": healing["quenched"] ]));
+    if (userp(me))
+    {
+        me->gmcp_update_character("survival", ([ "intox": "" + healing["intox"], "hunger": "" + healing["stuffed"], "thirst": "" + healing["quenched"] ]));
+    }
 
     return query_intox() + query_stuffed() + query_quenched();
 }
@@ -1218,6 +1229,8 @@ void set_alignment(int x)
 
 int add_intox(int x)
 {
+    object me = this_object();
+
     if (x > 0)
     {
         x = x * 3 + x / 2;
@@ -1232,13 +1245,17 @@ int add_intox(int x)
         healing["intox"] = 0;
     }
 
-    this_object()->gmcp_update_character_survival(([ "intox": healing["intox"] ]));
+    if (userp(me))
+    {
+        me->gmcp_update_character("survival", ([ "intox": "" + healing["intox"] ]));
+    }
 
     return 1;
 }
 
 int add_stuffed(int x)
 {
+    object me = this_object();
     if (x > 0)
     {
         x = x * 250;
@@ -1260,7 +1277,10 @@ int add_stuffed(int x)
         healing["stuffed"] = 0;
     }
 
-    this_object()->gmcp_update_character_survival(([ "hunger": healing["stuffed"] ]));
+    if (userp(me))
+    {
+        me->gmcp_update_character("survival", ([ "hunger": "" + healing["stuffed"] ]));
+    }
 
     return 1;
 }
@@ -1273,15 +1293,22 @@ int set_stuffed(int x)
 
 int set_quenched(int x)
 {
+    object me = this_object();
+
     healing["quenched"] = x;
 
-    this_object()->gmcp_update_character_survival(([ "thirst": healing["quenched"] ]));
+    if (userp(me))
+    {
+        me->gmcp_update_character("survival", ([ "thirst": "" + healing["quenched"] ]));
+    }
 
     return 1;
 }
 
 int add_quenched(int x)
 {
+    object me = this_object();
+
     if (x > 0)
     {
         x = x * 250;
@@ -1303,7 +1330,10 @@ int add_quenched(int x)
         healing["quenched"] = 0;
     }
 
-    this_object()->gmcp_update_character_survival(([ "thirst": healing["quenched"] ]));
+    if (userp(me))
+    {
+        me->gmcp_update_character("survival", ([ "thirst": "" + healing["quenched"] ]));
+    }
 
     return 1;
 }
@@ -1328,7 +1358,10 @@ int add_bloodlust(int x)
         healing["bloodlust"] = 0;
     }
 
-    me->gmcp_update_character_vitals(([ "bloodlust": healing["bloodlust"] ]));
+    if (userp(me))
+    {
+        me->gmcp_update_character("survival", ([ "bloodlust": "" + healing["bloodlust"] ]));
+    }
 
     return 1;
 }
@@ -2349,11 +2382,16 @@ void increment_stamina(int x)
         used_stamina = query_max_stamina();
     }
 
-    me->gmcp_update_character_vitals(([ "stamina": query_max_stamina() - used_stamina, "max_stamina": query_max_stamina() ]));
+    if (userp(me))
+    {
+        me->gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
+    }
 }
 
 void use_stamina(int x)
 {
+    object me = this_object();
+
     if (!x)
     {
         x = 1;
@@ -2364,7 +2402,10 @@ void use_stamina(int x)
     //Saide - June 2016
     increment_stamina(x);
 
-    this_object()->gmcp_update_character_vitals(([ "stamina": query_max_stamina() - used_stamina, "max_stamina": query_max_stamina() ]));
+    if (userp(me))
+    {
+        me->gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
+    }
 }
 
 void continue_attack()
@@ -2396,16 +2437,26 @@ int query_used_stamina()
 
 void reset_condition()
 {
+    object me = this_object();
+
     used_stamina = 0;
 
-    this_object()->gmcp_update_character_vitals(([ "stamina": query_max_stamina() - used_stamina, "max_stamina": query_max_stamina() ]));
+    if (userp(me))
+    {
+        me->gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
+    }
 }
 
 void set_condition(int x)
 {
+    object me = this_object();
+
     used_stamina = x;
 
-    this_object()->gmcp_update_character_vitals(([ "stamina": query_max_stamina() - used_stamina, "max_stamina": query_max_stamina() ]));
+    if (userp(me))
+    {
+        me->gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));   
+    }
 }
 
 int query_condition()

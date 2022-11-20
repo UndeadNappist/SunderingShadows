@@ -346,7 +346,7 @@ void add_hp(int x)
 
     if (userp(me))
     {
-        me->gmcp_update_character_vitals(([ "cur_hp": query_hp(), "max_hp": query_max_hp() ]));
+        me->gmcp_update_character("vitals", ([ "hp": query_hp(), "max_hp": query_max_hp() ]));
     }
 }
 
@@ -366,7 +366,7 @@ void set_max_mp(int x)
 
     if (userp(me))
     {
-        this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
+        this_object()->gmcp_update_character("resources", ([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
     }
 }
 
@@ -402,7 +402,7 @@ void set_mp(int x)
 
     if (userp(me))
     {
-        this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
+        this_object()->gmcp_update_character("resources", ([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
     }
 }
 
@@ -426,7 +426,7 @@ void add_mp(int x)
 
     if (userp(me))
     {
-        this_object()->gmcp_update_character_resources(([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
+        this_object()->gmcp_update_character("resources", ([ "psion_mp": magic["points"], "psion_max_mp": magic["max points"] ]));
     }
 }
 
@@ -1367,7 +1367,7 @@ int do_damage(string limb, int damage)
 
     if (userp(me))
     {
-        me->gmcp_update_character_vitals(([ "cur_hp": query_hp(), "max_hp": query_max_hp() ]));
+        me->gmcp_update_character("vitals", ([ "hp": query_hp(), "max_hp": query_max_hp() ]));
     }
 
     return damage;
@@ -2678,7 +2678,7 @@ void add_exp(int x)
         {
             if (userp(me))
             {
-                me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+                me->gmcp_update_character("vitals", ([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
             }
 
             return;
@@ -2694,7 +2694,7 @@ void add_exp(int x)
 
         if (userp(me))
         {
-            me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+            me->gmcp_update_character("vitals", ([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
         }
 
         return;
@@ -2704,7 +2704,7 @@ void add_exp(int x)
 
     if (userp(me))
     {
-        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        me->gmcp_update_character("vitals", ([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
     }
 }
 
@@ -2734,7 +2734,7 @@ void set_exp(int x)
         
         if (userp(me))
         {
-            me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+            me->gmcp_update_character("vitals", ([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
         }
 
         return;
@@ -2751,7 +2751,7 @@ void set_exp(int x)
 
     if (userp(me) && me->query_race() != "unborn")   // If anyone can tell me why I need to do this or character creation will break, I would blow you a kiss.  // Spade
     {
-        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        me->gmcp_update_character("vitals", ([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
     }
 }
 
@@ -2769,7 +2769,7 @@ void set_general_exp(string type, int x)
 
         if (userp(me))
         {
-            me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+            me->gmcp_update_character("vitals", ([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
         }
 
         return;
@@ -2787,7 +2787,7 @@ void set_general_exp(string type, int x)
 
     if (userp(me))
     {
-        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        me->gmcp_update_character("vitals", ([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
     }
 }
 
@@ -2805,7 +2805,7 @@ void add_general_exp(string type, int x)
 
         if (userp(me))
         {
-            me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+            me->gmcp_update_character("vitals", ([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
         }
 
         return;
@@ -2823,7 +2823,7 @@ void add_general_exp(string type, int x)
 
     if (userp(me))
     {
-        me->gmcp_update_character_vitals(([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
+        me->gmcp_update_character("vitals", ([ "xp_tnl": total_exp_for_level(me->query_adjusted_character_level() + 1) - me->query_exp() ]));
     }
 }
 

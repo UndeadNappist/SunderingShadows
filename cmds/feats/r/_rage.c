@@ -127,7 +127,11 @@ void execute_feat()
 
     ::execute_feat();
 
-    caster->gmcp_update_character_resources(([ "raging": 1 ]));
+    if (userp(caster))
+    {
+        caster->gmcp_update_character("resources", ([ "raging": 1 ]));
+    }
+    
     return;
 }
 
@@ -407,7 +411,7 @@ void dest_effect()
         }
     }
 
-    this_object()->gmcp_update_character_resources(([ "raging": 0 ]));
+    this_object()->gmcp_update_character("resources", ([ "raging": 0 ]));
 
     ::dest_effect();
     remove_feat(TO);

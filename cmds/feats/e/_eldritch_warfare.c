@@ -112,7 +112,10 @@ void execute_feat()
     caster->set_property("cast and attack",1);
     caster->set_property("warfare type", arg);
 
-    caster->gmcp_update_character_resources(([ "eldritch essence": arg ]));
+    if (userp(caster))
+    {
+        caster->gmcp_update_character("resources", ([ "eldritch warfare": arg ]));
+    }
 
     return;
 }
@@ -128,7 +131,7 @@ void dest_effect()
         tell_object(caster,"%^BOLD%^%^BLUE%^Your concentration on eldritch warfare fades.");
     }
 
-    me->gmcp_update_character_resources(([ "eldritch warfare": "None" ]));
+    me->gmcp_update_character("resources", ([ "eldritch warfare": "None" ]));
 
     ::dest_effect();
     remove_feat(me);
