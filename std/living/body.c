@@ -903,6 +903,7 @@ int query_resistance(string res)
 int query_resistance_percent(string res, object source)
 {
     int mod = 0;
+    int total = 0;
 
     if (!valid_resistance(res)) {
         return 0;
@@ -1152,9 +1153,9 @@ int query_resistance_percent(string res, object source)
     if(TO->query_property("prismatic sphere"))
         mod = 100;
     
-    mod = mod > MAX_RESIST_PERCENT ? MAX_RESIST_PERCENT : mod;
-
-    return resistances["resistance percents"][res] + mod;
+    total = resistances["resistance percents"][res] + mod;
+    
+    return total > MAX_RESIST_PERCENT ? MAX_RESIST_PERCENT : total;
 }
 
 void set_resistances(mapping map)
