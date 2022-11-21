@@ -167,7 +167,7 @@ void receive_given_item(object ob){
         
         xp_reward = exp_for_level(player->query_level() + 1) / 8;
         player->add_exp(xp_reward);
-        tell_object(player, "\n%^RESET%^%^CRST%^%^C045%^You have gained "+xp_reward+" xp.%^CRST%^\n");
+        tell_object(player, "\n%^RESET%^%^CRST%^%^C045%^You have gained some experience.%^CRST%^\n");
         return 1;
     }
     if((ob->id("bloodstained hook")) && (quest == 3)) {
@@ -184,7 +184,7 @@ void receive_given_item(object ob){
         
         xp_reward = exp_for_level(player->query_level() + 1) / 8;
         player->add_exp(xp_reward);
-        tell_object(player, "\n%^RESET%^%^CRST%^%^C045%^You have gained "+xp_reward+" xp.%^CRST%^\n");
+        tell_object(player, "\n%^RESET%^%^CRST%^%^C045%^You have gained some experience.%^CRST%^\n");
         return 1;
     }
     if((ob->id("shiny chain")) && (quest == 4)) {
@@ -201,7 +201,7 @@ void receive_given_item(object ob){
         
         xp_reward = exp_for_level(player->query_level() + 1) / 8;
         player->add_exp(xp_reward);
-        tell_object(player, "\n%^RESET%^%^CRST%^%^C045%^You have gained "+xp_reward+" xp.%^CRST%^\n");
+        tell_object(player, "\n%^RESET%^%^CRST%^%^C045%^You have gained some experience.%^CRST%^\n");
         return 1;
     }
     if((ob->id("Duel")) && (quest == 5)) {
@@ -218,7 +218,7 @@ void receive_given_item(object ob){
         
         xp_reward = exp_for_level(player->query_level() + 1) / 8;
         player->add_exp(xp_reward);
-        tell_object(player, "\n%^RESET%^%^CRST%^%^C045%^You have gained "+xp_reward+" xp.%^CRST%^\n");
+        tell_object(player, "\n%^RESET%^%^CRST%^%^C045%^You have gained some experience.%^CRST%^\n");
         return 1;
     }
     
