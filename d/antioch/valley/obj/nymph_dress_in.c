@@ -31,7 +31,7 @@ void create()
 		"ache when you let it go.  It is exquisitely made and "+
 		"you can't even find any seams on it.  The strapless "+
 		"gown is tailored to fit tight against the torso, and"+
-		" flows smoothly to the down.  The hem of the dress "+
+		" flows smoothly down.  The hem of the dress "+
 		"rises up in the front in a crescent shape before "+
 		"dipping back down in the back to form a small train."+
 		"  The shape of the hem provides a freedom in movement."+

@@ -122,8 +122,11 @@ void spell_effect(int prof)
         if(!objectp(ob))
             continue;
 
-        if(!do_save(foes[i], 0))
+        if(!do_save(foes[i], 0)){
+            tell_room(place, ""+mycolor+ob->query_cap_name()+mycolor+" is caught in the blast of the impact!%^CRST%^", ({ ob }));
+            tell_object(ob, ""+mycolor+"You are caught in the blast of the impact!%^CRST%^");
             ob->cause_typed_damage(ob, ob->return_target_limb(), sdamage, element);
+        }
         else
         {
             tell_room(place, ""+mycolor+ob->query_cap_name()+mycolor+" jumps for cover, avoiding some of the damage!%^CRST%^", ({ ob }));
