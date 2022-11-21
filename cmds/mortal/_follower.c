@@ -402,11 +402,11 @@ int cmd_follower(string raw_arguments)
                 continue;
             }
 
-            if (sizeof(controller) == player->query_skill("influence") / 10)
+            /*if (sizeof(controller) == player->query_skill("influence") / 10)
             {
                 tell_object(player, "%^C030%^You simply cannot coordinate a larger group than you currently lead.");
                 continue;
-            }
+            }*/
 
             if (!mapp(retinue[target_follower_key]))
             {
