@@ -3,7 +3,6 @@
 
 inherit "/d/common/obj/armour/chain.c";
 
-
 void create()
 {
     ::create();
@@ -81,6 +80,8 @@ void create()
     set_property("quest required", "%^BOLD%^%^RED%^Defeated the great red wyrm Klauth!%^RESET%^");
     set_property("level required", 35);
 }
+
+int is_metal() { return 0; }
 
 int wear_func()
 {
