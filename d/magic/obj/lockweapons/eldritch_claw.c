@@ -117,7 +117,7 @@ void special_tier2(object wielder,object victim) {
     tell_object(victim,"%^RESET%^%^MAGENTA%^"+wielder->QCN+"'s claw f%^BOLD%^%^MAGENTA%^l%^RESET%^%^MAGENTA%^as%^BOLD%^%^WHITE%^h%^BOLD%^%^MAGENTA%^e%^RESET%^%^MAGENTA%^s brightly as it shreds your flesh!%^RESET%^");
     tell_room(environment(wielder),"%^RESET%^%^MAGENTA%^The claw f%^BOLD%^%^MAGENTA%^l%^RESET%^%^MAGENTA%^as%^BOLD%^%^WHITE%^h%^BOLD%^%^MAGENTA%^e%^RESET%^%^MAGENTA%^s brightly as it shreds "+victim->QCN+"'s flesh!%^RESET%^",({wielder,victim}));
     TO->set_property("magic",1);
-    victim->do_damage(victim->return_target_limb(),roll_dice(tier,6)+2);
+    victim->do_damage(victim->return_target_limb(),roll_dice(tier * 2,6) + 2);
     TO->remove_property("magic");
 }
 
@@ -126,7 +126,7 @@ void special_tier4(object wielder,object victim) {
     tell_object(victim,"%^RESET%^%^MAGENTA%^E%^BOLD%^%^MAGENTA%^n%^RESET%^%^MAGENTA%^e%^BOLD%^%^WHITE%^r%^BOLD%^%^MAGENTA%^g%^RESET%^%^MAGENTA%^y surges through "+wielder->QCN+"'s claw as it plunges into you!%^RESET%^");
     tell_room(environment(wielder),"%^RESET%^%^MAGENTA%^E%^BOLD%^%^MAGENTA%^n%^RESET%^%^MAGENTA%^e%^BOLD%^%^WHITE%^r%^BOLD%^%^MAGENTA%^g%^RESET%^%^MAGENTA%^y surges through "+wielder->QCN+"'s claw as it plunges into "+victim->QCN+"!%^RESET%^",({wielder,victim}));
     TO->set_property("magic",1);
-    victim->do_damage(victim->return_target_limb(),roll_dice(tier,10)+2);
+    victim->do_damage(victim->return_target_limb(),roll_dice(tier * 2,10) + 2);
     TO->remove_property("magic");
 }
 

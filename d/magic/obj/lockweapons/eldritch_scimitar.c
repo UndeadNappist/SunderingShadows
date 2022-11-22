@@ -143,7 +143,7 @@ void special_tier2(object wielder, object victim)
     tell_object(victim, "%^RESET%^%^CYAN%^" + wielder->QCN + "'s scimitar f%^BOLD%^%^CYAN%^l%^BOLD%^%^WHITE%^a%^RESET%^%^CYAN%^sh%^BOLD%^%^CYAN%^e%^RESET%^%^CYAN%^s %^RESET%^%^CYAN%^brightly as it slices into you!%^RESET%^");
     tell_room(environment(wielder), "%^RESET%^%^CYAN%^The scimitar f%^BOLD%^%^CYAN%^l%^BOLD%^%^WHITE%^a%^RESET%^%^CYAN%^sh%^BOLD%^%^CYAN%^e%^RESET%^%^CYAN%^s %^RESET%^%^CYAN%^brightly as it slices into " + victim->QCN + "!%^RESET%^", ({ wielder, victim }));
     TO->set_property("magic", 1);
-    victim->do_damage(victim->return_target_limb(), roll_dice(tier, 6) + 2);
+    victim->do_damage(victim->return_target_limb(), roll_dice(tier * 2, 6) + 2);
     TO->remove_property("magic");
 }
 
@@ -153,7 +153,7 @@ void special_tier4(object wielder, object victim)
     tell_object(victim, "%^RESET%^%^CYAN%^E%^BOLD%^%^CYAN%^n%^RESET%^%^CYAN%^e%^BOLD%^%^WHITE%^r%^BOLD%^%^CYAN%^g%^RESET%^%^CYAN%^y races the length of " + wielder->QCN + "'s scimitar as it rends flesh and bone!%^RESET%^");
     tell_room(environment(wielder), "%^RESET%^%^CYAN%^E%^BOLD%^%^CYAN%^n%^RESET%^%^CYAN%^e%^BOLD%^%^WHITE%^r%^BOLD%^%^CYAN%^g%^RESET%^%^CYAN%^y races the length of " + wielder->QCN + "'s scimitar as it rends " + victim->QCN + "'s flesh and bones!%^RESET%^", ({ wielder, victim }));
     TO->set_property("magic", 1);
-    victim->do_damage(victim->return_target_limb(), roll_dice(tier, 10) + 2);
+    victim->do_damage(victim->return_target_limb(), roll_dice(tier * 2, 10) + 2);
     TO->remove_property("magic");
 }
 
