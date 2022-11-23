@@ -25,9 +25,9 @@ void create() {
     set_name("Clinic");
 }
 
-void reset(){
+/*void reset(){
   ::reset();
   if(!present("healer")){
   new(MOBS"healer")->move(TO);
   }
-}
+}*/

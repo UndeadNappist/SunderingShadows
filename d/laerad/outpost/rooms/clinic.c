@@ -28,10 +28,10 @@ void create()
   ]));
 }
 
-void reset(){
+/*void reset(){
   ::reset();
   if(!present("alexandia")){ new(MOBS"healer")->move(TO);}
   set_name("alexandia");
-  }
+  }*/
 
   

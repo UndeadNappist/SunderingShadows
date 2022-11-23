@@ -47,7 +47,7 @@ void create() {
 	}
 
 	
-void reset(){
+/*void reset(){
    ::reset();
    
    switch(random(6)){
@@ -58,7 +58,7 @@ void reset(){
       case 5:  tell_room(TO,"%^BOLD%^%^BLACK%^A steady stream of %^YELLOW%^carts%^BLACK%^ with %^RESET%^%^ORANGE%^building materials%^BOLD%^%^BLACK%^ or %^RESET%^%^GREEN%^food %^BOLD%^%^BLACK%^and %^CYAN%^water%^BLACK%^ is going either to or from the docks.");
                break;
          }
-}
+}*/
 
 /*
 void pick_critters(){

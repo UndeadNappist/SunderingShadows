@@ -10,9 +10,9 @@ void create(){
       "northeast" : ROOMS"2",
    ]));
 }
-void reset(){
+/*void reset(){
 	::reset();
 	if(!present("anton")){new(MOBS"anton")->move(TO);}
 	if(!present("gateguard")){new(MOBS"gateguard")->move(TO);}
 	
-}
+}*/

@@ -38,10 +38,10 @@ void create()
   ]));
 }
 
-void reset(){
+/*void reset(){
   ::reset();
   if(!present("dalvin")){ new(MOBS"dalvin")->move(TO);}
   
-  }
+  }*/
 
   
