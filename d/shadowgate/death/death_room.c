@@ -350,14 +350,14 @@ void do_death7(object tp){
 
     tell_object(tp,"The vision of Lysara begins to fade.\n");
     switch(deity){
-       case "callamir":  tell_object(tp,"%^BOLD%^%^WHITE%^The "+
+        case "callamir":  tell_object(tp,"%^BOLD%^%^WHITE%^The "+
                        "darkness around you gives way to a "+
                        "pleasant light.  You feel weightless "+
                        "and almost giddy, and from all "+
                        "sides you hear an innocent %^YELLOW%^"+
                        "giggle %^WHITE%^welcoming you home.\n");
                     break;
-       case "jarmila":  tell_object(tp,"%^BOLD%^%^BLACK%^A deep "+
+        case "jarmila":  tell_object(tp,"%^BOLD%^%^BLACK%^A deep "+
                        "darkness surrounds you, leaving you "+
                        "%^RESET%^%^MAGENTA%^hopeless %^BOLD%^%^BLACK%^"+
                        "for the briefest moment.  Then suddenly, "+
@@ -367,7 +367,7 @@ void do_death7(object tp){
                        "surround you, warming you and filling you "+
                        "with a sense of peace.\n");
                     break;
-       case "kismet":  tell_object(tp,"%^BOLD%^%^BLUE%^A lively "+
+        case "kismet":  tell_object(tp,"%^BOLD%^%^BLUE%^A lively "+
                        "tune fills your ears, bringing with "+
                        "it the spark of creativity and the "+
                        "promise of knowledge to be discovered.  "+
@@ -376,7 +376,7 @@ void do_death7(object tp){
                        "the eye can see, with music swirling in "+
                        "the air.\n");
                     break;
-       case "kreysneothosies":  tell_object(tp,"%^BOLD%^%^BLUE%^The "+
+        case "kreysneothosies":  tell_object(tp,"%^BOLD%^%^BLUE%^The "+
                        "darkness around you is "+
                        "somber and complete.  Rather than feeling "+
                        "frightened or alone, however, you feel a "+
@@ -384,20 +384,20 @@ void do_death7(object tp){
                        "you appears a simple vision, that of "+
                        "a sword crossing a sheaf of wheat.\n");
                     break;
-       case "lord shadow":  tell_object(tp,"%^BOLD%^%^BLACK%^As the "+
+        case "lord shadow":  tell_object(tp,"%^BOLD%^%^BLACK%^As the "+
                        "vision fades, the darkness around "+
                        "you gathers, slowly thickening "+
                        "and becoming complete.  A commanding voice "+
                        "gives a low chuckle, and you feel a rigid "+
                        "sense of belonging.\n");
                     break;
-       case "lysara":  tell_object(tp,"The room arounds you fades "+
+        case "lysara":  tell_object(tp,"The room arounds you fades "+
                        "to gray, and you begin to feel a great sense "+
                        "of loss tempered by an uplifting sense of "+
                        "purpose.  You begin to feel at ease in "+
                        "the realm of your Lady.\n");
                     break;
-       case "nimnavanon": tell_object(tp,"%^RESET%^%^GREEN%^A gentle "
+        case "nimnavanon": tell_object(tp,"%^RESET%^%^GREEN%^A gentle "
                        "%^CYAN%^breeze%^GREEN%^ rises on the air as "
                        "you imagine the softness of %^BOLD%^moss "
                        "%^RESET%^%^GREEN%^beneath your feet.  You "
@@ -405,7 +405,7 @@ void do_death7(object tp){
                        "tree%^GREEN%^ before a calm, ponderous voice "
                        "begins to speak.\n");
                     break;
-       case "the faceless one":  tell_object(tp,"The darkness around you is complete "+
+        case "the faceless one":  tell_object(tp,"The darkness around you is complete "+
                        "and unbroken, leaving you alone in the silence.  "+
                        "A soft, flickering light begins to scatter "+
                        "the darkness, creating %^BOLD%^%^BLACK%^"+
@@ -413,7 +413,7 @@ void do_death7(object tp){
                        "Faint, echoing laughter touches your ears and you "+
                        "cannot help but smile.\n");
                     break;
-       case "cevahir":  tell_object(tp,"%^RESET%^%^RED%^All around "+
+        case "cevahir":  tell_object(tp,"%^RESET%^%^RED%^All around "+
                        "you are the sounds of battle.  Swords "+
                        "ring off armor amid the grunts and "+
                        "yells of soldiers fighting.  A sense of "+
@@ -421,21 +421,36 @@ void do_death7(object tp){
                        "long to join your allies and foes alike in "+
                        "the thrill of battle.\n");
                     break;
-       case "ashra":  tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The darkness seems to press inward, surrounding you entirely. You are filled with a suffocating claustrophobia as a shadowy void envelops you, subsuming you. Whispers trail at the edge of your awareness, the susurrus growing and rising, until it is an unintelligible roar.%^CRST%^\n");
-                    break;
-       case "edea":  tell_object(tp,"%^RESET%^%^CRST%^%^C144%^A light begins to dawn around you, brightening slowly but inexorably into an awesome brilliance. There is a warmth, filling you with a sense of burgeoning potential, of life waiting to blossom, to run free and wild. You cannot focus on anything at all, as the radiance fills your view.%^CRST%^\n");
-                    break;
-       case "khyron":  tell_object(tp,"%^CRST%^%^RESET%^%^C059%^A sudden %^C060%^savage wind%^C059%^ rips at your being, and %^C190%^l%^C191%^i%^C192%^g%^C193%^h%^C194%^t%^C195%^n%^C194%^i%^C193%^n%^C192%^g%^RESET%^%^C059%^ splits the encroaching darkness. A deafening rumble of %^C243%^t%^C244%^h%^C245%^u%^C245%^n%^C243%^d%^C244%^e%^C245%^r%^RESET%^%^C059%^ infuses you with the %^C243%^f%^C244%^u%^C245%^r%^C244%^y%^RESET%^%^C059%^ of a %^C060%^s%^C066%^t%^C065%^o%^C059%^r%^C060%^m%^RESET%^%^C059%^.%^CRST%^\n");
-                    break;
-       case "seija":  tell_object(tp, "%^CRST%^%^RESET%^%^C153%^As the vision fades and %^C245%^darkness%^C153%^ settles around you, you find yourself at peace and perfectly relaxed, with a sense of all things being balanced in true harmony%^CRST%^\n");
-                    break;
-       default:  tell_object(tp,"%^BOLD%^%^BLACK%^Darkness "+
-                    "swirls around you, hiding Lysara from "+
-                    "view.  You watch with dread as the %^RESET%^"+
-                    "%^GREEN%^wall of souls %^BOLD%^%^BLACK%^seems "+
-                    "to be forming around you once more.  It closes "+
-                    "in around you, cutting off your air.\n\n");
-                 break;
+        case "ashra":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The darkness seems to press inward, surrounding you entirely. You are filled with a suffocating claustrophobia as a shadowy void envelops you, subsuming you. Whispers trail at the edge of your awareness, the susurrus growing and rising, until it is an unintelligible roar.%^CRST%^\n");
+            break;
+        case "edea":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C144%^A light begins to dawn around you, brightening slowly but inexorably into an awesome brilliance. There is a warmth, filling you with a sense of burgeoning potential, of life waiting to blossom, to run free and wild. You cannot focus on anything at all, as the radiance fills your view.%^CRST%^\n");
+            break;
+        case "khyron":
+            tell_object(tp,"%^CRST%^%^RESET%^%^C059%^A sudden %^C060%^savage wind%^C059%^ rips at your being, and %^C190%^l%^C191%^i%^C192%^g%^C193%^h%^C194%^t%^C195%^n%^C194%^i%^C193%^n%^C192%^g%^RESET%^%^C059%^ splits the encroaching darkness. A deafening rumble of %^C243%^t%^C244%^h%^C245%^u%^C245%^n%^C243%^d%^C244%^e%^C245%^r%^RESET%^%^C059%^ infuses you with the %^C243%^f%^C244%^u%^C245%^r%^C244%^y%^RESET%^%^C059%^ of a %^C060%^s%^C066%^t%^C065%^o%^C059%^r%^C060%^m%^RESET%^%^C059%^.%^CRST%^\n");
+             break;
+        case "seija":
+            tell_object(tp, "%^CRST%^%^RESET%^%^C153%^As the vision fades and %^C245%^darkness%^C153%^ settles around you, you find yourself at peace and perfectly relaxed, with a sense of all things being balanced in true harmony%^CRST%^\n");
+            break;
+        case "cacia":
+            tell_object(tp, "%^CRST%^%^RESET%^%^C055%^As you sink %^C061%^deeper%^C055%^ and %^C061%^deeper%^C055%^ into the beckoning, %^C059%^v%^C243%^e%^C059%^lv%^C243%^et%^C059%^y d%^C243%^ar%^C059%^kne%^C243%^s%^C059%^s%^RESET%^%^C055%^, your burden of mortality succumbs to %^C129%^w%^C128%^i%^C129%^ld e%^C128%^u%^C127%^p%^C129%^ho%^C127%^r%^C128%^i%^C129%^a%^RESET%^%^C055%^. You feel a %^C105%^w%^C111%^a%^C105%^rm b%^C111%^re%^C105%^a%^C111%^t%^C105%^h%^C055%^ against your fading flesh, taste the %^C088%^f%^C089%^i%^C088%^ne%^C089%^s%^C088%^t%^RESET%^%^C055%^ %^C088%^w%^C089%^i%^C088%^ne%^RESET%^%^C055%^ on your cold lips, smell the intoxicating scent of %^C165%^p%^C164%^e%^C163%^rfu%^C164%^m%^C165%^e%^RESET%^%^C055%^ and %^C165%^p%^C164%^a%^C163%^ssi%^C164%^o%^C165%^n%^RESET%^%^C055%^... leaving you %^C061%^longing%^C055%^ for more.%^CRST%^\n");
+            break;
+        case "ebolek":
+            tell_object(tp, "%^RESET%^%^CRST%^%^C065%^The %^C245%^d%^C243%^a%^C059%^rkne%^C243%^s%^C245%^s %^RESET%^%^C065%^starts to close in on you, %^C064%^suffocating %^C065%^and %^C106%^stifling%^C065%^, a swarm of tiny %^C145%^ch%^C151%^i%^C157%^t%^C151%^i%^C145%^no%^C151%^u%^C157%^s %^C151%^b%^C145%^od%^C151%^i%^C157%^e%^C151%^s %^RESET%^%^C065%^seeming to press in on you from all sides... wriggling, writhing, a million pinpricks as %^C144%^maggots %^C065%^and %^C243%^flies %^C065%^and %^C250%^locusts %^C065%^bite and claw and consume you.%^CRST%^\n");
+            break;
+        case "eucalia":
+            tell_object(tp, "%^RESET%^%^CRST%^%^C029%^Perception drifting black, you feel yourself awash in bourns unknowable; a billion pinpricks of %^C107%^sunlight%^RESET%^%^C029%^ hang on the edges of being, flush with intermittent needs and emotions of countless greenlives. So many petals on a flower ever expanding and contracting. %^C022%^Thirst%^RESET%^%^C029%^. %^C058%^Pain%^RESET%^%^C029%^. From elsewhere, %^C100%^warmth%^RESET%^%^C029%^. %^C028%^Safety%^RESET%^%^C029%^. A palm reaches from the all-and-nothing to cradle you, to %^C028%^caress%^RESET%^%^C029%^ you.%^CRST%^\n");
+            break;
+        case "mephasm":
+            tell_object(tp, "%^CRST%^%^RESET%^%^C244%^Hanging in the void,%^C160%^ an inexorable tug at your soul drags you %^C242%^downwards.%^C160%^ You feel%^C057%^ %^C009%^the wretched flames of Hell beginning to melt%^C057%^ %^C160%^at your very %^C001%^e%^C009%^s%^C001%^s%^C009%^e%^C001%^n%^C009%^c%^C001%^e, surrounding you%^C088%^,%^C057%^ %^C243%^before you are suddenly caught in a%^C057%^ l%^C241%^a%^C057%^t%^C240%^t%^C057%^i%^C240%^c%^C057%^e of %^C241%^blackened thorns%^C057%^, %^C244%^stabilizing your%^C057%^ %^C064%^o%^C001%^o%^C128%^z%^C058%^i%^C008%^n%^C076%^g%^C057%^ %^C072%^f%^C001%^l%^C090%^e%^C007%^s%^C077%^h%^C057%^. %^C246%^All is drowned in the heady stench of%^C057%^ %^C242%^stygian roses.%^CRST%^\n");
+            break;
+        case "velik":
+            tell_object(tp, "%^RESET%^%^CRST%^%^C059%^You find yourself %^C243%^d%^C245%^r%^C247%^i%^C249%^f%^C247%^t%^C245%^i%^C243%^n%^C245%^g%^RESET%^%^C059%^, your senses %^C244%^muted %^C059%^and %^C244%^dulled%^RESET%^%^C059%^... but then a sharp %^C214%^r%^C226%^i%^C214%^n%^C226%^g%^C214%^i%^C226%^n%^C214%^g %^RESET%^%^C059%^breaks through the %^C249%^haze%^C059%^, %^C244%^the sound of a %^C101%^hammer %^C245%^against metal over and %^C249%^over%^C247%^, growing %^C252%^louder %^C249%^with each strike. It %^C255%^thuds %^C252%^through your head until there's a %^C226%^SNAP%^C252%^, a breaking point, and sensation comes rushing back to you!%^CRST%^\n");
+            break;
+        default:
+            tell_object(tp,"%^BOLD%^%^BLACK%^Darkness swirls around you, hiding Lysara from view.  You watch with dread as the %^RESET%^%^GREEN%^wall of souls %^BOLD%^%^BLACK%^seems to be forming around you once more.  It closes in around you, cutting off your air.\n\n");
+            break;
    }
     call_out("do_death8", 8, tp);
     WHICH_CALL_OUT = "do_death8";
@@ -450,7 +465,7 @@ void do_death8(object tp){
     if(!objectp(tp)) return;
     if(!present(tp, TO)) return;
     switch(deity){
-       case "callamir":  tell_object(tp,"%^RESET%^%^MAGENTA%^A cheerful "+
+        case "callamir":  tell_object(tp,"%^RESET%^%^MAGENTA%^A cheerful "+
                        "voice pipes with gaiety%^RESET%^:  "+
                        "%^BOLD%^%^MAGENTA%^Now, I know "+tp->QS+" "+
                        "didn't mean what happened..."+tp->QS+" "+
@@ -458,21 +473,21 @@ void do_death8(object tp){
                        "Give "+tp->QO+" the good fortune to return, "+
                        "please?\n");
                     break;
-       case "jarmila":  tell_object(tp,"%^RESET%^%^MAGENTA%^A voice "+
+        case "jarmila":  tell_object(tp,"%^RESET%^%^MAGENTA%^A voice "+
                        "speaks with the strength of hope%^RESET%^:  "+
                        "%^YELLOW%^This harbinger of dawn has much "+
                        "work left to do in my name.  I implore you to "+
                        "please send "+tp->QO+" back so "+tp->QS+" "+
                        "may continue.\n");
                     break;
-       case "kismet":  tell_object(tp,"%^RESET%^%^MAGENTA%^A vibrant "+
+        case "kismet":  tell_object(tp,"%^RESET%^%^MAGENTA%^A vibrant "+
                        "voice sings charmingly%^RESET%^:  "+
                        "%^BOLD%^The world needs those who inspire "+
                        "and enlighten!  If you would "+
                        "be so kind as to return "+tp->QO+", I "+
                        "am sure "+tp->QS+" will do well.\n");
                     break;
-       case "kreysneothies":  tell_object(tp,"%^RESET%^%^MAGENTA%^An even "+
+        case "kreysneothies":  tell_object(tp,"%^RESET%^%^MAGENTA%^An even "+
                        "voice dictates%^RESET%^:  %^BOLD%^%^WHITE%^"+
                        "In looking over the acts committed by "+
                        ""+capitalize(tp->query_true_name())+", I see "+
@@ -481,13 +496,13 @@ void do_death8(object tp){
                        "There is much left to do, and it is only "+
                        "just that "+tp->QS+" returns to do it.\n");
                     break;
-       case "lord shadow":  tell_object(tp,"%^RESET%^%^MAGENTA%^A commanding "+
+        case "lord shadow":  tell_object(tp,"%^RESET%^%^MAGENTA%^A commanding "+
                        "voice demands%^RESET%^:  "+
                        "%^BOLD%^This soul is bound to me and "+
                        "has much darkness and fear yet to spread in my "+
                        "name.  Release "+tp->QO+" to the world.\n");
                     break;
-       case "lysara":  tell_object(tp,"%^RESET%^%^MAGENTA%^Lysara "+
+        case "lysara":  tell_object(tp,"%^RESET%^%^MAGENTA%^Lysara "+
                        "intones sternly%^RESET%^:  "+
                        "You know it is the place of my followers to "+
                        "grant those who are dying eternal rest.  Here, "+
@@ -495,40 +510,56 @@ void do_death8(object tp){
                        "clearly longs to return, yet... should I allow "+
                        "this breach?\n");
                     break;
-       case "nimnavanon":  tell_object(tp,"%^MAGENTA%^A calm, ponderous voice "
+        case "nimnavanon":  tell_object(tp,"%^MAGENTA%^A calm, ponderous voice "
                        "speaks amidst the rustle of leaves%^RESET%^"+
                        ":%^GREEN%^ This one seeks to restore balance to the "
                        "realms in my name.  Please send "+tp->QO+" back so "
                        ""+tp->QS+" can continue to be a much-needed source "
                        "of balance in a turbulent world.\n");
                     break;
-       case "the faceless one":  tell_object(tp,"%^RESET%^%^MAGENTA%^A chorus "+
+        case "the faceless one":  tell_object(tp,"%^RESET%^%^MAGENTA%^A chorus "+
                        "of maddening voices whisper%^RESET%^:  "+
                        "%^BOLD%^%^BLACK%^This servant of deception "+
                        "has much left to do in the realms in "+
                        "my name... "+tp->QS+" must be returned.\n");
                     break;
-       case "cevahir":  tell_object(tp,"%^RESET%^%^MAGENTA%^A dauntless "+
+        case "cevahir":  tell_object(tp,"%^RESET%^%^MAGENTA%^A dauntless "+
                        "voice states%^RESET%^:  %^BOLD%^%^RED%^"+
                        "The field of battle is riddled with dangers.  "+
                        "So long as "+tp->QS+" faced them all "+
                        "fearlessly, I say return "+tp->QO+" to "+
                        "the glory "+tp->QS+" has earned.\n");
                     break;
-       case "ashra":  tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The whispers coalesce into a single, layered message: %^RESET%^%^C059%^My will has not yet been done. Radiance still pushes back the void, leaving my grasp wanting. Return my servant, that "+tp->QS+" can spread my shadows and darkness. Their service is not yet complete.%^CRST%^\n");
-                    break;
-       case "edea":  tell_object(tp,"%^RESET%^%^CRST%^%^C144%^A voice, gentle and warm, speaks from the surrounding radiance: %^RESET%^%^C230%^It is not "+tp->QP+" fault, they were pushing at the boundaries of the dark. It is only in the light that life can blossom and bloom, and such sacrifice is noble... and should be rewarded. Grant my devoted chosen another chance.%^CRST%^\n");
-                    break;
-       case "khyron":  tell_object(tp,"%^CRST%^%^RESET%^%^C060%^A voice roars over the howling wind:%^RESET%^ "+capitalize(tp->QS)+" must continue to spread my might until all the world fears the coming storm! Release "+tp->QO+".%^CRST%^\n");
-                    break;
-       case "seija":  tell_object(tp,"%^CRST%^%^RESET%^%^C111%^A soothing voice calls out: %^CRST%^The volatile elements of the world must be kept in balance. You must free "+tp->QO+" so "+tp->QS+" can continue my teachings, to inspire harmony within the mortal world.%^CRST%^\n");
-                    break;
-       default:  tell_object(tp,"%^RESET%^%^GREEN%^The hideous wall "+
-                    "begins to wrap itself around you, draining you "+
-                    "of all heat and thought.  In agony, you look "+
-                    "up, but find nothing there - no light, no heat..."+
-                    "not a single soul watching.\n\n");
-                 break;
+        case "ashra":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The whispers coalesce into a single, layered message: %^RESET%^%^C059%^My will has not yet been done. Radiance still pushes back the void, leaving my grasp wanting. Return my servant, that "+tp->QS+" can spread my shadows and darkness. Their service is not yet complete.%^CRST%^\n");
+            break;
+        case "edea":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C144%^A voice, gentle and warm, speaks from the surrounding radiance: %^RESET%^%^C230%^It is not "+tp->QP+" fault, they were pushing at the boundaries of the dark. It is only in the light that life can blossom and bloom, and such sacrifice is noble... and should be rewarded. Grant my devoted chosen another chance.%^CRST%^\n");
+            break;
+        case "khyron":
+            tell_object(tp,"%^CRST%^%^RESET%^%^C060%^A voice roars over the howling wind:%^RESET%^ "+capitalize(tp->QS)+" must continue to spread my might until all the world fears the coming storm! Release "+tp->QO+".%^CRST%^\n");
+            break;
+        case "seija":
+            tell_object(tp,"%^CRST%^%^RESET%^%^C111%^A soothing voice calls out: %^CRST%^The volatile elements of the world must be kept in balance. You must free "+tp->QO+" so "+tp->QS+" can continue my teachings, to inspire harmony within the mortal world.%^CRST%^\n");
+            break;
+        case "cacia":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C055%^A %^C056%^feminine%^C055%^ voice compels from the %^C059%^utter darkness%^RESET%^%^C055%^: %^C061%^This mortal craves more of life's sweetest temptations... You must free "+tp->QO+" so that "+tp->QS+" may continue to indulge and revel in my name.%^CRST%^\n");
+            break;
+        case "ebolek":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C065%^Countless wings and mandibles %^C243%^v%^C247%^i%^C059%^b%^C243%^r%^C247%^a%^C059%^t%^C243%^e %^RESET%^%^C065%^and %^C243%^h%^C247%^u%^C059%^m %^RESET%^%^C065%^together, the voice of the swarm: %^C143%^H%^C137%^UN%^C131%^GER. %^C143%^F%^C137%^E%^C131%^ED. %^C143%^M%^C137%^O%^C131%^RE. %^RESET%^%^C065%^The cacophony grows even louder, taking on a demanding tone... %^C143%^RE%^C137%^LE%^C131%^ASE! %^C143%^M%^C137%^I%^C131%^NE!%^CRST%^\n");
+            break;
+        case "eucalia":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C028%^A serene intonation ushers the chorus to hark:%^CRST%^ %^RESET%^%^C029%^The bough yet needs a soul such as "+tp->QO+" - it is in the interest of all life that "+tp->QP+" thread yet hold. I ask that %^RESET%^%^C059%^You%^RESET%^%^C029%^ return %^RESET%^%^C028%^My%^RESET%^%^C029%^ hand to the wylds.%^CRST%^\n");
+            break;
+        case "mephasm":
+            tell_object(tp,"%^CRST%^%^RESET%^%^C009%^A%^C001%^n%^C009%^ %^C001%^e%^C009%^v%^C001%^e%^C009%^n v%^C001%^o%^C009%^i%^C001%^c%^C009%^e %^C001%^p%^C009%^a%^C001%^t%^C009%^i%^C001%^e%^C009%^n%^C001%^t%^C009%^l%^C001%^y%^C009%^ c%^C001%^o%^C009%^a%^C001%^x%^C009%^e%^C001%^s%^C009%^:%^CRST%^ %^C160%^I do not yet wish to claim the return on this investment. More time is required for it to bear full fruit.%^CRST%^\n");
+            break;
+        case "velik":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C214%^A %^C220%^v%^C226%^oic%^C220%^e %^RESET%^%^C214%^full of conviction, of %^C196%^fe%^C160%^r%^C196%^v%^C160%^e%^C196%^r%^RESET%^%^C214%^, calls out to you: %^RESET%^%^C255%^\""+capitalize(tp->QO)+" paid the ultimate price, this is true... But there's still oppression to fight, still conformity to shatter, still icons to bring down the world over! Justice demands you send him/her/them back!\"%^CRST%^\n");
+            break;
+        default:
+            tell_object(tp,"%^RESET%^%^GREEN%^The hideous wall begins to wrap itself around you, draining you of all heat and thought.  In agony, you look up, but find nothing there - no light, no heat...not a single soul watching.\n\n");
+            break;
     }
     call_out("do_death9",5, tp);
     WHICH_CALL_OUT = "do_death9";
@@ -638,20 +669,20 @@ void do_death10(object tp){
     if(!objectp(tp)) return;
     if(!present(tp, TO)) return;
     switch(deity){
-       case "callamir":  tell_object(tp,"%^RESET%^%^MAGENTA%^A cheerful "+
+        case "callamir":  tell_object(tp,"%^RESET%^%^MAGENTA%^A cheerful "+
                        "voice pipes with gaiety%^RESET%^:  "+
                        "%^BOLD%^%^MAGENTA%^I bring good fortune "+
                        "to my followers and in turn, they bring "+
                        "faith in me.  Why would "+tp->QS+" ever "+
                        "thrust me aside?\n");
                     break;
-       case "jarmila":  tell_object(tp,"%^RESET%^%^MAGENTA%^A voice "+
+        case "jarmila":  tell_object(tp,"%^RESET%^%^MAGENTA%^A voice "+
                        "speaks with the strength of hope%^RESET%^:  "+
                        "%^YELLOW%^Through rebirth, my will is done.  "+
                        "By knowing the glory of renewal, "+tp->QS+" "+
                        "will be better able to serve me.\n");
                     break;
-       case "kismet":  tell_object(tp,"%^RESET%^%^MAGENTA%^A vibrant "+
+        case "kismet":  tell_object(tp,"%^RESET%^%^MAGENTA%^A vibrant "+
                        "voice sings charmingly%^RESET%^:  "+
                        "%^BOLD%^I am sure "+tp->QS+" will spend "+
                        ""+tp->QP+" time gathering and spreading "+
@@ -660,60 +691,74 @@ void do_death10(object tp){
                        "ingenuity!  Please return "+tp->QO+" to "+
                        "my service.\n");
                     break;
-       case "kreysneothosies":  tell_object(tp,"%^RESET%^%^MAGENTA%^An even "+
+        case "kreysneothosies":  tell_object(tp,"%^RESET%^%^MAGENTA%^An even "+
                        "voice dictates%^RESET%^:  %^BOLD%^%^WHITE%^"+
                        "All of my followers know that acts are "+
                        "punished or rewarded as they deserve.  "+
                        "I do not think "+tp->QS+" would be so "+
                        "foolish as to abandon me.\n");
                     break;
-       case "lord shadow":  tell_object(tp,"%^RESET%^%^MAGENTA%^A commanding "+
+        case "lord shadow":  tell_object(tp,"%^RESET%^%^MAGENTA%^A commanding "+
                        "voice demands%^RESET%^:  "+
                        "%^BOLD%^%^BLACK%^Oh, "+tp->QS+" will serve "+
                        "me.  There can be no doubt about that.\n");
                     break;
-       case "lysara":  tell_object(tp,"%^RESET%^%^MAGENTA%^Lysara "+
+        case "lysara":  tell_object(tp,"%^RESET%^%^MAGENTA%^Lysara "+
                        "intones sternly%^RESET%^:  "+
                        "I can allow you to return only to continue "+
                        "my good work.  Seek out those in need of "+
                        "rest and aid them through to the other side.\n");
                     break;
-       case "nimnavanon":  tell_object(tp,"%^MAGENTA%^A calm, ponderous voice "
+        case "nimnavanon":  tell_object(tp,"%^MAGENTA%^A calm, ponderous voice "
                        "speaks amidst the rustle of leaves%^RESET%^"+
                        ":%^GREEN%^ The denizens of the world are ever-active "
                        "in causing turmoil and strife.  I am assured that "
                        ""+tp->QS+" will continue to seek to temper madness with harmony.\n");
                     break;
-       case "the faceless one":  tell_object(tp,"%^RESET%^%^MAGENTA%^A chorus "+
+        case "the faceless one":  tell_object(tp,"%^RESET%^%^MAGENTA%^A chorus "+
                        "of maddening voices whisper%^RESET%^:  "+
                        "%^BOLD%^%^BLACK%^Oh, now...I think "+tp->QS+" "+
                        "knows better than to betray me.\n");
                     break;
-       case "cevahir":  tell_object(tp,"%^RESET%^%^MAGENTA%^A dauntless "+
+        case "cevahir":  tell_object(tp,"%^RESET%^%^MAGENTA%^A dauntless "+
                        "voice states%^RESET%^:  %^BOLD%^%^RED%^"+
                        "One of mine will never turn aside from the "+
                        "field of battle.  I know "+tp->QS+" will "+
                        "serve me well.\n");
                     break;
-       case "ashra":  tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The voices grows stronger, more insistent: %^RESET%^%^C059%^Do not forget your charge. Spread my primordial darkness in every sense. Take pleasure in snuffing out the light, and those chosen to defend it from my inevitable victory.%^CRST%^\n");
-                    break;
-       case "edea":  tell_object(tp,"%^RESET%^%^CRST%^%^C144%^The voice takes on a cautioning tone: Be wary, my chosen. The darkness will always strike, searching out any weakness to exploit. Drive it back and show them the power of my eternal radiance. Stand fast, and I shall guide you.%^CRST%^\n");
-                    break;
-       case "khyron":  tell_object(tp,"%^CRST%^%^RESET%^%^C060%^A voice roars over the howling wind:%^RESET%^ "+capitalize(tp->QS)+" will not defy me, for all fear my wrath.%^CRST%^\n");
-                    break;
-       case "seija":  tell_object(tp,"%^CRST%^%^RESET%^%^C111%^A soothing voice calls out: %^CRST%^"+capitalize(tp->QS)+" understands the importance of "+tp->QP+" duty, "+tp->QS+" will not turn away from it.%^CRST%^\n");
-                    break;
-       default:  tell_object(tp,"%^RESET%^Miraculously, all stops "+
-                    "for a moment, and you hear a voice from above.\n\n"+
-                    "%^MAGENTA%^Lysara intones sternly%^RESET%^:  "+
-                    "This is the fate that awaits you, should you "+
-                    "remain faithless and lost.  This wall "+
-                    "dissolves souls, eating away at them until "+
-                    "nothing remains.\n\n");
-                    call_out("no_god4", 10, tp);
-                    WHICH_CALL_OUT = "no_god4";
-                    attempt_raise();
-                    return;
+        case "ashra":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C091%^The voices grows stronger, more insistent: %^RESET%^%^C059%^Do not forget your charge. Spread my primordial darkness in every sense. Take pleasure in snuffing out the light, and those chosen to defend it from my inevitable victory.%^CRST%^\n");
+            break;
+        case "edea":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C144%^The voice takes on a cautioning tone: Be wary, my chosen. The darkness will always strike, searching out any weakness to exploit. Drive it back and show them the power of my eternal radiance. Stand fast, and I shall guide you.%^CRST%^\n");
+            break;
+        case "khyron":
+            tell_object(tp,"%^CRST%^%^RESET%^%^C060%^A voice roars over the howling wind:%^RESET%^ "+capitalize(tp->QS)+" will not defy me, for all fear my wrath.%^CRST%^\n");
+            break;
+        case "seija":
+            tell_object(tp,"%^CRST%^%^RESET%^%^C111%^A soothing voice calls out: %^CRST%^"+capitalize(tp->QS)+" understands the importance of "+tp->QP+" duty, "+tp->QS+" will not turn away from it.%^CRST%^\n");
+            break;
+        case "cacia":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C055%^Her %^C056%^lascivious voice%^C055%^ slithers over your %^C054%^embattled soul%^C055%^, filling it with %^C090%^r%^C089%^a%^C088%^v%^C090%^en%^C089%^o%^C088%^u%^C090%^s d%^C089%^e%^C088%^si%^C089%^r%^C090%^e%^RESET%^%^C055%^: %^C061%^In their devotion to worldly pleasures, my faithful serve me. Who would not hunger for such blessings?%^CRST%^\n");
+            break;
+        case "ebolek":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C065%^The mass of segmented bodies begins to pull away, the %^C064%^insectoid %^C059%^b%^C243%^u%^C247%^z%^C059%^z %^RESET%^%^C065%^also starting to fade: %^C143%^M%^C137%^I%^C131%^NE... %^C143%^M%^C137%^I%^C131%^NE... %^C143%^M%^C137%^I%^C131%^NE...%^CRST%^\n");
+            break;
+        case "eucalia":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C028%^A serene intonation ushers the chorus to hark:%^CRST%^ %^RESET%^%^C029%^"+capitalize(tp->QP)+" faith is a song yet to fall silent. "+capitalize(tp->QS)+" knows well the price of quieting that which yearns for aid.%^CRST%^\n");
+            break;
+        case "mephasm":
+            tell_object(tp,"%^CRST%^%^RESET%^%^C009%^A%^C001%^n%^CRST%^ %^C001%^e%^C009%^v%^C001%^e%^C009%^n %^C001%^v%^C009%^o%^C001%^i%^C009%^c%^C001%^e%^C009%^ %^C001%^p%^C009%^a%^C001%^t%^C009%^i%^C001%^e%^C009%^n%^C001%^t%^C009%^l%^C001%^y%^C009%^ c%^C001%^o%^C009%^a%^C001%^x%^C009%^e%^C001%^s%^C009%^:%^CRST%^ %^RESET%^%^C160%^Even You, fair Lady, must see the benefit in this arrangement, so how could "+tp->QS+" not?%^CRST%^\n");
+            break;
+        case "velik":
+            tell_object(tp,"%^RESET%^%^CRST%^%^C214%^The %^C220%^v%^C226%^oic%^C220%^e %^RESET%^%^C214%^lets out a %^C196%^r%^C160%^o%^C196%^a%^C160%^r%^RESET%^%^C214%^, %^C208%^i%^C202%^n%^C196%^d%^C202%^i%^C208%^g%^C202%^n%^C196%^a%^C202%^n%^C208%^t %^RESET%^%^C214%^at the suggestion. %^RESET%^C255%^\"Who could ever refuse to break the chains of servitude? The freedom to live by your own code, your own rule? "+capitalize(tp->QP)+" will and mine are as one, to drive back those who would tell others how to live!\"%^CRST%^\n");
+            break;
+        default:
+            tell_object(tp,"%^RESET%^Miraculously, all stops for a moment, and you hear a voice from above.\n\n%^MAGENTA%^Lysara intones sternly%^RESET%^:  This is the fate that awaits you, should you remain faithless and lost.  This wall dissolves souls, eating away at them until nothing remains.\n\n");
+            call_out("no_god4", 10, tp);
+            WHICH_CALL_OUT = "no_god4";
+            attempt_raise();
+            return;
     }
     call_out("end_death", 10, tp);
     WHICH_CALL_OUT = "end_death";
