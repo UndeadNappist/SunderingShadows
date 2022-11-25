@@ -121,7 +121,7 @@ void special1(object targ)
                     "%^BOLD%^%^RED%^The elf vampire bites into your neck!");
         tell_room(ETO,
                   "%^BOLD%^%^RED%^Daelas bites into "+targ->QCN+"'s neck!", targ);
-        targ->cause_typed_damage(targ,0,roll_dice(10,10+200),"negative energy");
+        targ->cause_typed_damage(targ,0,(roll_dice(10,10)+200),"negative energy");
         TO->add_hp(200);
  }
  tell_room(ETO,"%^BOLD%^%^RED%^Dealas lunges for "+targ->QCN+"'s neck but misses.",targ);
