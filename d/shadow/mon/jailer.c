@@ -13,8 +13,8 @@ int guard_check(string str);
 
 void create(){
     ::create();
-    set_jail("/d/shadow/room/city/jail_main");
-    set_cell("/d/darkwood/tabor/room/jail_cell");
+    set_jail("/d/shadow/city/room/jail_main");
+    set_cell("/d/shadow/city/room/jail");
     set_property("official","Shadow");
     set_property("knock unconscious",1);
     set_id(({"jailer", "guard","Copernicus", "copernicus" ,"Shadow jailer", CITYLAW}));
@@ -32,6 +32,7 @@ combat and probably knows how to handle himself.  He does, however, look
 quite ready to jail about anyone and might even take a prisoner off your
 hands."
         );
+    set_jail_location("Shadow");
     set_race("human");
     set_gender("male");
     set_size(2);
@@ -88,9 +89,9 @@ int kill_ob(object ob, int i){
     hold = ::kill_ob(ob,i);
     if (hold) {
         tell_room(ETO, "The jailer yells loudly for help.");
-        new("/d/shadow/mon/guardnew")->move(ETO);
-	new("/d/shadow/mon/guardnew")->move(ETO);
-	new("/d/shadow/mon/guardnew")->move(ETO);
+        new("/d/shadow/city/mon/city_guard")->move(ETO);
+        new("/d/shadow/city/mon/city_guard")->move(ETO);
+        new("/d/shadow/city/mon/city_guard")->move(ETO);
     }
     return hold;
 }
