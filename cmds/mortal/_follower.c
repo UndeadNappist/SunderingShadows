@@ -209,7 +209,7 @@ int cmd_follower(string raw_arguments)
         command = raw_arguments;
     }
 
-    controller = player->query("current retinue");
+    controller = player->query_property("current retinue");
     if (!controller)
     {
         controller = ([]);
@@ -402,11 +402,11 @@ int cmd_follower(string raw_arguments)
                 continue;
             }
 
-            /*if (sizeof(controller) == player->query_skill("influence") / 10)
+            if (sizeof(controller) == player->query_skill("influence") / 10)
             {
                 tell_object(player, "%^C030%^You simply cannot coordinate a larger group than you currently lead.");
                 continue;
-            }*/
+            }
 
             if (!mapp(retinue[target_follower_key]))
             {
@@ -548,7 +548,7 @@ int cmd_follower(string raw_arguments)
         break;
     }
 
-    player->set("current retinue", controller);
+    player->set_property("current retinue", controller);
     return 1;
 }
 
