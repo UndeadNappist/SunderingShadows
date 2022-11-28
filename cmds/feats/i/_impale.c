@@ -13,7 +13,7 @@ void create()
     feat_category("CombatManeuvers");
     feat_name("impale");
     feat_syntax("impale TARGET");
-    feat_prereq("Sweeping Blow, Blade block or Parry");
+    feat_prereq("Sweeping Blow and either Blade block or Parry");
     feat_desc("The Impale feat is a combat maneuver that has a chance of impaling your target or staggering them back into another attacker. Both targets will take damage and have a chance to be stunned.
 
 If used without an argument this feat will pick up a random attacker. Be aware that this power affects multiple targets.

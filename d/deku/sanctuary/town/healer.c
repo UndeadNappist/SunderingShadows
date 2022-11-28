@@ -13,7 +13,7 @@ void create() {
       " The damaged floor looks like it has taken quite a bit of water damage as well as"+
       " just being stomped on with tremendous force. Chunks of rubble that once made up an"+ 
       " inwall shelf have been strewn about the already cluttered floor."+
-      " The room was unfurnished except for the long table that is now missing three out four legs."
+      " The room was unfurnished except for the long table that is now missing three out of four legs."
    );
    
    set_exits(([
