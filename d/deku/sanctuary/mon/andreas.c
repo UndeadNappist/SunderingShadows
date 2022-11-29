@@ -11,7 +11,7 @@ object ob;
    set_short("Andreas Kelun");
    set_long(
       "Andreas is a young man with red hair and a muscular build."+
-      " He is dressed in the typicaly garments of a mage."
+      " He is dressed in the typical garments of a mage."
    );
    set_race("human");
    set_gender("male");

@@ -6,12 +6,12 @@ inherit BTOWER;
 void create() {
    ::create();
    set_long(
-      "%^RESET%^This massive chamber his lit by light orbs which"+
+      "%^RESET%^This massive chamber is lit by light orbs which"+
       " are placed along the walls in perfect intervals. Large"+
       " %^BOLD%^%^WHITE%^pillars %^RESET%^are holding the ceiling of the tower up and the"+
       " marble floors glow in a sparkling light. A long carpet"+
       " converges upon a throne like chair at the end of the"+
-      " room, where a large %^BOLD%^%^RED%^tapestry %^RESET%^of hangs behind it."  
+      " room, where a large %^BOLD%^%^RED%^tapestry %^RESET%^hangs behind it."  
    );
    set_items( ([
       "pillars" : "These are large marble pillars which support the ceiling of the tower.",

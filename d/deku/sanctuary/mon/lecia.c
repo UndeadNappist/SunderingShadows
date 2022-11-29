@@ -12,7 +12,7 @@ object ob;
    set_long(
       "This woman looks more like a maturing young lady. Her golden"+
       " hair is tied up in a bun to not get in the way of her cyan eyes."+
-      " She wears wizard regelia that flows down over her shoes and carries"+
+      " She wears wizard regalia that flows down over her shoes and carries"+
       " a matching staff."
    );
    set_race("human");

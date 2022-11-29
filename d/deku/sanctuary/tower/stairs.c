@@ -7,7 +7,7 @@ void create() {
    ::create();
    set_long(
       "%^RESET%^This chamber is simple in its construction. A set of"+
-      " stairways omniously rises up towards to a trap door in the"+
+      " stairways ominously rises up towards to a trap door in the"+
       " ceiling."
    );
    set_items( ([
