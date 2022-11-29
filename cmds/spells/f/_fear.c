@@ -13,6 +13,7 @@ void create()
     set_domains("evil");
     set_mystery("dragon");
     set_syntax("cast CLASS fear");
+    set_damage_desc("AOE panic, shaken on save");
     set_description("Fear sends a wave of horrid thoughts and images out toward the foes around the caster, possibly terrifying them. An invisible cone of terror causes each living creature in the area to become panicked unless it succeeds on a will save. If cornered, a panicked creature begins cowering. If the will save succeeds, the creature is shaken for 1 round.");
     mental_spell();
     evil_spell(1);
