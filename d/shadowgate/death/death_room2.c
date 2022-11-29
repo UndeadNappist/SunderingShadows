@@ -8,6 +8,7 @@ void create(){
     set_short("The gate to the etherial plane");
     set_property("light", 2);
     set_property("no teleport", 1);
+    set_property("no scry", 1);
     set_property("indoors", 1);
     set_long(
       "You are floating in a strange room.  Before you there are many gateways to the mortal plane, each leading into a different church.  To move on, choose the exit that leads to the church that you wish to go, and you shall move there. Beware though, this gateway is one way."

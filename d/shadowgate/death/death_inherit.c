@@ -13,6 +13,7 @@ void create()
     set_short("The gate to the etherial plane");
     set_property("light", 2);
     set_property("no teleport", 1);
+    set_property("no scry", 1);
     set_property("indoors", 1);
     set_long("You are floating in a strange room...");
     set_terrain(WOOD_BUILDING);

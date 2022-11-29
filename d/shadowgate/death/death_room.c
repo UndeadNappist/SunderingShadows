@@ -66,6 +66,7 @@ void create(){
     set_terrain(WOOD_BUILDING);
     set_travel(DIRT_ROAD);
     set_property("no teleport", 1);
+    set_property("no scry", 1);
     set_short("The void between life and death");
     set_long( (:this_object(), "d_long":) );
     skip_obvious();

@@ -140,6 +140,8 @@ void create()
   	set_indoors(1);
   	set_short("In a haze, awaiting Lysara's Decision");
   	set_property("no starve", 1);
+    set_property("no teleport", 1);
+    set_property("no scry", 1);
   	set_long("%^BOLD%^%^WHITE%^This is an area void of decoration or "+
 		"living objects.  There are no trees, no grass, no water, nor earth.  "+
 		"Instead, it is a haze of nothingness where you have been sent while "+

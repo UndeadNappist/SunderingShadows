@@ -16,6 +16,7 @@ void create(){
     set_property("light", 2);
     set_property("indoors", 1);
     set_property("no teleport", 1);
+    set_property("no scry", 1);
     set_short("The void between life and death");
     set_long( (:this_object(), "d_long":) );
     skip_obvious();
@@ -80,7 +81,7 @@ void do_death5(object tp){
     if(!objectp(tp)) return;
     if(!present(tp, TO)) return;
 
-    tell_object(tp, %^BOLD%^%^RED%^A rather large man wearing a great horned helmet and large hides pushes his way through the other warriors to the head of the table  He looks at you, and then clasps you on the shoulder with a smile.\n");
+    tell_object(tp, "%^BOLD%^%^RED%^A rather large man wearing a great horned helmet and large hides pushes his way through the other warriors to the head of the table  He looks at you, and then clasps you on the shoulder with a smile.\n");
     call_out("do_death6", 3, tp);
 }
 
@@ -123,4 +124,5 @@ void do_death9(object tp){
 void do_death10(object tp){
     if(!objectp(tp)) return;
     if(!present(tp, TO)) return;
+}
 

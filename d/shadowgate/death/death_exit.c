@@ -11,6 +11,7 @@ void create() {
     set_short("The gate to the ethereal plane");
     set_property("light", 2);
     set_property("no teleport", 1);
+    set_property("no scry", 1);
     set_property("indoors", 1);
     set_terrain(WOOD_BUILDING);
     set_travel(DIRT_ROAD);
