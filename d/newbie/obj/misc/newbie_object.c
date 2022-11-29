@@ -83,7 +83,7 @@ void init()
     if(!objectp(TO)) return;
     if(!objectp(ETO)) return;
     if(!living(ETO)) return;
-    if((int)ETO->query_lowest_level() > 10 && living(ETO) && !avatarp(ETO))
+    if((int)ETO->query_lowest_level() > 6 && living(ETO) && !avatarp(ETO))
     {
         tell_object(ETO, "%^BOLD%^%^YELLOW%^\n\nThe mass crumbles into nothingness and you "+
         "watch as the debris blow away!%^RESET%^");
