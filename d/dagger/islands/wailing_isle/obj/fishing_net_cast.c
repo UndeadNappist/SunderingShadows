@@ -86,7 +86,7 @@ void check_net(object room){
             quality = 2;
             num_fish = 1;
             tell_room(room, "\n%^RESET%^%^CRST%^%^C109%^A %^C103%^large shadow %^C109%^obscures the view of the net.%^CRST%^");
-            call_out("catch_now", random(3) + 1, room);
+            call_out("catch_now", random(3) + 2, room);
             break;
         case 15..49 :
             quality = 1;
