@@ -783,6 +783,9 @@ int immunity_check(object obj, string type)
         if(member_array("plague", obj->query_divine_domain()) >= 0)
             return 1;
         
+        if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 10)
+            return 1;
+        
         if(obj->query_bloodline() == "pestilence" && obj->query_class_level("sorcerer") > 30)
             return 1;
         
@@ -965,7 +968,8 @@ int immunity_check(object obj, string type)
         if(obj->query_race() == "devil")
             return 1;
         
-        if(obj->query_mystery() == "life")
+        if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 10)
+            return 1;
             
         return 0;
     }
