@@ -105,7 +105,7 @@ int seeker(string str)
     }
 
     if(this_player()->cooldown("item - seeker cloak")){
-        tell_object(TP, "%^RESET%^%^CRST%^%^C059%^%^The magic is faded, still.%^CRST%^");
+        tell_object(TP, "%^RESET%^%^CRST%^%^C059%^The magic is faded, still.%^CRST%^");
         return 1;
 	}
 
