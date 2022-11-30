@@ -16,7 +16,7 @@ void original() {
     "throne%^BOLD%^%^BLACK%^ sits against the wall at the northern end and a %^RED%^decayed "+
     "corpse%^BOLD%^%^BLACK%^ rests on it.  Piles of %^RED%^rubble%^BOLD%^%^BLACK%^ litter "+
     "the floor of the chamber and a %^RESET%^small boulder%^BOLD%^%^BLACK%^ lies directly in "+
-    "the center, with a %^YELLOW%^glowing sword%^BOLD%^%^BLACK%^ potruding vertically from it.  "+
+    "the center, with a %^YELLOW%^glowing sword%^BOLD%^%^BLACK%^ protruding vertically from it.  "+
     "An %^RESET%^ornate door%^BOLD%^%^BLACK%^ is inset into the southern wall of the "+
     "chamber, leading out to the graveyard.%^RESET%^");
 
@@ -32,8 +32,8 @@ void original() {
     "for something.%^RESET%^",
     ({"rubble","piles of rubble"}) : "%^RED%^These piles of rubble are mixtures of pieces of "+
     "stone, fragments of bone, and clumps of dirt.%^RESET%^",
-    "glowing sword" : "%^YELLOW%^This sword is potruding from the boulder in the center of "+
-    "the room.  Its blade is made from an adamanium with runes etched onto one side of it, "+
+    "glowing sword" : "%^YELLOW%^This sword is protruding from the boulder in the center of "+
+    "the room.  Its blade is made from an adamantium with runes etched onto one side of it, "+
     "it continually gives off a dull glow.%^RESET%^",
     ] ));
     being_pulled = 0;
@@ -180,7 +180,7 @@ void pull_sword(string str) {
         }
         set_long("%^BOLD%^%^BLACK%^You have entered a large above ground burial chamber.  An "+
         "empty %^RED%^throne%^BOLD%^%^BLACK%^ sits against the wall at the northern end of the "+
-        "chamber.  Piles of %^RED%^rubble%^BOLD%^%^BLACK%^ liter the floor of the chamber and a "+
+        "chamber.  Piles of %^RED%^rubble%^BOLD%^%^BLACK%^ litter the floor of the chamber and a "+
         "%^RESET%^small boulder%^BOLD%^%^BLACK%^ lies directly in the center, with a %^RED%^slit"+
         "%^BOLD%^%^BLACK%^ in the top of it.  An %^RESET%^ornate door%^BOLD%^%^BLACK%^ is inset "+
         "into the southern wall of the chamber, leading out to the graveyard.%^RESET%^");
