@@ -93,8 +93,8 @@ int catch_eavesdrop(object spkr, object who, string msg, string lang) {
     prof = TP->query_skill("perception");
     if(!target->query_detecting_invis() && caster->query_invis()) bonus=4;
     if(FEATS_D->usable_feat(TP,"spot")) bonus = prof/5;
-    if(TP->query("race")=="elf") bonus += 4;
-    if(TP->query("race")=="half-elf") bonus += 2;
+    //if(TP->query("race")=="elf") bonus += 4;
+    //if(TP->query("race")=="half-elf") bonus += 2;
     if((target->query_skill("perception")) > prof+bonus) {
 
   if ((TP->query_hidden()) && (!random(4))) {
