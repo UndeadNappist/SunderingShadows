@@ -69,7 +69,8 @@ void spell_effect(int prof)
         ::spell_effect();
     }
     
-    num = (clevel / 6) + 1;
+    //Value must be 0 to 8. Value is not spell level but adjustment to spell level
+    num = (clevel / 6);
     
     //tell_object(caster, "Number of darts : " + num);
     //tell_object(caster, "Number of opponents : " + sizeof(victims));
@@ -87,9 +88,9 @@ void spell_effect(int prof)
     //Adjusts spell damage formula to scale for number of darts.
     
     if(query_spell_type() == "mage" || query_spell_type() == "sorcerer")
-        define_base_damage(max( ({ 0, min( ({ num, 9 }) ) })));
+        define_base_damage(max( ({ 0, min( ({ num, 8 }) ) })));
     else
-        define_base_damage(max( ({ 0, min( ({ num, 6 }) ) })));        
+        define_base_damage(max( ({ 0, min( ({ num, 5 }) ) })));        
     
     //tell_object(caster, "Damage per dart : " + sdamage);
     
