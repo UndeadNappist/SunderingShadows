@@ -95,21 +95,17 @@ int catch_eavesdrop(object spkr, object who, string msg, string lang) {
     if(FEATS_D->usable_feat(TP,"spot")) bonus = prof/5;
     //if(TP->query("race")=="elf") bonus += 4;
     //if(TP->query("race")=="half-elf") bonus += 2;
-    if((target->query_skill("perception")) > prof+bonus) {
-
-  if ((TP->query_hidden()) && (!random(4))) {
-    if (objectp(present("TSR80",TP))) {
-    present("TSR80",TP)->force_cancel();
-    }
-  }
-      if(!random(3))
-	tell_object(caster, "Your target moved, noticed you, or something/someone is in your way now.");
-      if(!(random(prof) + caster->query_charisma())) {  // they won't always notice
-	 tell_object(spkr, caster->query_cap_name()+"'s apparent interest is making you uncomfortable.");
-	 tell_object(who, caster->query_cap_name()+"'s apparent interest is making you uncomfortable.");
-      }
-      dest_me();
-      return 1;
+    if((target->query_skill("perception")) > prof+bonus){
+        if((TP->query_hidden()) && (!random(4))){
+            if (objectp(present("TSR80",TP))) present("TSR80",TP)->force_cancel();
+        }
+        if(!random(3)) tell_object(caster, "Your target moved, noticed you, or something/someone is in your way now.");
+        if(!random(prof)){  // they won't always notice
+            tell_object(spkr, caster->query_cap_name()+"'s apparent interest is making you uncomfortable.");
+            tell_object(who, caster->query_cap_name()+"'s apparent interest is making you uncomfortable.");
+        }
+        dest_me();
+        return 1;
     }
 // you may miss it entirely from distractions/interference
     if(!random(10+prof)) return 1;
