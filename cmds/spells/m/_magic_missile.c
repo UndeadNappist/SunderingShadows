@@ -69,7 +69,7 @@ void spell_effect(int prof)
         ::spell_effect();
     }
     
-    num = clevel / 6;
+    num = (clevel / 6) + 1;
     
     //tell_object(caster, "Number of darts : " + num);
     //tell_object(caster, "Number of opponents : " + sizeof(victims));
