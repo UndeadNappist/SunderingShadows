@@ -30,7 +30,7 @@ void create() {
     "been constructed from.  Inset in the southern wall is "+
     "a very out of place door that continually glows.%^RESET%^",
     ({"ceiling"}) : "%^GREEN%^The ceiling of this tomb is "+
-    "covered with a thick, wet, moss.  The moss sucessfully "+
+    "covered with a thick, wet, moss.  The moss successfully "+
     "masks the identity of whatever substance the ceiling "+
     "has been constructed from.%^RESET%^",
     ({"floor"}) : "%^GREEN%^The floor of this tomb is covered "+
@@ -115,12 +115,12 @@ void do_book_display() {
         "troubled, with all too much drama.  "+
         "Mordavian and I were young boys "+
         "living in the prosperous village of "+
-        "verbobone.  He was the son of the "+
+        "Verbobone.  He was the son of the "+
         "headman of the village.  They lived in "+
         "the only mansion in the town!  Oh, how "+
         "beautiful it was!  Even in such a small "+
         "village there was never a shortage "+
-        "of trouble, but the island of deku "+
+        "of trouble, but the island of Deku "+
         "was peaceful and at rest.  Many peoples "+
         "living across it, with relatively "+
         "few hidden pitfalls and some exciting "+
@@ -136,11 +136,11 @@ void do_book_display() {
         "Mordavian was close to his uncle and torn "+
         "by the accusations his father brought "+
         "against him.  My friend, however, was "+
-        "not terribly suprised, as his uncled "+
+        "not terribly suprised, as his uncle "+
         "had requested much of him in recent time, "+
         "he'd asked him strange questions and "+
         "commanded him to do strange things.  "+
-        "No, he was not really suprised, just "+
+        "No, he was not really surprised, just "+
         "torn.%^RESET%^");
       }
      if(page == 3) {
@@ -149,22 +149,22 @@ void do_book_display() {
         "more strange events.  All of them simply "+
         "stopped, seemingly more proof of the "+
         "guilt of Kiomanl Glan's guilt "+
-        "(mordavians' uncle).  Then SHOCK!  "+
+        "(Mordavian's uncle).  Then SHOCK!  "+
         "Mordavian's mother had been caught in "+
         "an adulterous affair with Kiomanl and "+
         "his father left, in anger, vanishing "+
-        "into the forest.  Mordavian was devasted, "+
+        "into the forest.  Mordavian was devastated, "+
         "his world had been torn asunder, "+
-        "nothing was the same anymore.  He began "+
+        "nothing was the same any more.  He began "+
         "having troubling visions, of things not "+
-        "of this world.  He saws ghosts, fiery "+
+        "of this world.  He saw ghosts, fiery "+
         "creatures, creatures that should have "+
-        "been dead but where not.  He even "+
+        "been dead but were not.  He even "+
         "confided to me that he had been awakened "+
         "several times during the night by "+
-        "bizaare sounds.  I had replied that "+
+        "bizarre sounds.  I had replied that "+
         "it was perhaps his uncle and mother, "+
-        "but he argued vigirously that something "+
+        "but he argued vigorously that something "+
         "was terribly amiss and that somehow the "+
         "visions and sounds were intertwined.");
       }
@@ -187,8 +187,8 @@ void do_book_display() {
         "had became.  The strangeness was a sort "+
         "of joke to us or rather we made it humorous "+
         "to ease the pain, I suppose.  It was "+
-        "after this that the horror occured.... "+
-        "Mordavian was awokened with a start one "+
+        "after this that the horror occurred.... "+
+        "Mordavian was awakened with a start one "+
         "night.  His house was overrun by strange "+
         "creatures, and that night his fate was "+
         "forever changed.  I know none of the "+
