@@ -12,8 +12,8 @@ void remove_wall();
 void create() {
    ::create();
    set_name("cloud of vapor");
-   set_short("A cloud of vapor");
-   set_long("%^BOLD%^%^GREEN%^You see a massive cloud of acidic vapor drifting here, %^BOLD%^%^WHITE%^burning %^BOLD%^%^GREEN%^everything it touches.");
+   set_short("%^RESET%^%^CRST%^%^C064%^A cloud of %^C190%^vapor%^CRST%^");
+   set_long("%^RESET%^%^CRST%^%^C064%^You see a massive cloud of %^C190%^acidic vapor %^C064%^drifting here, burning everything it touches.%^CRST%^");
    set_id( ({"wall","cloud of vapor","vapor cloud","vapor"}) );
    set_weight(10000);
    set_value(0);
@@ -39,8 +39,8 @@ void surround(object ob) {
    level = caster->query_guild_level("mage");
    wallname = whose+"surroundingfirewall";
    if(present(wallname,environment(caster))) {
-      tell_object(caster,"The new wall simply melts into the wall that is already surrounding you!\n");
-      tell_room(environment(caster),"The wall surrounding "+caster->query_cap_name()+" glows brighter for a second.\n");
+      tell_object(caster,"%^RESET%^%^CRST%^%^C064%^The new wall simply melts into the wall that is already surrounding you!\n%^CRST%^");
+      tell_room(environment(caster),"%^RESET%^%^CRST%^%^C064%^The wall surrounding "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C064%^ glows brighter for a second.\n%^CRST%^");
       if(objectp(query_property("spell")))
          query_property("spell")->dest_effect();
       return;
@@ -52,8 +52,8 @@ void surround(object ob) {
       if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"acid") != -1)
          continue;
-      tell_room(environment(foes[k]),"%^BOLD%^%^GREEN%^"+foes[k]->QCN+" is burned by the hissing cloud and leaps back as it forms!",foes[k]);
-      tell_object(foes[k],"%^BOLD%^%^GREEN%^You get burned by the hissing cloud and jump away from "+caster->QCN+" as it forms up around "+caster->QO+".");
+      tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C064%^"+foes[k]->QCN+"%^RESET%^%^CRST%^%^C064%^ is burned by the %^C190%^hissing cloud %^C064%^and leaps back as it forms!%^CRST%^",foes[k]);
+      tell_object(foes[k],"%^RESET%^%^CRST%^%^C064%^You get burned by the %^C190%^hissing cloud %^C064%^and jump away from "+caster->QCN+"%^RESET%^%^CRST%^%^C064%^ as it forms up around "+caster->QO+".%^CRST%^");
       if(foes[k]->query_property("undead")) dmg = 4+random(21);
       else dmg = 2+random(11);
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"acid" );
@@ -85,8 +85,8 @@ void monitor() {
       if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"acid") != -1)
          continue;
-      tell_room(environment(foes[k]),"%^BOLD%^%^GREEN%^"+foes[k]->QCN+" is burned by the cloud of vapor!",foes[k]);
-      tell_object(foes[k],"%^BOLD%^%^GREEN%^You get burned by the cloud of vapor!");
+      tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C064%^"+foes[k]->QCN+"%^RESET%^%^CRST%^%^C064%^ is burned by the cloud of %^C190%^vapor%^C064%^!%^CRST%^",foes[k]);
+      tell_object(foes[k],"%^RESET%^%^CRST%^%^C064%^You get burned by the cloud of %^C190%^vapor%^C064%^!%^CRST%^");
       if(foes[k]->query_property("undead")) dmg = 4+random(21);
       else dmg = 2+random(11);
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"acid" );
@@ -104,13 +104,13 @@ void block(object ob, string exitn) {
 
    level = caster->query_guild_level("mage");
    exitname = exitn;
-   set_short("A cloud of vapor blocking the "+exitname);
-   set_long("%^BOLD%^%^GREEN%^You see a massive cloud of acidic vapor drifting here, %^BOLD%^%^WHITE%^burning %^BOLD%^%^GREEN%^everything it touches. It fully blocks the "+exitname+".");
+   set_short("%^RESET%^%^CRST%^%^C064%^A cloud of %^C190%^vapor %^C064%^blocking the %^CRST%^"+exitname);
+   set_long("%^RESET%^%^CRST%^%^C064%^You see a massive cloud of %^C190%^acidic vapor %^C064%^drifting here, burning everything it touches. It fully blocks the %^CRST%^"+exitname+".");
    whose = caster->query_name();
    wallname = whose+exitname+"firewall";
    if(present(wallname,environment(caster))) {
-      tell_object(caster,"The new wall simply melts into the wall that is already blocking the "+exitname+"\n");
-      tell_room(environment(caster),"The wall blocking the "+exitname+" glows brighter for a second.\n");
+      tell_object(caster,"%^RESET%^%^CRST%^%^C064%^The new wall simply melts into the wall that is already blocking the "+exitname+"\n%^CRST%^");
+      tell_room(environment(caster),"%^RESET%^%^CRST%^%^C064%^The wall blocking the "+exitname+" glows brighter for a second.\n%^CRST%^");
       if(objectp(query_property("spell")))
          query_property("spell")->dest_effect();
       return;
@@ -128,13 +128,13 @@ void remove_wall() {
       if(present(caster,ETO)) {
          notsee = ({caster});
          if(blocking)
-            tell_object(caster,"%^RED%^Your cloud of vapor"+exitdesc+" dissipates away.");
+            tell_object(caster,"%^RESET%^%^CRST%^%^C064%^Your cloud of %^C190%^vapor%^C064%^"+exitdesc+" dissipates away.%^CRST%^");
          else {
-            tell_object(caster,"%^RED%^The cloud of vapor that surrounds you dissipates away.");
+            tell_object(caster,"%^RESET%^%^CRST%^%^C064%^The cloud of %^C190%^vapor %^C064%^that surrounds you dissipates away.%^CRST%^");
             caster->move(ETO);
          }
       }
-      tell_room(ETO,"%^RED%^"+caster->QCN+"'s cloud of vapor"+exitdesc+" dissipates away.", notsee);
+      tell_room(ETO,"%^RESET%^%^CRST%^%^C064%^"+caster->QCN+"%^RESET%^%^CRST%^%^C064%^'s cloud of %^C190%^vapor%^C064%^"+exitdesc+" dissipates away.%^CRST%^", notsee);
    }
    destruct(TO);
    return;
@@ -150,12 +150,12 @@ int damager(string str) {
       if((string)caster->query_name()==(string)TPQN )
          return 0;
    if(TP->query_property("strength") && strsrch(TP->query_property("strength"),"acid") != -1 ) {
-      tell_object(TP,"%^BOLD%^%^GREEN%^You step into the cloud of vapor, walking calmly through the hissing acid, unharmed.");
-      tell_room(ETP,"%^BOLD%^%^GREEN%^"+TPQCN+" walks calmly into the cloud of vapor blocking the "+exitname+", unaffected by the acid.",TP);
+      tell_object(TP,"%^RESET%^%^CRST%^%^C064%^You step into the cloud of %^C190%^vapor%^C064%^, walking calmly through the hissing acid, unharmed.%^CRST%^");
+      tell_room(ETP,"%^RESET%^%^CRST%^%^C064%^"+TPQCN+"%^RESET%^%^CRST%^%^C064%^ walks calmly into the cloud of %^C190%^vapor %^C064%^blocking the "+exitname+", unaffected by the acid.%^CRST%^",TP);
       return 0;
    }
-   tell_object(TP,"%^BOLD%^%^GREEN%^You step into the cloud of vapor, rushing through before the acid burns you badly.");
-   tell_room(ETP,"%^BOLD%^%^GREEN%^"+TPQCN+" rushes into the cloud of vapor blocking the "+exitname+", as the acid burns "+TP->QO+"!",TP);
+   tell_object(TP,"%^RESET%^%^CRST%^%^C064%^You step into the cloud of %^C190%^vapor%^C064%^, rushing through before the acid burns you badly.%^CRST%^");
+   tell_room(ETP,"%^RESET%^%^CRST%^%^C064%^"+TPQCN+"%^RESET%^%^CRST%^%^C064%^ rushes into the cloud of %^C190%^vapor %^C064%^blocking the "+exitname+", as the acid burns "+TP->QO+"!%^CRST%^",TP);
    if(TP->query_property("undead")) dmg = (roll_dice(2,6)+level+level/2)*2;
    else dmg = roll_dice(2,6)+level+level/2;
    TP->cause_typed_damage(TP,TP->return_target_limb(),dmg,"acid" );

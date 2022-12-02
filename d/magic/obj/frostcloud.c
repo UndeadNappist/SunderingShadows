@@ -12,8 +12,8 @@ void remove_wall();
 void create() {
    ::create();
    set_name("cloud of frost");
-   set_short("A cloud of frost");
-   set_long("%^BOLD%^%^CYAN%^You see a massive cloud of frosty air drifting here, %^BOLD%^%^WHITE%^chilling %^BOLD%^%^CYAN%^everything it touches.");
+   set_short("%^RESET%^%^CRST%^%^C036%^A cloud of %^C051%^frost%^CRST%^");
+   set_long("%^RESET%^%^CRST%^%^C036%^You see a massive cloud of %^C051%^frosty air %^C036%^drifting here, chilling everything it touches.%^CRST%^");
    set_id( ({"wall","cloud of frost","frost cloud","frost"}) );
    set_weight(10000);
    set_value(0);
@@ -39,8 +39,8 @@ void surround(object ob) {
    level = caster->query_guild_level("mage");
    wallname = whose+"surroundingfirewall";
    if(present(wallname,environment(caster))) {
-      tell_object(caster,"The new wall simply melts into the wall that is already surrounding you!\n");
-      tell_room(environment(caster),"The wall surrounding "+caster->query_cap_name()+" glows brighter for a second.\n");
+      tell_object(caster,"%^RESET%^%^CRST%^%^C036%^The new wall simply melts into the wall that is already surrounding you!\n%^CRST%^");
+      tell_room(environment(caster),"%^RESET%^%^CRST%^%^C036%^The wall surrounding "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C036%^ glows brighter for a second.\n%^CRST%^");
       if(objectp(query_property("spell")))
          query_property("spell")->dest_effect();
       return;
@@ -52,8 +52,8 @@ void surround(object ob) {
       if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"cold") != -1)
          continue;
-      tell_room(environment(foes[k]),"%^BOLD%^%^CYAN%^"+foes[k]->QCN+" is chilled by the icy cloud and leaps back as it forms!",foes[k]);
-      tell_object(foes[k],"%^BOLD%^%^RED%^You get chilled by the icy cloud and jump away from "+caster->QCN+" as it forms up around "+caster->QO+".");
+      tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C036%^"+foes[k]->QCN+" is chilled by the %^C051%^icy cloud %^C036%^and leaps back as it forms!%^CRST%^",foes[k]);
+      tell_object(foes[k],"%^RESET%^%^CRST%^%^C036%^You get chilled by the %^C051%^icy cloud %^C036%^and jump away from "+caster->QCN+"%^RESET%^%^CRST%^%^C036%^ as it forms up around "+caster->QO+".%^CRST%^");
       if(foes[k]->query_property("undead")) dmg = 4+random(21);
       else dmg = 2+random(11);
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"cold" );
@@ -85,8 +85,8 @@ void monitor() {
       if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"cold") != -1)
          continue;
-      tell_room(environment(foes[k]),"%^BOLD%^%^CYAN%^"+foes[k]->QCN+" is chilled by the cloud of frost!",foes[k]);
-      tell_object(foes[k],"%^BOLD%^%^CYAN%^You get chilled by the cloud of frost!");
+      tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C036%^"+foes[k]->QCN+"%^RESET%^%^CRST%^%^C036%^ is chilled by the cloud of %^C051%^frost%^C036%^!%^CRST%^",foes[k]);
+      tell_object(foes[k],"%^RESET%^%^CRST%^%^C036%^You get chilled by the cloud of %^C051%^frost%^C036%^!%^CRST%^");
       if(foes[k]->query_property("undead")) dmg = 4+random(21);
       else dmg = 2+random(11);
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"cold" );
@@ -104,13 +104,13 @@ void block(object ob, string exitn) {
 
    level = caster->query_guild_level("mage");
    exitname = exitn;
-   set_short("A cloud of frost blocking the "+exitname);
-   set_long("%^BOLD%^%^CYAN%^You see a massive cloud of frosty air drifting here, %^BOLD%^%^WHITE%^chilling %^BOLD%^%^CYAN%^everything it touches. It fully blocks the "+exitname+".");
+   set_short("%^RESET%^%^CRST%^%^C036%^A cloud of %^C051%^frost blocking the %^CRST%^"+exitname);
+   set_long("%^RESET%^%^CRST%^%^C036%^You see a massive cloud of %^C051%^frosty air %^C036%^drifting here, chilling everything it touches. It fully blocks the "+exitname+".%^CRST%^");
    whose = caster->query_name();
    wallname = whose+exitname+"firewall";
    if(present(wallname,environment(caster))) {
-      tell_object(caster,"The new wall simply melts into the wall that is already blocking the "+exitname+"\n");
-      tell_room(environment(caster),"The wall blocking the "+exitname+" glows brighter for a second.\n");
+      tell_object(caster,"%^RESET%^%^CRST%^%^C036%^The new wall simply melts into the wall that is already blocking the "+exitname+"\n%^CRST%^");
+      tell_room(environment(caster),"%^RESET%^%^CRST%^%^C036%^The wall blocking the "+exitname+" glows brighter for a second.\n%^CRST%^");
       if(objectp(query_property("spell")))
          query_property("spell")->dest_effect();
       return;
@@ -128,13 +128,13 @@ void remove_wall() {
       if(present(caster,ETO)) {
          notsee = ({caster});
          if(blocking)
-            tell_object(caster,"%^RED%^Your cloud of frost"+exitdesc+" dissipates away.");
+            tell_object(caster,"%^RESET%^%^CRST%^%^C036%^Your cloud of %^C051%^frost%^C036%^"+exitdesc+" dissipates away.%^CRST%^");
          else {
-            tell_object(caster,"%^RED%^The cloud of frost that surrounds you dissipates away.");
+            tell_object(caster,"%^RESET%^%^CRST%^%^C036%^The cloud of %^C051%^frost %^C036%^that surrounds you dissipates away.%^CRST%^");
             caster->move(ETO);
          }
       }
-      tell_room(ETO,"%^RED%^"+caster->QCN+"'s cloud of frost"+exitdesc+" dissipates away.", notsee);
+      tell_room(ETO,"%^RESET%^%^CRST%^%^C036%^"+caster->QCN+"%^RESET%^%^CRST%^%^C036%^'s cloud of %^C051%^frost%^C036%^"+exitdesc+" dissipates away.%^CRST%^", notsee);
    }
    destruct(TO);
    return;
@@ -150,12 +150,12 @@ int damager(string str) {
       if((string)caster->query_name()==(string)TPQN )
          return 0;
    if(TP->query_property("strength") && strsrch(TP->query_property("strength"),"cold") != -1 ) {
-      tell_object(TP,"%^BOLD%^%^CYAN%^You step into the cloud of frost, walking calmly through the chilled air, unharmed.");
-      tell_room(ETP,"%^BOLD%^%^CYAN%^"+TPQCN+" walks calmly into the cloud of frost blocking the "+exitname+", unaffected by the chill.",TP);
+      tell_object(TP,"%^RESET%^%^CRST%^%^C036%^You step into the cloud of %^C051%^frost%^C036%^, walking calmly through the chilled air, unharmed.%^CRST%^");
+      tell_room(ETP,"%^RESET%^%^CRST%^%^C036%^"+TPQCN+"%^RESET%^%^CRST%^%^C036%^ walks calmly into the cloud of %^C051%^frost %^C036%^blocking the "+exitname+", unaffected by the chill.%^CRST%^",TP);
       return 0;
    }
-   tell_object(TP,"%^BOLD%^%^CYAN%^You step into the cloud of frost, rushing through before the air chills you badly.");
-   tell_room(ETP,"%^BOLD%^%^CYAN%^"+TPQCN+" rushes into the cloud of frost blocking the "+exitname+", as the air chills "+TP->QO+"!",TP);
+   tell_object(TP,"%^RESET%^%^CRST%^%^C036%^You step into the cloud of %^C051%^frost%^C036%^, rushing through before the air chills you badly.%^CRST%^");
+   tell_room(ETP,"%^RESET%^%^CRST%^%^C036%^"+TPQCN+"%^RESET%^%^CRST%^%^C036%^ rushes into the cloud of %^C051%^frost %^C036%^blocking the "+exitname+", as the air chills "+TP->QO+"!%^CRST%^",TP);
    if(TP->query_property("undead")) dmg = (roll_dice(2,6)+level+level/2)*2;
    else dmg = roll_dice(2,6)+level+level/2;
    TP->cause_typed_damage(TP,TP->return_target_limb(),dmg,"cold" );
