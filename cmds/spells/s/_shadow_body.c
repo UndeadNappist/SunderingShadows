@@ -16,8 +16,7 @@ inherit SPELL;
 
 string ashort;
 
-void effect(int direction)
-{
+void effect(int direction){
     if(direction > 0)
     {
         caster->set_property("flying",1);
@@ -42,8 +41,7 @@ void effect(int direction)
     return;
 }
 
-void create()
-{
+void create(){
     ::create();
 
     set_author("tlaloc");
@@ -58,8 +56,7 @@ void create()
     set_helpful_spell(1);
 }
 
-int preSpell()
-{
+int preSpell(){
     /*
    if(caster->query_stoneSkinned() || caster->query_property("iron body") || caster->query_property("form of doom") || caster->query_property("fiery body"))
    {
@@ -72,21 +69,21 @@ int preSpell()
 }
 
 
-string query_cast_string()
-{
-    return "%^BOLD%^CYAN%^" + sprintf("%s concentrates on %s psionic powers", caster->QCN, caster->query_possessive());
+string query_cast_string(){
+    tell_object(caster, "%^RESET%^%^CRST%^%^C060%^You concentrate on your %^C055%^s%^C054%^h%^C053%^ad%^C054%^o%^C055%^w%^RESET%^%^C060%^...%^CRST%^");
+    tell_room(place, "%^RESET%^%^CRST%^%^C060%^"+caster->QCN+"%^RESET%^%^CRST%^%^C060%^ concentrates on "+caster->QP+" %^C055%^s%^C054%^h%^C053%^ad%^C054%^o%^C055%^w%^RESET%^%^C060%^...%^CRST%^", caster);
+    return "display";
 }
 
-void spell_effect(int prof)
-{
+void spell_effect(int prof){
     string myname, yourname;
     int mylevel;
 
     myname = caster->QCN;
-    ashort = " %^MAGENTA%^(%^BOLD%^%^BLACK%^s%^RESET%^%^MAGENTA%^h%^BOLD%^a%^RESET%^d%^BOLD%^%^BLACK%^o%^RESET%^%^MAGENTA%^w%^BOLD%^y %^BLACK%^s%^RESET%^%^MAGENTA%^i%^BOLD%^l%^RESET%^h%^BOLD%^%^BLACK%^o%^RESET%^%^MAGENTA%^u%^BOLD%^e%^RESET%^t%^BOLD%^%^BLACK%^t%^RESET%^%^MAGENTA%^e)%^WHITE%^";
+    ashort = " %^RESET%^%^CRST%^%^C099%^(%^C055%^s%^C054%^h%^C053%^ado%^C054%^w%^C055%^y si%^C054%^lh%^C053%^ou%^C054%^et%^C055%^te%^C099%^)%^CRST%^";
 
-    tell_object(caster, "%^BOLD%^%^BLACK%^You focus on the s%^RESET%^%^MAGENTA%^h%^BOLD%^a%^RESET%^d%^BOLD%^%^BLACK%^o%^RESET%^%^MAGENTA%^w%^BOLD%^s%^RESET%^%^CYAN%^, %^BOLD%^%^BLACK%^drawing them to you and s%^RESET%^%^MAGENTA%^u%^BOLD%^b%^RESET%^s%^BOLD%^%^BLACK%^u%^RESET%^%^MAGENTA%^m%^BOLD%^i%^RESET%^n%^BOLD%^%^BLACK%^g your body!%^RESET%^");
-    tell_room(place, "%^BOLD%^BLACK%^" + sprintf("%s pulls the shadows towards %s, subsuming %s body!", myname, caster->query_objective(), caster->query_possessive()), ({ caster }));
+    tell_object(caster, "%^RESET%^%^CRST%^%^C060%^You focus on the %^C055%^s%^C054%^h%^C053%^ado%^C054%^w%^C055%^s%^RESET%^%^C060%^, drawing them to you and %^C055%^su%^C054%^bs%^C053%^u%^C054%^mi%^C055%^ng %^C060%^your body!%^CRST%^");
+    tell_room(place, "%^RESET%^%^CRST%^%^C060%^"+myname+"%^RESET%^%^CRST%^%^C060%^ pulls the %^C055%^s%^C054%^h%^C053%^ado%^C054%^w%^C055%^s%^RESET%^%^C060%^ towards "+caster->QO+", %^C055%^su%^C054%^bs%^C053%^u%^C054%^mi%^C055%^ng %^RESET%^%^C060%^"+caster->QP+" body!%^CRST%^", caster);
 
     effect(1);
     spell_successful();
@@ -99,14 +96,14 @@ void spell_effect(int prof)
     call_out("dest_effect",spell_duration);
 }
 
-void dest_effect()
-{
+void dest_effect(){
     remove_call_out("dest_effect");
     
-    tell_object(caster, "%^MAGENTA%^BOLD%^The shadows subsuming your body seem to dissipate.");
+    tell_object(caster, "%^RESET%^%^CRST%^%^C060%^The %^C055%^s%^C054%^h%^C053%^ado%^C054%^w%^C055%^s%^RESET%^%^C060%^ subsuming your body seem to %^C059%^dissipate%^C060%^.%^CRST%^");
     caster->remove_property_value("added short",({ashort}));
     effect(-1);
     ::dest_effect();
     if(objectp(this_object()))
         this_object()->remove();
 }
+
