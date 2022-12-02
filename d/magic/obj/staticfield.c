@@ -12,11 +12,8 @@ void remove_wall();
 void create() {
    ::create();
    set_name("static field");
-   set_short("%^YELLOW%^A crackling field of static%^RESET%^");
-   set_long("%^RESET%^%^ORANGE%^You can see a crackling field of "
-"%^YELLOW%^sta%^WHITE%^t%^YELLOW%^ic en%^WHITE%^e%^YELLOW%^rgy%^RESET%^"
-"%^ORANGE%^, sending jolts of electricity into the air around "
-"it.%^RESET%^");
+   set_short("%^RESET%^%^CRST%^%^C101%^A crackling field of %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c%^CRST%^");
+   set_long("%^RESET%^%^CRST%^%^C101%^You can see a crackling field of %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c e%^C230%^n%^C228%^erg%^C230%^y%^RESET%^%^C101%^, sending jolts of electricity into the air around it.%^CRST%^");
    set_id( ({"field","static field","electric field","static"}) );
    set_weight(10000);
    set_value(0);
@@ -42,10 +39,8 @@ void surround(object ob) {
    level = caster->query_guild_level("mage");
    wallname = whose+"surroundingfirewall";
    if(present(wallname,environment(caster))) {
-      tell_object(caster,"%^YELLOW%^The new wall simply melds into the "
-"wall that is already surrounding you!%^RESET%^\n");
-      tell_room(environment(caster),"%^YELLOW%^The wall surrounding "
-+caster->query_cap_name()+" glows brighter for a second.%^RESET%^\n");
+      tell_object(caster,"%^RESET%^%^CRST%^%^C101%^The new wall simply melds into the wall that is already surrounding you!%^CRST%^\n");
+      tell_room(environment(caster),"%^RESET%^%^CRST%^%^C101%^The wall surrounding "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ glows brighter for a second.%^CRST%^\n");
       if(objectp(query_property("spell")))
          query_property("spell")->dest_effect();
       return;
@@ -57,12 +52,8 @@ void surround(object ob) {
       if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"electricity") != -1)
          continue;
-      tell_room(environment(foes[k]),"%^YELLOW%^"+foes[k]->query_cap_name()
-+" leaps back as a crackling field of static comes into being near "
-+foes[k]->query_objective()+"!%^RESET%^",foes[k]);
-      tell_object(foes[k],"%^YELLOW%^You leap back as a crackling field "
-"of static comes into being around "
-+caster->query_cap_name()+".%^RESET%^");
+      tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C101%^"+foes[k]->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ leaps back as a crackling field of %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c %^RESET%^%^C101%^comes into being near "+foes[k]->query_objective()+"!%^CRST%^",foes[k]);
+      tell_object(foes[k],"%^RESET%^%^CRST%^%^C101%^You leap back as a crackling field of %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c %^RESET%^%^C101%^comes into being around "+caster->query_cap_name()+".%^CRST%^");
       if(foes[k]->query_property("undead")) dmg = 4+random(21);
       else dmg = 2+random(11);
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"electricity" );
@@ -93,11 +84,8 @@ void monitor() {
       if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"electricity") != -1)
          continue;
-      tell_room(environment(foes[k]),"%^YELLOW%^"+
-foes[k]->query_cap_name()+" is zapped by the field of "
-"static!%^RESET%^",foes[k]);
-      tell_object(foes[k],"%^YELLOW%^The static field crackles and zaps "
-"you!%^RESET%^");
+      tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C101%^"+foes[k]->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ is zapped by the field of %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c%^RESET%^%^C101%^!%^CRST%^",foes[k]);
+      tell_object(foes[k],"%^RESET%^%^CRST%^%^C101%^The %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c %^RESET%^%^C101%^field crackles and zaps you!%^CRST%^");
       if(foes[k]->query_property("undead")) dmg = 4+random(21);
       else dmg = 2+random(11);
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"electricity" );
@@ -115,18 +103,13 @@ void block(object ob, string exitn) {
 
    level = caster->query_guild_level("mage");
    exitname = exitn;
-   set_short("%^YELLOW%^A static field blocking the "+exitname);
-   set_long("%^RESET%^%^ORANGE%^You can see a crackling field of "
-"%^YELLOW%^sta%^WHITE%^t%^YELLOW%^ic en%^WHITE%^e%^YELLOW%^rgy%^RESET%^"
-"%^ORANGE%^, sending jolts of electricity into the air around it.  It "
-"fully blocks the "+exitname+".%^RESET%^");
+   set_short("%^RESET%^%^CRST%^%^C101%^A crackling field of %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c %^RESET%^%^C101%^blocking the %^CRST%^"+exitname);
+   set_long("%^RESET%^%^CRST%^%^C101%^You can see a crackling field of %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c e%^C230%^n%^C228%^erg%^C230%^y%^RESET%^%^C101%^, sending jolts of electricity into the air around it. It fully blocks the "+exitname+".%^CRST%^");
    whose = caster->query_name();
    wallname = whose+exitname+"firewall";
    if(present(wallname,environment(caster))) {
-      tell_object(caster,"%^YELLOW%^The new wall blurs into the wall that "
-"is already blocking the "+exitname+".%^RESET%^\n");
-      tell_room(environment(caster),"%^YELLOW%^The wall blocking the "
-+exitname+" glows brighter for a second.%^RESET%^\n");
+      tell_object(caster,"%^RESET%^%^CRST%^%^C101%^The new wall blurs into the wall that is already blocking the "+exitname+".%^CRST%^\n");
+      tell_room(environment(caster),"%^RESET%^%^CRST%^%^C101%^The wall blocking the "+exitname+" glows brighter for a second.%^CRST%^\n");
       if(objectp(query_property("spell")))
          query_property("spell")->dest_effect();
       return;
@@ -144,16 +127,13 @@ void remove_wall() {
       if(present(caster,ETO)) {
          notsee = ({caster});
          if(blocking)
-            tell_object(caster,"%^ORANGE%^The static field"+exitdesc+
-" fades away.%^RESET%^");
+            tell_object(caster,"%^RESET%^%^CRST%^%^C101%^The %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c fie%^C230%^l%^C228%^d%^RESET%^%^C101%^"+exitdesc+" fades away.%^CRST%^");
          else {
-            tell_object(caster,"%^ORANGE%^The static field protecting you "
-"fades away.%^RESET%^");
+            tell_object(caster,"%^RESET%^%^CRST%^%^C101%^The %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c fie%^C230%^l%^C228%^d%^RESET%^%^C101%^ protecting you fades away.%^CRST%^");
             caster->move(ETO);
          }
       }
-      tell_room(ETO,"%^ORANGE%^"+caster->query_cap_name()+"'s static field"
-+exitdesc+" fades away.%^RESET%^", notsee);
+      tell_room(ETO,"%^RESET%^%^CRST%^%^C101%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^'s %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c fie%^C230%^l%^C228%^d%^RESET%^%^C101%^"+exitdesc+" fades away.%^CRST%^", notsee);
    }
    destruct(TO);
    return;
@@ -170,19 +150,12 @@ int damager(string str) {
          return 0;
    if(TP->query_property("strength") &&
 strsrch(TP->query_property("strength"),"electricity") != -1 ) {
-      tell_object(TP,"%^ORANGE%^You step calmly through the static field, "
-"totally unharmed.%^RESET%^");
-      tell_room(ETP,"%^ORANGE%^"+TPQCN+" steps calmly through the static "
-"field blocking the "+exitname+", totally unharmed.%^RESET%^",TP);
+      tell_object(TP,"%^RESET%^%^CRST%^%^C101%^You step calmly through the %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c fie%^C230%^l%^C228%^d%^RESET%^%^C101%^, totally unharmed.%^CRST%^");
+      tell_room(ETP,"%^RESET%^%^CRST%^%^C101%^"+TPQCN+"%^RESET%^%^CRST%^%^C101%^ steps calmly through the %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c fie%^C230%^l%^C228%^d%^RESET%^%^C101%^ blocking the "+exitname+", totally unharmed.%^CRST%^",TP);
       return 0;
    }
-   tell_object(TP,"%^ORANGE%^You dash through the static field and the "
-"air %^YELLOW%^cra%^WHITE%^c%^YELLOW%^kles %^RESET%^%^ORANGE%^over your "
-"skin!%^RESET%^");
-   tell_room(ETP,"%^BOLD%^%^CYAN%^"+TPQCN+" rushes quickly through the "
-"static field blocking the "+exitname+", as the charged air %^YELLOW%^"
-"cra%^WHITE%^c%^YELLOW%^kles %^RESET%^%^ORANGE%^over "+TP->QP+
-" skin!%^RESET%^",TP);
+   tell_object(TP,"%^RESET%^%^CRST%^%^C101%^You dash through the %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c fie%^C230%^l%^C228%^d%^RESET%^%^C101%^ and the air crackles over your skin!%^CRST%^");
+   tell_room(ETP,"%^RESET%^%^CRST%^%^C101%^"+TPQCN+"%^RESET%^%^CRST%^%^C101%^ rushes quickly through the %^C228%^st%^C230%^a%^C228%^t%^C230%^i%^C228%^c fie%^C230%^l%^C228%^d%^RESET%^%^C101%^ blocking the "+exitname+", as the charged air crackles over "+TP->QP+" skin!%^CRST%^",TP);
    if(TP->query_property("undead")) dmg = (roll_dice(2,6)+level+level/2)*2;
    else dmg = roll_dice(2,6)+level+level/2;
    TP->cause_typed_damage(TP,TP->return_target_limb(),dmg,"electricity" );
