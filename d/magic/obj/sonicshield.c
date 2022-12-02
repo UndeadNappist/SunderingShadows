@@ -12,10 +12,8 @@ void remove_wall();
 void create() {
    ::create();
    set_name("sonic shield");
-   set_short("%^RESET%^%^CYAN%^A blurred sonic shield%^RESET%^");
-   set_long("%^RESET%^%^CYAN%^You can see a blurred field of %^BOLD%^"
-"%^WHITE%^son%^CYAN%^i%^WHITE%^c energy%^RESET%^%^CYAN%^, causing the air "
-"around it to vibrate violently.%^RESET%^");
+   set_short("%^RESET%^%^CRST%^%^C091%^A blurred %^C135%^sonic %^C091%^shield%^CRST%^");
+   set_long("%^RESET%^%^CRST%^%^C091%^You can see a blurred field of %^C135%^sonic energy%^C091%^, causing the air around it to vibrate violently.%^CRST%^");
    set_id( ({"shield","sonic shield","sonic field","field of sonic"}) );
    set_weight(10000);
    set_value(0);
@@ -41,10 +39,8 @@ void surround(object ob) {
    level = caster->query_guild_level("mage");
    wallname = whose+"surroundingfirewall";
    if(present(wallname,environment(caster))) {
-      tell_object(caster,"%^BOLD%^%^CYAN%^The new wall simply melts into "
-"the wall that is already surrounding you!%^RESET%^\n");
-      tell_room(environment(caster),"%^BOLD%^%^CYAN%^The wall surrounding "
-+caster->query_cap_name()+" glows brighter for a second.%^RESET%^\n");
+      tell_object(caster,"%^RESET%^%^CRST%^%^C091%^The new wall simply melts into the wall that is already surrounding you!%^CRST%^\n");
+      tell_room(environment(caster),"%^RESET%^%^CRST%^%^C091%^The wall surrounding "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^ glows brighter for a second.%^CRST%^\n");
       if(objectp(query_property("spell")))
          query_property("spell")->dest_effect();
       return;
@@ -56,12 +52,8 @@ void surround(object ob) {
       if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"sonic") != -1)
          continue;
-      tell_room(environment(foes[k]),"%^CYAN%^"+foes[k]->query_cap_name()
-+" leaps back as the sonic field rises up and catches "
-+foes[k]->query_objective()+" on its edge!%^RESET%^",foes[k]);
-      tell_object(foes[k],"%^CYAN%^You jump away as a piercing note "
-"strikes your ears from the field of sonic that springs up around "
-+caster->query_cap_name()+".%^RESET%^");
+      tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C091%^"+foes[k]->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^ leaps back as the %^C135%^sonic field%^C091%^ rises up and catches "+foes[k]->query_objective()+" on its edge!%^CRST%^",foes[k]);
+      tell_object(foes[k],"%^RESET%^%^CRST%^%^C091%^You jump away as a piercing note strikes your ears from the %^C135%^sonic field%^C091%^ that springs up around "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^.%^CRST%^");
       if(foes[k]->query_property("undead")) dmg = 4+random(21);
       else dmg = 2+random(11);
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"sonic" );
@@ -92,11 +84,8 @@ void monitor() {
       if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"sonic") != -1)
          continue;
-      tell_room(environment(foes[k]),"%^BOLD%^%^CYAN%^"+
-foes[k]->query_cap_name()+" is buffeted by the sonic "
-"field!%^RESET%^",foes[k]);
-      tell_object(foes[k],"%^BOLD%^%^CYAN%^The scream of the sonic shield "
-"echoes violently in your ears!%^RESET%^");
+      tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C091%^"+foes[k]->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^ is buffeted by the %^C135%^sonic field%^C091%^!%^CRST%^",foes[k]);
+      tell_object(foes[k],"%^RESET%^%^CRST%^%^C091%^The scream of the %^C135%^sonic shield%^C091%^ echoes violently in your ears!%^CRST%^");
       if(foes[k]->query_property("undead")) dmg = 4+random(21);
       else dmg = 2+random(11);
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"sonic" );
@@ -114,18 +103,13 @@ void block(object ob, string exitn) {
 
    level = caster->query_guild_level("mage");
    exitname = exitn;
-   set_short("%^RESET%^%^CYAN%^A sonic shield blocking the "+exitname);
-   set_long("%^RESET%^%^CYAN%^You can see a blurred field of %^BOLD%^"
-"%^WHITE%^son%^CYAN%^i%^WHITE%^c energy%^RESET%^%^CYAN%^, causing the air "
-"around it to vibrate violently.  It fully blocks the "
-+exitname+".%^RESET%^");
+   set_short("%^RESET%^%^CRST%^%^C091%^A %^C135%^sonic shield%^C091%^ blocking the %^CRST%^"+exitname);
+   set_long("%^RESET%^%^CRST%^%^C091%^You can see a blurred field of %^C135%^sonic energy%^RESET%^%^C091%^, causing the air around it to vibrate violently. It fully blocks the "+exitname+".%^CRST%^");
    whose = caster->query_name();
    wallname = whose+exitname+"firewall";
    if(present(wallname,environment(caster))) {
-      tell_object(caster,"%^BOLD%^%^CYAN%^The new wall blurs into the "
-"wall that is already blocking the "+exitname+".%^RESET%^\n");
-      tell_room(environment(caster),"%^BOLD%^%^CYAN%^The wall blocking "
-"the "+exitname+" glows brighter for a second.%^RESET%^\n");
+      tell_object(caster,"%^RESET%^%^CRST%^%^C091%^The new wall blurs into the wall that is already blocking the "+exitname+".%^CRST%^\n");
+      tell_room(environment(caster),"%^RESET%^%^CRST%^%^C091%^The wall blocking the "+exitname+" glows brighter for a second.%^CRST%^\n");
       if(objectp(query_property("spell")))
          query_property("spell")->dest_effect();
       return;
@@ -143,16 +127,13 @@ void remove_wall() {
       if(present(caster,ETO)) {
          notsee = ({caster});
          if(blocking)
-            tell_object(caster,"%^CYAN%^The sonic shield"+exitdesc+
-" fades away.%^RESET%^");
+            tell_object(caster,"%^RESET%^%^CRST%^%^C091%^The %^C135%^sonic shield%^C091%^"+exitdesc+" fades away.%^CRST%^");
          else {
-            tell_object(caster,"%^CYAN%^The sonic shield protecting you "
-"fades away.%^RESET%^");
+            tell_object(caster,"%^RESET%^%^CRST%^%^C091%^The %^C135%^sonic shield%^C091%^ protecting you fades away.%^CRST%^");
             caster->move(ETO);
          }
       }
-      tell_room(ETO,"%^CYAN%^"+caster->query_cap_name()+"'s sonic "
-"shield"+exitdesc+" fades away.%^RESET%^", notsee);
+      tell_room(ETO,"%^RESET%^%^CRST%^%^C091%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^'s %^C135%^sonic shield%^C091%^"+exitdesc+" fades away.%^CRST%^", notsee);
    }
    destruct(TO);
    return;
@@ -167,19 +148,13 @@ int damager(string str) {
    if(caster)
       if((string)caster->query_name()==(string)TPQN )
          return 0;
-   if(TP->query_property("strength") &&
-strsrch(TP->query_property("strength"),"sonic") != -1 ) {
-      tell_object(TP,"%^BOLD%^%^CYAN%^You step calmly through the field "
-"of sonic vibrations, totally unharmed.%^RESET%^");
-      tell_room(ETP,"%^BOLD%^%^CYAN%^"+TPQCN+" steps calmly through the "
-"field of sonic vibrations blocking the "+exitname+", totally "
-"unharmed.%^RESET%^",TP);
+   if(TP->query_property("strength") && strsrch(TP->query_property("strength"),"sonic") != -1 ) {
+      tell_object(TP,"%^RESET%^%^CRST%^%^C091%^You step calmly through the field of %^C135%^sonic vibrations%^C091%^, totally unharmed.%^CRST%^");
+      tell_room(ETP,"%^RESET%^%^CRST%^%^C091%^"+TPQCN+"%^RESET%^%^CRST%^%^C091%^ steps calmly through the field of %^C135%^sonic vibrations%^C091%^ blocking the "+exitname+", totally unharmed.%^CRST%^",TP);
       return 0;
    }
-   tell_object(TP,"%^BOLD%^%^CYAN%^You rush quickly through the sonic "
-"field as the vibrations scream in your ears!%^RESET%^");
-   tell_room(ETP,"%^BOLD%^%^CYAN%^"+TPQCN+" rushes quickly through the "
-"sonic field blocking the "+exitname+"!%^RESET%^",TP);
+   tell_object(TP,"%^RESET%^%^CRST%^%^C091%^You rush quickly through the %^C135%^sonic field%^C091%^ as the vibrations scream in your ears!%^CRST%^");
+   tell_room(ETP,"%^RESET%^%^CRST%^%^C091%^"+TPQCN+"%^RESET%^%^CRST%^%^C091%^ rushes quickly through the %^C135%^sonic field%^C091%^ blocking the "+exitname+"!%^CRST%^",TP);
    if(TP->query_property("undead")) dmg = (roll_dice(2,6)+level+level/2)*2;
    else dmg = roll_dice(2,6)+level+level/2;
    TP->cause_typed_damage(TP,TP->return_target_limb(),dmg,"sonic" );
