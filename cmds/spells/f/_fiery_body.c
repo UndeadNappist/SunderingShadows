@@ -52,16 +52,18 @@ int preSpell()
     return 1;
 }
 
-string query_cast_string()
-{
-    return "%^BOLD%^%^RED%^" + caster->QCN + " levitates above ground as " + caster->QS + " chants the spell.";
+string query_cast_string(){
+    tell_object(caster, "%^BOLD%^%^RED%^You levitate above the ground as you chant the spell.%^RESET%^");
+    tell_room(place, "%^BOLD%^%^RED%^"+caster->QCN+"%^RESET%^%^CRST%^%^BOLD%^%^RED%^ levitates above ground as "+caster->QS+" chants the spell.%^RESET%^", caster);
+    return "display";
 }
 
 void spell_effect()
 {
     ashort = "%^RESET%^%^RED%^ (%^BOLD%^%^RED%^f%^BOLD%^la%^BLACK%^m%^RED%^i%^RESET%^%^RED%^ng %^BOLD%^%^BLACK%^s%^RED%^il%^BLACK%^h%^RESET%^%^RED%^o%^BOLD%^ue%^BLACK%^t%^RED%^t%^RESET%^%^RED%^e%^RESET%^%^RED%^)";
 
-    tell_room(ENV(caster), "%^BOLD%^%^RED%^As " + caster->QCN + " finishes the chant, " + caster->QP + " body turns into flame.%^RESET%^");
+    tell_object(caster, "%^BOLD%^%^RED%^As you finish the chant, your body turns into flame.%^RESET%^");
+    tell_room(place, "%^BOLD%^%^RED%^As "+caster->QCN+"%^RESET%^%^CRST%^%^BOLD%^%^RED%^ finishes the chant, "+caster->QP+" body turns into flame.%^RESET%^", caster);
 
     effect(1);
     caster->set_property("added short", ({ ashort }));
@@ -77,7 +79,8 @@ void dest_effect()
 {
     if (objectp(caster)) {
         caster->remove_property_value("added short", ({ ashort }));
-        tell_room(ENV(caster), "%^BOLD%^%^RED%^" + caster->QCN + "'s silhouette loses its fiery appearance.%^RESET%^");
+        tell_object(caster, "%^BOLD%^%^RED%^Your silhouette loses its fiery appearance.%^RESET%^");
+        tell_room(environment(caster), "%^BOLD%^%^RED%^" + caster->QCN + "%^RESET%^%^CRST%^%^BOLD%^%^RED%^'s silhouette loses its fiery appearance.%^RESET%^", caster);
         effect(-1);
     }
     ::dest_effect();
