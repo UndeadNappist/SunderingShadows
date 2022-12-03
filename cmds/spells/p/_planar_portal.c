@@ -19,7 +19,7 @@ void create(){
     set_description("This potent power enables a nomad to open up a portal, allowing beings to pass from the place he "
 "currently stands to one he has locked firmly in his memory.  By using this power, the nomad commands a temporary "
 "connection between the two locations.  The power is taxing, however, so the portal will not remain open very long.  An "
-"example of the power's usage is <remember here as cave>.  Then later on, the nomad would type, <manifest planar portal "
+"example of the power's usage is <remember here as cave>.  Then later on, the nomad would type, <cast planar portal "
 "to cave>.  Again, you may also <unremember cave> to forget that particular location.\n\nSee also: remember, unremember, "
 "recall");
     set_verbal_comp();
