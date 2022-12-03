@@ -74,54 +74,13 @@ void spell_effect()
     tell_room(ENV(caster),"%^BOLD%^%^WHITE%^As "+caster->QCN+" finishes the chant, feathery "+(!(caster->query_true_align()%3)?"%^BLACK%^black%^WHITE%^":"white")+" wings sprout from "+caster->QP+" shoulders!%^RESET%^");
 
     effect(1);
+    spell_successful();
     caster->set_property("added short",({ashort}));
     caster->set_property("spelled", ({TO}) );
     addSpellToCaster();
-    spell_successful();
-    execute_attack();
-}
-
-void execute_attack()
-{
-    object * attackers;
-    object room;
-    ::execute_attack();
-    if(!objectp(caster))
-    {
-        dest_effect();
-        return;
-    }
-
-    attackers = caster->query_attackers();
-
-    if(lastattack == time())
-        return;
-
-    room=ENV(caster);
-    room->addObjectToCombatCycle(TO,1);
-    lastattack = time();
-
-    if(!sizeof(attackers) && !cond_test)
-    {
-        tell_object(caster,"%^BOLD%^%^WHITE%^You begin to feel your mortality...");
-        cond_test=1;
-        call_out("test",ROUND_LENGTH*8);
-    }
-}
-
-void test()
-{
-    object * attackers;
-    if(!objectp(caster))
-        dest_effect();
-    attackers = caster->query_attackers();
-    cond_test=0;
-    if(sizeof(attackers))
-        return;
-    if(ENV(caster)->is_flight_room())
-        return;
-    tell_object(caster,"%^BOLD%^%^WHITE%^You feel your mortality return as your angelic aspect fades.");
-    dest_effect();
+    spell_duration = (1 + clevel / 5) * 60;
+    set_end_time();
+    call_out("dest_effect", spell_duration);
 }
 
 void dest_effect()
@@ -129,6 +88,7 @@ void dest_effect()
     if(objectp(caster))
     {
         caster->remove_property_value("added short",({ashort}));
+        tell_object(caster,"%^BOLD%^%^WHITE%^You feel your mortality return as your angelic aspect fades.");
         tell_room(ENV(caster),"%^BOLD%^%^WHITE%^The ethereal wings that trailed "+caster->QCN+" fade.%^RESET%^");
         effect(-1);
     }

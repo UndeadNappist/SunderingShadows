@@ -4,5 +4,6 @@
 #define OBJS BASEDIR+"/obj"
 #define ROOMS BASEDIR+"/room"
 #define INH BASEDIR + "/inherit"
+#define STORAGE BASEDIR + "/storage"
 
 #define TOMBSTR INH+"/tombstreet"

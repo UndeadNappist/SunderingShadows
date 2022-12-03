@@ -86,8 +86,9 @@ int retrieve_stuff(string str)
         return 1;
     }
     
-    //return 0;
+    return 1;
     
+    /*
     if(regexp(str,"device"))
     {
         object ob;
@@ -132,6 +133,7 @@ int retrieve_stuff(string str)
         TP->set("last alt quest", time() + 7000);
         return 1;
     }
+    */
     return 0;
 }
 
