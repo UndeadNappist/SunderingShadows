@@ -167,7 +167,7 @@ string query_ip_name(object ob)
     string whom;
     if (sscanf(geteuid(previous_object()), "%sobj", whom) > 0) {
         if (member_group(whom, "superuser")) {
-            return efun::query_ip_name();
+            return efun::query_ip_name(ob);
         }
         return "";
     }
