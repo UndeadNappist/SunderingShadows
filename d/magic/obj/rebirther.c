@@ -132,9 +132,12 @@ void do_rebirth()
     reborn->force_me("look");
     
     if(reborn->query("just_been_pkilled"))
+    {
         reborn->delete("no pk");
+        reborn->remove_pk_death_flag();
+    }
     
-    reborn->remove_pk_death_flag();
+    //reborn->remove_pk_death_flag();
     reborn->delete("in_the_afterlife");
     reborn->delete("just_been_pkilled");
     reborn->set_death_age(0);

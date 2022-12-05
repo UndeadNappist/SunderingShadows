@@ -805,6 +805,9 @@ mapping query_mastered_bonus()
     
     if(this_object()->is_class("inquisitor"))
     {
+        if(!arrayp(tmp["inquisitor"]))
+            tmp["inquisitor"] = ({});
+        
         if(FEATS_D->usable_feat(this_object(), "chains of justice"))
             tmp["inquisitor"] += ({ "release the hounds" });
     }
