@@ -15,7 +15,7 @@ void create() {
               " gripping a long tipped %^BOLD%^%^YELLOW%^spear %^RESET%^and seems ready"+
 			  " for battle. The gnoll is adorned with furs and leather armors, painted"+
 			  " with some sort of %^RESET%^%^BLUE%^tribal paint %^RESET%^which adds to its"+
-			  " feracity. It's %^BOLD%^%^RED%^red eyes %^RESET%^glare at you, and you are"+
+			  " ferocity. It's %^BOLD%^%^RED%^red eyes %^RESET%^glare at you, and you are"+
 			  " sure there is no parlaying with this beast!");
    set_class("thief");
    set_guild_level("thief",12);

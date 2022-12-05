@@ -9,13 +9,13 @@ void create() {
    set_id(({"gnoll","warrior"}));
    set_name("Gnoll Warrior");
    set_id(({"gnoll","warrior","gnoll warrior"}));
-   set_short("A ferocius gnoll warrior");
+   set_short("A ferocious gnoll warrior");
    set_long("%^RESET%^This is a massive, heavily haired and angry gnoll. It stands"+
               " over seven feet in height and looks around hungrily. The creature is"+
               " gripping a long tipped %^BOLD%^%^YELLOW%^spear %^RESET%^and seems ready"+
 			  " for battle. The gnoll is adorned with furs and leather armors, painted"+
 			  " with some sort of %^RESET%^%^BLUE%^tribal paint %^RESET%^which adds to its"+
-			  " feracity. It's %^BOLD%^%^RED%^red eyes %^RESET%^glare at you, and you are"+
+			  " ferocity. It's %^BOLD%^%^RED%^red eyes %^RESET%^glare at you, and you are"+
 			  " sure there is no parlaying with this beast!");
    set_class("fighter");
    set_guild_level("fighter",12);

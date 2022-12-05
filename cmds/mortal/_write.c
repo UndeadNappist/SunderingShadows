@@ -23,7 +23,7 @@ write in %^ORANGE%^%^ULINE%^LANGUAGE%^RESET%^ on %^ORANGE%^%^ULINE%^OBJECT%^RESE
 
 This will allow you to write on %^ORANGE%^%^ULINE%^OBJECT%^RESET%^ in %^ORANGE%^%^ULINE%^LANGUAGE%^RESET%^ you specified. Anyone then will be able to %^ORANGE%^<read %^ORANGE%^%^ULINE%^OBJECT%^RESET%^>%^RESET%^ to read your message. You and the reader both must know the %^ORANGE%^%^ULINE%^LANGUAGE%^RESET%^.
 
-Ability to write property is heavily affected by your academics skill. Adacemics skills is rolled against d20 on every word with no critical chances. If you fail, the word gets scrambled.
+The ability to write properly is heavily affected by your academics skill. Your academics skill is rolled against a DC of 20 on every word with no critical chances, and the word gets scrambled if you fail.
 
 Typical %^ORANGE%^%^ULINE%^OBJECT%^RESET%^s to write on are, but not limited to, paper, parchment.
 
