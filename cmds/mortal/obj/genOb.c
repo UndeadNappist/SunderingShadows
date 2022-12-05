@@ -399,7 +399,7 @@ void process_main_menu_choice(string f)
             subtype = type;
         }
         tell_object(ETO, "Please enter the short description, or the description you see in your inventory.");
-        tell_object(ETO, "You will need to include: " + material + ", " + subtype + "");
+        //tell_object(ETO, "You will need to include: " + material + ", " + subtype + "");
         input_to("shortDesc", 0);
         return;
 
@@ -599,31 +599,31 @@ void ids(string id_values)
 
 void shortDesc(string shrt)
 {
-    string testshrt, subtype;
+    //string testshrt, subtype;
     if (!objectp(TO)) {
         return;
     }
     if (!objectp(ETO)) {
         exit(); return;
     }
-    if (type == "pocket robe") {
+    /*if (type == "pocket robe") {
         subtype = "robe";
     }else {
         subtype = type;
-    }
+    }*/
     if (!shrt) {
         tell_object(ETO, "Please enter the short description, or the description you see in your inventory.");
-        tell_object(ETO, "You will need to include: " + material + ", " + subtype + "");
+        //tell_object(ETO, "You will need to include: " + material + ", " + subtype + "");
         input_to("shortDesc", 0);
         return;
     }
-    testshrt = "/daemon/filters_d"->filter_colors(shrt);
+    /*testshrt = "/daemon/filters_d"->filter_colors(shrt);
     if (strsrch(testshrt, material) == -1) {
         shrt += " " + material;
     }
     if (strsrch(testshrt, subtype) == -1) {
         shrt += " " + subtype;
-    }
+    }*/
     shrt = replace_string(shrt, "\"", "'");
     keyMap["~SHORT~"] = shrt;
     display_menu();
