@@ -1,5 +1,9 @@
 inherit ROOM;
 
+#define DELAY 21600
+
+int activated;
+
 void create(){
     ::create();
     set_name("Forboding cave");
@@ -22,3 +26,43 @@ void create(){
                    ]));
   
 }
+
+void init()
+{
+    ::init();
+    add_action("activate_portal", "trace");
+}
+
+
+int activate_portal(string str)
+{
+    if(activated)
+    {
+        write("The portal was recently activated and you must wait to activate it again.\n");
+        return 1;
+    }
+    
+    tell_object(this_player(), "You trace the runes with your finger, trailing shadow as you carefully complete each line and curve. As you complete the runes, the surface of the portal comes alive, like an ocean of shadowy energy, undulating with a terrible hum.");
+    tell_room(this_object(), this_player()->query_cap_name() + " traces the runes with " + this_player()->query_possessive() + " finger, trailing shadow as you carefully complete each line and curve. As " + this_player()->query_subjective() + " completes the runes, the surface of the portal comes alive, like an ocean of shadowy energy, undulating with a terrible hum.", this_player());
+    
+    activated = 1;
+    
+    call_out("step_two", 6);
+
+    return 1;
+}
+
+void step_two()
+{
+}
+
+void step_three()
+{
+    object walker;
+    
+    walker = new("/d/common/bosses/nilith/shadorak");
+}
+    
+
+
+    
