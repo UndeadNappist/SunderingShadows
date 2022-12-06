@@ -86,13 +86,13 @@ void check_net(object room){
             quality = 2;
             num_fish = 1;
             tell_room(room, "\n%^RESET%^%^CRST%^%^C109%^A %^C103%^large shadow %^C109%^obscures the view of the net.%^CRST%^");
-            call_out("catch_now", random(3) + 2, room);
+            call_out("catch_now", random(3) + 3, room);
             break;
         case 15..49 :
             quality = 1;
             num_fish = random(3) + 3;
             tell_room(room, "\n%^RESET%^%^CRST%^%^C109%^A cluster of %^C103%^small shadows %^C109%^flit beneath the surface of the water.%^CRST%^");
-            call_out("catch_now", random(3) + 3, room);
+            call_out("catch_now", random(3) + 5, room);
             break;
         case 50..84 :
             quality = 1;
