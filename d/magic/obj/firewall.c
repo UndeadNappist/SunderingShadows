@@ -51,7 +51,7 @@ void surround(object ob, object spell) {
    j = sizeof(foes);
 
    if(j)
-       tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C124%^"+caster->QCN+"%^RESET%^%^CRST%^%^C124%^'s enemies are singed by the %^C091%^fl%^C097%^a%^C091%^me%^C097%^s%^RESET%^%^C124%^ and leap back as they rise up!%^CRST%^",foes[k]);
+       tell_room(environment(caster),"%^RESET%^%^CRST%^%^C124%^"+caster->QCN+"%^RESET%^%^CRST%^%^C124%^'s enemies are singed by the %^C091%^fl%^C097%^a%^C091%^me%^C097%^s%^RESET%^%^C124%^ and leap back as they rise up!%^CRST%^",foes);
    for(k=0;k<j;k++)
    {
        if(!present(wallname,environment(caster))) continue;
