@@ -16,11 +16,7 @@ void create() {
     set_spell_level(([ "warlock" : 3 ]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS wall of perilous fire [on <exit>]");
-    set_description("This invocation is quite similar to the mage spell 'wall of fire', save that it is conjured purely "
-"of planar energy. It allows the caster to create a wall of brilliant blue flames around himself, protectively, or in "
-"front of an exit, so all who pass through that exit will be scorched by the flames. Half of the damage done is fire, "
-"but the rest results from supernatural power and cannot be resisted. The warlock who casts this spell must keep "
-"concentration on the wall to maintain its existence, and may type <remove wall> to quench the flames.");
+    set_description("This invocation is quite similar to the mage spell 'wall of fire', save that it is conjured purely of planar energy. It allows the caster to create a wall of brilliant blue flames around himself, protectively, or in front of an exit, so all who pass through that exit will be scorched by the flames. Half of the damage done is fire, but the rest results from supernatural power and cannot be resisted. The warlock who casts this spell must keep concentration on the wall to maintain its existence, and may type <remove wall> to quench the flames.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
@@ -29,8 +25,8 @@ void create() {
 
 string query_cast_string() 
 {
-    tell_object(caster,"%^BOLD%^%^WHITE%^You lift a hand to direct your invocation with a fingertip.%^RESET%^");
-    if(objectp(place)) { tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+" lifts a hand to direct "+caster->QP+" invocation with a fingertip.%^RESET%^",caster); }
+    tell_object(caster,"%^RESET%^%^CRST%^%^C124%^You lift a hand to direct your %^C024%^in%^C023%^vo%^C030%^ca%^C024%^ti%^C023%^on %^RESET%^%^C124%^with a %^C160%^fingertip%^C124%^.%^CRST%^");
+    if(objectp(place)) { tell_room(place,"%^RESET%^%^CRST%^%^C124%^"+caster->QCN+"%^RESET%^%^CRST%^%^C124%^ lifts a hand to direct "+caster->QP+" %^C024%^in%^C023%^vo%^C030%^ca%^C024%^ti%^C023%^on %^RESET%^%^C124%^with a %^C160%^fingertip%^C124%^.%^CRST%^",caster); }
     return "display";
 }
 
@@ -44,39 +40,39 @@ void spell_effect(int prof) {
     if(arg && arg != "" && arg != " ") arg=lower_case(arg);
 
     if (member_array(arg,place->query_exits()) < 0) {
-        tell_object(caster,"%^BOLD%^%^CYAN%^As your finger motions out an arc, a ring of %^BOLD%^%^BLUE%^e%^BOLD%^%^CYAN%^er%^BOLD%^%^BLUE%^ie cob%^BOLD%^%^CYAN%^a%^BOLD%^%^BLUE%^lt f%^BOLD%^%^CYAN%^l%^BOLD%^%^BLUE%^ame %^BOLD%^%^CYAN%^rises up around you!%^RESET%^");
-        tell_room(place,"%^BOLD%^%^CYAN%^As "+caster->QP+" finger motions out an arc, a ring of %^BOLD%^%^BLUE%^e%^BOLD%^%^CYAN%^er%^BOLD%^%^BLUE%^ie cob%^BOLD%^%^CYAN%^a%^BOLD%^%^BLUE%^lt f%^BOLD%^%^CYAN%^l%^BOLD%^%^BLUE%^ame %^BOLD%^%^CYAN%^rises up around "+caster->QCN+"!%^RESET%^", caster);
+        tell_object(caster,"%^RESET%^%^CRST%^%^C124%^As your finger motions out an arc, a ring of %^C024%^ee%^C023%^ri%^C030%^e c%^C024%^ob%^C023%^al%^C030%^t f%^C024%^la%^C023%^me %^RESET%^%^C124%^rises up around you!%^CRST%^");
+        tell_room(place,"%^RESET%^%^CRST%^%^C124%^As "+caster->QP+" finger motions out an arc, a ring of %^C024%^ee%^C023%^ri%^C030%^e c%^C024%^ob%^C023%^al%^C030%^t f%^C024%^la%^C023%^me %^RESET%^%^C124%^rises up around "+caster->QCN+"%^RESET%^%^CRST%^%^C124%^!%^CRST%^", caster);
         wall=new("/d/magic/obj/pfirewall.c");
         wall->set_property("spell",TO);
         wall->set_property("spelled", ({TO}) );
         wall->move(place);
-        wall->surround(caster);
+        wall->surround(caster,TO);
         return;
     }
     wall=new("/d/magic/obj/pfirewall.c");
     wall->set_property("spell",TO);
     wall->set_property("spelled", ({TO}) );
-    wall->block(caster,arg);
+    wall->block(caster,arg,TO);
     if (objectp(wall)) wall->move(place);
     else return;
 
-    tell_object(caster,"%^BOLD%^%^CYAN%^As your finger motions out a line, a wall of %^BOLD%^%^BLUE%^e%^BOLD%^%^CYAN%^er%^BOLD%^%^BLUE%^ie cob%^BOLD%^%^CYAN%^a%^BOLD%^%^BLUE%^lt f%^BOLD%^%^CYAN%^l%^BOLD%^%^BLUE%^ame %^BOLD%^%^CYAN%^rises up, blocking the "+arg+"!%^RESET%^");
-    tell_room(place,"%^BOLD%^%^CYAN%^As "+caster->QCN+"'s finger motions out a line, a wall of %^BOLD%^%^BLUE%^e%^BOLD%^%^CYAN%^er%^BOLD%^%^BLUE%^ie cob%^BOLD%^%^CYAN%^a%^BOLD%^%^BLUE%^lt f%^BOLD%^%^CYAN%^l%^BOLD%^%^BLUE%^ame %^BOLD%^%^CYAN%^rises up, blocking the "+arg+"!%^RESET%^",caster);
+    tell_object(caster,"%^RESET%^%^CRST%^%^C124%^As your finger motions out a line, a wall of %^C024%^ee%^C023%^ri%^C030%^e c%^C024%^ob%^C023%^al%^C030%^t f%^C024%^la%^C023%^me %^RESET%^%^C124%^rises up, blocking the "+arg+"!%^CRST%^");
+    tell_room(place,"%^RESET%^%^CRST%^%^C124%^As "+caster->QCN+"%^RESET%^%^CRST%^%^C124%^'s finger motions out a line, a wall of %^C024%^ee%^C023%^ri%^C030%^e c%^C024%^ob%^C023%^al%^C030%^t f%^C024%^la%^C023%^me %^RESET%^%^C124%^rises up, blocking the "+arg+"!%^CRST%^",caster);
     outside = find_object_or_load(place->query_exit(arg));
     ins = outside->query_exits();
     for (i=0;i<sizeof(ins);i++) {
       if(base_name(place) == (string)outside->query_exit(ins[i]) || base_name(place)+".c" == (string)outside->query_exit(ins[i]) || base_name(place) == (string)outside->query_exit(ins[i])+".c") {
             wall2=new("/d/magic/obj/pfirewall.c");
             wall2->set_property("spell",TO);
-            wall2->block(caster,ins[i]);
+            wall2->block(caster,ins[i],TO);
             wall2->move(outside);
-            tell_room(outside,"%^BOLD%^%^CYAN%^A ring of %^BOLD%^%^BLUE%^e%^BOLD%^%^CYAN%^er%^BOLD%^%^BLUE%^ie cob%^BOLD%^%^CYAN%^a%^BOLD%^%^BLUE%^lt f%^BOLD%^%^CYAN%^l%^BOLD%^%^BLUE%^ame %^BOLD%^%^CYAN%^rises up, blocking the "+ins[i]+"!\n%^BOLD%^%^BLUE%^Waves of heat roll off the wall of fire towards you!%^RESET%^");
+            tell_room(outside,"%^RESET%^%^CRST%^%^C124%^A ring of %^C024%^ee%^C023%^ri%^C030%^e c%^C024%^ob%^C023%^al%^C030%^t f%^C024%^la%^C023%^me %^RESET%^%^C124%^rises up, blocking the "+ins[i]+"!\n%^RESET%^%^CRST%^%^C160%^%^Waves of heat roll off the wall of fire towards you!%^CRST%^%^");
 
             burned = all_inventory(outside);
             for (j=0;j<sizeof(all_inventory(outside));j++) {
                 if ( living(burned[j]) ) {
-                    tell_room(outside,"%^BOLD%^%^CYAN%^"+burned[j]->QCN+" is burned by the wall's searing heat!%^RESET%^",burned[j]);
-                    tell_object(burned[j],"%^BOLD%^%^CYAN%^The searing heat of the wall of flames burns you badly!%^RESET%^");
+                    tell_room(outside,"%^RESET%^%^CRST%^%^C160%^"+burned[j]->QCN+"%^RESET%^%^CRST%^%^C160%^ is burned by the wall's searing heat!%^CRST%^",burned[j]);
+                    tell_object(burned[j],"%^RESET%^%^CRST%^%^C160%^The searing heat of the wall of flame burns you badly!%^CRST%^");
                     limbs = burned[j]->query_limbs();
                     if(burned[j]->query_property("undead")) dmg = 4+random(13);
                     else dmg = 2+random(7);
@@ -99,8 +95,8 @@ void concentration() {
         flag = 1;
     if ((int)caster->query_hp() != hpcount) {
         if ((int)caster->query_hp() < hpcount - 30 ) {
-            tell_room(environment(caster),"%^CYAN%^"+caster->QCN+" looks as though "+caster->QS+" just lost "+caster->QP+" concentration!%^RESET%^",caster);
-            tell_object(caster,"%^CYAN%^You lose your concentration on maintaining the wall of flames you invoked!%^RESET%^");
+            tell_room(environment(caster),"%^RESET%^%^CRST%^%^C124%^"+caster->QCN+"%^RESET%^%^CRST%^%^C124%^ looks as though "+caster->QS+" just lost "+caster->QP+" concentration!%^CRST%^",caster);
+            tell_object(caster,"%^RESET%^%^CRST%^%^C124%^You lose your concentration on maintaining the wall of flames you invoked!%^CRST%^");
             flag = 1;
         } else
             hpcount = caster->query_hp();

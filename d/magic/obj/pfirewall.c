@@ -4,6 +4,7 @@ inherit OBJECT;
 int blocking = 0;
 string exitname;
 object caster;
+object spellob;
 int level;
 
 void remove_wall();
@@ -11,9 +12,9 @@ void remove_wall();
 void create() {
    ::create();
    set_name("wall of fire");
-   set_short("A wall of fire");
-   set_long("%^BOLD%^%^CYAN%^You see a massive opaque sheet of fire raging wildly upward in shades of %^BOLD%^%^BLUE%^cobalt blue%^BOLD%^%^CYAN%^.%^RESET%^");
-   set_id( ({"wall","wall of fire","firewall","fire"}) );
+   set_short("%^RESET%^%^CRST%^%^C124%^A wall of %^C024%^co%^C023%^ba%^C030%^lt %^C024%^fl%^C023%^am%^C030%^es%^CRST%^");
+   set_long("%^RESET%^%^CRST%^%^C160%^You see a massive opaque sheet of fire raging wildly upward in shades of %^C024%^co%^C023%^ba%^C030%^lt %^C024%^bl%^C023%^ue%^C124%^.%^CRST%^");
+   set_id( ({"wall","wall of cobalt flames","cobalt flames","flames"}) );
    set_weight(10000);
    set_value(0);
    set_property("no animate",1);
@@ -26,7 +27,7 @@ void init() {
       add_action("damager",exitname);
 }
 
-void surround(object ob) {
+void surround(object ob, object spell) {
    int k,j,dmg;
    object *foes;
    string whose,wallname;
@@ -35,11 +36,12 @@ void surround(object ob) {
    add_action("end_walls","remove");
    foes = caster->query_attackers();
    whose = caster->query_name();
-   level = caster->query_guild_level("warlock");
+   level = spell->query_clevel();
+   spellob = spell;
    wallname = whose+"surroundingfirewall";
    if(present(wallname,environment(caster))) {
-      tell_object(caster,"%^BOLD%^%^WHITE%^The new wall of flame simply melts into the wall that is already surrounding you!\n");
-      tell_room(environment(caster),"%^BOLD%^%^WHITE%^The wall of flame surrounding "+caster->QCN+" glows brighter for a second.\n");
+      tell_object(caster,"%^RESET%^%^CRST%^%^C124%^The new %^C024%^wa%^C023%^ll %^C030%^of %^C024%^fl%^C023%^am%^C030%^e %^RESET%^%^C124%^simply melts into the wall that is already surrounding you!%^CRST%^\n");
+      tell_room(environment(caster),"%^RESET%^%^CRST%^%^C124%^The %^C024%^wa%^C023%^ll %^C030%^of %^C024%^fl%^C023%^am%^C030%^e %^RESET%^%^C124%^surrounding "+caster->QCN+"%^RESET%^%^CRST%^%^C124%^ glows brighter for a second.%^CRST%^\n");
       if(objectp(query_property("spell")))
          query_property("spell")->dest_effect();
       return;
@@ -51,10 +53,9 @@ void surround(object ob) {
       if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"fire") != -1)
          continue;
-      tell_room(environment(foes[k]),"%^BOLD%^%^CYAN%^"+foes[k]->QCN+" is singed by the flames and leaps back as they rise up!",foes[k]);
-      tell_object(foes[k],"%^BOLD%^%^CYAN%^You get singed by the flames and jump away from "+caster->QCN+" as they spring up around "+caster->QO+".");
-      if(foes[k]->query_property("undead")) dmg = 4+random(21);
-      else dmg = 2+random(11);
+      tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C160%^"+foes[k]->QCN+" is singed by the %^C024%^fl%^C023%^am%^030%^es %^C160%^and leaps back as they rise up!%^CRST%^",foes[k]);
+      tell_object(foes[k],"%^RESET%^%^CRST%^%^C124%^You get singed by the %^C024%^fl%^C023%^am%^030%^es %^C160%^and jump away from "+caster->QCN+"%^RESET%^%^CRST%^%^C124%^ as they spring up around "+caster->QO+".%^CRST%^");
+      dmg = spellob->query_base_damage();
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg/2,"fire" );
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg/2,"untyped" );
       if(objectp(foes[k])) foes[k]->continue_attack();
@@ -82,10 +83,9 @@ void monitor() {
        if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"fire") != -1)
          continue;
-       tell_room(environment(foes[k]),"%^BOLD%^%^CYAN%^"+foes[k]->query_cap_name()+" is burned by the flames!",foes[k]);
-       tell_object(foes[k],"%^BOLD%^%^CYAN%^You get burned by the flames!");
-       if(foes[k]->query_property("undead")) dmg = 4+random(21);
-       else dmg = 2+random(11);
+       tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C160%^"+foes[k]->query_cap_name()+"%^RESET%^%^CRST%^%^C160%^ is burned by the %^C024%^fl%^C023%^am%^030%^es %^C160%^!",foes[k]);
+       tell_object(foes[k],"%^RESET%^%^CRST%^%^C160%^You get burned by the %^C024%^fl%^C023%^am%^030%^es %^C160%^!");
+       dmg = spellob->query_base_damage();
        foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg/2,"fire" );
        foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg/2,"untyped" );
        if(objectp(foes[k])) foes[k]->continue_attack();
@@ -94,21 +94,22 @@ void monitor() {
    call_out("monitor",7);
 }
 
-void block(object ob, string exitn) {
+void block(object ob, string exitn, object spell) {
    string whose, wallname;
 
    blocking = 1;
    caster = ob;
 
-   level = caster->query_guild_level("mage");
+   level = spell->query_clevel();
+   spellob = spell;
    exitname = exitn;
-   set_short("A wall of fire blocking the "+exitname);
-   set_long("%^BOLD%^%^CYAN%^You see a massive opaque sheet of fire raging wildly upward in shades of %^BOLD%^%^BLUE%^cobalt blue%^BOLD%^%^CYAN%^. It fully blocks the "+exitname+".");
+   set_short("%^RESET%^%^CRST%^%^C124%^A wall of %^C024%^co%^C023%^ba%^C030%^lt %^C024%^fl%^C023%^am%^C030%^es %^RESET%^%^C124%^blocking the %^CRST%^"+exitname);
+   set_long("%^RESET%^%^CRST%^%^C160%^You see a massive opaque sheet of fire raging wildly upward in shades of %^C024%^co%^C023%^ba%^C030%^lt %^C024%^bl%^C023%^ue%^C124%^. It fully blocks the %^CRST%^"+exitname+".");
    whose = caster->query_name();
    wallname = whose+exitname+"firewall";
    if(present(wallname,environment(caster))) {
-      tell_object(caster,"%^BOLD%^%^WHITE%^The new wall simply melts into the wall that is already blocking the "+exitname+"\n");
-      tell_room(environment(caster),"%^BOLD%^%^WHITE%^The wall blocking the "+exitname+" glows brighter for a second.\n");
+      tell_object(caster,"%^RESET%^%^CRST%^%^C124%^The new %^C024%^wa%^C023%^ll %^C030%^of %^C024%^fl%^C023%^am%^C030%^e %^RESET%^%^C124%^simply melts into the wall that is already blocking the "+exitname+".%^CRST%^\n");
+      tell_room(environment(caster),"%^RESET%^%^CRST%^%^C124%^The %^C024%^wa%^C023%^ll %^C030%^of %^C024%^fl%^C023%^am%^C030%^e %^RESET%^%^C124%^blocking the "+exitname+" glows brighter for a second.%^CRST%^\n");
       if(objectp(query_property("spell")))
          query_property("spell")->dest_effect();
       return;
@@ -126,13 +127,13 @@ void remove_wall() {
       if(present(caster,ETO)) {
          notsee = ({caster});
          if(blocking)
-            tell_object(caster,"%^CYAN%^Your wall of flame"+exitdesc+" dissipates away.");
+            tell_object(caster,"%^RESET%^%^CRST%^%^C124%^Your %^C024%^wa%^C023%^ll %^C030%^of %^C024%^fl%^C023%^am%^C030%^e%^RESET%^%^C124%^"+exitdesc+" dissipates away.%^CRST%^");
          else {
-            tell_object(caster,"%^CYAN%^The wall of flame that surrounds you dissipates away.");
+            tell_object(caster,"%^RESET%^%^CRST%^%^C124%^The %^C024%^wa%^C023%^ll %^C030%^of %^C024%^fl%^C023%^am%^C030%^e %^RESET%^%^C124%^that surrounds you dissipates away.%^CRST%^");
             caster->move(ETO);
          }
       }
-      tell_room(ETO,"%^CYAN%^"+caster->QCN+"'s wall of flame"+exitdesc+" dissipates away.", notsee);
+      tell_room(ETO,"%^RESET%^%^CRST%^%^C124%^"+caster->QCN+"%^RESET%^%^CRST%^%^C124%^'s %^C024%^wa%^C023%^ll %^C030%^of %^C024%^fl%^C023%^am%^C030%^e%^RESET%^%^C124%^"+exitdesc+" dissipates away.%^CRST%^", notsee);
    }
    destruct(TO);
    return;
@@ -148,12 +149,12 @@ int damager(string str) {
       if((string)caster->query_name()==(string)TPQN )
          return 0;
    if(TP->query_property("strength") && strsrch(TP->query_property("strength"),"fire") != -1 ) {
-      tell_object(TP,"%^BOLD%^%^CYAN%^You step into the cobalt inferno, walking calmly through the flames, unharmed.");
-      tell_room(ETP,"%^BOLD%^%^CYAN%^"+TPQCN+" walks calmly into the cobalt inferno blocking the "+exitname+", unaffected by the flames.",TP);
+      tell_object(TP,"%^RESET%^%^CRST%^%^C160%^You step into the %^C024%^co%^C023%^ba%^C030%^lt %^C024%^in%^C023%^fe%^C030%^rn%^C024%^o%^RESET%^%^C160%^, walking calmly through the flames, unharmed.%^CRST%^");
+      tell_room(ETP,"%^RESET%^%^CRST%^%^C160%^"+TPQCN+"%^RESET%^%^CRST%^%^C160%^ walks calmly into the %^C024%^co%^C023%^ba%^C030%^lt %^C024%^in%^C023%^fe%^C030%^rn%^C024%^o%^RESET%^%^C160%^ blocking the "+exitname+", unaffected by the flames.%^CSRT%^",TP);
       return 0;
    }
-   tell_object(TP,"%^BOLD%^%^CYAN%^You step into the cobalt inferno, rushing through before the flames engulf you.");
-   tell_room(ETP,"%^BOLD%^%^CYAN%^"+TPQCN+" rushes into the cobalt inferno blocking the "+exitname+", as the flames attack "+TP->query_objective()+"!",TP);
+   tell_object(TP,"%^RESET%^%^CRST%^%^C160%^You step into the %^C024%^co%^C023%^ba%^C030%^lt %^C024%^in%^C023%^fe%^C030%^rn%^C024%^o%^RESET%^%^C160%^, rushing through before the flames engulf you.%^CRST%^");
+   tell_room(ETP,"%^RESET%^%^CRST%^%^C160%^"+TPQCN+"%^RESET%^%^CRST%^%^C160%^ rushes into the %^C024%^co%^C023%^ba%^C030%^lt %^C024%^in%^C023%^fe%^C030%^rn%^C024%^o%^RESET%^%^C160%^ blocking the "+exitname+", as the flames attack "+TP->query_objective()+"!%^CRST%^",TP);
 
    if(TP->query_property("undead")) dmg = (roll_dice(2,6)+level+level/2)*2;
    else dmg = roll_dice(2,6)+level+level/2;
