@@ -5,6 +5,7 @@ inherit OBJECT;
 int blocking = 0;
 string exitname;
 object caster;
+object spellob;
 int level;
 
 void remove_wall();
@@ -27,7 +28,7 @@ void init() {
       add_action("damager",exitname);
 }
 
-void surround(object ob) {
+void surround(object ob, object spell) {
    int k,j,dmg;
    object *foes;
    string whose,wallname;
@@ -36,7 +37,8 @@ void surround(object ob) {
    add_action("end_walls","remove");
    foes = caster->query_attackers();
    whose = caster->query_name();
-   level = caster->query_guild_level("mage");
+   level = spell->query_clevel();
+   spellob = spell;
    wallname = whose+"surroundingfirewall";
    if(present(wallname,environment(caster))) {
       tell_object(caster,"%^RESET%^%^CRST%^%^C036%^The new wall simply melts into the wall that is already surrounding you!\n%^CRST%^");
@@ -54,8 +56,7 @@ void surround(object ob) {
          continue;
       tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C036%^"+foes[k]->QCN+" is chilled by the %^C051%^icy cloud %^C036%^and leaps back as it forms!%^CRST%^",foes[k]);
       tell_object(foes[k],"%^RESET%^%^CRST%^%^C036%^You get chilled by the %^C051%^icy cloud %^C036%^and jump away from "+caster->QCN+"%^RESET%^%^CRST%^%^C036%^ as it forms up around "+caster->QO+".%^CRST%^");
-      if(foes[k]->query_property("undead")) dmg = 4+random(21);
-      else dmg = 2+random(11);
+      dmg = spellob->query_base_damage();
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"cold" );
       if(objectp(foes[k]))
          foes[k]->continue_attack();
@@ -87,8 +88,7 @@ void monitor() {
          continue;
       tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C036%^"+foes[k]->QCN+"%^RESET%^%^CRST%^%^C036%^ is chilled by the cloud of %^C051%^frost%^C036%^!%^CRST%^",foes[k]);
       tell_object(foes[k],"%^RESET%^%^CRST%^%^C036%^You get chilled by the cloud of %^C051%^frost%^C036%^!%^CRST%^");
-      if(foes[k]->query_property("undead")) dmg = 4+random(21);
-      else dmg = 2+random(11);
+      dmg = spellob->query_base_damage();
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"cold" );
       if(objectp(foes[k]))
          foes[k]->continue_attack();
@@ -96,13 +96,14 @@ void monitor() {
    call_out("monitor",7);
 }
 
-void block(object ob, string exitn) {
+void block(object ob, string exitn, object spell) {
    string whose, wallname;
 
    blocking = 1;
    caster = ob;
 
-   level = caster->query_guild_level("mage");
+   level = spell->query_clevel();
+   spellob = spell;
    exitname = exitn;
    set_short("%^RESET%^%^CRST%^%^C036%^A cloud of %^C051%^frost blocking the %^CRST%^"+exitname);
    set_long("%^RESET%^%^CRST%^%^C036%^You see a massive cloud of %^C051%^frosty air %^C036%^drifting here, chilling everything it touches. It fully blocks the "+exitname+".%^CRST%^");

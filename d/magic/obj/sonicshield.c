@@ -5,6 +5,7 @@ inherit OBJECT;
 int blocking = 0;
 string exitname;
 object caster;
+object spellob;
 int level;
 
 void remove_wall();
@@ -27,7 +28,7 @@ void init() {
       add_action("damager",exitname);
 }
 
-void surround(object ob) {
+void surround(object ob, object spell) {
    int k,j,dmg;
    object *foes;
    string whose,wallname;
@@ -36,7 +37,8 @@ void surround(object ob) {
    add_action("end_walls","remove");
    foes = caster->query_attackers();
    whose = caster->query_name();
-   level = caster->query_guild_level("mage");
+   level = spell->query_clevel();
+   spellob = spell;
    wallname = whose+"surroundingfirewall";
    if(present(wallname,environment(caster))) {
       tell_object(caster,"%^RESET%^%^CRST%^%^C091%^The new wall simply melts into the wall that is already surrounding you!%^CRST%^\n");
@@ -54,8 +56,7 @@ void surround(object ob) {
          continue;
       tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C091%^"+foes[k]->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^ leaps back as the %^C135%^sonic field%^C091%^ rises up and catches "+foes[k]->query_objective()+" on its edge!%^CRST%^",foes[k]);
       tell_object(foes[k],"%^RESET%^%^CRST%^%^C091%^You jump away as a piercing note strikes your ears from the %^C135%^sonic field%^C091%^ that springs up around "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^.%^CRST%^");
-      if(foes[k]->query_property("undead")) dmg = 4+random(21);
-      else dmg = 2+random(11);
+      dmg = spellob->query_base_damage();
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"sonic" );
       if(objectp(foes[k]))
          foes[k]->continue_attack();
@@ -86,8 +87,7 @@ void monitor() {
          continue;
       tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C091%^"+foes[k]->query_cap_name()+"%^RESET%^%^CRST%^%^C091%^ is buffeted by the %^C135%^sonic field%^C091%^!%^CRST%^",foes[k]);
       tell_object(foes[k],"%^RESET%^%^CRST%^%^C091%^The scream of the %^C135%^sonic shield%^C091%^ echoes violently in your ears!%^CRST%^");
-      if(foes[k]->query_property("undead")) dmg = 4+random(21);
-      else dmg = 2+random(11);
+      dmg = spellob->query_base_damage();
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg,"sonic" );
       if(objectp(foes[k]))
          foes[k]->continue_attack();
@@ -95,13 +95,14 @@ void monitor() {
    call_out("monitor",7);
 }
 
-void block(object ob, string exitn) {
+void block(object ob, string exitn, object spell) {
    string whose, wallname;
 
    blocking = 1;
    caster = ob;
 
-   level = caster->query_guild_level("mage");
+   level = spell->query_clevel();
+   spellob = spell;
    exitname = exitn;
    set_short("%^RESET%^%^CRST%^%^C091%^A %^C135%^sonic shield%^C091%^ blocking the %^CRST%^"+exitname);
    set_long("%^RESET%^%^CRST%^%^C091%^You can see a blurred field of %^C135%^sonic energy%^RESET%^%^C091%^, causing the air around it to vibrate violently. It fully blocks the "+exitname+".%^CRST%^");

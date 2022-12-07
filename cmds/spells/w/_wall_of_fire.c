@@ -92,7 +92,7 @@ void spell_effect(int prof) {
     }
     wall->set_property("spell",TO);
     wall->set_property("spelled", ({TO}) );
-    wall->block(caster,arg);
+    wall->block(caster,arg,TO);
     if (objectp(wall)) wall->move(place);
     else return;
 
@@ -125,7 +125,7 @@ void spell_effect(int prof) {
                 default: wall2=new("/d/magic/obj/firewall.c"); break;
             }
             wall2->set_property("spell",TO);
-            wall2->block(caster,ins[i]);
+            wall2->block(caster,ins[i],TO);
             wall2->move(outside);
             switch(element) {
                 case "acid":

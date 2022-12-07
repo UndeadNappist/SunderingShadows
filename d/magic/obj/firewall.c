@@ -110,13 +110,14 @@ void monitor() {
    call_out("monitor",7);
 }
 
-void block(object ob, string exitn) {
+void block(object ob, string exitn, object spell) {
    string whose, wallname;
 
    blocking = 1;
    caster = ob;
 
-   level = caster->query_guild_level("mage");
+   level = spell->query_clevel();
+   spellob = spell;
    exitname = exitn;
    set_short("%^RESET%^%^CRST%^%^C124%^A wall of %^C091%^f%^C097%^i%^C091%^re %^RESET%^%^C124%^blocking the %^CRST%^"+exitname);
    set_long("%^RESET%^%^CRST%^%^C124%^You see a massive opaque sheet of fire raging wildly upward in shades of %^C091%^vi%^C097%^o%^C091%^le%^C097%^t %^RESET%^%^C124%^%^and %^C196%^red%^C124%^. It fully blocks the "+exitname+".%^CRST%^");
