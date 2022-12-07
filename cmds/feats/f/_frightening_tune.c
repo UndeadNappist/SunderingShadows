@@ -54,7 +54,7 @@ void execute_feat()
     ::execute_feat();
 
     //if ((int)caster->query_property("using frightening tune") > time()) {
-    if(caster->cooldown("frightening tune"))
+    if(caster->cooldown("frightening tune")){
         tell_object(caster, "You are not prepared to sing the frightening tune so soon!");
         dest_effect();
         return;

@@ -56,12 +56,12 @@ void execute_feat()
     ::execute_feat();
 
     // ((int)caster->query_property("using dirge of doom") > time()) {
-    if(caster->cooldown("dirge of doom"))
+    if(caster->cooldown("dirge of doom")){
         tell_object(caster, "You are not prepared to sing the dirge of doom so soon!");
         dest_effect();
         return;
     }
-    if ((int)caster->query_property("using instant feat")) {
+    if((int)caster->query_property("using instant feat")) {
         tell_object(caster, "You are already in the middle of using a feat!");
         dest_effect();
         return;
