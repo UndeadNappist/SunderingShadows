@@ -55,7 +55,8 @@ void execute_feat()
     int delay;
     ::execute_feat();
 
-    if ((int)caster->query_property("using dirge of doom") > time()) {
+    // ((int)caster->query_property("using dirge of doom") > time()) {
+    if(caster->cooldown("dirge of doom"))
         tell_object(caster, "You are not prepared to sing the dirge of doom so soon!");
         dest_effect();
         return;
@@ -71,11 +72,12 @@ void execute_feat()
         return;
     }
 
-    delay = time() + FEATTIMER;
-    delay_messid_msg(FEATTIMER, "%^BOLD%^%^WHITE%^You can sing %^CYAN%^dirge of doom%^WHITE%^ again.%^RESET%^");
+    //delay = time() + FEATTIMER;
+    //delay_messid_msg(FEATTIMER, "%^BOLD%^%^WHITE%^You can sing %^CYAN%^dirge of doom%^WHITE%^ again.%^RESET%^");
+    caster->add_cooldown("dirge of doom", FEATTIMER);
     caster->set_property("using instant feat", 1);
-    caster->remove_property("using dirge of doom");
-    caster->set_property("using dirge of doom", delay);
+    //caster->remove_property("using dirge of doom");
+    //caster->set_property("using dirge of doom", delay);
 
     tell_object(caster,"%^ORANGE%^You muse a melody, inspiring a sense of growing dread in your enemies!");
     tell_room(place,"%^ORANGE%^As "+caster->QCN+" muses a melody with a sense of growing dread embedded into it.",caster);

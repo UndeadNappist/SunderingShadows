@@ -13,9 +13,7 @@ void create()
     feat_name("frightening tune");
     feat_prereq("Bard L14");
     feat_classes("bard");
-    feat_desc("Your play a melody that inspires fear in your opponens. If they fail a save, they'll become momentarely frightened.
-
-%^BOLD%^%^WHITE%^See also:%^RESET%^ status effects.");
+    feat_desc("Your play a melody that inspires fear in your opponents. If they fail a save, they'll become momentarily frightened.\n\n%^BOLD%^%^WHITE%^See also:%^RESET%^ status effects.");
     feat_syntax("frightening_tune");
 
     set_save("will");
@@ -55,7 +53,8 @@ void execute_feat()
     int delay;
     ::execute_feat();
 
-    if ((int)caster->query_property("using frightening tune") > time()) {
+    //if ((int)caster->query_property("using frightening tune") > time()) {
+    if(caster->cooldown("frightening tune"))
         tell_object(caster, "You are not prepared to sing the frightening tune so soon!");
         dest_effect();
         return;
@@ -71,11 +70,12 @@ void execute_feat()
         return;
     }
 
-    delay = time() + FEATTIMER;
-    delay_messid_msg(FEATTIMER, "%^BOLD%^%^WHITE%^You can sing %^CYAN%^frightening tune%^WHITE%^ again.%^RESET%^");
+    //delay = time() + FEATTIMER;
+    //delay_messid_msg(FEATTIMER, "%^BOLD%^%^WHITE%^You can sing %^CYAN%^frightening tune%^WHITE%^ again.%^RESET%^");
+    caster->add_cooldown("frightening tune", FEATTIMER);
     caster->set_property("using instant feat", 1);
-    caster->remove_property("using frightening tune");
-    caster->set_property("using frightening tune", delay);
+    //caster->remove_property("using frightening tune");
+    //caster->set_property("using frightening tune", delay);
 
     tell_object(caster,"%^BLUE%^You muse a melody, inspiring fear in your enemies!");
     tell_room(place,"%^BLUE%^As "+caster->QCN+" muses a melody with the fear itself embedded into it.",caster);
