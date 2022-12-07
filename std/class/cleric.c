@@ -37,13 +37,13 @@ mapping class_featmap(string myspec, object player) {
 
     mapping feats;
     
-    feats = ([ 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "divine domain", "spell focus", "channel", "second divine domain"}), 11: ({ "leadership" }), 31 : ({ "apotheosis" }), ]);
+    feats = ([ 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "divine domain", "spell focus", "channel", "second divine domain"}), 31 : ({ "apotheosis" }), ]);
     
     if(player && member_array("war", player->query_divine_domain()) >= 0)    
-        feats = ([ 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "martial weapon proficiency", "shield proficiency", "divine domain", "spell focus", "channel", "second divine domain"}), 11: ({ "leadership" }), 31 : ({ "apotheosis" }) ]);
+        feats = ([ 1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "martial weapon proficiency", "shield proficiency", "divine domain", "spell focus", "channel", "second divine domain"}), 31 : ({ "apotheosis" }) ]);
 
     if(player && member_array("protection", player->query_divine_domain()) >= 0)
-        feats = ([ 1: ({ "light armor proficiency", "medium armor proficiency", "heavy armor proficiency", "simple weapon proficiency", "shield proficiency", "divine domain", "spell focus", "channel", "second divine domain"}), 11: ({ "leadership" }), 31 : ({ "apotheosis" }) ]);    
+        feats = ([ 1: ({ "light armor proficiency", "medium armor proficiency", "heavy armor proficiency", "simple weapon proficiency", "shield proficiency", "divine domain", "spell focus", "channel", "second divine domain"}), 31 : ({ "apotheosis" }) ]);    
 
     return feats;
 }
