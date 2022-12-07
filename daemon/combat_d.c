@@ -4515,6 +4515,18 @@ varargs int check_death(object who, object pot)
                 who->remove_property("to die");
             }
             who->adjust_combat_mapps("static vars", "dead", 1);
+            
+            // dreadful carnage check
+            if(FEATS_D->has_feat(killedBy, "dreadful carnage")){
+                attackers = killedBy->query_attackers();
+                for(i = 0; i < sizeof(attackers); i++){
+                    if(!objectp(attackers[i])) continue;
+                    if(BONUS_D->intimidate_check(attackers[i], killedBy, 0)){
+                        "/std/effect/status/shaken"->apply_effect(attackers[i], 1);
+                    }
+                    continue;
+                }
+            }
             return 1;
         }
     }
