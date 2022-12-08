@@ -8,6 +8,7 @@
 */
 
 #include <std.h>
+#include <player_housing.h>
 
 inherit "/std/temple";
 
@@ -42,6 +43,8 @@ void create()
         "south" : "/d/magic/temples/ashra/salon",
         "east" : "/d/magic/temples/ashra/roost",
     ]));
+    
+    set_property("scry proof", SCRYWARD_LEGENDARY);
 }
 
 void init(){
