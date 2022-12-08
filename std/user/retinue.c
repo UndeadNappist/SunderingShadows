@@ -69,7 +69,7 @@ void remove_retinue(int slot)
 
     mkdir(retainer_directory); // If the directory doesn't exist, make it.
     rm(retainer_directory + slot + ".o");
-    rm(retainer_directory + slot + "/");
+    rmdir(retainer_directory + slot + "/");
 
     if (!mapp(retinue))
     {
