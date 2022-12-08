@@ -1,6 +1,6 @@
 #include <std.h>
 
-#define MOBS "/realms/loki/random/mobs/"
+#define MOBS "/d/common/bosses/loot/mon/"
 
 inherit "/d/common/obj/weapon/sstaff.c";
 int hit_func;

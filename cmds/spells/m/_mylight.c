@@ -23,10 +23,18 @@ void create() {
     set_helpful_spell(1);
 }
 
+int preSpell(){
+    if(!objectp(target)) target = caster;
+    if(target->query_property("mylight")){
+        tell_object(caster, "That target's senses are already heightened.");
+        return 0;
+    }
+    return 1;
+}
+
 spell_effect(int prof) {
     int level;
 
-    if(!objectp(target)) target = caster;
     if (interactive(caster)) {
        if(target == caster){
           tell_object(caster,"%^YELLOW%^You focus your mental energies inward, negating some of the effects of light levels.%^RESET%^");
@@ -50,6 +58,7 @@ spell_effect(int prof) {
           target->add_sight_bonus(-3);
        }
     }
+    target->set_property("mylight", 1);
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 10;
     set_end_time();
     call_out("dest_effect",spell_duration);
@@ -71,6 +80,7 @@ void dest_effect()
           target->add_sight_bonus(3);
        }
     }
+    target->remove_property("mylight");
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }

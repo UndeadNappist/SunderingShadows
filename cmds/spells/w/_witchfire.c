@@ -62,9 +62,9 @@ void spell_effect(int prof) {
       tell_room(place,""+target->QCN+"'s strange illumination flickers and flares.",target);
     }
     else {
-      tell_object(caster,"%^CRST%^%^RESET%^%^C066%^As you part your hands, the %^C059%^spores%^C066%^ weave toward "+target->query_cap_name()+" in ominous %^C073%^tendrils%^RESET%^%^C066%^ of %^C073%^mist%^C066%^, illuminating "+target->query_subjective()+" in an %^C061%^eerie %^C060%^gl%^C061%^o%^RESET%^%^C060%^w%^C066%^.%^CRST%^");
+      tell_object(caster,"%^CRST%^%^RESET%^%^C066%^As you part your hands, the %^C059%^spores%^C066%^ weave toward "+target->query_cap_name()+" in ominous %^C073%^tendrils%^RESET%^%^C066%^ of %^C073%^mist%^C066%^, illuminating "+target->query_objective()+" in an %^C061%^eerie %^C060%^gl%^C061%^o%^RESET%^%^C060%^w%^C066%^.%^CRST%^");
       tell_object(target,"%^CRST%^%^RESET%^%^C066%^As "+caster->query_cap_name()+" parts "+caster->query_possessive()+" hands, the %^C059%^spores%^C066%^ weave toward you in ominous %^C073%^tendrils%^RESET%^%^C066%^ of %^C073%^mist%^C066%^, illuminating you in an %^C061%^eerie %^C060%^gl%^C061%^o%^RESET%^%^C060%^w%^C066%^.%^CRST%^");
-      tell_room(place,"%^CRST%^%^RESET%^%^C066%^As "+caster->query_cap_name()+" parts "+caster->query_possessive()+" hands, the %^C059%^spores%^C066%^ weave toward toward "+target->query_cap_name()+" in ominous %^C073%^tendrils%^RESET%^%^C066%^ of %^C073%^mist%^C066%^, illuminating "+target->query_subjective()+" in an %^C061%^eerie %^C060%^gl%^C061%^o%^RESET%^%^C060%^w%^C066%^.%^CRST%^",({target,caster}));
+      tell_room(place,"%^CRST%^%^RESET%^%^C066%^As "+caster->query_cap_name()+" parts "+caster->query_possessive()+" hands, the %^C059%^spores%^C066%^ weave toward toward "+target->query_cap_name()+" in ominous %^C073%^tendrils%^RESET%^%^C066%^ of %^C073%^mist%^C066%^, illuminating "+target->query_objective()+" in an %^C061%^eerie %^C060%^gl%^C061%^o%^RESET%^%^C060%^w%^C066%^.%^CRST%^",({target,caster}));
     }
     spell_successful();
     target->add_ac_bonus(-1*bonus);
@@ -80,7 +80,7 @@ void spell_effect(int prof) {
 
 void dest_effect(){
     if(objectp(target)) {
-        tell_room(place,"%^CRST%^%^RESET%^%^C067%^The %^C073%^ghastly mist%^C067%^ slowly dissipates from around "+target->query_cap_name()+", releasing "+target->query_subjective()+" from its %^C060%^ominous%^C067%^ grip.%^CRST%^");
+        tell_room(place,"%^CRST%^%^RESET%^%^C067%^The %^C073%^ghastly mist%^C067%^ slowly dissipates from around "+target->query_cap_name()+", releasing "+target->query_objective()+" from its %^C060%^ominous%^C067%^ grip.%^CRST%^");
         tell_object(target,"%^CRST%^%^RESET%^%^C067%^The %^C073%^ghastly mist%^C067%^ slowly dissipates, releasing you from its %^C060%^ominous%^C067%^ grip.");
         target->remove_property("faerie fire");
         target->remove_property_value("added short",({"(illuminated)"}));

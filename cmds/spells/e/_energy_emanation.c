@@ -147,10 +147,8 @@ void execute_attack(){
          done++;
       }
    }
-   else
-   {
-       tell_object(caster,"%^BOLD%^%^WHITE%^The halo of "+myenergy+" energy "
-       "%^BOLD%^%^WHITE%^surrounding you crackles as if seeking out a target!%^RESET%^");
+   else{
+       if(!random(4)) tell_object(caster,"%^BOLD%^%^WHITE%^The halo of "+myenergy+" energy %^BOLD%^%^WHITE%^surrounding you crackles as if seeking out a target!%^RESET%^");
    }
    counter++;
    if (counter > (clevel * 6))
