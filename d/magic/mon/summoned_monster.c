@@ -27,6 +27,7 @@ int create(){
     set_hp(50);
     set_max_hp(query_hp());
     set_exp(500);
+    set_resistance_percent("positive energy", 100);
 }
 
 int die(){
