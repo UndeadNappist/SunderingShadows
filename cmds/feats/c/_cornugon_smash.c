@@ -14,7 +14,7 @@ void create()
     feat_desc("Beat fear into your opponents with your unmatched combat prowess. While using powerattack, your hits have a chance of demoralizing opponents. When you hit an opponent (with powerattack), you perform an intimidation check. On a successful check, the victim is shaken.");
     permanent(1);
     set_target_required(0);
-    set_required_for(({}));
+    set_required_for(({ "shatter defenses" }));
 }
 
 int allow_shifted()
