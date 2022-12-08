@@ -183,16 +183,22 @@ void activate_rage(int direction)
     //SPIRIT TOTEM
     if(FEATS_D->usable_feat(caster, "spirit totem"))
     {
-        if(caster->query_property("travaoe"))
-            tell_object(caster, "Spirit totem cannot activate while another traveling AOE spell is active.");
+        if(direction >= 1)
+        {
+            if(caster->query_property("travaoe"))
+                tell_object(caster, "Spirit totem cannot activate while another traveling AOE spell is active.");
+            else
+            {
+                tell_object(caster, "%^BOLD%^Spirit whisps surround you in a protective swarm!%^RESET%^");
+                spirit_totem = 1;
+                caster->set_property("travaoe", 1);
+            }
+        }
         else
         {
-            tell_object(caster, "%^BOLD%^Spirit whisps surround you in a protective swarm!%^RESET%^");
-            spirit_totem = 1;
-            caster->set_property("travaoe", 1);
+            caster->remove_property("travaoe");
         }
-    }
-            
+    }       
 
     if (direction == -1 && caster->query_hp() > caster->query_max_hp()) {
         caster->set_hp(caster->query_max_hp());
@@ -404,8 +410,8 @@ void dest_effect()
             caster->remove_property_value("active_feats", ({ TO }));
             caster->remove_property("raged");
             caster->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
-            if(spirit_totem)
-                caster->remove_property("travaoe");
+            //if(spirit_totem)
+            //    caster->remove_property("travaoe");
             
             activate_rage(-1);
         }
