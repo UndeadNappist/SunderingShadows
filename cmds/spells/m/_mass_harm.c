@@ -45,13 +45,12 @@ string query_cast_string()
 void spell_effect(int prof)
 {
     int i;
-    object* party_members = ({}), * attackers = ({}), * living = ({}), * targets = ({}), * followers = ({});
+    object* party_members = ({}), * attackers = ({}), * targets = ({}), * followers = ({});
 
     set_helpful_spell(0);
     party_members = ob_party(caster);
     attackers = target_selector();
     followers = caster->query_followers();
-    living = all_living(place);
 
     if (!objectp(target)) {
         target = caster;
@@ -67,7 +66,7 @@ void spell_effect(int prof)
         set_helpful_spell(0);
         targets = filter_array(attackers, (: !$1->query_property("negative energy affinity") :));
     }else {
-        targets = ({ target });
+        targets = all_living(place);
     }
 
     targets = distinct_array(targets);
