@@ -53,8 +53,8 @@ void surround(object ob, object spell) {
       if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"fire") != -1)
          continue;
-      tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C160%^"+foes[k]->QCN+" is singed by the %^C024%^fl%^C023%^am%^030%^es %^C160%^and leaps back as they rise up!%^CRST%^",foes[k]);
-      tell_object(foes[k],"%^RESET%^%^CRST%^%^C124%^You get singed by the %^C024%^fl%^C023%^am%^030%^es %^C160%^and jump away from "+caster->QCN+"%^RESET%^%^CRST%^%^C124%^ as they spring up around "+caster->QO+".%^CRST%^");
+      tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C160%^"+foes[k]->QCN+" is singed by the %^C024%^fl%^C023%^am%^C030%^es %^C160%^and leaps back as they rise up!%^CRST%^",foes[k]);
+      tell_object(foes[k],"%^RESET%^%^CRST%^%^C124%^You get singed by the %^C024%^fl%^C023%^am%^C030%^es %^C160%^and jump away from "+caster->QCN+"%^RESET%^%^CRST%^%^C124%^ as they spring up around "+caster->QO+".%^CRST%^");
       dmg = spellob->query_base_damage();
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg/2,"fire" );
       foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg/2,"untyped" );
@@ -83,8 +83,8 @@ void monitor() {
        if(foes[k]->query_property("strength") &&
          strsrch(foes[k]->query_property("strength"),"fire") != -1)
          continue;
-       tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C160%^"+foes[k]->query_cap_name()+"%^RESET%^%^CRST%^%^C160%^ is burned by the %^C024%^fl%^C023%^am%^030%^es %^C160%^!",foes[k]);
-       tell_object(foes[k],"%^RESET%^%^CRST%^%^C160%^You get burned by the %^C024%^fl%^C023%^am%^030%^es %^C160%^!");
+       tell_room(environment(foes[k]),"%^RESET%^%^CRST%^%^C160%^"+foes[k]->query_cap_name()+"%^RESET%^%^CRST%^%^C160%^ is burned by the %^C024%^fl%^C023%^am%^C030%^es %^C160%^!",foes[k]);
+       tell_object(foes[k],"%^RESET%^%^CRST%^%^C160%^You get burned by the %^C024%^fl%^C023%^am%^C030%^es %^C160%^!");
        dmg = spellob->query_base_damage();
        foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg/2,"fire" );
        foes[k]->cause_typed_damage(foes[k],foes[k]->return_target_limb(),dmg/2,"untyped" );
