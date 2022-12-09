@@ -31,7 +31,7 @@ void create()
     set_spell_sphere("alteration");
     set_syntax("cast CLASS lesser angelic aspect");
     set_damage_desc("levitating, 5 DR to Acid and Cold");
-    set_description("You take on an aspect of an angelic being, including some of its physical characteristics. This spell won't last outside of combat.");
+    set_description("You take on an aspect of an angelic being, including some of its physical characteristics.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);

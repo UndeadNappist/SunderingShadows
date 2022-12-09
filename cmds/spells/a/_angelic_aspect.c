@@ -36,7 +36,7 @@ void create(){
     set_bonus_type("deflection");
     set_syntax("cast CLASS angelic aspect");
     set_damage_desc("levitating, AC2, 10 DR to Acid and Cold");
-    set_description("You take on an aspect of an angelic being, including some of its physical characteristics. This spell won't last outside of combat.");
+    set_description("You take on an aspect of an angelic being, including some of its physical characteristics.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
