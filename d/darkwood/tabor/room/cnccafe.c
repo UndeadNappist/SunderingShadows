@@ -53,10 +53,9 @@ TABOR
 }
 
 void reset() {
-  ::reset();
-   if(!present("hessa"))   // Seif was replaced by Hessa, 
-                           //Courtesy of Cythera. Lujke November 25/05
-      find_object_or_load("/d/darkwood/tabor/mon/seif")->move(TO);
+    ::reset();
+    //if(!present("hessa"))   // Seif was replaced by Hessa, Courtesy of Cythera. Lujke November 25/05
+    //    find_object_or_load("/d/darkwood/tabor/mon/seif")->move(TO);
     if(!present("chessboard")) new(OBJDIR+"tabor_chess")->move(TO);
 }
 

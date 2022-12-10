@@ -540,6 +540,10 @@ int is_vulnerable_to(object source)
     if(attacker && attacker != source)
         return 1;
     
+    if(attacker && attacker == source && FEATS_D->usable_feat(attacker, "shatter defenses")){
+        if(this_object()->query_property("effect_frightened") || this_object()->query_property("effect_panicked") || this_object()->query_property("effect_shaken")) return 1;
+    }
+    
     return 0;
 }    
     
