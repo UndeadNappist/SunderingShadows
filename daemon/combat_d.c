@@ -3937,6 +3937,13 @@ void internal_execute_attack(object who)
             {
                 critical_hit = 0;
             }
+            /*
+            if(victim->is_class("hexblade") && !random(2))
+            {
+                //tell_object(victim, "%^BLACK%^%^BOLD%^Your dark protection nullifies the critical hit.%^RESET%^");
+                critical_hit = 0;
+            }
+            */
         }
         // end crit stuff
         if (roll && fumble == 0) {
