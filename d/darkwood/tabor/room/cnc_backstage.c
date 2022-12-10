@@ -62,12 +62,11 @@ inherit ROOM;
 			" well polished and always cleaned.",]));
 set_exits(([ "stage" : ROOMDIR+"cncstage" ]));
 }
+
 void reset()
 {
-    	::reset();
-    		if(!present("fflewdur")) 
-{
-	new("/d/dagger/tonovi/town/cguilds/fflewdur.c")->move(TO) ;
-    		return;
+    ::reset();
+    //if(!present("fflewdur")) new("/d/dagger/tonovi/town/cguilds/fflewdur.c")->move(TO) ;
+    return;
 }
-}
+
