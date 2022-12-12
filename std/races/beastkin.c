@@ -42,7 +42,7 @@ int *stat_adj() { return ({ 0, 1, 0, 0, 0, -1 }); }
 
 int is_restricted() { return 0; } // restricted races by approval
 
-int is_rollable() { return 1; } // rollable in creation
+int is_rollable() { return 0; } // rollable in creation
 
 string race_name() { return "beastman"; }
 
