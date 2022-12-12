@@ -2296,6 +2296,7 @@ void miss(object attacker, int magic, object target, string type, string target_
 
     a_name = attacker->query_cap_name();
     a_poss = attacker->query_possessive();
+    t_name = target->query_cap_name();
     
     if(!random(2) && target && target->query_property("warlocks curse") == attacker && FEATS_D->has_feat(attacker, "darkblade jinx"))
     {
