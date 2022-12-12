@@ -9,7 +9,7 @@ void create()
     feat_type("permanent");
     feat_category("Hierophant");
     feat_name("greater arsenal");
-    feat_desc("Greater arsenal will allow hierophant to prepare even more spells.");
+    feat_desc("Greater arsenal will allow hierophant to prepare even more spells. They gain an additional four spell slots per spell level with this feat.");
     permanent(1);
 }
 
