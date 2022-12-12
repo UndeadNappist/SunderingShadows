@@ -9,8 +9,8 @@ void create(){
     set_exits(([
                "south":FORESTDIR+"owagon8",
                "north":FORESTDIR+"owagon10",
+               "east" : "/d/magic/temples/mephasm/outside",
                ]));
 
 
 }
-
