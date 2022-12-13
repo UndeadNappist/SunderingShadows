@@ -12,7 +12,7 @@
 
 inherit FEAT;
 
-#define FEATTIMER 40
+#define FEATTIMER 60
 #define ROUNDS 5
 
 void create()

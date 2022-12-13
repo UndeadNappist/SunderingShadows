@@ -9,7 +9,7 @@ void create()
     feat_category("Hexblade");
     feat_name("malevolent strike");
     feat_prereq("Hexblade L1");
-    feat_desc("A Hexblade has a greater understanding the nature of their warlock's curse and now has a chance to apply their curse through normal attacks, making them a far more effective melee combatant.");
+    feat_desc("A Hexblade has a greater understanding the nature of their warlock's curse and now has a chance to apply their curse through normal attacks, making them a far more effective melee combatant. In addition, warlock's curse now uses d8 as its damage dice instead of d6.");
     permanent(1);
 }
 

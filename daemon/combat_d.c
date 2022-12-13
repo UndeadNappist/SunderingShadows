@@ -1498,8 +1498,12 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
     
     if(targ && targ->query_property("warlocks curse") == attacker)
     {
-        int wlvl = attacker->query_class_level("warlock");
-        damage += (roll_dice(1 + wlvl / 10, 6));
+        int wlvl = attacker->query_prestige_level("warlock");
+        wlvl = 1 + wlvl / 10;
+        if(FEATS_D->has_feat(attacker, "malevolent strike"))
+            damage += roll_dice(wlvl, 8);
+        else
+            damage += roll_dice(wlvl, 6);
     }
     
     if(!random(4) && targ && !targ->query_property("warlocks curse") && FEATS_D->has_feat(attacker, "malevolent strike"))
@@ -1544,6 +1548,8 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
 
         if(attacker->is_class("thief") || attacker->is_class("peerless_archer") || attacker->is_class("crimson_templar"))
         {
+            float red, total_red;
+            
             //Sneak attack dice section
             sneak = attacker->query_prestige_level("thief") / 2;
             //Arcane trickster sneak attack progression
@@ -1552,36 +1558,54 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
             if(weapon->is_lrweapon())
                 sneak += (1 + attacker->query_class_level("peerless_archer") / 4);
 
-            //Making this baseline and replacing combat reflexes with something else.
-            /*
-            if(!FEATS_D->usable_feat(attacker, "combat reflexes"))
-                sneak = 0;
-            */
-
             if(FEATS_D->usable_feat(targ, "mighty resilience"))
-                sneak = 0;
+                red += 1.00;
+                //sneak = 0;
 
             //Armor bond sneak attack resistance
             if(targ->query_property("fortification 75"))
-                sneak /= 4;
+                red += 0.75;
+                //sneak /= 4;
             else if(targ->query_property("fortification 50"))
-                sneak /= 2;
+                red += 0.50;
+                //sneak /= 2;
             else if(targ->query_property("fortification 25"))
-                sneak = (sneak * 3) / 4;
+                red += 0.25;
+                //sneak = (sneak * 3) / 4;
 
             if(FEATS_D->usable_feat(targ, "undead graft"))
-                sneak /= 2;
+                red += 0.50;
+                //sneak /= 2;
 
             //Barbarians/Thieves with danger sense gain resistance to sneak attacks
             if(FEATS_D->usable_feat(targ, "danger sense") && targ->query_level() + 4 > attacker->query_level())
-                sneak /= 2;
+                red += 0.50;
+                //sneak /= 2;
+            
+            //Hexblades gain slight resistance to sneak attacks
+            if(targ->is_class("hexblade"))
+                red += 0.25;
+                //sneak = (sneak * 3) / 4;
 
             if(attacker->query_blind() || attacker->light_blind())
             {
                 if(FEATS_D->usable_feat(attacker, "blindfight"))
-                    sneak /= 2;
+                    red += 0.50;
+                    //sneak /= 2;
                 else
-                    sneak = 0;
+                    red = 1.00;
+                    //sneak = 0;
+            }
+            
+            if(red >= 1.00)
+            {
+                sneak = 0;
+            }
+            else
+            {
+                total_red = to_float(sneak) * red;
+                sneak -= to_int(total_red);
+                sneak = sneak < 0 ? 0 : sneak;
             }
         }
     }
@@ -2300,9 +2324,9 @@ void miss(object attacker, int magic, object target, string type, string target_
     
     if(!random(2) && target && target->query_property("warlocks curse") == attacker && FEATS_D->has_feat(attacker, "darkblade jinx"))
     {
-        wlvl = attacker->query_class_level("warlock");
+        wlvl = attacker->query_prestige_level("warlock");
         tell_object(attacker, "%^C244%^Your curse still scars " + t_name + "!%^CRST%^");
-        target->cause_typed_damage(target, target->return_target_limb(), roll_dice(1 + wlvl / 10, 6), "untyped");
+        target->cause_typed_damage(target, target->return_target_limb(), roll_dice(1 + wlvl / 10, 8), "untyped");
     }
 
     if (objectp(target)) {
@@ -3938,13 +3962,11 @@ void internal_execute_attack(object who)
             {
                 critical_hit = 0;
             }
-            /*
             if(victim->is_class("hexblade") && !random(2))
             {
                 //tell_object(victim, "%^BLACK%^%^BOLD%^Your dark protection nullifies the critical hit.%^RESET%^");
                 critical_hit = 0;
             }
-            */
         }
         // end crit stuff
         if (roll && fumble == 0) {
