@@ -753,6 +753,9 @@ int immunity_check(object obj, string type)
 
     case "charm":
     {
+        if(obj->is_undead())
+            return 1;
+        
         if(obj->query_property("no charm"))
             return 1;
         
@@ -775,11 +778,17 @@ int immunity_check(object obj, string type)
         
         if(obj->query_property("confusion_immunity"))
             return 1;
+        
+        if(obj->is_undead())
+            return 1;
     }
     break;
     
     case "disease":
     {
+        if(obj->is_undead())
+            return 1;
+        
         if(member_array("plague", obj->query_divine_domain()) >= 0)
             return 1;
         
@@ -795,6 +804,8 @@ int immunity_check(object obj, string type)
 
     case "fear":
     {
+        if(obj->is_undead())
+            return 1;
 
         if (FEATS_D->usable_feat(obj, "no fear of the flame")) {
             return 1;
@@ -873,6 +884,9 @@ int immunity_check(object obj, string type)
     
     case "negative_level":
     {
+        if(obj->is_undead())
+            return 1;
+        
         if(obj->query_mystery() == "life" && obj->query_class_level("oracle") >= 31)
             return 1;
         

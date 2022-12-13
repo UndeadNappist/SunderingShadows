@@ -7,13 +7,14 @@
 %^ORANGE%^   * No constitution stat, charisma used for hp calculations
 %^ORANGE%^   * No aging, age category is always normal
 %^ORANGE%^   * No hunger or thirst
-%^ORANGE%^   * No diseases
 %^ORANGE%^   * No stamina
+%^ORANGE%^   * Immune to disease, poison, and rend
 %^ORANGE%^   * Not affected by fatigue and exhaustion
 %^ORANGE%^   + 50% cold resistance
 %^ORANGE%^   - 25% fire resistance
 %^ORANGE%^ * Undead mind:
 %^ORANGE%^   * Immune to standard death effects
+%^ORANGE%^   * Immune to sleep, charm and confusion
 %^ORANGE%^   * Will is always high
 %^ORANGE%^   * Mind-affecting powers damage but don't affect the mind
 %^ORANGE%^ * Innate darkvision and animate dead spells
