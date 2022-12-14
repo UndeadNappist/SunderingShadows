@@ -789,6 +789,9 @@ int immunity_check(object obj, string type)
         if(obj->is_undead())
             return 1;
         
+        if (obj->query_property("disease immunity"))
+            return 1;
+        
         if(member_array("plague", obj->query_divine_domain()) >= 0)
             return 1;
         
@@ -796,6 +799,12 @@ int immunity_check(object obj, string type)
             return 1;
         
         if(obj->query_bloodline() == "pestilence" && obj->query_class_level("sorcerer") > 30)
+            return 1;
+        
+        if(FEATS_D->usable_feat(obj, "divine health"))
+            return 1;
+        
+        if(FEATS_D->usable_feat(obj, "purity of body"))
             return 1;
         
         if(FEATS_D->has_feat(obj, "undead graft"))

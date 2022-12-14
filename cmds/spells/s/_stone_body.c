@@ -46,6 +46,7 @@ void spell_effect(int prof) {
         "hardening and turning into unyielding granite!");
     caster->set_property("iron body",1);
     caster->set_property("poison immunity",1);
+    caster->set_property("disease immunity",1);
     caster->set_property("spelled", ({TO}) );
     caster->add_ac_bonus(2);
 //    caster->set_property("damage resistance",(clevel/4));
@@ -64,8 +65,9 @@ void dest_effect() {
             "away, leaving you vulnerable once again.");
         tell_room(environment(caster),"%^ORANGE%^The granite skin surrounding "+caster->QCN+" cracks "
             "and breaks away, leaving "+caster->QP+" normal skin in its place.",caster);
-        caster->set_property("iron body",-1);
-        caster->set_property("poison immunity",-1);
+        caster->remove_property("iron body");
+        caster->remove_property("poison immunity");
+        caster->remove_property("disease immunity");     
         caster->set_stoneSkinned(0);
 //        caster->set_property("damage resistance",-1*(clevel/4));
         caster->set_property("damage resistance",-15);
