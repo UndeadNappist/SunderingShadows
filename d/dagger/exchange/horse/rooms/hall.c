@@ -116,7 +116,7 @@ set_listen("default","The whole area is filled with the calls of those betting o
 int run_race(string str){
     object horse_master;
     horse_master =find_object_or_load(STORAGE"horse_master.c");
-    if(TP->query_name() != "Clarice" && !avatarp(TP)) return 0;
+    if(userp(TP) && !avatarp(TP)) return 0;
     if(!str) {
         return 0;
     }

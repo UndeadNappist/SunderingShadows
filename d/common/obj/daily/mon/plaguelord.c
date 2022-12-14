@@ -31,6 +31,7 @@ void create(){
     set_property("no death", 1);
     set_property("no sleep", 1);
     set_property("fear_immunity", 1);
+    set_property("confusion_immunity", 1);
     set_property("no bows", 1);
     set_property("no tripped", 1);
     set_property("no paralyze", 1);

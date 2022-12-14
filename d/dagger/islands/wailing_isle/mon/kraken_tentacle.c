@@ -28,6 +28,7 @@ void create(){
     set_funcs(({ "wrap_attack" }));
     set_property("no fear", 1);
     set_property("fear_immunity", 1);
+    set_property("confusion_immunity", 1);
     set_property("no bows", 1);
     set_property("no paralyze", 1);
     set_property("no_random_treasure", 1);

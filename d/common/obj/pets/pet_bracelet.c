@@ -182,7 +182,7 @@ int summon_fun(string str){
     player = this_player();
     if(!this_object()->query_worn()){
         tell_object(player, "%^RESET%^%^CRST%^%^C059%^You have to be wearing the bracelet.%^CRST%^");
-        return 1;
+        return 0;
     }
     if(!str){
         tell_object(player, "Syntax: <call PET>");
@@ -194,11 +194,11 @@ int summon_fun(string str){
     }
     if(member_array(str, pet_list) == -1){
         tell_object(player, "%^RESET%^%^CRST%^%^C059%^You don't seen to have that type of pet.%^CRST%^");
-        return 1;
+        return 0;
     }
     if(this_player()->query_property("pet_summoned")){
         tell_object(player, "%^RESET%^%^CRST%^%^C059%^You can only have one pet summoned at a time.%^CRST%^");
-        return 1;
+        return 0;
     }
     
     input = explode(str, " ");
