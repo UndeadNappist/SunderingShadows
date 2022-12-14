@@ -37,6 +37,10 @@ int pour_fun(string str){
         message("info", "%^RESET%^%^CRST%^%^C059%^You were told you need to be at sea to use this bait.%^CRST%^", player);
         return 1;
     }
+    if(environment(room->query_boat())->is_dock()){
+        message("info", "%^RESET%^%^CRST%^%^C059%^You're too close to the dock to properly use this bait.%^CRST%^", player);
+        return 1;
+    }
     
     message("environment", "%^RESET%^%^CRST%^%^C109%^You hold the %^C250%^b%^C253%^ot%^C250%^t%^C253%^l%^C250%^e %^RESET%^%^C109%^at arm's length, dumping it overboard into the %^C117%^s%^C123%^e%^C117%^a%^RESET%^%^C109%^.%^CRST%^\n", player);
     message("environment", "%^RESET%^%^CRST%^%^C109%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C109%^ holds the %^C250%^b%^C252%^ot%^C250%^t%^C252%^l%^C250%^e %^RESET%^%^C109%^at arm's length, dumping it overboard into the %^C117%^s%^C123%^e%^C117%^a%^RESET%^%^C109%^.%^CRST%^\n", room, player);
