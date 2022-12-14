@@ -4,7 +4,7 @@
 %^BOLD%^%^BLUE%^Size: %^RESET%^large
 
 %^BOLD%^%^BLUE%^Standard alignments: %^RESET%^any evil
-%^BOLD%^%^BLUE%^Classes restricted: %^RESET%^mage, magus, psion, psywarrior, inquisitor, paladin, sorcerer, monk, warlock, cleric
+%^BOLD%^%^BLUE%^Classes allowed: %^RESET%^barbarian, bard, druid, fighter, oracle, ranger, thief
 %^BOLD%^%^BLUE%^Normal adventuring starting age: %^RESET%^17-40
 %^BOLD%^%^BLUE%^Average life span: %^RESET%^200
 
