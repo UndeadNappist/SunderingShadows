@@ -12,7 +12,7 @@ void create()
     feat_prereq("Improved toughness, or Barbarian L7, or Warlock L7");
     feat_desc("Damage Resistance is a passive feat that when taken will increase the character's resistance to damage by a small amount.");
     permanent(1);
-    set_required_for(({"improved damage resistance","regeneration"}));
+    set_required_for(({"improved damage resistance"}));
 }
 
 int allow_shifted() { return 1; }

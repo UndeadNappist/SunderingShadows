@@ -70,9 +70,20 @@ int cmd_spellmastery(string args)
 
     cancastflag = 0;
     myclasses = TP->query_classes();
+    
+    /*
     foreach(myclass in myclasses)
     {
         if(member_array(args,keys(MAGIC_D->index_castable_spells(TP,myclass)))!=-1)
+            cancastflag++;
+    }*/
+    
+    foreach(myclass in myclasses)
+    {
+        int spell_level;
+        
+        spell_level = MAGIC_D->query_spell_level(myclass, args);
+        if(spell_level > 0 && spell_level <= 2)
             cancastflag++;
     }
 
