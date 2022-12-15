@@ -24,7 +24,8 @@ void create(){
     set_hd(29,2);
     set_mlevel("fighter", 29);
     set_property("full attacks", 1);
-    set_mob_magic_resistance("low");;
+    set_mob_magic_resistance("low");
+    set_property("no dominate", 1);
     set_alignment(5);
     set("aggressive", 30);
     set_size(2);
