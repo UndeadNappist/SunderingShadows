@@ -84,7 +84,7 @@ int removeme()
     if (!objectp(TO) || !objectp(ETO) || !objectp(EETO)) {
         return 0;
     }
-    tell_object(ETO, "" + query_short() + "You remove the headdress and"
+    tell_object(ETO, "You remove the headdress and"
                 + " feel slightly less important.");
     tell_room(EETO, ETO->query_cap_name() + " slumps a little and looks"
               + " slightly less important after removing the " + query_obvious_short()
