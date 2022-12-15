@@ -117,8 +117,6 @@ varargs int do_save(object ob, int dc, string type, raw_save)
             if(ob->query("subrace") == "senzokuan")
                 mod += 1;
             
-            if(ob->query_race() == "beastkin")
-                mod += 2;
             if(ob->query("subrace") == "canine" || ob->query("subrace") == "feline")
                 mod += 2;
 
