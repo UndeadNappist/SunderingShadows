@@ -26,9 +26,9 @@ void create(){
     set_base_damage_type("bludgeoning");
     set_func_chance(25);
     set_funcs(({ "wrap_attack" }));
-    set_property("no fear", 1);
     set_property("fear_immunity", 1);
     set_property("confusion_immunity", 1);
+    set_property("no dominate", 1);
     set_property("no bows", 1);
     set_property("no paralyze", 1);
     set_property("no_random_treasure", 1);

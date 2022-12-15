@@ -42,6 +42,9 @@ void create()
 
     set_property("spell damage resistance", 10);
     set_property("no death", 1);
+    set_property("no dominate", 1);
+    set_property("confusion_immunity", 1);
+    set_property("fear_immunity", 1);
     set_property("magic", 1);
     set_property("no animate", 1);
     set_property("no steal", 1);
