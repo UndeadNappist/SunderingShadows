@@ -16,7 +16,7 @@ void create()
     feat_name("eldritch shield");
     feat_prereq("Warlock L21");
     feat_syntax("eldritch_shield");
-    feat_desc("You have proven yourself a useful pawn and your patron is forced to recognize your dedication. With this feat, you demand your patron make good on their promises. You expend all of your soul burn, gaining a damage absorption shield that will block damage equal to your warlock prestige level times the level of soul burn you currently have. Your soul burn will be fully expended.");
+    feat_desc("You have proven yourself a useful pawn and your patron is forced to recognize your dedication. With this feat, you demand your patron make good on their promises. You expend all of your soul burn, gaining a damage absorption shield that will block physical damage equal to your warlock prestige level times the level of soul burn you currently have. Your soul burn will be fully expended.");
 }
 
 int allow_shifted() { return 1; }
@@ -87,7 +87,7 @@ void execute_feat()
     caster->set_property("eldritch shield", amount);
     caster->set("available burn", 0);
 
-    tell_object(caster, "%^C244%^Without a word, you reach out to your %^C093%^p%^C099%^a%^C105%^t%^C111%^r%^C105%^o%^C093%^n%^C244%^ and demand protection for your for your dedication.%^CRST%^");
+    tell_object(caster, "%^C244%^Without a word, you reach out to your %^C093%^p%^C099%^a%^C105%^t%^C111%^r%^C105%^o%^C093%^n%^C244%^ and demand protection for your dedication.%^CRST%^");
     tell_object(caster, "%^C244%^Your demands are answered and a %^C093%^d%^C099%^a%^C105%^r%^C093%^k s%^C099%^h%^C105%^i%^C099%^e%^C093%^ld%^C244%^ protects you from harm.%^CRST%^");
 }
 
