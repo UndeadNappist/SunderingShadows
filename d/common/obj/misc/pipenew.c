@@ -195,7 +195,6 @@ int pack_pipe(string str){
     tell_object(player, "%^RESET%^%^CRST%^%^C100%^You pack your pipe with "+tobacco_type+".%^CRST%^");
     tell_room(environment(player), "%^RESET%^%^CRST%^%^C100%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ packs their pipe with some "+tobacco_type+".%^CRST%^", player);
     packed = 1;
-    ob->use_load();
     intox = (int)ob->query_intox();
     if(ob->query_has_messages()){
         hasmsgs = 1;
@@ -204,6 +203,7 @@ int pack_pipe(string str){
         yourmsgs = ({});
         yourmsgs = (string)ob->query_your_messages();
     }
+    ob->use_load();
     this_object()->remove_property_value("added short", ({ " %^RESET%^%^CRST%^%^C076%^(%^C064%^packed%^C076%^)%^CRST%^" }));
     this_object()->set_property("added short", ({ " %^RESET%^%^CRST%^%^C076%^(%^C064%^packed%^C076%^)%^CRST%^" }));
     return 1;
