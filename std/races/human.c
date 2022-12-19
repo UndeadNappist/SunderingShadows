@@ -354,6 +354,9 @@ string *query_hair_colors(string subrace) {
 string *query_eye_colors(string subrace) {
     string *choices = ({});
     
+    if(!stringp(subrace))
+        return choices;
+    
     switch(subrace){
         case "air genasi":
         case "fire genasi":
