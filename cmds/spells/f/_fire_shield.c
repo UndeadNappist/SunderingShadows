@@ -25,16 +25,20 @@ void create(){
 }
 
 string query_cast_string(){
-   	tell_object(caster,"%^BOLD%^"+scolor+"%^Circling your hands before "+
-		"you, you begin to evoke the element of fire.");
-    	tell_room(place,"%^BOLD%^"+scolor+"Circling "+caster->QP+" hands "+
-		"before "+caster->QO+", "+caster->QCN+" begins to evoke "+
-		"the element of fire.",caster);
+    if(arg == "chill"){
+        tell_object(caster,"%^BOLD%^Circling your hands before you, you begin to evoke the power of fire.");
+        tell_room(place,"%^BOLD%^Circling "+caster->QP+" hands before "+caster->QO+", "+caster->QCN+" begins to evoke the power of fire.",caster);
+    }
+    else{
+        tell_object(caster,"%^BOLD%^Circling your hands before you, you begin to evoke the power of ice.");
+        tell_room(place,"%^BOLD%^Circling "+caster->QP+" hands before "+caster->QO+", "+caster->QCN+" begins to evoke the power of ice.",caster);
+    }
+    return "display";
 }
 
 int preSpell(){
     if(caster->query_property("fire shield")){
-        tell_object(caster,"You are already protected by a shield of fire.");
+        tell_object(caster,"You are already under such protections.");
         return 0;
     }
     if(arg == "chill")
