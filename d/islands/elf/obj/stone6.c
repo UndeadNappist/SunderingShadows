@@ -27,7 +27,7 @@ msg = ({"You feel your mind tumbling through the distant past as you place your 
 "One elf says:  'We must do something about these humans.  They ravage the forests like orcs'",
 "Another answers:  'No, they are worse than orcs.  At least the beasts are less organized.'",
 "Yet another says: 'It is as the seers have been saying, the twilight of the elves is upon us.'",
-"This quiets the counsil.",
+"This quiets the council.",
 "You speak up:  'I say we try to make peace with them, come to some kind of a treaty.'",
 "The other elves consider this.",
 "The one elf says:  'How do you propose this?  They come to our forests, axes in hands.  I don't see how we could arrange a parlay.'",

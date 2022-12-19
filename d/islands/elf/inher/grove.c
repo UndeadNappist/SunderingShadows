@@ -82,10 +82,10 @@ string long_desc(){
    "%^RESET%^beautiful plants%^CYAN%^ adorn the grove "+
    "but few bloom%^RESET%^. %^CYAN%^ Several trees with"+
    " huts can be seen about%^RESET%^.%^CYAN%^  Everything"+
-   " appears profondly elven%^RESET%^.%^CYAN%^  From the "+
+   " appears profoundly elven%^RESET%^.%^CYAN%^  From the "+
    "north%^RESET%^,%^CYAN%^ comes a soft crashing of water"+
    " falling down a steep cliff from which"+
-   " beautiful streams flow throught the "+
+   " beautiful streams flow through the "+
    "grove%^RESET%^.%^CYAN%^  This water warms the grove%^RESET%^.%^CYAN%^  "+
    "Sometimes there is snow but it never sticks%^RESET%^."+
 "\n");
