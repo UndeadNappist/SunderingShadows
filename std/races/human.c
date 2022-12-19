@@ -320,88 +320,73 @@ mapping weight_values(string gender, int height)
 
 string *query_hair_colors(string subrace) {
     string *choices = ({});
-    if(!stringp(subrace) ||
-       member_array(subrace,({"aasimar", "feytouched","tiefling","air genasi","earth genasi","fire genasi","water genasi","heartlander"})) != -1) {
-        choices += ({"ebony", "golden", "silver"});
-        choices += ({"sable", "auburn", "scarlet", "crimson"});
-        choices += ({"black", "brown", "blonde", "red", "white", "gray", "bald"});
-    }
-    else {
-        choices += ({"ebony"});
-        choices += ({"sable", "auburn", "scarlet", "crimson"});
-        choices += ({"black", "brown", "red", "white", "gray", "bald", "blonde"});
-    }
     
-    if(subrace == "air genasi") { // extras for specific planetouched subtypes
-        choices += ({ "light blue" });
+    switch(subrace){
+        case "aasimar":
+        case "feytouched":
+        case "tiefling":
+        case "earth genasi":
+        case "fire genasi":
+        case "heartlander":
+            choices += ({ "ebony", "golden", "silver", "sable", "auburn", "scarlet", "crimson", "black", "brown", "blonde", "red", "white", "gray", "bald" });
+            break;
+        case "air genasi":
+            choices += ({ "ebony", "golden", "silver", "sable", "auburn", "scarlet", "crimson", "black", "brown", "blonde", "red", "white", "gray", "bald", "light blue" });
+            break;
+        case "water genasi":
+            choices += ({ "ebony", "golden", "silver", "sable", "auburn", "scarlet", "crimson", "black", "brown", "blonde", "red", "white", "gray", "bald", "blue-green", "green" });
+            break;
+        case "senzokuan":
+        case "maalish":
+        case "zin'charu":
+        case "tonaz'tlacar":
+            choices += ({ "ebony", "sable", "black", "brown", "white", "gray", "bald" });
+            break;
+        case "aesatri":
+            choices += ({ "golden", "silver", "auburn", "scarlet", "crimson", "blonde", "red", "white", "gray", "bald" });
+            break;
+        default:
+            choices += ({ "ebony", "sable", "auburn", "scarlet", "crimson", "black", "brown", "blonde", "red", "white", "gray", "bald" });
     }
-    if(subrace == "water genasi") { // extras for specific planetouched subtypes
-        choices += ({ "blue-green" });
-        choices += ({ "green" });
-    }
-    if(subrace == "senzokuan" || subrace == "maalish" || subrace == "zin'charu" || subrace == "tonaz'tlacar") {
-        choices += ({"ebony"});
-        choices += ({"sable"});
-        choices += ({"black", "brown", "white", "gray", "bald"});
-    }
-    if(subrace == "aesatri") {
-        choices += ({"golden", "silver"});
-        choices += ({"auburn", "scarlet", "crimson"});
-        choices += ({"blonde", "red", "white", "gray", "bald"});
-    }
-    
     return choices;
 }
 
 string *query_eye_colors(string subrace) {
     string *choices = ({});
     
-    if(!stringp(subrace) ||
-       member_array(subrace,({"aasimar","feytouched","tiefling","air genasi","earth genasi","fire genasi","water genasi","heartlander","attayan"})) != -1) {
-        choices += ({"violet", "purple", "silver"});
-        choices += ({"emerald", "sapphire", "yellow", "amber"});
-        choices += ({"azure", "cyan", "sable", "chocolate", "coffee"});
-        choices += ({"green", "hazel"});
-        choices += ({"brown", "blue", "gray"});
+    switch(subrace){
+        case "air genasi":
+        case "fire genasi":
+        case "heartlander":
+        case "attayan":
+            choices += ({ "violet", "purple", "silver", "emerald", "sapphire", "yellow", "amber", "azure", "cyan", "sable", "chocolate", "coffee", "green", "hazel", "brown", "blue", "gray" });
+            break;
+        case "water genasi":
+            choices += ({ "violet", "purple", "silver", "emerald", "sapphire", "yellow", "amber", "azure", "cyan", "sable", "chocolate", "coffee", "green", "hazel", "brown", "blue", "gray", "aquamarine", "blue-green" });
+            break;
+        case "earth genasi":
+            choices += ({ "violet", "purple", "silver", "emerald", "sapphire", "yellow", "amber", "azure", "cyan", "sable", "chocolate", "coffee", "green", "hazel", "brown", "blue", "gray", "black" });
+            break;
+        case "tiefling":
+            choices += ({ "violet", "purple", "silver", "emerald", "sapphire", "yellow", "amber", "azure", "cyan", "sable", "chocolate", "coffee", "green", "hazel", "brown", "blue", "gray", "red" });
+            break;
+        case "aasimar":
+        case "feytouched":
+            choices += ({ "violet", "purple", "silver", "emerald", "sapphire", "yellow", "amber", "azure", "cyan", "sable", "chocolate", "coffee", "green", "hazel", "brown", "blue", "gray", "golden", "topaz" });
+            break;
+        case "tonaz'tlacar":
+            choices += ({ "silver", "emerald", "yellow", "amber", "sable", "chocolate", "coffee", "green", "hazel", "brown", "gray" });
+            break;
+        case "aesatri":
+        case "zin'charu":
+            choices += ({ "violet", "purple", "silver", "emerald", "sapphire", "azure", "cyan", "green", "blue", "gray" });
+            break;
+        case "dhampir":
+            choices += ({ "yellow", "amber", "sable", "chocolate", "coffee", "hazel", "brown", "gray", "red", "black", "purple", "white" });
+            break;
+        default:
+            choices += ({ "yellow", "amber", "sable", "chocolate", "coffee", "hazel", "brown", "gray" });
     }
-    else {
-        choices += ({"yellow", "amber"});
-        choices += ({"sable", "chocolate", "coffee"});
-        choices += ({"hazel"});
-        choices += ({"brown", "gray"});
-    }
-    
-    if(subrace == "water genasi") { // extras for specific planetouched subtypes
-        choices += ({ "aquamarine" });
-        choices += ({ "blue-green" });
-    }
-    if(subrace == "earth genasi") { // extras for specific planetouched subtypes
-        choices += ({ "black" });
-    }
-    if(subrace == "tiefling") { // extras for specific planetouched subtypes
-        choices += ({ "red" });
-    }
-    if(subrace == "aasimar" ||
-       subrace == "feytouched") { // extras for specific planetouched subtypes
-        choices += ({ "golden" });
-        choices += ({ "topaz" });
-    }
-    if(subrace == "tonaz'tlacar") {
-        choices += ({"silver"});
-        choices += ({"emerald", "yellow", "amber"});
-        choices += ({"sable", "chocolate", "coffee"});
-        choices += ({"green", "hazel"});
-        choices += ({"brown", "gray"});
-    }
-    if(subrace == "aesatri" || subrace == "zin'charu") {
-        choices += ({"violet", "purple", "silver"});
-        choices += ({"emerald", "sapphire"});
-        choices += ({"azure", "cyan"});
-        choices += ({"green"});
-        choices += ({"blue", "gray"});
-    }
-    if(subrace == "dhampir")
-        choices += ({ "red", "black", "purple", "white" });
     
     return choices;
 }
