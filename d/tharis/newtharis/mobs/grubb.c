@@ -32,7 +32,7 @@ void create() {
        "%^RESET%^%^C144%^You eat the sparse but painfully %^RESET%^%^C078%^h%^C079%^e%^C080%^a%^C081%^l%^C080%^t%^C079%^h%^C078%^y %^RESET%^%^C144%^meal.%^CRST%^",
        "%^RESET%^%^C144%^You eat the tender well-cooked piece of %^RESET%^%^C196%^spicy meat %^RESET%^%^C144%^with %^RESET%^%^C124%^l%^C160%^u%^C196%^s%^RESET%^%^C124%^t %^RESET%^%^C144%^and %^RESET%^%^C037%^v%^C044%^i%^C051%^g%^RESET%^%^C044%^o%^C037%^r%^RESET%^%^C144%^.%^CRST%^",
        "%^RESET%^%^C144%^You throw back the %^RESET%^%^C088%^r%^C124%^e%^C088%^d t%^RESET%^%^C124%^i%^C160%^n%^C124%^t%^C088%^e%^RESET%^%^C124%^d wine%^RESET%^%^C144%^.%^CRST%^",
-       "%^RESET%^%^C144%^An acquired taste, this beverage is light and %^RESET%^%^C087%^a%^C051%^i%^C045%^r%^RESET%^%^C087%^y %^RESET%^%^C144%^with a %^RESET%^%^C005%^sweet%^RESET%^%^C144%^, subtly %^RESET%^%^C094%^spiced %^RESET%^%^C144%^boquet and a faintly %^RESET%^%^C059%^f%^C102%^u%^C101%^n%^C145%^g%^RESET%^%^C102%^a%^C059%^l %^RESET%^%^C144%^aftertaste.%^CRST%^",
+       "%^RESET%^%^C144%^An acquired taste, this beverage is light and %^RESET%^%^C087%^a%^C051%^i%^C045%^r%^RESET%^%^C087%^y %^RESET%^%^C144%^with a %^RESET%^%^C005%^sweet%^RESET%^%^C144%^, subtly %^RESET%^%^C094%^spiced %^RESET%^%^C144%^bouquet and a faintly %^RESET%^%^C059%^f%^C102%^u%^C101%^n%^C145%^g%^RESET%^%^C102%^a%^C059%^l %^RESET%^%^C144%^aftertaste.%^CRST%^",
        "%^RESET%^%^C144%^You gulp down the lukewarm %^RESET%^%^C039%^w%^C045%^a%^C051%^t%^C045%^e%^C039%^r%^RESET%^%^C144%^. It has a distinctly %^RESET%^%^C251%^m%^C249%^i%^C252%^n%^C248%^e%^C253%^r%^C247%^a%^RESET%^%^C254%^l %^RESET%^%^C144%^taste to it.%^CRST%^",
         })
     );
