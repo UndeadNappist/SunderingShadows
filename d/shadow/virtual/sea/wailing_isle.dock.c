@@ -38,5 +38,13 @@ void create(){
 }
 
 void reset(){
+    object ship;
+    
     if(!present("ambiance device")) new("/d/dagger/islands/wailing_isle/mon/ambiance_wharf")->move(this_object());
+    
+    ship = find_object_or_load("/d/player_houses/vikaelis/deceit/obj/deceit");
+    if(!environment(ship)){
+        ship->move(this_object());
+    }
 }
+
