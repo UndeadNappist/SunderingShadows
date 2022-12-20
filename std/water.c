@@ -71,8 +71,8 @@ void heart_beat() {
         if (present("underwtr_breath_ob", inv[i]) || inv[i]->query_property("water breather") || query_property("surface"))
             continue;
 // added check to exclude true invis immortals *Styx* 1/4/04, last change 6/17/03
-	if(inv[i]->query_true_invis())
-	   continue;
+        if(inv[i]->query_true_invis()) continue;
+        if(inv[i]->is_undead()) continue;
         if (query_property("air pocket")) {
             set_property("air pocket", -1);
             if (!(query_property("air pocket")%6))
