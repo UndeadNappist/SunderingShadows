@@ -304,7 +304,7 @@ display_common()
         write("%^BOLD%^%^WHITE%^To choose type %^ORANGE%^<select %^ULINE%^OPTION%^RESET%^%^ORANGE%^%^BOLD%^>%^WHITE%^, for example. %^ORANGE%^<select " + choices[0] + ">%^WHITE%^.\n");
         write("%^BOLD%^%^WHITE%^You may also %^ORANGE%^<select random>%^WHITE%^ to select a random value.");
         write("%^BOLD%^%^WHITE%^To view current character sheet type %^ORANGE%^<sheet>%^WHITE%^.");
-        write("%^BOLD%^%^WHITE%^To return to any previvous stage type %^ORANGE%^<reset STAGENAME>%^WHITE%^. For example, %^ORANGE%^<reset race>%^WHITE%^ will return you to race selection.");
+        write("%^BOLD%^%^WHITE%^To return to any previous stage type %^ORANGE%^<reset STAGENAME>%^WHITE%^. For example, %^ORANGE%^<reset race>%^WHITE%^ will return you to race selection.");
 
     } else if (sizeof(choices) == 1) {
         select_common(choices[0]);
