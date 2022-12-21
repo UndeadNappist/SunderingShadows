@@ -138,7 +138,7 @@ int index_cast(string str){
     tell_room(room, "%^RESET%^%^CRST%^%^C058%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C058%^ taps at their case and a %^C144%^scroll %^C058%^springs into their palm!%^CRST%^", player);
     
     player->force_me("get "+spellname+" from scroll index");
-    if(targetname && sizeof(input) > 1) TP->force_me("use "+spellname+" on "+targetname);
+    if(targetname && sizeof(input) > 1) player->force_me("use "+spellname+" on "+targetname);
     else TP->force_me("use scroll");
     
     return 1;
