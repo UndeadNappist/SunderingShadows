@@ -10,20 +10,20 @@ void create() {
     feat_type("instant");
     feat_category("ArcaneSpellcraft");
     feat_name("scribe");
-    feat_syntax("scribe SPELL_NAME [as level SPELL_LEVEL] [for NUM times]");
+    feat_syntax("scribe SPELL_NAME [as level CASTER_LEVEL] [for NUM times]");
     feat_prereq("Bard, Cleric, Druid, Inquisitor, Mage, Magus, Paladin, Ranger, Sorcerer, Oracle, Thief");
     feat_desc("This feat allows a character to use their knowledge of the arcane or of the divine to scribe simple scrolls of spells they already know. Such scrolls are only good for a single use. You must have an empty parchment sheet in your inventory for scribe to work. It has to be parchment, other writing materials won't do.
 
 SPELL_NAME
   The spell you wish the scroll to cast when it is used.
 
-SPELL_LEVEL
+CASTER_LEVEL
   Optional scroll power you can specify. By default scroll will be scribed with maximum power available.
 
 NUM
   Defines how many scrolls you want to scribe.
 
-To scribe a scroll you must expend five gold coins per spell level and one parchment.
+To scribe a scroll you must expend five gold coins per caster level and one parchment.
 
 %^BOLD%^N.B.%^RESET%^ Multiclassing characters will use currently %^ULINE%^posed%^RESET%^ class for this feat. Use <pose> to switch it. You can not use spells that channel positive or negative energy with each cast, such as heal or harm, with this feat.
               
