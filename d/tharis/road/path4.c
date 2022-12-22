@@ -110,8 +110,8 @@ void peer(string str)
 		tell_object(TP,"You cannot see through indoor rooms.");
 		return 1;
 	}
-	if(str != "south" && str != "s") {
+	/*if(str != "south" && str != "s") {
 		tell_object(TP,"You can see nothing in that direction.");
 		return 1;
-	}
+	}*/
 }
