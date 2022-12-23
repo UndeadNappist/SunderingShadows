@@ -91,10 +91,11 @@ int extra_hit(object targ)
         tell_object(targ, "%^BOLD%^%^RED%^The horrible dagger wielded by " + ETOQCN + " " +
                     "lets out a haunting scream as it tears into you!");
         TO->set_property("magic", 1);
+        targ->cause_typed_damage(targ, "torso", roll_dice(3, 6), "slashing");
         //targ->do_damage("torso", roll_dice(3, 12));
         TO->set_property("magic", -1);
         
-        return roll_dice(3, 6);
+        return 0;
     }
     return 0;
 }

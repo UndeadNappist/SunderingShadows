@@ -92,12 +92,12 @@ int unwield() {
 int hit(object targ) {
    targ = ETO->query_current_attacker();
    if(!objectp(targ)) return 0;
-   if(random(1000) < 400){
+   if(!random(3)){
      tell_room(environment(query_wielded()),"%^BOLD%^%^WHITE%^The dagger shimmers quickly as "+ETOQCN+" expertly cuts "+targ->QCN+" across the face, leaving a wound so clean, it does not bleed until seconds later.%^RESET%^",({ETO,targ}));
      tell_object(ETO,"%^BOLD%^%^WHITE%^The dagger shimmers quickly as you expertly cut "+targ->QCN+" across the face, leaving a wound so clean, it does not bleed until seconds later.%^RESET%^");
      tell_object(targ,"%^BOLD%^%^WHITE%^"+ETOQCN+"'s dagger shimmers quickly as you are expertly cut across the face, leaving a wound so clean, it does not bleed until seconds later.%^RESET%^");
      TO->set_property("magic",1);
-     targ->do_damage("head",roll_dice(3,12));
+     targ->cause_typed_damage(targ, "head", roll_dice(3, 6), "slashing");
      TO->set_property("magic",-1);
    }
    return 0;
