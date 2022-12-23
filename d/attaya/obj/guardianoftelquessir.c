@@ -23,7 +23,8 @@ void create()
     set_property("lore difficulty", 27);
     set_property("no alter", 1);
     set_property("no curse", 1);
-    set_property("able to cast", 1); //this makes it better than Bonestripper but not by much, and fits thematically
+    //set_property("able to cast", 1); //this makes it better than Bonestripper but not by much, and fits thematically
+    //removed because this was to be a clone, not strictly better - Chernobog
     set_hit((: TO, "hitme" :));
     set_wield((: TO, "wieldme" :));
     set_unwield((: TO, "unwieldme" :));
@@ -89,7 +90,7 @@ int hitme(object targ)
     if (!objectp(targ)) {
         return 0;
     }
-    if (!random(3)) {
+    if (!random(4)) {
         switch (random(11)) {
         case 0:
             tell_room(EETO, "%^YELLOW%^With a deft flick of the wrist, " + ETOQCN + " brings " + ETO->QP + " blade across " + targ->QCN + "'s eyes!%^RESET%^", ETO);

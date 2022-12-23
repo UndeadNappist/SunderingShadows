@@ -2961,9 +2961,9 @@ void set_paralyzed(object who, int x, string paralyze_msg)
         return;
     }
     if (who->query_property("no paralyze") || PLAYER_D->immunity_check(who, "paralysis")) {
-        message("my_action", "You are uneffected by the paralysis.", who);
+        message("my_action", "You are unaffected by the paralysis.", who);
         if (objectp(environment(who)) && !who->query_invis()) {
-            tell_room(environment(who), who->query_cap_name() + " %^BOLD%^%^GREEN%^is totally uneffected by " +
+            tell_room(environment(who), who->query_cap_name() + " %^BOLD%^%^GREEN%^is totally unaffected by " +
                       "the paralysis attempt!%^RESET%^");
         }
         return;
