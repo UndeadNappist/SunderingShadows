@@ -54,7 +54,7 @@ void spell_effect(int prof)
         target->cause_typed_damage(target, "torso", sdamage / 2, "untyped");
     else
         target->cause_typed_damage(target, "torso", sdamage, "untyped");
-    
+        
     target->set_property("implosion", 1);
     
     call_out("keep_crushing", ROUND_LENGTH, 4);
@@ -83,7 +83,7 @@ void keep_crushing(int dur)
         return;
     }
     
-    call_out("keep_biting", ROUND_LENGTH, dur);
+    call_out("keep_crushing", ROUND_LENGTH, dur);
 }
 
 void dest_effect()
