@@ -1,8 +1,7 @@
 /*
   _magic_missile.c
   
-  Completely rewritten to scale with number of darts, like
-  SRD. Should be a signature mage spell.
+  Completely rewritten to scale with number of darts. Should be a signature mage spell.
   
   -- Tlaloc --
 */
