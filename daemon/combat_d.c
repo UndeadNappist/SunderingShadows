@@ -627,6 +627,11 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
                                 tell_object(targ, "%^MAGENTA%^You feel the eldritch shield fade away.%^RESET%^");
                                 targ->remove_property("eldritch shield");
                             }
+                            else
+                            {
+                                targ->remove_property("eldritch shield");
+                                targ->set_property("eldritch shield", eldritch_shield);
+                            }
                         }
                         else
                         {
@@ -3520,12 +3525,18 @@ int check_avoidance(object who, object victim)
     }
 
 //  Avoidance Roll
+    //25
     attack = (int)who->query_highest_level(); //changed to highest level rather than BAB.  Doesn't nerf SC thieves.
     attack += (int)who->query_skill("athletics")/2; //athletics/2 to improve dex but not make it a god stat.
+    //25 = 75
     defend = (int)victim->query_highest_level();
+    //50
     defend += (int)victim->query_skill("athletics")/2;
+    //14 = 64
     defend *= mod; // mod is a multiplier for fraction method
+    //64
     chance = (int) 1.0*defend/(attack + defend) * 1000;
+    //64 / 139 = 46%
     roll = roll_dice(1,1000);
     if (roll <= chance) { //tie goes to defender
          avoidance = 1;
