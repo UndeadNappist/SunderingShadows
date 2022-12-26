@@ -2024,7 +2024,12 @@ int query_attack_bonus()
     if(attacker && attacker->is_vulnerable_to(this_object()))
     {
         if(FEATS_D->usable_feat(this_object(), "prime strike"))
+        {
             ret += 1;
+            
+            if(FEATS_D->usable_feat(this_object(), "inevitable steel"))
+                ret += 2;
+        }
     }
     
     if(this_object()->is_class("warlock"))
