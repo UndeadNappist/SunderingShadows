@@ -9,7 +9,7 @@ void create()
     feat_category("Hexblade");
     feat_name("inevitable steel");
     feat_prereq("Hexblade L7");
-    feat_desc("The hexblade has proven himself a worthy combatant with magic and steel. His patron bestows upon him the ability to summon a patron weapon of his choice. The Hexblade gains the eldritch bow, eldritch claws, eldritch glaive, and eldritch scimitar spells as bonus mastered spells (these have been buffed significantly from before). In addition, the Hexblade can no longer be disarmed while wielding one of these patron weapons.");
+    feat_desc("The hexblade has proven himself a worthy combatant with magic and steel. His patron bestows upon him the ability to summon a patron weapon of his choice. The Hexblade gains the eldritch bow, eldritch claws, eldritch glaive, and eldritch scimitar spells as bonus mastered spells (these have been buffed significantly from before). In addition, the Hexblade can no longer be disarmed while wielding one of these patron weapons. Finally, the Prime Strike feat now gives a +3 bonus to attack instead of +1.");
     permanent(1);
 }
 
