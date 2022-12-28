@@ -20,8 +20,8 @@ acknowledge St. Vala's divine calling, of course.  Because the King
 sees resurrections in the Cathedral as proving the gods' favor of St.
 Vala (and thus of his family), Kenuric is under standing orders to help
 the recently deceased back to life whenever they may arrive here.
-Kenuric is a follower of Kelemvor, and respects St. Vala's contributions
-to the Kelemvor faith, whatever they were.
+Kenuric is a follower of Lysara, and respects St. Vala's contributions
+to the Lysaran faith, whatever they were.
 TABOR
     );
     set_race("human");
@@ -31,7 +31,7 @@ TABOR
     set_hp(10000000);
     set_spells(({"flame strike","cause blindness","hold person","touchsickle"}));
     set_spell_chance(90);
-    set_diety("kelemvor");
+    set_diety("lysara");
     new("/d/common/obj/armour/robe")->move(TO);
     command("wear robe");
     command("speak wizish");
