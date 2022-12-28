@@ -450,6 +450,7 @@ void do_bonuses(object obj, string bonus,int amount)
 
     // all of these use set_property
     case "magic resistance":
+    case "spell resistance":
     case "damage resistance":
     case "empowered":
     case "spell penetration":

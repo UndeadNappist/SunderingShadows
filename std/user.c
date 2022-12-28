@@ -2164,13 +2164,25 @@ nomask void die()
     }   
     
     if(this_object()->query_property("effect_fatigued"))
+    {
         find_object("/std/effect/status/fatigued")->dest_effect(this_object());
+        this_object()->remove_property("effect_fatigued");
+    }
     if(this_object()->query_property("effect_dazzled"))
+    {
         find_object("/std/effect/status/dazzled")->dest_effect(this_object());
+        this_object()->remove_property("effect_dazzled");
+    }
     if(this_object()->query_property("effect_exhausted"))
+    {
         find_object("/std/effect/status/exhausted")->dest_effect(this_object());
+        this_object()->remove_property("effect_exhausted");
+    }
     if(this_object()->query_property("effect_sickened"))
+    {
         find_object("/std/effect/status/sickened")->dest_effect(this_object());
+        this_object()->remove_property("effect_sickened");
+    }
        
     ghost = 1;
     ob = TO;
