@@ -8,6 +8,7 @@ void cmd_prompt(string str){
     if(!str)
     {
         my_prompt = this_player()->getenv("prompt");
+        my_prompt = replace_string(my_prompt, "%^", "%%%^^^");
         tell_object(this_player(), "Your current prompt is:");
         tell_object(this_player(), my_prompt);
         return 1;
