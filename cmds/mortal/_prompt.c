@@ -3,7 +3,17 @@
 inherit DAEMON;
 
 void cmd_prompt(string str){
+    string my_prompt;
+    
     if(!str)
+    {
+        my_prompt = this_player()->getenv("prompt");
+        tell_object(this_player(), "Your current prompt is:");
+        tell_object(this_player(), my_prompt);
+        return 1;
+    }
+        
+    if(str == "reset")
     {
         TP->setenv("prompt","%^BOLD%^BLACK%^-%^RED%^>%^RESET%^");
         TP->initialize();
@@ -34,7 +44,9 @@ prompt [LINE]
 
 This allows you to change your current prompt settings.
 
-When used with no arguments, the prompt will reset to a default of
+When used with no arguments, this will display your current prompt.
+
+When used with the 'reset' argument, the prompt will reset to a default of
     %^BOLD%^BLACK%^-%^RED%^>%^RESET%^
 Otherwise the prompt will become whatever you type after the prompt
 command.
