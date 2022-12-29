@@ -93,7 +93,7 @@ void execute_attack()
             tell_object(ob, "%^RESET%^%^CRST%^%^C100%^The %^C046%^t%^C213%^h%^C046%^or%^C040%^n%^C207%^s %^RESET%^%^C144%^bite %^C100%^into your flesh, and the %^C144%^strange suckers %^C100%^feed upon the %^C196%^bl%^C124%^o%^C196%^o%^C124%^d%^C100%^!%^CRST%^");
             tell_room(place, "%^RESET%^%^CRST%^%^C100%^The %^C046%^t%^C213%^h%^C046%^or%^C040%^n%^C207%^s %^RESET%^%^C144%^bite %^C100%^into "+ob->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ flesh, and the %^C144%^strange suckers %^C100%^feed upon the %^C196%^bl%^C124%^o%^C196%^o%^C124%^d%^C100%^!%^CRST%^");
             damage_targ(ob, limb, dam / 8, "negative energy");
-            ob->add_hp(dam / 8);
+            caster->add_hp(dam / 8);
         }
         
         set_save("reflex");
