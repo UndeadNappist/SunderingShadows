@@ -66,7 +66,7 @@ set_exits(([ "stage" : ROOMDIR+"cncstage" ]));
 void reset()
 {
     ::reset();
-    //if(!present("fflewdur")) new("/d/dagger/tonovi/town/cguilds/fflewdur.c")->move(TO) ;
+    if(!present("fflewdur")) new("/d/dagger/tonovi/town/cguilds/fflewdur.c")->move(TO) ;
     return;
 }
 

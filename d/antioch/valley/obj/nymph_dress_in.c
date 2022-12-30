@@ -209,11 +209,11 @@ void heart_beat()
 		return;
 	}
 
-	else {
+	/*else {
 		tell_room(environment(ETO),""+ETO->query_cap_name()+""+
 		" is a freak.",ETO);
 		return;
-	}
+	}*/
 }
 
 object *query_men()
