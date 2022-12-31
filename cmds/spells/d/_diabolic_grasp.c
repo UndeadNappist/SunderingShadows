@@ -46,7 +46,7 @@ void spell_effect(int prof) {
       TO->remove();
       return;
    }
-
+   /*
     if (target->query_size()<2) {
         tell_object(caster,"%^RESET%^%^CRST%^%^C100%^You feel your spell waver against "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ the power dispersing ineffectively.\n%^CRST%^");
         tell_object(target,"%^RESET%^%^CRST%^%^C100%^You feel a strange power struggle against you before dispersing.\n%^CRST%^");
@@ -54,6 +54,7 @@ void spell_effect(int prof) {
         TO->remove();
         return;
     }
+    */
     if(do_save(target,0)) {
         tell_object(caster,"%^RESET%^%^CRST%^%^C100%^You feel your spell waver against "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ the power dispersing ineffectively.\n%^CRST%^");
         tell_object(target,"%^RESET%^%^CRST%^%^C100%^You feel a strange power struggle against you before dispersing.\n%^CRST%^");
