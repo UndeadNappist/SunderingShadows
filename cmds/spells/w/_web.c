@@ -37,7 +37,7 @@ spell_effect(int prof)
     tell_object(caster, "%^YELLOW%^You jab your finger at " + target->QCN + " and strands of sticky web shoot out towards " + target->QO + "!");
     tell_object(target, "%^YELLOW%^" + caster->QCN + " jabs " + caster->QP + " finger at you, shooting out strands of sticky web!");
     tell_room(place, "%^YELLOW%^" + caster->QCN + " jabs " + caster->QP + " finger at " + target->QCN + ", shooting out strands of sticky web!", ({ caster, target }));
-    if (do_save(target, -2)) {
+    if (do_save(target, 0)) {
         tell_object(caster, "%^BOLD%^%^RED%^" + target->QCN + " manages to dodge your mass of webs!");
         tell_object(target, "%^BOLD%^%^RED%^You manage to dodge the mass of webs!");
         tell_room(environment(caster), "%^BOLD%^%^RED%^" + target->QCN + " manages to dodge the mass of webs!", ({ caster, target }));

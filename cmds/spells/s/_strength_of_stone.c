@@ -17,7 +17,7 @@ void create() {
     set_bonus_type("sacred");
     set_syntax("cast CLASS strength of stone [ON TARGET]");
     set_damage_desc("bonus to attack and damage, maximum +3");
-    set_description("This spell will imbue the caster with the strength of the earth, slightly empowering their melee abilities. The spell does not stack with other bless-type spells.");
+    set_description("This spell will imbue the caster with the strength of the earth, slightly empowering their melee abilities.");
     set_verbal_comp();
     set_helpful_spell(1);
 }
@@ -33,11 +33,13 @@ string query_cast_string() {
 
 int preSpell(){ //converting this over to the bless category of spells, to allow for bull's strength. -N, 8/10.
     if(!target) { target = caster; }
+    /*
     if(target->query_property("blessed") || target->query_property("blighted")){
         tell_object(caster,"%^BOLD%^%^BLUE%^Your target is already "+
            "gifted with a similar spell.%^RESET%^");
         return 0;
     }
+    */
     return 1;
 }
 

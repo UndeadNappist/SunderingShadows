@@ -167,7 +167,7 @@ void activate_rage(int direction)
     }
 
     if(!unstop)
-        unstop = FEATS_D->usable(caster, "unstoppable") * 2;
+        unstop = FEATS_D->usable_feat(caster, "unstoppable") * 2;
 
     //MOON TOTEM
     if(FEATS_D->usable_feat(caster, "moon totem"))
