@@ -50,6 +50,7 @@ void spell_effect(int prof)
     banquet->set_casting_spell(TO);
     place->set_property("fill waterskin", 1);
     spell_successful();
+    AddSpellToCaster();
 }
 
 void dest_effect()
