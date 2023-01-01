@@ -176,6 +176,10 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     save = level;
     statbonus = statbonus > 10 ? 10 : statbonus;
     save += statbonus;
+    
+    //Saves at lower levels are completely skewed to have a huge spread with stats bonuses.
+    //This is an attempt to rein that in to 150% of level.
+    save = min( ({ save, (level * 3) / 2 }) );
 
     //SAVE ROLL MODIFIERS
     if (ob->query_race() == "halfling")
