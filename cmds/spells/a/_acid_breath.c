@@ -16,7 +16,7 @@ void create()
     set_spell_level(([ "mage" : 3, "druid":3, "monk":15]));
     set_monk_way("way of the elements");
     set_spell_sphere("alteration");
-    set_syntax("cast CLASS acid breath on TARGET");
+    set_syntax("cast CLASS acid breath [on TARGET]");
     set_damage_desc("delayed acid");
     set_description("This incantation allows for the mage to collect a pool of acid in his/her mouth.  The magics of this "
         "spell prevent the caster from being harmed by the acid while it is being collected.  The mage then is able to release "
@@ -64,6 +64,9 @@ void zapper()
         dest_effect();
         return;
     }
+    
+    if(!target || !objectp(target))
+        target = caster->query_current_attacker();
 
     if(!objectp(target) || !objectp(place) || !present(target, place))
     {

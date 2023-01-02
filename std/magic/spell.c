@@ -4432,6 +4432,10 @@ void help()
     if (TO->is_curse()) {
         write("%^BOLD%^%^RED%^This spell is a curse.");
     }
+    if(versatile)
+    {
+        write("%^BOLD%^RED%^This spell can be altered with master of elements.");
+    }
     if (traveling_aoe_spell) {
         write("%^BOLD%^%^RED%^This is a traveling AOE spell.");
     }

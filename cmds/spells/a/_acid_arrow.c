@@ -15,16 +15,17 @@ void create()
     set_spell_name("acid arrow");
     set_spell_level(([ "mage" : 2, "magus" : 2 ]));
     set_spell_sphere("conjuration_summoning");
-    set_syntax("cast CLASS acid arrow on TARGET");
-    set_damage_desc("acid, versatile arcanist");
+    set_syntax("cast CLASS acid arrow [on TARGET]");
+    set_damage_desc("acid");
     set_description("When throwing a dart at a victim and casting the acid arrow spell, the dart will turn into an "
         "acidic arrow with the aim and speed as if fired by a fighter of the caster's spell level.  Damage will be inflicted "
         "immediately upon hitting the target, then the acid will seep through the victim's veins, doing more damage per combat "
-        "round until the acid wears off or the target is dead. A versatile arcanist can manipulate the base element of this spell.");
+        "round until the acid wears off or the target is dead.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
+    //set_target_required(1);
     splash_spell(1);
+    versatile();
     set_components(([ "mage" : ([ "dart" : 1, ]), ]));
     set_immunities( ({ "acid"}) );
 }
@@ -56,6 +57,11 @@ void spell_effect(int prof)
     {
         dest_effect();
         return;
+    }
+    
+    if(!target || !objectp(target))
+    {
+        target = caster->query_current_attacker();
     }
 
     if(!objectp(target) || !present(target,place))
