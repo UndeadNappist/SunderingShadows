@@ -100,6 +100,7 @@ int spell_level,
     permanent,
     evil_spell,
     mental_spell,
+    versatile,
     diminish_returns,
     blood_magic,
     end_time,
@@ -535,6 +536,16 @@ void evil_spell(int num)
 int query_evil_spell()
 {
     return evil_spell;
+}
+
+void versatile()
+{
+    versatile = 1;
+}
+
+int query_versatile()
+{
+    return versatile;
 }
 
 void mental_spell()
