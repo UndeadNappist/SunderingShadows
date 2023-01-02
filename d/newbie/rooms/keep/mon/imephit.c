@@ -21,8 +21,8 @@ void create()
     set_size(1);
     set_hd(4, 6);
     set_level(4);
-    set_class("thief");
-    set_mlevel("thief", 4);
+    set_class("fighter");
+    set_mlevel("fighter", 4);
     set_alignment(3);
     set_overall_ac(4);
     set_max_hp(random(20) + 40);
