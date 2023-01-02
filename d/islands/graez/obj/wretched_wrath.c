@@ -45,6 +45,9 @@ void create()
 int extra_wield()
 {
     owner = environment(this_object());
+    
+    if(!owner || ! objectp(owner))
+        return 0;
      
     tell_object(owner, "%^C243%^Shadows gather around your hands "+
 	"as you tighten the grip on the battle axe.%^CRST%^");

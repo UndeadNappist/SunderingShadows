@@ -55,8 +55,12 @@ int extra_wield()
    object room,player;
    string playername;
    
-   player = environment(this_object());    
-   room = environment(this_player());
+   player = environment(this_object());
+   
+   if(!player || !objectp(player))
+       return 0;
+   
+   room = environment(player);
    playername = player->query_cap_name();
    
      
@@ -71,7 +75,11 @@ int extra_unwield()
    object room,player;
    string playername;
    
-   player = environment(this_object());    
+   player = environment(this_object());
+   
+   if(!player || !objectp(player))
+       return 0;
+   
    room = environment(player);
    playername = player->query_cap_name();
    
