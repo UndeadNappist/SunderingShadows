@@ -67,9 +67,11 @@ void remove_retinue(int slot)
     object player = this_player();
     string retainer_directory = "/d/save/retainers/" + player->query_name() + "/";
 
+    seteuid("SaveAccess");
+
     mkdir(retainer_directory); // If the directory doesn't exist, make it.
     rm(retainer_directory + slot + ".o");
-    rmdir(retainer_directory + slot + "/");
+    rm(retainer_directory + slot + "/");
 
     if (!mapp(retinue))
     {
@@ -109,6 +111,8 @@ void remove_retinue(int slot)
             map_delete(retinue, slot);
         }
     }
+
+    seteuid(getuid());
 }
 
 void init_retinue()
@@ -130,12 +134,12 @@ void init_retinue()
         clear_retinue();
         mkdir(retainer_directory); // If the directory doesn't exist, make it.
         file_names = get_dir(retainer_directory);
-	    next_slot_to_fill = 0;
+        next_slot_to_fill = 0;
         foreach (string name in file_names)
         {
             if ( !regexp(name, "[0-9]|\.o$"))
-			{
-				rename(retainer_directory + name + "/", retainer_directory + (string)next_slot_to_fill + "_temp" + "/");
+            {
+                rename(retainer_directory + name + "/", retainer_directory + (string)next_slot_to_fill + "_temp" + "/");
                 rename(retainer_directory + name + ".o", retainer_directory + (string)next_slot_to_fill + ".o");
                 old_follower = new("/cmds/mortal/followers/fighter.c");
                 old_follower->restore_follower_from(retainer_directory + next_slot_to_fill);
@@ -148,8 +152,8 @@ void init_retinue()
         foreach (string name in file_names)
         {
             if (regexp(name, "_temp$"))
-			{
-				rename(retainer_directory + name + "/", retainer_directory + replace_string(name, "_temp", "") + "/");
+            {
+                rename(retainer_directory + name + "/", retainer_directory + replace_string(name, "_temp", "") + "/");
                 ++next_slot_to_fill;
             }
         }
@@ -431,9 +435,10 @@ int swap_follower_slots(int key_one, int key_two)
     string retainer_directory = "/d/save/retainers/" + this_player()->query_name() + "/";
     mapping temp_mapping;
 
+    seteuid("SaveAccess");
+
     if (retinue[key_one] && retinue[key_two])
     {
-        // This swaps data, trust me.   // Spade
         temp_mapping = retinue[key_two];
         retinue[key_two] = retinue[key_one];
         retinue[key_one] = temp_mapping;
@@ -449,6 +454,7 @@ int swap_follower_slots(int key_one, int key_two)
             if (!write_file(retainer_directory + key_one + ".o", "", 0))
             {
                 write("%^C030%^Something is wrong and the swap cannot be completed.");
+                seteuid(getuid());
                 return -1;
             }
         }
@@ -458,6 +464,7 @@ int swap_follower_slots(int key_one, int key_two)
             if (!write_file(retainer_directory + key_two + ".o", "", 0))
             {
                 write("%^C030%^Something is wrong and the swap cannot be completed.");
+                seteuid(getuid());
                 return -1;
             }
         }
@@ -467,8 +474,10 @@ int swap_follower_slots(int key_one, int key_two)
         rename(retainer_directory + key_two + "/", retainer_directory + key_one + "/");
         rename(retainer_directory + key_two + "_temp/", retainer_directory + key_two + "/");
 
+        seteuid(getuid());
         return 1;
     }
 
+    seteuid(getuid());
     return 0;
 }
