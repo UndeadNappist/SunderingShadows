@@ -17,7 +17,7 @@
 
 inherit DAEMON;
 
-#define BLOCK_SIZE 500  // how many objects it will check at one time
+#define BLOCK_SIZE 250  // how many objects it will check at one time
 #define TIME_DELAY 20   // delay between checking if objects can be cleaned
 
 int test_counter, cleaning;
