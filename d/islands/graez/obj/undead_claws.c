@@ -72,7 +72,7 @@ int extra_unwield()
    string playername;
    
    player = environment(this_object());    
-   room = environment(this_player());
+   room = environment(player);
    playername = player->query_cap_name();
    
     tell_object(player, "%^C143%^You remove the %^C243%^claws%^C143%^, stretching your fingers.%^CRST%^");
