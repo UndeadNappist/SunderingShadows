@@ -61,17 +61,23 @@ string query_cast_string()
 
 void spell_effect()
 {
-
+    string wing_color;
     int align = caster->query_true_align();
 
-    ashort = "%^RESET%^%^ORANGE%^ (%^WHITE%^%^BOLD%^tr%^ORANGE%^a%^WHITE%^iled by fe%^RESET%^%^ORANGE%^a%^BOLD%^th%^RESET%^e%^ORANGE%^r%^BOLD%^%^WHITE%^ed w%^RESET%^i%^ORANGE%^n%^BOLD%^%^WHITE%^g%^ORANGE%^s%^RESET%^%^ORANGE%^)";
+    ashort = "%^CRST%^%^RESET%^%^C153%^(%^C152%^trailed by %^C188%^f%^C189%^e%^C195%^athe%^C189%^r%^C188%^y %^C188%^w%^C189%^h%^C195%^ite %^C188%^w%^C189%^i%^C195%^ngs%^C153%^)%^CRST%^";
+	wing_color = "%^C188%^f%^C189%^e%^C195%^athe%^C189%^r%^C188%^y %^C188%^w%^C189%^i%^C195%^ngs";
 
-    if( align == 2 || align == 5 || align == 8)
-        ashort = " %^RESET%^(%^CYAN%^tr%^BOLD%^ai%^RESET%^%^CYAN%^l%^BOLD%^e%^RESET%^%^CYAN%^d b%^BOLD%^y e%^RESET%^%^CYAN%^th%^BOLD%^e%^RESET%^%^CYAN%^r%^BOLD%^ea%^RESET%^%^CYAN%^l w%^BOLD%^i%^RESET%^%^CYAN%^ngs%^WHITE%^)";
-    else if(!(align%3))
-        ashort = "%^RESET%^%^BOLD%^%^MAGENTA%^ (%^BOLD%^%^BLACK%^t%^RESET%^%^MAGENTA%^ra%^BOLD%^%^BLACK%^i%^RESET%^%^MAGENTA%^le%^BOLD%^%^BLACK%^d by %^RESET%^%^MAGENTA%^bl%^BOLD%^%^BLACK%^ack %^RESET%^%^MAGENTA%^w%^BOLD%^%^BLACK%^in%^RESET%^%^MAGENTA%^g%^BOLD%^%^BLACK%^s%^RESET%^%^BOLD%^%^MAGENTA%^)%^RESET%^";
+    if( align == 2 || align == 5 || align == 8){
+        ashort = "%^RESET%^%^C117%^(%^C111%^trailed by %^C110%^e%^C116%^t%^C115%^h%^C109%^e%^C110%^r%^C116%^e%^C117%^a%^C111%^l %^C110%^w%^C116%^i%^C115%^n%^C109%^g%^C110%^s%^RESET%^%^C117%^)";
+        wing_color = "%^CRST%^%^C110%^e%^C116%^t%^C115%^h%^C109%^e%^C110%^r%^C116%^e%^C117%^a%^C111%^l %^C110%^w%^C116%^i%^C115%^n%^C109%^g%^C110%^s%^RESET%^";
+    }
+	
+    else if(!(align%3)){
+        ashort = "%^CRST%^%^RESET%^%^C243%^(%^C060%^trailed by %^C061%^f%^C060%^e%^C059%^athe%^C060%^r%^C061%^y %^C061%^w%^C060%^in%^C059%^gs%^RESET%^%^C243%^)%^CRST%^";
+        wing_color = "%^C061%^f%^C060%^e%^C059%^athe%^C060%^r%^C061%^y %^C061%^w%^C060%^in%^C059%^gs";
+    }
 
-    tell_room(ENV(caster),"%^BOLD%^%^WHITE%^As "+caster->QCN+" finishes the chant, feathery "+(!(caster->query_true_align()%3)?"%^BLACK%^black%^WHITE%^":"white")+" wings sprout from "+caster->QP+" shoulders!%^RESET%^");
+	tell_room(ENV(caster),"%^CRST%^%^C146%^As "+caster->QCN+"%^RESET%^%^CRST%^%^C146%^ finishes the chant, "+wing_color+" %^RESET%^%^C146%^wings unfurl from "+caster->QP+" shoulders!%^RESET%^");
 
     effect(1);
     spell_successful();
@@ -88,11 +94,12 @@ void dest_effect()
     if(objectp(caster))
     {
         caster->remove_property_value("added short",({ashort}));
-        tell_object(caster,"%^BOLD%^%^WHITE%^You feel your mortality return as your angelic aspect fades.");
-        tell_room(ENV(caster),"%^BOLD%^%^WHITE%^The ethereal wings that trailed "+caster->QCN+" fade.%^RESET%^");
+        tell_object(caster,"%^RESET%^%^C146%^You feel your %^C247%^mortality%^C146%^ return as your %^C153%^an%^C147%^gel%^C135%^ic %^C153%^as%^C147%^pe%^C135%^ct%^RESET%^%^C146%^ fades.%^CRST%^");
+        tell_room(ENV(caster),"%^RESET%^%^C146%^The wings trailing "+caster->QCN+" fade.%^RESET%^");
         effect(-1);
     }
     ::dest_effect();
     if(objectp(TO))
         TO->remove();
 }
+
