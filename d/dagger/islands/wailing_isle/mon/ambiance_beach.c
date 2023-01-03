@@ -11,6 +11,7 @@ void create(){
     set_short("You see NOTHING.");
     add_limb("body","",0,0,0);
     set_property("no detect",1);
+    set_property("no charm", 1);
     set_invis();
 }
 
