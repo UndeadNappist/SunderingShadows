@@ -877,7 +877,7 @@ mixed query_property(string prop)
         return num;
     }
 
-    if(prop == "spectral hand")
+    if(prop == "spectral_hand")
     {
         if(PLAYER_D->check_familiar(this_object()))
             return 1;
