@@ -279,12 +279,14 @@ void build_me(object ob)
     else myRaceFile = "/std/races/"+myRace+".c";
     if(file_exists(myRaceFile))
     {
-        eye_colors = myRaceFile->query_eye_colors(ob);
-        hair_colors = myRaceFile->query_hair_colors(ob);      
+        //eye_colors = myRaceFile->query_eye_colors(ob);
+        eye_colors = myRaceFile->query_eye_colors(ob->query("subrace"));
+        //hair_colors = myRaceFile->query_hair_colors(ob); 
+        hair_colors = myRaceFile->query_hair_colors(ob->query("subrace"));
     }
-    if(pointerp(hair_colors)) hc = hair_colors[random(sizeof(hair_colors))];
+    if(pointerp(hair_colors) && sizeof(hair_colors)) hc = hair_colors[random(sizeof(hair_colors))];
     else hc = "brown";
-    if(pointerp(eye_colors)) ec = eye_colors[random(sizeof(eye_colors))];
+    if(pointerp(eye_colors) && sizeof(eye_colors)) ec = eye_colors[random(sizeof(eye_colors))];
     else ec = "blue";
     
     myRaceDes = PRACES[myRace];
