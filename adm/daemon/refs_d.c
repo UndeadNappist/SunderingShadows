@@ -1,3 +1,5 @@
+//Should be simul_efun.... --Tlaloc--
+
 // File:        /adm/daemon/refs_d.c
 // Mudlib:      Nightmare (but see credits)
 // Purpose:     interface between /std/user/refs.c and ref commands

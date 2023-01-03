@@ -1,3 +1,5 @@
+//Slated to be disabled -- Tlaloc --
+
 // bell_d.c daemon
 // notify's admins that someone has rung one of the existing bells
 // Pator@ShadowGate 

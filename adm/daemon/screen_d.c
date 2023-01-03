@@ -1,3 +1,5 @@
+//Too old to matter -- Tlaloc --
+
 //      Network Screening Daemon [v0.1]
 //      Thorn@Shadowgate
 //      12/15/94

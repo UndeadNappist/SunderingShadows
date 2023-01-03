@@ -2,6 +2,9 @@
 //modified to calculate a list of immortals, by positions immortal/builder - through creator
 //who have been inactive for at least six months - Saide, December 2016
 
+//Purge command already exists? -- Tlaloc --
+//Slated to be disabled
+
 #include <std.h>
 #include <security.h>
 #include <daemons.h>

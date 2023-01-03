@@ -1,3 +1,5 @@
+//This type of thing should be simul_efun -- Tlaloc --
+
 //   /adm/daemon/calc_stuff_d.c
 //   created by Styx @ Shadowgate for easier maintenance of calculations for various checks
 //  not exactly finished to do all I wanted but I left the in-process stuff for reference
