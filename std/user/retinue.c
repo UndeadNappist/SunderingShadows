@@ -66,12 +66,20 @@ void remove_retinue(int slot)
 {
     object player = this_player();
     string retainer_directory = "/d/save/retainers/" + player->query_name() + "/";
+    mixed* retainers_objects;
+    int i;
 
     seteuid("SaveAccess");
 
+    retainers_objects = get_dir(retainer_directory + slot + "/");
+
     mkdir(retainer_directory); // If the directory doesn't exist, make it.
     rm(retainer_directory + slot + ".o");
-    rm(retainer_directory + slot + "/");
+    for(i = 0; i < sizeof(retainers_objects); ++i)
+    {
+        rm(retainer_directory + slot + "/" + retainers_objects[i]);
+    }
+    rmdir(retainer_directory + slot + "/");
 
     if (!mapp(retinue))
     {
