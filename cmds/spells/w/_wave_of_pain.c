@@ -49,6 +49,7 @@ void spell_effect(int prof)
         if (!objectp(inven[i])) continue;
         tell_object(inven[i],"%^RED%^You are struck with a horrible pain.");
         inven[i]->cause_typed_damage(inven[i], inven[i]->return_target_limb(), sdamage, "mental");
+        spell_kill(inven[i], caster);
         //damage_targ(inven[i],"torso",sdamage,"mental");
 
         if(!do_save(inven[i],0)) {

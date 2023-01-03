@@ -9,7 +9,7 @@ inherit "/std/bounty.c";
 void create()
 {
    ::create();
-   set_property("indoors",0);
+   set_property("indoors",1);
    set_property("light",2);
    set_travel(PAVED_ROAD);
    set_terrain(CITY);
