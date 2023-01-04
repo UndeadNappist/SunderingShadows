@@ -20,6 +20,7 @@ void create()
     set_exp(1);
     set_overall_ac(9);
     set_property("no dominate", 1);
+    set_property("fear_immunity", 1);
     //set_func_chance(100);
     //set_funcs(({ "round_cleanup" }));
 }
