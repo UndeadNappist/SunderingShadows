@@ -36,13 +36,12 @@ string query_cast_string()
 void spell_effect(int prof)
 {
     int i;
-    object *party_members = ({}),*attackers = ({}),*living = ({}),*targets = ({}), *followers = ({});
+    object *party_members = ({}),*attackers = ({}),*targets = ({}), *followers = ({});
 
     set_helpful_spell(1);
     party_members = ob_party(caster);
     attackers = caster->query_attackers();
     followers = caster->query_followers();
-    living = all_living(place);
 
     if(!objectp(target)) { target = caster; }
 
@@ -81,6 +80,7 @@ void spell_effect(int prof)
                     continue;
                     tell_object(targets[i], "You shouldn't do that to yourself.");
                 }
+                spell_kill(targets[i], caster);
                 //set_helpful_spell(0);
             }
             else {
