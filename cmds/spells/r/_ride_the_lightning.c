@@ -12,7 +12,8 @@ void create()
 {
     ::create();
     set_spell_name("ride the lightning");
-    set_spell_level(([ "mage" : 9 ]));
+    set_spell_level(([ "mage" : 9, "cleric" : 9 ]));
+    set_domains("storms");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS ride the lightning on TARGET");
     set_damage_desc("electricity or versatile arcanist");

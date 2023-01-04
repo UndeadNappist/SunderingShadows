@@ -11,7 +11,7 @@ inherit SPELL;
 void create() {
     ::create();
     set_spell_name("call lightning");
-    set_spell_level(([ "druid" : 3 ]));
+    set_spell_level(([ "druid" : 3, "innate" : 3 ]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS call lightning on TARGET");
     set_description("This is a destructive spell that could hurt an opponent very badly!  The higher level the caster is "
@@ -44,6 +44,7 @@ int preSpell() {
       return 0;
    }
 
+    */
     if(caster->is_class("cleric"))
     {
         if(!(int)USER_D->spend_pool(this_player(), 1, "grace"))
@@ -52,7 +53,6 @@ int preSpell() {
             return 0;
         }
     }
-    */
 
     return 1;
 }
