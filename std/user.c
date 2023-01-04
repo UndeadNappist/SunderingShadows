@@ -2183,6 +2183,8 @@ nomask void die()
         find_object("/std/effect/status/sickened")->dest_effect(this_object());
         this_object()->remove_property("effect_sickened");
     }
+    
+    this_object()->clear_followers();
        
     ghost = 1;
     ob = TO;
