@@ -12,6 +12,7 @@ void create() {
     feat_desc("This feat allows the character to retain their dexterity bonus to ac even being incapacitated.");
     set_required_for(({"mobility","evasion","scramble","spring attack"}));
     set_target_required(1);
+    permanent(1);
 }
 
 int allow_shifted() { return 1; }
