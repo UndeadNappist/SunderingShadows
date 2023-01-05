@@ -73,7 +73,7 @@ class_spell_storage =
     //"astral":
     //    ({"flare","invisibility","blink","suppress wild magic","dismissal","contingency","greater teleport","antimagic field"}),
     "boreal":
-        ({"enlarge person","bears endurance","rage","stoneskin","cone of cold","transformation","true strike","polar ray", "polar midnight"}),
+        ({"biting wind","frostfield","frost orb","ice storm","cone of cold","freezing sphere","avalanche","polar ray", "polar midnight"}),
     "celestial":
         ({"bless", "resist energy", "dispel evil", "break curse", "angelic aspect", "greater dispel magic", "sunburst", "gate"}),
     //"draconic":
