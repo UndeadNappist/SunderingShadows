@@ -16,7 +16,7 @@ void create()
 {
     ::create();
     set_spell_name("thunderstomp");
-    set_spell_level(([ "ranger" : 1, "druid" : 1, "mage" : 1, "magus" : 1, "cleric" ]));
+    set_spell_level(([ "ranger" : 1, "druid" : 1, "mage" : 1, "magus" : 1, "cleric" : 1 ]));
     set_domains("storms");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS thunderstomp");
