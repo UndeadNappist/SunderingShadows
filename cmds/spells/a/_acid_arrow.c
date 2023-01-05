@@ -76,6 +76,9 @@ void spell_effect(int prof)
         dest_effect();
         return 1;
     }
+    
+    if(!strlen(element))
+        element = "acid";
 
     target_limb = target->return_target_limb();
     need = "/daemon/bonus_d.c"->thaco(clevel,"fighter") - ((int)target->query_ac());

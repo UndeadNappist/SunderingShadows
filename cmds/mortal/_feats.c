@@ -681,7 +681,8 @@ int cmd_feats(string str)
             case "spellcraft":
                 BONUS_ALLOWED = FEATS_D->number_feats(TP, feat_types[i], CASTERCLASSES);
                 num_bonus = (int)TP->query_magic_feats_gained();
-                feat_types_labels = "magic";
+                feat_types_labels = feat_types[i];
+                //feat_types_labels = "magic";
                 break;
             case "hybrid":
                 BONUS_ALLOWED = FEATS_D->number_feats(TP, feat_types[i], HYBRIDCLASSES);
@@ -696,7 +697,8 @@ int cmd_feats(string str)
             case "divinebond":
                 BONUS_ALLOWED = FEATS_D->number_feats(TP, feat_types[i], ({ "paladin" }));
                 num_bonus = (int)TP->query_divinebond_feats_gained();
-                feat_types_labels = "divine";
+                feat_types_labels = feat_types[i];
+                //feat_types_labels = "divine";
                 break;           
             case "rage":
                 BONUS_ALLOWED = FEATS_D->number_feats(TP, feat_types[i], ({ "barbarian" }));
@@ -725,7 +727,7 @@ int cmd_feats(string str)
 
             if (BONUS_ALLOWED > 0) {
                 tell_object(TP, "%^BOLD%^%^WHITE%^You have %^BOLD%^%^BLUE%^" + BONUS_ALLOWED + "%^WHITE%^ free " + feat_types_labels +
-                    " bonus feats. You have used %^BOLD%^%^BLUE%^" + num_bonus + " %^WHITE%^. You have "
+                    " bonus feats. You have used %^BOLD%^%^BLUE%^" + num_bonus + "%^WHITE%^. You have "
                     "%^BOLD%^%^BLUE%^" + bonus + "%^WHITE%^ left.%^WHITE%^");
             }
         }
