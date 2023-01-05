@@ -23,6 +23,7 @@ void create()
     set_somatic_comp();
     set_save("fort");
     aoe_spell(1);
+    set_immunities( ({ "cold" }) );
     set_aoe_message("%^RESET%^%^%^BLUE%^(%^BOLD%^%^BLACK%^in deepest darkness%^RESET%^%^BLUE%^)%^RESET%^");
 }
 

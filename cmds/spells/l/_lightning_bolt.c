@@ -19,6 +19,7 @@ void create() {
 "save. A versatile arcanist can manipulate the base element of this spell.");
     set_verbal_comp();
     set_somatic_comp();
+    versatile();
     set_target_required(1);
     set_components(([
       "mage" : ([ "firefly" : 1, ]),
@@ -42,6 +43,7 @@ spell_effect(int prof) {
         return;
     }
     target_limb = target->return_target_limb();
+    spell_kill(target, caster);
 
     element = (string)caster->query("elementalist");
     switch(element) {
