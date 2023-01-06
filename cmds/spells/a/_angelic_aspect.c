@@ -77,7 +77,8 @@ void spell_effect()
         wing_color = "%^C061%^f%^C060%^e%^C059%^athe%^C060%^r%^C061%^y %^C061%^w%^C060%^in%^C059%^gs";
     }
 
-	tell_room(ENV(caster),"%^CRST%^%^C146%^As "+caster->QCN+"%^RESET%^%^CRST%^%^C146%^ finishes the chant, "+wing_color+" %^RESET%^%^C146%^wings unfurl from "+caster->QP+" shoulders!%^RESET%^");
+	tell_room(ENV(caster),"%^CRST%^%^C146%^As "+caster->QCN+"%^RESET%^%^CRST%^%^C146%^ finishes the chant, "+wing_color+" %^RESET%^%^C146%^unfurl from "+caster->QP+" shoulders!%^RESET%^", caster);
+    tell_object(caster, "%^CRST%^%^C146%^As you finish the chant, "+wing_color+" %^RESET%^%^C146%^unfurl from your shoulders!%^RESET%^");
 
     effect(1);
     spell_successful();
@@ -95,7 +96,7 @@ void dest_effect()
     {
         caster->remove_property_value("added short",({ashort}));
         tell_object(caster,"%^RESET%^%^C146%^You feel your %^C247%^mortality%^C146%^ return as your %^C153%^an%^C147%^gel%^C135%^ic %^C153%^as%^C147%^pe%^C135%^ct%^RESET%^%^C146%^ fades.%^CRST%^");
-        tell_room(ENV(caster),"%^RESET%^%^C146%^The wings trailing "+caster->QCN+" fade.%^RESET%^");
+        tell_room(ENV(caster),"%^RESET%^%^C146%^The wings trailing "+caster->QCN+" fade.%^RESET%^", caster);
         effect(-1);
     }
     ::dest_effect();
