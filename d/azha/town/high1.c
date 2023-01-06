@@ -40,7 +40,7 @@ AZHA
     ob = new("std/bboard");
     ob->set_name("board");
     ob->set_id( ({ "board", "azha board" }) );
-    ob->set_board_id("union_board");
+    ob->set_board_id("tsarazhabord");
     ob->set_queue();
     ob->set_max_posts(50);
     ob->set_location("/d/azha/town/high1");
