@@ -91,7 +91,7 @@ void execute_feat()
     }
     else
     {
-        tell_room(place, target->QCN + " is able to mantain his balance.", ({ target }));
+        tell_room(place, target->QCN + " is able to maintain his balance.", ({ target }));
         tell_object(target, "%^BOLD%^You are able to maintain your balance.");
     }
     

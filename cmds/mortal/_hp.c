@@ -51,10 +51,10 @@ mixed * genoutput(object targ)
         int i;
         
         if(sizeof(effects)) effects = filter_array(effects, (:objectp($1):));
-        if(sizeof(effects)) effect_names = capitalize(effects[0]->query_name());
+        if(sizeof(effects)) effect_names = capitalize(replace_string(effects[0]->query_name(), "effect_", ""));
         if(sizeof(effects) > 1){
             for(i = 1; i < sizeof(effects); i++){
-                effect_names = effect_names +", "+ capitalize(effects[i]->query_name());
+                effect_names = effect_names +", "+ capitalize(replace_string(effects[i]->query_name(), "effect_", ""));
                 continue;
             }
         }
