@@ -31,6 +31,8 @@ void create()
     set("aggressive", 8);
     set_hd(4, 2);
     set_attack_limbs(({ "right forepaw", "left forepaw", "head" }));
+    set_property("no_random_treasure", 1);
+    call_out("go_home", 600);
 }
 
 

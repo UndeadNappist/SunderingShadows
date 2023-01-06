@@ -28,6 +28,7 @@ int create(){
     set_max_hp(query_hp());
     set_exp(500);
     set_resistance_percent("positive energy", 100);
+    set_property("no_random_treasure", 1);
 }
 
 int die(){
