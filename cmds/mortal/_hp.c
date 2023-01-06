@@ -13,8 +13,7 @@ mixed * genoutput(object targ)
 
 
     output+=({({"Health Points","%^RESET%^%^"+targ->query_hp()+"%^BOLD%^%^GREEN%^/%^WHITE%^"+targ->query_max_hp()})});
-    if(targ->is_class("psion") ||
-       targ->is_class("psywarrior"))
+    if(targ->is_class("psion") || targ->is_class("psywarrior"))
         output+=({({"Power Points","%^RESET%^%^"+targ->query_mp()+"%^BOLD%^%^GREEN%^/%^WHITE%^"+targ->query_max_mp()})});
 
     if(targ->is_class("cleric") || targ->is_class("paladin"))
@@ -22,9 +21,7 @@ mixed * genoutput(object targ)
     
     output+=({({"Carrying","%^RESET%^%^"+targ->query_internal_encumbrance()+"%^BOLD%^%^GREEN%^/%^WHITE%^"+targ->query_max_internal_encumbrance()})});
     
-    if(!(targ->is_undead() ||
-         FEATS_D->usable_feat(targ,"timeless body")))
-    {
+    if(!(targ->is_undead() || FEATS_D->usable_feat(targ,"timeless body"))){
         cur = targ->query_stuffed();
         perc = cur*100/max;
         output+=({({"Hunger","%^BOLD%^"+perc+"% ("+hunger2str(perc)+"%^WHITE%^%^BOLD%^)"})});
@@ -32,8 +29,7 @@ mixed * genoutput(object targ)
         perc = cur*100/max;
         output+=({({"Thirst","%^BOLD%^"+perc+"% ("+thirst2str(perc)+"%^WHITE%^%^BOLD%^)"})});
     }
-    else if(targ->is_vampire())
-    {
+    else if(targ->is_vampire()){
         output+=({({"%^BOLD%^%^RED%^Blood Hunger",thirst2str(targ->query_bloodlust()/200)+ "%^BOLD%^%^RED%^ ("+targ->query_bloodlust()/200+"%)"})});
     }
 
@@ -41,25 +37,28 @@ mixed * genoutput(object targ)
     perc = cur*100/max;
     output+=({({"Intox","%^BOLD%^"+perc+"% ("+intox2str(perc)+"%^WHITE%^%^BOLD%^)"})});
 
-    if(POISON_D->is_poisoned(targ))
-    {
+    if(POISON_D->is_poisoned(targ)){
         output+=({({"Poison","%^RED%^Poisoned"})});
     }
 
-    if(!targ->is_undead())
-    {
+    if(!targ->is_undead()){
         output+=({({"Stamina","%^BOLD%^"+targ->query_condition_percent()+"% (%^MAGENTA%^"+targ->query_condition_string()+"%^WHITE%^)"})});
     }
 
     {
-        object effects = targ->query_property("status_effects");
-        {
-            if(sizeof(effects))
-                effects = filter_array(effects,(:objectp($1):));
-            if(sizeof(effects))
-                output+=({({"Status",implode(map_array(effects->query_name(),
-                                        (:capitalize(replace_string($1,"effect_","")):)),", ")})});
+        string effect_names;
+        object effect, *effects = targ->query_property("status_effects");
+        int i;
+        
+        if(sizeof(effects)) effects = filter_array(effects, (:objectp($1):));
+        if(sizeof(effects)) effect_names = capitalize(effects[0]->query_name());
+        if(sizeof(effects) > 1){
+            for(i = 1; i < sizeof(effects); i++){
+                effect_names = effect_names +", "+ capitalize(effects[i]->query_name());
+                continue;
+            }
         }
+        if(sizeof(effects)) output+=({({"Status", "%^RED%^"+effect_names+""})});
     }
 
     return output;
