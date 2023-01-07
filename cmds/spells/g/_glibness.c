@@ -12,7 +12,7 @@ void create()
     set_spell_level(([ "bard" : 3, ]));
     set_spell_sphere("alteration");
     set_syntax("cast CLASS glibness [on TARGET]");
-    set_damage_desc("half of clevel influence skill");
+    set_damage_desc("+5 to influence skill");
     set_description("You temporarily increase your influence.");
     set_verbal_comp();
     set_somatic_comp();
@@ -39,7 +39,8 @@ spell_effect()
     tell_object(target, "%^MAGENTA%^You feel insight into the desires of others fill your mind.%^RESET%^");
     tell_room(place, "%^MAGENTA%^" + caster->QCN + " touches " + caster->QP + " temples, chanting in low undertones.%^RESET%^");
 
-    bonus = clevel / 2 + 1;
+    //bonus = clevel / 2 + 1;
+    bonus = 5;
     target->add_skill_bonus("influence", bonus);
     target->set_property("spelled", ({ TO }));
     target->set_property("glibness_spell", 1);

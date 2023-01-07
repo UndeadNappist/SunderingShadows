@@ -21,7 +21,7 @@ void create()
     set_spell_level( ([ "psion" : 1, ]) );
     set_spell_sphere("clairsentience");
     set_syntax("cast CLASS call to mind");
-    set_damage_desc("half of clevel to academics skill");
+    set_damage_desc("+5 to academics skill");
     set_description("By meditating on a subject, you can recall natural memories and knowledge otherwise inaccessible to you.");
     set_verbal_comp();
     set_somatic_comp();
@@ -50,7 +50,8 @@ void spell_effect()
     tell_object(caster, "%^CYAN%^You touch your forehead with a glowing index finger and feel a rush of knowledge flow in.%^RESET%^");
     tell_room(place, "%^CYAN%^" + sprintf("%s touches %s forehead with a glowing blue index finger.",caster->query_cap_name(),caster->query_possessive()) + "%^RESET%^", caster);
 
-    bonus = clevel / 2 + 1;
+    //bonus = clevel / 2 + 1;
+    bonus = 5;
     caster->add_skill_bonus("academics", bonus);
 
     caster->set_property("spelled", ({ this_object() }) );

@@ -14,7 +14,7 @@ void create()
     set_domains("fate");
     set_spell_sphere("divination");
     set_syntax("cast CLASS precognitive perception [on TARGET]");
-    set_damage_desc("half of clevel perception skill");
+    set_damage_desc("+5 to perception skill");
     set_description("You share some insights into the future with target, allowing them to better perceive the surroundings. This spell gives an exceptional defence against stabs and won't last long.");
     //set_arg_needed();
 	  set_helpful_spell(1);
@@ -50,12 +50,12 @@ spell_effect()
     else{
     tell_room(place,"%^CYAN%^With a swift chant, "+caster->QCN+" touches "+target->QCN+"'s eyes.%^RESET%^");
     }
-    bonus=clevel/2+1;
+    //bonus=clevel/2+1;
+    bonus = 5;
     target->add_skill_bonus("perception",bonus);
     target->set_property("spelled", ({TO}) );
     target->set_property("precognitive perception",1);
-    addSpellToCaster();
-    spell_duration = (clevel / 10+ roll_dice(1, 6)) * ROUND_LENGTH;
+    spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 2;
     set_end_time();
     call_out("dest_effect",spell_duration);
 }

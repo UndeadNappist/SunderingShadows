@@ -15,7 +15,7 @@ void create()
     set_spell_level(([ "mage" : 9, "bard" : 6 ]));
     set_spell_sphere("abjuration");
     set_syntax("cast CLASS impenetrable veil on TARGET");
-    set_damage_desc("half of clevel to stealth checks on sneaking, untrackable, protection from scrying");
+    set_damage_desc("+5 to stealth checks on sneaking, untrackable, protection from scrying");
     set_description("You raise a veil of impenetrable magic around the target, causing them to move silently, leaving no tracks. They also become extremely difficult to detect with scrying magic.");
     set_target_required(1);
 	set_helpful_spell(1);
@@ -79,6 +79,7 @@ spell_effect()
     */
     power = clevel + bonus + query_spell_level(spell_type);
     target->set_property("spelled", ({TO}) );
+    target->add_skill_bonus("stealth", 5);
     //target->set_property("block scrying", 1);
     target->set_property("scry block power", power);
     target->set_property("chameleoned",clevel / 2);
@@ -99,6 +100,7 @@ void dest_effect()
         target->remove_property("untrackable");
         target->remove_property("block scrying");
         target->remove_property("scry block power");
+        target->add_skill_bonus("stealth", -5);
         if(objectp(blocker)) blocker->self_destruct();
     }
     ::dest_effect();

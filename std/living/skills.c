@@ -466,6 +466,7 @@ int query_skill(string skill)
 
     mymod = ((int)this_object()->query_stats(mystat) - 10) / 2;
     x += mymod;
+    x = x > 70 ? 70 : x;
     x += query_skill_bonus(skill);
 
 
