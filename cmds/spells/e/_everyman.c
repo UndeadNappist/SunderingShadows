@@ -22,7 +22,7 @@ void create()
     set_spell_sphere("clairsentience");
     set_syntax("cast CLASS everyman");
     set_bonus_type("circumstance");
-    set_damage_desc("Clevel / 4 to stealth skill");
+    set_damage_desc("+5 to stealth skill");
     set_description("By meditating on your appearance and mannerisms, you can blend into your surroundings.");
     set_verbal_comp();
     set_arg_needed();
@@ -53,7 +53,8 @@ void spell_effect()
     tell_object(caster, "%^CYAN%^You touch your forehead with a glowing index finger and feel a rush of influence flow in.%^RESET%^");
     tell_room(place, "%^CYAN%^" + sprintf("%s touches %s forehead with a glowing blue index finger.",caster->query_cap_name(),caster->query_possessive()) + "%^RESET%^", caster);
 
-    bonus = clevel / 4 + 1;
+    //bonus = clevel / 4 + 1;
+    bonus = 5;
     caster->add_skill_bonus("stealth", bonus);
 
     caster->set_property("spelled", ({ this_object() }) );
