@@ -77,9 +77,16 @@ int raise_player(string verb)
             DeadPerson->force_me("look");
 
             DeadPerson->delete("in_the_afterlife");
+            
+            if(DeadPerson->query("just_been_pkilled"))
+            {
+                DeadPerson->delete("no pk");
+                DeadPerson->remove_pk_death_flag();
+            }
+            
             DeadPerson->delete("just_been_pkilled");
             //DeadPerson->delete("no pk");
-            DeadPerson->remove_pk_death_flag();
+            //DeadPerson->remove_pk_death_flag();
             DeadPerson->remove_property("death_room");
 
             DeadPerson->set_death_age(0);
