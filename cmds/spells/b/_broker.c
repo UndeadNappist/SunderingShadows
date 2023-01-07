@@ -22,7 +22,7 @@ void create()
     set_spell_sphere("clairsentience");
     set_bonus_type("circumstance");
     set_syntax("cast CLASS broker");
-    set_damage_desc("Clevel / 4 to influence skill");
+    set_damage_desc("+5 to influence skill");
     set_description("By meditating on your character and mannerisms, you can become more influential towards others.");
     set_verbal_comp();
     set_arg_needed();
@@ -53,7 +53,8 @@ void spell_effect()
     tell_object(caster, "%^CYAN%^You touch your forehead with a glowing index finger and feel a rush of influence flow in.%^RESET%^");
     tell_room(place, "%^CYAN%^" + sprintf("%s touches %s forehead with a glowing blue index finger.",caster->query_cap_name(),caster->query_possessive()) + "%^RESET%^", caster);
 
-    bonus = clevel / 4 + 1;
+    //bonus = clevel / 4 + 1;
+    bonus = 5;
     caster->add_skill_bonus("influence", bonus);
 
     caster->set_property("spelled", ({ this_object() }) );

@@ -12,7 +12,7 @@ void create()
     set_spell_level(([ "bard" : 1, "cleric" : 1, "druid" : 1, "inquisitor" : 1, "ranger" : 1 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS deadeyes lore");
-    set_damage_desc("half of clevel survival skill");
+    set_damage_desc("+5 to survival skill");
     set_description("While subject to this spell, you take upon yourself the mantle of the hunter, channeling the insights of the spirits of the wild.");
     set_verbal_comp();
     set_somatic_comp();
@@ -40,7 +40,8 @@ spell_effect()
     tell_object(caster, "%^GREEN%^You touch your own eyes, chanting in low undertones.%^RESET%^");
     tell_room(place, "%^GREEN%^"+caster->QCN+" touches "+caster->query_possessive()+" own eyes, chanting in low undertones.%^RESET%^", caster);
 
-    bonus=clevel/2+1;
+    //bonus=clevel/2+1;
+    bonus = 5;
     target->add_skill_bonus("survival",bonus);
     target->set_property("spelled", ({TO}) );
     target->set_property("deadeyes_lore",1);
