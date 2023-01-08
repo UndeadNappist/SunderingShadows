@@ -27,6 +27,12 @@ void create(){
   
 }
 
+void reset()
+{
+    ::reset();
+    activated = 0;
+}
+
 void init()
 {
     ::init();
@@ -54,6 +60,15 @@ int activate_portal(string str)
 
 void step_two()
 {
+    object other_room;
+    
+    tell_room(this_object(), "The shadows coalesce around the cave entrance, blocking you in!");
+    this_object()->remove_exit("out");
+    
+    if(!catch(other_room = load_object("path10")))
+        other_room->remove_exit("cave");
+    
+    call_out("step_three", 6);
 }
 
 void step_three()
@@ -61,6 +76,20 @@ void step_three()
     object walker;
     
     walker = new("/d/common/bosses/nilith/shadorak");
+    
+    if(!objectp(walker))
+        return;
+    
+}
+
+int return_exits()
+{
+    object other_room;
+    
+    this_object()->add_exit("path10", "out");
+    
+    if(!catch(other_room = load_object("path10")))
+        other_room->add_exit("cave", "cave");
 }
     
 
