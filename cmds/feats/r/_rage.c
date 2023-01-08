@@ -9,6 +9,7 @@ int tireless_rage = 0;
 int spirit_warrior = 0;
 int spirit_totem = 0;
 int unstop = 0;
+int rage_health = 0;
 
 object* exclude = ({});
 
@@ -264,7 +265,7 @@ void mighty_rage(int direction)
     */
     caster->add_attack_bonus(amount * direction);
     caster->add_damage_bonus(4 * direction);
-    caster->add_max_hp_bonus((flevel * 4 + unstop) * direction);
+    caster->add_max_hp_bonus((flevel * (4 + unstop)) * direction);
     caster->add_saving_bonus("will", (4 + save_bonus) * direction);
     caster->add_saving_bonus("fortitude", 4 * direction);
     caster->set_property("fast healing", 2 * direction);
