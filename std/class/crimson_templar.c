@@ -140,6 +140,9 @@ int prerequisites(object player)
         return 0;
     }
     skills = player->query_skills();
+    
+    //if(player->query("subrace") == "tiefling")
+    //    return 0;
 
     base = player->query("base_class");
     if (!base) {

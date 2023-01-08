@@ -33,7 +33,11 @@ int *restricted_alignments(string subrace) {
     
     switch(subrace)
     {
+        case "tiefling":
         case "dhampir" : return ({ 1, 4, 7 });
+        break;
+        case "aasimar": return ({ 3, 6, 9 });
+        break;
     }
     
     return ({  });
