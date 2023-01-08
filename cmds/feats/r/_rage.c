@@ -69,6 +69,8 @@ string cm(string str)
 void execute_feat()
 {
     object obj;
+    
+    ::execute_feat();
 
     if (!objectp(caster)) {
         dest_effect();
@@ -126,8 +128,6 @@ void execute_feat()
     caster->set_property("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
     call_out("enable_rage", ROUND_LENGTH);
 
-    ::execute_feat();
-
     if (userp(caster))
     {
         caster->gmcp_update_character("resources", ([ "raging": 1 ]));
@@ -167,8 +167,12 @@ void activate_rage(int direction)
         break;
     }
 
+    /*
     if(!unstop)
         unstop = FEATS_D->usable_feat(caster, "unstoppable") * 2;
+    if(!rage_health)
+        rage_health = flevel * (4 + unstop);
+    */
 
     //MOON TOTEM
     if(FEATS_D->usable_feat(caster, "moon totem"))
@@ -252,13 +256,14 @@ void greater_rage(int direction)
 
 void mighty_rage(int direction)
 {
-    int amount, save_bonus;
+    int amount, save_bonus, unstop;
     
     if(!caster || !objectp(caster))
         return;
     
     amount = 4 + (2 * FEATS_D->usable_feat(caster, "reckless abandon"));
     save_bonus = FEATS_D->usable_feat(caster, "indomitable will") * 2;
+    unstop = FEATS_D->usable_feat(caster, "unstoppable") * 2;
     /*
     caster->add_stat_bonus("strength", 8 * direction);
     caster->add_stat_bonus("constitution", 8 * direction);
