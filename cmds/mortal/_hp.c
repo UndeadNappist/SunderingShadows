@@ -50,8 +50,21 @@ mixed * genoutput(object targ)
         object effect, *effects = targ->query_property("status_effects");
         int i;
         
+        if(targ->query_tripped()) effect_names = "Tripped";
+        if(targ->query_paralyzed()){
+            if(effect_names) effect_names = effect_names +", Paralyzed";
+            else effect_names = "Paralyzed";
+        }
+        if(targ->query_blind()){
+            if(effect_names) effect_names = effect_names +", Blind";
+            else effect_names = "Blind";
+        }
+        
         if(sizeof(effects)) effects = filter_array(effects, (:objectp($1):));
-        if(sizeof(effects)) effect_names = capitalize(replace_string(effects[0]->query_name(), "effect_", ""));
+        if(sizeof(effects)){
+            if(effect_names) effect_names = effect_names +", "+ capitalize(replace_string(effects[0]->query_name(), "effect_", ""));
+            else effect_names = capitalize(replace_string(effects[0]->query_name(), "effect_", ""));
+        }
         if(sizeof(effects) > 1){
             for(i = 1; i < sizeof(effects); i++){
                 effect_names = effect_names +", "+ capitalize(replace_string(effects[i]->query_name(), "effect_", ""));
