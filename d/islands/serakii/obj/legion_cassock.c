@@ -18,7 +18,7 @@ void create() {
 	  "br%^C249%^o%^C231%^id%^C228%^e%^C250%^r%^C231%^ed "+
 	  "wh%^C228%^i%^C231%^te c%^C249%^a%^C231%^ss%^C228%^o%^C250%^c%^C231%^k%^CRST%^");
       thread = "%^C229%^gold%^CRST%^";
-	  set_item_bonus("influence", 10);
+	  set_item_bonus("influence", 5);
    break;
 
    case 1:
@@ -33,7 +33,7 @@ void create() {
 	  "wh%^C111%^i%^C231%^te c%^C249%^a%^C231%^ss%^C111%^"+
 	  "o%^C250%^c%^C231%^k%^CRST%^");
       thread = "%^C062%^blue%^CRST%^";
-	  set_item_bonus("academics", 10);
+	  set_item_bonus("academics", 5);
    break;
 
    case 2:
@@ -47,7 +47,7 @@ void create() {
 	  "r%^C249%^o%^C231%^ide%^C250%^r%^C231%^ed white "+
 	  "c%^C249%^a%^C231%^sso%^C250%^c%^C231%^k%^CRST%^");
       thread = "%^C252%^silver%^CRST%^";
-	  set_item_bonus("perception", 10);
+	  set_item_bonus("perception", 5);
    break;
    }
    set_long("%^C248%^This long %^C251%^cassock %^C248%^has been expertly "+

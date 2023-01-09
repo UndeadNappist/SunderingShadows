@@ -19,7 +19,7 @@ void create() {
 	  "b%^C246%^roidered bla%^C229%^c%^C246%^"+
 	  "k r%^C230%^o%^C246%^be%^CRST%^");
       thread = "%^C229%^gold%^CRST%^";
-	  set_item_bonus("influence", 10);
+	  set_item_bonus("influence", 5);
    break;
 
    case 1:
@@ -33,7 +33,7 @@ void create() {
 	  "b%^C246%^roidered bla%^C124%^c%^C246%^"+
 	  "k r%^C124%^o%^C246%^be%^CRST%^");
       thread = "%^C124%^crimson%^CRST%^";
-	  set_item_bonus("healing", 10);
+	  set_item_bonus("healing", 5);
    break;
 
    case 2:
@@ -47,7 +47,7 @@ void create() {
 	  "b%^C246%^roidered bla%^C254%^c%^C246%^"+
 	  "k r%^C254%^o%^C246%^be%^CRST%^");
       thread = "%^C252%^silver%^CRST%^";
-	  set_item_bonus("spell craft", 10);
+	  set_item_bonus("spellcraft", 5);
    break;
    }
    

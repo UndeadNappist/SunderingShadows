@@ -173,6 +173,7 @@ void discharge_weapon(){
         damage = roll_dice(powerlevel * psize * 2, 10);
         for( i = 0; i < (powerlevel * psize); i++){
             if(i > sizeof(attackers)) continue;
+            if(!objectp(attackers[i])) continue;
             target = attackers[i];
             if(!objectp(target)) continue;
             if(userp(target)){
