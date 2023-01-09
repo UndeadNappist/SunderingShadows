@@ -90,6 +90,7 @@ void execute_attack()
         party = ({ caster });
     }
 
+    if(party[0] != caster) tell_object(caster, "%^RESET%^%^BOLD%^%^BLUE%^A wave of %^RESET%^%^BOLD%^p%^CYAN%^o%^BLUE%^s%^RESET%^i%^BLUE%^t%^RESET%^%^BOLD%^i%^CYAN%^v%^YELLOW%^e %^RESET%^%^BOLD%^%^BLUE%^energy %^CYAN%^radiates%^RESET%^%^BOLD%^%^BLUE%^ outwards from you and bathes your allies in %^YELLOW%^heal%^RESET%^i%^BOLD%^%^YELLOW%^ng %^RESET%^%^BOLD%^%^BLUE%^energy.%^RESET%^");
     for (i = 0; i < sizeof(party); i++) {
         if (!objectp(caster) || caster->query_ghost()) {
             dest_effect();
@@ -116,9 +117,7 @@ void execute_attack()
 
         party[i]->cause_typed_damage(party[i], party[i]->return_target_limb(), damage, "positive energy");
         if (party[i] != caster) {
-            tell_object(party[i], "%^RESET%^%^BOLD%^%^BLUE%^A wave of %^RESET%^%^BOLD%^p%^CYAN%^o%^BLUE%^s%^RESET%^i%^BLUE%^t%^RESET%^%^BOLD%^i%^CYAN%^v%^YELLOW%^e "
-                        "%^RESET%^%^BOLD%^%^BLUE%^energy %^CYAN%^radiates%^RESET%^%^BOLD%^%^BLUE%^ outwards from " + caster->QCN + " and bathes you "
-                        "in %^YELLOW%^heal%^RESET%^i%^BOLD%^%^YELLOW%^ng %^RESET%^%^BOLD%^%^BLUE%^energy.%^RESET%^", caster);
+            tell_object(party[i], "%^RESET%^%^BOLD%^%^BLUE%^A wave of %^RESET%^%^BOLD%^p%^CYAN%^o%^BLUE%^s%^RESET%^i%^BLUE%^t%^RESET%^%^BOLD%^i%^CYAN%^v%^YELLOW%^e %^RESET%^%^BOLD%^%^BLUE%^energy %^CYAN%^radiates%^RESET%^%^BOLD%^%^BLUE%^ outwards from " + caster->QCN + " and bathes you in %^YELLOW%^heal%^RESET%^i%^BOLD%^%^YELLOW%^ng %^RESET%^%^BOLD%^%^BLUE%^energy.%^RESET%^", caster);
         }
     }
 

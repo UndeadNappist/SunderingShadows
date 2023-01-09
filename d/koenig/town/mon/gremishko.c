@@ -29,10 +29,19 @@ void create()
   set_stats("wisdom", 12);
   set_stats("intelligence", 12);
   set_max_hp(40);
-  set_hp(40);
+  set_hp(query_max_hp());
   set_overall_ac(4);
   new("/d/koenig/town/mon/weapons/jaws1.c")->move(this_object());
   command("wield fangs in mouth");
   set_exp(20);
   add_money("gold", 10);
 }
+
+// Taming DCs: Low - 10, Mid - 25, High - 40, Epic - 55
+// Types of DCs: "survival" for wild creatures (snakes, rats, stags, spiders, etc...)
+//               "spellcraft" for magical creatures (elementals, sprites, will o wisp, etc...)
+//               "dungeoneering" for constructs (clockwork creatures, golems, etc...)
+int is_sapient(){ return 0; }
+int is_tamable(){ return 1; }
+int query_tame_DC(){ return 10; }
+string query_DC_type(){ return "spellcraft"; }
