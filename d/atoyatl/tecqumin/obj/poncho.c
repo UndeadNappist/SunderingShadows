@@ -125,7 +125,7 @@ void do_bonuses(){
     set_item_bonus("wisdom", 6);
     break;
   case TRACKER:
-    set_item_bonus("survival", 6);
+    set_item_bonus("survival", 5);
     break;
   case DIVINER:
     set_item_bonus("intelligence", 6);

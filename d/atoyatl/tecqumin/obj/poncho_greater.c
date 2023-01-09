@@ -131,10 +131,10 @@ void do_bonuses(){
     break;
   case CEREMONIAL:
     set_item_bonus("wisdom", 6);
-    set_item_bonus("perception", 6);
+    set_item_bonus("perception", 5);
     break;
   case TRACKER:
-    set_item_bonus("survival", 6);
+    set_item_bonus("survival", 5);
     set_item_bonus("constitution", 6);
     break;
   case DIVINER:

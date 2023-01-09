@@ -62,7 +62,7 @@ void create(){
      break;
    case 3:
      //tree spirit
-    set_item_bonus("survival", 30);
+    set_item_bonus("survival", 5);
      break;
    case 4:
      //sun god
