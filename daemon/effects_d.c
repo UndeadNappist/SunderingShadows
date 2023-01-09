@@ -12,7 +12,7 @@ int spell_effect(object caster, object device, string command)
     object target, obj;
 
     spell = device->query("spell");
-    level = device->query("level");
+    level = min( ({ device->query("level"), caster->query_skill("spellcraft") }) );
     cspell = "/cmds/spells/" + spell[0..0] + "/_" + replace_string(spell, " ", "_");
     stype = device->query("spell type");
     if (!stype) {
@@ -110,10 +110,7 @@ int can_use_check(object caster, string spell, int level)
         }
         //else if(highest_mental_stat < lowest_spell_level) // this was part of the old system and was bypassing any rolling for high mental stat characters
         else
-        {
-            if(caster->query_skill("spellcraft") < level)
-                return 0;
-            
+        {   
             DC = 20 + lowest_spell_level;
             roll1 = roll_dice(1, 20) + (highest_mental_stat / 2) + (caster->query_skill("spellcraft") / 10);
             roll1 += (FEATS_D->usable_feat(caster, "eldritch melding") * 5);
