@@ -123,7 +123,7 @@ void do_bonuses(){
     set_item_bonus("strength", 6);
     break;
   case ASSASSIN:
-    set_item_bonus("stealth", 5);
+    set_item_bonus("stealth", 6);
     break;
   case CEREMONIAL:
     set_item_bonus("bonus_spell_slots",3);
@@ -132,7 +132,7 @@ void do_bonuses(){
     set_item_bonus("dexterity", 6);
     break;
   case DIVINER:
-    set_item_bonus("spellcraft", 5);
+    set_item_bonus("spellcraft", 6);
     break;
   }
 }

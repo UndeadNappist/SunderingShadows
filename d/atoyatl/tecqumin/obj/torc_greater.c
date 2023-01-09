@@ -76,7 +76,7 @@ void create()
 
     case 3:
         //tree spirit
-        set_item_bonus("survival", 5);
+        set_item_bonus("survival", 6);
         break;
 
     case 4:
@@ -102,7 +102,7 @@ void create()
 
     case 3:
         //tree spirit
-        set_item_bonus("survival", 5);
+        set_item_bonus("survival", 6);
         break;
 
     case 4:

@@ -56,7 +56,7 @@ void create()
     set_size(-1);
     set_property("enchantment", 7);
     set_item_bonus("charisma", 6);
-    set_item_bonus("influence", 5);
+    set_item_bonus("influence", 6);
 }
 
 int wearme()
