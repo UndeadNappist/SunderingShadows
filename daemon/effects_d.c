@@ -9,10 +9,11 @@ int spell_effect(object caster, object device, string command)
 {
     string spell, who, cspell, stype;
     int level;
+    int highest_mental_stat = max(({caster->query_stats("intelligence"), caster->query_stats("wisdom"), caster->query_stats("charisma") })) - 10;
     object target, obj;
 
     spell = device->query("spell");
-    level = min( ({ device->query("level"), caster->query_skill("spellcraft") }) );
+    level = min( ({ device->query("level"), caster->query_skill("spellcraft") + highest_mental_stat }) );
     cspell = "/cmds/spells/" + spell[0..0] + "/_" + replace_string(spell, " ", "_");
     stype = device->query("spell type");
     if (!stype) {

@@ -26,6 +26,9 @@ int scry_check(object scryer, int power)
     if(this_object()->query_property("block scrying"))
         return 0;
     
+    if(scryer->query("no pk"))
+        return 0;
+    
     scry_spell = previous_object();
     
     if(is_diminished_scrier(scryer->query_name()))     
