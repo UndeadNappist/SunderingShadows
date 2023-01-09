@@ -5743,6 +5743,7 @@ int is_favored_enemy(object ob)
 
     ids = ob->query_id();
     ob->query_race() && ids += ({ ob->query_race() });
+    ob->query("subrace") && ids += ({ ob->query("subrace") });
     if (ob->is_undead() || ob->query_property("undead")) {
         ids += ({ "undead" });
     }
