@@ -62,7 +62,7 @@ void execute_feat()
     }
     ::execute_feat();
 
-    tell_object(caster,"%^RESET%^%^BOLD%^%^BLUE%^You close your eyes and open your mind, channeling energy directly from "+capitalize(caster->query_diety()));
+    tell_object(caster,"%^RESET%^%^CRST%^%^C032%^You close your eyes and open your mind, channeling %^C039%^e%^C045%^n%^C051%^er%^C045%^g%^C039%^y %^RESET%^%^C032%^directly from "+capitalize(caster->query_diety())+".%^CRST%^");
     caster->set_property("active_feats",({TO}));
 
     return;
@@ -90,7 +90,7 @@ void execute_attack()
         party = ({ caster });
     }
 
-    if(party[0] != caster) tell_object(caster, "%^RESET%^%^BOLD%^%^BLUE%^A wave of %^RESET%^%^BOLD%^p%^CYAN%^o%^BLUE%^s%^RESET%^i%^BLUE%^t%^RESET%^%^BOLD%^i%^CYAN%^v%^YELLOW%^e %^RESET%^%^BOLD%^%^BLUE%^energy %^CYAN%^radiates%^RESET%^%^BOLD%^%^BLUE%^ outwards from you and bathes your allies in %^YELLOW%^heal%^RESET%^i%^BOLD%^%^YELLOW%^ng %^RESET%^%^BOLD%^%^BLUE%^energy.%^RESET%^");
+    if(party[0] != caster) tell_object(caster, "%^RESET%^%^CRST%^%^C032%^A wave of %^C039%^p%^C045%^o%^C051%^siti%^C045%^v%^C039%^e e%^C045%^n%^C051%^er%^C045%^g%^C039%^y %^RESET%^%^C032%^emanates outwards from you and bathes your %^C044%^allies %^RESET%^%^C032%^in a %^C214%^h%^C220%^e%^C226%^ali%^C220%^n%^C214%^g r%^C220%^a%^C226%^dian%^C220%^c%^C214%^e%^RESET%^%^C032%^.%^CRST%^");
     for (i = 0; i < sizeof(party); i++) {
         if (!objectp(caster) || caster->query_ghost()) {
             dest_effect();
@@ -117,15 +117,9 @@ void execute_attack()
 
         party[i]->cause_typed_damage(party[i], party[i]->return_target_limb(), damage, "positive energy");
         if (party[i] != caster) {
-            tell_object(party[i], "%^RESET%^%^BOLD%^%^BLUE%^A wave of %^RESET%^%^BOLD%^p%^CYAN%^o%^BLUE%^s%^RESET%^i%^BLUE%^t%^RESET%^%^BOLD%^i%^CYAN%^v%^YELLOW%^e %^RESET%^%^BOLD%^%^BLUE%^energy %^CYAN%^radiates%^RESET%^%^BOLD%^%^BLUE%^ outwards from " + caster->QCN + " and bathes you in %^YELLOW%^heal%^RESET%^i%^BOLD%^%^YELLOW%^ng %^RESET%^%^BOLD%^%^BLUE%^energy.%^RESET%^", caster);
+            tell_object(party[i], "%^RESET%^%^CRST%^%^C032%^A wave of %^C039%^p%^C045%^o%^C051%^siti%^C045%^v%^C039%^e e%^C045%^n%^C051%^er%^C045%^g%^C039%^y %^RESET%^%^C032%^emanates outwards from "+caster->QCN+" and bathes %^C044%^you %^RESET%^%^C032%^in a %^C214%^h%^C220%^e%^C226%^ali%^C220%^n%^C214%^g r%^C220%^a%^C226%^dian%^C220%^c%^C214%^e%^RESET%^%^C032%^.%^CRST%^");
         }
     }
-
-    /* if (sizeof(healed)) { */
-    /*     tell_object(caster, "%^RESET%^%^BOLD%^%^BLUE%^A wave of %^RESET%^%^BOLD%^p%^CYAN%^o%^BLUE%^s%^RESET%^i%^BLUE%^t%^RESET%^%^BOLD%^i%^CYAN%^v%^YELLOW%^e " */
-    /*                 "%^RESET%^%^BOLD%^%^BLUE%^energy %^CYAN%^radiates%^RESET%^%^BOLD%^%^BLUE%^ outwards from you and bathes your allies " */
-    /*                 "in %^YELLOW%^heal%^RESET%^i%^BOLD%^%^YELLOW%^ng %^RESET%^%^BOLD%^%^BLUE%^energy.%^RESET%^"); */
-    /* } */
 
     if (objectp(place)) {
         place->addObjectToCombatCycle(TO, 1);
@@ -140,7 +134,7 @@ void dest_effect()
 {
     if(objectp(caster))
     {
-        tell_object(caster,"%^B_BLUE%^Your radiant aura deactivates.");
+        tell_object(caster,"%^B_BLUE%^Your radiant aura deactivates.%^RESET%^");
         caster->remove_property_value("active_feats",({TO}));
     }
     ::dest_effect();
