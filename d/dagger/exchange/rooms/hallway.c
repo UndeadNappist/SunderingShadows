@@ -23,7 +23,8 @@ void create() {
         "west" : ROOMS"foyer",
         "south" : ROOMS"healer",
         "east" : ROOMS"hallway2",
-        "north" : ROOMS"meeting",
+//"north" : ROOMS"meeting", (removing for plot Barak)
+"north" : "/realms/loki/events/barak/rooms/dwarf_hall",
     ]));  
     set_items(([
         ({"paintings"}) : "%^RESET%^%^ORANGE%^Paintings depicting various victories"+
@@ -44,7 +45,8 @@ set_listen("default","%^RESET%^%^GREEN%^The sounds of the exchange are muted her
 
 
 
-    set_door("wooden door",ROOMS"meeting","north",0);
+    //set_door("wooden door",ROOMS"meeting","north",0); (removing for plot Barak)
+    set_door("wooden door","/realms/loki/events/barak/rooms/dwarf_hall","north",0);
     set_door_description("wooden door","%^RESET%^%^BOLD%^Formed from solid wood, this door looks very"+
 " heavy. An %^BLACK%^%^BOLD%^iron ring%^RESET%^%^BOLD%^ hands from it to allow it to be opened.");
     set_string("wooden door", "open", "%^RESET%^%^BOLD%^The heavy door opens quietly.%^RESET%^");
