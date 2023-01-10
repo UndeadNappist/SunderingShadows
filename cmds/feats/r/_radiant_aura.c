@@ -71,9 +71,8 @@ void execute_feat()
 
 void execute_attack()
 {
-    object *party=({}),healed=({});
-    string party_name;
-    int i, damage;
+    object *party=({});
+    int i, damage, healed;
 
     if(!objectp(caster) || caster->query_ghost())
     {
@@ -90,7 +89,8 @@ void execute_attack()
         party = ({ caster });
     }
 
-    if(party[0] != caster) tell_object(caster, "%^RESET%^%^CRST%^%^C032%^A wave of %^C039%^p%^C045%^o%^C051%^siti%^C045%^v%^C039%^e e%^C045%^n%^C051%^er%^C045%^g%^C039%^y %^RESET%^%^C032%^emanates outwards from you and bathes your %^C044%^allies %^RESET%^%^C032%^in a %^C214%^h%^C220%^e%^C226%^ali%^C220%^n%^C214%^g r%^C220%^a%^C226%^dian%^C220%^c%^C214%^e%^RESET%^%^C032%^.%^CRST%^");
+    healed = 0;
+    
     for (i = 0; i < sizeof(party); i++) {
         if (!objectp(caster) || caster->query_ghost()) {
             dest_effect();
@@ -116,10 +116,12 @@ void execute_attack()
         damage = roll_dice(flevel, 4);
 
         party[i]->cause_typed_damage(party[i], party[i]->return_target_limb(), damage, "positive energy");
-        if (party[i] != caster) {
+        if(party[i] != caster) {
             tell_object(party[i], "%^RESET%^%^CRST%^%^C032%^A wave of %^C039%^p%^C045%^o%^C051%^siti%^C045%^v%^C039%^e e%^C045%^n%^C051%^er%^C045%^g%^C039%^y %^RESET%^%^C032%^emanates outwards from "+caster->QCN+" and bathes %^C044%^you %^RESET%^%^C032%^in a %^C214%^h%^C220%^e%^C226%^ali%^C220%^n%^C214%^g r%^C220%^a%^C226%^dian%^C220%^c%^C214%^e%^RESET%^%^C032%^.%^CRST%^");
+            healed = 1;
         }
     }
+    if(healed) tell_object(caster, "%^RESET%^%^CRST%^%^C032%^A wave of %^C039%^p%^C045%^o%^C051%^siti%^C045%^v%^C039%^e e%^C045%^n%^C051%^er%^C045%^g%^C039%^y %^RESET%^%^C032%^emanates outwards from you and bathes your %^C044%^allies %^RESET%^%^C032%^in a %^C214%^h%^C220%^e%^C226%^ali%^C220%^n%^C214%^g r%^C220%^a%^C226%^dian%^C220%^c%^C214%^e%^RESET%^%^C032%^.%^CRST%^");
 
     if (objectp(place)) {
         place->addObjectToCombatCycle(TO, 1);
@@ -141,3 +143,4 @@ void dest_effect()
     remove_feat(TO);
     return;
 }
+
