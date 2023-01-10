@@ -66,6 +66,6 @@ Player houses are considered abandoned and for purchase if the player (not the c
 
 Property for a character who has been officially retired and converted to an NPC becomes locked and unavailable. If that retirement is reversed for whatever reason, the property loses any such protections in the future. 
 
-An abandoned property is valued at half the total cost of construction. Purchasing the property does not convey any further activity besides a change in ownership.
+An abandoned property is valued at half the total cost of construction. Purchasing the property does not convey any further activity besides a change in ownership. In order for a player to be considered when purchasing old properties, they must have a detailed plan in place for the use of the space. In addition, if no progress is made towards that plan within two months the purchase price will be considered forfeit and ownership will be withdrawn.
 
 Active characters that are both owned by the same player are not permitted to trade or sell properties to each other. Characters can purchase properties owned by their retired characters at the abandoned property cost.
