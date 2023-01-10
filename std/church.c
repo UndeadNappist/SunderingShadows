@@ -539,7 +539,7 @@ int select_domain(string str)
         if (FEATS_D->usable_feat(TP, "divine domain")) {
             if (!sizeof(player_domains)) {
                 TP->set_divine_domain(({ selection }));
-                tell_object(TP, "You have choosen to select the " + selection + " domain.\n");
+                tell_object(TP, "You have chosen to select the " + selection + " domain.\n");
                 TP->set("domains_changed", 1);
                 return 1;
             }
