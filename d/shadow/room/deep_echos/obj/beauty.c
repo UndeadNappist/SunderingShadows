@@ -124,7 +124,10 @@ void heart_beat(){
                     break;
             }
         }
+        return;
     }
+    
+    if(!random(100)) sensey();
     return;
 }
 
