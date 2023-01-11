@@ -8,8 +8,8 @@ int open_race, current_race_id;
 
 void init() {
     ::init();
-    add_action("setup_race", "setup_as_immortal");
-    add_action("run_race", "run_as_immortal");
+    //add_action("setup_race", "setup_as_immortal");
+    //add_action("run_race", "run_as_immortal");
     add_action("buy_horse", "buy");
     add_action("list_horse", "list");
     add_action("show_race", "view");
@@ -25,9 +25,13 @@ void reset(){
     if(!present("sign")){
         new(OBJ"sign1.c")->move(TO);
     }
+    
+/*    
     if(!present("bunny girl")){
 new(MOBS"bunny_girl.c")->move(TO);
     }
+*/    
+    
 }
 
 void create() {
