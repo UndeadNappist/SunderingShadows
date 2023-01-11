@@ -16,6 +16,7 @@ void create()
     //feat_syntax("positioning offensive|defensive|min|max|check");
     feat_desc("With this feat, you learn to make use of perfect timing and space to be ready to take advantage of any disruption in your foe's attention. When an opponent is vulnerable to you (paralyzed, blind, or fighting someone else), you have a chance to get an extra attack on that target.");
     set_target_required(0);
+    permanent(1);
     allow_blind(1);
 }
 
