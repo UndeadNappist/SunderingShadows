@@ -110,9 +110,9 @@ int hitme(object targ)
         tell_room(EETO,""+ETO->QCN+" spins the yew wood staff around, "
             "striking "+targ->QCN+" with each of the three metal rings",({ETO,targ}));
         TO->set_property("magic", 1);
-        ETO->cause_typed_damage(ETO, 0, roll_dice(1, 4), "bludgeoning");
-        ETO->cause_typed_damage(ETO, 0, roll_dice(1, 4), "bludgeoning");
-        ETO->cause_typed_damage(ETO, 0, roll_dice(1, 4), "bludgeoning");
+        targ->cause_typed_damage(ETO, 0, roll_dice(3, 4) + 3, "bludgeoning");
+        //ETO->cause_typed_damage(ETO, 0, roll_dice(1, 4), "bludgeoning");
+        //ETO->cause_typed_damage(ETO, 0, roll_dice(1, 4), "bludgeoning");
         TO->set_property("magic", -1);
         return 1;
     }
