@@ -512,6 +512,7 @@ void heart_beat()
         //Screen Reader Support. Tells screen reader users in the room, briefly, what we are attacking.
         attacker = me->query_current_attacker();
         
+        /*
         if(attacker && userp(me))
         {
             object *readers;
@@ -520,7 +521,8 @@ void heart_beat()
             
             foreach(object person in readers)
                 tell_object(person, me->QCN + " is fighting " + attacker->QCN + ".");
-        }   
+        }
+        */
 
         if(me->is_undead())
         {
