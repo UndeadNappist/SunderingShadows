@@ -64,16 +64,16 @@ void spell_effect()
     string wing_color;
     int align = caster->query_true_align();
 
-    ashort = "%^CRST%^%^RESET%^%^C153%^(%^C152%^trailed by %^C188%^f%^C189%^e%^C195%^athe%^C189%^r%^C188%^y %^C188%^w%^C189%^h%^C195%^ite %^C188%^w%^C189%^i%^C195%^ngs%^C153%^)%^CRST%^";
+    ashort = " %^CRST%^%^RESET%^%^C153%^(%^C152%^trailed by %^C188%^f%^C189%^e%^C195%^athe%^C189%^r%^C188%^y %^C188%^w%^C189%^h%^C195%^ite %^C188%^w%^C189%^i%^C195%^ngs%^C153%^)%^CRST%^";
 	wing_color = "%^C188%^f%^C189%^e%^C195%^athe%^C189%^r%^C188%^y %^C188%^w%^C189%^i%^C195%^ngs";
 
     if( align == 2 || align == 5 || align == 8){
-        ashort = "%^RESET%^%^C117%^(%^C111%^trailed by %^C110%^e%^C116%^t%^C115%^h%^C109%^e%^C110%^r%^C116%^e%^C117%^a%^C111%^l %^C110%^w%^C116%^i%^C115%^n%^C109%^g%^C110%^s%^RESET%^%^C117%^)";
+        ashort = " %^RESET%^%^C117%^(%^C111%^trailed by %^C110%^e%^C116%^t%^C115%^h%^C109%^e%^C110%^r%^C116%^e%^C117%^a%^C111%^l %^C110%^w%^C116%^i%^C115%^n%^C109%^g%^C110%^s%^RESET%^%^C117%^)";
         wing_color = "%^CRST%^%^C110%^e%^C116%^t%^C115%^h%^C109%^e%^C110%^r%^C116%^e%^C117%^a%^C111%^l %^C110%^w%^C116%^i%^C115%^n%^C109%^g%^C110%^s%^RESET%^";
     }
 	
     else if(!(align%3)){
-        ashort = "%^CRST%^%^RESET%^%^C243%^(%^C060%^trailed by %^C061%^f%^C060%^e%^C059%^athe%^C060%^r%^C061%^y %^C061%^w%^C060%^in%^C059%^gs%^RESET%^%^C243%^)%^CRST%^";
+        ashort = " %^CRST%^%^RESET%^%^C243%^(%^C060%^trailed by %^C061%^f%^C060%^e%^C059%^athe%^C060%^r%^C061%^y %^C061%^w%^C060%^in%^C059%^gs%^RESET%^%^C243%^)%^CRST%^";
         wing_color = "%^C061%^f%^C060%^e%^C059%^athe%^C060%^r%^C061%^y %^C061%^w%^C060%^in%^C059%^gs";
     }
 
