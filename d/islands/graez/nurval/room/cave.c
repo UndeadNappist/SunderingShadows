@@ -88,10 +88,10 @@ int return_exits()
 {
     object other_room;
     
-    this_object()->add_exit("path10", "out");
+    this_object()->add_exit("/d/islands/graez/nurval/room/path10", "out");
     
     if(!catch(other_room = load_object("/d/islands/graez/nurval/room/path10")))
-        other_room->add_exit("cave", "cave");
+        other_room->add_exit("/d/islands/graez/room/cave", "cave");
 }
     
 
