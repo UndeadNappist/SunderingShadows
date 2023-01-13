@@ -182,6 +182,7 @@ die(object ob)
               "The darkness coalesces into a swirling miasma as it drains back into the Shadow Plane.%^RESET%^");              
     message("broadcast", "%^BLACK%^BOLD%^A keening wail can be heard as a great evil is vanquished and returns to the Plane of Shadows!%^RESET%^", users());
     message("broadcast", "%^WHITE%^BOLD%^The balance of power in the world shifts towards %^CYAN%^GOOD!%^RESET%^", users());
+    environment(this_object())->return_exits();
     
     foreach(object obj in this_object()->query_attackers())
     {

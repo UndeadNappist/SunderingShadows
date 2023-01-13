@@ -65,7 +65,7 @@ void step_two()
     tell_room(this_object(), "The shadows coalesce around the cave entrance, blocking you in!");
     this_object()->remove_exit("out");
     
-    if(!catch(other_room = load_object("path10")))
+    if(!catch(other_room = load_object("/d/islands/graez/nurval/room/path10")))
         other_room->remove_exit("cave");
     
     call_out("step_three", 6);
@@ -80,6 +80,8 @@ void step_three()
     if(!objectp(walker))
         return;
     
+    tell_room(this_object(), "From the portal steps a being of pure malice. You feel the aura of death waft off of it as it stands tall above you and regards you with its alien stare!");
+    walker->move(this_object());
 }
 
 int return_exits()
@@ -88,7 +90,7 @@ int return_exits()
     
     this_object()->add_exit("path10", "out");
     
-    if(!catch(other_room = load_object("path10")))
+    if(!catch(other_room = load_object("/d/islands/graez/nurval/room/path10")))
         other_room->add_exit("cave", "cave");
 }
     
