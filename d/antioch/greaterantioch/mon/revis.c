@@ -16,16 +16,11 @@ create() {
    set_alignment(1);
    set_languages( ({ "common","elven" }) );
    command("speak common");
-   command("pose laying near a pile of burnt wood");
+   command("pose lying near a pile of burnt wood");
    set_property("swarm",0);
    set_id( ({"human","man","revis"}) );
-   set_short("%^RESET%^A %^BOLD%^%^BLACK%^dark-haired %^RESET%^human with %^BOLD%^%^BLUE%^"+
-			 "blue%^RESET%^ eyes and %^RESET%^%^ORANGE%^brown %^RESET%^hair");
-   set_long("%^RESET%^This very simple looking man is wearing clothes that seem more fit for a man from"+
-		" down south. The man is covered with blood from obviously many %^RESET%^%^RED%^wounds %^RESET%^and seems to be barely clining"+
-        " on to life. He seems to be grasping a locket in his hand, trembling violently and mumbling"+
-        " about losing his %^BOLD%^%^YELLOW%^wife %^RESET%^, you can %^BOLD%^%^RED%^ignore"+
-        " %^RESET%^or you could %^BOLD%^%^YELLOW%^aid %^RESET%^him?");
+   set_short("%^RESET%^A %^BOLD%^%^BLACK%^dark-haired %^RESET%^human with %^BOLD%^%^BLUE%^blue%^RESET%^ eyes and %^RESET%^%^ORANGE%^brown %^RESET%^hair");
+   set_long("%^RESET%^This very simple looking man is wearing clothes that seem more fit for a man from down south. The man is covered with blood from obviously many %^RESET%^%^RED%^wounds %^RESET%^and seems to be barely clinging on to life. He seems to be grasping a locket in his hand, trembling violently and mumbling about losing his %^BOLD%^%^YELLOW%^wife %^RESET%^, you can %^BOLD%^%^RED%^ignore %^RESET%^or you could %^BOLD%^%^YELLOW%^aid %^RESET%^him?");
    set_race("human");
    set_emotes(3,({
 		"The wounded man cringes in pain, trembling a moment.",
