@@ -121,6 +121,7 @@ WEAPONSMITH = ([
                    "giant mace":(["file":COMMONFILE"weapon/giant_mace","units":5]),
                    "giant scythe":(["file":COMMONFILE"weapon/giant_scythe","units":5]),
                    "giant sword":(["file":COMMONFILE"weapon/giant_bastard","units":5]),
+                   "gnome hooked hammer": (["file":COMMONFILE"weapon/gnome_hooked_hammer", "units" : 3]),
                    "kukri":(["file":COMMONFILE"weapon/kukri","units":1]),
                    "large axe":(["file":COMMONFILE"weapon/large_battle_axe","units":4]),
                    "large hammer":(["file":COMMONFILE"weapon/hammer_lg","units":4]),
