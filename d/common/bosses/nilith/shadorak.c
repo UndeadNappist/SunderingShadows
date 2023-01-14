@@ -176,7 +176,7 @@ void init()
     }
 }
 
-die(object ob)
+void die(object ob)
 {
     tell_room(environment(this_object()), "%^BLACK%^BOLD%^The tendrils of shadow seem to collapse in on themselves. "
               "The darkness coalesces into a swirling miasma as it drains back into the Shadow Plane.%^RESET%^");              
