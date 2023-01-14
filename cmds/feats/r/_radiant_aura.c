@@ -14,7 +14,7 @@ void create()
     feat_syntax("radiant_aura");
     feat_prereq("Radiant Servant L4");
     feat_classes("base_class");
-    feat_desc("You have become an unrelenting source of radiance amongst both friend and foe. When activated, this aura will periodically pulse with radiant energy, healing your allies and damaging your foes with 1d6 radiant damage per caster level (half on fortitude save). Enemies so struck must make a reflex save or be blinded by the scouring light. for clevel / 20 + 1 rounds. This aura will damage undead minions of party members.");
+    feat_desc("You have become an unrelenting source of radiance amongst both friend and foe. When activated, this aura will periodically pulse with radiant energy, healing your allies and damaging your foes with 1d6 radiant damage per caster level (half on fortitude save). Enemies so struck must make a reflex save or be blinded by the scouring light for clevel / 20 + 1 rounds. This aura will damage undead minions of party members.");
     set_target_required(0);
     set_required_for(({"supreme healer"}));
 }

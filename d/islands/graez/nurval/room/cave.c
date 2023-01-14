@@ -48,8 +48,8 @@ int activate_portal(string str)
         return 1;
     }
     
-    tell_object(this_player(), "You trace the runes with your finger, trailing shadow as you carefully complete each line and curve. As you complete the runes, the surface of the portal comes alive, like an ocean of shadowy energy, undulating with a terrible hum.");
-    tell_room(this_object(), this_player()->query_cap_name() + " traces the runes with " + this_player()->query_possessive() + " finger, trailing shadow as you carefully complete each line and curve. As " + this_player()->query_subjective() + " completes the runes, the surface of the portal comes alive, like an ocean of shadowy energy, undulating with a terrible hum.", this_player());
+    tell_object(this_player(), "%^C066%^You trace the %^C078%^runes%^C066%^ with your finger, trailing shadow as you carefully complete each line and curve. As you complete the %^C078%^runes%^C066%^, the surface of the portal comes alive, like an ocean of %^C078%^shadowy energy%^C066%^, undulating with a terrible hum.%^CRST%^");
+    tell_room(this_object(), "%^C066%^" + this_player()->query_cap_name() + " traces the runes with " + this_player()->query_possessive() + " finger, trailing shadow as you carefully complete each line and curve. As " + this_player()->query_subjective() + " completes the runes, the surface of the portal comes alive, like an ocean of shadowy energy, undulating with a terrible hum.%^CRST%^", this_player());
     
     activated = 1;
     
@@ -62,7 +62,7 @@ void step_two()
 {
     object other_room;
     
-    tell_room(this_object(), "The shadows coalesce around the cave entrance, blocking you in!");
+    tell_room(this_object(), "%^C060%^The s%^C066%^h%^C072%^a%^C066%^d%^C060%^ows c%^C066%^o%^C072%^a%^C066%^l%^C060%^esce around the cave entrance, blocking you in!%^CRST%^");
     this_object()->remove_exit("out");
     
     if(!catch(other_room = load_object("/d/islands/graez/nurval/room/path10")))
@@ -80,7 +80,7 @@ void step_three()
     if(!objectp(walker))
         return;
     
-    tell_room(this_object(), "From the portal steps a being of pure malice. You feel the aura of death waft off of it as it stands tall above you and regards you with its alien stare!");
+    tell_room(this_object(), "%^C060%^From the portal steps a being of %^C079%^pure malice%^C060%^. You feel the aura of death waft off of it as it stands tall above you and regards you with its %^C079%^alien stare%^C060%^!%^CRST%^");
     walker->move(this_object());
 }
 
