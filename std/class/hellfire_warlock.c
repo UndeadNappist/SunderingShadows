@@ -38,7 +38,6 @@ string requirements() // string version, maybe we'll need this, maybe not, can r
 
 int is_locked_class() { return 1; }
 
-
 int prerequisites(object player)
 {
     object race_ob;

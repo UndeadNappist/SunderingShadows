@@ -53,7 +53,7 @@ int activate_portal(string str)
     
     activated = 1;
     
-    call_out("step_two", 6);
+    call_out("step_two", 12);
 
     return 1;
 }
@@ -68,7 +68,7 @@ void step_two()
     if(!catch(other_room = load_object("/d/islands/graez/nurval/room/path10")))
         other_room->remove_exit("cave");
     
-    call_out("step_three", 6);
+    call_out("step_three", 12);
 }
 
 void step_three()

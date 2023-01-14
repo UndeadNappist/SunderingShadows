@@ -19,7 +19,6 @@ void create()
     set_required_for(({"supreme healer"}));
 }
 
-
 int allow_shifted()
 {
     return 1;
