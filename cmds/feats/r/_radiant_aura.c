@@ -72,6 +72,7 @@ void execute_feat()
 void execute_attack()
 {
     object *party=({});
+    object *attackers = ({  });
     int i, damage, healed;
 
     if(!objectp(caster) || caster->query_ghost())
@@ -122,6 +123,37 @@ void execute_attack()
         }
     }
     if(healed) tell_object(caster, "%^RESET%^%^CRST%^%^C032%^A wave of %^C039%^p%^C045%^o%^C051%^siti%^C045%^v%^C039%^e e%^C045%^n%^C051%^er%^C045%^g%^C039%^y %^RESET%^%^C032%^emanates outwards from you and bathes your %^C044%^allies %^RESET%^%^C032%^in a %^C214%^h%^C220%^e%^C226%^ali%^C220%^n%^C214%^g r%^C220%^a%^C226%^dian%^C220%^c%^C214%^e%^RESET%^%^C032%^.%^CRST%^");
+    
+    attackers = caster->query_attackers();
+    
+    if(sizeof(attackers))
+        tell_object(caster, "%^C032%^Your enemies are e%^C039%^n%^C045%^g%^C051%^u%^C045%^l%^C039%^f%^C032%^ed in %^C214%^r%^C220%^a%^C226%^d%^C220%^i%^C214%^ant%^C032%^, %^C214%^s%^C220%^c%^C226%^o%^C214%^uring l%^C220%^i%^C226%^g%^C214%^ht%^C032%^!%^CRST%^");
+    
+    foreach(object ob in attackers)
+    {
+        if(!ob || !objectp(ob))
+            continue;
+        
+        if(place != environment(ob))
+            continue;
+        
+        if(ob->query_unconscious())
+            continue;
+        
+        userp(ob) && tell_object(ob, "%^C032%^You are e%^C039%^n%^C045%^g%^C051%^u%^C045%^l%^C039%^f%^C032%^ed in %^C214%^r%^C220%^a%^C226%^d%^C220%^i%^C214%^ant%^C032%^, %^C214%^s%^C220%^c%^C226%^o%^C214%^uring l%^C220%^i%^C226%^g%^C214%^ht%^C032%^!%^CRST%^");
+        
+        set_save("fort");
+        
+        if(!do_save(ob))
+            ob->cause_typed_damage(ob, "chest", roll_dice(clevel, 6), "radiant");
+        else
+            ob->cause_typed_damage(ob, "chest", roll_dice(clevel, 6) / 2, "radiant");
+        
+        set_save("reflex");
+        
+        if(!do_save(ob) && !PLAYER_D->immunity_check("blindness"))
+            ob->set_temporary_blinded(clevel / 20 + 1);
+    }
 
     if (objectp(place)) {
         place->addObjectToCombatCycle(TO, 1);
