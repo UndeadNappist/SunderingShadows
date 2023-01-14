@@ -100,7 +100,9 @@ void monitor() {
                }
                tell_object(foes[k], "%^RESET%^%^CRST%^%^C124%^You get burned by the %^C091%^fl%^C097%^a%^C091%^me%^C097%^s%^RESET%^%^C124%^!%^CRST%^");
                dmg = spellob->query_base_damage();
-               foes[k]->cause_typed_damage(foes[k], foes[k]->return_target_limb(), dmg, "fire");
+               dmg = min( ({ dmg, foes[k]->query_hp() - 1 }) );
+               dmg = max( ({ 0, dmg }) );
+               dmg && foes[k]->cause_typed_damage(foes[k], foes[k]->return_target_limb(), dmg, "fire");
                if (objectp(foes[k])) {
                    foes[k]->continue_attack();
                }
