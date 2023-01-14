@@ -28,8 +28,8 @@ You are standing on one of the back roads of Systyquah.  The "+
 }
 void reset(){
     ::reset();
-    if(!present("peasant")){
+    /*if(!present("peasant")){
 	new("/d/laerad/mon/trollp1")->move(this_object());
 	new("/d/laerad/mon/trollp1")->move(this_object());
-    }
+    }*/
 }

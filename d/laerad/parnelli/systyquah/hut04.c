@@ -52,5 +52,6 @@ void reset(){
      object ob;
      ::reset();
      ob = present("stable hand");
+     ob->remove();
      if(objectp(ob)) ob->set_race("troll");
 }

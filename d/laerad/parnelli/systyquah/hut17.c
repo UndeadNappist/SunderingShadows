@@ -25,7 +25,7 @@ You are standing in Systyquah's shop of magic.  There is a "+
 }
 void reset(){
     ::reset();
-    if(!present("fargastipius")){
+    /*if(!present("fargastipius")){
 	new("/d/laerad/mon/farg")->move(this_object());
-    }
+    }*/
 }

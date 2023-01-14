@@ -33,16 +33,12 @@ You have walked into the city walls of Systyquah.  A narrow pathway "+
 }
 void reset(){
     ::reset();
-/* was    if(!present("troll")){
-	new("/d/laerad/mon/trollg2")->move(this_object());
-	new("/d/laerad/mon/trollt")->move(this_object());
-    }
-*/
-    for(i = 0;i < sizeof(monsArray);i++){
+    /*for(i = 0;i < sizeof(monsArray);i++){
        	if(!objectp(monsArray[i])){
        		ob = new("/d/laerad/mon/trollg2");
     		ob->move(TO);
        		monsArray[i] = ob;
-	}
-    }
+        }
+    }*/
 }
+

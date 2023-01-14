@@ -28,7 +28,7 @@ You have walked into a general store.  The store's walls are lined with "+
 
 void reset(){
     ::reset();
-    if(!present("ximiz")){
+    /*if(!present("ximiz")){
 	new("/d/laerad/mon/ximiz")->move(this_object());
-    }
+    }*/
 }

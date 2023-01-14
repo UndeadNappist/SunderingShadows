@@ -28,7 +28,7 @@ You are standing in a magic components shop.  The store's walls are covered "+
 
 void reset(){
     ::reset();
-    if(!present("hassimith")){
+    /*if(!present("hassimith")){
 	new("/d/laerad/mon/hassimith")->move(this_object());
-    }
+    }*/
 }

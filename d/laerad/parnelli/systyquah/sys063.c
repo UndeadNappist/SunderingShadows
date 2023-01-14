@@ -28,7 +28,7 @@ You are standing on one of the back roads of Systyquah.  The "+
 }
 void reset(){
     ::reset();
-    if(!present("guard")){
+    /*if(!present("guard")){
 	new("/d/laerad/mon/trollg2")->move(this_object());
-    }
+    }*/
 }

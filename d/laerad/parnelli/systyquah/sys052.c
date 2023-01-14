@@ -28,10 +28,10 @@ You are standing on one of the back roads of Systyquah.  The "+
 }
 void reset(){
     ::reset();
-    if(!present("bugbear")){
+    /*if(!present("bugbear")){
 	new("/d/laerad/mon/bugbear")->move(this_object());
     }
     if(!present("peasant")){
 	new("/d/laerad/mon/trollp1")->move(this_object());
-    }
+    }*/
 }

@@ -29,7 +29,7 @@ You are standing on one of the back roads of Systyquah.  The "+
 }
 void reset(){
     ::reset();
-    if(!present("thug")){
+    /*if(!present("thug")){
 	new("/d/laerad/mon/trollt")->move(this_object());
-    }
+    }*/
 }

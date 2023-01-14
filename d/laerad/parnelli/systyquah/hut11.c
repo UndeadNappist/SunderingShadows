@@ -26,7 +26,7 @@ You are standing in a large wooden hut.  The living space "+
 }
 void reset(){
     ::reset();
-    if(!present("troll")){
+    /*if(!present("troll")){
 	new("/d/laerad/mon/troll1")->move(this_object());
-    }
+    }*/
 }

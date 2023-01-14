@@ -8,7 +8,7 @@ int i;
 
 void create(){
     ::create();
-    monsArray = allocate(2);
+    //monsArray = allocate(2);
     set_terrain(WOOD_BUILDING);
     set_travel(FOOT_PATH);
     set_name("Systyquah's city wall");
@@ -33,12 +33,7 @@ You have walked into the city walls of Systyquah.  A narrow pathway "+
 }
 void reset(){
     ::reset();
-/* was    if(!present("troll")){
-	new("/d/laerad/mon/trollg2")->move(this_object());
-	new("/d/laerad/mon/trollt")->move(this_object());
-    }
-*/
-    for(i = 0;i < sizeof(monsArray);i++){
+    /*for(i = 0;i < sizeof(monsArray);i++){
        	if(!objectp(monsArray[i])){
        		ob = new("/d/laerad/mon/trollg2");
     		ob->move(TO);
@@ -47,7 +42,7 @@ void reset(){
        	           ob = new("/d/laerad/mon/trollt");
        		   ob->move(TO);
 		   monsArray[i] = ob;
-		}
-	}
-    }
+            }
+        }
+    }*/
 }

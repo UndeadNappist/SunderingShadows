@@ -26,9 +26,9 @@ You have walked into an extremely dank pub.  The air is filled with tobacco "+
 }
 void reset(){
     ::reset();
-    if(!present("dar")){
+    /*if(!present("dar")){
 	new("/d/laerad/mon/dar")->move(this_object());
-    }
+    }*/
 }
 void init(){
     ::init();

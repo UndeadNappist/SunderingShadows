@@ -42,9 +42,9 @@ You have walked into Systyquah's healing hut.  The odors of various "+
 void reset()
 {
   ::reset();
-    if(!present("shaman")){
+    /*if(!present("shaman")){
 	new("/d/laerad/mon/trshaman")->move(this_object());
-    }
+    }*/
 }
 /*
 void cure_light(string str) 

@@ -29,7 +29,7 @@ void create(){
 
 void reset(){
     ::reset();
-    if(!present("mage") && (sizeof(children("/d/laerad/mon/trollm3")) < 3) ){
+    /*if(!present("mage") && (sizeof(children("/d/laerad/mon/trollm3")) < 3) ){
 	new("/d/laerad/mon/trollm3")->move(TO);
-    }
+    }*/
 }

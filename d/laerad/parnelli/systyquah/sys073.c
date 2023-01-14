@@ -4,7 +4,7 @@ inherit CROOM;
 
 
 void create(){
-   set_monsters(({"/d/laerad/mon/trollg2"}),({2}));
+    //set_monsters(({"/d/laerad/mon/trollg2"}),({2}));
     ::create();
     set_terrain(WOOD_BUILDING);
     set_travel(FOOT_PATH);
