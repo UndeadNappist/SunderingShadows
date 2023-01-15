@@ -113,7 +113,6 @@ void create()
     set_property("no paralyze", 1);
     set_acquired_template("shade");
     set_sight_bonus(5);
-    command("lifeless_shroud");
 }
 
 void set_paralyzed(int time, string message)
@@ -171,7 +170,8 @@ void init()
         new("/cmds/spells/v/_vampiric_shadow_shield.c")->use_spell(this_object(), 0, 70, 100, "mage");
         new("/cmds/spells/s/_shadow_body.c")->use_spell(this_object(), 0, 70, 100, "mage");
         new("/cmds/spells/s/_shadowform.c")->use_spell(this_object(), 0, 70, 100, "mage");
-        new("/cmds/spells/f/_frightful_aspect.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        new("/cmds/spells/f/_oppression.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        command("lifeless_shroud");
         buffed = 1;
     }
 }

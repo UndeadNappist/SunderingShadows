@@ -993,6 +993,12 @@ int query_resistance_percent(string res, object source)
             mod += 30;
     }
     
+    if(FEATS_D->usable_feat(this_object(), "light in the darkness"))
+    {
+        if(res == "radiant")
+            mod += 10;
+    }
+    
     if(FEATS_D->usable_feat(this_object(), "infused form"))
     {
         switch(res)
