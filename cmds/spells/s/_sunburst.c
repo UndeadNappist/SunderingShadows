@@ -15,7 +15,7 @@ void create(){
     set_domains(({"sun"}));
     set_syntax("cast CLASS sunburst");
     set_damage_desc("radiant damage");
-    set_description("This spell will send the light of the sun radiating out in a circle from the caster.  Any enemies caught in the area will suffer damage from the pure light of the sun.  Undead creatures suffer more damage than normal ones, and those creatures who fail their save are blinded by the light.");
+    set_description("This spell will send the light of the sun radiating out in a circle from the caster.  Any enemies caught in the area will suffer damage from the pure light of the sun.  Those creatures who fail their save are blinded by the light.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
@@ -49,10 +49,10 @@ void spell_effect(int prof){
         if(!objectp(attackers[i])) continue;
 
         // Changed to radiant damage.
-        if(attackers[i]->is_undead())
-            dmg = sdamage * 4/3;
-        else
-            dmg = sdamage;
+        //if(attackers[i]->is_undead())
+        //    dmg = sdamage * 4/3;
+        //else
+        //    dmg = sdamage;
         
         dmg = sdamage;
 

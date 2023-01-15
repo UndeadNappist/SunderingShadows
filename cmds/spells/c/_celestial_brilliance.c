@@ -16,8 +16,8 @@ void create()
     set_spell_level(([ "innate" : 7 ]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast innate celestial brilliance");
-    set_damage_desc("AOE radiant damage over time, 25% more damage vs undead");
-    set_description("You channel energy directly from the celestial realms, unleashing a torrent of divine energy into the area and creating a celestial dawn. The room becomes brighter and all enemies take divine damage over time.");
+    set_damage_desc("AOE radiant damage over time");
+    set_description("You channel energy directly from the celestial realms, unleashing a torrent of divine energy into the area and creating a celestial dawn. The room becomes brighter and all enemies take radiant damage over time. Any enemies that do not make a reflex save are dazzled for a short time.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
@@ -77,11 +77,13 @@ void execute_attack()
         }
         tell_object(targ,"%^BOLD%^%^WHITE%^The brightness threatens to dazzle you!");
 
+        /*
         if(foes[i]->is_undead())
         {
             sdamage = (sdamage * 5) / 4;
             message("info","%^RESET%^%^CYAN%^The %^BOLD%^%^WHITE%^l%^ORANGE%^i%^WHITE%^g%^RESET%^h%^BOLD%^t %^RESET%^%^CYAN%^unmakes %^WHITE%^"+foes[i]->QCN+"%^RESET%^%^CYAN%^, %^BOLD%^%^RED%^tearing %^RESET%^%^CYAN%^apart its %^BOLD%^%^MAGENTA%^p%^RED%^e%^MAGENTA%^rv%^RED%^e%^MAGENTA%^r%^RED%^s%^MAGENTA%^e %^BLACK%^ex%^RESET%^i%^BOLD%^%^BLACK%^st%^RESET%^e%^BOLD%^%^BLACK%^nc%^RESET%^e%^CYAN%^!%^RESET%^",place);
         }
+        */
         damage_targ(targ,targ->return_target_limb(),sdamage,"radiant");
     }
     counter--;

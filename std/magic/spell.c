@@ -2803,7 +2803,7 @@ void define_clevel()
             clevel += 2;
         else //No double dipping
         {
-            if(member_array("radiant", immune) >= 0)
+            if(pointerp(immune) && member_array("radiant", immune) >= 0)
                 clevel += 2;
         }
     }

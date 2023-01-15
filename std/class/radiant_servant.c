@@ -2,6 +2,7 @@
 
 #include <std.h>
 #include <dirs.h>
+#include <daemons.h>
 
 inherit DAEMON;
 
@@ -90,11 +91,19 @@ int set_base_class(object obj, string choice)
         return 0;
     }
     
+    if(obj->query_true_align() != 1 && obj->query_true_align() != 4 && obj->query_true_align() != 7)
+    {
+        tell_object(obj, "You need to be of a good alignment.");
+        return 0;
+    }
+    
+    /*
     if(obj->query_mystery() != "life" && member_array("renewal", obj->query_divine_domain()) < 0)
     {
         tell_object(obj, "You need to either have the Life Mystery or Renewal Domain.");
         return 0;
     }
+    */
 
     obj->set("base_class", choice);
     return 1;
@@ -238,6 +247,22 @@ int caster_level_calcs(object player, string the_class)
 
 mapping class_featmap(string myspec) {
     return ([ 1 : ({ "light in the darkness" }), 4 : ({ "radiant aura" }), 7 : ({ "supreme healer" }), ]);
+}
+
+mapping query_innate_spells(object player)
+{
+    mapping innate_spells = ([  ]);
+    
+    if(FEATS_D->usable_feat(player, "holy purpose"))
+    {
+        innate_spells = ([ 
+                      
+            "celestial brilliance"      : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+            "spray of shooting stars"   : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),                 
+        ]);
+    }
+    
+    return innate_spells;
 }
 
 string *class_skills(object ob)
