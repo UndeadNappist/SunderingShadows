@@ -21,9 +21,9 @@ void create()
     
     set_name("thiefling");
     set_id( ({ "ring", "thiefling ring", "thief ring", "thiefling" }) );
-    set_short("");
-    set_obvious_short("");
-    set_long("");
+    set_short("a simple darksteel ring");
+    set_obvious_short("%^RESET%^%^CRST%^%^C102%^A simple %^RESET%^%^C059%^d%^C060%^a%^C061%^r%^C060%^k%^RESET%^%^C059%^st%^C060%^e%^C061%^e%^C059%^l%^RESET%^%^C247%^ r%^RESET%^%^C249%^i%^C251%^n%^RESET%^%^C247%^g%^CRST%^");
+    set_long("%^RESET%^%^CRST%^%^C102%^This ring is made of a %^RESET%^%^C250%^lightweight %^RESET%^%^C102%^but durable %^RESET%^%^C059%^d%^C060%^a%^C061%^r%^C060%^k%^RESET%^%^C059%^st%^C060%^e%^C061%^e%^C059%^l%^RESET%^%^C102%^. The interior of the piece has been %^RESET%^%^C255%^polished%^RESET%^%^C102%^, revealing a %^RESET%^%^C247%^s%^C249%^i%^C251%^l%^C253%^v%^C251%^e%^C249%^r%^RESET%^%^C247%^y h%^RESET%^%^C249%^u%^C251%^e%^RESET%^%^C102%^, while the exterior has been left %^RESET%^%^C060%^natural%^RESET%^%^C102%^, its surface a gleaming shade of %^RESET%^%^C060%^p%^C061%^u%^C062%^r%^C063%^p%^C061%^l%^RESET%^%^C060%^e%^RESET%^%^C102%^. Despite its austere appearance, the ring almost seems to %^RESET%^%^C060%^p%^C063%^u%^C061%^l%^C069%^s%^RESET%^%^C060%^e %^RESET%^%^C102%^with a peculiar %^RESET%^%^C063%^energy%^RESET%^%^C102%^.%^CRST%^");
     set_lore("");
     set_property("lore difficulty", 40);
     set_property("id difficulty", 40);
@@ -50,7 +50,7 @@ int wear_fun()
     if(!strlen(owner))
     {
         owner = this_player()->query_name();
-        tell_object(this_player(), "The ring pulses furiously for a moment as you put it on");
+        tell_object(this_player(), "%^RESET%^%^CRST%^%^C102%^The %^RESET%^%^C247%^r%^C249%^i%^C251%^n%^RESET%^%^C247%^g %^RESET%^%^C060%^p%^C061%^u%^C062%^l%^C063%^s%^C061%^e%^RESET%^%^C060%^s %^RESET%^%^C102%^furiously for a moment as you put it on.%^CRST%^");
     }
     else
     {
@@ -72,14 +72,14 @@ int wear_fun()
         set_item_bonus("thievery", 6);
     }
     
-    tell_object(this_player(), "The ring slides onto your finger, and you feel it sharpen your skills!");
+    tell_object(this_player(), "%^RESET%^%^CRST%^%^C102%^The %^RESET%^%^C247%^r%^C249%^i%^C251%^n%^RESET%^%^C247%^g %^RESET%^%^C102%^slides onto your finger, and you feel it %^RESET%^%^C060%^s%^C061%^h%^C062%^a%^C063%^r%^C062%^p%^C061%^e%^RESET%^%^C060%^n %^RESET%^%^C102%^your skills!%^CRST%^");
     
     return 1;
 }
 
 int remove_fun()
 {
-    tell_object(this_player(), "You remove the ring and feel its dark power leave you.");
+    tell_object(this_player(), "%^RESET%^%^CRST%^%^C102%^You remove the %^RESET%^%^C247%^r%^C249%^i%^C251%^n%^RESET%^%^C247%^g %^RESET%^%^C102%^and feel its %^RESET%^%^C059%^d%^C060%^a%^C061%^r%^RESET%^%^C059%^k %^RESET%^%^C060%^p%^C061%^o%^C062%^w%^C061%^e%^RESET%^%^C060%^r %^RESET%^%^C102%^leave you.");
     return 1;
 }
     
