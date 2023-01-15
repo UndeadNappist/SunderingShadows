@@ -2796,6 +2796,17 @@ void define_clevel()
             }
         }
     }
+    
+    if(caster->is_class("radiant_servant"))
+    {
+        if(spell_sphere == "healing")
+            clevel += 2;
+        else //No double dipping
+        {
+            if(member_array("radiant", immune) >= 0)
+                clevel += 2;
+        }
+    }
 
     if (FEATS_D->usable_feat(caster, "ragecaster")) {
         clevel = caster->query_base_character_level(); // CHECK ME!

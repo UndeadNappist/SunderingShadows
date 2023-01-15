@@ -4793,6 +4793,9 @@ int light_blind_remote(int actionbonus, object whichroom, int distance) {
   }
   _total_light = total_light(whichroom);
   _sight_bonus = query_sight_bonus();
+  
+  if(_total_light > 0 && this_object()->is_class("radiant_servant"))
+      return 0;
 
   if (!D_BUG_D->user_new_light()) {
       return (_total_light + _sight_bonus - actionbonus < 0);
