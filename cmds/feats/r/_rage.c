@@ -381,7 +381,7 @@ void execute_attack()
     
     if(spirit_totem && sizeof(attackers))
     {
-        int splash_damage = roll_dice(clevel / 2 + 1, 6) + BONUS_D->query_stat_bonus(caster, "charisma");
+        int splash_damage = roll_dice(clevel / 2 + 1, 6) + BONUS_D->query_stat_bonus(caster, "wisdom");
 
         tell_room(place, "%^CYAN%^BOLD%^The whisps swarm around " + caster->query_cap_name() + ", slamming into " + caster->query_possessive() + " enemies with necrotic energy!%^RESET%^", caster);
         tell_object(caster, "%^CYAN%^BOLD%^Your whisps slam into your enemies with necrotic energy!%^RESET%^");  
