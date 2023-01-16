@@ -195,7 +195,7 @@ int claim(string str){
 }
 void delay(){waiting = 0;}
 
-/*void reset()
+void reset()
 {
     object questor;
     ::reset();
@@ -204,4 +204,4 @@ void delay(){waiting = 0;}
         questor = new("/d/common/mons/questor");
         questor->move(TO);
     }
-}*/
+}
