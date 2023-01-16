@@ -63,12 +63,12 @@ int wear_fun()
     
     if(this_player()->query("subrace") == "tiefling")
     {
-        set_item_bonus("stealth", 7);
+        set_item_bonus("dungeoneering", 7);
         set_item_bonus("thievery", 7);
     }
     else
     {
-        set_item_bonus("stealth", 6);
+        set_item_bonus("dungeoneering", 6);
         set_item_bonus("thievery", 6);
     }
     
