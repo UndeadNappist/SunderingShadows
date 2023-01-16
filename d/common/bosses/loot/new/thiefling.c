@@ -11,9 +11,12 @@
 #include <std.h>
 #include <daemons.h>
 
+#define MAX_CHARGES 10
+
 inherit RING;
 
-sting owner;
+string owner;
+int charges;
 
 void create()
 {
@@ -33,6 +36,53 @@ void create()
     //set_heart_beat(1);
     set_wear((:this_object(),"wear_fun":));
     set_remove( (: this_object(),"remove_fun" :) );
+}
+
+void init()
+{
+    ::init();
+    
+    add_action("mirror", "mirror");
+    add_action("query_charges", "charges");
+}
+
+int consume_charges(int x)
+{
+    if(x > charges)
+        return 0;
+    
+    charges -= x;
+    
+    return 1;
+}
+
+int refresh_charges(int x)
+{
+    charges = min( ({ charges + x, MAX_CHARGES }) );
+    charges = max( ({ charges, 0 }) );
+    
+    return charges;
+}   
+
+int mirror(string str)
+{
+    object spell;
+    
+    if(!query_worn())
+        return 0;
+    
+    if(catch(spell = new("/cmds/spells/m/_mirror_image")))
+        return 0;
+    
+    if (this_player()->query_bound() || this_player()->query_unconscious() || this_player()->query_paralyzed())
+    {
+        this_player()->send_paralyzed_message("info", this_player());
+        return 1;
+    }
+    
+    objectp(spell) && spell->use_spell(this_player(), 0, this_player()->query_level(), 100, "mage");
+    
+    return 1;
 }
 
 int wear_fun()
@@ -82,5 +132,6 @@ int remove_fun()
     tell_object(this_player(), "%^RESET%^%^CRST%^%^C102%^You remove the %^RESET%^%^C247%^r%^C249%^i%^C251%^n%^RESET%^%^C247%^g %^RESET%^%^C102%^and feel its %^RESET%^%^C059%^d%^C060%^a%^C061%^r%^RESET%^%^C059%^k %^RESET%^%^C060%^p%^C061%^o%^C062%^w%^C061%^e%^RESET%^%^C060%^r %^RESET%^%^C102%^leave you.");
     return 1;
 }
+
     
     
