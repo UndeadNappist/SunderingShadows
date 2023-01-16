@@ -31,15 +31,15 @@ void spell_effect(int prof)
     }
     
     tell_room(place, "AOE message", caster);
-    tell_object(caster, "caster message");
+    tell_object(caster, "You cast forth your holy energy, seeking to repel the evil and corruptive beings here!");
     
     foreach(object ob in attackers)
     {
-        if(!do_save(ob))
+        if(!do_save(ob) && !PLAYER_D->immunity_check(ob, fear))
         {
             "/std/effect/status/cowering"->apply_effect(ob, clevel / 14 + 1);
-            tell_object(ob, "You're cowering message.");
-            tell_room(place, "They're cowering message.");
+            tell_object(ob, "The holy energy leaves you cowering in fright!");
+            tell_room(place, "" + ob->query_cap_name() + " is left cowering from the holy energies!");
         }
     }
     spell_successful();
