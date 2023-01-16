@@ -39,9 +39,9 @@ void create(){
 
 void reset(){
     ::reset();
-    if(!present("portalpsion")) {
+    /*if(!present("portalpsion")) {
       new("/d/shadow/mon/duergarnomad")->move(TO);
       tell_room(TO,"%^CYAN%^A short robed figure makes its way down the pile of rubble, to stand motionless behind the "
-"circle on the floor.%^RESET%^");
+"circle on the floor.%^RESET%^");*/
     }
 }
