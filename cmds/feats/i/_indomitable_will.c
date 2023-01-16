@@ -10,6 +10,7 @@ void create() {
     feat_name("indomitable will");
     feat_prereq("Barbarian L16");
     feat_desc("This feat represents the supreme battle focus the barbarian gains while raging. The barbarian recieves an additional +2 to will saves will raging. This bonus stacks with the inherent will save bonus from rage.");
+    permanent(1);
 }
 
 int allow_shifted() { return 1; }
