@@ -399,9 +399,9 @@ int ragnarok_em(mapping info)
             "the very fabric of the plane around you like so much glass to reveal the "
             "roiling ma%^BLACK%^e%^RED%^lstr%^BLACK%^o%^RED%^m of what can only be "
             "the%^BLACK%^ Abyss%^RED%^!%^RESET%^");// yes, eto left out intentionally
-        tell_em("%^RED%^A tremble passes through the ground beneath "
+        /*tell_em("%^RED%^A tremble passes through the ground beneath "
             "your feet and the air around you takes on a crimson hue as the world "
-            "itself seems to groan in protest.%^RESET%^");
+            "itself seems to groan in protest.%^RESET%^");*/
         info["count"] = 2;
         call_out("ragnarok_em",15,info);
         return 0;
@@ -472,8 +472,8 @@ int ragnarok_em(mapping info)
         tell_room(eto,"%^BOLD%^%^RED%^The fractured pieces of the world slowly flow back "
             "into the air, reforming the barrier between planes and leaving only the crackle "
             "of latent demonic energy as a reminder of the breach.%^RESET%^");
-        tell_em("%^RED%^The crimson hue fades from the air and the ground "
-            "beneath you settles..you feel that something terrible has happened...%^RESET%^");
+        /*tell_em("%^RED%^The crimson hue fades from the air and the ground "
+            "beneath you settles..you feel that something terrible has happened...%^RESET%^");*/
 
         for(i=0;i<sizeof(living);i++)
         {

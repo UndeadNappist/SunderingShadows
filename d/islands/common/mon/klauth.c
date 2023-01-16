@@ -530,7 +530,8 @@ void die(object obj)
     int i;
     int eventpower = 10;
 
-    message("info", "%^BOLD%^%^RED%^A mighty roar follows the rumble of the earth as Klauth has fallen from his mountain!%^RESET%^", users());
+    broadcast_area("d/islands/common/aramanth/", "%^RESET%^%^CRST%^%^C124%^A mighty %^C196%^roar %^C124%^follows the rumble of the earth as Klauth has fallen from his mountain!%^CRST%^");
+    //message("info", "%^BOLD%^%^RED%^A mighty roar follows the rumble of the earth as Klauth has fallen from his mountain!%^RESET%^", users());
     WORLD_EVENTS_D->kill_event("Klauth has been defeated");
     WORLD_EVENTS_D->inject_event((["Klauth has been defeated" : (["start message" : "%^BOLD%^%^RED%^The great wyrm has been defeated!", "event type" : "exp bonus", "length" : 720, "notification" : eventpower + "% Bonus Exp", "event name" : "Klauth has been defeated", "modifier" : eventpower, "announce" : 1, "announce to" : "world" ]), ]));
 

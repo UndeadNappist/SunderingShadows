@@ -382,9 +382,8 @@ void do_it()
     tell_room(ETO, "%^B_RED%^ORANGE%^The room starts shaking violently.\n" +
               "The air around you seems to vaporize.\nThe floor opens.\nYour " +
               "sight begins to blur.\n\n\n...\n\n... ...\n\n... ... ...\n\n\n\n");
-    message("broadcast", "%^RED%^A tremble passes from beneath your feet " +
-            "to your body as you hear a loud sound of an earthquake coming from a " +
-            "distance.", users(), all_living(ETO));
+    broadcast_area("/d/islands/argentrock/rooms", "%^RESET%^%^RED%^A tremble passes from beneath your feet to your body as you hear a loud sound of an earthquake coming from a distance.%^RESET%^");
+    //message("broadcast", "%^RED%^A tremble passes from beneath your feet to your body as you hear a loud sound of an earthquake coming from a distance.", users(), all_living(ETO));
 
     for (i = 0; i < all; i++) {
         if (!objectp(living[i])) {

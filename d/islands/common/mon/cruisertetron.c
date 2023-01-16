@@ -111,7 +111,9 @@ void die(object ob)
     tell_room(ETO, "%^BOLD%^%^RED%^Cruiser Tetron tells you: %^RESET%^Be warned...  After a time, death itself dies...");
     tell_room(ETO, "%^BOLD%^%^CYAN%^Cruiser Tetron whispers to you: %^RESET%^Perhaps, death is better.");
     ETO->set_had_players(10);
-    message("info", "%^RESET%^%^BLUE%^A dull thud sends tremors through your body as the %^YELLOW%^Dominion Warrior%^RESET%^%^BLUE%^ is returned to rest.%^RESET%^", users());
+    
+    broadcast_area("d/islands/common/aramanth/", "%^RESET%^%^BLUE%^A dull thud sends tremors through your body as the %^YELLOW%^Dominion Warrior%^RESET%^%^BLUE%^ is returned to rest.%^RESET%^");
+    //message("info", "%^RESET%^%^BLUE%^A dull thud sends tremors through your body as the %^YELLOW%^Dominion Warrior%^RESET%^%^BLUE%^ is returned to rest.%^RESET%^", users());
     WORLD_EVENTS_D->kill_event("Disturbed The Dominion Warrior");
     WORLD_EVENTS_D->inject_event((["Laid The Dominion Warrior To Rest" : (["start message" : "%^RESET%^%^BLUE%^The %^YELLOW%^Dominion Warrior%^RESET%^%^BLUE%^ " +
                                                                            "has been laid to rest... %^BOLD%^%^BLACK%^for now%^RESET%^%^BLUE%^. Power seeps out into the world and you feel your knowledge increased!! " +

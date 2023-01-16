@@ -292,8 +292,8 @@ int beam_em(mapping info) {
 
 	switch(count) {
 	case 1:
-		tell_em("%^YELLOW%^The sounds around you seem to become muted, as the sky above suddenly becomes flooded with "
-"the radiant %^CYAN%^c%^RESET%^%^ORANGE%^o%^MAGENTA%^l%^BOLD%^o%^RED%^r%^RESET%^%^RED%^s %^YELLOW%^of sunrise.%^RESET%^");
+		/*tell_em("%^YELLOW%^The sounds around you seem to become muted, as the sky above suddenly becomes flooded with "
+"the radiant %^CYAN%^c%^RESET%^%^ORANGE%^o%^MAGENTA%^l%^BOLD%^o%^RED%^r%^RESET%^%^RED%^s %^YELLOW%^of sunrise.%^RESET%^");*/
 		tell_room(eeto,"%^BOLD%^%^WHITE%^From the heavens above descends a single %^YELLOW%^br%^RED%^il%^MAGENTA%^l"
 "%^RED%^ia%^YELLOW%^nt %^WHITE%^sunbeam, a thin and nearly blinding ray of radiance that strikes the blade and sets its "
 "golden surface %^RED%^afi%^RESET%^%^RED%^r%^BOLD%^e%^WHITE%^.%^RESET%^");
@@ -345,8 +345,8 @@ int beam_em(mapping info) {
 "%^YELLOW%^am %^WHITE%^winks out of existance and the radiance around you fades, as the %^RESET%^%^RED%^r%^BOLD%^u"
 "%^RESET%^%^RED%^by %^BOLD%^%^WHITE%^darkens again to display its spiderwebbing of %^RESET%^clear crys%^CYAN%^t%^RESET%^al"
 "%^BOLD%^.%^RESET%^");
-		tell_em("%^RED%^The crimson hue fades from the air and the ground "
-			"beneath you settles..you feel that something terrible has happened...%^RESET%^");
+		/*tell_em("%^RED%^The crimson hue fades from the air and the ground "
+			"beneath you settles..you feel that something terrible has happened...%^RESET%^");*/
 		for(i=0;i<sizeof(living);i++)	{
 			if(!objectp(living[i])) { continue; }
 			living[i]->set_paralyzed(0);
