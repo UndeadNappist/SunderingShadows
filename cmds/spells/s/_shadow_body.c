@@ -52,7 +52,7 @@ void create(){
     set_bonus_type("body");
     set_monk_way("way of the shadow");
     set_syntax("cast CLASS shadow body");
-    set_description("Your body and all your equipment are subsumed by your shadow. As a living shadow, you blend perfectly into any other shadow and vanish in darkness. You appear as an unattached shadow in areas of full light. You shadow body gives you 10 damage reduction, flying, and 50% fire, acid and electricity resistance, and immunity to poison.");
+    set_description("Your body and all your equipment are subsumed by your shadow. As a living shadow, you blend perfectly into any other shadow and vanish in darkness. You appear as an unattached shadow in areas of full light. You shadow body gives you 10 damage reduction, flying, and 50% fire, acid and electricity resistance, and immunity to disease and poison.");
     set_helpful_spell(1);
 }
 

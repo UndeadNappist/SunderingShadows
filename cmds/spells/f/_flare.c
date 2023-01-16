@@ -47,9 +47,9 @@ void spell_effect(int prof) {
     if(do_save(target,-1*(clevel/7))){
        tell_object(caster,"%^BOLD%^You snap your fingers and a brilliant flash lights up before "+target->QCN+"'s eyes, "
 "but "+target->QS+" blinks away the afterimage!");
-       tell_object(target,"%^BOLD%^"+caster->QCN+" snaps "+caster->QCN+" fingers and a brilliant flash lights up before "
+       tell_object(target,"%^BOLD%^"+caster->QCN+" snaps "+caster->QP+" fingers and a brilliant flash lights up before "
 "your eyes, but you manage to blink away the vivid afterimage.");
-       tell_room(place,"%^BOLD%^"+caster->QCN+" snaps "+caster->QCN+" fingers and a brilliant flash lights up before "
+       tell_room(place,"%^BOLD%^"+caster->QCN+" snaps "+caster->QP+" fingers and a brilliant flash lights up before "
 +target->QCN+"'s eyes, but "+target->QS+" blinks away the afterimage!",({caster, target}));
        dest_effect();
        return;
@@ -57,9 +57,9 @@ void spell_effect(int prof) {
    if(FEATS_D->usable_feat(target,"blindfight")) {
        tell_object(caster,"%^BOLD%^You snap your fingers and a brilliant flash lights up before "+target->QCN+"'s eyes, "
 "but "+target->QP+" abilities seem unaffected!");
-       tell_object(target,"%^BOLD%^"+caster->QCN+" snaps "+caster->QCN+" fingers and a brilliant flash lights up before "
+       tell_object(target,"%^BOLD%^"+caster->QCN+" snaps "+caster->QP+" fingers and a brilliant flash lights up before "
 "your eyes, but you are so accustomed to fighting with impaired vision that it causes you no difficulties.");
-       tell_room(place,"%^BOLD%^"+caster->QCN+" snaps "+caster->QCN+" fingers and a brilliant flash lights up before "
+       tell_room(place,"%^BOLD%^"+caster->QCN+" snaps "+caster->QP+" fingers and a brilliant flash lights up before "
 +target->QCN+"'s eyes, but "+target->QP+" abilities seem unaffected!",({caster, target}));
        dest_effect();
        return;
@@ -67,9 +67,9 @@ void spell_effect(int prof) {
 
     tell_object(caster,"%^BOLD%^You snap your fingers and a brilliant flash lights up before "+target->QCN+"'s eyes, "
 "leaving "+target->QO+" dazzled!");
-    tell_object(target,"%^BOLD%^"+caster->QCN+" snaps "+caster->QCN+" fingers and a brilliant flash lights up before "
+    tell_object(target,"%^BOLD%^"+caster->QCN+" snaps "+caster->QP+" fingers and a brilliant flash lights up before "
 "your eyes, leaving you dazzled!");
-    tell_room(place,"%^BOLD%^"+caster->QCN+" snaps "+caster->QCN+" fingers and a brilliant flash lights up before "
+    tell_room(place,"%^BOLD%^"+caster->QCN+" snaps "+caster->QP+" fingers and a brilliant flash lights up before "
 +target->QCN+"'s eyes, leaving "+target->QO+" dazzled!",({caster, target}));
     "/std/effect/status/dazzled"->apply_effect(target,clevel/6+1);
 }
