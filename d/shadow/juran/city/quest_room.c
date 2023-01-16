@@ -85,6 +85,13 @@ new("/realms/dinji/coolstuff/piked_arkhdel.c")->move(TO);
 }
 
 */
+
+void reset(){
+    object collector;
+    ::reset();
+    if(collector = present("questor")) collector->set_race("drow");
+}
+
 int loose_object(object ob) {
   if (perm_corpse == ob) return 0;
   return 1;

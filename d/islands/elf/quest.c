@@ -32,3 +32,9 @@ void create() {
     set_locked("door",0);
     set_quest_daemon("/daemon/quests_high");  
 }
+
+void reset(){
+    object collector;
+    ::reset();
+    if(collector = present("questor")) collector->set_race("elf");
+}

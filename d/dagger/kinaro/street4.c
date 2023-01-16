@@ -1,5 +1,5 @@
 #include <std.h>
-inherit ROOM;
+inherit "/std/rquestroom";
 
 void create() {
     ::create();
@@ -27,3 +27,8 @@ void create() {
       ]));
 }
 
+void reset(){
+    object collector;
+    ::reset();
+    if(collector = present("questor")) collector->set_race("dwarf");
+}

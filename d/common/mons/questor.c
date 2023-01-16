@@ -22,7 +22,7 @@ void create()
     set_property("cast and attack", 1);
     set_spells(({"prismatic spray",}));
     set_spell_chance(50);
-    set_func_chance(5);
+    set_property("no_random_treasure", 1);
 }
 
 void make_me(){
@@ -33,7 +33,7 @@ void make_me(){
     set_name(name);
     set_short("%^RESET%^%^CRST%^"+({"%^C021%^","%^C090%^","%^C124%^%^","%^C208%^"})[random(4)]+name+"%^RESET%^%^CRST%^%^C100%^, %^C144%^Col%^C101%^lec%^C100%^tor of %^C144%^L%^C101%^o%^C100%^st %^C144%^R%^C101%^el%^C100%^ics%^CRST%^");
     set_id(({name, lower_case(name), "questor", "collector", "Collector"}));
-    set_long("%^RESET%^%^CRST%^%^C101%^"+name+" is a proprietor of lost artifacts in service to %^C255%^Kismet%^C101%^. Dressed in a simple white robe that lacks any style or elegance, "+this_object()->query_subjective()+" stands by quietly, keeping a careful watch over "+this_object()->query_possessive()+" surroundings.\n%^RESET%^%^C058%^You may wish to %^C255%^<read list>%^RESET%^%^C058%^ to see a sampling of the lost relics "+this_object()->query_objective()+" currently seeks, or you may %^C255%^<claim ITEMNAME>%^RESET%^%^C058%^ to be properly rewarded.%^CRST%^");
+    set_long("%^RESET%^%^CRST%^%^C101%^"+name+" is a proprietor of lost artifacts in service to %^C255%^Kismet%^C101%^. Dressed in a simple white robe that lacks any style or elegance, "+this_object()->query_subjective()+" stands by quietly, keeping a careful watch over "+this_object()->query_possessive()+" surroundings.\n\n%^RESET%^%^C058%^You may wish to %^C255%^<read list>%^RESET%^%^C058%^ to see a sampling of the lost relics "+this_object()->query_objective()+" currently seeks, or you may %^C255%^<claim ITEMNAME>%^RESET%^%^C058%^ to be properly rewarded.\n%^CRST%^");
 }
 
 void thank(){
