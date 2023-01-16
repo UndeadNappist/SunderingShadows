@@ -577,7 +577,7 @@ void setup_rp_flag(object who)
     rname = file_name(environment(who));
     cur_flags = keys(RP_FLAGS);
     myName = who->query_true_name();
-    message("info","%^BOLD%^%^WHITE%^RP Spears impale the ground of "+rname->query_short()+"\n",users());
+    message("info","%^BOLD%^%^WHITE%^Adventurers have started to gather at "+rname->query_short()+"\n",users());
     IPC->ipc_send_all("SPEAR:RP Spears impale the ground of " + strip_colors(rname->query_short()) + "\n");
     if(member_array(myName, cur_flags) == -1)
     {

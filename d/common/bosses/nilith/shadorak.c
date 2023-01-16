@@ -179,8 +179,9 @@ void init()
 void die(object ob)
 {
     tell_room(environment(this_object()), "%^BLACK%^BOLD%^The tendrils of shadow seem to collapse in on themselves. "
-              "The darkness coalesces into a swirling miasma as it drains back into the Shadow Plane.%^RESET%^");              
-    message("broadcast", "%^BLACK%^BOLD%^A keening wail can be heard as a great evil is vanquished and returns to the Plane of Shadows!%^RESET%^", users());
+              "The darkness coalesces into a swirling miasma as it drains back into the Shadow Plane.%^RESET%^");  
+    broadcast_area("/d/islands/graez/nurval/room/", "%^BLACK%^BOLD%^A keening wail can be heard as a great evil is vanquished and returns to the Plane of Shadows!%^RESET%^");
+    //message("broadcast", "%^BLACK%^BOLD%^A keening wail can be heard as a great evil is vanquished and returns to the Plane of Shadows!%^RESET%^", users());
     message("broadcast", "%^WHITE%^BOLD%^The balance of power in the world shifts towards %^CYAN%^GOOD!%^RESET%^", users());
     environment(this_object())->return_exits();
     

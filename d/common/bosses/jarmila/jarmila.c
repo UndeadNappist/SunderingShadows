@@ -333,7 +333,8 @@ void boss_death_event()
     //environment(this_object())->return_exits();
     
     tell_room(environment(this_object()), "%%^C160%^The phoenix bursts into an explosion of epic proportions and disappears, though the force of its death has cracked open one of the larger sunstones.%^CRST%^");
-    message("broadcast", "   %^C160%^A great plume of %^C124%^fire%^C160%^ erupts on the horizon and for a moment the entire realm is basked in a %^C226%^g%^C166%^o%^C226%^lden gl%^C166%^o%^C226%^w%^C160%^, then it fades.%^CRST%^%^RESET%^", users());
+    broadcast_area("/d/antioch/jarmila/rooms/", "%^C160%^A great plume of %^C124%^fire%^C160%^ erupts on the horizon and for a moment the land basks in a %^C226%^g%^C166%^o%^C226%^lden gl%^C166%^o%^C226%^w%^C160%^, then it fades.%^CRST%^%^RESET%^");
+    //message("broadcast", "   %^C160%^A great plume of %^C124%^fire%^C160%^ erupts on the horizon and for a moment the entire realm is basked in a %^C226%^g%^C166%^o%^C226%^lden gl%^C166%^o%^C226%^w%^C160%^, then it fades.%^CRST%^%^RESET%^", users());
     message("broadcast", "%^WHITE%^BOLD%^The balance of power in the world shifts towards %^CYAN%^EVIL%^RESET%^", users());
     WORLD_EVENTS_D->kill_event("The Avatar of Jarmila has been defeated");
     WORLD_EVENTS_D->inject_event((["The Avatar of the Jarmila has been defeated" : (["start message" : "%^RED%^%^BOLD%^The Avatar of Jarmila has been defeated!%^RESET%^", "event type" : "exp bonus", "length" : 720, "notification" : "5% Bonus Exp", "event name" : "The Avatar of the Faceless One has been defeated", "modifier" : 5, "announce" : 1, "announce to" : "world", "alignments" : ({ 3, 6, 9 }) ]), ]));

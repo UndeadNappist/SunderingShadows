@@ -903,14 +903,14 @@ void special_one_messages(object targ,int num)
             "%^BOLD%^%^WHITE%^S%^BLACK%^u%^WHITE%^pr%^BLACK%^e%^WHITE%^m%^BLACK%^e %^WHITE%^"+
 		"Thr%^BLACK%^one%^RESET%^%^MAGENTA%^!%^RESET%^");
 
-        	tell_em("%^RESET%^%^MAGENTA%^A %^BOLD%^%^BLACK%^deafening%^RESET%^%^MAGENTA%^ "+
+        	/*tell_em("%^RESET%^%^MAGENTA%^A %^BOLD%^%^BLACK%^deafening%^RESET%^%^MAGENTA%^ "+
 		"wail can be felt across the realm as the fabric of "
             "this %^RESET%^%^CYAN%^plane%^MAGENTA%^ is torn asunder to expose "+
 		"the %^BOLD%^%^WHITE%^S%^BLACK%^u%^WHITE%^pr%^BLACK%^e%^WHITE%^m%^BLACK%^e "+
             "%^WHITE%^Thr%^BLACK%^one%^RESET%^%^MAGENTA%^ in all of its %^BOLD%^"+
 		"%^WHITE%^magn%^CYAN%^ifi%^WHITE%^cent gl%^BLACK%^o%^WHITE%^ry%^RESET%^%^MAGENTA%^, "+
             "countless %^RESET%^%^ORANGE%^undead%^MAGENTA%^ flocking just on the other "+
-		"side of the portal near you! %^RESET%^");
+		"side of the portal near you! %^RESET%^");*/
 
         	break;
     	case 3:
@@ -971,14 +971,14 @@ void special_one_messages(object targ,int num)
             "cackling%^RESET%^%^MAGENTA%^ of a %^BOLD%^%^BLACK%^m%^MAGENTA%^"+
 		"a%^BLACK%^dm%^MAGENTA%^a%^BLACK%^n%^RESET%^%^MAGENTA%^ behind! %^RESET%^");
 
-       	tell_em("%^RESET%^%^MAGENTA%^The %^BOLD%^%^RED%^cackling%^RESET%^%^MAGENTA%^ of "+
+       	/*tell_em("%^RESET%^%^MAGENTA%^The %^BOLD%^%^RED%^cackling%^RESET%^%^MAGENTA%^ of "+
             "a %^BOLD%^%^BLACK%^m%^MAGENTA%^a%^BLACK%^dm%^MAGENTA%^a%^BLACK%^n%^RESET%^"+
 		"%^MAGENTA%^ can be heard through the exposed plane. "+
             "The end of your life seems evident.  The world reseals itself, "+
             "leaving you with the distance %^BOLD%^%^WHITE%^e%^RED%^c%^WHITE%^"+
 		"ho%^RESET%^%^MAGENTA%^ of a %^BOLD%^%^RED%^cackling%^RESET%^%^MAGENTA%^ "+
             "%^BOLD%^%^BLACK%^m%^MAGENTA%^a%^BLACK%^dm%^MAGENTA%^a%^BLACK%^n"+
-		"%^RESET%^%^MAGENTA%^!%^RESET%^");
+		"%^RESET%^%^MAGENTA%^!%^RESET%^");*/
 
         	break;
     }
@@ -1015,11 +1015,11 @@ void special_two_messages(object targ,int num) {
 		"with a coherent message, %^BOLD%^%^WHITE%^Some chains can't be "+
 		"broken.%^RESET%^");
 
-        tell_em("%^RESET%^%^RED%^The air s%^BOLD%^%^RED%^c%^RESET%^%^RED%^reams "+
+        /*tell_em("%^RESET%^%^RED%^The air s%^BOLD%^%^RED%^c%^RESET%^%^RED%^reams "+
 		"with thousands of voices, all with varying messages. "
             "One voice can be heard above all the others, speaking in a "+
 		"%^BOLD%^%^WHITE%^c%^CYAN%^oo%^WHITE%^l%^RESET%^%^RED%^ tone, "
-            "repeating, %^BOLD%^%^WHITE%^Some chains can't be broken.%^RESET%^");
+            "repeating, %^BOLD%^%^WHITE%^Some chains can't be broken.%^RESET%^");*/
 
         break;
     case 3:
@@ -1091,12 +1091,12 @@ void special_two_messages(object targ,int num) {
 		"vanish before your very eyes! "
             "What the %^BOLD%^%^RED%^hell%^RESET%^%^RED%^ just happened?%^RESET%^");
 
-        	tell_em("%^RESET%^%^RED%^The %^BOLD%^%^BLACK%^voices%^RESET%^%^RED%^ "+
+        	/*tell_em("%^RESET%^%^RED%^The %^BOLD%^%^BLACK%^voices%^RESET%^%^RED%^ "+
 		"suddenly stop and a %^BOLD%^%^WHITE%^c%^CYAN%^oo%^WHITE%^l%^RESET%^%^RED%^ "
             "toned voice says, %^BOLD%^%^WHITE%^There is only One True Way%^RESET%^%^RED%^ "
             "You have the %^BOLD%^%^BLACK%^s%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^"+
 		"nk%^RESET%^%^ORANGE%^i%^BOLD%^BLACK%^ng%^RESET%^%^RED%^ feeling that "
-            "something just went %^BOLD%^%^RED%^terribly%^RESET%^%^RED%^ wrong!%^RESET%^");
+            "something just went %^BOLD%^%^RED%^terribly%^RESET%^%^RED%^ wrong!%^RESET%^");*/
 
         break;
     }
@@ -1168,14 +1168,14 @@ void special_three_messages(object targ,int num) {
 		"sk%^RED%^u%^BLACK%^ll with glowing %^BOLD%^%^WHITE%^si%^RESET%^"+
 		"lv%^BOLD%^%^BLACK%^er eye s%^WHITE%^o%^BLACK%^ck%^WHITE%^e%^BLACK%^ts!%^RESET%^");
 
-        	tell_em("%^BOLD%^%^BLACK%^Darkness pours into every crevice of the realm. "+
+        	/*tell_em("%^BOLD%^%^BLACK%^Darkness pours into every crevice of the realm. "+
             "The ground shakes with the sound of to%^RESET%^%^BLUE%^r%^BOLD%^%^BLUE%^"+
 		"tu%^RESET%^%^BLUE%^r%^BOLD%^%^BLACK%^ed s%^CYAN%^o%^BLACK%^uls "+
             "as the %^BOLD%^%^YELLOW%^sun%^BOLD%^%^BLACK%^ is "+
             "%^RESET%^%^MAGENTA%^eclipsed%^BOLD%^%^BLACK%^ by a %^BLACK%^"+
 		"jaw%^RED%^l%^BLACK%^ess sk%^RED%^u%^BLACK%^ll "+
             "with glowing %^BOLD%^%^WHITE%^si%^RESET%^lv%^BOLD%^%^BLACK%^"+
-		"er eye s%^WHITE%^o%^BLACK%^ck%^WHITE%^e%^BLACK%^ts!%^RESET%^");
+		"er eye s%^WHITE%^o%^BLACK%^ck%^WHITE%^e%^BLACK%^ts!%^RESET%^");*/
 
         	break;
     	case 3:
@@ -1256,7 +1256,7 @@ void special_three_messages(object targ,int num) {
 		"%^BOLD%^%^BLACK%^s%^WHITE%^i%^BLACK%^"+
             "l%^WHITE%^e%^BLACK%^nc%^WHITE%^e%^BLACK%^.%^RESET%^");
                     
-        	tell_em("%^BOLD%^%^YELLOW%^L%^WHITE%^ig%^YELLOW%^ht%^BOLD%^%^BLACK%^ "+
+        	/*tell_em("%^BOLD%^%^YELLOW%^L%^WHITE%^ig%^YELLOW%^ht%^BOLD%^%^BLACK%^ "+
             "seeps into the world again and the wa%^RESET%^%^BLUE%^i%^BOLD%^"+
 		"%^BLACK%^l%^RESET%^%^BLUE%^i%^BOLD%^%^BLACK%^ng screams stop, "+
             "leaving the world in an unnatural, %^BOLD%^%^GREEN%^eerie %^BOLD%^"+
@@ -1267,7 +1267,7 @@ void special_three_messages(object targ,int num) {
 		"lpl%^BOLD%^%^BLACK%^e%^RESET%^%^MAGENTA%^ssn%^BOLD%^%^BLACK%^e%^"+
 		"RESET%^%^MAGENTA%^ss%^BOLD%^%^BLACK%^ "+
             "leave you to wonder what %^BOLD%^%^RED%^terrible"+
-		"%^BOLD%^%^BLACK%^ event just transpired!%^RESET%^");
+		"%^BOLD%^%^BLACK%^ event just transpired!%^RESET%^");*/
 
         	break;
     }
