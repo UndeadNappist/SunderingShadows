@@ -40,7 +40,8 @@ void create()
     
     set_property("enchantment", 7);    
     set_item_bonus("damage resistance", 10);
-    set_item_bonus("athletics", 7);    
+    set_item_bonus("stealth", 6);
+    set_item_bonus("athletics", 6);
     
 }
 
