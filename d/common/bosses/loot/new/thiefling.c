@@ -19,6 +19,8 @@ string owner;
 int charges = MAX_CHARGES;
 int ticker;
 
+int query_charges() { return charges; }
+
 void create()
 {
     ::create();
@@ -28,7 +30,7 @@ void create()
     set_short("a simple darksteel ring");
     set_obvious_short("%^RESET%^%^CRST%^%^C102%^A simple %^RESET%^%^C059%^d%^C060%^a%^C061%^r%^C060%^k%^RESET%^%^C059%^st%^C060%^e%^C061%^e%^C059%^l%^RESET%^%^C247%^ r%^RESET%^%^C249%^i%^C251%^n%^RESET%^%^C247%^g%^CRST%^");
     set_long("%^RESET%^%^CRST%^%^C102%^This ring is made of a %^RESET%^%^C250%^lightweight %^RESET%^%^C102%^but durable %^RESET%^%^C059%^d%^C060%^a%^C061%^r%^C060%^k%^RESET%^%^C059%^st%^C060%^e%^C061%^e%^C059%^l%^RESET%^%^C102%^. The interior of the piece has been %^RESET%^%^C255%^polished%^RESET%^%^C102%^, revealing a %^RESET%^%^C247%^s%^C249%^i%^C251%^l%^C253%^v%^C251%^e%^C249%^r%^RESET%^%^C247%^y h%^RESET%^%^C249%^u%^C251%^e%^RESET%^%^C102%^, while the exterior has been left %^RESET%^%^C060%^natural%^RESET%^%^C102%^, its surface a gleaming shade of %^RESET%^%^C060%^p%^C061%^u%^C062%^r%^C063%^p%^C061%^l%^RESET%^%^C060%^e%^RESET%^%^C102%^. Despite its austere appearance, the ring almost seems to %^RESET%^%^C060%^p%^C063%^u%^C061%^l%^C069%^s%^RESET%^%^C060%^e %^RESET%^%^C102%^with a peculiar %^RESET%^%^C063%^energy%^RESET%^%^C102%^.%^CRST%^");
-    set_lore("%^RESET%^%^C102%^This ring was once used by a group of tiefling thieves, known as the Thieflings. This group was famous for carrying out various heists, successful in part to their clever use of magical items to aid them in their operations. It is said that if the wearer is a tiefling, it imbues additional benefit. This ring can cast %^C120%^<mirror>%^C102%^ image using two charges, and %^C120%^<timestop>%^C102%^ using nine charges. The ring has a maximum of %^C120%^" + MAX_CHARGES + "%^C102%^ on it which will slowly recover. It currently has %^C120%^" + charges + " %^C102%^charges available.%^CRST%^");
+    set_lore("%^RESET%^%^C102%^This ring was once used by a group of tiefling thieves, known as the Thieflings. This group was famous for carrying out various heists, successful in part to their clever use of magical items to aid them in their operations. It is said that if the wearer is a tiefling, it imbues additional benefit. This ring can cast %^C120%^<mirror>%^C102%^ image using two charges, and %^C120%^<timestop>%^C102%^ using nine charges. The ring has a maximum of %^C120%^" + MAX_CHARGES + "%^C102%^ on it which will slowly recover. You can check the %^C120%^<charges>%^C102%^ if you wish.%^CRST%^");
     set_property("lore difficulty", 40);
     set_property("id difficulty", 40);
     set_value(10000);
