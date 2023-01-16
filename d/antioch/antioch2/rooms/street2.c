@@ -1,21 +1,19 @@
 #include <std.h>
 #include <daemons.h>
 #include "../antioch.h"
-inherit CVAULT;
+inherit "/std/rquestroom.c";
 
 void create()
 {
-   object ob;
-        set_monsters( ({ "/d/antioch/antioch2/mons/patrol_guard", }), ({ roll_dice(1, 4) + 1, }), );
+    object ob;
+    //    set_monsters( ({ "/d/antioch/antioch2/mons/patrol_guard", }), ({ roll_dice(1, 4) + 1, }), );
 	::create();
-   set_terrain(CITY);
-   set_travel(PAVED_ROAD);
+    set_terrain(CITY);
+    set_travel(PAVED_ROAD);
 	set_property("indoors",0);
 	set_property("light",2);
 	set_short("A cobbled street");
-	set_long(
-            "%^WHITE%^You are at the intersection of %^BOLD%^%^GREEN%^P%^RESET%^%^GREEN%^i%^BOLD%^%^GREEN%^n%^RESET%^%^GREEN%^e%^WHITE%^ and %^ORANGE%^C%^BOLD%^%^ORANGE%^r%^RESET%^%^ORANGE%^esce%^BOLD%^%^ORANGE%^n%^RESET%^%^ORANGE%^t. %^GREEN%^%^BOLD%^%^BLACK%^P%^RESET%^%^GREEN%^ine %^GREEN%^str%^BOLD%^%^BLACK%^e%^RESET%^%^GREEN%^e%^BOLD%^%^BLACK%^t%^RESET%^ %^GREEN%^s%^BOLD%^%^GREEN%^t%^RESET%^%^GREEN%^reet%^WHITE%^ runs up to the northwest and you can see at least one shop along it. %^BOLD%^%^ORANGE%^C%^RESET%^%^ORANGE%^re%^BOLD%^%^ORANGE%^s%^RESET%^%^ORANGE%^c%^BOLD%^%^ORANGE%^e%^RESET%^%^ORANGE%^n%^BOLD%^%^ORANGE%^t%^RESET%^ %^ORANGE%^street%^WHITE%^ runs to the northeast and there is also a shop in that direction. Immediately to the west appears to be a Healer, there is a %^ORANGE%^sig%^BOLD%^%^ORANGE%^n%^RESET%^%^WHITE%^ with the Healer's symbol engraved on it hanging outside the door. To the east is the entrance to the guard %^BOLD%^%^BLACK%^t%^BLACK%^o%^BLACK%^w%^BLACK%^er%^RESET%^%^WHITE%^ and you can hear the guards talking and laughing inside."
-	);
+	set_long("%^WHITE%^You are at the intersection of %^BOLD%^%^GREEN%^P%^RESET%^%^GREEN%^i%^BOLD%^%^GREEN%^n%^RESET%^%^GREEN%^e%^WHITE%^ and %^ORANGE%^C%^BOLD%^%^ORANGE%^r%^RESET%^%^ORANGE%^esce%^BOLD%^%^ORANGE%^n%^RESET%^%^ORANGE%^t. %^GREEN%^%^BOLD%^%^BLACK%^P%^RESET%^%^GREEN%^ine %^GREEN%^str%^BOLD%^%^BLACK%^e%^RESET%^%^GREEN%^e%^BOLD%^%^BLACK%^t%^RESET%^ %^GREEN%^s%^BOLD%^%^GREEN%^t%^RESET%^%^GREEN%^reet%^WHITE%^ runs up to the northwest and you can see at least one shop along it. %^BOLD%^%^ORANGE%^C%^RESET%^%^ORANGE%^re%^BOLD%^%^ORANGE%^s%^RESET%^%^ORANGE%^c%^BOLD%^%^ORANGE%^e%^RESET%^%^ORANGE%^n%^BOLD%^%^ORANGE%^t%^RESET%^ %^ORANGE%^street%^WHITE%^ runs to the northeast and there is also a shop in that direction. Immediately to the west appears to be a Healer, there is a %^ORANGE%^sig%^BOLD%^%^ORANGE%^n%^RESET%^%^WHITE%^ with the Healer's symbol engraved on it hanging outside the door. To the east is the entrance to the guard %^BOLD%^%^BLACK%^t%^BLACK%^o%^BLACK%^w%^BLACK%^er%^RESET%^%^WHITE%^ and you can hear the guards talking and laughing inside.");
 	set_smell("default","You smell a light scent of herbs mingled"+
 	" with the guards' sweat.");
 	set_listen("default","You hear the chatter of guards.");
@@ -38,15 +36,15 @@ void create()
 	"northwest" : ROOMS+"street3",
 	"northeast" : ROOMS+"street17",
 	]));
-   ob = new("std/bboard");
-   ob->set_name("board");
-   ob->set_id(({"board","bulletin board","antioch board","Antioch board"}));
-   ob->set_board_id("antioch_board");
-   ob->set_short("Arcane Bulletin Board");
-   ob->set_long("This is a large board where people can discuss relevant issues about the town.");
-   ob->set_max_posts(30);
-   ob->set_queue(1);
-   ob->set_location(ROOMS+"street2");
+    ob = new("std/bboard");
+    ob->set_name("board");
+    ob->set_id(({"board","bulletin board","antioch board","Antioch board"}));
+    ob->set_board_id("antioch_board");
+    ob->set_short("Arcane Bulletin Board");
+    ob->set_long("This is a large board where people can discuss relevant issues about the town.");
+    ob->set_max_posts(30);
+    ob->set_queue(1);
+    ob->set_location(ROOMS+"street2");
 }
 
 void reset() {

@@ -1,5 +1,5 @@
 #include <std.h>
-inherit ROOM;
+inherit "/std/rquestroom.c";
 
 void create() {
     ::create();
