@@ -7,18 +7,18 @@
 #include "/d/azha/azha.h"
 #include "/d/tsarven/include/southern.h"
 
-inherit ROOM;
+inherit "/std/rquestroom.c";
 
 void create() {
-  object ob;
+    object ob;
 
-  room::create();
-   set_terrain(CITY);
-   set_travel(PAVED_ROAD);
+    ::create();
+    set_terrain(CITY);
+    set_travel(PAVED_ROAD);
 	set_light(2);
 	set_indoors(0);
 	set_short("High Street, Azha, near the West Gate");
-  set_long(
+    set_long(
 @AZHA
 %^BOLD%^High Street%^RESET%^
 	You are walking on High Street, near the West Gate of the town. You
