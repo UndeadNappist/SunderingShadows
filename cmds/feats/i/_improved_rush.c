@@ -8,7 +8,7 @@ void create()
 {
     ::create();
     feat_type("permanent");
-    feat_category("MeleeDamage");
+    feat_category("CombatManeuvers");
     feat_name("improved rush");
     feat_prereq("Rush");
     feat_desc("With this feat you are able avoid attacks of opportunity when using Rush. Rush also gets a +2 modifier to its attack roll, and +2 damage dice.");

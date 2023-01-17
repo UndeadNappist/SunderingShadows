@@ -195,6 +195,9 @@ WOODWORK = ([
                 "necklace":(["file":COMMONFILE"jewelry/necklace","units":2]),
                 "ring":(["file":COMMONFILE"jewelry/ring","units":2]),
                 "pin":(["file":COMMONFILE"jewelry/pin","units":2]),
+                
+                "wooden armor" : ([ "file":COMMONFILE"armour/wooden_armor", "units":5 ]),
+                "wooden bracers" : ([ "file":COMMONFILE"armour/wooden_bracers", "units" : 3 ]),
                 ]);
 
 #define CRAFT_TO_CHECK ([ "woodworker" : WOODWORK, "weaponsmith" : WEAPONSMITH, "jeweller" : JEWEL, \

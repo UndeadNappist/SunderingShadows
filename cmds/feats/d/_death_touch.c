@@ -112,7 +112,7 @@ void execute_feat()
         dest_effect();
         return;
     }
-    if (environment(target) != environment(caster)) {
+    if(!environment(target) || !environment(caster) || environment(target) != environment(caster)) {
         tell_object(caster, "That is not here!");
         dest_effect();
         return;
