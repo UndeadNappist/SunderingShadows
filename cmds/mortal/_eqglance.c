@@ -20,7 +20,7 @@ int cmd_eqglance(string args)
    string target, target_discriminator;
    object player = this_player();
    object wiz, ob, *items, *exclude = ({});
-   string result, stuff;
+   string stuff;
 
    set_property("information",1);
 
@@ -49,7 +49,7 @@ int cmd_eqglance(string args)
     ob = present(args, ob);
 
     if (!ob)
-        return notify_fail("You do not noticr that here.\n");
+        return notify_fail("You do not notice that here.\n");
 
     if ((ob->query_hidden() || (ob->query_magic_hidden() && !player->detecting_invis()) && ob != player))
         return notify_fail("You do not notice that here.\n");
@@ -62,7 +62,7 @@ int cmd_eqglance(string args)
     else
         write((string)ob->query_desc(args));
 
-    write("They are equipped with:\n");
+    write("%^BOLD%^%^GREEN%^They are equipped with:%^RESET%^\n");
 
     items = all_inventory(ob);
     exclude = filter_array(items, "worn_wielded");
@@ -78,11 +78,12 @@ int cmd_eqglance(string args)
     }
 
     if(stuff == "")
-        result += "%^RED%^Nothing. How odd.\n";
-    else
-        result = result + stuff;
+    {
+        write("%^RED%^Nothing. How odd.\n");
+        return 1;
+    }
 
-    player->more(explode(result, "\n"));
+    player->more(explode(stuff, "\n"));
 
     return 1;
 }
