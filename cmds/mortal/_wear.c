@@ -144,7 +144,7 @@ int cmd_wear(string str)
         return 1;
     }
 
-    if (ob->is_metal() && TP->is_class("druid")) {
+    if ((ob->is_metal() || ob->query_property("not metal")) && TP->is_class("druid")) {
         tell_object(TP, "" + ob->query_short() + " is made of metal.  You cannot wear it as it would break your druidic oath.");
         return 1;
     }

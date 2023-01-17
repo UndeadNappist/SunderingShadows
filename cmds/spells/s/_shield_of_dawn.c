@@ -25,7 +25,7 @@ void spell_effect(int prof)
     tell_object(caster, "%^YELLOW%^%^BOLD%^%^BLACK%^R%^RESET%^%^RED%^oa%^BOLD%^%^BLACK%^r%^RESET%^%^RED%^i%^BOLD%^%^BLACK%^n%^RESET%^%^RED%^g %^BOLD%^%^BLACK%^f%^RESET%^%^RED%^l%^BOLD%^a%^ORANGE%^me%^RED%^s r%^RESET%^%^RED%^a%^BOLD%^i%^RESET%^%^RED%^se %^BOLD%^a%^RESET%^%^RED%^round and %^BOLD%^en%^RESET%^%^RED%^cir%^BOLD%^c%^RESET%^%^RED%^l%^BOLD%^e %^RESET%^%^RED%^yo%^BOLD%^u%^RESET%^%^RED%^!%^WHITE%^");
     tell_room(place, "%^YELLOW%^%^BOLD%^%^BLACK%^R%^RESET%^%^RED%^oa%^BOLD%^%^BLACK%^r%^RESET%^%^RED%^i%^BOLD%^%^BLACK%^n%^RESET%^%^RED%^g %^BOLD%^%^BLACK%^f%^RESET%^%^RED%^l%^BOLD%^a%^ORANGE%^me%^RED%^s r%^RESET%^%^RED%^a%^BOLD%^i%^RESET%^%^RED%^se %^BOLD%^a%^RESET%^%^RED%^round and %^BOLD%^en%^RESET%^%^RED%^cir%^BOLD%^c%^RESET%^%^RED%^l%^BOLD%^e " + caster->QCN + "!%^WHITE%^", caster);
     caster->set_property("spelled", ({ TO }));
-    caster->set_property("added short", ({ "%^BOLD%^%^BLACK%^(%^RESET%^%^RED%^e%^BOLD%^n%^RESET%^%^RED%^cir%^BOLD%^c%^RESET%^%^RED%^led by f%^BOLD%^l%^ORANGE%^a%^RED%^m%^RESET%^%^RED%^e%^BOLD%^s%^BLACK%^)%^RESET%^" }));
+    caster->set_property("added short", ({ "%^BOLD%^%^BLACK%^ (%^RESET%^%^RED%^e%^BOLD%^n%^RESET%^%^RED%^cir%^BOLD%^c%^RESET%^%^RED%^led by f%^BOLD%^l%^ORANGE%^a%^RED%^m%^RESET%^%^RED%^e%^BOLD%^s%^BLACK%^)%^RESET%^" }));
     addSpellToCaster();
     spell_successful();
     counter = (2 * clevel) + 10;
@@ -92,7 +92,7 @@ void dest_effect()
     if (objectp(caster)) {
         tell_object(caster, "%^RED%^Roaring flames flicker and fades away.");
         tell_room(environment(caster), "%^RED%^Roaring flames flicker and fade away, leaving " + caster->QCN + " vulnerable once again.", caster);
-        caster->remove_property_value("added short", ({ "%^BOLD%^%^BLACK%^(%^RESET%^%^RED%^e%^BOLD%^n%^RESET%^%^RED%^cir%^BOLD%^c%^RESET%^%^RED%^led by f%^BOLD%^l%^ORANGE%^a%^RED%^m%^RESET%^%^RED%^e%^BOLD%^s%^BLACK%^)%^RESET%^" }));
+        caster->remove_property_value("added short", ({ "%^BOLD%^%^BLACK%^ (%^RESET%^%^RED%^e%^BOLD%^n%^RESET%^%^RED%^cir%^BOLD%^c%^RESET%^%^RED%^led by f%^BOLD%^l%^ORANGE%^a%^RED%^m%^RESET%^%^RED%^e%^BOLD%^s%^BLACK%^)%^RESET%^" }));
     }
     ::dest_effect();
     if (objectp(TO)) {
