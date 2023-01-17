@@ -20,7 +20,7 @@ int cmd_eqglance(string args)
    string target, target_discriminator;
    object player = this_player();
    object wiz, ob, *items, *exclude = ({});
-   string stuff, full_message = "";
+   string stuff, sub_case, full_message = "";
 
    set_property("information",1);
 
@@ -75,15 +75,24 @@ int cmd_eqglance(string args)
         stuff = replace_string(stuff, " is here.", "");
     }
 
+    sub_case = capitalize(ob->query_subjective());
+
+    if (sub_case == "They")
+        sub_case = "They are";
+    else
+        sub_case += " is";
+
     if(stuff == "")
-        full_message += "%^RED%^They are wholly unequipped.\n";
+        full_message += "%^RED%^" + sub_case + " wholly unequipped.\n";
     else
     {
-        full_message += "%^BOLD%^%^GREEN%^They are equipped with:%^RESET%^\n";
+        full_message += "%^BOLD%^%^GREEN%^" + sub_case + " equipped with:%^RESET%^\n";
         full_message += stuff;
     }
 
     player->more(explode(full_message, "\n"));
+
+    write("");
 
     return 1;
 }
