@@ -9,10 +9,10 @@ inherit DAEMON;
 
 int worn_wielded(object ob)
 {
-   if (!objectp(ob)) return 0;
-   if (undefinedp(ob->query_short())) return 0;
-   if (!ob->query_worn() && !ob->query_wielded()) return 0;
-   return 1;
+    if (!objectp(ob)) return 0;
+    if (undefinedp(ob->query_short())) return 0;
+    if (!ob->query_worn() && !ob->query_wielded()) return 0;
+    return 1;
 }
 
 int cmd_eqglance(string args)
@@ -20,7 +20,7 @@ int cmd_eqglance(string args)
    string target, target_discriminator;
    object player = this_player();
    object wiz, ob, *items, *exclude = ({});
-   string stuff;
+   string stuff, full_message = "";
 
    set_property("information",1);
 
@@ -58,11 +58,9 @@ int cmd_eqglance(string args)
         return notify_fail("That is not a living thing.\n");
 
     if(TP->query_ansi())
-        write(ansi_str((string)ob->query_desc(args)));
+        full_message += ansi_str((string)ob->query_desc(args));
     else
-        write((string)ob->query_desc(args));
-
-    write("%^BOLD%^%^GREEN%^They are equipped with:%^RESET%^\n");
+        full_message += (string)ob->query_desc(args);
 
     items = all_inventory(ob);
     exclude = filter_array(items, "worn_wielded");
@@ -78,12 +76,14 @@ int cmd_eqglance(string args)
     }
 
     if(stuff == "")
+        full_message += "%^RED%^They are wholly unequipped.\n";
+    else
     {
-        write("%^RED%^Nothing. How odd.\n");
-        return 1;
+        full_message += "%^BOLD%^%^GREEN%^They are equipped with:%^RESET%^\n";
+        full_message += stuff;
     }
 
-    player->more(explode(stuff, "\n"));
+    player->more(explode(full_message, "\n"));
 
     return 1;
 }
