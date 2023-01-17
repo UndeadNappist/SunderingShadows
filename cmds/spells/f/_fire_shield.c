@@ -65,6 +65,8 @@ void spell_effect(int prof){
     caster->set_property("added short",({ shield_type }));
     addSpellToCaster();
     spell_successful();
+    spell_duration = duration;
+    set_end_time();
     counter = 6 * clevel;
     execute_attack();
     call_out("room_check", ROUND_LENGTH);

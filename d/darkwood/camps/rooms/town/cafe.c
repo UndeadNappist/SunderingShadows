@@ -1,6 +1,6 @@
 #include <std.h>
 #include "../../elfisland1.h"
-inherit "/std/rquestroom";
+inherit ROOM;
 
 void create() {
    ::create();
@@ -67,7 +67,6 @@ void reset()
         dartboard->set_mastery_list("synoria_cafe");
         dartboard->move(TO);
     }
-    if(collector = present("questor")) collector->set_race("elf");
 }
 
 void init() {

@@ -1,6 +1,6 @@
 #include <std.h>
 #include "../../elfisland1.h"
-inherit "/std/room";
+inherit "/std/rquestroom";
 
 void create() {
    ::create();
@@ -33,3 +33,10 @@ void create() {
       "southwest" : TOWN+"road10",
    ]) );
 }
+
+void reset(){
+    object collector;
+    ::reset();
+    if(collector = present("questor")) collector->set_race("elf");
+}
+

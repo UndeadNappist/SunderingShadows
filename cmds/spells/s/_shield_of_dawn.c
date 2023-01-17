@@ -29,7 +29,7 @@ void spell_effect(int prof)
     addSpellToCaster();
     spell_successful();
     counter = (2 * clevel) + 10;
-    spell_duration = counter * ROUND_LENGTH;
+    spell_duration = duration;
     set_end_time();
     execute_attack();
     call_out("room_check", ROUND_LENGTH);
