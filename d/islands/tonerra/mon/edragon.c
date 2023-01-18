@@ -342,7 +342,7 @@ void get_um()
         return;
     }
 
-    message("combat","%^BOLD%^%^GREEN%^The dragon awakes as she searches for revenge.%^RESET%^",users());
+    //message("combat","%^BOLD%^%^GREEN%^The dragon awakes as she searches for revenge.%^RESET%^",users());
     call_out("headin",5,revenge[k-1],environment(find_player(revenge[k-1])));
 
     //set_wimpy(25);
@@ -422,7 +422,7 @@ void die(object obj)
     }
 
     SAVE_D->remove_array("emerald_revenge");
-    message("combat","%^BOLD%^%^GREEN%^The dragon's rage is silenced...for now.%^RESET%^",users());
+    //message("combat","%^BOLD%^%^GREEN%^The dragon's rage is silenced...for now.%^RESET%^",users());
     
     ob = find_object_or_load(HOMEROOM);
     if(objectp(ob)) { ob->set_had_players(6*4); }
@@ -461,7 +461,8 @@ void receive_given_item(object obj)
             "air:%^RESET%^ Take what is mine ever again, and I will not be so merciful.");
         tell_room(ETO,"%^BOLD%^%^GREEN%^She lifts her head, and a single flap of her mighty "
             "wings draws her aloft.%^RESET%^");
-        message("combat","%^BOLD%^%^GREEN%^The dragon returns to her lair, her rage abated.%^RESET%^",users());
+        tell_room(ETO,"%^BOLD%^%^GREEN%^The dragon returns to her lair, her rage abated.%^RESET%^");
+        //message("combat","%^BOLD%^%^GREEN%^The dragon returns to her lair, her rage abated.%^RESET%^",users());
         TO->move(HOMEROOM);
         SAVE_D->remove_array("emerald_revenge");
     }
