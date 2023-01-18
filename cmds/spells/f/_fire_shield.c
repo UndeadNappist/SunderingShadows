@@ -26,12 +26,12 @@ void create(){
 
 string query_cast_string(){
     if(arg == "chill"){
-        tell_object(caster, "%^RESET%^%^CRST%^%^C124%^Circling your hands before you, you begin to evoke the power of %^C208%^f%^C214%^i%^C208%^r%^C202%^e%^C124%^.%^CRST%^");
-        tell_room(place, "%^RESET%^%^CRST%^%^C124%^Circling "+caster->QP+" hands before "+caster->QO+", "+caster->QCN+"%^RESET%^%^CRST%^%^C124%^ begins to evoke the power of %^C208%^f%^C214%^i%^C208%^r%^C202%^e%^C124%^.%^CRST%^", caster);
-    }
-    else{
         tell_object(caster, "%^RESET%^%^CRST%^%^C030%^Circling your hands before you, you begin to evoke the power of %^C045%^i%^C051%^c%^C045%^e%^C030%^.%^CRST%^");
         tell_room(place,"%^RESET%^%^CRST%^%^C030%^Circling "+caster->QP+" hands before "+caster->QO+", "+caster->QCN+"%^RESET%^%^CRST%^%^C030%^ begins to evoke the power of %^C045%^i%^C051%^c%^C045%^e%^C030%^.%^CRST%^",caster);
+    }
+    else{
+        tell_object(caster, "%^RESET%^%^CRST%^%^C124%^Circling your hands before you, you begin to evoke the power of %^C208%^f%^C214%^i%^C208%^r%^C202%^e%^C124%^.%^CRST%^");
+        tell_room(place, "%^RESET%^%^CRST%^%^C124%^Circling "+caster->QP+" hands before "+caster->QO+", "+caster->QCN+"%^RESET%^%^CRST%^%^C124%^ begins to evoke the power of %^C208%^f%^C214%^i%^C208%^r%^C202%^e%^C124%^.%^CRST%^", caster);
     }
     return "display";
 }

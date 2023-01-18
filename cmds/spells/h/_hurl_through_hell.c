@@ -42,9 +42,9 @@ int preSpell()
         return 0;
     }
    
-    if ((int)caster->query_property("spell hurl hell time") + DELAY > time()) {
+    if(caster->cooldown("Hurl Through Hell")){
         tell_object(caster, "You cannot use hurl through hell yet.");
-        return 0;
+        return 1;
     }
   
     return 1;
@@ -77,7 +77,7 @@ void spell_effect(int prof)
     }
     
     spell_successful();
-    caster->set_property("spell hurl hell time", time());
+    caster->add_cooldown("Hurl Through Hell", DELAY);
     
     if(do_save(target, 0))
     {

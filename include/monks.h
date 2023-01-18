@@ -11,14 +11,14 @@
                         "darkness" : 2, "darkvision" : 2, "ghost step" : 2, "cloak of shadows" : 6,\
                         "shadow stride" : 4, "shadow sight" : 5, "shadow travel" : 5]), \
                     "way of the elements" : ([\
-                        "burning hands" : 2, "fly" : 2,\
+                        "burning hands" : 2, "levitate" : 2,\
                         "thunder wave" : 3, "hold person" : 3, "fireball" : 4, "shatter" : 4,\
                         "wall of stone" : 5, "gaseous form" : 5, "stoneskin" : 6, "gale fist" : 6,\
                         "wall of fire" : 6, "gust of wind" : 6, "cone of cold" : 6, "fire storm" : 6,\
                         "monsoon" : 6]),\
                     "grandmaster of the way" : ([\
                         "darkness" : 2, "darkvision" : 2, "ghost step" : 2, "cloak of shadows" : 6,\
-                        "shadow stride" : 4, "shadow sight" : 5, "burning hands" : 2, "fly" : 2,\
+                        "shadow stride" : 4, "shadow sight" : 5, "burning hands" : 2, "levitate" : 2,\
                         "thunder wave" : 3, "hold person" : 3, "fireball" : 4, "shatter" : 4,\
                         "wall of stone" : 5, "gaseous form" : 5, "stoneskin" : 6, "gale fist" : 6,\
                         "wall of fire" : 6, "gust of wind" : 6, "cone of cold" : 6, "fire storm" : 6,\
@@ -30,7 +30,7 @@
                     9  : ({ "shadow sight" }),\
                     11 : ({ "cloak of shadows", "shadow travel" }),]),  \
                     "way of the elements" : ([\
-                    3  : ({ "burning hands", "fly" }),\
+                    3  : ({ "burning hands", "levitate" }),\
                     5  : ({ "thunder wave", "hold person" }),\
                     7  : ({ "fireball", "shatter" }),\
                     9  : ({ "wall of stone", "gaseous form" }),\
@@ -39,7 +39,7 @@
                     15 : ({ "cone of cold" }),\
                     17 : ({ "fire storm", "monsoon" }),]),\
                     "grandmaster of the way" : ([\
-                    3 :  ({ "darkvision", "darkness", "ghost step", "burning hands", "fly" }),\
+                    3 :  ({ "darkvision", "darkness", "ghost step", "burning hands", "levitate" }),\
                     5 :  ({ "thunder wave", "hold person" }),\
                     7 :  ({ "shadow stride", "fireball", "shatter" }),\
                     9 :  ({ "shadow sight", "wall of stone", "gaseous form" }),\
