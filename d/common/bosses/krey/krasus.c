@@ -38,11 +38,11 @@ void create()
     set_gender("male");
     set_hd(75, 9);
     set_class("paladin");
-    set_mlevel("paladin", 65);
+    set_mlevel("paladin", 75);
     set_class("immortal_defender");
     set_mlevel("immortal_defender", 10);
     set_class("cleric");
-    set_mlevel("cleric", 65);
+    set_mlevel("cleric", 75);
     set("base_class", "paladin");
     set_alignment(1);
     set_damage(20, 10);
@@ -61,7 +61,7 @@ void create()
     set_max_hp(125000);
     set_hp(125000);
     
-    set_monster_feats( ({ "damage resistance", "improved damage resistance", "damage reduction", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "dazzling display", "powerattack", "cornugon smash", "intimidating prowess", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite" }) );
+    set_monster_feats( ({ "damage resistance", "improved damage resistance", "damage reduction", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "dazzling display", "powerattack", "cornugon smash", "intimidating prowess", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "cleave", "layonhands", "smite" }) );
     
     set_spells( ({ "shield of law", "stone body", "angelic aspect" }) );
 }
