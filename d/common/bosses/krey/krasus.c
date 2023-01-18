@@ -31,10 +31,11 @@ object barrage_room;
 void create()
 {
     set_name("krasus");
-    set_id( ({ "human", "defender", "warrior", "golden defender" }) );
+    set_id( ({ "dragonkin", "defender", "warrior", "golden defender" }) );
     set_short("Krasus, the Great Golden Defender");
     set_long("");
-    set_race("human");
+    set_race("dragonkin");
+    set("subrace", "fire");
     set_gender("male");
     set_hd(75, 10);
     set_class("paladin");
