@@ -87,9 +87,9 @@ void die(mixed ob){
   "%^BOLD%^%^RED%^  The massive being starts to run at the edges and thrashes feebly as the lava reclaims its own!%^RESET%^\n"
   "\n%^BOLD%^%^WHITE%^You see something emerge from the lava mass but then it sinks into the lava with the beast far out on the lava sea to the east.%^RESET%^"
   ,environment(TO));
-  message("info",
+  /*message("info",
   "%^BOLD%^%^RED%^A great heat builds and then settles in the ground beneath your feet as the rumblings of a lava pool are quieted far below you!%^RESET%^"
-  ,users());
+  ,users());*/
   switch(random(100)) {
     case 0..49:
         new(OBJ"emerald.c")->move(TO);

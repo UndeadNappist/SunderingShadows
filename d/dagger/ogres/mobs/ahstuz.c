@@ -124,9 +124,9 @@ void die(object ob) {
        "unable to breathe!\n\n   Suddenly Ahstuz falls to the ground "+
        "dead, his power gone.\nYou gasp for breath as your heart "+
        "suddenly starts beating again.");
-    message("broadcast", "%^BOLD%^%^RED%^   A great pillar of flame can "+
+    /*message("broadcast", "%^BOLD%^%^RED%^   A great pillar of flame can "+
        "be seen in the north sky as the portal to the pits of hell is "+
-       "closed.", users());
+       "closed.", users());*/
     att = all_living(ETO);
     for(i=0;i<sizeof(att);i++){
       if(!interactive(att[i])) continue;

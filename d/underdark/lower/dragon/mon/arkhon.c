@@ -277,8 +277,8 @@ void die(object ob){
    tell_room(ETO,"%^RED%^Mortally wounded, he staggers back, his slender legs swaying with the effort, and finally he "
 "collapses to the ground with an impact that %^ORANGE%^s%^RESET%^ha%^RED%^k%^YELLOW%^e%^RESET%^%^ORANGE%^s %^RED%^the "
 "very walls of the cavern.%^RESET%^");
-   message("info","%^BOLD%^%^RED%^A great %^RESET%^%^RED%^r%^BOLD%^o%^RESET%^%^RED%^ar %^BOLD%^shakes the earth beneath "
-"your feet, as Arkhon Bloodscale breathes his last!%^RESET%^",users());
+   /*message("info","%^BOLD%^%^RED%^A great %^RESET%^%^RED%^r%^BOLD%^o%^RESET%^%^RED%^ar %^BOLD%^shakes the earth beneath "
+"your feet, as Arkhon Bloodscale breathes his last!%^RESET%^",users());*/
    ppl = ({});
    for(i=0;i<sizeof(fighterz);i++) {
      if(userp(fighterz[i])) {
