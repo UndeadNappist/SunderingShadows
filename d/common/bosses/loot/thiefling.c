@@ -3,7 +3,7 @@
   
   Thiefling.
   
-  Gives bonus to thievery and stealth. Gives more bonus if you're a Tiefling.
+  Gives bonus to thievery and dungeoneering. Gives more bonus if you're a Tiefling.
   
   -- Tlaloc --
 */
