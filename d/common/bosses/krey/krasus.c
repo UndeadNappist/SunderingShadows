@@ -36,7 +36,7 @@ void create()
     set_long("");
     set_race("human");
     set_gender("male");
-    set_hd(75, 9);
+    set_hd(75, 10);
     set_class("paladin");
     set_mlevel("paladin", 75);
     set_class("immortal_defender");
@@ -61,7 +61,7 @@ void create()
     set_max_hp(125000);
     set_hp(125000);
     
-    set_monster_feats( ({ "damage resistance", "improved damage resistance", "damage reduction", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "dazzling display", "powerattack", "cornugon smash", "intimidating prowess", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "cleave", "layonhands", "smite" }) );
+    set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite" }) );
     
     set_spells( ({ "shield of law", "stone body", "angelic aspect" }) );
 }
@@ -84,7 +84,6 @@ void init()
     
     if(!buffed)
     {
-        command("powerattack max");
         command("shieldwall max");
         command("enhance add axiomatic");
         command("enhance add holy");
