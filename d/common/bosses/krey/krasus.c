@@ -34,8 +34,7 @@ void create()
     set_id( ({ "dragonkin", "defender", "warrior", "golden defender" }) );
     set_short("Krasus, the Great Golden Defender");
     set_long("");
-    set_race("dragonkin");
-    set("subrace", "fire");
+    set_race("human");
     set_gender("male");
     set_hd(75, 10);
     set_class("paladin");
