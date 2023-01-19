@@ -11,10 +11,9 @@ void create() {
     set_domains("sun");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS sunbeam on TARGET");
-    set_damage_desc("radiant, 4/3 times more to undead, on ranged touch attack");
+    set_damage_desc("radiant damage on ranged touch attack");
     set_description("This spell will create a beam of pure light aimed at the target.  A target who fails to avoid the "
-        "sunbeam will take damage from the pure sunlight and may be momentarily blinded.  Undead hit by the spell will "
-        "suffer additional damage.");
+        "sunbeam will take damage from the pure sunlight and may be momentarily blinded.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
@@ -36,9 +35,6 @@ void spell_effect(int prof) {
         dest_effect();
         return;
     }
-
-    if(target->is_undead())
-        sdamage *= 4/3;
 
     target_limb = target->return_target_limb();
 

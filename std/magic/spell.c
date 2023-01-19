@@ -44,6 +44,7 @@ string spell_name,
        monk_way,
        * oracle_mystery,
        * divine_domains,
+       * druid_circle,
        damage_desc,
        save_type,
        syntax,
@@ -447,6 +448,16 @@ void set_domains(mixed str)
     }
     if (arrayp(str)) {
         divine_domains = str;
+    }
+}
+
+void set_circle(mixed str)
+{
+    if (stringp(str)) {
+        druid_circle = ({ str });
+    }
+    if (arrayp(str)) {
+        druid_circle = str;
     }
 }
 
@@ -2076,25 +2087,11 @@ string query_spell_sphere()
     return spell_sphere;
 }
 
-string query_monk_way()
-{
-    return monk_way;
-}
-
-string* query_mystery()
-{
-    return oracle_mystery;
-}
-
-string* query_domains()
-{
-    return divine_domains;
-}
-
-string query_heritage()
-{
-    return heritage;
-}
+string query_monk_way() { return monk_way;       }
+string* query_mystery() { return oracle_mystery; }
+string* query_domains() { return divine_domains; }
+string *query_circle()  { return druid_circle;   }
+string query_heritage() { return heritage;       }
 
 string query_cast_string()
 {
@@ -4369,6 +4366,8 @@ void help()
         write("%^BOLD%^%^RED%^Domains:%^RESET%^ " + implode(divine_domains, ", "));
     }
     */
+    sizeof(druid_circle) && printf("%s%-14s %s%s%s\n", HIR, "Domains:", HIW, capitalize(implode(druid_circle, ", ")), NOR);
+    
     sizeof(oracle_mystery) && printf("%s%-14s %s%s%s\n", HIR, "Mysteries:", HIW, capitalize(implode(oracle_mystery, ", ")), NOR);
     /*
     if (sizeof(oracle_mystery)) {
