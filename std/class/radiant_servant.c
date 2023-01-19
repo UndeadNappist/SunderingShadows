@@ -262,7 +262,9 @@ mapping query_innate_spells(object player)
             "gale of life"              : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
             "eye of the sun"            : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
             "repel the profane"         : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
-            "cleansing flames"          : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),                 
+            "cleansing flames"          : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+            "heal"                      : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
+            "mass heal"                 : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),             
         ]);
     }
     

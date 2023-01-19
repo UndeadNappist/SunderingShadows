@@ -8,7 +8,7 @@ void create() {
     feat_category("RadiantServant");
     feat_name("holy purpose");
     feat_prereq("Radiant Servant L7");
-    feat_desc("The Radiant Servant is here, above all, to serve a holy purpose: to bring light and life to a world filled with darkness and sorrow. To that end, they are granted powerful spells to aid in their fight. The Radiant Servant gains: repel the profane, cleansing flames, spray of shooting stars, gale of life, celestial brilliance, and eye of the sun as innate spells.");
+    feat_desc("The Radiant Servant is here, above all, to serve a holy purpose: to bring light and life to a world filled with darkness and sorrow. To that end, they are granted powerful spells to aid in their fight. The Radiant Servant gains: heal, mass heal, repel the profane, cleansing flames, spray of shooting stars, gale of life, celestial brilliance, and eye of the sun as innate spells.");
     permanent(1);
     set_required_for(({}));
 }
