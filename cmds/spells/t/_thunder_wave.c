@@ -4,17 +4,14 @@
 #include <magic.h>
 inherit SPELL;
 
-void create() {
+void create(){
     ::create();
     set_spell_name("thunder wave");
     set_spell_level(([ "monk" : 5 ]));
     set_monk_way("way of the elements");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS thunder wave");
-    set_description("This spell creates a wave of thunderous force, all creatures around the "+
-    "caster must make a fortitude save or be damaged and knocked to the ground. Furthemore, all "+
-    "inanimate objects not attached and on the ground may be knocked away.\n\nNOTE: The damage of this "+
-    "spell is 1d6 per caster level.%^RESET%^");
+    set_description("This spell creates a wave of thunderous force, all creatures around the caster must make a fortitude save or be damaged and knocked to the ground. Furthermore, all inanimate objects not attached and on the ground may be knocked away.%^RESET%^");
     set_verbal_comp();
     set_somatic_comp();
     splash_spell(3);
@@ -24,10 +21,8 @@ void create() {
     ]));
 }
 
-string query_cast_string()
-{
-    return caster->QCN+"%^BOLD%^%^CYAN%^ raises "+caster->QP+
-    " hands in the air and begins focusing intently!%^RESET%^";
+string query_cast_string(){
+    return caster->QCN+"%^BOLD%^%^CYAN%^ raises "+caster->QP+" hands in the air and begins focusing intently!%^RESET%^";
 }
 
 void spell_effect(int prof)
