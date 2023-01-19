@@ -14,7 +14,7 @@ void create() {
     set_description("You call on the pure radiance of the sun itself, drawing its eye to your target. A beam of pure radiant energy blasts the target. On a successful ranged touch attack, the target takes radiant damage. The target must then make a reflex save to turn away from the light, or takes a small amount of fire damage and is rendered blind for a short time as their eyes are burned with solar fire.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
+    //set_target_required(1);
     set_save("reflex");
 }
 
@@ -29,15 +29,18 @@ void spell_effect(int prof)
     int num;
     string my_name, your_name;
     string target_limb;
+    
+    if(!target || !objectp(target))
+        target = caster->query_current_attacker();
 
-    spell_successful();
-
-    if (environment(caster) != environment(target))
+    if (!target || !objectp(target) || environment(caster) != environment(target))
     {
         tell_object(caster,"Your target is not here.");
         dest_effect();
         return;
     }
+    
+    spell_successful();
     
     my_name = caster->query_cap_name();
     your_name = target->query_cap_name();

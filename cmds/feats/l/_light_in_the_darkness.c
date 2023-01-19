@@ -10,7 +10,7 @@ void create()
     feat_category("RadiantServant");
     feat_name("light in the darkness");
     feat_prereq("Radiant servant L1");
-    feat_desc("The Radiant Servant is the paragon of all that is the light against the darkness. With this feat, the Radiant Servant gains +2 clevel to healing spells and spells that inflict radiant damage. In addition, the Radiant Servant gains 10% radiant resistance. Finally, the radiant servant can no longer be blinded by light or brightness.");
+    feat_desc("The Radiant Servant is the paragon of all that is the light against the darkness. With this feat, the Radiant Servant gains +2 clevel to healing spells and spells that inflict radiant damage. In addition, the Radiant Servant gains 10% radiant resistance. Finally, the radiant servant can no longer be blinded by rooms being too bright.");
     permanent(1);
 }
 
