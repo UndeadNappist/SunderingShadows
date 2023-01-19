@@ -246,7 +246,7 @@ int caster_level_calcs(object player, string the_class)
 }
 
 mapping class_featmap(string myspec) {
-    return ([ 1 : ({ "light in the darkness" }), 4 : ({ "radiant aura" }), 7 : ({ "supreme healer" }), ]);
+    return ([ 1 : ({ "light in the darkness" }), 4 : ({ "radiant aura" }), 7 : ({ "holy purpose" }), ]);
 }
 
 mapping query_innate_spells(object player)
