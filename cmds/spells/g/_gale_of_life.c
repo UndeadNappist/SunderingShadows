@@ -18,7 +18,7 @@ create()
     ::create();
     set_spell_name("gale of life");
     set_spell_level(([ "innate" : 7 ]));
-    set_affixed_level(5);
+    set_affixed_spell_level(5);
     set_spell_sphere("healing");
     set_syntax("cast CLASS gale of life");
     set_damage_desc("revive or heal all party members");

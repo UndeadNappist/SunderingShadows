@@ -11,7 +11,7 @@ void create() {
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS eye of the sun on TARGET");
     set_damage_desc("radiant damage on ranged touch attack");
-    set_description("You call on the pure radiance of the sun itself, drawing its eye to your target. A beam of pure radiant energy blasts the target. On a successful ranged touch attack, the target takes radiant damage. The target must then make a reflex save to turn away from the light, or is rendered blind for a short time.");
+    set_description("You call on the pure radiance of the sun itself, drawing its eye to your target. A beam of pure radiant energy blasts the target. On a successful ranged touch attack, the target takes radiant damage. The target must then make a reflex save to turn away from the light, or takes a small amount of fire damage and is rendered blind for a short time as their eyes are burned with solar fire.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
@@ -51,9 +51,13 @@ void spell_effect(int prof)
     {
         tell_room(place,"%^C191%^" + your_name + " is struck by a broad beam of radiant energy from the sky!%^CRST%^", ({ target }));
         tell_object(target,"%^C191%^You are struck by a broad beam of radiant energy from the sky!%^CRST%^");
-        if(!do_save(target))
-            target->set_temporary_blinded(1);
         target->cause_typed_damage(target, target_limb, sdamage, "radiant");
+        
+        if(target && objectp(target) && !do_save(target))
+        {
+            target->set_temporary_blinded(1);
+            target->cause_typed_damage(target, target_limb, sdamage / 10, "fire");
+        }
     }
     else
     {
