@@ -139,6 +139,9 @@ void execute_attack()
         if(ob->query_unconscious())
             continue;
         
+        if(!random(3))
+            continue;
+        
         userp(ob) && tell_object(ob, "%^C032%^You are e%^C039%^n%^C045%^g%^C051%^u%^C045%^l%^C039%^f%^C032%^ed in %^C214%^r%^C220%^a%^C226%^d%^C220%^i%^C214%^ant%^C032%^, %^C214%^s%^C220%^c%^C226%^o%^C214%^uring l%^C220%^i%^C226%^g%^C214%^ht%^C032%^!%^CRST%^");
         
         set_save("fort");
