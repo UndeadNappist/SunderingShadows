@@ -24,7 +24,7 @@ void create(){
 	" Were it not for the horrible stench rising from the ghast"+
 	" it would be hard to tell the creature from a ghoul."
 	);
-	set_property("undead",1);
+	set_property("undead", 1);
 	set_hd(15,5);
 	set_max_level(14);
 	set_overall_ac(0);

@@ -23,14 +23,14 @@ void create(){
 	" disheveled and spikey. Some clothing still clings to"+
 	" his frame, covered in blood from past meals."
 	);
-	set_property("undead",1);
+	set_property("undead", 1);
 	set_hd(15,3);
 	set_max_level(18);
 	set_body_type("fhuman");
 	set_overall_ac(-3);
 	set_alignment(9);
 	set_size(2);
-	set_race("ghoul");
+	set_race("undead");
 	set_max_hp(random(30)+175);
 	set_hp(query_max_hp());
 	set_level(15);
