@@ -105,6 +105,7 @@ void init(){
     }
     add_action("push","push");
     add_action("pull","pull");
+    if(!avatarp(this_player())) this_player()->move("/d/darkwood/room/road18");
 }
 
 int push(string str) {
