@@ -175,7 +175,7 @@ void init()
             spell->use_spell(this_object(), 0, 70, 100, "mage");
         if(!catch(spell = new("/cmds/spells/s/_shadowform.c")))
             spell->use_spell(this_object(), 0, 70, 100, "mage");
-        if(!catch(spell = new("/cmds/spells/f/_oppression.c")))
+        if(!catch(spell = new("/cmds/spells/o/_oppression.c")))
             spell->use_spell(this_object(), 0, 70, 100, "mage");
         
         command("lifeless_shroud");
