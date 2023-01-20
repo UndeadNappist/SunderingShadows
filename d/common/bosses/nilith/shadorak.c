@@ -167,10 +167,17 @@ void init()
     
     if(!buffed)
     {
-        new("/cmds/spells/v/_vampiric_shadow_shield.c")->use_spell(this_object(), 0, 70, 100, "mage");
-        new("/cmds/spells/s/_shadow_body.c")->use_spell(this_object(), 0, 70, 100, "mage");
-        new("/cmds/spells/s/_shadowform.c")->use_spell(this_object(), 0, 70, 100, "mage");
-        new("/cmds/spells/f/_oppression.c")->use_spell(this_object(), 0, 70, 100, "mage");
+        object spell;
+        
+        if(!catch(spell = new("/cmds/spells/v/_vampiric_shadow_shield.c")))
+            spell->use_spell(this_object(), 0, 70, 100, "mage");
+        if(!catch(spell = new("/cmds/spells/s/_shadow_body.c")))
+            spell->use_spell(this_object(), 0, 70, 100, "mage");
+        if(!catch(spell = new("/cmds/spells/s/_shadowform.c")))
+            spell->use_spell(this_object(), 0, 70, 100, "mage");
+        if(!catch(spell = new("/cmds/spells/f/_oppression.c")))
+            spell->use_spell(this_object(), 0, 70, 100, "mage");
+        
         command("lifeless_shroud");
         buffed = 1;
     }
