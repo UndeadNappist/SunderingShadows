@@ -10,7 +10,7 @@ void create()
     feat_category("MagicDamage");
     feat_name("greater spell power");
     feat_prereq("Improved spell power");
-    feat_desc("With this feat, the caster gains +3 to caster level with all spells.");
+    feat_desc("With this feat, the caster gains an additional +1 to caster level with all spells.");
     permanent(1);
     set_required_for(({"magic arsenal"}));
 }
