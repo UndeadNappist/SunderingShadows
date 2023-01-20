@@ -35,7 +35,7 @@ void create(){
 	ob->set_name("board");
 	ob->set_id( ({ "board", "guild board" }) );
 	ob->set_board_id("ddguild");
-	ob->set_max_posts(30);
+	ob->set_max_posts(50);
 	ob->set_location("/d/dagger/Torm/city/thieves/vethor_guild");
 	ob->set("short", "Torm thieves' guild board");
 	ob->set("long", "Post whatever thieving and guild-related things you deem appropriate here.\n");
