@@ -844,9 +844,9 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
         }
         //it can be optimized to mapping, any help appreciated
         elements = ({ "fire", "cold", "electricity", "sonic", "acid" });
-        actions = ({ "a burst", "shards", "tendrils", "explosion", "splatter" });
-        bursts = ({ "flames", "ice", "lightning", "sounds", "acid" });
-        colors = ({ "fire red", "ice blue", "lightning yellow", "lightning yellow", "acid green" });
+        actions = ({ "a %^C208%^b%^C214%^u%^C208%^r%^C202%^s%^C208%^t", "%^C045%^s%^C051%^ha%^C045%^r%^C051%^d%^C045%^s", "%^C228%^te%^C226%^n%^C228%^dr%^C231%^i%^C226%^l%^C228%^s", "%^C218%^e%^C212%^x%^C206%^plosi%^C212%^o%^C218%^n", "%^C077%^s%^C071%^p%^C070%^l%^C076%^a%^C070%^t%^C071%^t%^C077%^e%^C071%^r" });
+        bursts = ({ "%^C208%^f%^C214%^l%^C208%^a%^C202%^m%^C208%^e%^C214%^s", "%^C045%^i%^C051%^c%^C045%^e", "%^C228%^lig%^C226%^h%^C231%^t%^C228%^ni%^C231%^n%^C228%^g", "%^C218%^s%^C212%^o%^C206%^un%^C212%^d%^C218%^s", "%^C077%^a%^C071%^c%^C070%^i%^C076%^d" });
+        colors = ({ "%^C202%^", "%^C033%^", "%^C100%^", "%^C090%^", "%^C065%^" });
 
         effective_level = attacker->query_prestige_level("magus");
         effective_level += attacker->query_prestige_level("paladin");
@@ -865,9 +865,9 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                     enhance_msg = actions[i] + " of " + bursts[i];
                     enhance_dmg += roll_dice(crit_mult * (1 + effective_level / 10), 10);
                 }
-                tell_object(attacker, CRAYON_D->color_string("You release " + enhance_msg + " at " + ename + "!", colors[i]));
-                tell_object(target, CRAYON_D->color_string(pname + " releases " + enhance_msg + "  through you!", colors[i]));
-                tell_room(environment(attacker), CRAYON_D->color_string(pname + " releases " + enhance_msg + " at " + ename + "!", colors[i]), ({ target, attacker }));
+                tell_object(attacker, "%^RESET%^%^CRST%^"+colors[i]+"You release "+enhance_msg+colors[i]+" at "+ename+"%^RESET%^%^CRST%^"+colors[i]+"!%^CRST%^");
+                tell_object(target, "%^RESET%^%^CRST%^"+colors[i]+pname+"%^RESET%^%^CRST%^"+colors[i]+" releases "+enhance_msg+colors[i]+" through you!%^CRST%^");
+                tell_room(environment(attacker), "%^RESET%^%^CRST%^"+colors[i]+pname+"%^RESET%^%^CRST%^"+colors[i]+" releases "+enhance_msg+colors[i]+" at "+ename+"%^RESET%^%^CRST%^"+colors[i]+"!%^CRST%^", ({ target, attacker }));
                 target->cause_typed_damage(target, target->return_target_limb(), enhance_dmg, elements[i]);
             }
         }
