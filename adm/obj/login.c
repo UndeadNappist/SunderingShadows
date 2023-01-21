@@ -344,7 +344,7 @@ protected void ansi_test(string str) {
         __Player->reset_terminal();
     }
     __Player->set_gender("other");
-    message("logon", "Do you play with a screen reader? [y/n]: ", this_object());
+    message("logon", "\nDo you play with a screen reader? [y/n]: ", this_object());
     input_to("enter_reader");
     return;
 
@@ -388,6 +388,7 @@ protected void enter_email(string str) {
     log_file("player/enter", sprintf("%s (new player): %s\n", __Name, ctime(time())));
     log_file("player/new_players",sprintf("%s(%s) <%s> at %s from %s\n",__Name, str, __Player->query_email(),ctime(time()),query_ip_number()));
     seteuid(getuid());
+    __Player->resetRelationships();
     exec_user();
 }
 
