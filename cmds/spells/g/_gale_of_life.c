@@ -56,7 +56,7 @@ int preSpell()
             continue;
         
         spell_ob->set_silent_casting(1);
-        spell_ob->use_spell(caster, ob, clevel, 100, spell_type);
+        spell_ob->use_spell(caster, ob, clevel, 100, "cleric");
     }      
       
     spell_successful();
