@@ -119,6 +119,7 @@ void setup_guardian(object caster, string myType){
     
     set_level(num);
     set_hd(num, 8);
+    set_guild_level("mage", num);
     set_max_hp(roll_dice(num, 8) + (num * 2));
     set_hp(query_max_hp());
     set_stats("intelligence",12);

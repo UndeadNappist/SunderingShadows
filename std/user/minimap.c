@@ -25,7 +25,7 @@ string query_blocked_exit(object what, string direction)
         return "#";
     else
     {
-        room = load_object(dest);
+        catch(room = load_object(dest));
         if(!objectp(room))
             return "#";
     }
