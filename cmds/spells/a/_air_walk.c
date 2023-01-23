@@ -16,18 +16,21 @@ void create()
     set_spell_level(([ "druid" : 4, "cleric" : 4, "ranger" : 2, "oracle" : 4, ]));
     set_domains("air");
     set_spell_sphere("alteration");
-    set_syntax("cast CLASS air walk on TARGET");
+    set_syntax("cast CLASS air walk [on TARGET]");
     set_description("This spell will allow the target to walk on the air as if it were perfectly level ground.  "
         "This makes traveling over long distances almost effortless.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
+    //set_target_required(1);
 	set_helpful_spell(1);
 }
 
 
 int preSpell()
 {
+    if(!target || !objectp(target))
+        target = caster;
+    
     if(!objectp(target))
     {
         tell_object(caster,"This spell requires a target.");

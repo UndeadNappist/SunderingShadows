@@ -15,14 +15,14 @@ void create()
     set_spell_name("airbolt");
     set_spell_level(([ "cleric" : 5 ]));
     set_spell_sphere("invocation_evocation");
-    set_syntax("cast CLASS airbolt on TARGET");
+    set_syntax("cast CLASS airbolt [on TARGET]");
     set_damage_desc("force");
     set_description("This spell enables a priest to concentrate the air around him into a powerful gust of wind. The "
         "priest chooses the target of the spell, and there is a chance that the target is knocked off balance and will drop what "
         "he or she is holding.  In addition, the gale force winds may hit others who are standing near the target.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
+    //set_target_required(1);
     set_save("reflex");
     splash_spell(1);
 }
@@ -30,6 +30,9 @@ void create()
 
 int preSpell()
 {
+    if(!target || !objectp(target))
+        target = caster->query_current_attacker();
+    
     if(!objectp(target))
     {
         tell_object(caster,"That spell requires a target.");
