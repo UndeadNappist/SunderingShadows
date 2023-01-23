@@ -18,12 +18,10 @@ void create()
     set_monk_way("way of the elements");
     set_syntax("cast CLASS fireball on TARGET");
     set_damage_desc("fire, versatile arcanist");
-    set_description("By casting this spell, a mage can aim and release a massive ball of fire at a target and those "
-        "around him.  The fireball spell will wreak havoc on the caster's target and those who oppose him.  Damage done to those "
-        "hit by the spell is 1d6 per level of the caster, subject to a maximum, halved if they manage to evade the brunt of the "
-        "spell. A versatile arcanist can manipulate the base element of this spell.");
+    set_description("By casting this spell, a mage can aim and release a massive ball of fire at a target and those around him.  The fireball spell will wreak havoc on the caster's target and those who oppose him. Damage done to those hit by the spell halved if they manage to evade the brunt of the spell.");
     set_verbal_comp();
     set_somatic_comp();
+    versatile();
     set_target_required(1);
     splash_spell(1);
     set_components(([ "mage" : ([ "bat guano":1, "sulfur":1, ]), ]));

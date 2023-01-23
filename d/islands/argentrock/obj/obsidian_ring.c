@@ -23,7 +23,7 @@ void create(){
    ok_to_use = 0;
    used = 0;
    call_out("set_max_uses",1);
-   set_item_bonus("empowered",2);
+   //set_item_bonus("empowered",2);
 }
 
 void set_max_uses() {
