@@ -16,16 +16,13 @@ void create()
     set_spell_level(([ "mage" : 3, "druid":3, "monk":15]));
     set_monk_way("way of the elements");
     set_spell_sphere("alteration");
-    set_syntax("cast CLASS acid breath [on TARGET]");
-    set_damage_desc("delayed acid");
-    set_description("This incantation allows for the mage to collect a pool of acid in his/her mouth.  The magics of this "
-        "spell prevent the caster from being harmed by the acid while it is being collected.  The mage then is able to release "
-        "the acid as a breath weapon attack, the droplets of acid spinning around in a cone.  More acid is able to be collected "
-        "as the mage grows in power, making the spell very deadly for a powerful caster.  Though it will become harder for the "
-        "mage to control the acid they stream forth, sometimes even accidentally hitting friends or allies.");
+    set_syntax("cast CLASS acid breath");
+    set_damage_desc("acid damage in splash");
+    set_description("The caster exhales a cone of acid from their mouth, hitting their enemies with droplets of corrosive acid. A successful reflex save will reduce the damage by half.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
+    splash_spell(1);
+    //set_target_required(1);
     set_save("reflex");
 }
 
@@ -40,8 +37,12 @@ string query_cast_string()
 }
 
 
-spell_effect(int prof)
+void spell_effect(int prof)
 {
+    object *hits = ({}),*inven;
+    string YOU, HIM, before, after;
+    int i;
+    
     if (interactive(caster))
     {
         tell_object(caster, "%^BOLD%^%^GREEN%^You feel the acid building in your mouth.%^RESET%^");
@@ -49,63 +50,29 @@ spell_effect(int prof)
         call_out("zapper",4);
         return;
     }
-    zapper();
-}
-
-
-void zapper()
-{
-    object *hits = ({}),*inven;
-    string YOU, HIM, before, after;
-    int i;
 
     if(!objectp(caster))
     {
         dest_effect();
         return;
     }
-    
-    if(!target || !objectp(target))
-        target = caster->query_current_attacker();
 
-    if(!objectp(target) || !objectp(place) || !present(target, place))
+    YOU = caster->QCN;
+
+    tell_object(caster, "%^GREEN%^%^BOLD%^You release a cone of acid droplets at your enemies!");
+    tell_room(place,"%^GREEN%^%^BOLD%^A cone of acid droplets is spit forth from "+YOU+"'s mouth!",({caster}) );
+
+    hits = target_selector();
+    
+    if(!sizeof(hits))
     {
         tell_object(caster, "%^GREEN%^The acid in your mouth fades away.");
         tell_room(place, "%^GREEN%^Clouds of green smoke roll out of "+caster->QCN+"'s mouth and vanishes into the air.", caster);
         dest_effect();
         return;
     }
-
-    YOU = caster->QCN;
-    HIM = target->QCN;
-
+    
     spell_successful();
-
-    tell_object(caster, "%^GREEN%^%^BOLD%^You release a cone of acid droplets at "+HIM+"!");
-    tell_room(place,"%^GREEN%^%^BOLD%^A cone of acid droplets is spit forth from "+YOU+"'s mouth, aimed at "+HIM+"!",({caster,target}) );
-    tell_object(target,"%^GREEN%^%^BOLD%^A cone of acid droplets is spit forth from "+YOU+"'s mouth, aimed right at you!");
-
-    inven = all_living(environment(caster));
-    inven = target_filter(inven);
-
-    // cone spell, I suppose we are simulating targets being in the line of fire or not
-    for (i=0;sizeof(inven), i<sizeof(inven);i++)
-    {
-        if(!objectp(inven[i])) { continue; }
-        if(!living(inven[i])) { continue; }
-        if(inven[i] == caster || inven[i] == target) { continue; }
-
-        if(random(100) < clevel)
-        {
-            hits += ({ inven[i] });
-            continue;
-        }
-        if(random(500) < clevel)
-        {
-            hits += ({ inven[i] });
-            continue;
-        }
-    }
 
     for(i=0;sizeof(hits),i<sizeof(hits);i++)
     {
@@ -115,16 +82,9 @@ void zapper()
         tell_object(hits[i],"%^GREEN%^The acid dropslets fall onto you, burning your skin!");
         tell_room(place,"%^GREEN%^The acid droplets fall onto "+hits[i]->QCN+".",({caster,hits[i]}));
 
-        if(do_save(hits[i])) { damage_targ(hits[i],"torso",sdamage / 4,"acid"); }
-        else { damage_targ(hits[i],"torso",sdamage / 2,"acid"); }
+        if(do_save(hits[i])) { damage_targ(hits[i],"torso",sdamage / 2,"acid"); }
+        else { damage_targ(hits[i],"torso", sdamage, "acid"); }
     }
-
-    tell_object(caster,"%^BOLD%^%^WHITE%^The cone of acid droplets fall onto "+HIM+" covering "+target->QP+" flesh!");
-    tell_object(target,"%^BOLD%^%^WHITE%^The cone of acid droplets fall onto your flesh, buring deep into your skin!");
-    tell_room(place,"%^BOLD%^%^WHITE%^"+YOU+"'s cone of acid droplets tears through "+HIM+"!!", ({caster, target}) );
-
-    if(do_save(target)) { damage_targ(target,"torso",sdamage / 2,"acid"); }
-    else { damage_targ(target,"torso",sdamage,"acid"); }
 
     dest_effect();
 }

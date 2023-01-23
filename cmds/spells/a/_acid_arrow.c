@@ -26,7 +26,7 @@ void create()
     //set_target_required(1);
     splash_spell(1);
     versatile();
-    set_components(([ "mage" : ([ "dart" : 1, ]), ]));
+    //set_components(([ "mage" : ([ "dart" : 1, ]), ]));
     set_immunities( ({ "acid"}) );
 }
 
@@ -97,20 +97,20 @@ void spell_effect(int prof)
     {
         tell_object(caster,"%^BOLD%^"+coloring+"You launch a dart out of your hand, aiming it at "+target->QCN+"!");
         tell_object(target,"%^BOLD%^"+coloring+""+caster->QCN+" launches a dart out of "+caster->QP+" hand, aiming it at you!");
-        tell_room(environment(target),"%^BOLD%^"+coloring+""+caster->QCN+" launches a dart out of "+caster->QP+" hand, aiming it at "+target->QCN+"!",({ caster,target}) );
+        tell_room(place,"%^BOLD%^"+coloring+""+caster->QCN+" launches a dart out of "+caster->QP+" hand, aiming it at "+target->QCN+"!",({ caster,target}) );
 
         if ( roll < need && roll != 20 )
         {
             tell_object(caster,""+coloring+"Your dart explodes into "+arrowtype+" arrow and zips past "+target->QP+" "+target_limb+".");
             tell_object(target,""+coloring+""+caster->QCN+"'s dart explodes into "+arrowtype+" arrow and zips past you.");
-            tell_room(environment(target),""+coloring+""+caster->QCN+"'s dart explodes into "+arrowtype+" arrow and zips past "+target->QCN+".",({ caster,target}) );
+            tell_room(place,""+coloring+""+caster->QCN+"'s dart explodes into "+arrowtype+" arrow and zips past "+target->QCN+".",({ caster,target}) );
             dest_effect();
             return 1;
         }
 
         tell_object(caster,"%^BOLD%^"+coloring+"Your dart explodes into "+arrowtype+" arrow and pierces "+target->QP+" "+target_limb+"!");
         tell_object(target,"%^BOLD%^"+coloring+""+caster->QCN+"'s dart explodes into "+arrowtype+" arrow and pierces your "+target_limb+"!\n%^RESET%^"+coloring+shortmsg+" through your veins.");
-        tell_room(environment(target),"%^BOLD%^"+coloring+""+caster->QCN+"'s dart explodes into "+arrowtype+" arrow and pierces "+target->QCN+"'s "+target_limb+"!",({ caster,target}) );
+        tell_room(place,"%^BOLD%^"+coloring+""+caster->QCN+"'s dart explodes into "+arrowtype+" arrow and pierces "+target->QCN+"'s "+target_limb+"!",({ caster,target}) );
         spell_successful();
     }
     else

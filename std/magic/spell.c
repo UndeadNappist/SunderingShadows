@@ -10,12 +10,8 @@
 
 #define NO_EFFECT -100
 #define TRACK_SPELLS 1
-//#define HEADER sprintf("%s---------------------------=%s<%s%|21s%s>%s=----------------------------%s\n", HIB, HIC, HIW, capitalize(spell_name), HIC, HIB, NOR)
 #define HEADER sprintf("%s%s=%s<%s%|20s%s>%s=%s%s\n", HIB, repeat_string("-", ((width - 24) / 2)),HIC, HIW, capitalize(spell_name), HIC, HIB, repeat_string("-",(width - 24) / 2), NOR)
 #define SUBHEAD "%^BLACK%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
-//#define SUBHEAD "%^BLACK%^BOLD%^" + sprintf("%'-'" + sprintf("%d", to_int(this_player()->getenv("SCREEN"))) + "s", "") + "%^RESET%^"
-//#define SUBHEAD "%^BOLD%^BLACK%^--------------------------------------------------------------------------------%^RESET%^"
-//#define FOOTER "%^BOLD%^BLUE%^--------------------------------------------------------------------------------%^RESET%^"
 #define FOOTER "%^BLUE%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
 
 inherit DAEMON;
@@ -3064,7 +3060,7 @@ void define_base_damage(int adjust)
         {
             sdamage /= 3;
         }
-        else if(caster->is_class("warlock") && FEATS_D->has_feat(caster, "eldritch focus") && caster->query_current_attacker() && spell_source && spell_source == "warlock")
+        else if(caster && caster->is_class("warlock") && FEATS_D->has_feat(caster, "eldritch focus") && caster->query_current_attacker() && spell_source && spell_source == "warlock")
         {
             sdamage /= 3;
         }
@@ -4351,61 +4347,15 @@ void help()
     }
 
     printf("%s%-14s %s%s%s\n", HIR, "Class:", HIW, affixed_level ? ("(L" + affixed_level + " fixed) ") + printclass : "" + printclass, NOR);
-    //write("%^BOLD%^%^RED%^Class:%^RESET%^ " + (affixed_level ? ("(L" + affixed_level + " fixed) ") : "") + printclass);
-
     spell_sphere && printf("%s%-14s %s%s%s\n", HIR, "Sphere:", HIW, capitalize(spell_sphere) + (spell_domain ? (" [" + spell_domain + "]") : "") + ((evil_spell || blood_magic) ? " [evil]" : ""), NOR);
-    /*
-    if (spell_sphere) {
-        write("%^BOLD%^%^RED%^Sphere:%^RESET%^ " + spell_sphere + (spell_domain ? (" [" + spell_domain + "]") : "") + ((evil_spell || blood_magic) ? " [evil]" : "") + (blood_magic ? " [blood]" : "")+ (mental_spell ? " [mind-affecting]" : ""));
-    }
-    */
-
     sizeof(divine_domains) && printf("%s%-14s %s%s%s\n", HIR, "Domains:", HIW, capitalize(implode(divine_domains, ", ")), NOR);
-    /*
-    if (sizeof(divine_domains)) {
-        write("%^BOLD%^%^RED%^Domains:%^RESET%^ " + implode(divine_domains, ", "));
-    }
-    */
-    sizeof(druid_circle) && printf("%s%-14s %s%s%s\n", HIR, "Domains:", HIW, capitalize(implode(druid_circle, ", ")), NOR);
-    
+    sizeof(druid_circle) && printf("%s%-14s %s%s%s\n", HIR, "Domains:", HIW, capitalize(implode(druid_circle, ", ")), NOR);   
     sizeof(oracle_mystery) && printf("%s%-14s %s%s%s\n", HIR, "Mysteries:", HIW, capitalize(implode(oracle_mystery, ", ")), NOR);
-    /*
-    if (sizeof(oracle_mystery)) {
-        write("%^BOLD%^%^RED%^Mysteries:%^RESET%^ " + implode(oracle_mystery, ", "));
-    }
-    */
     mydiscipline && printf("%s%-14s %s%s%s\n", HIR, "Discipline:", HIW, mydiscipline, NOR);
-    /*
-    if (mydiscipline) {
-        write("%^BOLD%^%^RED%^Discipline:%^RESET%^ " + mydiscipline);
-    }
-    */
-    
     heritage && printf("%s%-14s %s%s%s\n", HIR, "Warlock Pact:", HIW, capitalize(heritage), NOR);
-
-    /*
-    if (verbal_comp || somatic_comp) {
-        write("%^BOLD%^%^RED%^Components:%^RESET%^ " + (verbal_comp ? "Verbal " : "") + (somatic_comp ? "Somatic " : ""));
-    }
-    */
     save_type && printf("%s%-14s %s%s%s\n", HIR, "Saving Throw:", HIW, capitalize(save_type), NOR);
-    /*
-    if (save_type) {
-        write("%^BOLD%^%^RED%^Saving throw:%^RESET%^ " + save_type);
-    }
-    */
     bonus_type && printf("%s%-14s %s%s%s\n", HIR, "Bonus Type:", HIW, capitalize(implode(bonus_type, ", ")), NOR);
-    /*
-    if(sizeof(bonus_type)) {
-        write("%^BOLD%^%^RED%^Bonus type:%^RESET%^ " + implode(bonus_type, ", "));
-    }
-    */
     damage_desc && printf("%s%-14s %s%s%s\n", HIR, "Spell Effect:", HIW, damage_desc, NOR);
-    /*
-    if (stringp(damage_desc)) {
-        write("%^BOLD%^%^RED%^Spell effect:%^RESET%^ " + damage_desc);
-    }
-    */
     if (!description) {
         description = "file a bug report - not initialized";
     }

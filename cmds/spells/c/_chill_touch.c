@@ -11,45 +11,38 @@ inherit SPELL;
 string target_limb, element;
 
 
-create()
-{
+create(){
     ::create();
     set_spell_name("chill touch");
     set_spell_level(([ "mage" : 1, "magus" : 1 ]));
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS chill touch on TARGET");
-    set_description("By casting this spell, your hand will flare up with a blue aura.  You can touch your enemy with that "
-        "hand and, if the target doesn't make his save and avoid your touch, you will inflict a small amount of damage.  "
-        "Furthermore, the target will be slightly weakened until a certain length of time runs out. A versatile arcanist can "
-        "manipulate the base element of this spell.");
+    set_description("By casting this spell, your hand will flare up with a blue aura. You can touch your enemy with that hand and, if the target doesn't make his save and avoid your touch, you will inflict a small amount of damage. Furthermore, the target will be slightly weakened until a certain length of time runs out.");
     set_verbal_comp();
     set_somatic_comp();
+    versatile();
     set_target_required(1);
 }
 
+string query_cast_string(){ 
+    return "%^RESET%^%^CRST%^%^C059%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C059%^ utters a morose chant.%^CRST%^";
+}
 
-string query_cast_string() { return caster->QCN+" utters a deathly chant."; }
-
-
-spell_effect(int prof)
-{
+spell_effect(int prof){
     string mycolor, myhue, myhue2, myfeeling, damtype;
     int bonus, roll;
 
-    if(!objectp(caster) || !objectp(target))
-    {
+    if(!objectp(caster) || !objectp(target)){
         target = 0;
         dest_effect();
         return;
     }
 
     target_limb = target->return_target_limb();
-
     bonus = 0;
 
-    if (!present(target,environment(caster)))
-    {
-        tell_object(caster,"%^BOLD%^Your target is not in this area.\n");
+    if (!present(target,environment(caster))){
+        tell_object(caster, "%^RESET%^%^CRST%^%^C059%^Your target is not in this area.%^CRST%^\n");
         target = 0;
         dest_effect();
         return;
@@ -57,48 +50,47 @@ spell_effect(int prof)
 
     element = (string)caster->query("elementalist");
 
-    switch(element)
-    {
-    case "acid":
-        mycolor = "%^GREEN%^";
-        myhue = "sickly green";
-        myhue2 = "sickly green glow";
-        myfeeling = "burning pain";
-        damtype = "acid";
-        break;
-    case "electricity":
-        mycolor = "%^ORANGE%^";
-        myhue = "static-charged";
-        myhue2 = "charge of static";
-        myfeeling = "sudden jolt";
-        damtype = "electricity";
-        break;
-    case "fire":
-        mycolor = "%^RED%^";
-        myhue = "radiantly glowing";
-        myhue2 = "radiant glow";
-        myfeeling = "blazing pain";
-        damtype = "fire";
-        break;
-    case "sonic":
-        mycolor = "%^MAGENTA%^";
-        myhue = "pulsing";
-        myhue2 = "pulsing aura";
-        myfeeling = "horrible throbbing";
-        damtype = "sonic";
-        break;
-    default:
-        element = "cold";
-        mycolor = "%^CYAN%^";
-        myhue = "bluish glowing";
-        myhue2 = "bluish glow";
-        myfeeling = "ghastly chill";
-        damtype = "cold";
-        break;
+    switch(element){
+        case "acid":
+            mycolor = "%^C065%^";
+            myhue = "%^C077%^s%^C071%^i%^C070%^c%^C076%^k%^C070%^l%^C071%^y %^C077%^g%^C071%^r%^C070%^e%^C076%^e%^C070%^n%^C065%^";
+            myhue2 = "%^C077%^s%^C071%^i%^C070%^c%^C076%^k%^C070%^l%^C071%^y %^C077%^g%^C071%^r%^C070%^e%^C076%^e%^C070%^n %^C071%^g%^C077%^l%^C071%^o%^C070%^w%^C065%^";
+            myfeeling = "%^C046%^burning pain%^C065%^";
+            damtype = "acid";
+            break;
+        case "electricity":
+            mycolor = "%^C100%^";
+            myhue = "%^C228%^s%^C231%^t%^C228%^at%^C226%^i%^C228%^c-c%^C231%^h%^C228%^arg%^C231%^e%^C226%^d%^C100%^";
+            myhue2 = "%^C228%^s%^C231%^t%^C228%^at%^C226%^i%^C228%^c c%^C231%^h%^C228%^arg%^C231%^e%^C100%^";
+            myfeeling = "%^C228%^sudden jolt%^C100%^";
+            damtype = "electricity";
+            break;
+        case "fire":
+            mycolor = "%^C124%^";
+            myhue = "%^C208%^r%^C214%^a%^C208%^d%^C202%^i%^C208%^a%^C214%^n%^C208%^t%^C202%^l%^C208%^y %^C214%^g%^C208%^l%^C202%^o%^C208%^w%^C214%^i%^C208%^n%^C202%^g%^C124%^";
+            myhue2 = "%^C208%^r%^C214%^a%^C208%^d%^C202%^i%^C208%^a%^C214%^n%^C208%^t%^C202%^l%^C208%^y %^C214%^g%^C208%^l%^C202%^o%^C208%^w%^C124%^";
+            myfeeling = "%^C196%^blazing pain%^C124%^";
+            damtype = "fire";
+            break;
+        case "sonic":
+            mycolor = "%^C090%^";
+            myhue = "%^C218%^p%^C212%^u%^C206%^lsi%^C212%^n%^C218%^g%^C090%^";
+            myhue2 = "%^C218%^p%^C212%^u%^C206%^lsi%^C212%^n%^C218%^g %^C212%^a%^C206%^u%^C212%^r%^C218%^a%^C090%^";
+            myfeeling = "%^C165%^horrible throbbing%^C090%^";
+            damtype = "sonic";
+            break;
+        default:
+            element = "cold";
+            mycolor = "%^C039%^";
+            myhue = "%^C069%^b%^C075%^l%^C081%^u%^C087%^i%^C123%^s%^C087%^h %^C081%^g%^C075%^l%^C069%^o%^C075%^w%^C081%^i%^C087%^n%^C123%^g%^C039%^";
+            myhue2 = "%^C069%^b%^C075%^l%^C081%^u%^C087%^i%^C123%^s%^C087%^h %^C081%^g%^C075%^l%^C069%^o%^C075%^w%^C039%^";
+            myfeeling = "%^C051%^ghastly chill%^C039%^";
+            damtype = "cold";
+            break;
     }
 
-    tell_object(caster,"%^BOLD%^"+mycolor+"Your hand starts to develop a "+myhue2+".");
-    tell_room(place,"%^BOLD%^"+mycolor+caster->QCN+"'s hand starts to develop a "+myhue2+".",caster );
+    tell_object(caster, "%^RESET%^%^CRST%^"+mycolor+"Your hand starts to develop a "+myhue2+".%^CRST%^");
+    tell_room(place, "%^RESET%^%^CRST%^"+mycolor+caster->query_cap_name()+"%^RESET%^%^CRST%^"+mycolor+"'s hand starts to develop a "+myhue2+".%^CRST%^",caster );
 
     /*===================================================================================
                                       FUNCTION EXPLAINATIONS
@@ -153,11 +145,10 @@ spell_effect(int prof)
 
     roll = BONUS_D->process_hit(caster, target, 1, bonus, 0, 1);
 
-    if(!roll || roll == -1 && ! caster->query_property("spectral_hand"))
-    {
-        tell_object(caster,""+mycolor+"You try and touch "+target->QCN+"'s "+target_limb+" with a "+myhue+" hand, but miss!");
-        tell_object(target,""+mycolor+caster->QCN+"'s "+myhue+" hand gropes for your "+target_limb+" unsuccessfully.");
-        tell_room(place,""+mycolor+caster->QCN+" reaches out for "+target->QCN+"'s "+target_limb+" with a "+myhue+" hand and misses!", ({ caster, target}) );
+    if(!roll || roll == -1 && ! caster->query_property("spectral_hand")){
+        tell_object(caster, "%^RESET%^%^CRST%^"+mycolor+"You try and touch "+target->query_cap_name()+"%^RESET%^%^CRST%^"+mycolor+"'s "+target_limb+" with a "+myhue+" hand, but %^C059%^miss"+mycolor+"!%^CRST%^");
+        tell_object(target, "%^RESET%^%^CRST%^"+mycolor+caster->query_cap_name()+"%^RESET%^%^CRST%^"+mycolor+"'s "+myhue+" hand gropes for your "+target_limb+" unsuccessfully.%^CRST%^");
+        tell_room(place, "%^RESET%^%^CRST%^"+mycolor+caster->query_cap_name()+"%^RESET%^%^CRST%^"+mycolor+" reaches out for "+target->query_cap_name()+"%^RESET%^%^CRST%^"+mycolor+"'s "+target_limb+" with a "+myhue+" hand and %^C059%^misses"+mycolor+"!%^CRST%^", ({ caster, target}) );
         target = 0;
         dest_effect();
         return;
@@ -169,31 +160,28 @@ spell_effect(int prof)
     // shields deflect, in D&D they add to AC I believe - but close
     // enough IMHO and unique to us :D
 
-    //Who is "I am"?.. That comment is not helfpful.  -- Il
+    // Who is "I am"?.. That comment is not helfpful.  -- Il
 
-    if(!"/daemon/combat_d.c"->extra_hit_calcs(caster, target))
-    {
+    if(!"/daemon/combat_d.c"->extra_hit_calcs(caster, target)){
         target = 0;
         dest_effect();
         return;
     }
 
-    tell_object(caster,"%^BOLD%^"+mycolor+"You reach out and touch "+target->QCN+"'s "+target_limb+" with your "+myhue+" hand.");
-    tell_object(target,"%^BOLD%^"+mycolor+caster->QCN+" touches your "+target_limb+" with a "+myhue+" hand.\n%^WHITE%^A "+myfeeling+" runs through you, sapping your strength!");
-    tell_room(place,"%^BOLD%^"+mycolor+caster->QCN+" reaches out and touches "+target->QCN+"'s "+target_limb+" with a "+myhue+" hand!\n%^WHITE%^All life and color seems drawn out of the limb!",({ caster, target}) );
+    tell_object(caster, "%^RESET%^%^CRST%^"+mycolor+"You reach out and touch "+target->query_cap_name()+"%^RESET%^%^CRST%^"+mycolor+"'s "+target_limb+" with your "+myhue+" hand!%^CRST%^");
+    tell_object(target, "%^RESET%^%^CRST%^"+mycolor+caster->query_cap_name()+"%^RESET%^%^CRST%^"+mycolor+" touches your "+target_limb+" with a "+myhue+" hand.\n%^RESET%^%^CRST%^"+mycolor+"A "+myfeeling+" runs through you, sapping your strength!%^CRST%^");
+    tell_room(place, "%^RESET%^%^CRST%^"+mycolor+caster->query_cap_name()+"%^RESET%^%^CRST%^"+mycolor+" reaches out and touches "+target->query_cap_name()+"%^RESET%^%^CRST%^"+mycolor+"'s "+target_limb+" with a "+myhue+" hand!\n%^RESET%^%^CRST%^"+mycolor+"All life and color seems drawn out of the limb!%^CRST%^",({ caster, target}) );
     spell_successful();
 
     damage_targ(target, target_limb, sdamage , damtype );
-    if (objectp(target))
-    {
-        stat_change(target,"strength",-1);
+    if (objectp(target)){
+        stat_change(target, "strength", -1);
         target->set_property("spelled", ({TO}) );
         spell_duration = (clevel + roll_dice(1, 20) + bonus) * ROUND_LENGTH;
         set_end_time();
         call_out("dest_effect",spell_duration);
     }
-    else
-    {
+    else{
         target = 0;
         dest_effect();
         return;
@@ -201,16 +189,15 @@ spell_effect(int prof)
 }
 
 
-void dest_effect()
-{
-    if(find_call_out("dest_effect") != -1) { remove_call_out("dest_effect"); }
-    if(objectp(target))
-    {
-        stat_change(target,"strength",1);
+void dest_effect(){
+    if(find_call_out("dest_effect") != -1) remove_call_out("dest_effect");
+    if(objectp(target)){
+        stat_change(target, "strength", 1);
         target->remove_property_value("spelled", ({TO}) );
-        tell_room(environment(target),"%^ORANGE%^"+target->QCN+" loses "+target->QP+" pale complexion.", target);
-        tell_object(target,"%^ORANGE%^The skeletal white color in your "+target_limb+" fades away.");
+        tell_room(environment(target), "%^RESET%^%^CRST%^%^C101%^"+target->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ loses "+target->query_possessive()+" pale complexion.%^CRST%^", target);
+        tell_object(target, "%^RESET%^%^CRST%^%^C101%^The skeletal white color in your "+target_limb+" fades away.%^CRST%^");
     }
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }
+

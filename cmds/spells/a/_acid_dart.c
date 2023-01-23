@@ -21,10 +21,10 @@ void create()
     set_spell_level( ([ "innate" : 5 ]) );
     set_domains("earth");
     set_spell_sphere("conjuration_summoning");
-    set_syntax("cast innate acid dart on TARGET");
+    set_syntax("cast innate acid dart [on TARGET]");
     set_damage_desc("Acid damage to target on successful ranged touch attack");
     set_description("Clerics with the earth domain learn, by the grace of their deity, how to attack their opponents with a dart of acid. This spell uses a ranged touch attack to do acid damage. This spell requires one Divine Grace point to use.");
-    set_target_required(1);
+    //set_target_required(1);
     set_immunities( ({ "acid" }) );
 }
 
@@ -35,6 +35,12 @@ string query_cast_string()
 
 int preSpell()
 {
+    if(!target || !objectp(target))
+        target = caster->query_current_attacker();
+    
+    if(!objectp(target))
+        return 0;
+    
     if(!caster->ok_to_kill(target))
     {
         dest_effect();
