@@ -19,7 +19,7 @@ void create() {
   set_long(
 @AZHA
 %^BOLD%^South Gates of Azha%^RESET%^
-You are standing in front of the south gates of the Tsarvani frontiertown of Azha. Made of stout hardwood timbers and braced with iron,these gates are very impressive, easily comparable with the gates ofsome major cities in the interior. The walls themselves are alsotimber, packed with tamped earth, and some stone. Although thiswould never stand up to an organized force, it is more than adequateto ward off even the most powerful bandits. Day and night, wagonsline up to be checked over by imperial soldiers before entering thewalls. The gates are shut close.
+You are standing in front of the south gates of the Tsarvani frontier town of Azha. Made of stout hardwood timbers and braced with iron, these gates are very impressive, easily comparable with the gates of some major cities in the interior. The walls themselves are also timber, packed with tamped earth, and some stone. Although this would never stand up to an organized force, it is more than adequate to ward off even the most powerful bandits. Day and night, wagons line up to be checked over by imperial soldiers before entering the walls. The gates are shut close.
 AZHA
     );
 	set_exits(([
