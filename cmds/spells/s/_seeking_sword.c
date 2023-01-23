@@ -19,9 +19,7 @@ void create() {
     set_spell_sphere("combat");
     set_mystery("godclaw");
     set_syntax("cast CLASS seeking sword");
-    set_description("This spell will create a floating and controllable sword for you that you can use to attack your "
-"enemies.  The sword will automatically follow and protect you.  Should you lose it, though, simply go into the room "
-"with it and <command sword to follow>.");
+    set_description("This spell will create a floating and controllable sword for you that you can use to attack your enemies. The sword will automatically follow and protect you. Should you lose it, simply go into the room with it and <command sword to follow>.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
@@ -31,17 +29,15 @@ int preSpell()
 {
 	if(caster->query_property("seeking_sword"))
 	{
-        tell_object(caster, "%^CYAN%^You are incapable of controlling two swords.%^RESET%^");
+        tell_object(caster, "%^RESET%^%^CRST%^%^C126%^You are incapable of controlling two swords.%^CRST%^");
         return 0;
     }
     return 1;
 }
 
 string query_cast_string(){
-   tell_object(caster,"%^CYAN%^Lifting both hands before you, "+
-      "you begin to chant.%^RESET%^");
-   tell_room(place,"%^CYAN%^Lifting both hands before "+caster->QO+", "+
-      ""+caster->QCN+" begins to chant.%^RESET%^",caster);
+   tell_object(caster,"%^RESET%^%^CRST%^%^C103%^You begin to chant, lifting your hands before you.%^CRST%^");
+   tell_room(place,"%^RESET%^%^CRST%^%^C103%^"+caster->QCN+"%^RESET%^%^CRST%^%^C103%^ begins to chant, lifting "+caster->QO+" hands.%^CRST%^",caster);
    return "display";
 }
 
@@ -64,8 +60,8 @@ void make_sword()
 {
     object ob, thing;
 
-    tell_object(caster,"%^CYAN%^A sword appears floating in front of you.%^RESET%^");
-    tell_room(place,"%^CYAN%^You see a sword appear in the air before "+caster->QCN+".%^RESET%^",caster);
+    tell_object(caster,"%^RESET%^%^CRST%^%^C101%^A %^C247%^h%^C245%^o%^C243%^veri%^C245%^n%^C247%^g s%^C245%^w%^C243%^o%^C245%^r%^C247%^d%^RESET%^%^C101%^ manifests before you.%^CRST%^");
+    tell_room(place,"%^RESET%^%^CRST%^%^C101%^A %^C247%^h%^C245%^o%^C243%^veri%^C245%^n%^C247%^g s%^C245%^w%^C243%^o%^C245%^r%^C247%^d%^RESET%^%^C101%^ manifests before "+caster->QCN+"%^RESET%^%^CRST%^%^C101%^.%^CRST%^",caster);
     thing = new("/d/shadow/obj/weapon/broad.c");
     thing->move("/d/magic/obj/place");
     thing->set_property("effective_enchantment", ((int)CLEVEL / 12));
@@ -78,8 +74,8 @@ void make_sword()
     control->set_sword(ob);
     caster->add_follower(ob);
     ob->set_size(2);
-    ob->set_long(thing->query_long());
-    ob->set_short(thing->query_short());
+    ob->set_long("%^RESET%^%^CRST%^%^C101%^The %^C096%^keen edges%^C101%^ of this %^C250%^he%^C247%^av%^C245%^y %^C243%^steel %^C245%^s%^C247%^wo%^C250%^rd%^RESET%^%^C101%^ are met by a powerful broad base attached to a sturdy hilt, its handle swathed in %^C243%^leather%^C101%^ with a decorative pommel at its top. The cross guard curves slightly at its tips and is otherwise unadorned.%^CRST%^");
+    ob->set_short("%^RESET%^%^CRST%^%^C247%^a h%^C245%^ov%^C243%^e%^C243%^r%^C245%^in%^C247%^g s%^C245%^w%^C243%^o%^C245%^r%^C247%^d%^CRST%^");
     ob->set_name(thing->query_name());
     ob->set_id(thing->query_id());
     ob->add_id("summoned monster");
@@ -115,8 +111,8 @@ void dest_effect()
     object sword;
 
     if (objectp(caster)) {
-        tell_room(environment(caster),"%^BOLD%^%^CYAN%^The sword in front of "+caster->QCN+" fades away.%^RESET%^",caster);
-        tell_object(caster,"%^BOLD%^%^CYAN%^The sword fades away.%^RESET%^");
+        tell_room(environment(caster),"%^CRST%^%^RESET%^%^C101%^The %^C243%^s%^C245%^w%^C247%^o%^C245%^r%^C243%^d%^RESET%^%^C101%^ in front of "+caster->QCN+"%^CRST%^%^RESET%^%^C101%^ fades away.%^CRST%^",caster);
+        tell_object(caster,"%^CRST%^%^RESET%^%^C101%^Your %^C243%^s%^C245%^w%^C247%^o%^C245%^r%^C243%^d%^RESET%^%^C101%^ fades away.%^CRST%^");
     }
 
     //sword = control->query_sword();
