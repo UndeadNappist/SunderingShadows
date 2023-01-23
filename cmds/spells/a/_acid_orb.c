@@ -14,8 +14,8 @@ void create()
     set_author("cythera");
     set_spell_name("acid orb");
     set_spell_level(([ "mage" : 3 ]));
-    set_spell_sphere("invocation_evocation");
-    set_syntax("cast CLASS acid orb on TARGET");
+    set_spell_sphere("conjuration_summoning");
+    set_syntax("cast CLASS acid orb [on TARGET]");
     set_description("This spell allows a mage to tap into the Para-Elemental Plane of Ooze and borrow some of its energy "
         "to create an orb of pure acid.  Once the orb is launched into the air, the first thing it strikes will cause it to burst "
         "open, releasing the acid on the mage's foes.  Though care should be taken as it is possible to accidently catch the "
@@ -24,7 +24,7 @@ void create()
     set_somatic_comp();
     set_target_required(1);
     splash_spell(1);
-    set_components(([ "mage" : ([ "citric acid" : 2, "beeswax" : 1, ]), ]));
+    //set_components(([ "mage" : ([ "citric acid" : 2, "beeswax" : 1, ]), ]));
     set_save("reflex");
     set_immunities( ({"acid"}) );
 }
@@ -38,8 +38,11 @@ spell_effect(int prof)
     object *foes = ({});
     string YOU,HIM,tmp = "";
     int i;
+    
+    if(!target || !objectp(target))
+        target = caster->query_current_attacker();
 
-    if(!present(target, (caster->is_room()) ? (caster) : (place) ))
+    if(!objectp(target) || !present(target, (caster->is_room()) ? (caster) : (place) ))
     {
         tell_object(caster,"%^BOLD%^Your target is not in this area.\n");
         dest_effect();
@@ -65,7 +68,7 @@ spell_effect(int prof)
     tell_room(environment(target),"%^BOLD%^%^WHITE%^The orb of acid explodes as it hits "+target->QCN+"!",target);
 
     if(!do_save(target)) { damage_targ(target, "torso", sdamage / 2, "acid" ); }
-    else { damage_targ(target, "torso", sdamage / 2, "acid" ); }
+    else { damage_targ(target, "torso", sdamage, "acid" ); }
 
     for(i=0;sizeof(foes),i<sizeof(foes);i++)
     {

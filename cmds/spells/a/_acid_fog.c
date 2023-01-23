@@ -19,7 +19,7 @@ void create(){
     set_verbal_comp();
     set_somatic_comp();
     set_immunities( ({"acid"}) );
-    set_components((["mage":(["citric acid":1,"nitric acid":1])]));
+    //set_components((["mage":(["citric acid":1,"nitric acid":1])]));
     aoe_spell(1);
     set_aoe_message("%^RESET%^%^CRST%^%^C064%^(%^C065%^engulfed in %^C190%^acidic %^C070%^f%^C076%^o%^C077%^g%^C064%^)%^CRST%^");
 }
