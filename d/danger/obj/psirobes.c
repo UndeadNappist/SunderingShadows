@@ -39,7 +39,7 @@ void create(){
     set_remove((:TO,"removeme":));
     set("chabonus",2);
     set("intbonus",2);
-    set_property("empowered",1);
+    //set_property("empowered",1);
 }
 
 int wearme(){
