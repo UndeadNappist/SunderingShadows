@@ -392,7 +392,7 @@ EX    cast deep wish
 
 %^CYAN%^SEE ALSO%^RESET%^
 
-forget, buff, prepare, spells, recall, dispell
+forget, buff, prepare, spells, recall, dispell, standard damage
 "
         );
 }

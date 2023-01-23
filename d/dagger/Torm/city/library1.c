@@ -37,6 +37,7 @@ void create()
    ]));
    set_exits(([
    "out" : "/d/dagger/Torm/city/c97",
+   "school" : "/d/dagger/Torm/city/schoolroom",
    ]));
 
     set_public_library(1);
