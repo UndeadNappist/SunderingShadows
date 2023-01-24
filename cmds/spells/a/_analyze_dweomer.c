@@ -14,6 +14,7 @@ void create()
     set_somatic_comp();
     set_target_required(1);
     set_helpful_spell(1);
+    set_silent_casting(1);
     set_save("will");
     diminish_returns();
 }
