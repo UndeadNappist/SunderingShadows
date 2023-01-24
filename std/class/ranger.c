@@ -31,7 +31,7 @@ mapping stat_requirements()
 }
 
 string *combat_styles() {
-    return ({ "dual wield", "archery", "twohanded"});
+    return ({ "dual wield", "archery", "twohanded", "duelist"});
 }
 
 string *class_feats(string myspec) {
@@ -52,6 +52,9 @@ mapping class_featmap(string myspec)   // "dual wield" is default setting
     switch (myspec) {
     case "archery":
         return ([ 1 : ({ "favored enemy", "point blank shot", "light armor proficiency", "shield proficiency", "simple weapon proficiency", "martial weapon proficiency", "track" }), 3 : ({ "rangers endurance", "favored terrain" }), 4 : ({ "animal companion" }), 5 : ({ "manyshot" }), 7 : ({ "hunters bond" }), 9 : ({ "deadeye", "evasion" }), 10 : ({ "quarry" }), 11 : ({ "second favored enemy" }), 13 : ({ "preciseshot", "second favored terrain" }), 17 : ({ "shot on the run", "third favored enemy" }), 18 : ({ "improved quarry" }), 19 : ({ "third favored terrain" }), 21 : ({ "seen it before" }), 31 : ({ "wild hunter" }), ]);
+        break;
+    case "duelist":
+        return ([ 1 : ({ "favored enemy", "opportunity strikes", "light armor proficiency", "shield proficiency", "simple weapon proficiency", "martial weapon proficiency", "track" }), 3 : ({ "rangers endurance", "favored terrain" }), 4 : ({ "animal companion" }), 5 : ({ "swipe" }), 7 : ({ "hunters bond" }), 9 : ({ "positioning", "evasion" }), 10 : ({ "quarry" }), 11 : ({ "second favored enemy" }), 13 : ({ "opportunistic parry", "second favored terrain" }), 17 : ({ "true strikes", "third favored enemy" }), 18 : ({ "improved quarry" }), 19 : ({ "third favored terrain" }), 21 : ({ "seen it before" }), 31 : ({ "wild hunter" }), ]);
         break;
     case "twohanded":
         return ([ 1 : ({ "favored enemy", "sweepingblow", "light armor proficiency","shield proficiency", "simple weapon proficiency", "martial weapon proficiency", "track" }), 3 : ({ "rangers endurance", "favored terrain" }), 4 : ({ "animal companion" }), 5 : ({ "blade block" }), 7 : ({ "hunters bond" }), 9 : ({ "impale", "evasion" }), 10 : ({ "quarry" }), 11 : ({ "second favored enemy" }), 13 : ({ "light weapon", "second favored terrain" }), 17 : ({ "strength of arm", "third favored enemy" }), 18 : ({ "improved quarry" }), 19 : ({ "third favored terrain" }), 21 : ({ "seen it before" }), 31 : ({ "wild hunter" }), ]);

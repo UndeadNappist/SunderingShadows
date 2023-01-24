@@ -23,23 +23,29 @@
 
 In addition to that, rangers use different pre-set combat styles they can choose with %^ORANGE%^<combatstyle>%^RESET%^ command.
 %^CYAN%^Dual wield combat style:
- L1: ambidexterity
- L5: whirl
- L9: two weapon fighting
+ L1 : ambidexterity
+ L5 : whirl
+ L9 : two weapon fighting
  L13: improved two weapon fighting
  L17: unassailable parry
 %^CYAN%^Archery combat style:
- L1: point blank shot
- L5: manyshot
- L9: deadeye
+ L1 : point blank shot
+ L5 : manyshot
+ L9 : deadeye
  L13: preciseshot
  L17: shot on the run
 %^CYAN%^Twohanded combat style:
- L1: sweepingblow
- L5: blade block
- L9: impale
+ L1 : sweepingblow
+ L5 : blade block
+ L9 : impale
  L13: light weapon
  L17: strength of arm
+%^CYAN%^Duelist combat style
+ L1 : opportunity strikes
+ L5 : swipe
+ L9 : positioning
+ L13: opportunistic parry
+ L17: true strikes
 
 The ranger is a hunter and woodsman who lives by not only his sword or bow, but also his wits. Rangers, like nature itself, can be of any alignment. Their role and outlook changes depending upon their alignment, but they all have a few things in common. They are more comfortable in the wilderness than the city, and they have a strong affinity for nature that defines them. Their spells are drawn from being one with nature itself, and as such must protect and honor the wilderness. The one view all rangers have in common is that nature itself abhors the creation and existence of undead in any form. Undead are a direct threat to the natural world, and to the essence from which the ranger draws their power, and must be destroyed.
 
