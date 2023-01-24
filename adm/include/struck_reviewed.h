@@ -69,6 +69,7 @@
     "/d/islands/common/obj/new/waveguards", \
     "/d/islands/common/obj/new/windguards", \
     "/d/islands/common/obj/shimmeringcape2", \
+    "/d/islands/common/obj/windguards", \
     "/d/islands/coralsea/obj/coralscape", \
     "/d/islands/dallyh/marsh/obj/frobe", \
     "/d/islands/dallyh/forest/obj/rosebodice", \
