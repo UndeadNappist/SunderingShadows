@@ -77,6 +77,7 @@ int removeme()
 
 int strikeme(int damage, object what, object who)
 {
+    if(!random(4)) {
 	if(objectp(what)) {
 		tell_object(ETO,"%^BOLD%^%^BLUE%^The scales shimmer a"+
 		" sapphire shade as they are struck by "+what->query_name()+".");
@@ -104,6 +105,8 @@ int strikeme(int damage, object what, object who)
 		}
 		return (-1)*(damage/3);
 	}
+    }
+    return damage;
 }
 
 int is_metal() { return 0; } //not metal
