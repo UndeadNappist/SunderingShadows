@@ -23,7 +23,7 @@ void create()
     set_description("When armor is cast on someone, they will receive an AC bonus of 4.");
     set_verbal_comp();
     set_somatic_comp();
-    set_components(([ "mage" : ([ "blessed leather" : 1, ]), ]));
+    //set_components(([ "mage" : ([ "blessed leather" : 1, ]), ]));
     set_property("keywords", ({ "defensive", "targeted", "personal" }));
     set_helpful_spell(1);
     set_arg_needed(1);
@@ -92,9 +92,8 @@ void spell_effect(int prof)
     target->set_property("spelled", ({TO}) );
     //target->set_property("armoured",1);
     addSpellToCaster();
-    call_out("test", 7);
+    //call_out("test", 7);
 }
-
 
 void test()
 {

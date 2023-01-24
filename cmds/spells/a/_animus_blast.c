@@ -13,7 +13,7 @@ void create()
     set_spell_level(([ "mage" : 9,]));
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS animus blast");
-    set_damage_desc("cold");
+    set_damage_desc("AOE cold damage and raises undead");
     set_description("This power enables a master of necromancy to unleash a blast of pure negative energy. The power of the blast is such that it can also sap the life energy of those nearby, as well as its main target. In addition, the  blast of negative energy can re-awaken corpses within the vicinity, raising them as the servants of the caster. This spell has no effect upon existing undead creatures. Many faiths and cultures condemn this spell and similar powers as it serves the caster's selfish, often evil, motives. Frequent users of the spell are known to be inherently evil.
 
 To remove undead use %^ORANGE%^<dismiss undead>%^RESET%^
@@ -25,7 +25,7 @@ To check your undead pool size use %^ORANGE%^<poolsize>%^RESET%^");
     set_save("reflex");
     splash_spell(3);
     evil_spell(1);
-    set_components(([ "mage" : ([ "drop of blood" : 1, "bit of bone" : 1, ]), ]));
+    //set_components(([ "mage" : ([ "drop of blood" : 1, "bit of bone" : 1, ]), ]));
 }
 
 

@@ -10,8 +10,8 @@ void create()
     set_spell_level(([ "cleric" : 8, "mage" : 8 ]));
     set_spell_sphere("abjuration");
     set_syntax("cast CLASS antimagic field");
-    set_damage_desc("triggers wild magic in the area");
-    set_description("An invisible barrier is placed in the area. Any spell or spell-like ability cast must be cast at a greater strength or it will have a chance to fizzle out. Any ongoing spells will cause no damage if their power is lower than that of the caster.");
+    set_damage_desc("causes spells to fizzle in room");
+    set_description("The caster creates an antimagic zone in the area, causing any spells cast in that area to have a high chance of failing. This also affects the caster's spells.");
 
 }
 
