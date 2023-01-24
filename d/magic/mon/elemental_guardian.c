@@ -77,7 +77,7 @@ void setup_as(string myType)
             set_short("%^RESET%^%^CRST%^%^C208%^f%^C214%^l%^C208%^a%^C202%^m%^C208%^i%^C214%^n%^C208%^g %^C202%^c%^C208%^r%^C214%^e%^C208%^a%^C202%^t%^C208%^u%^C214%^r%^C208%^e%^CRST%^");
             set_long("%^RESET%^%^CRST%^%^C202%^Jets of fire erupt from this small flaming creature continually. Its body seems malleable, as if it were composed of some molten material. There are extensions which allow it to walk and others which seem to serve as hands, you suppose that each could be considered an appendage. Somehow it lives but whatever is providing life to it is completely unknown.%^CRST%^");   
             set_resistance_percent("fire", 100);
-            set_property("elementalist", "fire");
+            set("elementalist", "fire");
             break;
         case "cold":
             set_name("frozen creature");
@@ -85,7 +85,7 @@ void setup_as(string myType)
             set_short("%^RESET%^%^CRST%^%^C069%^f%^C075%^r%^C081%^o%^C087%^z%^C123%^e%^C087%^n %^C081%^c%^C075%^r%^C069%^e%^C075%^a%^C081%^t%^C087%^u%^C123%^r%^C087%^e%^CRST%^");
             set_long("%^RESET%^%^CRST%^%^C255%^A freezing cold is emanating from this small creature continually. Its body seems quite firm, as if it were composed from some sold material before being frozen. There are extensions which allow it to walk and others which seem to serve as hands. You suppose that each could be considered an appendage. Somehow it lives but whatever is providing life to it is completely unknown.%^CRST%^");    
             set_resistance_percent("cold", 100);
-            set_property("elementalist", "cold");
+            set("elementalist", "cold");
             break;
         case "electricity":        
             set_name("crackling creature");
@@ -93,7 +93,7 @@ void setup_as(string myType)
             set_short("%^RESET%^%^CRST%^%^C228%^c%^C231%^r%^C226%^a%^C228%^ckl%^C231%^i%^C228%^ng c%^C226%^r%^C228%^ea%^C231%^t%^C228%^u%^C231%^r%^C226%^e%^CRST%^");
             set_long("%^RESET%^%^CRST%^%^C100%^A cracking sound emanates from this dark creature continually. You quickly realize that there are bolts of electricity bouncing around inside of it and flashes of almost blinding light are given off from them. Its body seems to change as you look upon it, from a solid to an almost gaseous form. There are extensions which allow it to walk and others which seem to serve as hands. You suppose that each could be considered an appendage. Somehow it lives but whatever is providing life to it is completely unknown.%^CRST%^");       
             set_resistance_percent("electricity", 100);
-            set_property("elementalist", "electricity");
+            set("elementalist", "electricity");
             break;
         case "acid":
             set_name("acidic creature");
@@ -101,7 +101,7 @@ void setup_as(string myType)
             set_short("%^RESET%^%^CRST%^%^C077%^a%^C071%^c%^C070%^i%^C076%^d%^C070%^i%^C071%^c %^C077%^c%^C071%^r%^C070%^e%^C076%^a%^C070%^t%^C071%^u%^C077%^r%^C071%^e%^CRST%^");
             set_long("%^RESET%^%^CRST%^%^C065%^Acid drips continually from this small and bizarre creature. Its body seems to be made of some amorphous mass that changes almost as frequently as the acid that drips from it. There are extensions which allow it to walk and others which seem to serve as hands. You suppose that each could be considered an appendage. Somehow it lives but whatever is providing life to it is completely unknown.%^CRST%^");   
             set_resistance_percent("acid", 100);
-            set_property("elementalist", "acid");
+            set("elementalist", "acid");
             break;
     }
     set_spell_chance(20); 
