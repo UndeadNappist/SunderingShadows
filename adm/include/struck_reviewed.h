@@ -29,6 +29,7 @@
     "/d/barriermnts/ruins/obj/battleguards", \
     "/d/barriermnts/ruins/obj/elbowshield", \
     "/d/barriermnts/ruins/obj/pothelmet", \
+    "/d/charucavern/wormlair/ob/worm_guise", \
     "/d/common/obj/armour/barding", \
     "/d/dagger/derro/obj/shield", \
     "/d/dagger/derro/obj/Stormrobe", \
