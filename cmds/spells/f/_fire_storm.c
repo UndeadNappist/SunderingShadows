@@ -20,21 +20,19 @@ void create()
     set_monk_way("way of the elements");
     set_syntax("cast CLASS fire storm");
     set_damage_desc("fire");
-    set_description("When the fire storm spell is cast, the whole area is shot through with sheets of roaring flame. Any "
-        "target in the area of effect takes damage every round while the spell is in effect, but it does not damage the caster. "
-        "This spell does not work in conjunction with the monsoon priest spell.");
+    set_description("When the fire storm spell is cast, the whole area is shot through with sheets of roaring flame. Any target in the area of effect takes damage every round while the spell is in effect, but it does not damage the caster. This spell does not work in conjunction with the monsoon priest spell.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
     aoe_spell(1);
-    set_aoe_message("%^BOLD%^%^RED%^(ablaze with sheets of flame)%^RESET%^");
+    set_aoe_message("%^CRST%^%^RESET%^%^C089%^(%^C196%^a%^C160%^b%^C124%^l%^C088%^a%^C052%^z%^C088%^e %^C052%^w%^C088%^i%^C124%^t%^C160%^h %^C166%^r%^C130%^o%^C124%^a%^C160%^r%^C196%^i%^C160%^n%^C124%^g %^C130%^f%^C166%^l%^C130%^a%^C124%^m%^C160%^e%^C196%^s%^C089%^)%^CRST%^");
     set_feats_required(([ "warlock" : "infernal practitioner"]));
 }
 
 void spell_effect(int prof)
 {
-    tell_object(caster,"%^RED%^You wave your hands around summoning the fury of the elemental plane of fire!");
-    tell_room(place,"%^RED%^"+caster->QCN+" waves "+caster->QP+" hands around summoning the fury of the elemental plane of fire!",caster);
+    tell_object(caster, "%^RESET%^%^CRST%^%^C160%^You wave your hands around, unleashing the %^C088%^f%^C124%^u%^C088%^r%^C124%^y%^RESET%^%^C160%^ of the %^C088%^e%^C124%^l%^C160%^e%^C196%^m%^C160%^e%^C124%^n%^C088%^t%^C124%^a%^C160%^l %^C088%^p%^C124%^l%^C160%^a%^C196%^n%^C160%^e %^C124%^o%^C088%^f %^C124%^f%^C160%^i%^C196%^r%^C160%^e%^RESET%^%^C160%^!%^CRST%^");
+    tell_room(place, "%^RESET%^%^CRST%^%^C160%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^ %^C160%^waves "+caster->query_possessive()+" %^C160%^hands around, unleashing the %^C088%^f%^C124%^u%^C088%^r%^C124%^y%^RESET%^%^C160%^ of the %^C088%^e%^C124%^l%^C160%^e%^C196%^m%^C160%^e%^C124%^n%^C088%^t%^C124%^a%^C160%^l %^C088%^p%^C124%^l%^C160%^a%^C196%^n%^C160%^e %^C124%^o%^C088%^f %^C124%^f%^C160%^i%^C196%^r%^C160%^e%^RESET%^%^C160%^!%^CRST%^", caster);
     place->set_property("spelled", ({TO}) );
     caster->set_property("spelled",({TO}));
     time = 0;
@@ -86,7 +84,7 @@ void execute_attack()
 
     damage = sdamage;
 
-    tell_room(place,"%^BOLD%^RED%^Sheets of flame rage across the area incinerating everything in sight!");
+    tell_room(place, "%^CRST%^%^RESET%^%^C124%^S%^C088%^h%^C124%^e%^C160%^e%^C124%^t%^C088%^s %^C124%^o%^C160%^f %^C124%^f%^C088%^l%^C124%^a%^C160%^m%^C124%^e %^C088%^r%^C124%^a%^C160%^g%^C124%^e %^C088%^a%^C124%^c%^C160%^r%^C124%^o%^C088%^s%^C124%^s %^C160%^t%^C124%^h%^C088%^e %^C124%^a%^C160%^r%^C088%^e%^C124%^a%^C088%^, %^C124%^i%^C160%^n%^C124%^c%^C088%^i%^C124%^n%^C088%^e%^C124%^r%^C160%^a%^C124%^t%^C088%^i%^C124%^n%^C088%^g %^C160%^e%^C124%^v%^C088%^e%^C124%^r%^C160%^y%^C124%^t%^C088%^h%^C124%^i%^C088%^n%^C124%^g %^C160%^i%^C124%^n %^C088%^s%^C160%^i%^C124%^g%^C088%^h%^C124%^t%^C088%^!%^CRST%^");
 
     for(i=0;sizeof(foes),i<sizeof(foes);i++)
     {
@@ -126,7 +124,7 @@ void dest_effect()
 {
     if(objectp(place))
     {
-        tell_room(place,"%^BOLD%^%^RED%^The fire storm weakens and dissipates.");
+        tell_room(place, "%^CRST%^%^RESET%^%^C124%^The fire storm weakens and dissipates.%^CRST%^");
         place->remove_property_value("spelled", ({TO}) );
     }
     if(objectp(caster))

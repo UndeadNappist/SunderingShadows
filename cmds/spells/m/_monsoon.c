@@ -20,12 +20,11 @@ void create()
     set_spell_sphere("conjuration_summoning");
     set_monk_way("way of the elements");
     set_syntax("cast CLASS monsoon");
-    set_description("When the monsoon spell is cast, the surrounding area is engulfed in a raging storm of water.  Any "
-        "target in the area of effect takes damage every round while the spell is in effect, but does not damage the caster.  "
-        "This spell does not work in conjunction with the fire storm spell.");
+    set_description("When the monsoon spell is cast, the surrounding area is engulfed in a raging storm of water. Any target in the area of effect takes damage every round while the spell is in effect, but does not damage the caster. This spell does not work in conjunction with the fire storm spell.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
+	set_aoe_message("%^RESET%^%^CRST%^%^C021%^(%^C031%^f%^C032%^l%^C033%^o%^C027%^o%^C026%^d%^C025%^e%^C031%^d %^C032%^b%^C033%^y %^C027%^p%^C026%^o%^C025%^u%^C031%^r%^C032%^i%^C033%^n%^C027%^g %^C026%^r%^C025%^a%^C031%^i%^C032%^n%^C021%^)%^CRST%^");
     aoe_spell(1);
 }
 
@@ -33,9 +32,9 @@ void create()
 
 void spell_effect(int prof)
 {
-    tell_object(caster,"%^BOLD%^%^CYAN%^You wave your hands around summoning the fury of a watery storm from the skies above!");
-    tell_room(place,"%^BOLD%^%^CYAN%^"+caster->QCN+" waves "+caster->QP+" hands around summoning the fury of a watery storm from the skies above!",caster);
-    place->set_property("spelled", ({TO}) );
+    tell_object(caster, "%^CRST%^%^RESET%^%^C032%^You wave your hands around, unleashing the %^C025%^fury%^RESET%^%^C032%^ of a %^C020%^w%^C026%^a%^C032%^t%^C026%^e%^C020%^r%^C026%^y %^C020%^s%^C026%^t%^C032%^o%^C026%^r%^C020%^m%^RESET%^%^C032%^ from the %^C020%^s%^C026%^k%^C032%^i%^C026%^e%^C020%^s%^RESET%^%^C032%^ above!%^CRST%^");
+    tell_room(place, "%^CRST%^%^RESET%^%^C032%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^ %^C032%^waves "+caster->query_possessive()+" %^C032%^hands around, unleashing the %^C025%^fury%^RESET%^%^C032%^ of a %^C020%^w%^C026%^a%^C032%^t%^C026%^e%^C020%^r%^C026%^y %^C020%^s%^C026%^t%^C032%^o%^C026%^r%^C020%^m%^RESET%^%^C032%^ from the %^C020%^s%^C026%^k%^C032%^i%^C026%^e%^C020%^s%^RESET%^%^C032%^ above!%^CRST%^", caster);
+    place->set_property("spelled", ({this_object()}) );
     time = 0;
     addSpellToCaster();
     spell_successful();
@@ -74,7 +73,7 @@ void do_storm()
     define_base_damage(0); // lazy re-roll
     damage = sdamage;
 
-    tell_room(place,"%^BOLD%^CYAN%^A raging storm of water and winds roars through the area damaging everything in sight!");
+    tell_room(place, "%^CRST%^%^RESET%^%^C057%^A raging storm of %^C031%^w%^C032%^i%^C033%^n%^C027%^d%^RESET%^%^C057%^ and %^C031%^w%^C032%^a%^C033%^t%^C027%^e%^C026%^r%^RESET%^%^C057%^ roars through the area, damaging everything in sight!%^CRST%^");
     foes -= ({caster});
     for (i=0;sizeof(foes),i<sizeof(foes);i++)
     {
@@ -111,14 +110,14 @@ void dest_effect()
 {
     if(objectp(place))
     {
-        tell_room(place,"%^BOLD%^%^CYAN%^The monsoon weakens and dissipates.");
-        place->remove_property_value("spelled", ({TO}) );
+        tell_room(place, "%^CRST%^%^RESET%^%^C057%^The monsoon weakens and dissipates.%^CRST%^");
+        place->remove_property_value("spelled", ({this_object()}) );
     }
     if(objectp(caster))
     {
-        caster->remove_property_value("spelled", ({TO}) );
+        caster->remove_property_value("spelled", ({this_object()}) );
     }
     remove_call_out("do_storm");
     ::dest_effect();
-    if(objectp(TO)) TO->remove();
+    if(objectp(this_object())) this_object()->remove();
 }
