@@ -140,7 +140,7 @@ void psi_storm(room){
         if(!objectp(targets[i])) continue;
         if(sizeof(targets) > 3){ // electric storm, half damage on save
             if(SAVING_THROW_D->reflex_save(targets[i], (powerlevel * 16))){
-                message("combat_special", "%^RESET%^%^CRST%^%^C118%^You scramble out of the path of the lightning, narrowing avoiding it!%^CRST%^", targets[i]);
+                message("combat_special", "%^RESET%^%^CRST%^%^C118%^You scramble out of the path of the lightning, narrowly avoiding it!%^CRST%^", targets[i]);
                 message("combat_special", "%^RESET%^%^CRST%^%^C118%^"+targets[i]->query_cap_name()+"%^RESET%^%^CRST%^%^C118%^ scrambles out of the way!%^CRST%^", room, targets[i]);
                 targets[i]->cause_typed_damage(targets[i], "torso", roll_dice((powerlevel * 4), 10), "electricity");
             }

@@ -5,6 +5,7 @@ inherit ROOM;
 
 void create() {
   ::create();
+  set_property("indoors", 1);
   set_short("%^BOLD%^%^YELLOW%^A gl%^WHITE%^i%^YELLOW%^tter%^WHITE%^i"
            +"%^YELLOW%^ng tr%^RESET%^%^ORANGE%^ea%^YELLOW%^s%^RESET%^"
            +"%^ORANGE%^u%^YELLOW%^re tr%^RESET%^%^ORANGE%^o%^YELLOW%^ve");

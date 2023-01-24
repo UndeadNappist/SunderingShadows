@@ -60,6 +60,7 @@ spell_effect(int prof) {
     }
     target->set_property("mylight", 1);
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 10;
+    addSpellToCaster();
     set_end_time();
     call_out("dest_effect",spell_duration);
     spell_successful();
