@@ -100,6 +100,7 @@ void spell_effect(int prof) {
 
     if (!is_proper_target(target)) {
         tell_object(caster,"%^BOLD%^The spell fizzles as it can't grab upon the target's mind.");
+        dest_effect();
         return;
     }
     

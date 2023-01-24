@@ -10,7 +10,7 @@
 #include <daemons.h>
 
 //Hit interval instead of proc chance. Procs every 5 hits.
-#define HIT_INTERVAL 3
+#define HIT_INTERVAL 7
 
 inherit "/d/common/obj/weapon/warhammer.c";
 
@@ -63,7 +63,7 @@ void init()
     
     hit_count = 0;
     
-    if(!owner)
+    if(!owner && !avatarp(holder) && !archp(holder))
     {
         if((holder->query_true_align() != 1 &&
            holder->query_true_align() != 4 &&
@@ -93,13 +93,15 @@ int hit_func(object target)
     if(hit_count < HIT_INTERVAL)
         return 0;
     
+    hit_count = 0;
+    
     pname = owner->query_cap_name();
     ename = target->query_cap_name();
     
     tell_room(environment(owner), "%^C220%^The forces of %^C227%^r%^C226%^e%^C220%^n%^C214%^e%^C208%^w%^C202%^a%^C196%^l%^C220%^ begin to flame out of "+this_object()->query_short()+" %^C196%^e%^C202%^n%^C208%^c%^C214%^o%^C220%^m%^C226%^p%^C220%^as%^C214%^s%^C208%^i%^C202%^n%^C196%^g%^C220%^ "+pname+" and %^C226%^a%^C228%^l%^C231%^li%^C228%^e%^C226%^s%^C220%^ while %^C231%^re%^C228%^s%^C226%^t%^C220%^o%^C226%^r%^C228%^i%^C231%^ng%^C220%^ back to how it was and %^C166%^s%^C208%^h%^C231%^ou%^C214%^l%^C166%^d%^C208%^ %^C220%^be.%^CRST%^", owner);
     tell_object(owner, "%^C220%^The forces of %^C227%^r%^C226%^e%^C220%^n%^C214%^e%^C208%^w%^C202%^a%^C196%^l%^C220%^ begin to flame out of "+this_object()->query_short()+" %^C196%^e%^C202%^n%^C208%^c%^C214%^o%^C220%^m%^C226%^p%^C220%^as%^C214%^s%^C208%^i%^C202%^n%^C196%^g%^C220%^ you and %^C226%^a%^C228%^l%^C231%^li%^C228%^e%^C226%^s%^C220%^ while %^C231%^re%^C228%^s%^C226%^t%^C220%^o%^C226%^r%^C228%^i%^C231%^ng%^C220%^ back to how it was and %^C166%^s%^C208%^h%^C231%^ou%^C214%^l%^C166%^d%^C208%^ %^C220%^be.%^CRST%^");
 
-    new("/cmds/spells/m/_mass_cure_light_wounds")->use_spell(TO, owner->query_cap_name(), 54, 100, "cleric");
+    new("/cmds/spells/m/_mass_cure_light_wounds")->use_spell(owner, owner, 50, 100, "cleric");
     
     dam = roll_dice(6, 10) + 10;
     target->cause_typed_damage(target, target->query_target_limb(), dam, "divine");
