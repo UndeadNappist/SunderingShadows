@@ -24,6 +24,7 @@
 #include <daemons.h>
 #include <move.h>
 #include <magic.h>
+#include <magic_res_reviewed.h>
 
 // move contains the functions "move", "remove", "clean_up", "set_no_clean"
 //   "set_last_location", "query_last_location", "set_weight", "query_weight"
@@ -381,13 +382,16 @@ void set_property(string prop, mixed value)
         value = -1 * value;
     }
     if (prop == "magic resistance" || prop == "spell resistance") {
-	if(TO->is_living() && value > 9) {
-	    log_file("reports/magic_resistance", "Living Object magic resistance value of " + value + " in " + TO + "\n");
-	    log_file("reports/magic_resistance", "Previous object " + previous_object() + "\n");
-	}
-	else if (!(TO->is_living()) && value > 4) {
-	    log_file("reports/magic_resistance", "Non-living Object magic resistance value of " + value + " in " + base_name(TO) + "\n");
-	}
+    	if(TO->is_living() &&
+          member_array(base_name(this_object()), MAGIC_RES_MOBS) == -1 &&
+          member_array(base_name(previous_object()), MAGIC_RES_ITEMS) == -1 &&
+          value > 9) {
+    	    log_file("reports/magic_resistance", "Living Object magic resistance value of " + value + " in " + this_object() + "\n");
+    	    log_file("reports/magic_resistance", "Previous object " + previous_object() + "\n");
+    	}
+    	else if (!(TO->is_living()) && value > 4) {
+    	    log_file("reports/magic_resistance", "Non-living Object magic resistance value of " + value + " in " + base_name(this_object()) + "\n");
+    	}
     }
     if (pointerp(value)) {
         if (!props) {
@@ -510,7 +514,7 @@ mixed query_property(string prop)
                 }
             }
         }
-        
+
         if(this_object()->is_class("warlock"))
         {
             num += (this_object()->query("available burn") / 2);
@@ -559,7 +563,7 @@ mixed query_property(string prop)
         }
         if(FEATS_D->usable_feat(this_object(), "mystic arcana"))
             num += 1;
-        
+
         if(this_object()->query_race() == "elf" && this_object()->query("subrace") != "szarkai")
             num += 2;
 
@@ -624,11 +628,11 @@ mixed query_property(string prop)
 
         if(FEATS_D->usable_feat(TO, "greater spell penetration"))
             num += 1;
-        
+
         if(this_object()->is_class("warlock") && this_object()->query("maximum burn"))
         {
             num += (this_object()->query("available burn") / 3);
-            
+
             if(FEATS_D->usable_feat(this_object(), "mystic arcana"))
                 num += 1;
         }
@@ -754,7 +758,7 @@ mixed query_property(string prop)
 
         if(FEATS_D->has_feat(this_object(), "eternal warrior") && this_object()->query("available focus") == 2)
             num += 2;
-        
+
         if(this_object()->query_acquired_template() == "chaotic")
             num += 10;
 
@@ -803,14 +807,14 @@ mixed query_property(string prop)
         if(member_array("repose", this_object()->query_divine_domain()) >= 0)
             return 1;
     }
-    
+
     if (prop == "water breather")
     {
         if(this_object()->is_undead())
             return 1;
-        
+
         num += props[prop];
-        
+
         return num;
     }
 
