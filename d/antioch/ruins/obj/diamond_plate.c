@@ -126,16 +126,16 @@ int strikeme(int damage, object what, object who)
        tell_object(ETO,"%^RESET%^%^CYAN%^The Diamond Fullplate seems impervious to"+
          " the blows of the "+what->query_short()+".");
        return (-1)*(damage/4);
-           }
-       tell_object(ETO,"%^BOLD%^%^CYAN%^The Diamond Fullplate repels the"+
-         " blows that "+who->query_cap_name()+" makes against you!");
-       tell_object(who,"%^BOLD%^%^CYAN%^"+ETO->QCN+"'s diamond"+
-         " plate seems to repel your blows!");
-       tell_room(environment(query_worn()),"%^BOLD%^%^CYAN%^"+ETO->QCN+"'s"+
-         " diamond plate seems to repel "+who->QCN+"'s blows!",({who,ETO}));
-       return (-1)*damage;
-        }
-       return 1;
+    }
+    tell_object(ETO,"%^BOLD%^%^CYAN%^The Diamond Fullplate repels the"+
+     " blows that "+who->query_cap_name()+" makes against you!");
+    tell_object(who,"%^BOLD%^%^CYAN%^"+ETO->QCN+"'s diamond"+
+     " plate seems to repel your blows!");
+    tell_room(environment(query_worn()),"%^BOLD%^%^CYAN%^"+ETO->QCN+"'s"+
+     " diamond plate seems to repel "+who->QCN+"'s blows!",({who,ETO}));
+    return (-1)*damage;
+  }
+  return damage;
 }
 
 void set_owner(string str)
