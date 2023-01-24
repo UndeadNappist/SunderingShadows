@@ -71,5 +71,5 @@ int strikeme(int damage, object what, object who){
 "harmlessly absorbed by "+ETO->QP+" fullplate.%^RESET%^",({ETO,who}));
      return (-1)*(damage);
    }
-   return 1;
+   return damage;
 }
