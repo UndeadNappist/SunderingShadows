@@ -18,7 +18,7 @@ void create() {
     set_spell_level(([ "psion" : 8 ]));
     set_spell_sphere("clairsentience");
     set_discipline("seer");
-    set_syntax("cast CLASS alter fate on TARGET");
+    set_syntax("cast CLASS alter fate [on TARGET]");
     set_description("This spell will cause the fates to smile on the target.  When cast, it will activate a healing spell "
 "that will remain in reserve up until the target falls below 25% of their maximum health.  When that point is reached, a "
 "random healing spell is cast on the target.");
@@ -70,6 +70,9 @@ void heart_beat()
 
 int preSpell()
 {
+    if(!target || !objectp(target))
+        target = caster;
+    
     if(!objectp(target))
     {
         tell_object(caster,"This spell requires a target.");
