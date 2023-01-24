@@ -19,6 +19,7 @@
     "/d/attaya/obj/silkdrape", \
     "/d/attaya/obj/silkvest", \
     "/d/attaya/senund/obj/darkrobe", \
+    "/d/avatars/circe/phoenix_aura", \
     "/d/barriermnts/lothwaite/obj/ethereal_bplate", \
     "/d/barriermnts/lothwaite/obj/ethereal_bracers", \
     "/d/barriermnts/lothwaite/obj/ghostboots", \
