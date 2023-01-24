@@ -6,7 +6,7 @@ inherit DAEMON;
 
 int cmd_enhance(string str)
 {
-    object enhanceob, oldob, * wielded;
+    object player, enhanceob, oldob, * wielded;
     mapping enhances, enhance;
     string enhancement_name, *arguments, *domains, *temp = ({}), *display = ({}), * normal_enhances = ({});
     int power, duration, feat_ap, feat_wb, feat_ab, feat_wr, feat_cl, has_resource, my_levels, i;
@@ -15,7 +15,7 @@ int cmd_enhance(string str)
     int is_burst, has_element, is_alignement, cost;
     mapping this_enhance;
 
-    if (!objectp(TP)) {
+    if(!objectp(player = this_player())){
         return 0;
     }
 
@@ -328,29 +328,31 @@ int cmd_enhance(string str)
 
     case "list":
 
-        enhances = get_enhances(TP);
+        enhances = get_enhances(player);
         temp = keys(enhances);
-        if (!sizeof(temp))
-        {
-            tell_object(TP, "You don't seem to have any enhancements added to your list yet.");
+        
+        if (!sizeof(temp)){
+            tell_object(player, "%^RESET%^%^CRST%^%^C059%^You don't seem to have any enhancements added to your list yet.%^CRST%^");
             return 1;
         }
 
         display += ({ "%^RESET%^%^BOLD%^%^BLUE%^--==%^RESET%^%^BOLD%^%^CYAN%^< %^RESET%^%^BOLD%^Enhancements to be applied %^RESET%^%^BOLD%^%^CYAN%^>%^RESET%^%^BOLD%^%^BLUE%^==--%^RESET%^" });
 
-        for (i = 0;i < sizeof(temp);i++)
-        {
+        for (i = 0;i < sizeof(temp);i++){
             enhancement_name = temp[i];
             enhance = enhances[enhancement_name];
             normal_enhances += ({ enhancement_name });
             if (enhance)
             {
-                display += ({ "  %^RESET%^%^BOLD%^%^GREEN%^" + enhancement_name + "" });
+                display += ({ "  %^RESET%^%^BOLD%^%^GREEN%^"+enhancement_name+"" });
             }
-
         }
+        display += ({ "%^BOLD%^%^BLUE%^--==================================--%^RESET%^\n\n" });
+        
+        if(feat_ap || feat_wb)display += ({ "%^RESET%^%^ORANGE%^Weapon Enhancements Pool: %^BOLD%^"+calc_enh_points(player)+"%^RESET%^"});
+        if(feat_ab || feat_wr)display += ({ "%^RESET%^%^ORANGE%^Armor Enhancements Pool: %^BOLD%^"+calc_enh_points(player)+"%^RESET%^"});
 
-        TP->more(display);
+        player->more(display);
 
         return 1;
     }
@@ -490,6 +492,35 @@ void off_enhances(object obj, string enh_type)
     return;
 }
 
+int calc_enh_points(object player){
+    int power, my_levels;
+
+    power = 0;
+
+    my_levels = (int)player->query_prestige_level("magus");
+    power += ((int)player->query_prestige_level("magus") + 7) / 8;
+    if (FEATS_D->usable_feat(player, "legendary blade")) power += 2;
+    power += ((int)player->query_level() - my_levels) / 16;
+
+    if(player->is_class("cleric")){
+        if(player->is_class("paladin")){
+            my_levels = max( ({ (int)player->query_prestige_level("paladin"), (int)player->query_prestige_level("cleric") }) );
+            power += max( ({ ((int)player->query_prestige_level("paladin") + 1) / 6, ((int)player->query_prestige_level("cleric") + 1) / 6 }) );
+        }
+        else{
+            my_levels = (int)player->query_prestige_level("cleric");
+            power += ((int)player->query_prestige_level("cleric") + 1) / 6;
+        }
+    }
+    else if(player->is_class("paladin")){
+        my_levels = (int)player->query_prestige_level("paladin");
+        power += ((int)player->query_prestige_level("paladin") + 1) / 6;
+    }
+    
+    power += ((int)player->query_level() - my_levels) / 16;
+    
+    return power;
+}
 
 void help()
 {
