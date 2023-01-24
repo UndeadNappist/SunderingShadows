@@ -7,6 +7,7 @@
 // /d/<a-h>
 #define STRUCK_REVIEWED_A ({ \
     "/d/antioch/jarmila/obj/vashapride", \
+    "/d/antioch/ruins/obj/diamond_plate", \
     "/d/antioch/ruins/obj/ebony_armor", \
     "/d/antioch/valley/obj/sun_shield", \
     "/d/atoyatl/tecqumin/obj/kilt", \
