@@ -6,6 +6,13 @@
 
 // Living objects (mobs)
 #define MAGIC_RES_MOBS ({ \
+    "/d/antioch/antioch2/mons/sebastian", \
+    "/d/antioch/valley/mons/dragonet", \
+    "/d/attaya/tunnels/mons/book", \
+    "/d/islands/argentrock/mon/diamond", \
+    "/d/islands/argentrock/mon/diamond2", \
+    "/d/islands/argentrock/mon/hellhound", \
+    "/d/shadowgate/conversion/spellbert", \
     "/d/tharis/newtharis/mobs/bankgolem", \
 })
 
