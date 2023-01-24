@@ -4,7 +4,7 @@
 %^BOLD%^%^BLUE%^Innate spells: %^RESET%^reduce person, alter self, detect magic
 %^BOLD%^%^BLUE%^Size: %^RESET%^large
 
-%^BOLD%^%^BLUE%^Standard alignments: %^RESET%^any non-evil
+%^BOLD%^%^BLUE%^Standard alignments: %^RESET%^any
 %^BOLD%^%^BLUE%^Classes allowed: %^RESET%^barbarian, bard, cleric, druid, fighter, oracle, ranger
 %^BOLD%^%^BLUE%^Normal adventuring starting age: %^RESET%^41-70
 %^BOLD%^%^BLUE%^Average life span: %^RESET%^350
@@ -12,7 +12,10 @@
 %^BOLD%^%^BLUE%^Racial Traits:
 %^CYAN%^Fearless%^RESET%^         - Immune to fear
 %^CYAN%^Natural Armor%^RESET%^    - +4 to natural armor
+%^CYAN%^Low Light Vision%^RESET%^ - +2 to sight bonus
 %^CYAN%^Hunter%^RESET%^           - +2 to survival and perception
 
 %^BOLD%^%^BLUE%^Description:
-Firbolgs look like normal humans on a much larger scale. They are about 10 1/2 feet tall and 800 pounds, and wear their hair long with long beards. Their skin is typically a fleshy pink, and can have any of the normal human shades of hair color, but are most commonly blonde or red. They dislike using shields to fight, and prefer to have a large two handed weapon. They distrust most other civilized races, and so they avoid them by living in the forests and hills. They do keep on good terms with elves, although not overly friendly. They do not attack or kill without reason and are extremely confident and fearless.
+Firbolgs look like normal humans on a much larger scale. They are about 9 to 11 feet tall and 800 pounds, and wear their hair long with long beards. They are typically incredibly muscled, with pale or reddish-pink-toned skin, and can have any of the normal human shades of hair color, but are most commonly blonde or red. They distrust most other civilized races, and so they avoid them by living in the forests and hills. They do keep on peacable terms with most sentient forest creatures, including wood and wild elves.
+
+Firbolgs are distantly related to true giants. While large for humanoids, they are passable (if easy to pick out) in humanoid societies. In these times a firbolg is a natural soldier; its physical strength allows it to dominate a battlefield in a way few others can. Their variety also allows them to be versatile in their vocation, drawing upon their natural giant magic to get things done.

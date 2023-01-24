@@ -7,7 +7,7 @@ void create() { ::create(); }
 //fearless in player_d.c
 int *age_brackets() { return ({ 40, 100, 133, 200 }); }
 
-int *restricted_alignments(string subrace) { return ({ 3, 6, 9 }); }
+int *restricted_alignments(string subrace) { return ({ }); }
 
 string *restricted_classes(string subrace) {
   return ({ "thief", "mage", "magus", "psion", "psywarrior", "paladin", "sorcerer", "monk", "warlock", "inquisitor" });
@@ -15,7 +15,7 @@ string *restricted_classes(string subrace) {
 
 // this only affects rolling in creation; does not prevent dedication to a deity in-game, to allow for character evolution. N, 3/16.
 string *restricted_deities(string subrace) {
-    return ({ "the faceless one", "lord shadow", "nilith", "khyron" });
+    return ({  });
 }
 
 // stats in order: str, dex, con, int, wis, cha
@@ -26,7 +26,7 @@ mapping skill_mods(string subrace) { return ([ "survival" : 2, "perception" : 2 
 
 int natural_AC(string subrace) { return 4; }
 
-int sight_bonus(string subrace) { return 0; }
+int sight_bonus(string subrace) { return 2; }
 
 mapping daily_uses(string subrace) { return ([ "reduce person" : 1, "alter self" : 1, "detect magic" : 1, ]); }
 
