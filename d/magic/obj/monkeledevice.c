@@ -72,7 +72,6 @@ void create(){
 void init(){
     ::init();
     add_action("remove", "disperse");
-    tell_object(this_player(), "%^RESET%^%^CRST%^%^C100%^You can <disperse> your minions when needed.%^CRST%^");
 }
 
 int move(mixed dest)
@@ -105,6 +104,7 @@ void add_guardian()
     ob->set_property("minion", caster);
     caster->add_follower(ob);
     mons += ({ob});
+    tell_object(caster, "%^RESET%^%^CRST%^%^C100%^You can <disperse> your minions when needed.%^CRST%^");
     return;
 }
 
