@@ -12,7 +12,7 @@ void create()
     feat_name("spell combat");
     feat_prereq("Magus L1");
     feat_syntax("spell_combat");
-    feat_desc("A magus learns to cast spells and fight with his weapon at the same time. The magus must have one hand free, while wielding a light or one-handed melee weapon in the other hand. The spell potency has a penalty but its lessened at 8th level and again at 14th level. This will only work with spells from the magus spell list.");
+    feat_desc("A magus learns to cast spells and fight with his weapon at the same time. The magus must have one hand free, while wielding a light or one-handed melee weapon in the other hand. The spell potency has a penalty but it is lessened at 8th level and again at 14th level. This will only work with spells from the magus spell list.");
     set_required_for(({ "enruned shield", "enruned offhand", "enruned great weapon" }));
 }
 
@@ -35,7 +35,7 @@ int cmd_spell_combat(string str)
     if(!objectp(TP)) { return 0; }
     if ((int)TP->is_wearing_type("shield") && !TP->query_property("enruned shield"))
     {
-        tell_object(TP, "%^RESET%^%^BOLD%^You can't be wearing a shield.%^RESET%^");
+        tell_object(TP, "%^RESET%^%^CRST%^%^C059%^You can't be wearing a shield.%^CRST%^");
         return 1;
     }
     wielded = (object*)TP->query_wielded();
@@ -60,11 +60,6 @@ int cmd_spell_combat(string str)
     return 1;
 }
 
-string cm(string str)
-{
-    return CRAYON_D->color_string(str,"dark black");
-}
-
 void execute_feat()
 {
     object obj;
@@ -78,7 +73,7 @@ void execute_feat()
     if(FEATS_D->is_active(caster,"spell combat"))
     {
         obj = query_active_feat("spell combat");
-        tell_object(caster,cm("You release your concentration."));
+        tell_object(caster, "%^RESET%^%^CRST%^%^C020%^You release your %^C026%^c%^C027%^o%^C032%^n%^C027%^c%^C026%^e%^C027%^n%^C032%^t%^C027%^r%^C026%^a%^C027%^t%^C032%^i%^C027%^o%^C026%^n%^RESET%^%^C020%^.%^CRST%^");
         obj->dest_effect();
         if (userp(caster))
         {
@@ -88,7 +83,7 @@ void execute_feat()
     }
     ::execute_feat();
 
-    tell_object(caster,cm("You combine your magical ability and martial prowess."));
+    tell_object(caster, "%^RESET%^%^CRST%^%^C020%^You combine your %^C118%^m%^C112%^ag%^C106%^i%^C118%^c%^C112%^al %^C106%^a%^C118%^b%^C112%^il%^C106%^i%^C118%^t%^C112%^y %^RESET%^%^C020%^and %^C026%^m%^C027%^a%^C032%^r%^C027%^t%^C032%^i%^C027%^a%^C026%^l p%^C027%^r%^C032%^o%^C027%^w%^C032%^e%^C027%^s%^C026%^s%^RESET%^%^C020%^.%^CRST%^");
     caster->set_property("active_feats",({TO}));
     caster->set_property("magus cast", 1);
     if (userp(caster))
@@ -107,7 +102,7 @@ void dest_effect()
     {
         caster->remove_property_value("active_feats",({TO}));
         caster->remove_property("magus cast");
-        tell_object(caster,"%^BOLD%^%^BLUE%^Your concentration fades.");
+        tell_object(caster, "%^RESET%^%^CRST%^%^C020%^Your %^C026%^c%^C027%^o%^C032%^n%^C027%^c%^C026%^e%^C027%^n%^C032%^t%^C027%^r%^C026%^a%^C027%^t%^C032%^i%^C027%^o%^C026%^n%^RESET%^%^C020%^ fades.%^CRST%^");
     }
 
     me->gmcp_update_character("resources", ([ "spell_combat": 0 ]));
@@ -117,3 +112,4 @@ void dest_effect()
 
     return;
 }
+
