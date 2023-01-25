@@ -20,14 +20,15 @@ void create() {
     set_spell_level(([ "mage" : 1, "monk" : 3, "magus" : 1 ]));
     set_spell_sphere("alteration");
     set_monk_way("way of the elements");
-    set_syntax("cast CLASS burning hands on TARGET");
+    set_syntax("cast CLASS burning hands [on TARGET]");
     set_description("This spell begins by the caster fanning out his hands while chanting the spell.  Flames will flare "
 "out and do a small amount of damage to the target and those near him. A versatile arcanist can manipulate the base element "
 "of this spell.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
+    //set_target_required(1);
     set_save("reflex");
+    versatile();
     splash_spell(1);
 }
 
@@ -41,6 +42,9 @@ void spell_effect(int prof) {
     int x;
     object * allies;
     object * targets;
+    
+    if(!target || !objectp(target))
+        target = caster->query_current_attacker();
 
     if (!present(target,environment(caster))) {
         tell_object(caster,"%^BOLD%^Your target is not in this area.\n");
