@@ -12,11 +12,7 @@ void create()
     feat_name("arcane pool");
     feat_prereq("Magus L1");
     feat_classes("magus");
-    feat_desc("The magus gains a reservoir of mystical arcane energy that he can draw upon to fuel his powers or grant enhancement bonuses or properties to his weapon, the bonuses and properties last for 1 minute. The magus has the following properties available: flaming, flaming burst, frost, icy burst, shock, shocking burst.
-The arcane pool size is half your magus level plus your intelligence modifier.
-The enhancement bonus is 1 at 1st and one additional point for every 8 additional levels.
-
-See also: enhance, enhancements");
+    feat_desc("The magus gains a reservoir of mystical arcane energy that takes the form of two different resources. The first is the arcane pool, which he can draw upon to either cast spells without using a prepared spell slot or to activate weapon or armor enhancements. The second resource are enhancement pool, which determines how many different weapon or armor enhancements he can add to his weapon and armor, which last for one minute per magus level. The magus has the following weapon enhancements available by default: flaming, flaming burst, frost, icy burst, shock, shocking burst. Armor enhancements, other types of elemental enhancements, and extensions to the durations of each can be gained through arcana feats.\n\nThe arcane pool size is half your magus level plus your intelligence modifier.\nThe enhancement pool is one at first level and one additional point for every eight additional levels.\n\nSee also: enhance, enhancements");
     set_required_for(({ "enduring arcana", "greater arcane pool", "corrosive arcana", "thundering arcana", "devoted arcana", "warding", "augment physical prowess" }));
     permanent(1);
 }

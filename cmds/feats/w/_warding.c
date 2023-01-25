@@ -11,10 +11,7 @@ void create()
     feat_category("MagusArcana");
     feat_name("warding");
     feat_classes("magus");
-    feat_desc("The magus can expend a point from the arcane pool to grant enhancement bonuses or properties to a worn body armor. The magus has the following properties available: fortification (light, moderate, heavy), energy resistance.
-The enhancement bonus is 1 at 1st and one additional point for every 8 additional levels
-
-See also : enhance, enhancements");
+    feat_desc("The magus can expend a point from the arcane pool to activate these enhancement bonuses when wearing body armor. The magus has the following properties available: light fortification, medium fortification, heavy fortification, all energy resistances, and all improved energy resistances.\n\nThe enhancement pool is one at first level and one additional point for every eight additional levels.\n\nSee also : enhance, enhancements");
     permanent(1);
 }
 

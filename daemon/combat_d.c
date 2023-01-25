@@ -874,8 +874,8 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
 
         alignments = ({ "alignment 147", "alignment 369", "alignment 123", "alignment 789" });
         enemy_alignments = ({ "369", "147", "789", "123" });
-        align_text = ({ "holy wrath", "unholy fury", "righteous justice", "rebellious might" });
-        a_colors = ({ "ice blue", "fire red", "lightning yellow", "lightning yellow" });
+        align_text = ({ "%^C220%^h%^C226%^ol%^C220%^y w%^C226%^rat%^C220%^h", "%^C124%^u%^C160%^n%^C196%^ho%^C160%^l%^C124%^y %^C160%^f%^C196%^u%^C160%^r%^C124%^y", "%^C214%^r%^C220%^i%^C226%^ghteo%^C220%^u%^C214%^s j%^C220%^u%^C226%^sti%^C220%^c%^C214%^e", "%^C089%^re%^C090%^be%^C091%^ll%^C090%^io%^C089%^us m%^C090%^i%^C091%^g%^C090%^h%^C089%^t" });
+        a_colors = ({ "%^C255%^", "%^C259%^", "%^C021%^", "%^C124%^" });
 
         target_align = (string)target->query_true_align();
         effective_level = attacker->query_prestige_level("magus");
@@ -900,9 +900,9 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                 strsrch(enemy_alignments[i], target_align + "") + 1) {
                 enhance_msg = align_text[i];
                 enhance_dmg = weapon->query_wc() * (1 + effective_level / 10); //scaling as bane
-                tell_object(attacker, CRAYON_D->color_string("You unleash your " + enhance_msg + " at " + ename + "!", a_colors[i]));
-                tell_object(target, CRAYON_D->color_string(pname + " unleashes " + attacker->query_possessive() + " " + enhance_msg + " through you!", a_colors[i]));
-                tell_room(environment(attacker), CRAYON_D->color_string(pname + " unleashes " + attacker->query_possessive() + " " + enhance_msg + " at " + ename + "!", a_colors[i]), ({ target, attacker}));
+                tell_object(attacker, "%^RESET%^%^CRST%^"+a_colors[i]+"You unleash your "+enhance_msg+a_colors[i]+" at "+ename+"%^RESET%^%^CRST%^"+a_colors[i]+"!%^CRST%^");
+                tell_object(target, "%^RESET%^%^CRST%^"+pname+"%^RESET%^%^CRST%^"+a_colors[i]+" unleashes "+attacker->query_possessive()+" "+enhance_msg+a_colors[i]+" through you!%^CRST%^");
+                tell_room(environment(attacker), "%^RESET%^%^CRST%^"+pname+" unleashes "+attacker->query_possessive()+" "+enhance_msg+a_colors[i]+" at "+ename+"%^RESET%^%^CRST%^"+a_colors[i]+"!%^CRST%^", ({ target, attacker}));
                 target->cause_typed_damage(target, target->return_target_limb(), enhance_dmg, "divine");
             }
         }
