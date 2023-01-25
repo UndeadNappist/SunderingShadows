@@ -59,6 +59,7 @@ int cmd_ki(string str)
                 "guardians that may appear, if you have the elemental opportunist feat, "+
                 "and the damage type of flurry of blows.%^RESET%^");
                 TP->set("monk_ele_focus", MyType);
+                TP->set("elementalist", MyType);
                 return 1;
             }
         }
@@ -145,7 +146,7 @@ Ki is not available to you until you reach at least level 2 in the monk class.
 
 You may visit your diety's temple to pick the dedication that you wouldplike, however, you must be at least level 3 in order to do so.
 
-%^ORANGE%^<ki focus %^ORANGE%^%^ULINE%^ELEMENT%^RESET%^%^ORANGE%^>%^RESET%^ will allow a monk dedicated to the way of the elements to pick an elemental type to focus on for now. This dictates the type of damage that flurry of blows will be, as well as the type of guardians that may show up with the elemental opportunist feat. It does not change spell damage types. The default is fire. Valid options are fire, cold, electricity, and acid.
+%^ORANGE%^<ki focus %^ORANGE%^%^ULINE%^ELEMENT%^RESET%^%^ORANGE%^>%^RESET%^ will allow a monk dedicated to the way of the elements to pick an elemental type to focus on for now. This dictates the type of damage that flurry of blows will be, as well as the type of guardians that may show up with the elemental opportunist feat. Versatile spells will convert to the chosen element. The default is fire. Valid options are fire, cold, electricity, and acid.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

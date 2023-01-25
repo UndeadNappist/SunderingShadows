@@ -69,6 +69,12 @@ void create(){
    call_out("check_guardian_environment", 10 + random(11));
 }
 
+void init(){
+    ::init();
+    add_action("remove", "disperse");
+    tell_object(this_player(), "%^RESET%^%^CRST%^%^C100%^You can <disperse> your minions when needed.%^CRST%^");
+}
+
 int move(mixed dest)
 {
    if(ETO && objectp(ETO))
