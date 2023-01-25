@@ -259,7 +259,7 @@ int cmd_enhance(string str)
             return 1;
         }
 
-        display += ({ "%^RESET%^%^CRST%^%^C100%^--%^C101%^==%^C144%^=====< %^C255%^Enhancements List%^RESET%^%^C144%^>=====%^C101%^==%^C100%^--%^CRST%^" });
+        display += ({ "%^RESET%^%^CRST%^%^C100%^--%^C101%^==%^C144%^=====< %^C255%^Enhancements List%^RESET%^%^C144%^>=====%^C101%^==%^C100%^--%^CRST%^\n" });
 
         for (i = 0;i < sizeof(temp);i++){
             enhancement_name = temp[i];
@@ -267,12 +267,12 @@ int cmd_enhance(string str)
             normal_enhances += ({ enhancement_name });
             if (enhance)
             {
-                display += ({ "     %^RESET%^%^CRST%^%^C046%^"+enhancement_name+"%^RESET%^%^CRST%^" });
+                display += ({ "   %^RESET%^%^CRST%^%^C046%^"+enhancement_name+"%^RESET%^%^CRST%^" });
             }
         }
         display += ({" "});
-        if(feat_ap || feat_wb)display += ({ "%^RESET%^%^CRST%^%^C130%^Total weapon enhancement points: %^C226%^"+calc_enh_points(player)+"%^RESET%^%^CRST%^"});
-        if(feat_ab || feat_wr)display += ({ "%^RESET%^%^CRST%^%^C130%^ Total armor enhancement points: %^C226%^"+calc_enh_points(player)+"%^RESET%^%^CRST%^"});
+        if(feat_ap || feat_wb)display += ({ "%^RESET%^%^CRST%^%^C130%^   Total weapon enhancement pool: %^C226%^"+calc_enh_points(player)+"%^RESET%^%^CRST%^"});
+        if(feat_ab || feat_wr)display += ({ "%^RESET%^%^CRST%^%^C130%^   Total armor enhancement pool: %^C226%^"+calc_enh_points(player)+"%^RESET%^%^CRST%^"});
         display += ({ "\n%^RESET%^%^CRST%^%^C100%^--%^C101%^==%^C144%^==============================%^C101%^==%^C100%^--%^RESET%^%^CRST%^\n" });
 
         player->more(display);
@@ -440,33 +440,33 @@ enhance - apply stored list of enhancements
 
 enhance
 enhance list
-enhance add %^ORANGE%^%^ULINE%^ENHANCEMENT_NAME%^RESET%^
-enhance remove %^ORANGE%^%^ULINE%^ENHANCEMENT_NAME%^RESET%^
+enhance add %^ORANGE%^%^ULINE%^PROPERTY_NAME%^RESET%^
+enhance remove %^ORANGE%^%^ULINE%^PROPERTY_NAME%^RESET%^
 enhance clear
 enhance weapon
 enhance armor
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-The command will allow player to store a list of enhancements they can apply to their weapon or armor using enhancement points. The enhancements will cycle one at a time from those listed, and will be interrupted if you run out of enhancement points. Any unused enhancement points will be applied as bonuses according to type; weapon points will be converted into damage and attack bonuses, and armor points will be converted into an AC bonus.
+The command will allow player to store a list of enhancements they can apply to their weapon instead of adding an enhancement bonus. The enhancements will cycle one at a time. If the player doesn't have enough enhancement bonus, enhancements process will be interrupted.
 
 %^ORANGE%^<enhance list>%^RESET%^
   Will list all added enhancements.
 
-%^ORANGE%^<enhance add %^ORANGE%^%^ULINE%^ENHANCEMENT_NAME%^RESET%^%^ORANGE%^>%^RESET%^
-  Will add %^ORANGE%^%^ULINE%^ENHANCEMENT_NAME%^RESET%^ to your enhancement list.
+%^ORANGE%^<enhance add %^ORANGE%^%^ULINE%^PROPERTY_NAME%^RESET%^%^ORANGE%^>%^RESET%^
+  Will add %^ORANGE%^%^ULINE%^PROPERTY_NAME%^RESET%^ to the enhancement list.
 
-%^ORANGE%^<enhance remove %^ORANGE%^%^ULINE%^ENHANCEMENT_NAME%^RESET%^%^ORANGE%^>%^RESET%^
-  Will remove %^ORANGE%^%^ULINE%^ENHANCEMENT_NAME%^RESET%^ from your enhancement list.
+%^ORANGE%^<enhance remove %^ORANGE%^%^ULINE%^PROPERTY_NAME%^RESET%^%^ORANGE%^>%^RESET%^
+  Will remove %^ORANGE%^%^ULINE%^PROPERTY_NAME%^RESET%^ from the enhancement list.
 
 %^ORANGE%^<enhance clear>%^RESET%^
   Will clear your enhancement list.
 
 %^ORANGE%^<enhance weapon>%^RESET%^
-  Will enhance your main weapon with the listed valid options on your enhancement list.
+  Will enhance your main weapon with the listed valid options.
 
 %^ORANGE%^<enhance armor>%^RESET%^
-  Will enhance your body armor with the listed valid options on your enhancement list.
+  Will enhance your body armor with the listed valid options.
 
 %^CYAN%^SEE ALSO%^RESET%^
 
@@ -474,4 +474,3 @@ enhancements, magus, arcane pool, warding, paladin, armor bond, weapon bond
 "
         );
 }
-
