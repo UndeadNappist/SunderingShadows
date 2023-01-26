@@ -125,8 +125,11 @@ void execute_attack()
     if(!sizeof(foes))
         saved = ({  });
 
-    tell_object(caster, "%^C066%^Your %^C078%^tentacles%^C066%^ lash out, casting %^C078%^woe%^C066%^ unto your enemies!%^CRST%^");
-    tell_room(place, "%^C066%^The tentacles %^C078%^lash out%^C066%^ with horrifying %^C078%^fury%^C066%^!%^CRST%^", caster);
+    if(sizeof(foes))
+    {
+        tell_object(caster, "%^C066%^Your %^C078%^tentacles%^C066%^ lash out, casting %^C078%^woe%^C066%^ unto your enemies!%^CRST%^");
+        tell_room(place, "%^C066%^The tentacles %^C078%^lash out%^C066%^ with horrifying %^C078%^fury%^C066%^!%^CRST%^", caster);
+    }
     
     foreach(object ob in foes)
     {
