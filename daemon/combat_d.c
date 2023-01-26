@@ -135,6 +135,9 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
     //True seeing negates misschance
     if(attacker->true_seeing())
         MissChance = 0;
+    
+    //It does not negate blink misschance (not concealment)
+    MissChance += attacker->query_property("blink misschance");
 
     //Can't block with shield if paralyzed
     if(victim->query_paralyzed())
