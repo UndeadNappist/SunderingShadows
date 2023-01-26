@@ -1,7 +1,7 @@
 /*
   _aspect_of_the_falcon.c
 
-  +3 to perception skill
+  +4 to perception skill
 
   -- Tlaloc -- 7.11.20
 */
@@ -23,10 +23,10 @@ void create()
     set_spell_sphere("divination");
     set_syntax("cast CLASS aspect of the falcon");
     set_damage_desc("+4 to perception skill");
+    set_bonus_type("competence");
     set_description("By attuning yourself to the skies above, you gain a +4 bonus to your perception.");
     set_verbal_comp();
     set_somatic_comp();
-    set_arg_needed();
     set_helpful_spell(1);
 }
 

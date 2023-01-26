@@ -77,7 +77,10 @@ void spell_effect(int prof)
     target->set_property("added short", ({"%^RESET%^%^CRST%^%^C092%^ (%^C090%^slightly %^C165%^d%^C171%^i%^C177%^s%^C165%^t%^C171%^o%^C177%^r%^C165%^t%^C171%^e%^C177%^d%^RESET%^%^C092%^)%^CRST%^"}));
     spell_successful();
     addSpellToCaster();
-    addSpellToTarget();
+    
+    if(caster != target)
+        addSpellToTarget();
+    
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 5;
     set_end_time();
     call_out("dest_effect",spell_duration);

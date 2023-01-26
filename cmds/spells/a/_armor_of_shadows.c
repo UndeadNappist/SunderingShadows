@@ -18,7 +18,6 @@ void create()
     set_somatic_comp();
     set_property("keywords", ({ "defensive", "targeted", "personal" }));
     set_helpful_spell(1);
-    set_arg_needed(1);
 }
 
 int preSpell()
@@ -76,7 +75,6 @@ void spell_effect(int prof)
 
     target->add_ac_bonus(bonus);
     target->set_property("spelled", ({TO}) );
-    //target->set_property("armoured",1);
     addSpellToCaster();
     call_out("test", 7);
 }
@@ -91,13 +89,6 @@ void test()
         remove();
         return;
     }
-
-    /*if (!target->is_ok_armour("mage"))
-    {
-        tell_object(caster,"The spell can not offer protection to those wearing armor.");
-        TO->dest_effect();
-        return;
-    }*/
 
     if (!objectp(target))
     {
