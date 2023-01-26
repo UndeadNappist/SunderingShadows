@@ -133,11 +133,11 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
     //attacker has a property set so that they cannot miss - Saide
 
     //True seeing negates misschance
-    if(attacker->true_seeing())
+    if(attacker->true_seeing()){
         MissChance = 0;
-    
-    //It does not negate blink misschance (not concealment)
-    MissChance += attacker->query_property("blink misschance");
+        //It does not negate blink misschance (not concealment)
+        MissChance += victim->query_property("blink misschance");
+    }
 
     //Can't block with shield if paralyzed
     if(victim->query_paralyzed())
