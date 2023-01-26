@@ -10,7 +10,7 @@ void create()
     set_spell_name("barkskin");
     set_spell_level(([ "ranger" : 2,"druid" : 2, "oracle":2]));
     set_mystery("nature");
-    set_bonus_type("armor");
+    set_bonus_type("natural armor");
     set_spell_sphere("alteration");
     set_syntax("cast CLASS barkskin");
     set_damage_desc("2 + clevel / 20 to AC");
