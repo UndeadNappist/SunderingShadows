@@ -12,9 +12,7 @@ void create() {
     set_spell_sphere("alteration");
     set_syntax("cast CLASS blink");
     set_damage_desc("35% miss chance");
-    set_description("With a snap of the fingers, the mage can start to blink between the prime and ethereal planes. This will give a chance for melee attacks to simply pass right through their form, while it is incorporeal. The chance to miss is thirty five percent.
-
-%^BOLD%^%^RED%^N.B.%^RESET%^ Will only work while wearing no armor.");
+    set_description("You blink back and forth between the material and ethereal planes and look as though you're winking in and out of reality at random, gaining 35% miss chance. Since this is not an invisibility effect, true seeing does not completely nullify it, but reduces it to 15% miss chance.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
@@ -55,15 +53,17 @@ void spell_effect(int prof) {
 
     caster->set_property("spelled", ({TO}) );
     caster->set_property("amorpha",1);
+    caster->set_property("blink misschance", 15); //If they have true seeing, it's lower misschance
     caster->set_missChance(caster->query_missChance()+ 35);
     spell_successful();
     addSpellToCaster();
-    call_out("test", 2);
+    //call_out("test", 2);
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 5;
     set_end_time();
     call_out("dest_effect",spell_duration);
 }
 
+/*
 void test() {
 // added to avoid errors when the spell has already dested *Styx* 11/14/04
     if (!objectp(TO) || !objectp(caster))
@@ -79,6 +79,7 @@ void test() {
     }
     call_out("test", 5);  // added to keep it checking periodically *Styx* 11/14/04
 }
+*/
 
 void dest_effect() {
     int chance;
@@ -93,6 +94,7 @@ void dest_effect() {
     chance = (int)caster->query_missChance()-35;
     caster->set_missChance(chance);
     caster->remove_property("amorpha");
+    caster->remove_property("blink misschance");
     caster->remove_property_value("spelled", ({TO}) );
     ::dest_effect();
     if(objectp(TO)) TO->remove();
