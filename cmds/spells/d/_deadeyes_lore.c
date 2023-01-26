@@ -23,7 +23,7 @@ void create()
 int preSpell()
 {
     if (!target) target = caster;
-    if(target->query_property("deadyes_lore"))
+    if(target->query_property("deadeyes_lore"))
     {
         tell_object(caster,"The target is already under a similar influence.");
         return 0;

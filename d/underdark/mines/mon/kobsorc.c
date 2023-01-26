@@ -8,8 +8,7 @@
 #include "../defs.h"
 inherit MONSTER;
 
-int step1;
-int step2;
+int step1, step2, buffed;
 string *asked;
 
 void create(){
@@ -82,6 +81,8 @@ void create(){
    set_func_chance(30);
    set_funcs(({"stoneme","helpme"}));
    add_money("silver", random(10000)+30);
+   
+   buffed = 0;
 }
 
 void catch_say(string msg){
@@ -223,10 +224,11 @@ void init(){
     string mrace=TP->query_race();
     ::init();
     if(TP->query_invis()) return;
-    if(mrace == "gnome" || mrace == "svirfneblin" || mrace == "halfling" || mrace == "elf" || mrace == "hook horror" || mrace == "dwarf"){
+    if((mrace == "gnome" || mrace == "svirfneblin" || mrace == "halfling" || mrace == "elf" || mrace == "hook horror" || mrace == "dwarf") && !buffed){
         command ("kill "+TPQN);
         new("/cmds/spells/w/_wall_of_fire.c")->use_spell(TO,0,29,100,"mage");
         new("/cmds/spells/i/_improved_armor.c")->use_spell(TO,TO,29,100,"mage");
+        buffed = 1;
     }
     if(present("gldstr",TP)){
         command ("kill "+TPQN);
