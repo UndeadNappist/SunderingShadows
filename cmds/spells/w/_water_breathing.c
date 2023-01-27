@@ -17,7 +17,7 @@ void create(){
     set_description("This spell allows the target to breathe water for a limited period of time.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
+    //set_target_required(1);
 	set_helpful_spell(1);
 }
 
@@ -39,13 +39,13 @@ void spell_effect(int prof){
     }
 
     spell_successful();
-    tell_room(environment(caster), "%^RESET%^%^CRST%^%^C051%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C051%^ touches "+target->possessive()+" nose and mouth lightly.%^CRST%^", ({caster, target}) );
+    tell_room(environment(caster), "%^RESET%^%^CRST%^%^C255%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C033%^ touches "+target->possessive()+" nose and mouth lightly.%^CRST%^", ({caster, target}) );
     if(caster == target){
-        tell_object(caster, "%^RESET%^%^CRST%^%^C051%^You touch your nose and mouth lightly, granting yourself the ability to breathe water.%^CRST%^");
+        tell_object(caster, "%^RESET%^%^CRST%^%^C255%^You touch your nose and mouth lightly, granting yourself the ability to breathe %^C033%^w%^C039%^a%^C045%^t%^C033%^e%^C039%^r%^RESET%^%^C255%^.%^CRST%^");
     }
     else{
-        tell_object(caster, "%^RESET%^%^CRST%^%^C051%^You touch "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C051%^'s nose and mouth lightly, granting "+target->query_objective()+" the ability to breathe water.%^CRST%^");
-        tell_object(target, "%^RESET%^%^CRST%^%^C051%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C051%^ touches your nose and mouth lightly, granting you the power to breathe water.%^CRST%^");
+        tell_object(caster, "%^RESET%^%^CRST%^%^C255%^You touch "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C255%^'s nose and mouth lightly, granting "+target->query_objective()+" the ability to breathe %^C033%^w%^C039%^a%^C045%^t%^C033%^e%^C039%^r%^RESET%^%^C255%^.%^CRST%^");
+        tell_object(target, "%^RESET%^%^CRST%^%^C255%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C255%^ touches your nose and mouth lightly, granting you the power to breathe %^C033%^w%^C039%^a%^C045%^t%^C033%^e%^C039%^r%^RESET%^%^C255%^.%^CRST%^");
     }
 
     breathob = new(WTROB);
