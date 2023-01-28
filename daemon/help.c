@@ -166,7 +166,7 @@ string *query_topics(string category) {
    case "*faq": return topics_dir(DIR_FAQ_HELP+"/");
    case "*domains": return topics_dir(DIR_DOMAINS_HELP+"/");
    case "*mysteries": return topics_dir(DIR_MYSTERIES_HELP+"/");
-   case "*bloodlines": return topic_dir(DIR_BLOODLINES_HELP+"/");
+   case "*bloodlines": return topics_dir(DIR_BLOODLINES_HELP+"/");
    case "*skills": return topics_dir(DIR_SKILLS_HELP+"/");
 
    case "*diseases":
