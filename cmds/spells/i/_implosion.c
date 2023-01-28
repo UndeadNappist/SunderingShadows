@@ -95,6 +95,7 @@ void dest_effect()
     {
         target->remove_property("implosion");
         tell_object(target, "%^BOLD%^The crushing force finally relents.%^RESET%^");
+        objectp(caster) && tell_object(target, "%^BOLD%^Your crushing force relents from " + target->query_cap_name() + ".%^RESET%^");
     }
     
     tell_room(place, "");
