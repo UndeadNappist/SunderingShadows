@@ -22,9 +22,9 @@ void create() {
     set_property("no_random_treasure",1);
     set_currency("gold");
     set_menu(
-        ({"soup","salad","calamari","filet mignon","lamb","halibut","creme brulee","cobbler","cake","water","tea","lemonade","tequila twilight","whiskey sour","vodka martini","blood wine","chardonnay"}),
-        ({"food","food","food","food","food","food","food","food","food","water","soft drink","soft drink","alcoholic","alcoholic","alcoholic","alcoholic","alcoholic"}),
-        ({20,25,30,60,70,80,20,25,30,5,10,15,15,20,30,40,50}),
+        ({"soup","salad","calamari","filet mignon","lamb","halibut","creme brulee","cobbler","cake","water","tea","lemonade","tequila twilight","whiskey sour","vodka martini","blood wine","chardonnay","faerie burn"}),
+        ({"food","food","food","food","food","food","food","food","food","water","soft drink","soft drink","alcoholic","alcoholic","alcoholic","alcoholic","alcoholic","alcoholic"}),
+        ({20,25,30,60,70,80,20,25,30,5,10,15,15,20,30,40,50,75}),
     );
     set_my_mess(({
         "%^RESET%^%^ORANGE%^The soup is thick and %^BOLD%^%^WHITE%^creamy%^RESET%^%^ORANGE%^, filling your belly with warmth.%^WHITE%^",
@@ -39,11 +39,12 @@ void create() {
         "%^BOLD%^%^BLUE%^The %^WHITE%^ice%^BLUE%^-cold %^RESET%^%^GREEN%^minty %^BOLD%^%^BLUE%^water hits the spot!%^RESET%^",
         "%^RESET%^%^MAGENTA%^The relaxing l%^BOLD%^a%^RESET%^%^MAGENTA%^v%^BOLD%^e%^RESET%^%^MAGENTA%^nd%^BOLD%^e%^RESET%^%^MAGENTA%^r %^BOLD%^scent %^RESET%^%^MAGENTA%^of the %^BOLD%^%^RED%^hot %^RESET%^%^MAGENTA%^tea calms you.%^WHITE%^",
         "%^YELLOW%^The %^MAGENTA%^tangy %^ORANGE%^sourness of the lemonade is almost too much!%^RESET%^",
-        "%^BOLD%^%^BLACK%^The t%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^qu%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^la is smooth on the way down, %^RESET%^%^RED%^warming %^BOLD%^%^BLACK%^your belly.%^RESET%^",
+		"%^BOLD%^%^BLACK%^The t%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^qu%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^la is smooth on the way down, %^RESET%^%^RED%^warming %^BOLD%^%^BLACK%^your belly.%^RESET%^",
         "%^RESET%^%^ORANGE%^The fr%^BOLD%^o%^RESET%^%^ORANGE%^thy e%^BOLD%^g%^RESET%^%^ORANGE%^g %^BOLD%^%^WHITE%^white %^RESET%^%^ORANGE%^offers a %^BOLD%^%^WHITE%^richness %^RESET%^%^ORANGE%^to this %^BOLD%^sour %^RESET%^%^ORANGE%^concoction.%^WHITE%^",
         "%^BOLD%^%^WHITE%^This m%^RESET%^%^GREEN%^a%^BOLD%^%^WHITE%^rt%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^n%^RESET%^%^GREEN%^i %^BOLD%^%^WHITE%^is, in fact, quite d%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^rty!%^RESET%^",
         "%^RESET%^%^RED%^This rich wine has legs for days! You notice subtle flavors of %^ORANGE%^oak%^RED%^, %^BOLD%^%^WHITE%^vanilla%^RESET%^%^RED%^, and even a hint of %^BOLD%^%^BLACK%^tobacco%^RESET%^%^RED%^.%^WHITE%^",
-        "%^YELLOW%^Even the glass the ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y is served in has been %^CYAN%^chilled%^ORANGE%^. You detect hints of %^RED%^apple %^ORANGE%^and lemon in this crisp ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y.%^RESET%^"
+        "%^YELLOW%^Even the glass the ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y is served in has been %^CYAN%^chilled%^ORANGE%^. You detect hints of %^RED%^apple %^ORANGE%^and lemon in this crisp ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y.%^RESET%^",
+		"%^RESET%^%^CRST%^%^C231%^You sip delicately at the %^RESET%^%^C093%^v%^C099%^i%^C105%^s%^C147%^c%^C141%^o%^C135%^u%^RESET%^%^C141%^s %^RESET%^%^C147%^l%^C105%^i%^C099%^q%^C093%^u%^C099%^i%^C105%^d%^RESET%^%^C231%^, a quiet %^RESET%^%^C051%^w%^C087%^e%^C123%^e%^C195%^p%^C123%^i%^C087%^n%^C051%^g %^RESET%^%^C231%^reaching your ears for but a moment as the %^RESET%^%^C208%^c%^C209%^i%^C210%^t%^C211%^r%^C212%^u%^C213%^s%^RESET%^%^C231%^-tinged brew settles heavily in your stomach.%^CRST%^"
     }));
     set_your_mess(({
         "%^RESET%^%^ORANGE%^enjoys a bowl of %^BOLD%^%^WHITE%^creamy %^RESET%^%^ORANGE%^pumpkin soup.%^WHITE%^",
@@ -62,7 +63,8 @@ void create() {
         "%^RESET%^%^ORANGE%^drinks a %^BOLD%^sunny %^RESET%^%^ORANGE%^c%^BOLD%^o%^RESET%^%^ORANGE%^ckta%^BOLD%^i%^RESET%^%^ORANGE%^l garnished with an orange peel.%^WHITE%^",
         "%^BOLD%^%^WHITE%^puts their pinky up as they sip their d%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^rty m%^RESET%^%^GREEN%^a%^BOLD%^%^WHITE%^rt%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^n%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^. Very fancy!%^RESET%^",
         "%^RESET%^%^RED%^drinks deeply from their glass of b%^BOLD%^u%^RESET%^%^RED%^rg%^BOLD%^u%^RESET%^%^RED%^ndy w%^BOLD%^i%^RESET%^%^RED%^ne.%^WHITE%^",
-        "%^YELLOW%^enjoys a glass of %^CYAN%^chilled %^ORANGE%^ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y.%^RESET%^"
+        "%^YELLOW%^enjoys a glass of %^CYAN%^chilled %^ORANGE%^ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y.%^RESET%^",
+		"%^RESET%^%^CRST%^%^C231%^sips delicately at their %^RESET%^%^C249%^g%^C250%^o%^C251%^b%^C252%^l%^C250%^e%^C249%^t%^RESET%^%^C231%^, their eyes churning with %^RESET%^%^C039%^e%^C045%^m%^C051%^o%^C087%^t%^C051%^i%^C045%^o%^C039%^n%^RESET%^%^C231%^.%^CRST%^"
     }));
     set_menu_short(({
         "%^RESET%^%^ORANGE%^Pumpkin Cream Soup%^WHITE%^", 
@@ -77,12 +79,12 @@ void create() {
         "%^BOLD%^%^BLUE%^W%^WHITE%^a%^BLUE%^t%^WHITE%^e%^BLUE%^r%^RESET%^",
         "%^RESET%^%^MAGENTA%^L%^BOLD%^a%^RESET%^%^MAGENTA%^v%^BOLD%^e%^RESET%^%^MAGENTA%^nd%^BOLD%^e%^RESET%^%^MAGENTA%^r Tea%^WHITE%^",
         "%^YELLOW%^Lemonade%^RESET%^",
-		"%^RESET%^%^CRST%^%^C231%^A %^RESET%^%^C249%^g%^C250%^o%^C251%^b%^C252%^l%^C250%^e%^C249%^t %^RESET%^%^C231%^of %^RESET%^%^C231%^f%^C189%^a%^C195%^e%^C194%^r%^C230%^i%^C225%^e %^RESET%^%^C199%^b%^C198%^u%^C197%^r%^RESET%^%^C196%^n%^CRST%^ ",
         "%^BOLD%^%^BLACK%^T%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^qu%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^la Tw%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^l%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^ght%^RESET%^",
         "%^RESET%^%^ORANGE%^Wh%^BOLD%^i%^RESET%^%^ORANGE%^sk%^BOLD%^e%^RESET%^%^ORANGE%^y %^BOLD%^S%^RESET%^%^ORANGE%^o%^BOLD%^ur%^RESET%^",
         "%^BOLD%^D%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^rty M%^RESET%^%^GREEN%^a%^BOLD%^%^WHITE%^rt%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^n%^RESET%^%^GREEN%^i%^WHITE%^",
         "%^BOLD%^%^RED%^B%^RESET%^%^RED%^loo%^BOLD%^d %^RESET%^%^RED%^W%^BOLD%^i%^RESET%^%^RED%^ne%^WHITE%^",
-        "%^YELLOW%^Ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y%^RESET%^"
+        "%^YELLOW%^Ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y%^RESET%^",
+		"%^RESET%^%^CRST%^%^C231%^A %^RESET%^%^C249%^g%^C250%^o%^C251%^b%^C252%^l%^C250%^e%^C249%^t %^RESET%^%^C231%^of %^RESET%^%^C231%^f%^C189%^a%^C195%^e%^C194%^r%^C230%^i%^C225%^e %^RESET%^%^C199%^b%^C198%^u%^C197%^r%^RESET%^%^C196%^n%^CRST%^"
     }));
     set_menu_long(({
         "%^RESET%^%^ORANGE%^A thick, vibrant orange soup with sw%^BOLD%^%^WHITE%^i%^RESET%^%^ORANGE%^rls of %^BOLD%^%^WHITE%^rich cream%^RESET%^%^ORANGE%^.%^WHITE%^ ",
@@ -97,11 +99,12 @@ void create() {
         "%^BOLD%^%^BLUE%^A fr%^WHITE%^o%^BLUE%^st%^WHITE%^y %^BLUE%^gl%^WHITE%^a%^BLUE%^ss of refreshing %^WHITE%^ice %^BLUE%^water garnished with %^RESET%^%^GREEN%^mint%^BOLD%^%^BLUE%^.%^RESET%^",
         "%^RESET%^%^MAGENTA%^A steaming cup of %^BOLD%^fragrant %^RESET%^%^MAGENTA%^tea.%^WHITE%^ ",
         "%^YELLOW%^A tall of sweet and sour lemonade garnished with %^RED%^bright red cherries%^ORANGE%^.%^RESET%^",
-        "%^BOLD%^%^BLACK%^This drink is infused with muddled d%^RESET%^%^MAGENTA%^a%^BOLD%^%^BLACK%^rk %^RESET%^%^MAGENTA%^berries%^BOLD%^%^BLACK%^, giving it a d%^RESET%^%^MAGENTA%^a%^BOLD%^%^BLACK%^rk %^RESET%^%^MAGENTA%^violet %^BOLD%^%^BLACK%^h%^RESET%^%^MAGENTA%^u%^BOLD%^%^BLACK%^e.%^RESET%^",
+		"%^BOLD%^%^BLACK%^This drink is infused with muddled d%^RESET%^%^MAGENTA%^a%^BOLD%^%^BLACK%^rk %^RESET%^%^MAGENTA%^berries%^BOLD%^%^BLACK%^, giving it a d%^RESET%^%^MAGENTA%^a%^BOLD%^%^BLACK%^rk %^RESET%^%^MAGENTA%^violet %^BOLD%^%^BLACK%^h%^RESET%^%^MAGENTA%^u%^BOLD%^%^BLACK%^e.%^RESET%^",
         "%^RESET%^%^ORANGE%^This %^BOLD%^sunny %^RESET%^%^ORANGE%^dr%^BOLD%^i%^RESET%^%^ORANGE%^nk has a fr%^BOLD%^o%^RESET%^%^ORANGE%^thy f%^BOLD%^o%^RESET%^%^ORANGE%^am and is garnished with an orange peel.%^WHITE%^",
         "%^BOLD%^Three %^RESET%^%^GREEN%^green olives %^BOLD%^%^WHITE%^impaled on a %^RESET%^%^ORANGE%^wooden toothpick %^BOLD%^%^WHITE%^rest in a bath of unassuming clear liquid.%^RESET%^",
         "%^RESET%^%^RED%^A large, round glass of r%^BOLD%^i%^RESET%^%^RED%^ch b%^BOLD%^u%^RESET%^%^RED%^rg%^BOLD%^u%^RESET%^%^RED%^ndy w%^BOLD%^i%^RESET%^%^RED%^ne.%^WHITE%^",
-        "%^YELLOW%^A tall glass of %^CYAN%^chilled %^ORANGE%^ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y%^RESET%^"
+        "%^YELLOW%^A tall glass of %^CYAN%^chilled %^ORANGE%^ch%^WHITE%^a%^ORANGE%^rd%^WHITE%^o%^ORANGE%^nn%^WHITE%^a%^ORANGE%^y%^RESET%^",
+		"%^RESET%^%^CRST%^%^C231%^This fine goblet of %^RESET%^%^C248%^c%^C249%^h%^C250%^a%^C251%^s%^C249%^e%^RESET%^%^C248%^d s%^RESET%^%^C249%^i%^C250%^l%^C251%^v%^C249%^e%^RESET%^%^C248%^r %^RESET%^%^C231%^contains within a clearly %^RESET%^%^C189%^m%^C225%^y%^C194%^s%^C195%^t%^C153%^i%^C117%^c%^C231%^a%^RESET%^%^C123%^l %^RESET%^%^C230%^l%^C194%^i%^C123%^q%^C189%^u%^C183%^i%^RESET%^%^C153%^d%^RESET%^%^C231%^. Of a viscous consistency its %^RESET%^%^C093%^p%^C099%^u%^C105%^r%^C147%^p%^C141%^l%^RESET%^%^C135%^e %^RESET%^%^C141%^h%^C147%^u%^C105%^e %^RESET%^%^C231%^is %^RESET%^%^C099%^virulent %^RESET%^%^C231%^and %^RESET%^%^C055%^rich%^RESET%^%^C231%^, a heady %^RESET%^%^C249%^metallic tang %^RESET%^%^C231%^with undertones of %^RESET%^%^C136%^honey %^RESET%^%^C231%^and %^RESET%^%^C208%^c%^C209%^i%^C210%^t%^C211%^r%^C212%^u%^C213%^s %^RESET%^%^C231%^reaching the nose.%^CRST%^"
     }));
 }
 

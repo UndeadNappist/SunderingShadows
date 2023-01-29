@@ -78,12 +78,12 @@ int read_fun(string str){
     write("%^BOLD%^%^BLACK%^Lemonade%^WHITE%^\t\t\t\t"+(int)ob->get_price("lemonade")+" gold");
     write("\n");
     write("             %^RESET%^%^MAGENTA%^Alcoholic Beverages%^RESET%^");
-	write("%^BOLD%^%^BLACK%^Faerie Burn%^WHITE%^\t\t\t"+(int)ob->get_price("faerie burn")+" gold");
     write("%^BOLD%^%^BLACK%^Tequila Twilight%^WHITE%^\t\t\t"+(int)ob->get_price("tequila twilight")+" gold");
     write("%^BOLD%^%^BLACK%^Whiskey Sour%^WHITE%^\t\t\t\t"+(int)ob->get_price("whiskey sour")+" gold");
     write("%^BOLD%^%^BLACK%^Vodka Martini%^WHITE%^\t\t\t\t"+(int)ob->get_price("vodka martini")+" gold");
     write("%^BOLD%^%^BLACK%^Blood Wine%^WHITE%^\t\t\t\t"+(int)ob->get_price("blood wine")+" gold");
     write("%^BOLD%^%^BLACK%^Chardonnay%^WHITE%^\t\t\t\t"+(int)ob->get_price("chardonnay")+" gold");
+	write("%^BOLD%^%^BLACK%^Faerie Burn%^WHITE%^\t\t\t\t"+(int)ob->get_price("faerie burn")+" gold");
     write("\n");
     write("%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^BOLD%^*%^RESET%^%^MAGENTA%^~%^WHITE%^");
     return 1;
