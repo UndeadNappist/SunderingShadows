@@ -14,14 +14,14 @@ void create()
     set_spell_level(([ "mage" : 7, "druid" : 8, "cleric" : 8 ]));
     set_domains("cold");
     set_spell_sphere("invocation_evocation");
-    set_syntax("cast CLASS avalanche on TARGET");
+    set_syntax("cast CLASS avalanche [on TARGET]");
     set_damage_desc("1/2 cold damage | 1/2 bludgeoning damage in area");
     set_description("When the avalanche spell is cast, a mass of snow and ice crashes into the area, causing cold and bludgeoning "
         "damage to everyone present.");
     set_verbal_comp();
     set_somatic_comp();
     splash_spell(1);
-    set_target_required(1);
+    //set_target_required(1);
 }
 
 
@@ -35,6 +35,9 @@ void spell_effect(int prof)
         dest_effect();
         return;
     }
+    
+    if(!target || !objectp(target))
+        target = caster->query_current_attacker();
 
     if(!present(target,place))
     {
