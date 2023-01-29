@@ -234,6 +234,7 @@ varargs int do_save(object ob, int dc, string type, raw_save)
         FEATS_D->usable_feat(ob, "dark ones luck") ||
         FEATS_D->usable_feat(ob, "spellcasting harrier") ||
         (FEATS_D->usable_feat(ob, "perpetual foresight") && ob->query("available focus")) ||
+        ob->query_property("saves advantage") ||
         ob->query_property("roll advantage"))
             advantage++;
     
