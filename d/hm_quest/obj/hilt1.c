@@ -18,21 +18,28 @@ void create() {
     set_heart_beat(1);
 }
 
-void init() {
+void init()
+{
     ::init();
-    if(interactive(TP) && !owner) owner = TP->query_true_name();
-    add_action("attach_fun","attach");
-}
-
-void heart_beat() {
-    string holder;
-    if(!objectp(ETO)) return;
-    if(!interactive(ETO)) return;
-    holder = ETO->query_true_name();
-    if(holder != owner) {
-      tell_object(ETO,"The steel hilt vanishes!");
-      TO->remove();
+    
+    if(!userp(this_player()))
+        return;
+    
+    if(archp(this_player()))
+        return;
+    
+    if(!strlen(owner))
+        owner = this_player()->query_true_name();
+    else
+    {
+        if(this_player()->query_true_name() != owner)
+        {
+            write("The hilt vanishes!\n");
+            this_object()->remove();
+            return;
+        }
     }
+    add_action("attach_fun", "attach");
 }
 
 int attach_fun(string str) {

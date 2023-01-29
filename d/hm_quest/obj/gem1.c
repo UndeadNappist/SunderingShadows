@@ -13,21 +13,26 @@ void create() {
 ".%^RESET%^");
     set_weight(2);
     set_value(0);
-    set_heart_beat(1);
 }
 
-void init() {
+void init()
+{
     ::init();
-    if(interactive(TP) && !owner) owner = TP->query_true_name();
-}
-
-void heart_beat() {
-    string holder;
-    if(!objectp(ETO)) return;
-    if(!interactive(ETO)) return;
-    holder = ETO->query_true_name();
-    if(holder != owner) {
-      tell_object(ETO,"The ruby vanishes!");
-      TO->remove();
+    
+    if(!userp(this_player()))
+        return;
+    
+    if(archp(this_player()))
+        return;
+    
+    if(!strlen(owner))
+        owner = this_player()->query_true_name();
+    else
+    {
+        if(this_player()->query_true_name() != owner)
+        {
+            write("The ruby vanishes!\n");
+            this_object()->remove();
+        }
     }
 }

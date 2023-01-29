@@ -133,6 +133,9 @@ void execute_attack()
     
     foreach(object ob in foes)
     {
+        if(!objectp(ob))
+            continue;
+        
         if(environment(ob) != place)
             continue;
         

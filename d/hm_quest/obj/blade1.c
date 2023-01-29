@@ -15,24 +15,30 @@ void create() {
 "if you could find one.%^RESET%^");
     set_weight(5);
     set_value(0);
-    set_heart_beat(1);
 }
 
-void init() {
+void init()
+{
     ::init();
-    if(interactive(TP) && !owner) owner = TP->query_true_name();
-    add_action("join_fun","join");
-}
-
-void heart_beat() {
-    string holder;
-    if(!objectp(ETO)) return;
-    if(!interactive(ETO)) return;
-    holder = ETO->query_true_name();
-    if(holder != owner) {
-      tell_object(ETO,"The golden blade vanishes!");
-      TO->remove();
+    
+    if(!userp(this_player()))
+        return;
+    
+    if(archp(this_player()))
+        return;
+    
+    if(!strlen(owner))
+        owner = this_player()->query_true_name();
+    else
+    {
+        if(this_player()->query_true_name() != owner)
+        {
+            write("The blade vanishes!\n");
+            this_object()->remove();
+            return;
+        }
     }
+    add_action("join_fun", "join");
 }
 
 int join_fun(string str) {
