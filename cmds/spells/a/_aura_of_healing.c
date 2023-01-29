@@ -70,6 +70,8 @@ void spell_effect(int prof)
     addSpellToCaster();
     execute_attack();
     counter = clevel*10 + 4;
+    spell_duration = counter * ROUND_LENGTH;
+    set_end_time();
     call_out("room_check",ROUND_LENGTH);
 }
 

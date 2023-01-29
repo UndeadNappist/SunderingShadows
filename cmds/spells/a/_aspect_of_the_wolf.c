@@ -10,6 +10,7 @@ void create()
     set_spell_name("aspect of the wolf");
     set_spell_level(([ "druid" : 5, "ranger" : 4, "oracle" : 5 ]));
     set_mystery("lunar");
+    set_circle("claw");
     set_spell_sphere("alteration");
     set_bonus_type("enhancement");
     set_syntax("cast CLASS aspect of the wolf");

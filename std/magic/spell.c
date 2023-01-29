@@ -4349,7 +4349,7 @@ void help()
     printf("%s%-14s %s%s%s\n", HIR, "Class:", HIW, affixed_level ? ("(L" + affixed_level + " fixed) ") + printclass : "" + printclass, NOR);
     spell_sphere && printf("%s%-14s %s%s%s\n", HIR, "Sphere:", HIW, capitalize(spell_sphere) + (spell_domain ? (" [" + spell_domain + "]") : "") + ((evil_spell || blood_magic) ? " [evil]" : ""), NOR);
     sizeof(divine_domains) && printf("%s%-14s %s%s%s\n", HIR, "Domains:", HIW, capitalize(implode(divine_domains, ", ")), NOR);
-    sizeof(druid_circle) && printf("%s%-14s %s%s%s\n", HIR, "Domains:", HIW, capitalize(implode(druid_circle, ", ")), NOR);   
+    sizeof(druid_circle) && printf("%s%-14s %s%s%s\n", HIR, "Circle:", HIW, capitalize(implode(druid_circle, ", ")), NOR);   
     sizeof(oracle_mystery) && printf("%s%-14s %s%s%s\n", HIR, "Mysteries:", HIW, capitalize(implode(oracle_mystery, ", ")), NOR);
     mydiscipline && printf("%s%-14s %s%s%s\n", HIR, "Discipline:", HIW, mydiscipline, NOR);
     heritage && printf("%s%-14s %s%s%s\n", HIR, "Warlock Pact:", HIW, capitalize(heritage), NOR);
