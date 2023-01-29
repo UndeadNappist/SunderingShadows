@@ -77,6 +77,7 @@ void create() {
         "%^BOLD%^%^BLUE%^W%^WHITE%^a%^BLUE%^t%^WHITE%^e%^BLUE%^r%^RESET%^",
         "%^RESET%^%^MAGENTA%^L%^BOLD%^a%^RESET%^%^MAGENTA%^v%^BOLD%^e%^RESET%^%^MAGENTA%^nd%^BOLD%^e%^RESET%^%^MAGENTA%^r Tea%^WHITE%^",
         "%^YELLOW%^Lemonade%^RESET%^",
+		"%^RESET%^%^CRST%^%^C231%^A %^RESET%^%^C249%^g%^C250%^o%^C251%^b%^C252%^l%^C250%^e%^C249%^t %^RESET%^%^C231%^of %^RESET%^%^C231%^f%^C189%^a%^C195%^e%^C194%^r%^C230%^i%^C225%^e %^RESET%^%^C199%^b%^C198%^u%^C197%^r%^RESET%^%^C196%^n%^CRST%^ ",
         "%^BOLD%^%^BLACK%^T%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^qu%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^la Tw%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^l%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^ght%^RESET%^",
         "%^RESET%^%^ORANGE%^Wh%^BOLD%^i%^RESET%^%^ORANGE%^sk%^BOLD%^e%^RESET%^%^ORANGE%^y %^BOLD%^S%^RESET%^%^ORANGE%^o%^BOLD%^ur%^RESET%^",
         "%^BOLD%^D%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^rty M%^RESET%^%^GREEN%^a%^BOLD%^%^WHITE%^rt%^RESET%^%^GREEN%^i%^BOLD%^%^WHITE%^n%^RESET%^%^GREEN%^i%^WHITE%^",
