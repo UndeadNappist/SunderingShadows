@@ -332,18 +332,25 @@ protected void ansi_test(string str) {
         input_to("ansi_test");
         return;
     }
+    
+    __Player->set_gender("other");
+    
     if (str == "Y") {
-        message("logon", "\nANSI supported turned on.  Use 'set term default' to turn it off later in the game.\n",this_object());
+        message("logon", "\nANSI supported turned on.  Use 'set term default' to turn it off later in the game.\n\n",this_object());
         __Player->setenv("TERM","ansi");
         __Player->reset_terminal();
+        __Player->set("reader", 0);
+        message("logon", sprintf("If you wish to be able to restore your password, enter your email. You can later change this setting with <chfn> command. Your email address: ", mud_name()), this_object());
+        input_to("enter_email");
+        return;
     }
-    if (str =="N") {
+    else if (str =="N")
+    {
         message("logon", "\nANSI supported turned off.  Use <set term "+
                 "ansi> to turn it on later in the game.\n",this_object());
         __Player->setenv("TERM","default");
         __Player->reset_terminal();
     }
-    __Player->set_gender("other");
     message("logon", "\nDo you play with a screen reader? [y/n]: ", this_object());
     input_to("enter_reader");
     return;
