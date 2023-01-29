@@ -9,12 +9,12 @@
 #include <std.h>
 #include <daemons.h>
 
-//Hit interval instead of proc chance. Procs every 5 hits.
+//Hit interval instead of proc chance. Procs every 7 hits.
 #define HIT_INTERVAL 7
 
 inherit "/d/common/obj/weapon/warhammer.c";
 
-object owner;
+string owner;
 int hit_count;
 
 string color(string str)
@@ -75,7 +75,7 @@ void init()
             return;
         }      
                
-        owner = holder;
+        owner = holder->query_true_name();
         tell_object(holder, "As you %^C220%^li%^C226%^f%^C220%^t%^CRST%^ the %^C220%^h%^C226%^a%^C220%^m%^C226%^m%^C220%^er%^CRST%^, you feel it %^C160%^en%^C208%^tw%^C202%^in%^C214%^e%^CRST%^ %^C160%^it%^C196%^se%^C160%^lf%^CRST%^ with %^C231%^yo%^C230%^u%^C229%^r l%^C227%^if%^C230%^e for%^C231%^ce%^CRST%^.");
     }
 }
