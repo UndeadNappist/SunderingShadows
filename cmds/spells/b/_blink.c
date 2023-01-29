@@ -38,6 +38,7 @@ int preSpell() {
 void spell_effect(int prof) {
 
     int bonus = prof/10 - 10;
+    /*
     if (!caster->is_ok_armour("mage"))
     {
         if(!FEATS_D->usable_feat(caster,"armored caster") && !FEATS_D->usable_feat(caster,"eldritch conditioning"))
@@ -47,6 +48,7 @@ void spell_effect(int prof) {
             return;
         }
     }
+    */
 
     tell_room(place, "%^BOLD%^"+caster->QCN+" speaks quickly to "+caster->QO+"self and looks around furtively.  "+capitalize(caster->QP)+" body starts to blur!",caster);
     tell_object(caster, "%^BOLD%^You start to cast the spell and you feel your body start to blur, blinking between reality and etherealness.");
