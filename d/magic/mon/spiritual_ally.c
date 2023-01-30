@@ -26,6 +26,7 @@ void create(){
     set_gender("other");
     set_overall_ac(4);
 
+    set_property("no_random_treasure", 1);
     set_property("full attacks",1);
     set_monster_feats(({
                 "simple weapon proficiency",
