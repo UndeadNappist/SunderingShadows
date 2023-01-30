@@ -621,14 +621,14 @@ This book can be used to store papers, both for the purpose of organization, and
 %^ORANGE%^<turn page back>%^RESET%^
   Will flip backwards through the pages from your current page.
 
-%^ORANGE%^<turn to %^ORANGE%^%^ULINE%^NUMBER%^RESET%^%^ORANGE%^>%^RESET%^
+%^ORANGE%^<turn to page %^ORANGE%^%^ULINE%^NUMBER%^RESET%^%^ORANGE%^>%^RESET%^
   Will turn to the page number you specify with %^ORANGE%^%^ULINE%^PAGE%^RESET%^.
 
 %^ORANGE%^<set long>%^RESET%^
-  Will set the long description of the book, what you see when looking at it. This can only be done once.
+  Will set the long description of the book, what you see when looking at it.
 
 %^ORANGE%^<set short>%^RESET%^
-  Will set the short description of the book, what is seen in your inventory. This can only be done once.
+  Will set the short description of the book, what is seen in your inventory.
 
 %^ORANGE%^<set title>%^RESET%^
   Will change the title of the book. It can be changed as many times as necessary.
