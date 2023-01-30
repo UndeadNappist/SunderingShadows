@@ -43,6 +43,7 @@ LEATHERWORK = ([
                    "giant sheath":(["file":COMMONFILE"sheath/sheath_great","units":4,"type":"sheath"]),
                    "greaves":(["file":COMMONFILE"armour/leather_greaves","units":1,"type":"armor"]),
                    "hide":(["file":COMMONFILE"armour/hide_large","units":4,"type":"armor"]),
+                   "hide shield":(["file":COMMONFILE"armour/hshield","units":4,"type":"armor"]),
                    "large holster":(["file":COMMONFILE"sheath/sheath_lgbludgeon","units":3,"type":"sheath"]),
                    "large sheath":(["file":COMMONFILE"sheath/sheath_large","units":3,"type":"sheath"]),
                    "large sleeve":(["file":COMMONFILE"sheath/sheath_lgstaff","units":3,"type":"sheath"]),
@@ -177,7 +178,7 @@ WOODWORK = ([
 
                 "shield":(["file":COMMONFILE"armour/mshield","units":2]),
                 "tower shield":(["file":COMMONFILE"armour/shield","units":3]),
-                "wooden shield" : (["file":COMMONFILE"armour/wshield", units: 3]),
+                "wooden shield" : (["file":COMMONFILE"armour/wshield", "units": 3]),
 
                 "bolts":(["file":COMMONFILE"lrweapon/hquarrels","units":1,"type":"arrows"]),
                 "flight arrows":(["file":COMMONFILE"lrweapon/flarrows","units":1,"type":"arrows"]),
