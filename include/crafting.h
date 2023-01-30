@@ -177,6 +177,7 @@ WOODWORK = ([
 
                 "shield":(["file":COMMONFILE"armour/mshield","units":2]),
                 "tower shield":(["file":COMMONFILE"armour/shield","units":3]),
+                "wooden shield" : (["file":COMMONFILE"armour/wshield", units: 3]),
 
                 "bolts":(["file":COMMONFILE"lrweapon/hquarrels","units":1,"type":"arrows"]),
                 "flight arrows":(["file":COMMONFILE"lrweapon/flarrows","units":1,"type":"arrows"]),
