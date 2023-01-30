@@ -38,6 +38,10 @@ create()
     set_unwield((: TO, "extra_unwield" :));
     set_hit((: TO, "extra_hit" :));
     set_property("able to cast", 1);
+    
+    set_item_bonus("caster level", 5);
+    set_item_bonus("spell penetration", 1);
+    set_item_bonus("bonus_spell_slots", 1);
 }
 int extra_wield()
 {
@@ -79,9 +83,6 @@ int extra_wield()
         , ETO);
     dynbonus = max(({ ETO->query_prestige_level("mage"),
                       ETO->query_prestige_level("sorcerer") })) / 32 + 1;
-    ETO->set_property("spell penetration", 1);
-    ETO->set_property("bonus_spell_slots", 1);
-    ETO->set_property("empowered", dynbonus);
     return 1;
 }
 
@@ -97,12 +98,7 @@ int extra_unwield()
         return 0;
     }
 
-    tell_object(ETO, "%^RED%^"
-                "The rod's %^BLUE%^aura%^RED%^ slowly dims."
-                );
-    ETO->set_property("spell penetration", -1);
-    ETO->set_property("bonus_spell_slots", -1);
-    ETO->set_property("empowered", -dynbonus);
+    tell_object(ETO, "%^RED%^The rod's %^BLUE%^aura%^RED%^ slowly dims.");
     return 1;
 }
 

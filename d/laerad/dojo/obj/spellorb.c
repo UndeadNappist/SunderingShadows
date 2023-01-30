@@ -32,6 +32,9 @@ void create()
     set_value(9550);
     set_wield((: TO, "wield_fun" :));
     set_unwield((: TO, "unwield_fun" :));
+    
+    set_item_bonus("caster level", 4);
+    set_item_bonus("bonus_spell_slots", 1);
 }
 
 void init()
@@ -54,11 +57,6 @@ int wield_fun()
     if (userp(ETO) && (int)ETO->query_level() < 25) {
         tell_object(ETO, "%^BOLD%^You must train further before you can attempt to use a weapon of this calibre.%^RESET%^");
         return 0;
-    }
-
-    if (objectp(ETO)) {
-        ETO->set_property("empowered", 1);
-        ETO->set_property("bonus_spell_slots", 1);
     }
 
     tell_room(EETO, "%^RESET%^" + thecolor + "The smoky haze of the orb comes to life, roiling angr%^BOLD%^i%^RESET%^" + thecolor +
@@ -88,10 +86,6 @@ int unwield_fun()
 {
     tell_room(EETO, "%^RESET%^" + thecolor + "The orb calms again, its inner mists becoming still.%^RESET%^");
 
-    if (objectp(ETO)) {
-        ETO->set_property("bonus_spell_slots", -1);
-        ETO->set_property("empowered", -1);
-    }
     return 1;
 }
 

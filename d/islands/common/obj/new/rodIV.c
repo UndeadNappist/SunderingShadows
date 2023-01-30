@@ -52,7 +52,7 @@ void create()
     set_prof_type("rod");
 
     set_item_bonus("spell penetration", 4);
-    set_item_bonus("caster level", 3);
+    set_item_bonus("caster level", 7);
 
     set_property("able to cast", 1);
 
