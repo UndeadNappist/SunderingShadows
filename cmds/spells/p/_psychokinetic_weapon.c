@@ -95,6 +95,8 @@ Lowering attack stats based on feedback from players
     ob->move(environment(caster));
     caster->set_property("seeking_sword",ob);
     ob->set_property("minion", caster);
+    ob->command("message in floats in.");
+    ob->command("message out floats to the $D.");
     return;
 }
 

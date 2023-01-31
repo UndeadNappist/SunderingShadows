@@ -76,7 +76,7 @@ void create() {
                            +" %^RESET%^flared in a broad spread behind it"
   ]));
   set_smell("default","The scent of the jungle reaches you");
-  set_listen("default","The souds of the jungle are all there is to be"
+  set_listen("default","The sounds of the jungle are all there is to be"
              +" heard.");
    set_exits( ([ "north" : ROOMS + "step12" ,
 	          "south" : ROOMS + "step6",
