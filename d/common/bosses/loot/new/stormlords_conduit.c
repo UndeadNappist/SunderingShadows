@@ -33,7 +33,7 @@ void create()
     set_property("able to cast", 1);
     set_property("enchantment", 7);
     
-    set_item_bonus("caster level bonus", 3);
+    set_item_bonus("caster level bonus", 5);
     set_item_bonus("attack bonus", 7);
     set_item_bonus("electricity resistance percent", 25);
     

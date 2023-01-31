@@ -42,7 +42,7 @@ void create()
     set_property("no alter", 1);
     
     set_item_bonus("positive energy resistance percent", -25);
-    set_item_bonus("caster level", 3);
+    set_item_bonus("caster level", 5);
     set_item_bonus("fast healing", 3);
     
     set_wield( (: this_object(), "wield_func" :) );
