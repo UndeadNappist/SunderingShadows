@@ -87,14 +87,15 @@ int extra_wield()
     return 1;
 }
 
-int attach(string str)
-{
-    if (!str) {
-        return 0;
-    }
-
-    if (str != "hand" && str != "hand to arm") {
-        return 0;
+int attach(string str){
+    object player;
+    
+    if(!str) return 0;
+    if(str != "hand" && str != "hand to arm") return 0;
+    if(!userp(player = this_player())){
+        tell_room(environment(player), "%^RESET%^%^CRST%^%^C059%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C059%^ gazes at the hand intently for a moment... then begins to quiver and shake, before collapsing to the ground in a lifeless heap.%^CRST%^");
+        player->die();
+        return 1;
     }
 
     if (WIELDEDFLAG) {

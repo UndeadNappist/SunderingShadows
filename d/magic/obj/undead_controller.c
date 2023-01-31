@@ -1,6 +1,8 @@
 #include <std.h>
 inherit OBJECT;
 
+#define BLACKLIST ({ "buy", "prepare", "cast" })
+
 object caster, * mons = ({});
 string * undead_list = ({ "skeleton", "graveknight", "skelemage", "skelehorse", "vampire_spawn", "vampire_knight", "animus", });
 int count;
@@ -133,7 +135,7 @@ int poolsize(string str)
 int cmd(string str)
 {
     object ob;
-    string what, who, what2, holder;
+    string what, who, what2, holder, *command;
     int i, flag;
 
     if (clean_mons()) {
@@ -145,11 +147,16 @@ int cmd(string str)
     }
 
     if (sscanf(str, "%s to %s", who, what) != 2) {
-        return notify_fail("%^RESET%^%^BOLD%^%^BLACK%^YOU MUST TELL WHAT TO DO%^RESET%^%^RESET%^");
+        return notify_fail("%^RESET%^%^BOLD%^%^BLACK%^YOU MUST TELL IT WHAT TO DO%^RESET%^%^RESET%^");
     }
 
     if (who != "undead") {
         return 0;
+    }
+
+    command = explode(what, " ");
+    if(member_array(command[0], BLACKLIST) != -1){
+        return notify_fail("%^RESET%^%^BOLD%^%^BLACK%^YOU CANNOT MAKE SUCH A DEMAND OF THE UNDEAD%^RESET%^%^RESET%^");
     }
 
     if (what[0..3] == "kill") {
