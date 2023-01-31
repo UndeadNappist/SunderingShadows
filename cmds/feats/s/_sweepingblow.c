@@ -181,7 +181,10 @@ void execute_attack()
                     "off balance!%^RESET%^");
         tell_room(place, "%^BOLD%^" + caster->QCN + "'s wild swing doesn't hit anything at all "
                   "and it leaves " + caster->QO + " off balance!%^RESET%^", caster);
-        caster->set_paralyzed(roll_dice(1, 4), "%^BOLD%^You are struggling to regain your balance!%^RESET%^");
+        if(!FEATS_D->usable_feat(caster, "improved sweepingblow")){
+            
+            caster->set_paralyzed(roll_dice(1, 4), "%^BOLD%^You are struggling to regain your balance!%^RESET%^");
+        }
     }else if (num > 0) {
         if (reaping) {
             mod = clevel * 4;

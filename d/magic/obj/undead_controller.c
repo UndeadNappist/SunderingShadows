@@ -156,7 +156,7 @@ int cmd(string str)
 
     command = explode(what, " ");
     if(member_array(command[0], BLACKLIST) != -1){
-        return notify_fail("%^RESET%^%^BOLD%^%^BLACK%^YOU CANNOT MAKE SUCH A DEMAND OF THE UNDEAD%^RESET%^%^RESET%^");
+        return notify_fail("YOU CANNOT MAKE SUCH A DEMAND OF THE UNDEAD");
     }
 
     if (what[0..3] == "kill") {

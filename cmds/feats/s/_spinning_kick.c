@@ -172,9 +172,12 @@ void execute_attack()
     }
     if(!hit)
     {
-	    tell_object(caster,"%^BOLD%^You fail to land a strike on anything and almost fall over in the process!");
-	    tell_room(environment(caster),"%^BOLD%^"+caster->QCN+" almost falls over and has to scramble to hold on to it!",caster);
-	    caster->set_paralyzed(roll_dice(1,6),"%^BOLD%^You are trying to regain your balance!");
+        tell_object(caster,"%^BOLD%^You fail to land a strike on anything and almost fall over in the process!");
+        tell_room(environment(caster),"%^BOLD%^"+caster->QCN+" almost falls over and has to scramble to hold on to it!",caster);
+        if(!FEATS_D->usable_feat(caster, "improved spinning kick")){
+            
+            caster->set_paralyzed(roll_dice(1,6),"%^BOLD%^You are trying to regain your balance!");
+        }
     }
     else if(hit > 0)
     {

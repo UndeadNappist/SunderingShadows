@@ -211,7 +211,9 @@ void execute_attack()
     if (!hit) {
         tell_object(caster, "%^BOLD%^You fumble with your weapon and fail to hit a single target!");
         tell_room(environment(caster), "%^BOLD%^" + caster->QCN + " fumbles with " + caster->QP + " weapon and fails to hit a single target!", caster);
-        caster->set_paralyzed(roll_dice(1, 6), "%^BOLD%^You are trying to grip your weapon!");
+        if(!FEATS_D->usable_feat(caster, "improved manyshot")){
+            caster->set_paralyzed(roll_dice(1, 6), "%^BOLD%^You are trying to grip your weapon!");
+        }
     }else {
         switch (random(5)) {
         case 0:
