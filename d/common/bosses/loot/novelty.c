@@ -110,7 +110,7 @@ int hit_func(object target)
 int wield_func()
 {   
     if(!holder)
-        holder = environment(this_object());
+        holder = this_player();
     
     if(!strlen(owner))
         owner = holder->query_true_name();
@@ -128,13 +128,13 @@ int wield_func()
     
     if(holder->query_true_name() != owner)
     {
-        tell_object(environment(this_object()), "The %^C221%^g%^C220%^old%^C226%^e%^C220%^n%^CRST%^ handle %^C196%^rejects%^CRST%^ your %^C124%^h%^C160%^an%^C124%^d%^CRST%^ and you %^C196%^drop%^CRST%^ it!!");
+        tell_object(holder, "The %^C221%^g%^C220%^old%^C226%^e%^C220%^n%^CRST%^ handle %^C196%^rejects%^CRST%^ your %^C124%^h%^C160%^an%^C124%^d%^CRST%^ and you %^C196%^drop%^CRST%^ it!!");
         return 0;
     }
     
     
-    tell_object(owner, "As you wield it, the %^C220%^ha%^C226%^n%^C220%^d%^C226%^l%^C220%^e%^CRST%^ %^C220%^ali%^C226%^g%^C220%^ht%^C226%^s%^CRST%^ with %^C231%^r%^C229%^a%^C228%^d%^C226%^i%^C220%^ant fl%^C226%^a%^C228%^m%^C229%^e%^C231%^s%^CRST%^!");
-    tell_room(environment(owner), color(owner->query_cap_name() + "'s hammer alights with radiant flames."), owner);
+    tell_object(holder, "As you wield it, the %^C220%^ha%^C226%^n%^C220%^d%^C226%^l%^C220%^e%^CRST%^ %^C220%^ali%^C226%^g%^C220%^ht%^C226%^s%^CRST%^ with %^C231%^r%^C229%^a%^C228%^d%^C226%^i%^C220%^ant fl%^C226%^a%^C228%^m%^C229%^e%^C231%^s%^CRST%^!");
+    tell_room(environment(holder), color(holder->query_cap_name() + "'s hammer alights with radiant flames."), holder);
     return 1;
 }
 
