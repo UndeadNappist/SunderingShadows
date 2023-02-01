@@ -16,6 +16,7 @@ inherit "/d/common/obj/weapon/warhammer.c";
 
 string owner;
 int hit_count;
+object holder;
 
 string color(string str)
 {
@@ -51,9 +52,7 @@ void create()
 }
 
 void init()
-{
-    object holder;
-    
+{   
     ::init();
     
     holder = environment(this_object());
@@ -63,21 +62,22 @@ void init()
     
     hit_count = 0;
     
-    if(!owner && !avatarp(holder) && !archp(holder))
-    {
-        if((holder->query_true_align() != 1 &&
-           holder->query_true_align() != 4 &&
-           holder->query_true_align() != 7) ||
-           holder->query_character_level() < 40)
-        {
-            tell_object(holder, "The wooden handle rejects your hand and you drop it!");
-            this_object()->move(environment(holder));
-            return;
-        }      
-               
+    /*
+    if(!strlen(owner) && !avatarp(holder) && !archp(holder))
         owner = holder->query_true_name();
-        tell_object(holder, "As you %^C220%^li%^C226%^f%^C220%^t%^CRST%^ the %^C220%^h%^C226%^a%^C220%^m%^C226%^m%^C220%^er%^CRST%^, you feel it %^C160%^en%^C208%^tw%^C202%^in%^C214%^e%^CRST%^ %^C160%^it%^C196%^se%^C160%^lf%^CRST%^ with %^C231%^yo%^C230%^u%^C229%^r l%^C227%^if%^C230%^e for%^C231%^ce%^CRST%^.");
-    }
+    
+    if(owner != holder->query_true_name() ||
+    (holder->query_true_align() != 1 &&
+    holder->query_true_align() != 4 &&
+    holder->query_true_align() != 7) ||
+    holder->query_character_level() < 40)
+    {
+        tell_object(holder, "The wooden handle rejects your hand and you drop it!");
+        this_object()->move(environment(holder));
+        return;
+    }    
+    */    
+    tell_object(holder, "As you %^C220%^li%^C226%^f%^C220%^t%^CRST%^ the %^C220%^h%^C226%^a%^C220%^m%^C226%^m%^C220%^er%^CRST%^, you feel it %^C160%^en%^C208%^tw%^C202%^in%^C214%^e%^CRST%^ %^C160%^it%^C196%^se%^C160%^lf%^CRST%^ with %^C231%^yo%^C230%^u%^C229%^r l%^C227%^if%^C230%^e for%^C231%^ce%^CRST%^.");
 }
 
 int hit_func(object target)
@@ -108,12 +108,30 @@ int hit_func(object target)
 }
 
 int wield_func()
-{
-    if(environment(this_object()) != owner)
+{   
+    if(!holder)
+        holder = environment(this_object());
+    
+    if(!strlen(owner))
+        owner = holder->query_true_name();
+
+    if(owner != holder->query_true_name() ||
+    (holder->query_true_align() != 1 &&
+    holder->query_true_align() != 4 &&
+    holder->query_true_align() != 7) ||
+    holder->query_character_level() < 40)
+    {
+        tell_object(holder, "The wooden handle rejects your hand and you drop it!");
+        this_object()->move(environment(holder));
+        return 0;
+    } 
+    
+    if(holder->query_true_name() != owner)
     {
         tell_object(environment(this_object()), "The %^C221%^g%^C220%^old%^C226%^e%^C220%^n%^CRST%^ handle %^C196%^rejects%^CRST%^ your %^C124%^h%^C160%^an%^C124%^d%^CRST%^ and you %^C196%^drop%^CRST%^ it!!");
         return 0;
     }
+    
     
     tell_object(owner, "As you wield it, the %^C220%^ha%^C226%^n%^C220%^d%^C226%^l%^C220%^e%^CRST%^ %^C220%^ali%^C226%^g%^C220%^ht%^C226%^s%^CRST%^ with %^C231%^r%^C229%^a%^C228%^d%^C226%^i%^C220%^ant fl%^C226%^a%^C228%^m%^C229%^e%^C231%^s%^CRST%^!");
     tell_room(environment(owner), color(owner->query_cap_name() + "'s hammer alights with radiant flames."), owner);
