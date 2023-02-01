@@ -169,7 +169,7 @@ void execute_attack()
     else{
       weapon = weapons[1];
     }
-    this_player()->add_cooldown("manyshot", DELAY);
+    caster->add_cooldown("manyshot", DELAY);
 
     if (hits > sizeof(attackers)) {
         hits = sizeof(attackers);                          // if some targets have since died, don't bother hitting them.
