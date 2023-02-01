@@ -121,7 +121,7 @@ void execute_attack()
         return 1;
     }
     
-    caster()->add_cooldown("spinning kick", DELAY);
+    caster->add_cooldown("spinning kick", DELAY);
 
     attackers = shuffle(attackers);
 
