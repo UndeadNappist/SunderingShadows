@@ -55,14 +55,19 @@ void spell_effect(int prof)
     }
     else
     {
-        if ((string)caster->realName(who) != "") {
+        if(!objectp(ob2 = present(who, place))){
+            tell_object(caster, "That person isn't here.");
+            dest_effect();
+            return;
+        }
+        /*if ((string)caster->realName(who) != "") {
             who = (string)caster->realName(who);
         }
         if (place && who && !ob2 = present(who, place)) {
             tell_object(caster, "That person isn't here.");
             dest_effect();
             return;
-        }
+        }*/
         ob = present(what, ob2);
     }
     if (!objectp(ob)) {
