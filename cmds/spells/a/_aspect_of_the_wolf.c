@@ -15,7 +15,7 @@ void create()
     set_bonus_type("enhancement");
     set_syntax("cast CLASS aspect of the wolf");
     set_damage_desc("+4 to str and dex, knockdown feat");
-    set_description("Feel the aspect of the wolf coursing through your veins.");
+    set_description("When you cast this spell, you take on an aspect of a wolf, including some of its physical characteristics. You become more rugged, your ears become elongated, and you sprout sharp fangs and fur.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
