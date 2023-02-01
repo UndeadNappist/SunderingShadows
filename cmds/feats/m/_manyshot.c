@@ -3,6 +3,7 @@
 inherit FEAT;
 
 int hits;
+int DELAY = 35;
 void display_messages(object targ, object player);
 
 void create()
@@ -51,8 +52,8 @@ void execute_feat()
     int ammoleft, i;
     object* weapons, ammo;
 
-    if ((int)caster->query_property("using manyshot") > time()) {
-        tell_object(caster, "You can't try to fire so many shots again so soon!");
+    if(this_player()->cooldown("manyshot")){
+        tell_object(caster, "%^RESET%^%^CRST%^%^C059%^You cannot try to fire so many shots again so soon!%^CRST%^");
         dest_effect();
         return;
     }
@@ -168,9 +169,7 @@ void execute_attack()
     else{
       weapon = weapons[1];
     }
-    caster->remove_property("using manyshot");
-    caster->set_property("using manyshot", time() + 35);
-    delay_messid_msg(35, "%^BOLD%^%^WHITE%^You can %^CYAN%^manyshot%^WHITE%^ again.%^RESET%^");
+    this_player()->add_cooldown("manyshot", DELAY);
 
     if (hits > sizeof(attackers)) {
         hits = sizeof(attackers);                          // if some targets have since died, don't bother hitting them.

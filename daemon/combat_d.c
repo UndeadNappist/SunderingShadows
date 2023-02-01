@@ -3329,10 +3329,10 @@ void clean_attacker_flags(object who)
     if (!objectp(who)) {
         return;
     }
-    who->remove_property("using whirl");
-    who->remove_property("using sweeping blow");
-    who->remove_property("using manyshot");
-    who->remove_property("using spinning kick");
+    who->remove_cooldown("whirl");
+    who->remove_cooldown("sweepingblow");
+    who->remove_cooldown("manyshot");
+    who->remove_cooldown("spinning kick");
     who->remove_property("using smite");
     who->remove_property("messids"); //Feat messages tracking
 }

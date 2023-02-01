@@ -5,7 +5,7 @@
 #include <daemons.h>
 inherit FEAT;
 
-void display_messages(object targ,object player);
+int DELAY = 35;
 
 void create() {
     ::create();
@@ -44,11 +44,11 @@ void execute_feat()
     int attack_count;
     object *weapons;
 
-    if((int)caster->query_property("using spinning kick") > time()) {
-        tell_object(caster,"You can't use spinning kick again so soon!");
+    if(this_player()->cooldown("spinning kick")){
+        tell_object(caster, "%^RESET%^%^CRST%^%^C059%^You cannot use spinning kick again so soon!%^CRST%^");
         dest_effect();
-        return;
-    }
+        return 1;
+	}
     if (caster->query_bound() || caster->query_tripped() || caster->query_paralyzed())
     {
         caster->send_paralyzed_message("info",TP);
@@ -120,9 +120,8 @@ void execute_attack()
         tell_object(caster,"%^YELLOW%^You must be unarmed to use this feat!\n");
         return 1;
     }
-    caster->remove_property("using spinning kick");
-    caster->set_property("using spinning kick", time() + 35 );
-    delay_messid_msg(35,"%^BOLD%^%^WHITE%^You can %^CYAN%^spinning_kick%^WHITE%^ again.%^RESET%^");
+    
+    caster()->add_cooldown("spinning kick", DELAY);
 
     attackers = shuffle(attackers);
 

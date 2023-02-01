@@ -8,6 +8,7 @@ inherit FEAT;
 void display_messages(object targ, object player);
 
 int in_shapeshift;
+int DELAY = 35;
 
 void create()
 {
@@ -57,8 +58,8 @@ void execute_feat()
     int attack_count;
     object* weapons;
 
-    if ((int)caster->query_property("using whirl") > time() && !FEATS_D->usable_feat(caster, "whirling dervish")) {
-        tell_object(caster, "You can't try to whirl again so soon!");
+    if (caster->cooldown("whirl") && !FEATS_D->usable_feat(caster, "whirling dervish")) {
+        tell_object(caster, "%^RESET%^%^CRST%^%^C059%^You cannot try to whirl again so soon!%^CRST%^");
         dest_effect();
         return;
     }
@@ -155,10 +156,8 @@ void execute_attack()
         }
     }
 
-    caster->remove_property("using whirl");
-    caster->set_property("using whirl", time() + 35);
     if (!FEATS_D->usable_feat(caster, "whirling dervish")) {
-        delay_messid_msg(35, "%^BOLD%^%^WHITE%^You can %^CYAN%^whirl%^WHITE%^ again.%^RESET%^");
+        caster->set_cooldown("whirl", DELAY);
     }
 
     attackers = shuffle(attackers);

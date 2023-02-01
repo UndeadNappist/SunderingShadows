@@ -2,6 +2,8 @@
 #include <daemons.h>
 inherit FEAT;
 
+int DELAY = 35;
+
 void create()
 {
     ::create();
@@ -58,8 +60,8 @@ void execute_feat()
         return;
     }
 
-    if ((int)caster->query_property("using sweeping blow") > time() && !FEATS_D->usable_feat(caster, "wade through")) {
-        tell_object(caster, "It's too soon to use sweeping blow again yet!");
+    if (caster->cooldown("sweepingblow") && !FEATS_D->usable_feat(caster, "wade through")) {
+        tell_object(caster, "%^RESET%^%^CRST%^%^C059%^It is too soon to use sweeping blow again yet!%^CRST%^");
         dest_effect();
         return;
     }
@@ -108,11 +110,8 @@ void execute_attack()
         return;
     }
     caster->remove_property("using instant feat");
-
-    caster->remove_property("using sweeping blow");
-    caster->set_property("using sweeping blow", (time() + 35));
-    if (!FEATS_D->usable_feat(caster, "wade through")) {
-        delay_messid_msg(35, "%^BOLD%^%^WHITE%^You can %^CYAN%^sweepingblow%^WHITE%^ again.%^RESET%^");
+    if(!FEATS_D->usable_feat(caster, "wade through")) {
+        caster->set_cooldown("sweepingblow", DELAY);
     }
 
     ::execute_attack();
