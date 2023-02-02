@@ -212,7 +212,7 @@ int cmd_discern(string str)
         return 1;
     }
     if (obj->is_armor()) {
-        int armbon;
+        int armbon, dexbon;
         if (obj->query_armor_prof() == "shield") {
             armbon = obj->query_item_bonus("shieldMiss");
             write("It has %^BOLD%^%^GREEN%^" + armbon + "%^RESET%^ deflection chance.");
@@ -221,7 +221,9 @@ int cmd_discern(string str)
             write("It requires %^BOLD%^%^GREEN%^" + checkrepair((string)obj->query_type(), (string*)obj->query_property("repairtype")) + " %^RESET%^craft skill to repair.");
         }else {
             armbon = obj->query_original_ac();
+            dexbon = obj->query_max_dex_bonus();
             write("It has armor bonus of %^BOLD%^%^GREEN%^" + armbon + ".%^RESET%^");
+            dexbon && write("It has a max dex bonus of %^BOLD%^GREEN%^" + dexbon + "%^RESET%^.");
             write("");
             if (!obj->query_armor_prof()) {
                 if ((string)obj->query_type() == "ring" ||
