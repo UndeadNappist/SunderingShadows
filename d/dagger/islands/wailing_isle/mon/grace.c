@@ -15,7 +15,7 @@ void create() {
     set("aggressive", 0);
     set_level(10);
     set_long("%^RESET%^%^CRST%^%^C183%^Grace is a %^C176%^petite woman%^C183%^ in her late twenties. A %^C143%^drab %^C132%^si%^C126%^lk%^C132%^en dr%^C162%^e%^C244%^s%^C132%^s%^RESET%^%^C183%^ hangs loose from her slender frame, the %^C132%^co%^C126%^rs%^C132%^et t%^C126%^o%^C132%^p%^RESET%^%^C183%^ putting her %^C188%^ample bosom%^C183%^ on display. Her %^C094%^d%^C100%^a%^C094%^rk bro%^C100%^w%^C094%^n c%^C100%^u%^C094%^rls%^C183%^ are pulled into a loose topknot, a few strands left to fall teasingly around her comely face and along the nape of her neck. With %^C169%^full lips%^RESET%^%^C183%^, a dusting of %^C101%^freckles%^C183%^, and %^C045%^oc%^C039%^ea%^C033%^n-b%^C039%^lu%^C045%^e e%^C039%^ye%^C033%^s%^RESET%^%^C183%^, she is remarkably attractive beneath the basic %^C243%^neglect%^C183%^ of well-being that has worked its way into everything and everyone around here.%^CRST%^\n");
-    set_gender("female");
+    set_gender("male");
     set_alignment(6);
     set_race("human");
     set_hd(10,0);
@@ -47,7 +47,7 @@ void reply_fun(string str, object player){
     if(!str) return;
     if(!objectp(player)) return;
     
-    if(strsrch(str,"wailing") != -1 || (strsrch(str,"Wailing") != -1 )){
+    if(strsrch(str,"wailing") != -1 ){
         call_out("wailing_reply", 2, player);
         return;
     }
