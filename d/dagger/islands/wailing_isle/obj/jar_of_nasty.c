@@ -45,3 +45,4 @@ void set_jar(){
     return;
 }
 
+int is_quest_jar(){ return 1; }

@@ -239,6 +239,12 @@ void receive_given_item(object ob){
     }
     
     if((ob->id("quest_item_crate")) && (quest == 12)){
+        if(!ob->is_quest_crate()){
+            force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C103%^$M stows the item away in a drawer.%^CRST%^");
+            force_me("say Not sure why, but thanks. I'll be keeping that.");
+            ob->remove();
+            return 1;
+        }
         force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M easily hoists up the crate and sets it behind the counter.%^CRST%^");
         force_me("say It's one thing to hope, another to trust. Here... a token of gratitude.");
         ob->remove();
@@ -265,6 +271,12 @@ void receive_given_item(object ob){
         return 1;
     }
     if((ob->id("quest_item_ink")) && (quest == 13)){
+        if(!ob->is_quest_ink()){
+            force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C103%^$M stows the item away in a drawer.%^CRST%^");
+            force_me("say Not sure why, but thanks. I'll be keeping that.");
+            ob->remove();
+            return 1;
+        }
         force_me("emoteat mae %^RESET%^%^CRST%^%^C103%^$M accepts the leaking gland, dropping it into an empty crate.%^CRST%^");
         force_me("say That should keep her stocked for a bit, I think! And I feel like you need this, after going through all that.");
         ob->remove();

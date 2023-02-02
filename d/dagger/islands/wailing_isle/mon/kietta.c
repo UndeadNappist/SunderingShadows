@@ -395,6 +395,12 @@ void receive_given_item(object ob){
         return 1;
     }
     if((ob->id("quest_item_horn")) && (quest == 4)){
+        if(!ob->is_quest_object()){
+            force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C101%^$M tucks the item away in a drawer.%^CRST%^");
+            force_me("say De spirits be tankful.");
+            ob->remove();
+            return 1;
+        }
         force_me("emoteat kietta %^RESET%^%^CRST%^%^C101%^$M accepts the horn, holding it up to the light and admiring it with a sly grin.%^CRST%^");
         force_me("say And now me rituals wit de spirits be getting stronger.");
         ob->remove();

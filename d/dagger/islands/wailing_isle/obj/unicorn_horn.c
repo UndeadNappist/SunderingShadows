@@ -17,3 +17,4 @@ void create(){
     set_property("lore difficulty", 30);
 }
 
+int is_quest_horn(){ return 1; }

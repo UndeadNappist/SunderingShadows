@@ -15,3 +15,4 @@ void create(){
 	set_value(0);
 }
 
+int is_quest_taxes(){ return 1; }

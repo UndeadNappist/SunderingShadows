@@ -306,6 +306,12 @@ void receive_given_item(object ob){
     }
     
     if((ob->id("quest_item_taxes")) && (quest == 6)){
+        if(!ob->is_quest_taxes()){
+            force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C057%^$M pockets the item surreptitiously.%^CRST%^");
+            force_me("say I thank you for the gift.");
+            ob->remove();
+            return 1;
+        }
         force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C057%^$M arches a brow, giving the papers a cursory inspection before stowing them away.%^CRST%^");
         force_me("say Well done. My clients will be happy to know their problems don't exist anymore.");
         ob->remove();
@@ -331,6 +337,12 @@ void receive_given_item(object ob){
         return 1;
     }
     if((ob->id("quest_item_map")) && (quest == 10)){
+        if(!ob->is_quest_map()){
+            force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C057%^$M pockets the item surreptitiously.%^CRST%^");
+            force_me("say I thank you for the gift.");
+            ob->remove();
+            return 1;
+        }
         force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C057%^$M arches a brow, giving the charts a cursory inspection before stowing them away.%^CRST%^");
         force_me("say Excellent. The bidding for these will be fierce.");
         ob->remove();

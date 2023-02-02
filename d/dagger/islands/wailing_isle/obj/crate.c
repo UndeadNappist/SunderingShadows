@@ -15,3 +15,4 @@ void create(){
 	set_value(15000);
 }
 
+int is_quest_crate(){ return 1; }
