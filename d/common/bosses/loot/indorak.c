@@ -14,7 +14,7 @@
 
 inherit "/d/common/obj/weapon/scythe.c";
 
-object owner;
+string owner;
 int hit_count, hb_count;
 
 string color(string str)
@@ -77,36 +77,38 @@ void init()
             return;
         }      
                
-        owner = holder;
+        owner = holder->query_true_name();
         tell_object(holder, "As you lift the icy scythe for the first time, you feel it's power seep into your very soul and you become one with the mighty weapon.");
     }
 }
 
 int wield_func()
 {
-    if(environment(this_object()) != owner)
+    if(this_player()->query_true_name() != owner)
     {
-        tell_object(environment(this_object()), "The scythe rejects your touch!");
+        tell_object(this_player(), "The scythe rejects your touch!");
         return 0;
     }
     
-    tell_object(owner, color("You feel the chill of the grave seep into your bones as you wield aloft the might scythe!"));
-    tell_room(environment(owner), color(owner->query_cap_name() + "'s scythe suddenly glows with the chill of the grave!"), owner);
+    tell_object(this_player(), color("You feel the chill of the grave seep into your bones as you wield aloft the might scythe!"));
+    tell_room(environment(this_player()), color(owner->query_cap_name() + "'s scythe suddenly glows with the chill of the grave!"), owner);
     return 1;
 }
 
 int unwield_func()
 {
-    owner && tell_object(owner, "%^CYAN%^You feel the chill of the grave leave you as you unwield the scythe.");
+    this_player() && tell_object(this_player(), "%^CYAN%^You feel the chill of the grave leave you as you unwield the scythe.");
     return 1;
 }
 
 void heart_beat()
 {
-    object *enemies;
+    object *enemies, holder;
     int damage_done;
     
-    if(!owner || !living(owner))
+    holder = environment(this_object());
+    
+    if(!holder || !living(holder))
         return;
     
     hb_count ++;
@@ -116,12 +118,12 @@ void heart_beat()
     
     hb_count = 0;
     
-    enemies = owner->query_attackers();
+    enemies = holder->query_attackers();
     damage_done = 0;
     
     if(sizeof(enemies) && !random(5))
     {
-        tell_object(owner, color("The chill aura of the scythe saps the heat from your enemies!"));
+        tell_object(holder, color("The chill aura of the scythe saps the heat from your enemies!"));
         
         foreach(object ob in enemies)
         {
@@ -134,8 +136,8 @@ void heart_beat()
         
         if(damage_done)
         {
-            tell_object(owner, "%^BOLD%^GREEN%^The stolen heat from the scythe restores some of your wounds.%^RESET%^");
-            owner->cause_typed_damage(owner, "torso", damage_done, "negative energy");
+            tell_object(holder, "%^BOLD%^GREEN%^The stolen heat from the scythe restores some of your wounds.%^RESET%^");
+            holder->cause_typed_damage(holder, "torso", damage_done, "negative energy");
         }
     }
 }
@@ -144,11 +146,14 @@ int hit_func(object target)
 {
     int damage;
     string pname, ename;
+    object holder;
+    
+    holder = environment(this_object());
 
-    if(!target || !owner)
+    if(!target || !holder)
         return 0;
     
-    if(environment(target) != environment(owner))
+    if(environment(target) != environment(holder))
         return 0;
     
     hit_count++;
@@ -156,15 +161,15 @@ int hit_func(object target)
     if(hit_count < HIT_INTERVAL)
         return 0;
     
-    pname = owner->query_cap_name();
+    pname = holder->query_cap_name();
     ename = target->query_cap_name();
     
     hit_count = 0;   
     damage = roll_dice(10, 10) + 20;
     
-    tell_object(owner, color("Your scythe shears deep into " + ename + " and blasts " + target->query_objective() + " with an icy chill!"));
+    tell_object(holder, color("Your scythe shears deep into " + ename + " and blasts " + target->query_objective() + " with an icy chill!"));
     tell_object(target, color(pname + "'s scythe shears deep into you and blasts you with an icy chill!"));
-    tell_room(environment(owner), color(pname + "'s scythe shears deep into " + ename + " and blasts " + target->query_objective() + " with an icy blase!"), ({ owner, target }));
+    tell_room(environment(holder), color(pname + "'s scythe shears deep into " + ename + " and blasts " + target->query_objective() + " with an icy blase!"), ({ holder, target }));
     target->cause_typed_damage(target, target->query_target_limb(), damage, "cold");
     
     return 0;
