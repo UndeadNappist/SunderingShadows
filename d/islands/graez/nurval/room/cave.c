@@ -91,7 +91,7 @@ int return_exits()
     this_object()->add_exit("/d/islands/graez/nurval/room/path10", "out");
     
     if(!catch(other_room = load_object("/d/islands/graez/nurval/room/path10")))
-        other_room->add_exit("/d/islands/graez/room/cave", "cave");
+        other_room->add_exit("/d/islands/graez/nurval/room/cave", "cave");
 }
     
 
