@@ -419,37 +419,37 @@ string *query_languages(string subrace)
 {
     if (subrace == "feytouched") {
         return (["required":({"common","aklo"}),
-                 "optional":({"abyssal","auran","aquan","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","infernal","orcish","saurian","tengu","sylvan","terran","undercommon","yuan-ti"})]);
+                 "optional":({"abyssal","auran","aquan","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","infernal","orcish","saurian","sylvan","terran","undercommon","yuan-ti"})]);
     }
 
     if (subrace == "aasimar") {
         return (["required":({"common","celestial"}),
-                 "optional":({"abyssal","aklo","auran","aquan","beast","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","infernal","orcish","saurian","tengu","sylvan","terran","undercommon","yuan-ti"})]);
+                 "optional":({"abyssal","aklo","auran","aquan","beast","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","infernal","orcish","saurian","sylvan","terran","undercommon","yuan-ti"})]);
     }
 
     if (subrace == "tiefing") {
         return (["required":({"common","abyssal","infernal"}),
-                 "optional":({"aklo","auran","aquan","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","orcish","saurian","tengu","sylvan","terran","undercommon","yuan-ti"})]);
+                 "optional":({"aklo","auran","aquan","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","orcish","saurian","sylvan","terran","undercommon","yuan-ti"})]);
     }
 
     if (subrace == "air genasi") {
         return (["required":({"common","auran"}),
-                 "optional":({"abyssal","aklo","aquan","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","infernal","orcish","saurian","tengu","sylvan","terran","undercommon","yuan-ti"})]);
+                 "optional":({"abyssal","aklo","aquan","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","infernal","orcish","saurian","sylvan","terran","undercommon","yuan-ti"})]);
     }
 
     if (subrace == "earth genasi") {
         return (["required":({"common","terran"}),
-                 "optional":({"abyssal","aklo","auran","aquan","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","infernal","orcish","saurian","tengu","sylvan","undercommon","yuan-ti"})]);
+                 "optional":({"abyssal","aklo","auran","aquan","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","infernal","orcish","saurian","sylvan","undercommon","yuan-ti"})]);
     }
 
     if (subrace == "fire genasi") {
         return (["required":({"common","ignan"}),
-                 "optional":({"abyssal","aklo","auran","aquan","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","infernal","orcish","saurian","tengu","terran","sylvan","undercommon","yuan-ti"})]);
+                 "optional":({"abyssal","aklo","auran","aquan","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","infernal","orcish","saurian","terran","sylvan","undercommon","yuan-ti"})]);
     }
 
     if (subrace == "water genasi") {
         return (["required":({"common","aquan"}),
-                 "optional":({"abyssal","aklo","auran","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","infernal","orcish","saurian","tengu","terran","sylvan","undercommon","yuan-ti"})]);
+                 "optional":({"abyssal","aklo","auran","beast","celestial","draconic","drow","dwarvish","elven","giant","gnomish","halfling","ignan","infernal","orcish","saurian","terran","sylvan","undercommon","yuan-ti"})]);
     }
 
     return (["required":({"common",}),
