@@ -131,7 +131,7 @@ int cell_action(string str)
 int storage(mixed arg)
 {
     tell_object(this_player(), "You touch a magical handle on the wall, and begin to summon a chest.");
-    "/cmds/spells/s/_secret_chest.c"->use_spell(this_player(), arg, 50);
+    "/cmds/spells/s/_secret_chest.c"->use_spell(this_player(), this_player(), 50, 100, "mage");
     return 1;
 }
 
