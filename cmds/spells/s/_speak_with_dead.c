@@ -8,7 +8,7 @@ void create()
 {
     ::create();
     set_spell_name("speak with dead");
-    set_spell_level(([ "cleric" : 3, "inquisitor" : 3 ]));
+    set_spell_level(([ "cleric" : 3, "inquisitor" : 3, "bard" ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS speak with dead to TARGET");
     set_description("This will allow the caster to attempt to establish "+
@@ -17,6 +17,7 @@ void create()
     set_somatic_comp();
     set_arg_needed();
     set_helpful_spell(1);
+    set_feats_required(([ "bard" : "epic tales" ]));
 }
 
 string query_cast_string()

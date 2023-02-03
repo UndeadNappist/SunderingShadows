@@ -7,7 +7,7 @@ inherit SPELL;
 void create() {
 	::create();
     set_spell_name("doom");
-    set_spell_level(([ "cleric":1,"paladin":1,"inquisitor" : 1, "bard" : 1 ]));
+    set_spell_level(([ "cleric":1,"paladin":1,"inquisitor" : 1 ]));
     set_domains("nightmare");
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS doom on TARGET");
@@ -20,7 +20,6 @@ void create() {
     set_target_required(1);
     mental_spell(1);
     set_save("will");
-    set_feats_required(([ "bard" : "epic tales" ]));
 }
 
 string query_cast_string(){
