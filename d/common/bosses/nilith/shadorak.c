@@ -69,7 +69,7 @@ void create()
     set_property("no bows", 1);
     set_property("no knockdown", 1);
     set_property("no trip", 1);
-    set_property("no tripped", 1);
+    //set_property("no tripped", 1); // Not a real property -- Spade
     set_property("no steal", 1);
     set_property("no dominate", 1);
     set_property("no hold", 1);
