@@ -37,6 +37,7 @@ void create()
     set_max_hp(500);
     set_hp(query_max_hp());
     set_overall_ac(-10);
+    call_out("die", 300); //setting a 5 minute lifespan
 }
 	
 	
@@ -133,5 +134,15 @@ void pick_paint_style()
         }
 }
 
+int die(){
+    object painting, room;
+    painting = this_object();
+    room = environment(painting);
+    
+    if(objectp(room)) tell_room(room, "%^RESET%^%^ORANGE%^The painting loses its power, splashing lifelessly against the ground.%^RESET%^");
+    painting->remove();
 
+    ::die();
+    return 1;
+}
 
