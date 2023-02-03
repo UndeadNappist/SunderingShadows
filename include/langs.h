@@ -1,10 +1,10 @@
-#define ALL_LANGS ({"common","dwarvish","gnomish","goblin","kobold","orcish","halfling","drow","elven","undercommon","giant","beast","yuan-ti","saurian","aquan","abyssal","aklo","auran","aquan","celestial","draconic","ignan","infernal","terran","sylvan","strix"})
+#define ALL_LANGS ({"common","dwarvish","gnomish","goblin","orcish","halfling","drow","elven","undercommon","giant","beast","yuan-ti","saurian","aquan","abyssal","aklo","auran","aquan","celestial","draconic","ignan","infernal","terran","sylvan"})
 
 #define ANIMAL_LANGS ({ "sylvan" })
 
 #define OUTSIDER_LANGS ({ "infernal","abyssal","celestial" })
 
-#define OLD_LANGS ({"firbolg","voadkyn","ogre-magi","hobgoblin","wemic","gnollish","beastman","bugbear","ogrish"})
+#define OLD_LANGS ({"firbolg","voadkyn","ogre-magi","hobgoblin","wemic","gnollish","beastman","bugbear","ogrish","kobold"})
 
 //No longer in use. Refer to race files.
 #define LANGS ([\
