@@ -43,8 +43,8 @@ These spells will place a scry ward on the room itself, offering protection to a
 When a scry is made against a target, an opposed scry check is made as follows:
 
 %^CYAN%^Opposed Scry Roll:%^RESET%^
-%^YELLOW%^Scry Power   = Clevel + Caster Stat Bonus (SCRIER)
-%^YELLOW%^Block Power  = Clevel + Caster Stat Bonus (TARGET)
+%^YELLOW%^Scry Power   = Clevel + Caster Stat Bonus (SCRIER) + Spell Level
+%^YELLOW%^Block Power  = Clevel + Caster Stat Bonus (TARGET) + Spell Level
 %^YELLOW%^Scry Roll    = Scry Power + d20 VS Block Power + 10
 
 Tie rolls go to the blocker
