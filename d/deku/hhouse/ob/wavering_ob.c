@@ -37,7 +37,7 @@ void transform(object ob, string form)
     case "dagger":
         myOb = new(COM "dagger");
         myIds = myOb->query_id();
-        myIds += ({ "blue dagger", "dull dagger", "dull blue dagger" });
+        myIds += ({ "blue dagger", "dull dagger", "dull blue dagger", "dagger" });
 
         ob->set_obvious_short("%^RESET%^%^BLUE%^dull blue dagger%^RESET%^");
 
@@ -65,7 +65,7 @@ void transform(object ob, string form)
     case "longbow":
         myOb = new("/d/common/obj/lrweapon/longbow");
         myIds = myOb->query_id();
-        myIds += ({ "blue longbow", "longbow","bow" });
+        myIds += ({ "blue longbow", "longbow", "bow" });
 
         ob->set_obvious_short("%^RESET%^%^BLUE%^blue longbow%^RESET%^");
 
@@ -93,7 +93,7 @@ void transform(object ob, string form)
         myOb = new(COM "shortsword");
 
         myIds = myOb->query_id();
-        myIds += ({ "blue sword", "blue shortsword", "blue short", "dull short", "dull sword", "dull shortsword" });
+        myIds += ({ "blue sword", "blue shortsword", "blue short", "dull short", "dull sword", "dull shortsword", "sword", "short sword" });
 
         ob->set_obvious_short("%^RESET%^%^BLUE%^dull blue short sword%^RESET%^");
 
@@ -124,7 +124,7 @@ void transform(object ob, string form)
         myOb = new(COM "scimitar");
 
         myIds = myOb->query_id();
-        myIds += ({ "blue scimitar", "dull scimitar", "dull blue scimitar" });
+        myIds += ({ "blue scimitar", "dull scimitar", "dull blue scimitar", "scimitar" });
 
         ob->set_obvious_short("%^RESET%^%^BLUE%^dull blue scimitar%^RESET%^");
 
@@ -155,7 +155,7 @@ void transform(object ob, string form)
         myIds = myOb->query_id();
 
         myIds += ({ "blue sword", "dull sword", "dull blue sword", "blue long sword",
-                    "dull long sword", "dull blue long sword" });
+                    "dull long sword", "dull blue long sword", "sword", "long sword" });
 
         ob->set_obvious_short("%^RESET%^%^BLUE%^dull blue long sword%^RESET%^");
 
@@ -186,7 +186,7 @@ void transform(object ob, string form)
         myIds = myOb->query_id();
 
         myIds += ({ "blue sword", "dull sword", "dull blue sword", "blue two handed sword",
-                    "dull two handed sword", "dull blue two handed sword" });
+                    "dull two handed sword", "dull blue two handed sword", "sword", "two handed sword" });
 
         ob->set_obvious_short("%^RESET%^%^BLUE%^dull blue two handed sword%^RESET%^");
 

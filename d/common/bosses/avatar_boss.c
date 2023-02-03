@@ -69,6 +69,9 @@ void die()
     //foreach(object ob in attackers)
     foreach(object ob in combatants)
     {
+        if(!objectp(ob))
+            continue;
+        
         if(ob->query_base_character_level() >= 40)
             ob->set("boss avatar", 1);
     }

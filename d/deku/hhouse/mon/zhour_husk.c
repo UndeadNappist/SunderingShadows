@@ -15,7 +15,7 @@ void create()
     set_race("giant zombie");
     set_name("husk of zhour");
     set_id(({"husk", "zhour", "husk of zhour", "towering husk", 
-    "towering husk of zhour", "towering zhour", "zombie", "giant zombie"}));
+    "towering husk of zhour", "towering zhour", "zombie", "giant zombie", "undead"}));
 
     set_short("%^BOLD%^%^BLACK%^The Towering Husk of %^BOLD%^%^WHITE%^"+
     "Zh%^BOLD%^%^CYAN%^ou%^RESET%^%^BOLD%^%^WHITE%^r%^RESET%^");
@@ -57,6 +57,7 @@ void create()
     set_property("attack bonus", 5);
     set_property("damage bonus", 5);
     set_property("no tripped", 1);
+    set_property("no fear", 1);
     set_overall_ac(-26);
     new(HHOB+"thundering_might")->move(TO);
     command("wield hammer");

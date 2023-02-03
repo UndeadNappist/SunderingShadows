@@ -58,7 +58,7 @@ void create(){
 }
 
 void rage(object targ){
-    tell_object(targ,"%^ORAGNGE%^The titan calls forth the power of the "+
+    tell_object(targ,"%^ORANGE%^The titan calls forth the power of the "+
        "gods to aid him and strikes you with an incredible blast "+
        "of lightning!");
     tell_room(ETO,"%^ORANGE%^The Titan calls forth the power of the "+

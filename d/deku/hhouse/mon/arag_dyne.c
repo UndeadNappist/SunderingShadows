@@ -90,6 +90,8 @@ void make_undead()
     "becoming one with his own flesh.%^RESET%^%^ORANGE%^");
 
     undead = 1; 
+    add_id("undead");
+    set_property("no fear", 1);
 }
 
 void die(object ob) 

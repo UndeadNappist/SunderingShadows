@@ -27,7 +27,7 @@ void create()
     object ob;
     ::create();
     set_name("skeleton of aurus devar");
-    set_id(({"devar", "skeleton of aurus devar", "aurus", "skeleton"}));
+    set_id(({"devar", "skeleton of aurus devar", "aurus", "skeleton", "undead"}));
     set_gender("neuter");
     set_race("skeleton");
 
@@ -68,6 +68,7 @@ void create()
     set_property("full attacks", 1);
     set_property("no crit", 1);
     set_property("no tripped", 1);
+    set_property("no fear", 1);
     set("aggressive",2);
     set_overall_ac(-22);
 

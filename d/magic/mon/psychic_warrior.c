@@ -6,7 +6,7 @@ void create(){
    ::create();
    set_name("psionic fighter");
    set_short("Ephemeral psionic fighter");
-   set("not living",1);
+   //set("not living",1);
    set_id(({"warrior","psychic warrior","ephemeral psychic warrior","fighter","psionic fighter","emphemeral psionic fighter","summoned monster"}));
    set_long("%^BOLD%^%^BLUE%^This ephemeral psionic fighter seems "+
       "to fade in and out of existence.  Its body appears forceful, "+
@@ -26,6 +26,7 @@ void create(){
    set_damage(1,10);
    set_attacks_num(2);
    set_base_damage_type("bludgeoning");
+   set_property("no random treasure", 1);
    set("magic",1);
 }
 

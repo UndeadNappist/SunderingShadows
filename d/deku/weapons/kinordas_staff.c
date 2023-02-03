@@ -7,12 +7,12 @@ void set_charges(int x);
 void adj_charges(int x);
 
 void create(){
-	::create();
-	set_name("staff");
-	set_id(({ "staff", "kinordas staff","staff of fireballs",
+    ::create();
+    set_name("staff");
+    set_id(({ "staff", "kinordas staff","staff of fireballs",
     "fireball staff","kinordas fireball staff"}));
     
-	set_obvious_short("A straight red wood staff");
+    set_obvious_short("A straight red wood staff");
 	
     set_short("%^BOLD%^%^WHITE%^K%^YELLOW%^i%^BOLD%^%^WHITE%^n%^YELLOW%^o%^BOLD%^%^WHITE%^rd%^YELLOW%^a%^BOLD%^%^WHITE%^'s%^RESET%^ "+
     "%^RED%^Staff of F%^YELLOW%^i%^RESET%^%^RED%^r%^RESET%^e"+
@@ -31,7 +31,7 @@ void create(){
     "is charred and puffs of sm%^RESET%^o%^RED%^ke occassionally "+
     "explode outward from it.%^RESET%^");
     	
-	set_read("%^RED%^Blast%^RESET%^ those that stand against you.");
+    set_read("%^RED%^Blast%^RESET%^ those that stand against you.");
         
     set_lore("This staff was created by the forgotten priest "+
     "Kinorda some ages ago.  It is rumored to have only one "+
@@ -42,20 +42,21 @@ void create(){
     "damage to his enemies.  This staff was lost some "+
     "years ago whenever Kinorda himself vanished.");
 
-    	set_property("lore difficulty",10);
+    set_property("lore difficulty",10);
    	set("langage","common");	
-    	set_weight(7);	
-    	set_value(5000);
-	set_type("bludgeoning");
-	set_prof_type("staff");
-	set_size(3);
-	set_wc(1,6);
-	set_large_wc(1,6);
-	set_property("enchantment",3+random(2));
-    	charges = 10 + random(11);
-    	set_wield((:TO,"wield_me":));
-    	set_unwield((:TO,"unwield_me":));
-	set_item_bonus("damage bonus", 1);
+    set_weight(7);	
+    set_value(5000);
+    set_type("bludgeoning");
+    set_prof_type("staff");
+    set_size(3);
+    set_wc(1,6);
+    set_large_wc(1,6);
+    set_property("enchantment",3+random(2));
+    charges = 10 + random(11);
+    set_wield((:TO,"wield_me":));
+    set_unwield((:TO,"unwield_me":));
+    set_item_bonus("damage bonus", 1);
+    set_property("repairtype", ({"weaponsmith"}));
 }
 
 int wield_me() {
