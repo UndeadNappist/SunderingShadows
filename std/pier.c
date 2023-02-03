@@ -75,11 +75,11 @@ int go_fish() {
 	notify_fail("You are already fishing!\n");
 	return 0;
     }
-    if(max_fishing <= sizeof(fishing)) {
+    /*if(max_fishing <= sizeof(fishing)) {
 	write("The area is simply too crowded with people fishing right now.");
 	say(this_player()->query_cap_name()+" is unable to find a spot to fish.", this_player());
 	return 1;
-    }
+    }*/
     write("You cast your "+(string)ob->query_name()+" into the water and start fishing.");
     say(this_player()->query_cap_name()+" casts "+(string)this_player()->query_possessive()+
 	" "+(string)ob->query_name()+" into the water.", this_player());
