@@ -117,9 +117,9 @@ int wield_func()
         owner = holder->query_true_name();
 
     if(owner != holder->query_true_name() ||
-    (holder->query_true_align() != 1 &&
-    holder->query_true_align() != 4 &&
-    holder->query_true_align() != 7) ||
+    (holder->query_true_align() == 3 ||
+    holder->query_true_align() == 6 ||
+    holder->query_true_align() == 9) ||
     holder->query_character_level() < 40)
     {
         tell_object(holder, "The wooden handle rejects your hand and you drop it!");

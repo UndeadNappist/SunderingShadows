@@ -2710,6 +2710,7 @@ int is_undead()
             query_race() == "nightwing" ||
             member_array("undead", this_object()->query_id()) != -1 ||
             query_acquired_template() == "undead" ||
+            query_acquired_template() == "mortuum" ||
             query_acquired_template() == "vampire");
 }
 
