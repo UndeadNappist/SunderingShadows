@@ -13,14 +13,14 @@ void create()
     set_spell_name("ball lightning");
     set_spell_level(([ "mage" : 5, "druid":4, "magus" : 4 ]));
     set_spell_sphere("conjuration_summoning");
-    set_syntax("cast CLASS ball lightning on TARGET");
+    set_syntax("cast CLASS ball lightning [on TARGET]");
     set_description("This spell allows for a mage to conjure forth at least three balls of lightning, which they can then "
         "hurl at a target. As the mage's power grows, she will find it easier to summon a greater number of lightning balls, "
         "increasing the damage potential of the spell. A versatile arcanist can manipulate the base element of this spell.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
-    set_components(([ "mage" : ([ "will o wisp essence" :1, "disc of bronze" :1, ]), ]));
+    //set_target_required(1);
+    //set_components(([ "mage" : ([ "will o wisp essence" :1, "disc of bronze" :1, ]), ]));
 }
 
 
@@ -68,6 +68,15 @@ void spell_effect(int prof)
 
     if(!objectp(caster))
     {
+        dest_effect();
+        return;
+    }
+    if(!target || !objectp(target))
+        target = caster->query_current_attacker();
+    
+    if(!target || !objectp(target))
+    {
+        tell_object(caster, "Your target is not here.");
         dest_effect();
         return;
     }

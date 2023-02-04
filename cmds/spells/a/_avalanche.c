@@ -1,4 +1,3 @@
-//Meteor Swarm Reskin
 #include <std.h>
 #include <spell.h>
 #include <magic.h>

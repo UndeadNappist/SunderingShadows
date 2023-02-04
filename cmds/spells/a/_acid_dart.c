@@ -73,7 +73,7 @@ void spell_effect(int prof)
     tell_object(caster, "%^GREEN%^BOLD%^A dart of acid shoots out of your finger and squarely strikes " + target->QCN + " with a spray of droplets!%^RESET%^");
     tell_room(place, "%^GREEN%^BOLD%^" + caster->QCN + " shoots a dart of acid out of " + caster->QP + " finger, striking " + target->QCN + " with a spray of droplets.%^RESET%^", ({ caster })); 
     
-    target->cause_typed_damage(target, target->return_target_limb(), sdamage, "acid");
+    damage_targ(target, target->return_target_limb(), sdamage, "acid");
     spell_kill(target, caster);
 }
     
