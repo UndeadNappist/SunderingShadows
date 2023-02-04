@@ -26,6 +26,7 @@ void create()
     set_obvious_short("");
     set_long("");
     set_value(100000);
+    set_weight(6);
     set_property("no_curse", 1);
     set_property("no steal", 1);
     set_property("lore difficulty", 40);

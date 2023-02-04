@@ -14,8 +14,9 @@
 
 inherit "/d/common/obj/weapon/mstaff.c";
 
-object owner;
+string owner;
 int hit_count;
+object holder;
 
 string color(string str)
 {
@@ -27,7 +28,7 @@ void create()
     ::create();
     
     set_name("brilliance");
-    set_id( ({ "rod", "staff", "novelty" }) );
+    set_id( ({ "brilliance", "staff", "flame staff", "fire staff" }) );
     set_short("brilliance, the flames of inspiration");
     set_obvious_short(color("a brilliant staff"));
     set_long("");
@@ -49,9 +50,7 @@ void create()
 }
 
 void init()
-{
-    object holder;
-    
+{   
     ::init();
     
     holder = environment(this_object());
@@ -60,17 +59,12 @@ void init()
         return;
     
     hit_count = 0;
-    
-    if(!owner)
-    {          
-        owner = holder;
-        tell_object(holder, color("As you lift the hammer, you feel its flames entwine itself with your life force."));
-    }
 }
 
 int hit_func(object target)
 {
     int dam;
+    object holder;
     string ename, pname;
     
     if(!owner || !target)
@@ -87,20 +81,27 @@ int hit_func(object target)
 }
 
 int wield_func()
-{
-    if(environment(this_object()) != owner)
+{   
+    if(!holder)
+        holder = this_player();
+    
+    if(!strlen(owner))
+        owner = holder->query_true_name();
+    
+    if(holder->query_true_name() != owner)
     {
-        tell_object(environment(this_object()), "The staff rejects your touch!");
+        tell_object(holder, "STAFF REJECTS YOU!");
         return 0;
     }
     
-    tell_object(owner, color("As you wield it, the staff alights with radiant flames!"));
-    tell_room(environment(owner), color(owner->query_cap_name() + "'s staff alights with radiant flames."), owner);
+    
+    tell_object(holder, "STAFF ACCEPTS YOU!");
+    tell_room(environment(holder), color("STAFF ACCEPTS ROOM MESS"), holder);
     return 1;
 }
 
 int unwield_func()
 {
-    owner && tell_object(owner, "%^CYAN%^You feel the warmth of the staff disappate as you release it.");
+    owner && tell_object(owner, "STAFF UNWIELD");
     return 1;
 } 

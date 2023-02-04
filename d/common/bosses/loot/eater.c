@@ -36,8 +36,8 @@ void create()
 	"Shadowed Knights.\n %^RESET%^%^BOLD%^- Excerpt from 'The Oni March' %^RESET%^"+
 	"Ichibod Cosette%^RESET%^");
     set_property("lore difficulty", 25);
-	set_item_bonus("attack bonus",4);
-    set_item_bonus("damage bonus",4);
+	set_item_bonus("attack bonus",7);
+    set_item_bonus("damage bonus",7);
 
 //wields and unwields
     set_wield((:TP,"wieldme":));

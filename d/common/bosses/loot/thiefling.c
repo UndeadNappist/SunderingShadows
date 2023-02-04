@@ -34,6 +34,7 @@ void create()
     set_property("lore difficulty", 40);
     set_property("id difficulty", 40);
     set_value(10000);
+    set_weight(2);
     set_flag_required("boss avatar");
     set_wear((:this_object(),"wear_fun":));
     set_remove( (: this_object(),"remove_fun" :) );
