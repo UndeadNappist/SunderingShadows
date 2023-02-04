@@ -425,12 +425,12 @@ int cmd_stats(string person)
     }else {
         !reader && write(SUBHEAD);
         tell_object(TP, "%^RESET%^%^BOLD%^Base stats unmodified by item and buff bonuses are:%^RESET%^");
-        STR = obj->query_rolled_stats("strength");
-        INT = obj->query_rolled_stats("intelligence");
-        WIS = obj->query_rolled_stats("wisdom");
-        DEX = obj->query_rolled_stats("dexterity");
-        CON = obj->query_rolled_stats("constitution");
-        CHR = obj->query_rolled_stats("charisma");
+        STR = obj->query_base_stats("strength");
+        INT = obj->query_base_stats("intelligence");
+        WIS = obj->query_base_stats("wisdom");
+        DEX = obj->query_base_stats("dexterity");
+        CON = obj->query_base_stats("constitution");
+        CHR = obj->query_base_stats("charisma");
 
         tell_object(TP, "%^RESET%^%^GREEN%^Str :%^RESET%^" + STR + "  %^GREEN%^Int :%^RESET%^" + INT + "  %^GREEN%^Wis :%^RESET%^" + WIS + "  %^GREEN%^Dex :%^RESET%^" + DEX + "  %^GREEN%^Con :%^RESET%^" + CON + "  %^GREEN%^Cha :%^RESET%^" + CHR + "");
     }
