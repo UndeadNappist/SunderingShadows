@@ -41,6 +41,7 @@ void spell_effect(int prof)
     }
     
     spell_successful();
+    spell_kill(caster, target);
     
     my_name = caster->query_cap_name();
     your_name = target->query_cap_name();
