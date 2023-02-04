@@ -251,7 +251,7 @@ void execute_feat()
                 pack_animal = new("/d/magic/mon/pack_member");
                 pack_animal->set_race(arg);
                 pack_animal->set_name(arg);
-                pack_animal->set_id( ({ arg, "pack animal", "greater summon", "animal", "pack member", caster->query_name() + "'s ally" }) );
+                pack_animal->set_id( ({ arg, "pack animal", "greater summon", "animal", "pack member", caster->query_cap_name() + "'s ally" }) );
                 pack_animal->set_short("%^BOLD%^GREEN%^" + caster->QCN + "'s faithful %^BLACK%^" + arg + "%^RESET%^BOLD%^GREEN%^ pack member");
                 //pack_animal->set_short(sprintf("%s's faithful %s pack member",capitalize(caster->query_name()),arg));
                 pack_animal->set_level(class_level);

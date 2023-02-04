@@ -14,6 +14,7 @@ void create() {
     set_spell_level(([ "bard" : 3, "mage" : 3, "magus" : 3, "cleric" : 3 ]));
     set_spell_sphere("illusion");
     set_domains(({ "illusion", "trickery" }));
+    set_bonus_type("concealment");
     set_syntax("cast CLASS displacement [on TARGET]");
     set_damage_desc("35% miss chance");
     set_description("The target of this spell appears to be about 2 feet away from where they truly are, granting them 35% miss chance against attacks. Unlike the blink spell, this spell is an illusion and is fully nullified by true seeing. Also unlike the blink spell, this spell may be cast on others besides yourself.");

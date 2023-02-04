@@ -15,7 +15,8 @@ void create() {
     set_spell_sphere("alteration");
     set_domains( ({ "repose" }) ); 
     set_syntax("cast CLASS ghostform");
-    set_damage_desc("clevel + 10 to misschance (max 50)");
+    set_bonus_type("concealment");
+    set_damage_desc("clevel + 10 to misschance");
     set_description("Drawing forth the power of his deity, the caster is imbued with a spectral presence, causing him to "
 "be harder to see and therefore more difficult to hit.  This spell will last for a time depending upon the caster's "
 "level.");
@@ -29,13 +30,16 @@ string query_cast_string(){
       "%^CYAN%^as "+caster->QS+" begins to chant.%^RESET%^";
 }
 
-int preSpell(){
+/*
+int preSpell()
+{
     if (caster->query_property("amorpha") || caster->query_property("timeless body")) {
         tell_object(caster, "You are already protected by a spell similar to this one.");
         return 0;
     }
     return 1;
 }
+*/
 
 void spell_effect(int prof) {
 
@@ -54,10 +58,10 @@ void spell_effect(int prof) {
        "and becomes %^RESET%^translucent %^BOLD%^as "+caster->QS+" "+
        "finishes "+caster->QP+" prayer!%^RESET%^",caster);
     mychance = 10+clevel;
-    if(mychance > 50) mychance = 50;
+    //if(mychance > 50) mychance = 50;
     caster->set_property("spelled", ({TO}) );
     caster->set_property("amorpha",1);
-    caster->set_missChance(caster->query_missChance()+ 35);
+    caster->set_missChance(caster->query_missChance()+ mychance);
     caster->set_property("added short",({"%^BOLD%^%^WHITE%^ (ghostly)%^RESET%^"}));
     spell_successful();
     addSpellToCaster();
@@ -74,7 +78,7 @@ void dest_effect() {
        tell_room(place,"%^BOLD%^"+caster->QCN+" suddenly seems more "+
           "substantial as "+caster->QP+" skin loses its "+
           "transluscence.%^RESET%^",caster);
-       caster->set_missChance(0);
+       caster->set_missChance(caster->query_missChance() - mychance);
        caster->remove_property("amorpha");
        caster->remove_property("added short",({"%^BOLD%^%^WHITE%^ (ghostly)%^RESET%^"}));
     }

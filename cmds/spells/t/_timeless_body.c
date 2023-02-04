@@ -11,10 +11,9 @@ void create() {
     set_spell_name("timeless body");
     set_spell_level(([ "psion" : 9 ]));
     set_spell_sphere("psychoportation");
+    set_bonus_type("concealment");
     set_syntax("cast CLASS timeless body");
-    set_description("This power will enable a psion to take on a ghostly state, making him difficult to hit in combat.  "
-"The power has an equal chance each round to make the psion untouchable or not.  The psion's body fades, becoming "
-"partially on this plane and partially on the Astral Plane.
+    set_description("This power will enable a psion to take on a ghostly state, making him difficult to hit in combat. The power has an equal chance each round to make the psion untouchable or not.  The psion's body fades, becoming partially on this plane and partially on the Astral Plane. Like blink, this power is not illusion and is not fully negated by true seeing.
 
 %^BOLD%^%^RED%^See also:%^RESET%^ timeless body *feats");
     set_verbal_comp();
@@ -61,11 +60,15 @@ void spell_effect(int prof)
        "your body, giving you a ghostly appearance!");
     toggle = 1;
     targ->set_missChance(targ->query_missChance() + 65);
+    targ->set_property("blink misschance", 25);
     targ->set_property("timeless body",1);
     targ->set_property("spelled", ({TO}) );
     spell_successful();
     addSpellToCaster();
+    spell_duration = (5 + clevel + roll_dice(1, 20)) * ROUND_LENGTH;
+    set_end_time();
     place->addObjectToCombatCycle(TO,1);
+    call_out("dest_effect", spell_duration);
     call_out("test",2);
 }
 
@@ -132,7 +135,7 @@ void execute_attack(){
 //            tell_object(targ,"Total miss chance = "+(int)targ->query_missChance()+".");
         }
     }
-    counter++;
+    //counter++;
     if(FEATS_D->usable_feat(TO,"slippery caster")) {
     if (counter > (mylevel+6 * 1.33)) {
         dest_effect();
@@ -156,6 +159,7 @@ void dest_effect(){
       }
       targ->set_missChance(chance);
       targ->remove_property("timeless body");
+      targ->remove_property("blink misschance");
       targ->remove_property_value("spelled", ({TO}) );
       tell_object(targ,"%^BOLD%^%^BLUE%^Your body ceases to fade "+
          "into mistiness.");

@@ -9,18 +9,17 @@ void create() {
     set_spell_level(([ "mage" : 1, "bard" : 1, "oracle" : 1, "magus" : 1 ]));
     set_mystery("shadow");
     set_spell_sphere("illusion");
-    set_syntax("cast CLASS blurred movement");
     set_bonus_type("concealment");
+    set_syntax("cast CLASS blur");
     set_damage_desc("20% miss chance");
-    set_description("You blur your body, making a shadow of every move you perform, gaining 20% concealment.");
+    set_description("You blur your body, making a shadow of every move you perform, gaining 20% miss chance (concealment).");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
 }
 
-int preSpell()
-{
-    /*
+/*
+int preSpell() {
     if (caster->query_property("amorpha") || caster->query_property("timeless body")) {
         tell_object(caster, "You can't maintain such a spell while under a concealment illusion.");
         return 0;
@@ -29,8 +28,6 @@ int preSpell()
         tell_object(caster, "You are already blinking!");
         return 0;
     }
-    */
-    /*
     if (!caster->is_ok_armour("mage"))
     {
         if(!FEATS_D->usable_feat(caster,"armored caster") && !FEATS_D->usable_feat(caster,"eldritch conditioning"))
@@ -40,9 +37,9 @@ int preSpell()
             return;
         }
     }
-    */
     return 1;
 }
+*/
 
 void spell_effect(int prof) {
 
@@ -74,10 +71,10 @@ void spell_effect(int prof) {
     call_out("dest_effect",spell_duration);
 }
 
+/*
 void test() {
     if (!objectp(TO) || !objectp(caster))
         return;
-    /*
     if (!caster->is_ok_armour("mage"))
     {
         if(!FEATS_D->usable_feat(caster,"armored caster") && !FEATS_D->usable_feat(caster,"eldritch conditioning"))
@@ -87,9 +84,9 @@ void test() {
             return;
         }
     }
-    */
     call_out("test", ROUND_LENGTH*2);
 }
+*/
 
 void dest_effect() {
     int chance;

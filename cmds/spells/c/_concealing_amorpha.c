@@ -14,6 +14,8 @@ void create() {
     set_spell_level(([ "psion" : 2, "psywarrior" : 2 ]));
     set_spell_sphere("metacreativity");
     set_syntax("cast CLASS concealing amorpha");
+    set_bonus_type("concealment");
+    set_damage_desc("35% miss chance");
     set_description("When a psionic character manifests concealing amorpha, he draws ectoplasm from the Astral Plane to create a sort "
 "of armor.  While it does not offer any physical protection, the translucent armor does make it more difficult to see "
 "where exactly the psion's body lies, granting him protection by fooling the eyes of the onlooker.");
@@ -70,7 +72,7 @@ void spell_effect(int prof) {
        "strands out of thin air, weaving them with tiny particles "+
        "of water to form a %^BOLD%^%^CYAN%^translucent %^RESET%^"+
        "%^MAGENTA%^layer of protection.",caster);
-    cmychance = 30; //changing to a flat 30% miss chance per new blink. Stacking broken with timeless body. N, 4/14
+    cmychance = 35; //changing to a flat 35% miss chance per new blink. Stacking broken with timeless body. N, 4/14
     caster->set_property("spelled", ({TO}) );
     caster->set_property("amorpha",1);
     caster->set_missChance(caster->query_missChance()+ cmychance);

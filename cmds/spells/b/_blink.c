@@ -11,6 +11,7 @@ void create() {
     set_spell_level(([ "mage" : 3, "bard" : 3, "magus" : 3 ]));
     set_spell_sphere("alteration");
     set_syntax("cast CLASS blink");
+    set_bonus_type("concealment");
     set_damage_desc("35% miss chance");
     set_description("You blink back and forth between the material and ethereal planes and look as though you're winking in and out of reality at random, gaining 35% miss chance. Since this is not an invisibility effect, true seeing does not completely nullify it, but reduces it to 15% miss chance.");
     set_verbal_comp();
