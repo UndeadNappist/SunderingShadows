@@ -157,7 +157,7 @@ void execute_attack()
     }
 
     if (!FEATS_D->usable_feat(caster, "whirling dervish")) {
-        caster->set_cooldown("whirl", DELAY);
+        caster->add_cooldown("whirl", DELAY);
     }
 
     attackers = shuffle(attackers);
