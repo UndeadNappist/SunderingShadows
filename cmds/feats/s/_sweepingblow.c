@@ -111,7 +111,7 @@ void execute_attack()
     }
     caster->remove_property("using instant feat");
     if(!FEATS_D->usable_feat(caster, "wade through")) {
-        caster->set_cooldown("sweepingblow", DELAY);
+        caster->add_cooldown("sweepingblow", DELAY);
     }
 
     ::execute_attack();

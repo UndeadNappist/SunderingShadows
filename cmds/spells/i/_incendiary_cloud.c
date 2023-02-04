@@ -18,7 +18,7 @@ void create(){
     set_spell_name("incendiary cloud");
     set_spell_level(([ "mage" : 8, "oracle" : 8, "cleric":8, "druid" : 8]));
     set_domains("fire");
-    set_mystery(({"flame","apocalypse"}));
+    set_circle("wildfire");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS incendiary cloud");
     set_damage_desc("fire or versatile arcanist");

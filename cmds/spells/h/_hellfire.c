@@ -21,7 +21,7 @@ void create()
     set_damage_desc("untyped damage persistent AOE");
     set_description("This invocation unleashes a storm of hellfire, raining down the wrath of infernal energies upon the "
 "warlock's foes.  The invocation will last several rounds depending upon the level of the warlock, and the warlock must "
-"remain present for the storm to continue.  All those attacking the warlock are subject to the effects of the infernal rain"
+"remain present for the storm to continue.  All those attacking the warlock are subject to the effects of the hellfire"
 ", though they do receive saving throws. Only one area spell or invocation may be maintained by a caster at a time!\n");
     set_verbal_comp();
     set_somatic_comp();
