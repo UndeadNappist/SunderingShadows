@@ -86,7 +86,7 @@ int hit_func(object target)
     int dam;
     string ename, pname;
     
-    if(!owner || !target)
+    if(!objectp(owner) || !objectp(target))
         return 0;
     
     hit_count++;

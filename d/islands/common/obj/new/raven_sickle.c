@@ -30,7 +30,7 @@ void create()
     set_property("enchantment", 7);
 
     set_item_bonus("intelligence",6);
-    set_item_bonus("caster level",3);
+    set_item_bonus("caster level",5);
 
     set_wield((:TO,"wield_me":));
     set_unwield("%^BOLD%^%^BLACK%^You feel the raven recede as you lower the sickle.");

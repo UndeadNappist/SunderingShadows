@@ -60,7 +60,7 @@ void create()
     set_property("enchantment",7);
 
     set_item_bonus("damage bonus",7);
-    set_item_bonus("caster level",3);
+    set_item_bonus("caster level",5);
 
     set_hit((:TO,"hit_func":));
     set_wield((:TO,"wield_func":));
