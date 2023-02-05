@@ -57,6 +57,8 @@ int wear_fun()
     
     buffs = holder->query_property("spell_bonus_type");
     
+    if(!pointerp(buffs)) buffs = ({  });
+    
     if(member_array("concealment", buffs) < 0)
     {
         tell_object(holder, "YOU GAIN CONCEALMENT MESSAGE");
@@ -77,6 +79,7 @@ int remove_fun()
     
     holder = this_player();
     buffs = holder->query_property("spell_bonus_type");
+    if(!pointerp(buffs)) buffs = ({  });
     
     if(i_buffed_you && member_array("concealment", buffs) >= 0)
     {
