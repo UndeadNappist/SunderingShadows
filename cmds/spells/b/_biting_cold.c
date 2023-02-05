@@ -15,19 +15,27 @@ void create() {
     set_spell_name("biting cold");
     set_spell_level(([ "psywarrior" : 5, "psion" : 5 ]));
     set_spell_sphere("psychokinesis");
-    set_syntax("cast CLASS biting cold on TARGET");
+    set_syntax("cast CLASS biting cold [on TARGET]");
     set_description("Upon manifesting this power, the psywarrior manipulates "
        "the elemental planes, summoning cold to himself. Concentrating the "
        "icy power in his core, he lashes out, freezing his target. The victim "
        "experiences cold damage and may have their movement impaired for a time.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
+    //set_target_required(1);
     set_save("fort");
 }
 
 int preSpell()
 {
+    if(!target)
+        target = caster->query_current_attacker();
+    
+    if(!objectp(target))
+    {
+        tell_object(caster, "Your target is not here.");
+        return 0;
+    }
     if(objectp(target) && target->query_property(CASTER->query_name() + "_biting_cold"))
     {
         tell_object(caster,"You have already summoned biting cold to torment that target!");

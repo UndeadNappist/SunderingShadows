@@ -19,6 +19,7 @@ void create()
         "increasing the damage potential of the spell. A versatile arcanist can manipulate the base element of this spell.");
     set_verbal_comp();
     set_somatic_comp();
+    versatile(1);
     //set_target_required(1);
     //set_components(([ "mage" : ([ "will o wisp essence" :1, "disc of bronze" :1, ]), ]));
 }

@@ -47,6 +47,9 @@ void spell_effect(int prof)
     spell_successful();
     execute_attack();
     counter = 6 * clevel;
+    duration = spell_duration;
+    set_end_time();
+    call_out("dest_effect", duration);
     call_out("room_check", ROUND_LENGTH);
 }
 

@@ -6,7 +6,7 @@
 inherit SPELL;
 
 object* inven, * caught;
-int worked, duration, mydam;
+int worked, duration, mydam, first_execute;
 void do_tentacles();
 
 void create()
@@ -99,10 +99,14 @@ void spell_effect(int prof)
     addSpellToCaster();
     spell_successful();
     duration = (clevel / 10 + 3) * ROUND_LENGTH;
+    spell_duration = duration;
+    set_end_time();
+    call_out("dest_effect", duration);
     call_out("do_tentacles", ROUND_LENGTH);
 }
 
-void do_tentacles()
+//void do_tentacles()
+void execute_attack()
 {
     object* removing;
     int i;
@@ -119,11 +123,18 @@ void do_tentacles()
         dest_effect();
         return;
     }
+    if(!first_execute){
+        first_execute++;
+        ::execute_attack();
+        return;
+    }
+    /*
     if (worked >= duration) {
         dest_effect();
         return;
     }
-    worked++;
+    */
+    //worked++;
     removing = ({});
     for (i = 0; i < sizeof(inven); i++) {
         if (!objectp(inven[i])) {
@@ -179,7 +190,16 @@ void do_tentacles()
                                   "%^RESET%^%^C049%^b%^C050%^a%^C051%^l%^C123%^a%^C051%^n%^C050%^c%^C049%^e%^RESET%^%^C241%^!%^CRST%^", 1);
         }
     }
-    call_out("do_tentacles", ROUND_LENGTH);
+    
+    if(present(caster, place) && !caster->query_unconscious()){
+        place->addObjectToCombatCycle(this_object(), 1);
+        return;
+    }
+    else{
+        dest_effect();
+        return;
+    }
+    //call_out("do_tentacles", ROUND_LENGTH);
 }
 
 void dest_effect()
@@ -196,7 +216,7 @@ void dest_effect()
                                             ({ "%^RESET%^%^C240%^ (%^RESET%^%^C241%^e%^C242%^n%^C243%^t%^C242%^a%^C241%^n%^C242%^g%^C243%^l%^C242%^e%^C241%^d%^RESET%^%^C240%^)%^CRST%^" }));
         }
         if (objectp(CASTER)) {
-            CASTER->set_property("black tentacles", -1);
+            CASTER->remove_property("black tentacles");
         }
     }
     ::dest_effect();

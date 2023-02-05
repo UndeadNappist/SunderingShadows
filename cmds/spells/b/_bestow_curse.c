@@ -19,13 +19,13 @@ void create() {
     set_spell_name("bestow curse");
     set_spell_level(([ "mage" : 4, "inquisitor":3, "paladin":3, "cleric":3]));
     set_spell_sphere("necromancy");
-    set_syntax("cast CLASS bestow curse on TARGET");
+    set_syntax("cast CLASS bestow curse [on TARGET]");
     set_damage_desc("clevel / 8 to all skills, attack and damage bonus, caster level");
     set_description("By means of this spell, the caster places a curse upon the target that will weaken them considerably"
 ", lowering their defenses and their combat abilities. It is not dispellable by normal magics, but will fade over time.");
     set_verbal_comp();
     set_somatic_comp();
-    set_target_required(1);
+    //set_target_required(1);
     set_save("will");
 }
 
@@ -36,12 +36,24 @@ string query_cast_string() {
 
 void spell_effect(int prof) {
     int duration;
+    
     if(target == caster) {
         tell_object(caster, "%^CYAN%^You realise your error in cursing yourself, and let your spell fade away.%^RESET%^");
         tell_room(place,"%^CYAN%^The aura around "+caster->QCN+"'s hands weakens and then fades away.%^RESET%^",caster);
         TO->remove();
         return;
     }
+    
+    if(!target)
+        target = caster->query_current_attacker();
+    
+    if(!objectp(target))
+    {
+        tell_object(caster, "Your target is not here.");
+        dest_effect();
+        return;
+    }
+    
     if(target->query_property("cursed")) {
         tell_object(caster,"%^CYAN%^Your spell slips away from "+target->QCN+", unable to weaken them further!%^RESET%^");
         tell_room(place,"%^CYAN%^The aura around "+caster->QCN+"'s hands weakens and then fades away.%^RESET%^",caster);
