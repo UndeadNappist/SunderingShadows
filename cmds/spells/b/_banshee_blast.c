@@ -30,6 +30,12 @@ void spell_effect(int prof)
 {
     object *foes, foe;
     int dam;
+    
+    if(!objectp(caster))
+    {
+        dest_effect();
+        return;
+    }
 
     tell_object(caster,"%^BLUE%^You concentrate and release a HORRIBLE SCREAM, directed at " +target->QCN+".");
     tell_room(place,"%^BLUE%^"+caster->QCN+" releases a HORRIBLE SCREAM, directed at " +target->QCN+".",caster);
