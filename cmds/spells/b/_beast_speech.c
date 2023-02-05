@@ -40,6 +40,9 @@ void spell_effect(int prof) {
       if(member_array(ANIMAL_LANGS[i],OLD_LANGS) == -1) target->add_lang_overload(ANIMAL_LANGS[i],prof);
     }
     addSpellToCaster();
+    if(caster != target)
+        addSpellToTarget();
+    
     spell_successful();
     caster->set_property("spelled",({TO}));
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 12;

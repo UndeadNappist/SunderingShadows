@@ -133,19 +133,10 @@ void spell_effect(int prof)
 
     caster->set_property("spelled",({TO}));
     caster->set_property("mind blank",1);
-    blocker = SCRY_D->add_block_scrying(caster);
-
-    if(!objectp(blocker))
-    {
-        tell_object(caster,"%^BOLD%^RED%^Something is wrong that "
-            "a wiz might want to look at!%^RESET%^");
-        dest_effect();
-        return;
-    }
 
     int_bonus = calculate_bonus(caster->query_stats(get_casting_stat()));
-    power = mylevel + int_bonus + random(6);
-    blocker->set_block_power(power);
+    power = clevel + int_bonus + query_spell_level(spell_type);
+    target->set_property("scry block power", power);
     duration = 5 * mylevel * ROUND_LENGTH;
     spell_successful();
     addSpellToCaster();
@@ -156,10 +147,10 @@ void spell_effect(int prof)
 }
 
 void dest_effect() {
-    if(objectp(blocker)) blocker->self_destruct();
     if(objectp(caster))
     {
         caster->remove_property_value("spelled", ({TO}) );
+        caster->remove_property("scry block power");
         if(FLAG)
         {
            caster->remove_temporary_feat("unyielding soul");

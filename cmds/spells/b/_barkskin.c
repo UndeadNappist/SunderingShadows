@@ -2,7 +2,7 @@
 #include <daemons.h>
 inherit SPELL;
 
-int feattracker, amount;
+int amount;
 
 void create()
 {
@@ -14,25 +14,11 @@ void create()
     set_spell_sphere("alteration");
     set_syntax("cast CLASS barkskin");
     set_damage_desc("2 + clevel / 20 to AC");
-    set_description("A ranger can attempt to take on part of a tree's nature, their skin hardening a little, increasing their natural armor class.");
+    set_description("Barkskin hardens the caster's skin, making it hard as the bark of a mighty oak.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
 }
-
-
-int preSpell()
-{
-    /*
-    if(member_array("damage resistance",(string*)caster->query_temporary_feats()) != -1)
-    {
-        tell_object(caster,"You are already under the influence of a similar effect.");
-        return 0;
-    }
-    */
-    return 1;
-}
-
 
 string query_cast_string() { return "%^RED%^"+caster->QCN+" runs "+caster->QP+" hands over "+caster->QP+" arms."; }
 
@@ -49,13 +35,7 @@ void spell_effect(int prof)
         tell_object(caster, "%^ORANGE%^Your skin thickens and becomes rough, with a brittle texture like treebark!");
         tell_room(place,"%^ORANGE%^"+caster->QCN+"'s skin changes, becoming as rough and brittle as treebark!",caster);
     }
-    /*
-    if(member_array("damage resistance",(string*)caster->query_temporary_feats()) == -1)
-    {
-        caster->add_temporary_feat("damage resistance");
-        feattracker = 1;
-    }
-    */
+
     amount = 2 + (clevel / 20);
     caster->add_ac_bonus(amount);
     spell_successful();
