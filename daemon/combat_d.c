@@ -104,6 +104,7 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
             MissChance += 50;
     }
 
+/*
     if(victim->is_shade())
     {
         if(total_light(environment(victim)) < 2)
@@ -111,7 +112,8 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
         else if(total_light(environment(victim)) > 2)
             MissChance -= 5;
     }
-
+*/
+/*
     if(FEATS_D->usable_feat(victim, "inconstant position"))
         MissChance += 10;
     
@@ -123,6 +125,7 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
     
     if(victim->query_property("shadow walk"))
         MissChance += 10;
+*/
 
     if (mount && FEATS_D->usable_feat(rider, "mounted shield")) {
         ShieldMissChance = (int)rider->query_shieldMiss();

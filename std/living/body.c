@@ -223,6 +223,28 @@ void set_missChance(int i)
 int query_missChance()
 {
     int sub_chance = 0;
+    
+    if(this_object()->is_shade())
+    {
+        if(total_light(environment(this_object())) < 2)
+            sub_chance += 5;
+        else if(total_light(environment(this_object())) > 2)
+            sub_chance -= 5;
+    }
+
+    if(FEATS_D->usable_feat(this_object(), "inconstant position"))
+        sub_chance += 10;
+    
+    if(FEATS_D->usable_feat(this_object(), "sharp shooting"))
+        sub_chance += 20;
+
+    if(FEATS_D->usable_feat(this_object(), "eternal warrior") && this_object()->query("available focus") == 2)
+        sub_chance += 10;
+    
+    if(this_object()->query_property("shadow walk"))
+        sub_chance += 10;
+    
+    sub_chance = sub_chance > 50 ? 50 : sub_chance;
 
     return missChance + sub_chance;
 }
