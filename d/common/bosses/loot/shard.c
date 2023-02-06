@@ -39,7 +39,7 @@ void create()
     set_property("id difficulty", 40);
     set_property("able to cast", 1);
     set_property("enchantment", 7);
-    
+    set_flag_required("boss avatar");        
     set_item_bonus("attack bonus", 7);
     set_item_bonus("damage bonus", 7);
     set_item_bonus("negative energy resistance percent", 25);

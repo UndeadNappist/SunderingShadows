@@ -38,6 +38,7 @@ void create()
     set_flag_required("boss avatar");
     set_wear((:this_object(),"wear_fun":));
     set_remove( (: this_object(),"remove_fun" :) );
+    set_flag_required("boss avatar");    
     set_heart_beat(1);
 }
 

@@ -58,7 +58,7 @@ void init()
     
     if(!owner)
     {          
-        owner = holder->query)_true_name();
+        owner = holder->query_true_name();
         tell_object(holder, "OWNER ATTUNE MESSAGE");
     }
 }
@@ -67,8 +67,11 @@ int hit_func(object target)
 {
     int dam;
     string ename, pname;
+    object holder;
     
-    if(!owner || !target)
+    holder = environment(this_object());
+    
+    if(!objectp(holder) || !objectp(target))
         return 0;
     
     hit_count++;
@@ -78,29 +81,36 @@ int hit_func(object target)
     
     hit_count = 0;
     
-    pname = owner->query_cap_name();
+    pname = holder->query_cap_name();
     ename = target->query_cap_name();
     
-    tell_room(environment(owner), "ROOM HIT FUNC MESSAGE");  
+    tell_room(environment(holder), "ROOM HIT FUNC MESSAGE");  
 
-    new("/cmds/spells/l/_lightning_arc")->use_spell(owner, target, 50, 100, "druid");
+    new("/cmds/spells/l/_lightning_arc")->use_spell(holder, target, 50, 100, "druid");
 }
 
 int wield_func()
 {
-    if(environment(this_object()) != owner)
+    object holder;
+    
+    holder = environment(this_object());
+    
+    if(holder->query_true_name() != owner)
     {
-        tell_object(environment(this_object()), "");
+        tell_object(environment(this_object()), "REJECT YOU MESSAGE");
         return 0;
     }
     
-    tell_object(owner, "OWNER WIELD MESSAGE");
-    tell_room(environment(owner), "ROOM WIELD MESSAGE"), owner);
+    tell_object(holder, "OWNER WIELD MESSAGE");
+    tell_room(environment(holder), "ROOM WIELD MESSAGE"), holder);
     return 1;
 }
 
 int unwield_func()
 {
-    owner && tell_object(owner, "OWNER UNWIELD MESSAGE");
+    object holder;
+    
+    holder = environment(this_object());
+    holder && tell_object(holder, "OWNER UNWIELD MESSAGE");
     return 1;
 } 

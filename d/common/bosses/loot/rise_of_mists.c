@@ -48,7 +48,8 @@ void create()
     set_item_bonus("perception", 6);
 	set_property("enchantment",7);	
 //other stuff
-    set_value(4500);
+    set_value(45000);
+    set_flag_required("boss avatar");    
 }
 
 int wieldme(){

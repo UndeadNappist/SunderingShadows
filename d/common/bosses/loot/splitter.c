@@ -49,7 +49,8 @@ void create()
 	set_property("enchantment",7);
 	
 //other stuff
-    set_value(4500);
+    set_value(50000);
+    set_flag_required("boss avatar");    
 }
 
 int wieldme(){
