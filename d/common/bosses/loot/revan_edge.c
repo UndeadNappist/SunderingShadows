@@ -3,38 +3,38 @@
 inherit "/d/common/obj/weapon/two_hand_sword.c";
 
 void create(){
-        ::create();
-        set_name("revans edge");
-        set_id(({ "sword", "katana", "revans edge", "two handed sword",  }));
-        set_short("%^RESET%^%^BOLD%^Rev%^RESET%^a%^RESET%^%^BOLD%^ns%^RESET%^%^RED%^ "+
-		"E%^BOLD%^d%^RESET%^%^RED%^ge%^RESET%^");
-        set_obvious_short("%^RESET%^%^BOLD%^bo%^RESET%^n%^BOLD%^e "+
-		"blade %^BLACK%^%^BOLD%^kat%^RESET%^a%^BLACK%^%^BOLD%^na%^RESET%^");
-        set_long("%^RESET%^%^BOLD%^This %^BLACK%^%^BOLD%^katana styled%^RESET%^%^BOLD%^ "+
-		"blade is unique among its peers as the blade is not formed of metal, but of what "+
-		"looks like %^RESET%^bone%^RESET%^%^BOLD%^. What beast it came from is unknown though "+
-		"how the bone was formed into a perfect blade is the bigger mystery as there are "+
-		"no %^RESET%^%^ORANGE%^tool marks%^RESET%^%^BOLD%^ along it. At the base of the "+
-		"blade near the guard is a single %^BLACK%^%^BOLD%^etched symbol%^RESET%^%^BOLD%^ "+
-		"of a feather basked in %^RESET%^%^RED%^flame%^RESET%^%^BOLD%^. The hilt is devoid "+
-		"of a pommel, showing the masterful crafting in its balance. The hilt itself is "+
-		"wrapped in %^RESET%^white%^RESET%^%^BOLD%^ and %^BLACK%^%^BOLD%^black%^RESET%^%^BOLD%^ "+
-		"silk.%^RESET%^");
-        set_value(15000);
-        set_lore(" %^RED%^%^BOLD%^Revan was quite possibly the most feared Solar to the forces "+
-		"of darkness he hunted. To be honest though some of his own kind held an amount of fear "+
-		"for the 'Furious Shard' as any sign of taint or decay could cause Revan to declare you "+
-		"apostate and destroy you. After Revan's death his katana was lost to time. It is saod "+
-		"the blade was formed from the bones of a demi-god that Revan killed."+
-        " \n%^RESET%^%^ORANGE%^Father Belanos, the Weapons of Light%^RESET%^%^RESET%^");
-        set_property("lore difficulty",23);
-        set_property("enchantment",7);
-        set_item_bonus("attack bonus",7);
-        set_item_bonus("damage bonus",7);
-
-        set_wield((:TO,"wield_func":));
-        set_unwield((:TO,"unwield_func":));
-        set_hit((:TO,"hit_func":));
+   ::create();
+   set_name("revans edge");
+   set_id(({ "sword", "katana", "revans edge", "two handed sword",  }));
+   set_short("%^RESET%^%^BOLD%^Rev%^RESET%^a%^RESET%^%^BOLD%^ns%^RESET%^%^RED%^ "+
+   "E%^BOLD%^d%^RESET%^%^RED%^ge%^RESET%^");
+   set_obvious_short("%^RESET%^%^BOLD%^bo%^RESET%^n%^BOLD%^e "+
+   "blade %^BLACK%^%^BOLD%^kat%^RESET%^a%^BLACK%^%^BOLD%^na%^RESET%^");
+   set_long("%^RESET%^%^BOLD%^This %^BLACK%^%^BOLD%^katana styled%^RESET%^%^BOLD%^ "+
+   "blade is unique among its peers as the blade is not formed of metal, but of what "+
+   "looks like %^RESET%^bone%^RESET%^%^BOLD%^. What beast it came from is unknown though "+
+   "how the bone was formed into a perfect blade is the bigger mystery as there are "+
+   "no %^RESET%^%^ORANGE%^tool marks%^RESET%^%^BOLD%^ along it. At the base of the "+
+   "blade near the guard is a single %^BLACK%^%^BOLD%^etched symbol%^RESET%^%^BOLD%^ "+
+   "of a feather basked in %^RESET%^%^RED%^flame%^RESET%^%^BOLD%^. The hilt is devoid "+
+   "of a pommel, showing the masterful crafting in its balance. The hilt itself is "+
+   "wrapped in %^RESET%^white%^RESET%^%^BOLD%^ and %^BLACK%^%^BOLD%^black%^RESET%^%^BOLD%^ "+
+   "silk.%^RESET%^");
+   set_value(15000);
+   set_lore(" %^RED%^%^BOLD%^Revan was quite possibly the most feared Solar to the forces "+
+   "of darkness he hunted. To be honest though some of his own kind held an amount of fear "+
+   "for the 'Furious Shard' as any sign of taint or decay could cause Revan to declare you "+
+   "apostate and destroy you. After Revan's death his katana was lost to time. It is saod "+
+   "the blade was formed from the bones of a demi-god that Revan killed."+
+   " \n%^RESET%^%^ORANGE%^Father Belanos, the Weapons of Light%^RESET%^%^RESET%^");
+   set_property("lore difficulty",23);
+   set_property("enchantment",7);
+   set_item_bonus("attack bonus",7);
+   set_item_bonus("damage bonus",7);
+   set_flag_required("boss avatar");    
+   set_wield((:TO,"wield_func":));
+   set_unwield((:TO,"unwield_func":));
+   set_hit((:TO,"hit_func":));
 }
 
 int wield_func(){

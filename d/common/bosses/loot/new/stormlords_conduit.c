@@ -102,7 +102,7 @@ int wield_func()
     }
     
     tell_object(holder, "OWNER WIELD MESSAGE");
-    tell_room(environment(holder), "ROOM WIELD MESSAGE"), holder);
+    tell_room(environment(holder), "ROOM WIELD MESSAGE", holder);
     return 1;
 }
 
