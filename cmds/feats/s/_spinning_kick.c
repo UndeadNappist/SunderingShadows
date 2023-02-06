@@ -44,7 +44,7 @@ void execute_feat(){
     if(caster->cooldown("spinning kick")){
         tell_object(caster, "%^RESET%^%^CRST%^%^C059%^You cannot use spinning kick again so soon!%^CRST%^");
         dest_effect();
-        return 1;
+        return;
 	}
     if(caster->query_bound() || caster->query_tripped() || caster->query_paralyzed()){
         caster->send_paralyzed_message("info", caster);
