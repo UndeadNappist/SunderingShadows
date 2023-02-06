@@ -13,7 +13,7 @@ void create()
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS banshee blast");
     set_damage_desc("sonic");
-    set_description("A caster invokes a horrible arcane scream directed at a target. Targets caught in the wave may attempt to dodge out of the damage. If they fail, they must withstand a mental assault or become panicked. ");
+    set_description("A caster invokes a horrible arcane scream directed at their enemies. Targets caught in the wave may attempt to dodge out of the damage. If they fail, they must withstand a mental assault or become panicked. ");
     set_verbal_comp();
     set_somatic_comp();
     //set_target_required(1);
@@ -37,8 +37,8 @@ void spell_effect(int prof)
         return;
     }
 
-    tell_object(caster,"%^BLUE%^You concentrate and release a HORRIBLE SCREAM, directed at " +target->QCN+".");
-    tell_room(place,"%^BLUE%^"+caster->QCN+" releases a HORRIBLE SCREAM, directed at " +target->QCN+".",caster);
+    tell_object(caster,"%^BLUE%^You concentrate and release a HORRIBLE SCREAM.");
+    tell_room(place,"%^BLUE%^"+caster->QCN+" releases a HORRIBLE SCREAM.",caster);
     message("info","%^BLUE%^You hear a horrible high-pitched scream.",nearbyRoom(place,2));
 
     foes = target_selector();

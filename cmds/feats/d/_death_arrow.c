@@ -160,7 +160,7 @@ void execute_attack(){
         continue;
     }
     timerz = time() + 120;
-    delay_subject_msg(target, 120, "%^RESET%^%^CRST%^%^C051%^"+target->query_cap_name()+"%^RESET%^%^CRST%^%^C255%^ can be %^C059%^death arrowed%^C255%^ again.%^CRST%^");
+    delay_subject_msg(target, 120, "%^RESET%^%^CRST%^%^C255%^"+target->query_cap_name()+"%^RESET%^%^CRST%^%^C255%^ can be %^C051%^death arrowed%^C255%^ again.%^CRST%^");
     tempmap += ([ target:timerz ]);
     caster->remove_property("using death arrow");
     caster->set_property("using death arrow", tempmap);

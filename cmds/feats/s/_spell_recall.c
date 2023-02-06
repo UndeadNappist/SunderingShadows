@@ -49,11 +49,11 @@ void execute_feat(){
 
     ::execute_feat();
 
-    tell_object(caster, "%^RESET%^%^CRST%^%^C036%^You ready your %^C026%^i%^C027%^n%^C032%^n%^C027%^e%^C026%^r a%^C027%^r%^C032%^c%^C027%^a%^C032%^n%^C026%^a %^RESET%^%^C036%^to fuel your %^C048%^magic%^C036%^.%^CRST%^");
     if(caster->query_property("spell recall")){
         dest_effect();
         return;
     }
+    tell_object(caster, "%^RESET%^%^CRST%^%^C036%^You ready your %^C026%^i%^C027%^n%^C032%^n%^C027%^e%^C026%^r a%^C027%^r%^C032%^c%^C027%^a%^C032%^n%^C026%^a %^RESET%^%^C036%^to fuel your %^C048%^magic%^C036%^.%^CRST%^");
     caster->set_property("spell recall", 1);
     if(userp(caster)){
         caster->gmcp_update_character("resources", ([ "spell_recall": 1 ]));
