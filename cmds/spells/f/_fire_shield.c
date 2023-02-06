@@ -15,7 +15,7 @@ void create(){
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS fire shield [on chill|warm]");
     set_damage_desc("fire or cold");
-    set_description("This spell will surround the caster's body in a roaring shield of flames. Any opponent striking the caster will take damage from the blistering heat. You can manipulate base element of the spell, casting it either on chill or warm.");
+    set_description("This spell will surround the caster's body in a roaring shield of flames. Any opponent striking the caster will take damage from the blistering heat. The shield can only take so many hits before being dispersed. You can manipulate base element of the spell, casting it either on chill or warm.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
