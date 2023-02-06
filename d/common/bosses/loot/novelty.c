@@ -42,7 +42,7 @@ void create()
     set_property("able to cast", 1);
     set_property("enchantment", 7);
     set_property("no alter", 1);
-    
+    set_flag_required("boss avatar");    
     set_item_bonus("positive energy resistance percent", -25);
     set_item_bonus("caster level", 5);
     set_item_bonus("fast healing", 3);

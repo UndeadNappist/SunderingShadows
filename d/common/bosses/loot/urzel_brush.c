@@ -33,6 +33,7 @@ create() {
    set_property("lore difficulty",25);
    set_value(10000);
    set_property("enchantment",7);
+   set_flag_required("boss avatar");
    set_wc(0,0);
    set_large_wc(0,0);
    set_item_bonus("damage bonus",-5);

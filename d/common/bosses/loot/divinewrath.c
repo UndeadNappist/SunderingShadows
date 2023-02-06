@@ -40,16 +40,16 @@ void create()
 		        " \n%^C094%^- Father Belanos, The "+
 				"Weapons of Light%^CRST%^");
 
-    set_property("lore",20);
-    set_property("no curse",1);
-    set_property("enchantment",7);
+   set_property("lore",20);
+   set_property("no curse",1);
+   set_property("enchantment",7);
 
-    set_item_bonus("attack bonus",7);
-    set_item_bonus("constitution",6);
-
-    set_wield((:TO,"wield_func":));
-    set_unwield((:TO,"unwield_func":));
-    set_hit((:TO,"extra_hit":));
+   set_item_bonus("attack bonus",7);
+   set_item_bonus("constitution",6);
+   set_flag_required("boss avatar");
+   set_wield((:TO,"wield_func":));
+   set_unwield((:TO,"unwield_func":));
+   set_hit((:TO,"extra_hit":));
 }
 
 init()

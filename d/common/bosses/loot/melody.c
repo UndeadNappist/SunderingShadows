@@ -11,13 +11,14 @@ void create(){
 	set_value(10000);
 	set_lore("%^CYAN%^The melody of a thousand notes was crafted by an elven artificer a thousand years ago. It is said that an avatar of Oghma inhabited the elfs body during its creation, filling the elfs head with every song known to the planes. The artifact moved from bard to bard, and any who held it seemed to become the most renowned and famous, always creating masterpieces. "
 "The flute fell into obscurity when it fell into the hands of a young man during a competition in the city of Asgard. To everyones shock the man lost the competition to another bard with a mundane harp. He swore he would find the most complete and perfect music and disappeared.%^RESET%^");
-	set_property("lore difficulty",30);
-	set_item_bonus("attack bonus",7);
-    set_item_bonus("charisma",6);
-        set_property("enchantment",7);
-	set_wield((:TO,"wield_func":));
-	set_unwield((:TO,"unwield_func":));
-	set_hit((:TO,"hit_func":));
+   set_property("lore difficulty",30);
+   set_item_bonus("attack bonus",7);
+   set_item_bonus("charisma",6);
+   set_property("enchantment",7);
+   set_flag_required("boss avatar");
+   set_wield((:TO,"wield_func":));
+   set_unwield((:TO,"unwield_func":));
+   set_hit((:TO,"hit_func":));
 }
 int wield_func(){
 	tell_room(environment(ETO),"%^RESET%^%^CYAN%^As "+ETOQCN+"%^RESET%^%^CYAN%^ wraps their hands around the "+query_short()+"%^RESET%^%^CYAN%^, it %^BOLD%^glows%^RESET%^%^CYAN%^ softly.%^RESET%^",ETO);

@@ -38,6 +38,7 @@ void create()
     set_property("lore difficulty", 25);
 	set_item_bonus("attack bonus",7);
     set_item_bonus("damage bonus",7);
+    set_flag_required("boss avatar");
 
 //wields and unwields
     set_wield((:TP,"wieldme":));
