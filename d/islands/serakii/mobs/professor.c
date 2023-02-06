@@ -167,7 +167,7 @@ void souls_lesson_1(object tp,int num){
                     tell_room(ETP,"\n");
                 break;
                 case(6):
-				    force_me("say thank you, no questions today, meet me for office hours later.");
+				    force_me("say Thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
                     tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
@@ -209,7 +209,7 @@ void dragons_lesson_1(object tp,int num){
                     tell_room(ETP,"\n");
                 break;
                 case(6):
-				    force_me("say thank you, no questions today, meet me for office hours later.");
+				    force_me("say Thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
                     tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
 					new(MOBS"professor.c")->move(ETO);
@@ -245,11 +245,11 @@ void history_lesson_1(object tp,int num){
                     tell_room(ETP,"\n");
                 break;
                 case(5):
-		            force_me("say The three standards were consecrated and placed at the top of each tower, providing thier protective measures. Those standards of course are lost now but there is hope they can be found and replaced on the tower tops.");
+		            force_me("say The three standards were consecrated and placed at the top of each tower, providing their protective measures. Those standards of course are lost now but there is hope they can be found and replaced on the tower tops.");
                     tell_room(ETP,"\n");
                 break;
                 case(6):
-				    force_me("say thank you, no questions today, meet me for office hours later.");
+				    force_me("say Thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
                     tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
 					new(MOBS"professor.c")->move(ETO);
@@ -289,7 +289,7 @@ void gods_lesson_1(object tp,int num){
                     tell_room(ETP,"\n");
                 break;
                 case(6):
-				    force_me("say thank you, no questions today, meet me for office hours later.");
+				    force_me("say Thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
                     tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
 					new(MOBS"professor.c")->move(ETO);
@@ -327,11 +327,11 @@ void souls_lesson_2(object tp,int num){
                 case(5):
 		            force_me("say The mass of flesh, named Tears of the Lost.");
 					force_me("emote snides with derision");
-					force_me("say Contains a hundred souls. Remember though, posession of the dagger or creation of more is banned and will result in expulsion.");
+					force_me("say Contains a hundred souls. Remember though, possession of the dagger or creation of more is banned and will result in expulsion.");
                     tell_room(ETP,"\n");
                 break;
                 case(6):
-				    force_me("say thank you, no questions today, meet me for office hours later.");
+				    force_me("say Thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
                     tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
 					new(MOBS"professor.c")->move(ETO);
@@ -372,7 +372,7 @@ void gods_lesson_2(object tp,int num){
                     tell_room(ETP,"\n");
                 break;
                 case(6):
-				    force_me("say thank you, no questions today, meet me for office hours later.");
+				    force_me("say Thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
                     tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
 					new(MOBS"professor.c")->move(ETO);
@@ -409,11 +409,11 @@ void history_lesson_2(object tp,int num){
                     tell_room(ETP,"\n");
                 break;
                 case(5):
-		            force_me("say In exchange for something the library provided the Hounds allowed several thousand leave on ten ships, which travelled to Torm. This of course led to the Act of the Veil, which we will cover in a future class. ");
+		            force_me("say In exchange for something the library provided the Hounds allowed several thousand leave on ten ships, which traveled to Torm. This of course led to the Act of the Veil, which we will cover in a future class. ");
                     tell_room(ETP,"\n");
                 break;
                 case(6):
-				    force_me("say thank you, no questions today, meet me for office hours later.");
+				    force_me("say Thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
                     tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
 					new(MOBS"professor.c")->move(ETO);
@@ -453,7 +453,7 @@ void dragons_lesson_2(object tp,int num){
                     tell_room(ETP,"\n");
                 break;
                 case(6):
-				    force_me("say thank you, no questions today, meet me for office hours later.");
+				    force_me("say Thank you, no questions today, meet me for office hours later.");
                     tell_room(ETP,"%^C152%^The professor gathers up his papers and steps away from the lectern.%^CRST%^\n");
                     tell_room(ETP,"%^C243%^Another professor walks into the classroom%^CRST%^\n");
 					new(MOBS"professor.c")->move(ETO);

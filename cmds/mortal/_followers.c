@@ -23,7 +23,7 @@ int cmd_followers(string str) {
       }
     }
     if(!sizeof(followers)) {
-      tell_object(TP,"%^BOLD%^%^RED%^Noone is following you right now.%^RESET%^");
+      tell_object(TP,"%^BOLD%^%^RED%^No one is following you right now.%^RESET%^");
       return 1;
     }
     if(sizeof(followers) == 1) {

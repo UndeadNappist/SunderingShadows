@@ -170,7 +170,7 @@ void execute_attack(){
                 tell_room(environment(caster), "%^RESET%^%^CRST%^%^C036%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C036%^ seems to pick up speed as "+caster->query_subjective()+" spins about rapidly, and slams "+caster->query_possessive()+" opponents with a %^C042%^s%^C048%^e%^C036%^r%^C042%^i%^C048%^e%^C036%^s of %^C042%^k%^C048%^ick%^C042%^s%^RESET%^%^C036%^!%^CRST%^", ({target, caster}));
                 break;
             case 3:
-                tell_object(caster, "%^RESET%^%^CRST%^%%^RESET%^%^CRST%^%^C125%^You move around your opponents with a %^C127%^f%^C133%^l%^C139%^u%^C133%^i%^C127%^d g%^C133%^r%^C139%^a%^C133%^c%^C127%^e%^RESET%^%^C125%^ launching a series of %^C127%^k%^C133%^i%^C139%^c%^C133%^k%^C127%^s%^RESET%^%^C125%^!%^CRST%^");
+                tell_object(caster, "%^RESET%^%^CRST%^%^RESET%^%^CRST%^%^C125%^You move around your opponents with a %^C127%^f%^C133%^l%^C139%^u%^C133%^i%^C127%^d g%^C133%^r%^C139%^a%^C133%^c%^C127%^e%^RESET%^%^C125%^ launching a series of %^C127%^k%^C133%^i%^C139%^c%^C133%^k%^C127%^s%^RESET%^%^C125%^!%^CRST%^");
                 tell_room(environment(caster), "%^RESET%^%^CRST%^%^C125%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C125%^ moves around "+caster->query_possessive()+" opponents with a %^C127%^f%^C133%^l%^C139%^u%^C133%^i%^C127%^d g%^C133%^r%^C139%^a%^C133%^c%^C127%^e%^RESET%^%^C125%^ as "+caster->query_subjective()+" launches a series of %^C127%^k%^C133%^i%^C139%^c%^C133%^k%^C127%^s%^RESET%^%^C125%^!%^CRST%^", ({target, caster}));
                 break;
             case 4:
