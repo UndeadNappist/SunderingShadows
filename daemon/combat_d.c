@@ -786,20 +786,20 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             element = attacker->query_property("arcane arrows");
             switch (element) {
             case "acid":
-                tell_room(environment(target), "%^GREEN%^The projectile explodes with ooze of acid all over " + ename + "%^RESET%^", ({ target }));
-                tell_object(target, "%^GREEN%^The missile explodes with ooze of acid all over you%^RESET%^");
+                tell_room(environment(target), "%^RESET%^%^CRST%^%^C064%^The projectile explodes, covering "+ename+"%^RESET%^%^CRST%^%^C064%^ with %^C077%^o%^C071%^o%^C070%^z%^C076%^i%^C070%^n%^C071%^g %^C077%^a%^C071%^c%^C070%^i%^C076%^d%^RESET%^%^C064%^!%^CRST%^", ({ target }));
+                tell_object(target, "%^RESET%^%^CRST%^%^C064%^The missile explodes, covering you with %^C077%^o%^C071%^o%^C070%^z%^C076%^i%^C070%^n%^C071%^g %^C077%^a%^C071%^c%^C070%^i%^C076%^d%^RESET%^%^C064%^!%^CRST%^");
                 break;
             case "cold":
-                tell_room(environment(target), "%^BLUE%^The projectile explodes with sharp shards of ice that pierce " + ename + "%^RESET%^", ({ target }));
-                tell_object(target, "%^GREEN%^The missile explodes with ooze of acid all over you%^RESET%^");
+                tell_room(environment(target), "%^RESET%^%^CRST%^%^C039%^The projectile explodes with sharp %^C075%^s%^C081%^h%^C087%^ar%^C081%^d%^C075%^s %^C069%^of %^C081%^i%^C087%^c%^C087%^e%^RESET%^%^C039%^ that pierce "+ename+"%^RESET%^%^CRST%^%^C039%^!%^CRST%^", ({ target }));
+                tell_object(target, "%^RESET%^%^CRST%^%^C039%^The missile explodes with sharp %^C075%^s%^C081%^h%^C087%^ar%^C081%^d%^C075%^s %^C069%^of %^C081%^i%^C087%^c%^C087%^e%^RESET%^%^C039%^ that pierce you!%^CRST%^");
                 break;
             case "sonic":
-                tell_room(environment(target), "%^CYAN%^The projectile explodes sonic scream that shatters " + ename + "%^RESET%^", ({ target }));
-                tell_object(target, "%^GREEN%^The missile explodes with sonic scream that shatters you%^RESET%^");
+                tell_room(environment(target), "%^RESET%^%^CRST%^%^C090%^The projectile explodes into a %^C218%^s%^C212%^o%^C206%^n%^C212%^i%^C218%^c s%^C212%^c%^C206%^re%^C212%^a%^C218%^m %^RESET%^%^C090%^that shatters "+ename+"%^RESET%^%^CRST%^%^C090%^!%^CRST%^", ({ target }));
+                tell_object(target, "%^RESET%^%^CRST%^%^C090%^The missile explodes into a %^C218%^s%^C212%^o%^C206%^n%^C212%^i%^C218%^c s%^C212%^c%^C206%^re%^C212%^a%^C218%^m %^RESET%^%^C090%^that shatters you!%^CRST%^");
                 break;
             default:
-                tell_room(environment(target), "%^RED%^The projectile explodes and scorches " + ename + "%^RESET%^", ({ target }));
-                tell_object(target, "%^GREEN%^The missile explodes and burns you!%^RESET%^");
+                tell_room(environment(target), "%^RESET%^%^CRST%^%^C124%^The projectile explodes and %^C208%^s%^C214%^c%^C208%^o%^C202%^r%^C208%^c%^C214%^h%^C208%^e%^C202%^s %^RESET%^%^C124%^"+ename+"%^RESET%^%^CRST%^%^C124%^!%^CRST%^", ({ target }));
+                tell_object(target, "%^RESET%^%^CRST%^%^C124%^The missile explodes and %^C208%^s%^C214%^c%^C208%^o%^C202%^r%^C208%^c%^C214%^h%^C208%^e%^C202%^s %^RESET%^%^C124%^you!%^CRST%^");
                 element = "fire";
                 break;
             }
