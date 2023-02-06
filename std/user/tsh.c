@@ -17,6 +17,7 @@
 #include <new_exp_table.h>
 
 #define ABLOCK_WHITELIST ({"quit", "help"})+TP->query_channels()
+#define PREPARE_WHITELIST ({ "quit", "help", "score", "bio", "who", "hp", "review", "describe", "adjective", "feats", "master", "abandon", "gmcp", "ignore", "threaten", "biography", "pcnote", "speech", "advance", "game", "date", "limbs", "prompt", "skills", "reward", "crayon", "bboard", "follow", "stats", "money", "cooldowns", "followers", "corpselimbs", "account", "wimpydir", "set", "keep", "brief", "briefcombat", "elementalist", "thought", "uptime", "unignore", "nickname", "unalias" }) + this_player()->query_channels()
 
 #define DEFAULT_PROMPT "%^BOLD%^%^BLACK%^-%^RED%^> "
 #define MAX_HIST_SIZE  50
@@ -328,7 +329,11 @@ int adminBlock(){
 
 nomask string process_input(string arg)
 {
-    if (this_player()->query_property("memorizing") && member_array(arg, ABLOCK_WHITELIST) == -1) {
+    string first_arg;
+    
+    strlen(arg) && first_arg = explode(arg, " ")[0];
+    
+    if (this_player()->query_property("memorizing") && member_array(first_arg, PREPARE_WHITELIST) == -1) {
         this_player()->remove_property("memorizing");
         message("damage", "%^BOLD%^%^GREEN%^You stop your preparations to do something else!", this_object());
     }
