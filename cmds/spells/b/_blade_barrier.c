@@ -30,6 +30,7 @@ string query_cast_string(){
     return "display";
 }
 
+/*
 int preSpell(){
     if(caster->query_property("blade barrier")){
         tell_object(caster,"You are already protected by a blade barrier.");
@@ -37,6 +38,7 @@ int preSpell(){
     }
     return 1;
 }
+*/
 
 void spell_effect(int prof){
      tell_room(place,"%^BOLD%^%^BLACK%^"+caster->QCN+" growls an incantation to "+caster->QP+" deity "
@@ -46,13 +48,16 @@ void spell_effect(int prof){
         "of thousands of whirring blades surrounds you as you are encased "
         "in their protective barrier!");
     caster->set_property("spelled", ({TO}));
-    caster->set_property("blade barrier",1);
+    //caster->set_property("blade barrier",1);
     caster->set_property("added short",({"%^CYAN%^ (encircled by blades)%^RESET%^"}));
     addSpellToCaster();
     spell_successful();
-    counter = 8*clevel;
-    execute_attack();
-    call_out("room_check",ROUND_LENGTH);
+    //counter = 8*clevel;
+    spell_duration = 8 * clevel * ROUND_LENGTH;
+    set_end_time();
+    //execute_attack();
+    //call_out("room_check",ROUND_LENGTH);
+    call_out("dest_effect", duration);
 }
 
 void room_check()
@@ -120,12 +125,12 @@ void execute_attack(){
 
 void dest_effect()
 {
-    remove_call_out("room_check");
+    //remove_call_out("room_check");
     if (objectp(caster)) {
         tell_room(environment(caster), "%^CYAN%^The spinning blades surrounding " + caster->QCN + " slow "
                   "and then dissipate.", caster);
         tell_object(caster, "%^CYAN%^The spinning blades surrounding you slow and then fade away.");
-        caster->remove_property("blade barrier");
+        //caster->remove_property("blade barrier");
         caster->remove_property_value("added short", ({ "%^CYAN%^ (encircled by blades)%^RESET%^" }));
     }
     ::dest_effect();

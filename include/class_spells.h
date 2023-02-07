@@ -95,7 +95,7 @@ class_spell_storage =
     "orc":
         ({"burning hands","scorcher","fireball","wall of fire","cloudkill","tar pool","delayed fireball","iron body","meteor swarm"}),
     "stormborn":
-        ({"shocking grasp","lightning bolt","gust of wind","lightning arc","chain lightning","phase door","stormbolts","ride the lightning"}),
+        ({"shocking grasp","lightning bolt","gust of wind","ball lightning", "lightning arc","chain lightning","phase door","stormbolts","ride the lightning"}),
     //"undead":
     //    ({"chill touch","spectral hand","necrotic burst","animate dead","create undead","exhume corpses","finger of death","create greater undead"}),
 ]),
