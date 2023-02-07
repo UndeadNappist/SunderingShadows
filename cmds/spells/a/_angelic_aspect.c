@@ -68,7 +68,7 @@ void spell_effect()
 	wing_color = "%^C188%^f%^C189%^e%^C195%^athe%^C189%^r%^C188%^y %^C188%^w%^C189%^i%^C195%^ngs";
 
     if( align == 2 || align == 5 || align == 8){
-        ashort = " %^RESET%^%^C117%^(%^C111%^trailed by %^C110%^e%^C116%^t%^C115%^h%^C109%^e%^C110%^r%^C116%^e%^C117%^a%^C111%^l %^C110%^w%^C116%^i%^C115%^n%^C109%^g%^C110%^s%^RESET%^%^C117%^)";
+        ashort = " %^RESET%^%^C117%^(%^C111%^trailed by %^C110%^e%^C116%^t%^C115%^h%^C109%^e%^C110%^r%^C116%^e%^C117%^a%^C111%^l %^C110%^w%^C116%^i%^C115%^n%^C109%^g%^C110%^s%^RESET%^%^C117%^)%^CRST%^";
         wing_color = "%^CRST%^%^C110%^e%^C116%^t%^C115%^h%^C109%^e%^C110%^r%^C116%^e%^C117%^a%^C111%^l %^C110%^w%^C116%^i%^C115%^n%^C109%^g%^C110%^s%^RESET%^";
     }
 	
