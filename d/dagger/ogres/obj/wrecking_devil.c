@@ -7,6 +7,7 @@
 */
 
 #include <std.h>
+#include <daemons.h>
 
 inherit "/d/common/obj/weapon/gnome_hooked_hammer.c";
 
@@ -37,7 +38,7 @@ void create()
 
 int hit_func(object target)
 {
-    int damage, room;
+    int damage, room, my_dex_bonus;
     
     holder = environment(this_object());
     
@@ -49,6 +50,27 @@ int hit_func(object target)
     if(!objectp(room) || room != environment(target))
         return 0;
     
+    hit_count++;
+    
+    if(hit_count < HIT_INTERVAL)
+        return 0;
+    
+    hit_count = 0;
+    my_dex_bonus = BONUS_D->query_stat_bonus(holder, "dexterity");
+    
+    switch(random(3))
+    {
+        case 0: //Trip
+        tell_object(holder, "PROC TRIP MESSAGE");
+        tell_room(room, "PROC TRIP MESSAGE ROOM", holder);
+        if(!SAVING_THROW_D->reflex_save(target, holder->query_base_character_level() + my_dex_bonus))
+            target->set_tripped(roll_dice(1, 4));
+        break;
+        case 1: //Sunder
+        
+        default: //basic damage
+    }
+}
     
     
 
