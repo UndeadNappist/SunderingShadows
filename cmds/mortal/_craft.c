@@ -512,7 +512,7 @@ This command allows a player to craft items and manage their past crafted files.
 
 %^ORANGE%^<craft enchant>%^RESET%^
 
-    Will put the player into the enchanting menu if they have the required feat. Players can only enchant player-crafted items that are masterwork quality, and only if they are profficient with the corresponding crafting skill. I.E. to enchant jewelry, the player must be proficient jeweler. To enchant items they must have the 'craft magical equipment' feat and various amounts of materials gained from disenchanting magical equipment. This will incur an experience point tax as well.
+    Will put the player into the enchanting menu if they have the required feat. Players can only enchant player-crafted items that are masterwork quality, and only if they are proficient with the corresponding crafting skill. I.E. to enchant jewelry, the player must be proficient jeweler. To enchant items they must have the 'craft magical equipment' feat and various amounts of materials gained from disenchanting magical equipment. This will incur an experience point tax as well.
 
 %^CYAN%^SEE ALSO%^RESET%^
 
