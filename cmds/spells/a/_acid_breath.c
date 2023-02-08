@@ -22,7 +22,7 @@ void create()
     set_verbal_comp();
     set_somatic_comp();
     splash_spell(1);
-    //set_target_required(1);
+    set_target_required(1);
     set_save("reflex");
 }
 

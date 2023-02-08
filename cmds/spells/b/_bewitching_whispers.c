@@ -18,7 +18,7 @@ void create()
     set_description("Dark and seductive voices emerge from the feywild to torment and befuddle your opponent. The weak minded are sent into a frenzy, attacking friend and foe alike. This spell seeks to continuously apply confusion to the target. If they fail a will save, they will gain the confused condition. This effect repeats every round until a will save is made.");
     set_verbal_comp();
     set_somatic_comp();
-    //set_target_required(1);
+    set_target_required(1);
     set_save("will");
 }
 

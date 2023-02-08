@@ -15,7 +15,7 @@ void create() {
     set_spell_level(([ "cleric" : 1,"inquisitor" : 1, "paladin" : 1, "sorcerer" : 1 ]));
     set_spell_sphere("alteration");
     set_bonus_type("morale");
-    set_syntax("cast CLASS bless on TARGET");
+    set_syntax("cast CLASS bless [on TARGET]");
     set_damage_desc("clevel / 24 + 1 to damage and attack bonus, but no more than 2");
     set_description("This spell will bless the target, giving them a slightly better chance to hit in combat as well as "
 "allowing them to do a small amount more damage.");
@@ -23,19 +23,6 @@ void create() {
     set_somatic_comp();
     set_target_required(1);
 	set_helpful_spell(1);
-}
-
-int preSpell()
-{
-//    if(!ALIGN_D->is_good(caster)) {
-    if(!target) { target = caster; }
-    /*
-    if(target->query_property("blessed")) {
-        tell_object(caster,"%^BOLD%^%^RED%^Your target is already enjoying the blessings of a deity!%^RESET%^");
-        return 0;
-    }
-    */
-    return 1;
 }
 
 string query_cast_string()

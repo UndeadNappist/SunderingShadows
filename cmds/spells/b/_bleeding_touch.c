@@ -24,7 +24,7 @@ void create()
     set_spell_level( ([ "innate" : 5 ]) );
     set_domains("undeath");
     set_spell_sphere("necromancy");
-    set_syntax("cast innate bleeding touch on TARGET");
+    set_syntax("cast innate bleeding touch [on TARGET]");
     set_damage_desc("Negative energy damage to target on successful touch attack plus bleed");
     set_description("Clerics with the undeath domain learn, by the grace of their deity, how to cause ceaseless bleeding with their touch. This spell uses a touch attack to do negative energy damage to the target with additional negative energy every round. This spell requires one Divine Grace point to use.");
     set_target_required(1);

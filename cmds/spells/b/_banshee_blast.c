@@ -16,7 +16,7 @@ void create()
     set_description("A caster invokes a horrible arcane scream directed at their enemies. Targets caught in the wave may attempt to dodge out of the damage. If they fail, they must withstand a mental assault or become panicked. ");
     set_verbal_comp();
     set_somatic_comp();
-    //set_target_required(1);
+    set_target_required(1);
     set_save("reflex, then will");
     splash_spell(1);
     mental_spell();

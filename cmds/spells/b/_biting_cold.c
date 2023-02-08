@@ -22,7 +22,7 @@ void create() {
        "experiences cold damage and may have their movement impaired for a time.");
     set_verbal_comp();
     set_somatic_comp();
-    //set_target_required(1);
+    set_target_required(1);
     set_save("fort");
 }
 

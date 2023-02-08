@@ -22,7 +22,7 @@ void create()
         "he or she is holding.  In addition, the gale force winds may hit others who are standing near the target.");
     set_verbal_comp();
     set_somatic_comp();
-    //set_target_required(1);
+    set_target_required(1);
     set_save("reflex");
     splash_spell(1);
 }

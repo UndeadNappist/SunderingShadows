@@ -1085,9 +1085,18 @@ void wizard_interface(object user, string type, string targ)
     //We need a target, but we don't have one!
     if (target_required) {
         if (!targ) {
-            tell_object(caster, "You must CHOOSE a target for this " + whatsit + "!");
-            TO->remove();
-            return;
+            
+            if(query_helpful())
+                target = caster;
+            else
+                target = caster->query_current_attacker();
+            
+            if(!objectp(target))
+            {
+                tell_object(caster, "You must CHOOSE a target for this " + whatsit + "!");
+                TO->remove();
+                return;
+            }
         }
         if ((!(check_light(caster)) && target != caster && target != environment(caster)) ||
             (caster->query_blind() && target != caster && target != environment(caster))) {

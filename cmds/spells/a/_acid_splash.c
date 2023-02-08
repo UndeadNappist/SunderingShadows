@@ -12,7 +12,7 @@ void create() {
     set_description("This spell opens a tiny portal into the paraelemental plane of ooze above your target.");
     set_verbal_comp();
     set_somatic_comp();
-    //set_target_required(1);
+    set_target_required(1);
     set_immunities( ({ "acid"}) );
 }
 
