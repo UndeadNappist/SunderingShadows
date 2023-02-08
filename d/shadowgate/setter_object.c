@@ -113,8 +113,7 @@ _display_char_sheet()
 
     string i, j;
 
-    write("%^RESET%^--==%^BOLD%^< %^GREEN%^Your choices are as follows %^WHITE%^>%^RESET%^==--
-");
+    write("%^RESET%^--==%^BOLD%^< %^GREEN%^Your choices are as follows %^WHITE%^>%^RESET%^==--");
 
     write(" %^BOLD%^%^GREEN%^Character Name   %^RESET%^%^GREEN%^: %^BOLD%^%^WHITE%^" + capitalize(ETO->query_name()));
 
@@ -140,15 +139,12 @@ _display_char_sheet()
         write("%^BOLD%^%^GREEN%^ " + arrange_string(capitalize(replace_string(i, "_", " ")), 16) + "%^RESET%^%^GREEN%^ : %^BOLD%^%^WHITE%^" + char_sheet[i]);
     }
 
-    write("
-%^BOLD%^%^WHITE%^You can %^ORANGE%^<reset %^ULINE%^KEY%^RESET%^%^BOLD%^%^ORANGE%^>%^WHITE%^ if you're not satisfied with the result, for example, %^ORANGE%^<reset age>%^WHITE%^ will reset your %^CYAN%^age%^WHITE%^.");
+    write("%^BOLD%^%^WHITE%^You can %^ORANGE%^<reset %^ULINE%^KEY%^RESET%^%^BOLD%^%^ORANGE%^>%^WHITE%^ if you're not satisfied with the result, for example, %^ORANGE%^<reset age>%^WHITE%^ will reset your %^CYAN%^age%^WHITE%^.");
 
     if (head >= sizeof(ROLL_CHAIN)) {
-        write("
-%^BOLD%^%^WHITE%^If you're done with your creation, you can %^ORANGE%^<finalize>%^WHITE%^ your choices and proceed further.");
+        write("%^BOLD%^%^WHITE%^If you're done with your creation, you can %^ORANGE%^<finalize>%^WHITE%^ your choices and proceed further.");
     } else {
-        write("
-%^BOLD%^%^WHITE%^You're not yet done with the creation. To see your current choices type %^ORANGE%^<review>%^WHITE%^.");
+        write("%^BOLD%^%^WHITE%^You're not yet done with the creation. To see your current choices type %^ORANGE%^<review>%^WHITE%^.");
     }
     return 1;
 }
@@ -183,14 +179,9 @@ _finalize(){
     }
     build_height();
     build_weight();
-    set_long("%^WHITE%^%^BOLD%^This strange object radiates power the likes of which you have never before
-seen. It seems to be dormant at the time.");
+    set_long("%^WHITE%^%^BOLD%^This strange object radiates power the likes of which you have never before seen. It seems to be dormant at the time.");
 
-    tell_object(ETO, "
-
-%^BOLD%^  Entering the world of Sundering Shadows!
-
-");
+    tell_object(ETO, "\n%^BOLD%^  Entering the world of Sundering Shadows!\n\n");
 
     troom = new("/d/newbie/ooc/hub_room");
     ETO->move_player(troom);
@@ -317,15 +308,15 @@ display_common()
 reset_common(string str)
 {
     int i, rstpos;
+    
+    str = replace_string(str, " ", "_");
+    str = lower_case(str);
 
     if (member_array(str, ROLL_CHAIN) == -1) {
         write("%^BOLD%^%^RED%^You cant reset that.");
         write("%^BOLD%^%^WHITE%^Valid options to reset are: %^CYAN%^" + replace_string(implode(ROLL_CHAIN, "%^WHITE%^, %^CYAN%^"), "_", " "));
         return 1;
     }
-
-    str = replace_string(str, " ", "_");
-    str = lower_case(str);
 
     rstpos = member_array(str, ROLL_CHAIN);
 
