@@ -1,5 +1,6 @@
 // Chernobog (2/7/23)
 // Mephasm Temple Guard
+// Written by Vuzan
 
 #include <std.h>
 #include <daemons.h>
