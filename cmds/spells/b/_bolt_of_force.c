@@ -20,6 +20,7 @@ void create(){
     splash_spell(2);
 }
 
+/*
 int preSpell(){
     if(!objectp(target)){
         tell_object(caster,"This spell requires a target.");
@@ -27,6 +28,7 @@ int preSpell(){
     }
     return 1;
 }
+*/
 
 string query_cast_string(){
    	tell_object(caster,"%^ORANGE%^Fanning out your hands, you begin to chant.%^RESET%^");

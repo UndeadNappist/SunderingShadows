@@ -10,7 +10,7 @@ create() {
     set_mystery("life");
     set_domains("renewal");
     set_spell_sphere("conjuration_summoning");
-    set_syntax("cast CLASS breath of life on TARGET");
+    set_syntax("cast CLASS breath of life [on TARGET]");
     set_damage_desc("positive energy");
     set_description("You channel a beam of your own energy at the target, healing them. If the target is deceased, the beam will instead try to return them to life.
 

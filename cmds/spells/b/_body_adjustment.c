@@ -20,7 +20,7 @@ void create()
     set_helpful_spell(1);
 }
 
-
+/*
 int preSpell()
 {
     if(sizeof(caster->query_attackers()) > 0)
@@ -40,6 +40,7 @@ int preSpell()
     }
     return 1;
 }
+*/
 
 void spell_effect(int prof)
 {
