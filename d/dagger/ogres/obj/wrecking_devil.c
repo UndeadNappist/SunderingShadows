@@ -12,10 +12,12 @@
 inherit "/d/common/obj/weapon/gnome_hooked_hammer.c";
 
 #define MIN_LEVEL     20
-#define HIT_INTERVAL   5
+#define HIT_INTERVAL   4
 
-int sundered, hit_count;
+int sundered, hit_count, amount
 object holder;
+
+void remove_sunder() { sundered = 0; } 
 
 void create()
 {
@@ -63,16 +65,27 @@ int hit_func(object target)
         case 0: //Trip
         tell_object(holder, "PROC TRIP MESSAGE");
         tell_room(room, "PROC TRIP MESSAGE ROOM", holder);
-        if(!SAVING_THROW_D->reflex_save(target, holder->query_base_character_level() + my_dex_bonus))
+        if(BONUS_D->combat_maneuver(target, holder, 0))
             target->set_tripped(roll_dice(1, 4));
         break;
-        case 1: //Sunder
-        
-        default: //basic damage
+        default: //Sunder or damage
+        if(!sundered && BONUS_D->combat_maneuver(target, holder, 0))
+        {
+            target->add_ac_bonus(-10);
+            tell_object(holder, "PROC SUNDER MESSAGE");
+            tell_room(room, "PROC SUNDER MESSAGE ROOM", holder);
+            sundered = 1;
+            call_out("remove_sunder", 30);
+        }
+        else
+        {
+            tell_object(holder, "PROC DAMAGE MESSAGE");
+            tell_room(room, "PROC DAMAGE ROOM", holder);
+            target->cause_typed_damage(target, "torso", roll_dice(1, 6) + 5, "bludgeoning");
+        }
+        break;
     }
-}
-    
-    
+}   
 
 int wield_func()
 {
