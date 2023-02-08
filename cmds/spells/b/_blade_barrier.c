@@ -57,7 +57,7 @@ void spell_effect(int prof){
     set_end_time();
     //execute_attack();
     //call_out("room_check",ROUND_LENGTH);
-    call_out("dest_effect", duration);
+    call_out("dest_effect", spell_duration);
 }
 
 void room_check()
@@ -99,7 +99,7 @@ void execute_attack(){
 
     place = ENV(caster);
 
-    if(!objectp(place) || counter<0)
+    if(!objectp(place))
     {
         dest_effect();
         return;
@@ -120,7 +120,7 @@ void execute_attack(){
         }
     }
     prepend_to_combat_cycle(place);
-    counter--;
+    //counter--;
 }
 
 void dest_effect()
