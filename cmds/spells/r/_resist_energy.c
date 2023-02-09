@@ -16,9 +16,8 @@ void create()
     set_mystery(({ "dragon" }));
     set_spell_sphere("abjuration");
     set_syntax("cast CLASS resist energy on <element>");
-    set_description("This spell bestows the caster with a small amount of damage resistance against a selected element, increasing with the caster's level. Elements that can be chosen are acid, cold, electricity, fire, or sonic.
-
-%^BOLD%^%^RED%^See also:%^RESET%^ status effects");
+    set_damage_desc("150% of clevel bonus to chosen energy resistance");
+    set_description("This spell bestows the caster with a small amount of damage resistance against a selected element, increasing with the caster's level. Elements that can be chosen are acid, cold, electricity, fire, or sonic.\n\n%^BOLD%^%^RED%^See also:%^RESET%^ status effects");
     set_verbal_comp();
     set_arg_needed();
     set_helpful_spell(1);

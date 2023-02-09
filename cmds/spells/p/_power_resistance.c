@@ -10,8 +10,8 @@ void create() {
     set_spell_level(([ "psion" : 5, "psywarrior" : 5 ]));
     set_spell_sphere("psychokinesis");
     set_syntax("cast CLASS power resistance on TARGET");
-    set_description("Using this power will allow a psion to temporarily raise the power resistance of "
-"the target.  After a time, the power will reverse, restoring the creature to its original resistance.");
+    set_damage_desc("33% of clevel bonus to spell damage resistance");
+    set_description("Using this power will allow a psion to temporarily raise the power and spell resistance of the target. After a time, the power will reverse, restoring the creature to its original resistance.");
     set_verbal_comp();
     set_bonus_type("resistance");
     set_somatic_comp();
