@@ -13,8 +13,7 @@ void create() {
 	"%^BOLD%^%^BLUE%^The Drow soldier is a menacing sight "
 	"indeed. These highly trained soldiers are used by the Drow "
 	"regime for the purposes of war  and are known to be ruthless in "
-	"combat. They follow their orders without question "
-	"with no questions asked.%^RESET%^"
+	"combat. They follow their orders without question.%^RESET%^"
     );
     set_race("drow");
     set_gender("male");
