@@ -59,7 +59,11 @@ int is_prestige_class() { return 1; }
 
 string *search_paths(object ob) { return base_class_ob(ob)->search_paths(); }
 
-int caster_class(object ob) { return base_class_ob(ob)->caster_class(); }
+int caster_class(object ob)
+{
+    //return base_class_ob(ob)->caster_class();
+    return 1;
+}
 
 string *restricted_races(object ob) { return base_class_ob(ob)->restricted_races(); }
 
