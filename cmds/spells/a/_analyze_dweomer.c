@@ -26,7 +26,7 @@ string query_cast_string()
 
 void spell_effect()
 {
-    object* slist, spl;
+    object* slist, spl, *dispellable, *spelled;
     spell_successful();
 
     if (do_save(target, 0)) {
@@ -35,8 +35,15 @@ void spell_effect()
         dest_effect();
         return;
     }
+    
+    if(!pointerp(dispellable = target->query_property("dispellable spells")))
+        dispellable = ({  });
+    if(!pointerp(spelled = target->query_property("spelled")))
+        spelled = ({  });
+    
+    slist = spelled + dispellable;
 
-    slist = target->query_property("dispellable spells") + target->query_property("spelled");
+    //slist = target->query_property("dispellable spells") + target->query_property("spelled");
     if (!sizeof(slist)) {
         tell_object(caster, "%^BOLD%^%^CYAN%^You sense no spells are affecting the target.");
         dest_effect();
