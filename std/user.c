@@ -2859,7 +2859,7 @@ void receive_message(string msg_class, string msg)
     {
         TermInfo = USER_D->myTerm(TO);
         //msg = terminal_colour(msg + "%^RESET%^\n", TermInfo, x, 0);
-        msg = terminal_colour("%^CRST%^%^RESET%^" + msg + "%^CRST%^%^RESET%^\n", TermInfo, x, 0);
+        msg = terminal_color_hex("%^CRST%^%^RESET%^" + msg + "%^CRST%^%^RESET%^\n", TermInfo, x, 0);
         //msg += "%^RESET%^";
         //msg = wrap(msg, x);
     }
@@ -2867,7 +2867,7 @@ void receive_message(string msg_class, string msg)
     {
         if(msg_class == "logon") { TermInfo = USER_D->myTerm(TO, 1); }
         else TermInfo = USER_D->myTerm(TO);
-        msg = terminal_colour(msg + "%^RESET%^\n", TermInfo, x, 0);
+        msg = terminal_color_hex(msg + "%^RESET%^\n", TermInfo, x, 0);
         receive(msg);
         return;
     }
