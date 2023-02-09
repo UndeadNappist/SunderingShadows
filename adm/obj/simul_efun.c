@@ -80,4 +80,4 @@ string identify(mixed a);
 #include "/adm/simul_efun/array.c"
 #include "/adm/simul_efun/parse_command.c"
 #include "/adm/simul_efun/json.c"
-//#include "/adm/simul_efun/minimap.c"
+#include "/adm/simul_efun/terminal_color_hex.c"
