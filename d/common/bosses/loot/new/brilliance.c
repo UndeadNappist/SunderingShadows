@@ -81,7 +81,9 @@ int hit_func(object target)
 }
 
 int wield_func()
-{   
+{
+    string stat_to_buff;
+    
     if(!holder)
         holder = this_player();
     
@@ -94,6 +96,13 @@ int wield_func()
         return 0;
     }
     
+    stat_to_buff = "intelligence";
+    if(holder->query_stats(stat_to_buff) < holder->query_stats("charisma"))
+        stat_to_buff = "charisma";
+    if(holder->query_stats(stat_to_buff) < holder->query_stats("wisdom"))
+        stat_to_buff = "wisdom";
+    
+    set_item_bonus(stat_to_buff, 6);
     
     tell_object(holder, "STAFF ACCEPTS YOU!");
     tell_room(environment(holder), color("STAFF ACCEPTS ROOM MESS"), holder);
@@ -104,4 +113,100 @@ int unwield_func()
 {
     owner && tell_object(owner, "STAFF UNWIELD");
     return 1;
-} 
+}
+
+int scorch_func(string str)
+{
+    object spell;
+    
+    if(!query_worn())
+        return 0;
+    
+    if(catch(spell = new("/cmds/spells/s/_scorcher")))
+        return 0;
+    
+    if (this_player()->query_bound() || this_player()->query_unconscious() || this_player()->query_paralyzed())
+    {
+        this_player()->send_paralyzed_message("info", this_player());
+        return 1;
+    }
+    
+    if(!consume_charges(2))
+        return notify_fail(sprintf("The staff only has %d %s.", charges, charges > 1 ? "charges" : "charge"));
+    
+    objectp(spell) && spell->use_spell(this_player(), 0, this_player()->query_level(), 100, "mage");
+    
+    return 1;
+}
+
+int fireball_func(string str)
+{
+    object spell;
+    
+    if(!query_worn())
+        return 0;
+    
+    if(catch(spell = new("/cmds/spells/f/_fireball")))
+        return 0;
+    
+    if (this_player()->query_bound() || this_player()->query_unconscious() || this_player()->query_paralyzed())
+    {
+        this_player()->send_paralyzed_message("info", this_player());
+        return 1;
+    }
+    
+    if(!consume_charges(3))
+        return notify_fail(sprintf("The staff only has %d %s.", charges, charges > 1 ? "charges" : "charge"));
+    
+    objectp(spell) && spell->use_spell(this_player(), 0, this_player()->query_level(), 100, "mage");
+    
+    return 1;
+}
+
+int wall_func(string str)
+{
+    object spell;
+    
+    if(!query_worn())
+        return 0;
+    
+    if(catch(spell = new("/cmds/spells/w/_wall_of_fire")))
+        return 0;
+    
+    if (this_player()->query_bound() || this_player()->query_unconscious() || this_player()->query_paralyzed())
+    {
+        this_player()->send_paralyzed_message("info", this_player());
+        return 1;
+    }
+    
+    if(!consume_charges(4))
+        return notify_fail(sprintf("The ring only has %d %s.", charges, charges > 1 ? "charges" : "charge"));
+    
+    objectp(spell) && spell->use_spell(this_player(), 0, this_player()->query_level(), 100, "mage");
+    
+    return 1;
+}
+
+int storm_func(string str)
+{
+    object spell;
+    
+    if(!query_worn())
+        return 0;
+    
+    if(catch(spell = new("/cmds/spells/f/_fire_storm")))
+        return 0;
+    
+    if (this_player()->query_bound() || this_player()->query_unconscious() || this_player()->query_paralyzed())
+    {
+        this_player()->send_paralyzed_message("info", this_player());
+        return 1;
+    }
+    
+    if(!consume_charges(7))
+        return notify_fail(sprintf("The staff only has %d %s.", charges, charges > 1 ? "charges" : "charge"));
+    
+    objectp(spell) && spell->use_spell(this_player(), 0, this_player()->query_level(), 100, "cleric");
+    
+    return 1;
+}
