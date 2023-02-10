@@ -9,8 +9,8 @@ void create()
     feat_type("permanent");
     feat_category("Inquisition");
     feat_name("third judgement");
-    feat_prereq("Inquisitor L8");
-    feat_desc("The inquisitor learns to proclaim a third judgement lonside the first during the combat.");
+    feat_prereq("Inquisitor L16");
+    feat_desc("The inquisitor learns to proclaim a third judgement alongside the first during combat.");
     permanent(1);
 }
 

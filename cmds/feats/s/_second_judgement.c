@@ -10,7 +10,7 @@ void create()
     feat_category("Inquisition");
     feat_name("second judgement");
     feat_prereq("Inquisitor L8");
-    feat_desc("The inquisitor learns to proclaim the second judgement lonside the first during the combat.");
+    feat_desc("The inquisitor learns to proclaim a second judgement alongside the first during combat.");
     permanent(1);
 }
 
