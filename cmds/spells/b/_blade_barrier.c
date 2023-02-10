@@ -55,8 +55,8 @@ void spell_effect(int prof){
     //counter = 8*clevel;
     spell_duration = 8 * clevel * ROUND_LENGTH;
     set_end_time();
-    //execute_attack();
-    //call_out("room_check",ROUND_LENGTH);
+    execute_attack();
+    call_out("room_check",ROUND_LENGTH);
     call_out("dest_effect", spell_duration);
 }
 
@@ -125,7 +125,7 @@ void execute_attack(){
 
 void dest_effect()
 {
-    //remove_call_out("room_check");
+    remove_call_out("room_check");
     if (objectp(caster)) {
         tell_room(environment(caster), "%^CYAN%^The spinning blades surrounding " + caster->QCN + " slow "
                   "and then dissipate.", caster);
