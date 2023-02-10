@@ -155,7 +155,7 @@ void set_stuff(string str,string stuff)
         {
             if(__Title || __Title != "" && __AuthorName)
             {
-                if((string)TP->query_name() != __AuthorName)
+                if((string)TP->query_name() != __AuthorName && !avatarp(TP))
                 {
                     tell_object(TP,"%^BOLD%^You can't change the title, you are "
                         "not the book's author.%^RESET%^");

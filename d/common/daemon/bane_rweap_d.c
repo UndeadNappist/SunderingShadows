@@ -160,6 +160,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,4);
       obj->set_large_wc(1,4);
       obj->set_type("piercing");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("small blades");
 	  obj->set_weapon_prof("simple");
       obj->set_weapon_speed(2);
@@ -170,6 +171,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,4)+1;
       obj->set_large_wc(1,4);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("tool");
 	  obj->set_weapon_prof("simple");
       obj->set_weapon_speed(7);
@@ -180,6 +182,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6);
       obj->set_large_wc(1,8);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("spear");
 	  obj->set_weapon_prof("simple");
       obj->set_weapon_speed(6);
@@ -190,6 +193,7 @@ void create_weapon(object obj) {
       obj->set_wc(2,3);
       obj->set_large_wc(2,3);
       obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("short blades");
 	  obj->set_weapon_prof("martial");
       obj->set_weapon_speed(3);
@@ -200,6 +204,7 @@ void create_weapon(object obj) {
       obj->set_wc(2,4);
       obj->set_large_wc(2,6);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("spear");
 	  obj->set_weapon_prof("simple");
       obj->set_weapon_speed(7);
@@ -210,6 +215,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6);
       obj->set_large_wc(1,6);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("spear");
 	  obj->set_weapon_prof("simple");
 	  obj->set_weapon_speed(10);
@@ -220,6 +226,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6);
       obj->set_large_wc(1,12);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(13);
@@ -230,6 +237,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,8);
       obj->set_large_wc(1,6);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(9);
@@ -240,6 +248,7 @@ void create_weapon(object obj) {
       obj->set_wc(2,4);
       obj->set_large_wc(1,10);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(10);
@@ -250,6 +259,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6);
       obj->set_large_wc(1,8);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(8);
@@ -260,6 +270,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,8);
       obj->set_large_wc(1,10);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("fork");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(8);
@@ -270,6 +281,7 @@ void create_weapon(object obj) {
       obj->set_wc(2,4);
       obj->set_large_wc(2,6);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(9);
@@ -280,6 +292,7 @@ void create_weapon(object obj) {
       obj->set_wc(2,4);
       obj->set_large_wc(2,4);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(10);
@@ -290,6 +303,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,10);
       obj->set_large_wc(2,6);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
 	  obj->set_weapon_speed(11);
@@ -300,6 +314,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,4);
       obj->set_large_wc(1,4);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
 	  obj->set_weapon_speed(12);
@@ -310,6 +325,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,8);
       obj->set_large_wc(2,4);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("fork");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(7);
@@ -320,6 +336,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6);
       obj->set_large_wc(1,6)+1;
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
 	  obj->set_weapon_speed(10);
@@ -330,6 +347,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6)+1;
       obj->set_large_wc(2,6);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(8);
@@ -340,6 +358,7 @@ void create_weapon(object obj) {
       obj->set_wc(2,4);
       obj->set_large_wc(2,4);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(10);
@@ -350,6 +369,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6)+1;
       obj->set_large_wc(3,4);
       obj->set_type("pierce");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("fork");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(7);
@@ -360,6 +380,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,4)+1;
       obj->set_large_wc(1,4);
       obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("tool");
 	  obj->set_weapon_prof("simple");
       obj->set_weapon_speed(4);
@@ -369,7 +390,8 @@ void create_weapon(object obj) {
       obj->set_weight(8);
       obj->set_wc(1,8);
       obj->set_large_wc(1,8);
-      obj->set_type("slash");
+      obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("medium axe");
 	  obj->set_weapon_prof("martial");
       obj->set_weapon_speed(7);
@@ -380,6 +402,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6);
       obj->set_large_wc(1,4);
       obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("small axe");
 	  obj->set_weapon_prof("martial");
       obj->set_weapon_speed(4);
@@ -390,6 +413,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,8);
       obj->set_large_wc(1,12);
       obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("medium axe");
 	  obj->set_weapon_prof("martial");
       obj->set_weapon_speed(7);
@@ -400,6 +424,7 @@ void create_weapon(object obj) {
       obj->set_wc(2,4);
       obj->set_large_wc(1,6);
       obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("medium blades");
 	  obj->set_weapon_prof("martial");
       obj->set_weapon_speed(9);
@@ -410,6 +435,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,8);
       obj->set_large_wc(1,12);
       obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("medium blades");
 	  obj->set_weapon_prof("martial");
       obj->set_weapon_speed(5);
@@ -419,7 +445,8 @@ void create_weapon(object obj) {
       obj->set_weight(8);
       obj->set_wc(1,8);
       obj->set_large_wc(1,8);
-      obj->set_type("slash");
+      obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("medium blades");
 	  obj->set_weapon_prof("martial");
       obj->set_weapon_speed(5);
@@ -430,6 +457,7 @@ void create_weapon(object obj) {
       obj->set_wc(2,3);
       obj->set_large_wc(2,4);
       obj->set_type("piercing");
+      obj->set_damage_type("piercing");
       //obj->set_prof_type("rapier");
 	  obj->set_weapon_prof("martial");
       obj->set_weapon_speed(4);
@@ -439,7 +467,8 @@ void create_weapon(object obj) {
       obj->set_weight(12);
       obj->set_wc(2,4);
       obj->set_large_wc(2,6);
-      obj->set_type("slash");
+      obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("large axe");
 	  obj->set_weapon_prof("martial");
       obj->set_weapon_speed(9);
@@ -449,7 +478,8 @@ void create_weapon(object obj) {
       obj->set_weight(8);
       obj->set_wc(1,6);
       obj->set_large_wc(1,10);
-      obj->set_type("slash");
+      obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(8);
@@ -459,7 +489,8 @@ void create_weapon(object obj) {
       obj->set_weight(8);
       obj->set_wc(2,4);
       obj->set_large_wc(1,8);
-      obj->set_type("slash");
+      obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(8);
@@ -469,7 +500,8 @@ void create_weapon(object obj) {
       obj->set_weight(12);
       obj->set_wc(2,4);
       obj->set_large_wc(2,4);
-      obj->set_type("slash");
+      obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("polearm");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(10);
@@ -479,7 +511,8 @@ void create_weapon(object obj) {
       obj->set_weight(15);
       obj->set_wc(1,10);
       obj->set_large_wc(3,6);
-      obj->set_type("slash");
+      obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("large blades");
 	  obj->set_weapon_prof("exotic");
       obj->set_weapon_speed(8);
@@ -490,6 +523,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6);
       obj->set_large_wc(1,3);
       obj->set_type("bludgeoning");
+      obj->set_damage_type("bludgeoning");
       //obj->set_prof_type("medium clublike");
 	  obj->set_weapon_prof("simple");
       obj->set_weapon_speed(4);
@@ -500,6 +534,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6)+1;
       obj->set_large_wc(2,4);
       obj->set_type("bludgeoning");
+      obj->set_damage_type("bludgeoning");
       //obj->set_prof_type("flail");
 	  obj->set_weapon_prof("martial");
       obj->set_weapon_speed(7);
@@ -510,6 +545,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6)+1;
       obj->set_large_wc(1,6);
       obj->set_type("bludgeoning");
+      obj->set_damage_type("bludgeoning");
       //obj->set_prof_type("mace");
 	  obj->set_weapon_prof("simple");
       obj->set_weapon_speed(7);
@@ -520,6 +556,7 @@ void create_weapon(object obj) {
       obj->set_wc(2,4);
       obj->set_large_wc(1,6)+1;
       obj->set_type("bludgeoning");
+      obj->set_damage_type("bludgeoning");
       //obj->set_prof_type("mace");
 	  obj->set_weapon_prof("simple");
       obj->set_weapon_speed(7);
@@ -530,6 +567,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,4)+1;
       obj->set_large_wc(1,4);
       obj->set_type("bludgeoning");
+      obj->set_damage_type("bludgeoning");
       //obj->set_prof_type("medium hammer");
 	  obj->set_weapon_prof("martial");
       obj->set_weapon_speed(4);
@@ -540,6 +578,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,6);
       obj->set_large_wc(1,6);
       obj->set_type("bludgeoning");
+      obj->set_damage_type("bludgeoning");
       //obj->set_prof_type("staff");
 	  obj->set_weapon_prof("simple");
       obj->set_weapon_speed(4);
@@ -550,6 +589,7 @@ void create_weapon(object obj) {
       obj->set_wc(1,10);
       obj->set_large_wc(1,12);
       obj->set_type("bludgeoning");
+      obj->set_damage_type("bludgeoning");
       //obj->set_prof_type("large clublike");
 	  obj->set_weapon_prof("simple");
 	  obj->set_weapon_speed(6);
@@ -559,7 +599,8 @@ void create_weapon(object obj) {
       obj->set_weight(2);
       obj->set_wc(1,6);
       obj->set_large_wc(1,6);
-      obj->set_type("lash");
+      obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("whip");
 	  obj->set_weapon_prof("exotic");
 	  obj->set_weapon_speed(8);
@@ -569,7 +610,8 @@ void create_weapon(object obj) {
       obj->set_weight(4);
       obj->set_wc(2,3);
       obj->set_large_wc(2,3);
-      obj->set_type("lash");
+      obj->set_type("slashing");
+      obj->set_damage_type("slashing");
       //obj->set_prof_type("whip");
 	  obj->set_weapon_prof("simple");
 	  obj->set_weapon_speed(8);
@@ -606,6 +648,7 @@ void create_weapon(object obj) {
 // especially since they get a kit (if it's not all used) too
 //Changing it back to *2000 for kicks - Octothorpe 10/30/09
    obj->set_value((flag * 2000) + 1000);
+   set_property("repairtype",({"weaponsmith"}));
 }
 
 set_weight(int x) {
