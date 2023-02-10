@@ -11,6 +11,8 @@
 
 inherit SPELL;
 
+int amount;
+
 void create()
 {
     ::create();
@@ -21,10 +23,7 @@ void create()
     mental_spell();
     set_syntax("cast CLASS brutalize wounds on TARGET");
     set_damage_desc("Target takes additional physical damage.");
-    set_description("You invade the target's mind and temporarily reduce its ability to " +
-    "ward off attacks. If the target fails its saving throw, it takes an additional 2 + guild level / 20 "+
-    "damage from all physical attacks. If it succeeds its save, it takes an additional 1 damage "+
-    "from all physical attacks instead.");
+    set_description("You invade the target's mind and temporarily reduces its ability to handle physical wounds. If the target fails a will save, their damage resistance is reduced by 5 + clevel / 10. Otherwise, their damage resistance is reduced by 1.");
     set_save("will");
     //set_arg_needed(1);
     set_target_required(1);
@@ -61,14 +60,18 @@ void spell_effect()
     {
         tell_object(target, "%^BOLD%^You manage to shrug off some of the effects of the brutality.%^RESET%^");
         tell_object(caster, "%^BOLD%^" + ename + " manages to shrug off some of the effects of the brutality.%^RESET%^");
-        target->set_property("brutalized", 1);
+        amount = 1;
     }
     else
     {
         tell_object(target, "%^RED%^BOLD%^You scream as you feel the pain of every wound amplified!%^RESET%^");
         tell_object(caster, "%^RED%^BOLD%^" + ename + " screams in pain as they feel amplified pain!%^RESET%^");
-        target->set_property("brutalized", 2 + caster->query_guild_level("psywarrior") / 20);
+        amount = 5 + (clevel / 10);
+        //target->set_property("brutalized", 2 + caster->query_guild_level("psywarrior") / 20);
     }
+
+    target->set_property("brutalized", 1);
+    target->set_property("damage resistance", -amount);
 
     spell_successful();
     spell_duration = (clevel / 10 + 1) * ROUND_LENGTH;
@@ -78,7 +81,15 @@ void spell_effect()
 
 void dest_effect()
 {
-    caster && caster->remove_property("brutalized");
+    if(objectp(target))
+    {
+        target->remove_property("brutalized");
+        target->set_property("damage resistance", amount);
+        tell_object(target, "You feel the psychic enhancement of your wounds fade.");
+    }
+    
+    objectp(caster) && tell_object(caster, "Your target's wounds are no longer brutalized.");
+        
     ::dest_effect();
     if(this_object())
         this_object()->remove();

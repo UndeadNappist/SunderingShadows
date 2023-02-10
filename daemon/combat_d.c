@@ -1628,7 +1628,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         sneak = 0;
 
     //Brutalize wounds causes victim to take extra damage from physical attacks.
-    bonus_hit_damage += targ->query_property("brutalized");
+    //bonus_hit_damage += targ->query_property("brutalized");
 
     damage += bonus_hit_damage;
 

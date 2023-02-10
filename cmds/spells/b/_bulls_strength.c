@@ -34,14 +34,6 @@ void spell_effect(int prof)
         target = caster;
     }
 
-    /*
-    if((int)target->query_property("augmentation"))
-    {
-        tell_object(caster,"%^YELLOW%^"+target->QCN+" is already under the influence of a similar spell.");
-        dest_effect();
-        return;
-    }
-    */
     if(prof == -100) { // hack for potions. Cuz lib doesn't seem to call reverse spell anymore, and I'm lazy. N, 6/15.
         reverse_spell();
         return;
