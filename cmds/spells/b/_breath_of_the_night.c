@@ -38,6 +38,8 @@ void spell_effect(int prof) {
     tell_room(place,"%^BLUE%^"+caster->QCN+" spreads "+caster->QP+" arms, as if in a silent entreaty.%^RESET%^",caster);
 
     duration = (ROUND_LENGTH + (ROUND_LENGTH * ((clevel+9)/10))) + time();
+    spell_duration = duration;
+    set_end_time();
     
     cloud = new(OBJECT);
     cloud->set_name("a dark and ominous mist");
@@ -47,17 +49,20 @@ void spell_effect(int prof) {
     cloud->set_id(({"fog","fog bank","mist","dark mist","ominous mist"}));
     cloud->set_property("no animate",1);
     cloud->set_weight(1000000);
-    call_out("cloud_blindness",5);
+    call_out("cloud_blindness",6);
+    call_out("dest_effect", duration);
 }
 
 void cloud_blindness() {
     object *ppl,tp;
     int i;
 
+    /*
     if((time() > duration) || !objectp(place)) {
         dest_effect();
         return;
     }
+    */
 
     if(!place->query_property("fog cloud")) {
         tell_room(place,"%^CYAN%^A ro%^RESET%^i%^CYAN%^ling mi%^RESET%^s%^CYAN%^t coalescs around you, darkening the area so that it becomes almost impossible to see!%^RESET%^");
@@ -87,7 +92,7 @@ void cloud_blindness() {
         blind += ({ tp });
     }
 
-    call_out("cloud_blindness",1);
+    call_out("cloud_blindness",6);
 }
 
 void dest_effect() {
