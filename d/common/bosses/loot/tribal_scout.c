@@ -35,10 +35,7 @@ void create()
     set_wear((:this_object(),"wear_fun":));
     set_remove( (: this_object(),"remove_fun" :) );
     set_struck( (: this_object(), "strike_fun" :) );
-    
-    set_property("lore difficulty", 40);
-    set_property("id difficulty", 40);
-    
+
     set_property("enchantment", 7);    
     set_item_bonus("damage resistance", 10);
     set_item_bonus("stealth", 6);
