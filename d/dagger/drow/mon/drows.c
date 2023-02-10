@@ -1,5 +1,6 @@
 //fixed various typos-Styx 7/16/01  lowered chance of spammy emotes-Styx 12/22
 // Increasing exp Dinji 8-26-07
+// Fixing further typoes-Bluethenix 
 
 #include <std.h>
 inherit MONSTER;
@@ -11,9 +12,8 @@ void create() {
     set_long(
 	"%^BOLD%^%^BLUE%^The Drow soldier is a menacing sight "
 	"indeed. These highly trained soldiers are used by the Drow "
-	"regime for war purposes and are known to be ruthless in "
-	"combat. They follow their orders ruthlessly and to the death "
-	"with no questions asked.%^RESET%^"
+	"regime for the purposes of war  and are known to be ruthless in "
+	"combat. They follow their orders without question.%^RESET%^"
     );
     set_race("drow");
     set_gender("male");
@@ -32,7 +32,6 @@ void create() {
     set("aggressive","aggfunc");
     set_alignment(9);
     set_mob_magic_resistance("average");
-   //set_exp(2000);
    set_exp(5500);
     set_max_level(20);
     set_emotes(2,({
