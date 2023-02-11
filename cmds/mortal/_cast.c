@@ -225,7 +225,7 @@ int cmd_cast(string str)
 
     if (TP->query("relationship_profile")) {
         if (strsrch((string)TP->query("relationship_profile"), "druid_") >= 0) {
-            if (TP->query_property("shapeshifted") && type != "innate" && type != "cantrip" && type != "druid") {
+            if (TP->query_property("shapeshifted") && type != "innate" && type != "cantrip" && type != "druid" && (this_player()->query_mystery() != "nature" || type != "oracle")) {
                 tell_object(TP, "You can only cast druid spells or innate abilities while in druidic form.");
                 return 1;
             }
