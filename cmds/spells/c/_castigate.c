@@ -9,7 +9,7 @@ void create() {
     set_spell_name("castigate");
     set_spell_level(([ "inquisitor" : 2,  ]));
     set_spell_sphere("enchantment_charm");
-    set_syntax("cast CLASS castigate on TARGET");
+    set_syntax("cast CLASS castigate [on TARGET]");
     set_damage_desc("cowering, shaken on save");
     set_description("You compel the target to beg for forgiveness. On a failed save, the target cowers with fear. On a successful save, the target is shaken for one round. A creature who worships the same god as you takes a penalty on its saving throw.");
     set_verbal_comp();

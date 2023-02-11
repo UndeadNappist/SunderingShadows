@@ -23,7 +23,8 @@ void create()
     set_somatic_comp();
     set_target_required(1);
     splash_spell(1);
-    set_components(([ "mage" : ([ "glass rod":1, "bat fur":1,"silver pin":1 ]), ]));
+    versatile();
+    //set_components(([ "mage" : ([ "glass rod":1, "bat fur":1,"silver pin":1 ]), ]));
     set_save("reflex");
 }
 
