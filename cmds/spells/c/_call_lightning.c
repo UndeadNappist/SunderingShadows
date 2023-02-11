@@ -13,14 +13,14 @@ void create() {
     set_spell_name("call lightning");
     set_spell_level(([ "druid" : 3, "innate" : 3 ]));
     set_spell_sphere("invocation_evocation");
-    set_syntax("cast CLASS call lightning on TARGET");
+    set_syntax("cast CLASS call lightning [on TARGET]");
     set_description("This is a destructive spell that could hurt an opponent very badly!  The higher level the caster is "
         "the more devastating this spell will become.  The spell can now be used anywhere, regardless of weather or if the caster is indoors. "
         "A cleric with the storms domain can cast this spell innately by spending one Divine Grace point.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
-    set_immunities( ({ "spell_immunity"}) );
+    set_immunities( ({ "spell_immunity". "electricity" }) );
 }
 
 string query_cast_string() {

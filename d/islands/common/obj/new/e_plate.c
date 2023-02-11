@@ -64,15 +64,21 @@ int remove_func()
 
 void heart_beat()
 {
-    if(ETO && living(ETO))
-    {
-        if(TO->query_worn())
-        {
-            if((int)ETO->query_hp() >= (int)ETO->query_max_hp()) return;
-            ETO->add_hp(roll_dice(4,12));
-            tell_room(ETO,"%^BOLD%^%^BLUE%^The scales of the plate soothe you.");
-        }
-    }
+    object wearer;
+    
+    wearer = environment(this_object());
+    
+    if(!wearer || !living(wearer))
+        return;
+    
+    if(!this_object()->query_worn())
+        return;
+    
+    if(wearer->query_hp() >= wearer->query_max_hp())
+        return;
+    
+    wearer->add_hp(roll_dice(4, 12));
+    tell_object(wearer,"%^BOLD%^%^BLUE%^The scales of the plate soothe you.");
 }
 
 

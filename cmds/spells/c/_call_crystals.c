@@ -89,8 +89,9 @@ void spell_effect(int prof)
             }
         }
     }
-
-    end_time = time() + 120 + ((ROUND_LENGTH * 2) * mylevel);
+    spell_duration = 120 + (2 * ROUND_LENGTH * mylevel);
+    set_end_time();
+    //end_time = time() + 120 + ((ROUND_LENGTH * 2) * mylevel);
 
     call_out("check",5);
     spell_successful();
