@@ -110,12 +110,11 @@ void spell_effect(int prof) {
         agonize *= ( ( clevel / 18 ) + 1 );
         damage += agonize;
     }
+
+    set_save("reflex");
     
-    if(FEATS_D->usable_feat(caster, "repelling blast") && !do_save(target, 0))
-    {
-        set_save("reflex");
+    if(objectp(target) && FEATS_D->usable_feat(caster, "repelling blast") && !do_save(target, 0))
         target->set_tripped(1 + roll_dice(1, 1 + clevel / 10));
-    }
     
     hellfire = FEATS_D->usable_feat(caster, "hellfire blast");
     
