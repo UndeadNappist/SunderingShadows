@@ -20,7 +20,7 @@ void create() {
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
-    set_immunities( ({ "spell_immunity". "electricity" }) );
+    set_immunities( ({ "spell_immunity", "electricity" }) );
 }
 
 string query_cast_string() {
