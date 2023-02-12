@@ -30,7 +30,7 @@ To dismiss the chest use %^ORANGE%^<dismiss chest>%^RESET%^.");
 
 int preSpell()
 {
-    if(caster->query_property("has_elemental") || caster->query_property("mages_sword"))
+    if(userp(caster) && (caster->query_property("has_elemental") || caster->query_property("mages_sword")))
     {
         tell_object(caster,"You already have a powerful summoned creature under your control.");
         return 0;
