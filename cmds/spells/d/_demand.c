@@ -37,6 +37,12 @@ int preSpell()
 void spell_effect()
 {
     string targ, command, *inputs;
+    
+    if(!strlen(arg))
+    {
+        dest_effect();
+        return;
+    }
 
     if (sscanf(arg, "%s to %s", targ, command) != 2) {
         tell_object(caster, "<" + syntax + ">");

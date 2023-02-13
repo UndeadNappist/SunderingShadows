@@ -28,6 +28,9 @@ void create()
 
 int preSpell()
 {
+    if(!strlen(arg))
+        return 0;
+    
     args = sscanf(arg, "%s with %s", weaponarg, typearg);
     if (!weaponarg) {
         tell_object(caster, "You must specify a target weapon for this power!");
