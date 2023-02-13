@@ -41,7 +41,7 @@ string *class_feats(string myspec)
 }
 
 mapping class_featmap(string myspec) {
-    return ([ 1 : class_feats() + ({"arcane pool", "spell combat", "magus armor"}), 2 : ({"spellstrike"}), 4 : ({"spell recall"}), 7 : ({"medium armor proficiency"}), 10 : ({"fighter training"}), 11 : ({"improved spell recall"}), 13 : ({"heavy armor proficiency"}), 16 : ({"spell counterstrike"}), 19 : ({ "greater spell access" }), 31 : ({"legendary blade"})]);
+    return ([ 1 : class_feats() + ({"arcane pool", "spell combat", "magus armor"}), 2 : ({"spellstrike"}), 4 : ({"spell recall"}), 7 : ({"medium armor proficiency"}), 10 : ({"fighter training"}), 11 : ({"improved spell recall"}), 13 : ({"heavy armor proficiency"}), 16 : ({"spell counterstrike"}), 21 : ({ "greater spell access" }), 31 : ({"legendary blade"})]);
 }
 
 mapping query_cantrip_spells(object ob)

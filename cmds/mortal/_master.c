@@ -57,9 +57,11 @@ int cmd_master(string args)
             }
         }
 
+        /*
         if (myclass == "magus" && FEATS_D->usable_feat(TP, "greater spell access")) {
             spell_access = 2;
         }
+        */
         else if(myclass == "sorcerer" && FEATS_D->usable_feat(this_player(), "blood is power"))
         {
             spell_access = 1;
@@ -72,21 +74,25 @@ int cmd_master(string args)
                 write("%^CYAN%^Level " + (i + 1) + ": %^RESET%^" + spelllevels[i] + " of " + max_spells);
             }
         }
-        if(TP->is_class("sorcerer"))
+        if(myclass == "sorcerer")
         {
             if(TP->query_bloodline() == "arcane")
                 bonuslimit += 1;
         }
-        if (FEATS_D->usable_feat(TP, "spell knowledge") && TP->query_class_level(myclass) >= 21) {
+        if(FEATS_D->usable_feat(TP, "spell knowledge") && TP->query_class_level(myclass) >= 21) {
             bonuslimit += 2;
         }
-        if (FEATS_D->usable_feat(TP, "tome of ancient secrets")) {
+        if(myclass == "warlock" && FEATS_D->usable_feat(TP, "tome of ancient secrets")) {
             bonuslimit += 4;
         }
-        if (FEATS_D->usable_feat(TP, "greater spell knowledge")) {
+        if(myclass == "magus" && FEATS_D->usable_feat(TP, "greater spell access"))
+        {
+            bonuslimit += 2;
+        }
+        if(FEATS_D->usable_feat(TP, "greater spell knowledge")) {
             bonuslimit += 5;
         }
-        if (bonuslimit) {
+        if(bonuslimit) {
             write("%^CYAN%^You can learn " + bonuslimit + " spells above limit due to your feats.");
         }
 
@@ -223,10 +229,12 @@ int cmd_master(string args)
 
         mylvl = mylvl>50?50:mylvl;
 
+        /*
         if (myclass == "magus" && FEATS_D->usable_feat(TP, "greater spell access")) {
             spell_access = 2;
         }
-        else if(myclass == "sorcerer" && FEATS_D->usable_feat(this_player(), "blood is power"))
+        */
+        if(myclass == "sorcerer" && FEATS_D->usable_feat(this_player(), "blood is power"))
         {
             spell_access = 1;
         }
@@ -238,19 +246,23 @@ int cmd_master(string args)
                     bonuslimit -= knownperlevel[i] - max_spells;
                 }
             }
-            if(TP->is_class("sorcerer"))
+            if(myclass == "sorcerer")
             {
                 if(TP->query_bloodline() == "arcane")
                     bonuslimit += 1;
             }
-            if (FEATS_D->usable_feat(TP, "spell knowledge")) {
+            if(FEATS_D->usable_feat(TP, "spell knowledge")) {
                 bonuslimit += 2;
             }
-            if (FEATS_D->usable_feat(TP, "tome of ancient secrets")) {
+            if(myclass == " warlock" && FEATS_D->usable_feat(TP, "tome of ancient secrets")) {
                 bonuslimit += 4;
             }
-            if (FEATS_D->usable_feat(TP, "greater spell knowledge")) {
+            if(FEATS_D->usable_feat(TP, "greater spell knowledge")) {
                 bonuslimit += 5;
+            }
+            if(myclass == "magus" && FEATS_D->usable_feat(TP, "greater spell access"))
+            {
+                bonuslimit += 2;
             }
         }
 

@@ -10,9 +10,9 @@ void create()
     feat_type("permanent");
     feat_category("Steel&Magic");
     feat_name("greater spell access");
-    feat_prereq("Magus L19");
+    feat_prereq("Magus L21");
     feat_classes("magus");
-    feat_desc("The magus gains access to more spells. He can master two additional magus spells per spell level.");
+    feat_desc("The magus gains access to more spells. He can master two additional magus spells above their total limit (2 spells total).");
     permanent(1);
 }
 
@@ -23,7 +23,7 @@ int prerequisites(object ob)
     if (!objectp(ob)) {
         return 0;
     }
-    if (ob->query_class_level("magus") < 19) {
+    if (ob->query_class_level("magus") < 21) {
         dest_effect();
         return 0;
     }
