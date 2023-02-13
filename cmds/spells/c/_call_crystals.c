@@ -94,6 +94,7 @@ void spell_effect(int prof)
     //end_time = time() + 120 + ((ROUND_LENGTH * 2) * mylevel);
 
     call_out("check",5);
+    call_out("dest_effect", spell_duration);
     spell_successful();
     addSpellToCaster();
 }
@@ -103,7 +104,7 @@ void check()
     object *attackers=({}),*tmp=({});
     int i,j;
 
-    if(!objectp(TO) || !objectp(caster) || ( time() > end_time ))
+    if(!objectp(TO) || !objectp(caster))
     {
         dest_effect();
         return;
