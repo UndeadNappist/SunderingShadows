@@ -17,6 +17,7 @@ void create()
 
 %^BOLD%^%^WHITE%^See also:%^RESET%^ status effects..");
     feat_syntax("dirge_of_doom");
+    allow_blind(1);
 
     set_save("will");
 }

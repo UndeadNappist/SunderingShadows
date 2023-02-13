@@ -16,6 +16,7 @@ void create()
     feat_desc("With this song bard heals and restores her allies, removing exhaustion, confusion and negative levels. This feat also heals wounds.");
     feat_syntax("soothing_song");
     set_target_required(0);
+    allow_blind(1);
 }
 
 int allow_shifted()

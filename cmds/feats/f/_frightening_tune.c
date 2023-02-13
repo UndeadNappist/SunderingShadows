@@ -15,6 +15,7 @@ void create()
     feat_classes("bard");
     feat_desc("Your play a melody that inspires fear in your opponents. If they fail a save, they'll become momentarily frightened.\n\n%^BOLD%^%^WHITE%^See also:%^RESET%^ status effects.");
     feat_syntax("frightening_tune");
+    allow_blind(1);
 
     set_save("will");
 }

@@ -103,7 +103,7 @@ class_spell_storage =
 "chronicler":
 ([
     "all":
-        ({ "doom", "spiritual ally" }),
+        ({ "speak with dead", "spiritual ally" }),
 ]),
 
 "archdruid":
