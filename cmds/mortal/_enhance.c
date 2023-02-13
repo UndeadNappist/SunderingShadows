@@ -38,7 +38,11 @@ int cmd_enhance(string str)
 
     arguments = explode(str, " ");
 
-    if(!sizeof(arguments)) return 1;
+    if(!sizeof(arguments))
+    {
+        printf("You currently have %d maximum enhancement points.\n", calc_enh_points(player));
+        return 1;
+    }
 
     switch (arguments[0]){
     case "weapon":

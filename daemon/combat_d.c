@@ -869,7 +869,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                 enhance_dmg = roll_dice(1 + effective_level / 10, 6);
                 if (crit_hit && attacker->query_property(elements[i] + " en_dam burst")) {
                     enhance_msg = actions[i] + " of " + bursts[i];
-                    enhance_dmg += roll_dice(crit_mult * (1 + effective_level / 10), 10);
+                    enhance_dmg += roll_dice(crit_mult * (1 + effective_level / 10), 6);
                 }
                 tell_object(attacker, "%^RESET%^%^CRST%^"+colors[i]+"You release "+enhance_msg+colors[i]+" at "+ename+"%^RESET%^%^CRST%^"+colors[i]+"!%^CRST%^");
                 tell_object(target, "%^RESET%^%^CRST%^"+colors[i]+pname+"%^RESET%^%^CRST%^"+colors[i]+" releases "+enhance_msg+colors[i]+" through you!%^CRST%^");
