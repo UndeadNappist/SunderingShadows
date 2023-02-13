@@ -30,7 +30,7 @@ void create()
          "%^RESET%^armor stands are found at intervals throughout "+
          "the store, displaying the various types of armor for sale. "+
          "Everything from finely crafted %^ORANGE%^leather %^RESET%^"+
-         "armor to shin%^BOLD%^ey %^RESET%^suits of full plate armor "+
+         "armor to shin%^BOLD%^y %^RESET%^suits of full plate armor "+
          "can be found.",
       ({"doorway","forge"}) : "An entrance to the forge shared "+
          "between the armory and the weaponsmith can be found in "+
