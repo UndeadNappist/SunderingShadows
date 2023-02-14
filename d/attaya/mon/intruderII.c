@@ -12,7 +12,7 @@ create() {
     set_gender("male");
     set_short("Spectre of Intruder");
     set_long(
-      "This is the spectoral presence of Intruder the Warrior General of the Kinnesaruda.  It's form shifts and waivers and you can see right through it!\n Intruder is a powerful undead warrior.  His golden armor is gashed from earlier battles but still shines in places.  His face displays malice beneath a coat of rotting leathery flesh and shiny black eyes. "
+      "This is the spectral presence of Intruder the Warrior General of the Kinnesaruda.  Its form shifts and waivers and you can see right through it!\n Intruder is a powerful undead warrior.  His golden armor is gashed from earlier battles but still shines in places.  His face displays malice beneath a coat of rotting leathery flesh and shiny black eyes. "
     );
     set_body_type("human");
     set_spell_chance(60);

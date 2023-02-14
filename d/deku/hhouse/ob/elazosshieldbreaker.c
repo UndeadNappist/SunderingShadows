@@ -14,7 +14,7 @@ void create()
     
     set_short("%^BOLD%^%^WHITE%^Elazo's %^BOLD%^%^BLACK%^S"+
     "%^BLUE%^to%^BOLD%^%^BLACK%^ut Sh%^RED%^ie%^BOLD%^%^BLACK%^"+
-    "ldbr%^RED%^ea%^BOLD%^%^BLACK%^ck%^RED%^e%^BOLD%^%^BLACK%^r"+
+    "ldbr%^RED%^ea%^BOLD%^%^BLACK%^k%^RED%^e%^BOLD%^%^BLACK%^r"+
     "%^RESET%^");
         
     set_long("%^BOLD%^%^BLACK%^This hammer is made from "+
@@ -24,7 +24,7 @@ void create()
     "in the larger than normally head.  The head of the hammer "+
     "is more of a bizarre oval shape and littered with rougher "+
     "%^RED%^bumps%^BOLD%^%^BLACK%^ which have been dyed "+
-    "a much %^BOLD%^%^WHITE%^ligher color%^BOLD%^%^BLACK%^.  "+
+    "a much %^BOLD%^%^WHITE%^lighter color%^BOLD%^%^BLACK%^.  "+
     "The handle of the hammer connects with the head in "+
     "approximately the center and continues downward, its length "+
     "covered in %^BLUE%^symbols%^BOLD%^%^BLACK%^.  The symbols "+
@@ -39,10 +39,10 @@ void create()
     set_lore("It is said that this hammer was prepared "+
     "for the gluttonous man Elazo, by a priest and a wizard "+
     "who worked together quite at the insistence of the "+
-    "greedy man.  The priest served tempus ruthlessly and "+
+    "greedy man.  The priest served Tempus ruthlessly and "+
     "blessed the hammer in the name of his god, leaving "+
     "markings of praise littering the handle, and the mage "+
-    "was forced to aid elazo by enchanting the hammer with "+
+    "was forced to aid Elazo by enchanting the hammer with "+
     "a very precise magic.  Elazo disappeared and is considered dead, this "+
     "hammer went with him, as it was not as common as the other "+
     "he held much more dear.");
@@ -87,7 +87,7 @@ int wield_me()
 
 int unwield_me() 
 {
-    tell_object(ETO,"%^BLUE%^The feel yourself weakend as you "+
+    tell_object(ETO,"%^BLUE%^The feel yourself weakened as you "+
     "release the hammer.%^RESET%^");
     
     if(!ETO->query_invis()) {

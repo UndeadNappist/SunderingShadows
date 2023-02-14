@@ -24,6 +24,7 @@ void create() {
     set_bonus_type("resistance");
     set_arg_needed();
     set_helpful_spell(1);
+    traveling_aoe_spell(1);
 }
 
 int preSpell() {
