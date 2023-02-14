@@ -18,7 +18,7 @@ void create()
     set_domains("suffering");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS caustic eruption");
-    set_damage_desc("acid");
+    set_damage_desc("acid damage splash");
     set_description("You conjure an eruption of acid around, causing damage. On your turn in each of the next two rounds, your target takes additional acid damage.");
     set_verbal_comp();
     set_somatic_comp();

@@ -10,9 +10,10 @@ void create() {
     set_spell_level(([ "mage" : 1, "bard" : 2, "cleric":1,"paladin":1,"inquisitor" : 1,"oracle":1 ]));
     set_spell_sphere("necromancy");
     set_mystery(({"dragon","bones"}));
-    set_syntax("cast CLASS cause fear on TARGET");
+    set_syntax("cast CLASS cause fear [on TARGET]");
     set_damage_desc("frightened, shaken on save");
-    set_description("This power allows the caster to project an aura of fear toward a target, potentially sending him fleeing.");
+    set_description("This power allows the caster to project an aura of fear toward a target, potentially sending him fleeing. If the target makes a will save, they are shaken instead.");
+    set_damage_desc("frightened, or shaken on save");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);

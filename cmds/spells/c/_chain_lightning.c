@@ -14,7 +14,7 @@ void create()
     set_spell_name("chain lightning");
     set_spell_level(([ "mage" : 6, "magus" : 6, "druid" : 6 ]));
     set_spell_sphere("invocation_evocation");
-    set_syntax("cast CLASS chain lightning on TARGET");
+    set_syntax("cast CLASS chain lightning [on TARGET]");
     set_damage_desc("electricity or versatile arcanist");
     set_description("Chain lightning causes a great bolt of electrical energy to attack your target.  After the bolt has "
         "attacked your target, the lightning bolt has enough energy to continue jumping around the room, damaging other people "
@@ -24,6 +24,7 @@ void create()
     set_target_required(1);
     splash_spell(1);
     versatile();
+    set_immunities( ({ "electricity" }) );
     //set_components(([ "mage" : ([ "glass rod":1, "bat fur":1,"silver pin":1 ]), ]));
     set_save("reflex");
 }

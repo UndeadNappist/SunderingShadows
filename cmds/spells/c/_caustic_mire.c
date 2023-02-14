@@ -15,6 +15,7 @@ void create()
     set_spell_level(([ "warlock" : 2 ]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS caustic mire");
+    set_damage_desc("AOE acid damage and tripped");
     set_description("This invocations causes the ground in the area to turn into a muddy, acidic mire that will cause all caught within it to lose their footing. The caustic fumes cause victims to suffer from acid damage throughout the duration.");
     set_verbal_comp();
     set_somatic_comp();

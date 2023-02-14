@@ -8,9 +8,8 @@ void create() {
     set_spell_level(([ "cleric" : 3, "paladin" : 3,"inquisitor":3 ]));
     set_affixed_spell_level(3);
     set_spell_sphere("necromancy");
-    set_syntax("cast CLASS cause serious wounds on TARGET");
-    set_description("When cast it makes a serious wound on the target monster. It is almost as powerful in inflicting "
-                    "wounds as the cure serious wounds is in healing them.");
+    set_syntax("cast CLASS cause serious wounds [on TARGET]");
+    set_description("When cast it makes a serious wound on the target. It is almost as powerful in inflicting wounds as the cure serious wounds is in healing them.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);

@@ -12,7 +12,7 @@ void create() {
     set_spell_name("catapsi");
     set_spell_level(([ "psion" : 5, "psywarrior" : 5 ]));
     set_spell_sphere("telepathy");
-    set_syntax("cast CLASS catapsi on TARGET");
+    set_syntax("cast CLASS catapsi [on TARGET]");
     set_description("This power can be one of the deadliest in the psion's arsenal, though it causes very little damage.  "
 "By manifesting this power, the psion causes a white noise to resonate in the mind of his target, leaving the target "
 "unable to think, cast spells, or manifest powers.  This power is rightly feared by psions and mages all over the "
@@ -76,8 +76,6 @@ void spell_effect(int prof)
     dest_effect();
     return;
 }
-
-
 
 void next()
 {

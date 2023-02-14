@@ -9,7 +9,7 @@ void create() {
     set_spell_level(([ "cleric" : 2,"paladin":2, "inquisitor" : 2 ]));
     set_affixed_spell_level(2);
     set_spell_sphere("necromancy");
-    set_syntax("cast CLASS cause moderate wounds on TARGET");
+    set_syntax("cast CLASS cause moderate wounds [on TARGET]");
     set_description("When cast, this prayer will draw some energy from the target, inflicting him with a wound.");
     set_verbal_comp();
     set_somatic_comp();
