@@ -11,7 +11,7 @@ void create() {
 	::create();
     set_spell_name("primal fear");
     set_spell_level(([ "psywarrior" : 1 ]));
-    set_spell_sphere("enchantment_charm");
+    set_spell_sphere("telepathy");
     set_syntax("cast CLASS primal fear on TARGET");
     set_description("This power allows the psionic character to project "
                     "an aura of fear toward a target, potentially sending him fleeing "

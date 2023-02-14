@@ -30,7 +30,7 @@ void spell_effect(int prof){
     if(!objectp(target))
         dest_effect();
 
-    caster->force_me("yell %^RED%^%^BOLD%^BEG FORGIVENESS!");
+    caster->force_me("yell %^RED%^%^BOLD%^BEG FOR FORGIVENESS!");
 
     if(mind_immunity_damage(target))
     {
