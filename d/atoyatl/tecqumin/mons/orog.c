@@ -104,6 +104,7 @@ void report(string str){
 
 void init(){
   ::init();
+  /*
   if (sizeof(TO->query_wielded())<1
       && file_name(all_inventory(TO)[0])[0..20]== "/d/common/obj/weapon/"){
     force_me("wield " + all_inventory(TO)[0]->query_name());
@@ -111,6 +112,7 @@ void init(){
   if (objectp(ETO) && present("tabaxi", ETO)){
     force_me ("kill tabaxi");
   }
+  */
 }
 
 void aggro_me(){
