@@ -945,7 +945,8 @@ int save_me(string file)
     if (y) {
         for (x = 0; x < y; x++) {
             fname = path + "save" + x + fn;
-            j = inv[x]->save_me(fname);
+            if(catch(j = inv[x]->save_me(fname)))
+                continue;
         }
     }
     ::save_me(file);
@@ -987,7 +988,8 @@ int restore_me(string file)
     }
     for (x = 0; x < (fsize); x++) {
         fname = "/inv/" + first_letter(who) + "/" + who + "/" + files[x];
-        tmp = "/daemon/yuck_d"->restore_files(fname);
+        if(catch(tmp = "/daemon/yuck_d"->restore_files(fname)))
+            continue;
         if (stringp(tmp)) {
             write(tmp);
             rm(fname);

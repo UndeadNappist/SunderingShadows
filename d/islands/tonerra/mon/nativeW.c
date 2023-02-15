@@ -17,7 +17,7 @@ object ob;
   set_long(
 @OLI
     This smallish man stands before. An occasional screach of anger 
-eminate from his mishapened mouth. Distrust and fear cross his face.
+eminate from his misshapen mouth. Distrust and fear cross his face.
 This is quite obviously his home and his place to live. He will defend
 it from intruders with his life. He wears a form of cloth decorated with
 varius colored leaves. A dim fire burns in his eyes magic practiced often
