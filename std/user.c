@@ -1439,9 +1439,11 @@ void setup()
     set_property("light", -query_property("light"));
     if (!query("race")) {
         set_logon_notify(1);  /* default login/out messages turned on */
+        set_blocked("wiz");
+        command("help sundering shadows");
+        write("\n");
         move(ROOM_SETTER);
         tell_room(ETO, query_cap_name() + " is a new adventurer", TO);
-        set_blocked("wiz");
         NOTIFY_D->logon_notify("%^YELLOW%^" + capitalize(query_name()) + " is a new adventurer%^RESET%^", this_player());
     } else {
         if (member_array(query("race"), query("id")) == -1) {
