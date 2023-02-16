@@ -2,6 +2,7 @@
 varargs int cmd_map(string str) {
   string verb, name, *mapnames, result, mapname, title, note, verb2, plain_title, * roomnames, * titles, title1, title2, startroom, endroom, * route,
 line, temp;
+  object person;
   mapping maps;
   int num, i, count, j, width, flag;
 //  report("Running command map, with string " + str);
@@ -218,6 +219,27 @@ entered: " + title);
     MAPPER->load_map(TPQN, mapname);
     tell_object(TP, "%^ORANGE%^Showing map: %^GREEN%^" + mapname); 
     tell_object(TP, MAPPER->show_basic_map(TP));
+    break;
+  case "show":
+    num = sscanf(name, "to %s", verb2);
+//    if (num<1) return notify_fail("Try 'map show to NAME'");
+    if(!person = present(verb2,ETP)) return notify_fail("That person is not here.\n");
+    if(person == TP) return notify_fail("Why don't you just look at it?\n");
+    if(person->query_blind()) return notify_fail("That person is blind.\n");
+    tell_room(ETP,TPQCN+" shows something to "+person->query_cap_name()+".",({TP,person}));
+    write("You show your map to "+person->query_cap_name()+".");
+    tell_object(person,TPQCN+" shows you their map:\n");
+    mapname = MAPPER->query_current_map(TP->query_name());
+     if (mapname == "none")
+    {
+      tell_object(TP, "You don't have a map currently loaded. You can use"
+        +" 'map list' to see the list of your available maps, and 'map load"
+        +" <name>' to load a map.");
+      return 1;
+    }
+    MAPPER->load_map(TPQN, mapname);
+    tell_object(TP, "Showing map: " + mapname); 
+    tell_object(person, MAPPER->show_basic_map(TP));
     break;
   case "key":
     mapname = MAPPER->query_current_map(TP->query_name());
@@ -465,6 +487,8 @@ void help()
     "        <map list>           - lists your saved maps\n"
     "        <map check>          - Tells you whether or not your mapper is\n"
     "                               running\n"
+    "        <map show to [name]  - shows your current map to another player\n"
+
     "<map note add [title][note]> - Adds a note to your map under the given\n"
     "                               title (Titles must be short - 1 or 2\n"
     "                               characters\n"

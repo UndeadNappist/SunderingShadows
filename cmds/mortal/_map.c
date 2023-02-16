@@ -530,6 +530,13 @@ void help()
     +"considered 'alpha' at best.\n\n"
     +"Mudlet users - These commands conflict with the native mudlet mapper. You\n"
     +"can avoid the conflict by creating aliases for these commands."
+    +"Example aliases would be:\n"
+    +"Map start: <alias ms map start>\n"
+    +"Map stop: <alias ms2 map stop>\n"
+    +"Map view: <alias mv map view>\n"
+    +"Map load: alias ml map load $*\n"
+    +"Map check: <alias mc map check>\n"
+    +Map note add: <alias mn map note add $*> \n"
   );
 
 }
