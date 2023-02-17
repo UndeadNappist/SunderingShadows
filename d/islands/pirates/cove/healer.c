@@ -16,7 +16,7 @@ void create() {
 "surface.  There are several jars of obnoxious herbs and balms laying about, along with a few jars of "
 "%^GREEN%^leeches%^RESET%^.  Just how badly do you want to be healed in a place like this?");
     set_smell("default","The strong odor of vinegar and other herbs burns at your nostrils.");
-    set_listen("default","The dulled noise of the street outside still reach your ears.");
+    set_listen("default","The dulled noise of the street outside still reaches your ears.");
     set_exits(([
 	"northwest":COVE"path8"
     ]));
