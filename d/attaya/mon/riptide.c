@@ -54,7 +54,7 @@ int motion_riptide(string str){
     
     tell_object(player, "%^RESET%^%^CRST%^%^C021%^You motion to %^C051%^R%^C045%^ip%^C039%^ti%^C033%^de%^RESET%^%^C021%^ and a ghostly vessel materializes before you. The mist grows dense and you suddenly find yourself aboard as it begins its journey across the River of Flame.\n\n%^RESET%^%^C051%^R%^C045%^ip%^C039%^ti%^C033%^de%^RESET%^%^C021%^ turns to gaze at you eerily...%^CRST%^");
     tell_room(environment(player), "%^RESET%^%^CRST%^%^C021%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C021%^ motions to %^C051%^R%^C045%^ip%^C039%^ti%^C033%^de %^C027%^the %^C051%^B%^C045%^oa%^C039%^tm%^C033%^an%^RESET%^%^C021%^. The mist grows dense, clouding "+player->query_objective()+" from view... and appearing aboard a ghostly vessel that a materializes in the river, only to be consumed by the flames and vanish!%^CRST%^\n");
-    this_player()->move_player("/d/attaya/crossover.c");
+    player->move_player("/d/attaya/crossover.c");
     return 1;
 }
 
