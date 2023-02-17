@@ -13,10 +13,10 @@ void create()
     set_spell_name("fireball");
     set_spell_level(([ "mage" : 3, "monk" : 7, "oracle" : 3, "magus" : 3, "cleric" : 3, "druid" : 3 ]));
     set_domains("fire");
-    set_mystery("flame");
+    set_circle("wildfire");
     set_spell_sphere("invocation_evocation");
     set_monk_way("way of the elements");
-    set_syntax("cast CLASS fireball on TARGET");
+    set_syntax("cast CLASS fireball [on TARGET]");
     set_damage_desc("fire, versatile arcanist");
     set_description("By casting this spell, a mage can aim and release a massive ball of fire at a target and those around him. The fireball spell will wreak havoc on the caster's target and those who oppose him. Damage done to those hit by the spell halved if they manage to evade the brunt of the spell.");
     set_verbal_comp();

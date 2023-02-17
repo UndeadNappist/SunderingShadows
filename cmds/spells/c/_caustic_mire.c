@@ -35,10 +35,13 @@ void spell_effect(int prof)
 {
     tell_object(caster, "%^RESET%^%^CRST%^%^C065%^You raise your hands to the air and the %^C118%^d%^C112%^ar%^C106%^k %^C118%^e%^C112%^ne%^C106%^r%^C118%^g%^C112%^y %^RESET%^%^C065%^spreads throughout the area, forming into a %^C142%^s%^C136%^ti%^C130%^c%^C142%^k%^C136%^y, %^C142%^a%^C136%^ci%^C130%^d%^C142%^i%^C136%^c m%^C130%^u%^C142%^d%^RESET%^%^C065%^!%^CRST%^");
     tell_room(place, "%^RESET%^%^CRST%^%^C065%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C065%^ raises "+caster->query_possessive()+" hands to the air and the %^C118%^d%^C112%^ar%^C106%^k %^C118%^e%^C112%^ne%^C106%^r%^C118%^g%^C112%^y %^RESET%^%^C065%^spreads throughout the area, forming into a %^C142%^s%^C136%^ti%^C130%^c%^C142%^k%^C136%^y, %^C142%^a%^C136%^ci%^C130%^d%^C142%^i%^C136%^c m%^C130%^u%^C142%^d%^RESET%^%^C065%^!%^CRST%^",caster);
-    counter = clevel/8 + 2;
+    //counter = clevel/8 + 2;
+    spell_duration = (2 + clevel / 8) * ROUND_LENGTH;
+    set_end_time();
     addSpellToCaster();
     spell_successful();
     execute_attack();
+    call_out("dest_effect", spell_duration);
 }
 
 
@@ -55,7 +58,7 @@ void execute_attack()
         return;
     }
 
-    if(!objectp(caster) || !objectp(place) || !present(caster,place)|| counter<0)
+    if(!objectp(caster) || !objectp(place) || !present(caster,place))
     {
         dest_effect();
         return;
@@ -84,7 +87,7 @@ void execute_attack()
         }
     }
 
-    counter--;
+    //counter--;
     place->addObjectToCombatCycle(TO,1);
 }
 
