@@ -38,7 +38,7 @@ create(){
     add_money("copper",random(20));
     set_emotes(5,({
         "%^RESET%^%^CRST%^%^C021%^Riptide offers a slow nod towards you...%^CRST%^",
-        "%^RESET%^%^CRST%^%^C051%^Riptide whispers to you: %^RESET%^%^C027%^Simply %^C033%^motion %^C027%^to me and I shall assume the form of the mist and carry you to the Tower of the Black Dawn.%^CRST%^",
+        "%^RESET%^%^CRST%^%^C051%^Riptide whispers to you: %^RESET%^%^C027%^Simply %^C033%^motion %^C027%^to me and I shall draw upon the mists to ferry you to the Tower of the Black Dawn.%^CRST%^",
         "%^RESET%^%^CRST%^%^C051%^Riptide whispers to you: %^RESET%^%^C027%^Only death awaits you over there.%^CRST%^",
         "%^RESET%^%^CRST%^%^C021%^Riptide turns and peers out into the river of flames.%^CRST%^"
         }) ,0);
@@ -68,7 +68,7 @@ void reply_fun(string str, object player){
     if(!objectp(player)) return;
     if((strsrch(str, "ello") != -1 ) || (strsrch(str, "Hi") != -1 ) || (strsrch(str, "reeting") != -1 ) || (strsrch(str, "eya") != -1 )){
         force_me("emoteat riptide %^RESET%^%^CRST%^%^C021%^$M inclines his head with a glacial movement.%^CRST%^");
-        force_me("whisper "+player->query_name()+" %^RESET%^%^C027%^Simply %^C033%^motion %^C027%^to me and I shall assume the form of the mist and carry you to the Tower of the Black Dawn.%^CRST%^");
+        force_me("whisper "+player->query_name()+" %^RESET%^%^C027%^Simply %^C033%^motion %^C027%^to me and I shall draw upon the mists to ferry you to the Tower of the Black Dawn.%^CRST%^");
         return;
     }
 
