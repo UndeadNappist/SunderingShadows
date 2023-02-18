@@ -396,6 +396,7 @@ protected void enter_email(string str) {
     log_file("player/new_players",sprintf("%s(%s) <%s> at %s from %s\n",__Name, str, __Player->query_email(),ctime(time()),query_ip_number()));
     seteuid(getuid());
     __Player->resetRelationships();
+    __Player->setenv("SCREEN", 80);
     exec_user();
 }
 
