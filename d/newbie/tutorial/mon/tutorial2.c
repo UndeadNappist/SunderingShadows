@@ -118,7 +118,7 @@ int step_4(string str) {
 "find things!  Now, the next command is a very important one, so you don't go walking around blindly and get "
 "in trouble.  The %^YELLOW%^peer%^RESET%^ command allows you to look out of a room exit, to see what is there"
 ".  This really helps so you don't walk in on dragons unaware!\n\nShaani smiles and points to the south.\n\n"
-"%^MAGENTA%^Shaani says:%^RESET%^ Try to %^YELLOW%^<peer south>%^RESET%^, <peer south 1> or just %^YELLOW%^<peer s>%^RESET%^, "
+"%^MAGENTA%^Shaani says:%^RESET%^ Try to %^YELLOW%^<peer south>%^RESET%^, %^YELLOW%^<peer south 1>%^RESET%^ or just %^YELLOW%^<peer s>%^RESET%^, "
 "to see what is in the next room. Remember that in larger areas you can specify how many rooms you want to peer "+
 "through, which will give you an idea of what monsters or treasures might await you.");
    return 1;
@@ -127,9 +127,9 @@ int step_4(string str) {
 int step_5(string str) {
    if((int)TP->query("newbtutorial2") != 4) return 0;
    stringp(str) && str = lower_case(str);
-   if(!str || (str != "south" && str != "s")) {
+   if(!str || member_array(str, ({"south", "s", "south 1", "s 1"})) == -1) {
      tell_object(TP,"%^RESET%^%^MAGENTA%^Shaani shakes her head:%^RESET%^ No no, just type %^YELLOW%^<peer "
-"south>%^RESET%^, or %^YELLOW%^<peer s>%^RESET%^, to see where you're going.");
+"south>%^RESET%^, %^YELLOW%^<peer south 1>%^RESET%^ or %^YELLOW%^<peer s>%^RESET%^, to see where you're going.");
      return 1;
    }
    TP->set("newbtutorial2",5);
