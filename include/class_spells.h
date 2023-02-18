@@ -39,7 +39,7 @@ class_spell_storage =
     "life":
         ({"celestial healing", "restoration", "remove blindness", "neutralize poison", "breath of life", "heal", "regenerate", "mass heal", "resurrection"}),
     "shadow":
-        ({"blurred movement", "invisibility", "deeper darkness", "shadow necromancy", "vampiric shadow shield", "shadow alteration", "mass invisibility", "greater shadow evocation", "shades"}),
+        ({"blur", "invisibility", "deeper darkness", "shadow necromancy", "vampiric shadow shield", "shadow alteration", "mass invisibility", "greater shadow evocation", "shades"}),
     //"solar":
     //    ({"faerie fire", "flaming sphere", "daylight", "dimension door", "solar siege shot", "sirocco", "sunbeam", "sunburst", "hellball"}),
     "spellscar":

@@ -59,6 +59,7 @@ void spell_effect(int prof)
     target->set_resistance("silver",mybonus);
     target->set_resistance("cold",mybonus);
     //target->set_property("iron body",1);
+    spell_successful();
     addSpellToCaster();
     return;
 }
