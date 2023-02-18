@@ -67,7 +67,7 @@ int step_2(string str)
     {
         TP->set("newbtutorial5",2);
         TP->force_me("alias");
-        tell_object(TP, "\n\n%^RESET%^%^MAGENTA%^The man speaks calmly: %^RESET%^you may have to hit the enter key on "+
+        tell_object(TP, "\n\n%^RESET%^%^MAGENTA%^The man speaks calmly: %^RESET%^You may have to hit the enter key on "+
         "your keyboard with a blank line in order to get through the list of aliases that the game has defined for you. "+
         "\n\nYou may notice the i alias defined as inventory in that list. This means that anytime you type the letter i "+
         "and send it to the game, the game substitutes i for inventory.\n\nThe help file for the command %^YELLOW%^<help "+
