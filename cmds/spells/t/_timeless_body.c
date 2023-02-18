@@ -1,19 +1,31 @@
+/*
+  _timeless_body.c
+  
+  Functional rewrite.
+  
+  -- Tlaloc --
+*/
+
 #include <std.h>
-#include <priest.h>
 #include <daemons.h>
+#include <magic.h>
+
+#define RANGE 60
+
 inherit SPELL;
 
-int counter,chance,toggle,mylevel;
-object targ;
+int current_conceal, spell_conceal, flag;
 
-void create() {
+void create()
+{
     ::create();
     set_spell_name("timeless body");
-    set_spell_level(([ "psion" : 9 ]));
+    set_spell_level( ([ "psion" : 9 ]) );
     set_spell_sphere("psychoportation");
     set_bonus_type("concealment");
     set_syntax("cast CLASS timeless body");
-    set_description("This power will enable a psion to take on a ghostly state, making him difficult to hit in combat. The power has an equal chance each round to make the psion untouchable or not.  The psion's body fades, becoming partially on this plane and partially on the Astral Plane. Like blink, this power is not illusion and is not fully negated by true seeing.
+    set_damage_desc("random missChance and spell resistance each round");
+    set_description("You take on a ghostly state, transporting part of your self into the Astral Plane. This power fluctuates, intermittently moving you between the two planes, offering a random Miss Chance and Spell Resistance each round. As this is not an illusion power, it is not fully negated by True Seeing.
 
 %^BOLD%^%^RED%^See also:%^RESET%^ timeless body *feats");
     set_verbal_comp();
@@ -21,151 +33,108 @@ void create() {
 	set_helpful_spell(1);
 }
 
-string query_cast_string() {
-   return "%^BOLD%^%^CYAN%^The color begins to fade from "+caster->QCN+"'s eyes.";
-}
-
-int preSpell() {
-    if (caster->query_property("amorpha") || caster->query_property("timeless body")) {
-//together these were broken, stacking regularly 100% miss chance. N, 4/14
-        tell_object(caster, "You are already protected by a spell of concealment.");
-        return 0;
-    }
-    if (caster->query_blinking()) {
-        tell_object(caster, "You can't maintain such a spell while blinking.");
-        return 0;
-    }
-    return 1;
-}
-
-void spell_effect(int prof)
+int conceal_effect()
 {
+    int power;
+    
+    power = random(RANGE);
+    power = max( ({ 25, power }) );
+    power = min( ({ 100 - caster->query_missChance(), power }) );
+    
+    return power;
+}
 
-    mylevel = clevel;
+int spell_conceal(int x)
+{
+    int power, current;
+    
+    if(!x) return 0;
+    
+    power = x / 5;
+    
+    if(!power) return 0;
+    
+    power = min( ({ power, 10 }) );
+    current = caster->query_property("magic resistance");
+    power = min( ({ power, 20 - current }) );
+    
+    if(power <= 0)
+        return 0;
+    
+    return power;
+}
 
-    targ = CASTER;
-    if(!FEATS_D->usable_feat(targ,"armored manifester") && !FEATS_D->usable_feat(targ,"eldritch conditioning")){
-       if (!targ->is_ok_armour("mage")){
-          if(!FEATS_D->usable_feat(targ,"armored caster")){
-            tell_object(targ,"The power cannot offer protection while you "+
-               "wear such armor.");
-            TO->remove();
-            return;
-          }
-       }
-    }
-    tell_room(place,"%^BOLD%^%^WHITE%^The color drains from the rest "+
-       "of "+targ->QCN+"'s body, giving "+targ->QO+" a ghostlike appearance!",targ);
-    tell_object(targ,"%^BOLD%^%^WHITE%^The color drains away from "+
-       "your body, giving you a ghostly appearance!");
-    toggle = 1;
-    targ->set_missChance(targ->query_missChance() + 50);
-    targ->set_property("blink misschance", 25);
-    targ->set_property("timeless body",1);
-    targ->set_property("spelled", ({TO}) );
+void spell_effect()
+{
+    tell_room(place,"%^C117%^" + caster->query_cap_name() + "'s%^C105%^ body begins to fade, partially entering the astral plane!%^CRST%^", caster);
+    tell_object(caster,"%^C105%^Your body begins to fade, partially entering the %^C117%^astral plane%^C105%^!%^CRST%^");
+    
+    current_conceal = conceal_effect();
+    spell_conceal = spell_conceal(current_conceal);
+    caster->set_missChance(caster->query_missChance() + current_conceal);
+    caster->set_property("blink misschance", 25);
+    caster->set_property("magic resistance", caster->query_property("magic resistance") + spell_conceal);
+    
     spell_successful();
     addSpellToCaster();
     spell_duration = (5 + clevel + roll_dice(1, 20)) * ROUND_LENGTH;
     set_end_time();
-    place->addObjectToCombatCycle(TO,1);
+    place->addObjectToCombatCycle(this_object(), 1);
     call_out("dest_effect", spell_duration);
-    call_out("test",2);
 }
 
-void test()
+void execute_attack()
 {
-    if (!objectp(TO) || !objectp(targ))
-        return;
-    place = environment(targ);
-    if(!FEATS_D->usable_feat(targ,"armored manifester") && !FEATS_D->usable_feat(targ,"eldritch conditioning")){
-        if (!targ->is_ok_armour("mage"))
-        {
-            if(!FEATS_D->usable_feat(targ,"armored caster"))
-            {
-                tell_object(targ,"The power cannot offer protection while you "+
-                   "wear such armor.");
-                TO->dest_effect();
-                return;
-            }
-        }
-    }
-    call_out("test", 5);
-}
-
-int flag;
-
-void execute_attack(){
-    if (!flag) {
+    int new_conceal;
+    
+    if (!flag)
+    {
         ::execute_attack();
         flag = 1;
         return;
     }
-    if (!objectp(targ)) {
-        dest_effect();
-        return;
-    }
-    place = environment(targ);
-    if(random(2))
+    if(!objectp(caster))
     {
-        if(!toggle)// added a toggle to reduce spam so the message only appears when the state changes -Ares
-        {
-            tell_room(place,"%^BOLD%^%^WHITE%^The color drains from the rest "+
-                "of "+targ->QCN+"'s body, giving "+targ->QO+" a ghostlike appearance!",targ);
-            tell_object(targ,"%^BOLD%^%^WHITE%^The color drains away from "+
-                "your body, giving you a ghostly appearance!");
-            toggle = 1;
-            targ->set_missChance(targ->query_missChance()+ 50);
-//            tell_object(targ,"Total miss chance = "+(int)targ->query_missChance()+".");
-        }
+        dest_effect();
+        return;
     }
-    else
+    
+    place = environment(caster);
+    new_conceal = conceal_effect();
+    
+    if(new_conceal > current_conceal)
     {
-        if(toggle)
-        {
-            tell_room(place,"%^BOLD%^%^BLUE%^"+targ->QCN+" suddenly "+
-                "seems substantial again!",targ);
-            tell_object(targ,"%^BOLD%^%^BLUE%^You feel yourself grow "+
-                "more substantial again!");
-            toggle = 0;
-            chance = (int)targ->query_missChance()-50;
-//giving them a base 25 miss chance when "off" since it no longer stacks with concealing
-//amorpha. Without it, the average miss chance is only 37%, barely more than the level 2 spell.
-//          chance = (int)targ->query_missChance()-75;
-            targ->set_missChance(chance);
-//            tell_object(targ,"Total miss chance = "+(int)targ->query_missChance()+".");
-        }
+        tell_object(caster, "%^C111%^Your body fades a bit, becoming more a part of the astral plane!%^CRST%^");
+        tell_room(place, "%^C117%^" + caster->query_cap_name() + "'s%^C111%^ body fades a bit, becoming more a part of the astral plane!%^CRST%^", caster);
     }
-    //counter++;
-    if(FEATS_D->usable_feat(TO,"slippery caster")) {
-    if (counter > (mylevel+6 * 1.33)) {
-        dest_effect();
-        return;
+    else if(new_conceal < current_conceal)
+    {
+        tell_object(caster, "%^C105%^Your body becomes more solid as it enters more fully into the prime!%^CRST%^");
+        tell_room(place, "%^C105%^" + caster->query_cap_name() + "'s body becomes more solid as it enters more fully into the prime!%^CRST%^", caster);
     }
-    }else{
-    if (counter > (mylevel+6)) {
-        dest_effect();
-        return;
-    }
-    }
-    place->addObjectToCombatCycle(TO,1);
+    
+    caster->set_missChance(caster->query_missChance() - current_conceal);
+    caster->set_missChance(caster->query_missChance() + new_conceal);
+    current_conceal = new_conceal;
+    caster->set_property("magic resistance", caster->query_property("magic resistance") - spell_conceal);
+    spell_conceal = spell_conceal(current_conceal);
+    caster->set_property("magic resistance", caster->query_property("magic resistance") + spell_conceal);    
+    
+    place->addObjectToCombatCycle(this_object(), 1);
 }
 
-void dest_effect(){
-   if (objectp(targ)) {
-      if(toggle) {
-         chance = (int)targ->query_missChance() - 50;
-      }else{
-         chance = (int)targ->query_missChance()-15;
-      }
-      targ->set_missChance(chance);
-      targ->remove_property("timeless body");
-      targ->remove_property("blink misschance");
-      targ->remove_property_value("spelled", ({TO}) );
-      tell_object(targ,"%^BOLD%^%^BLUE%^Your body ceases to fade "+
-         "into mistiness.");
-      tell_room(environment(targ),"%^BOLD%^%^BLUE%^"+targ->QCN+" grows "+
-         "completely substantial once more.", targ);
+void dest_effect()
+{
+    if(objectp(caster))
+    {
+        place = environment(caster);
+        tell_object(caster, "%^BOLD%^Your body regains its corporeal form as the spell fades.%^RESET%^");
+        //objectp(place) && tell_room(place, "EFFECT FADES ROOM", caster);
+        caster->set_missChance(caster->query_missChance() - current_conceal);
+        caster->remove_property("blink misschance");
+        caster->set_property("magic resistance", caster->query_property("magic resistance") - spell_conceal);
+        caster->remove_property_value("spelled", ({ this_object() }));
     }
     ::dest_effect();
-    if(objectp(TO)) TO->remove();
+    objectp(this_object()) && this_object()->remove();
 }
