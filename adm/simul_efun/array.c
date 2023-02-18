@@ -79,7 +79,7 @@ mixed collapse_array(mixed *array)
  *
  * @param *array Array to process
  * @param from first range index
- * @param to last range indes. Can me ommited.
+ * @param to last range indes. Can be omitted.
  * @return Modified array
  */
 varargs mixed *exclude_array(mixed *array,int from, int to)
