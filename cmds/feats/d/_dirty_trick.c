@@ -129,7 +129,7 @@ void execute_attack()
     switch(roll_dice(1,3))
     {
         case 1:
-        target->set_temporary_blind(roll_dice(1,6));
+        target->set_temporary_blinded(roll_dice(1,6));
         message("my spells", "%^YELLOW%^You grab a handful of dirt from the ground and toss it in " + your_name + "'s eyes!", caster);
         message("other spells", "%^YELLOW%^" + my_name + " grabs a handful of dirt and tosses it in your eyes!%^RESET%^", target);
         break;

@@ -94,6 +94,9 @@ void execute_attack()
         dest_effect();
         return;
     }
+    
+    place = environment(caster);
+    
     if(!objectp(target) || !present(target,place))
     {
         tell_object(caster,"Your target has vanished!");
@@ -157,10 +160,15 @@ void execute_attack()
         }
         
         effects = target->query_property("status_effects");
+        if(!pointerp(effects))
+            effects = ({  });
         
         //fatigued, exhausted, confused, dazzled, sickened, panicked, shaken
         foreach(object ef in effects)
         {
+            if(!objectp(ef))
+                continue;
+            
             ename = explode(ef->query_name(), "_")[1];
             if(ename = dedication)
             {
