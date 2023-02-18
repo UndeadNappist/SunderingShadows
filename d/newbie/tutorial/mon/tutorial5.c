@@ -115,7 +115,7 @@ int step_3(string str)
         "except their functionality is somewhat different. For example, if you type <nickname b "+
         "this is a test>, whenever you type the letter b anywhere, the game will substitute it for 'this is a test'. "+
         "Now, I want you to make a nickname. I want you to type %^YELLOW%^<nickname mynickname "+myName+">%^RESET%^. "+
-        "This will cause the game to substitute your name, "+myName+", anytime you type the letters me.");
+        "This will cause the game to substitute your name, "+myName+", anytime you type the letters mynickname.");
         return 1;
     }
     else if(stringp(str))
