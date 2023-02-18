@@ -13,7 +13,7 @@ void create() {
 "You are standing on Starlight Avenue, which leads south back to the Offestry town square and continues north a little further.  The cobblestone %^ORANGE%^streets %^RESET%^are smooth beneath your feet, granting passage to the light but "
 "steady stream of %^CYAN%^traffic %^RESET%^that passes through the town on a daily basis.  The street is bordered on both "
 "sides by a jumble of %^RED%^buildings%^RESET%^. To the east the closest of which is the church with its doors open to welcome all. "
-"To the west the closet of which is a strange shop full of paper with its doors open to welcome potential customers.%^RESET%^\n");
+"To the west the closest of which is a strange shop full of paper with its doors open to welcome potential customers.%^RESET%^\n");
    set("night long", ""+TO->query_long()+"\n%^BOLD%^The street light glows brightly to light your way.");
 
    

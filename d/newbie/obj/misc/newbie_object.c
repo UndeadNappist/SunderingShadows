@@ -680,7 +680,7 @@ int explain_act(string str)
                 "action allowed within the meadow.\n\n"+WE+" Many areas within the game "+
                 "allow for custom actions as you will learn in time.\n\n"+WE+" Within the meadow "+
                 "there is a black gem that has been buried there specifically for you and you "+
-                "alone to %^YELLOW%^dig%^RESET%^ up. Once you find it, return to the offestry town square, then "+
+                "alone to %^YELLOW%^dig%^RESET%^ up. Once you find it, return to the Offestry town square, then "+
                 "%^YELLOW%^feed%^RESET%^ it to me. I will absorb "+
                 "its power and then we can continue on with more tasks.%^RESET%^");
                 break;

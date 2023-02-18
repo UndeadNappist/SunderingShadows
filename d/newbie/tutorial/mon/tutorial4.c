@@ -43,7 +43,7 @@ void step_1(object target) {
    else {
      tell_object(target,"\n\n%^RESET%^%^MAGENTA%^The tall firbolg looks down at you and says:%^RESET%^ Hello "
 "there.  Come to learn how to play, have you?  Well, I can teach you the basics about fighting, so you can "
-"survive if you get attacked.\n\nThe firbolg hmms.\n\n%^MAGENTA%^He rumbles:%^RESET%^You should already know "
+"survive if you get attacked.\n\nThe firbolg hmms.\n\n%^MAGENTA%^He rumbles:%^RESET%^ You should already know "
 "about weapons and how to wield them.  Now, the first command in a fight is easy.  If you want to attack "
 "something, just type %^YELLOW%^<kill targetname>%^RESET%^.  You can try it on me to start with, I won't rough "
 "you up.  Try typing %^YELLOW%^<kill firbolg>%^RESET%^.");
@@ -178,7 +178,7 @@ int step_8(string str) {
    }
    TP->set("newbtutorial4",8);
    tell_object(TP,"\n\n%^RESET%^%^MAGENTA%^He smiles and speaks:%^RESET%^ Good.  The last thing I have to "
-"teach you isn't a command, it's just a convenient word you to use.  You'll notice whenever you use a command "
+"teach you isn't a command, it's just a convenient word for you to use.  You'll notice whenever you use a command "
 "that is aimed at someone, you can use either their race, or their name if you have used %^YELLOW%^<recognize>"
 "%^RESET%^ on them like you were taught before.  If Fred the firbolg is standing in the room with you, you can "
 "type %^YELLOW%^<kill firbolg>%^RESET%^ or %^YELLOW%^<kill fred>%^RESET%^, and they will both work.\n\n"
