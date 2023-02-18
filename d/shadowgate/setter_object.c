@@ -562,7 +562,7 @@ synopsis_stats()
 {
 
     write("
-%^BOLD%^Your stats define your physical and mental abilities, they are adjusted by your race, subrace, age and template. To see in-dept explanation of each stat, type in %^ORANGE%^<help %^ULINE%^STAT%^%^RESET%^%^ORANGE%^%^BOLD%^>%^WHITE%^, for example %^ORANGE%^<help charisma>%^WHITE%^.
+%^BOLD%^Your stats define your physical and mental abilities, they are adjusted by your race, subrace, age and template. To see in-dept explanation of each stat, type in %^ORANGE%^<help %^ULINE%^STAT%^%^RESET%^%^ORANGE%^%^BOLD%^>%^WHITE%^, for example %^ORANGE%^<help charisma>%^WHITE%^
 
 %^BOLD%^%^Your race and age has some effect on your stats. After your selections, values right of the stats will be added or subtracted from choices you have made.
 
@@ -969,7 +969,7 @@ string *generate_alignment()
 hint_alignment()
 {
     write("
-%^BOLD%^Many ages of arguing have been dedicated to this selection. In the end, your alignment determines your disposition to the law and actions you tend to take. It also restricts %^CYAN%^deities%^WHITE%^ you will be able to select later, and for some classes it restricts %^CYAN%^class special%^WHITE%^ choices.%^WHITE%^.
+%^BOLD%^Many ages of arguing have been dedicated to this selection. In the end, your alignment determines your disposition to the law and actions you tend to take. It also restricts %^CYAN%^deities%^WHITE%^ you will be able to select later, and for some classes it restricts %^CYAN%^class special%^WHITE%^ choices.%^WHITE%^
 
 %^BOLD%^Refer to %^ORANGE%^<help alignments>%^WHITE%^ if you want to know more about alignments on Sundering Shadows.");
 }
@@ -1012,7 +1012,7 @@ display_deity()
 hint_deity()
 {
     write("
-%^BOLD%^You're about to select divine power to follow. If you're a %^CYAN%^cleric%^WHITE%^, %^CYAN%^paladin%^WHITE%^ or otherwise divine engaged character, it is highly recommended you read deity help file prior to selection.%^WHITE%^.
+%^BOLD%^You're about to select divine power to follow. If you're a %^CYAN%^cleric%^WHITE%^, %^CYAN%^paladin%^WHITE%^ or otherwise divine engaged character, it is highly recommended you read deity help file prior to selection.%^WHITE%^
 
 %^BOLD%^Refer to %^ORANGE%^<help deities>%^WHITE%^ to overview selection.");
 }
