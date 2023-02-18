@@ -339,7 +339,7 @@ cast [cleric] %^ORANGE%^%^ULINE%^SPELL%^RESET%^ as healing|harming on %^ORANGE%^
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-Ivokes %^ORANGE%^%^ULINE%^SPELL%^RESET%^ using character's %^ORANGE%^%^ULINE%^CLASS%^RESET%^. If %^ORANGE%^%^ULINE%^CLASS%^RESET%^ is omitted uses currently d class you can change with %^ORANGE%^<pose>%^RESET%^. If you're single class character, uses your only class.
+Invokes %^ORANGE%^%^ULINE%^SPELL%^RESET%^ using character's %^ORANGE%^%^ULINE%^CLASS%^RESET%^. If %^ORANGE%^%^ULINE%^CLASS%^RESET%^ is omitted uses currently d class you can change with %^ORANGE%^<pose>%^RESET%^. If you're single class character, uses your only class.
 
 A %^ORANGE%^%^ULINE%^SPELL%^RESET%^ might or might not have arguments. A %^ORANGE%^%^ULINE%^SPELL%^RESET%^ might be its quick name referenced in the helpfile. Don't use spell quick names in aliases as they change as new spells get added.
 
