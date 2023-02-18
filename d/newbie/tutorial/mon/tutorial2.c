@@ -129,7 +129,7 @@ int step_5(string str) {
    stringp(str) && str = lower_case(str);
    if(!str || member_array(str, ({"south", "s", "south 1", "s 1"})) == -1) {
      tell_object(TP,"%^RESET%^%^MAGENTA%^Shaani shakes her head:%^RESET%^ No no, just type %^YELLOW%^<peer "
-"south>%^RESET%^, %^YELLOW%^<peer south 1>%^RESET%^ or just %^YELLOW%^<peer s>%^RESET%^, to see where you're going.");
+"south>%^RESET%^, %^YELLOW%^<peer south 1>%^RESET%^ or %^YELLOW%^<peer s>%^RESET%^, to see where you're going.");
      return 1;
    }
    TP->set("newbtutorial2",5);
