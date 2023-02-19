@@ -4,7 +4,7 @@
 
 string terminal_color_hex(string raw_string, mapping color_mapping, int screen_width)
 {
-    int i, width_remaining, temp_r, temp_g, temp_b, starting_point, last_available_space, next_newline, last_color, bold_enabled;
+    int i, width_remaining, temp_r, temp_g, temp_b, starting_point, last_available_space, next_newline, last_color, last_space, bold_enabled;
     string* exploded_argument;
     string temporary_string;
     mapping is_color_code;
@@ -118,11 +118,11 @@ string terminal_color_hex(string raw_string, mapping color_mapping, int screen_w
                 continue;
             }
 
-            // If there is a space within our remaining width, and the next word isn't longer than our screen width.
+            // If there is a space within our remaining width
             if (last_available_space != -1)
             {
                 // If this is not the last space in the segment or this space fits exactly
-                if (strsrch(exploded_argument[i][starting_point + last_available_space + 1..<1], " ") != -1 || sizeof(exploded_argument[i][starting_point..starting_point + last_available_space - 1]) == width_remaining)
+                if (strsrch(exploded_argument[i][starting_point + last_available_space + 1..<1], " ") != -1 || last_available_space + 1 == width_remaining)
                 {
                     exploded_argument[i][starting_point + last_available_space] = 10;
                     if (last_color != -1)
@@ -165,13 +165,12 @@ string terminal_color_hex(string raw_string, mapping color_mapping, int screen_w
 
                     temporary_string += exploded_argument[last_color];
                 }
-
                 width_remaining = screen_width;
                 break;
             }
 
-            // If we can't fit the whole rest of the segment in, split it.
-            temporary_string += exploded_argument[i][starting_point..starting_point + width_remaining - 1] + "\n";
+            // If we can't fit the whole rest of the segment in, newline before it and take it from the top.
+            temporary_string += "\n";
             if (last_color != -1)
             {
                 if (bold_enabled)
@@ -180,7 +179,6 @@ string terminal_color_hex(string raw_string, mapping color_mapping, int screen_w
                 temporary_string += exploded_argument[last_color];
             }
 
-            starting_point += width_remaining;
             width_remaining = screen_width;
         }
 
