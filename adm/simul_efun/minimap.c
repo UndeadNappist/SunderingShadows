@@ -104,7 +104,7 @@ varargs string simple_map(mixed arg)
         }
     }
     ret = implode(lines, "\n");
-    ret = replace_string(ret, "@", "%^GREEN%^BOLD%^@%^RESET%^");
+    ret = replace_string(ret, "@", "%^GREEN%^%^BOLD%^@%^RESET%^");
     ret = replace_string(ret, "*", "%^GREEN%^*%^RESET%^");
     ret = replace_string(ret, "--", "%^CYAN%^--%^RESET%^");
     ret = replace_string(ret, "\\", "%^CYAN%^\\%^RESET%^");

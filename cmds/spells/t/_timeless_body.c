@@ -53,7 +53,7 @@ int spell_conceal(int x)
     
     if(!x) return 0;
     
-    power = x / 5;
+    power = x / 10;
     
     if(!power) return 0;
     
