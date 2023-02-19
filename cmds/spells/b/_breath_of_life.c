@@ -49,8 +49,13 @@ spell_effect(int prof) {
 
     if(!objectp(target))
     {
-        theirname = caster->realName(lower_case(arg));
-        target = find_player(theirname);
+        if(targ = find_object(arg))
+            target = targ;
+        else if(stringp(arg))
+        {
+            theirname = caster->realName(lower_case(arg));
+            target = find_player(theirname);
+        }
     }
 
     if(!objectp(target))
