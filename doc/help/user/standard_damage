@@ -2,6 +2,12 @@
 
 Each spell level utilizes a different die when calculating damage. The table per spell level is as follows:
 
+The dice below are multiplied by caster level (plus miscellaneous bonuses) to determine spell damage.
+
+** Note: Some spells do not strictly adhere to this table, but typically will note their altered effects **
+
+** Note: Spells with 'fixed' spell levels will use damage dice based on the fixed level instead (typically for healing). **
+
 %^CYAN%^%^ULINE%^All classes:
 %^CYAN%^L0:%^RESET%^  1d5
 %^CYAN%^L1:%^RESET%^  1d6
@@ -20,7 +26,7 @@ Each spell level utilizes a different die when calculating damage. The table per
 
 Various feats and conditions may shift the damage table further.
 
-%^CYAN%^Area of effect:%^RESET%^  1d6 + 1d6 per every 2 caster levels
+%^CYAN%^Area of effect:%^RESET%^  rolls : 1 + clevel / 2 dice (spell level sized dice)
 
 %^CYAN%^%^ULINE%^Monks:%^RESET%^
 1d11 for all spells
