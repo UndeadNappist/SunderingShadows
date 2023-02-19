@@ -26,7 +26,7 @@ The dice below are multiplied by caster level (plus miscellaneous bonuses) to de
 
 Various feats and conditions may shift the damage table further.
 
-%^CYAN%^Area of effect:%^RESET%^  rolls : 1 + clevel / 2 dice (spell level sized dice)
+%^CYAN%^Area of effect:%^RESET%^  rolls : 1 + clevel / 2 dice (spell level sized dice) (always d6 for warlock/monk)
 
 %^CYAN%^%^ULINE%^Monks:%^RESET%^
 1d11 for all spells

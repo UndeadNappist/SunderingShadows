@@ -41,6 +41,9 @@ int conceal_effect()
     power = max( ({ 25, power }) );
     power = min( ({ 100 - caster->query_missChance(), power }) );
     
+    if(power <= 0)
+        return 0;
+    
     return power;
 }
 
@@ -73,7 +76,7 @@ void spell_effect()
     spell_conceal = spell_conceal(current_conceal);
     caster->set_missChance(caster->query_missChance() + current_conceal);
     caster->set_property("blink misschance", 25);
-    caster->set_property("magic resistance", caster->query_property("magic resistance") + spell_conceal);
+    caster->set_property("magic resistance", spell_conceal);
     
     spell_successful();
     addSpellToCaster();
@@ -116,9 +119,9 @@ void execute_attack()
     caster->set_missChance(caster->query_missChance() - current_conceal);
     caster->set_missChance(caster->query_missChance() + new_conceal);
     current_conceal = new_conceal;
-    caster->set_property("magic resistance", caster->query_property("magic resistance") - spell_conceal);
+    caster->set_property("magic resistance", -spell_conceal);
     spell_conceal = spell_conceal(current_conceal);
-    caster->set_property("magic resistance", caster->query_property("magic resistance") + spell_conceal);    
+    caster->set_property("magic resistance", spell_conceal);    
     
     place->addObjectToCombatCycle(this_object(), 1);
 }
@@ -132,7 +135,7 @@ void dest_effect()
         //objectp(place) && tell_room(place, "EFFECT FADES ROOM", caster);
         caster->set_missChance(caster->query_missChance() - current_conceal);
         caster->remove_property("blink misschance");
-        caster->set_property("magic resistance", caster->query_property("magic resistance") - spell_conceal);
+        caster->set_property("magic resistance", -spell_conceal);
         caster->remove_property_value("spelled", ({ this_object() }));
     }
     ::dest_effect();
