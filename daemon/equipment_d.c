@@ -433,7 +433,8 @@ mixed all_active_bonuses(object who, int flag)
                 totalBon = who->query_spellTurning();
                 break;
             case "missChance":
-                totalBon = who->query_missChance();
+                //totalBon = who->query_missChance();
+                totalBon = who->query_temp_missChance();
                 break;
             case "shieldMiss":
                 totalBon = who->query_shieldMiss();

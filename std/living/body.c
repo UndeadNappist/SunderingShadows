@@ -222,7 +222,12 @@ void set_missChance(int i)
 
 int query_missChance()
 {
-    int sub_chance = 0;
+    return missChance;
+}
+
+int query_temp_missChance()
+{
+    int sub_chance;
     
     if(this_object()->is_shade())
     {
@@ -244,8 +249,6 @@ int query_missChance()
     if(this_object()->query_property("shadow walk"))
         sub_chance += 10;
     
-    sub_chance = sub_chance > 50 ? 50 : sub_chance;
-
     return missChance + sub_chance;
 }
 
