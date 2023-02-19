@@ -73,7 +73,8 @@ int extra_wield()
   {
      if(ob->query_wielded())
      {
-      set_item_bonus("will",10);
+      set_item_bonus("will",6);
+      set_item_bonus("damage bonus", 2);
     tell_object(owner, "%^C059%^As you wield the second sickle a sense of perfect resolve comes over you.%^RESET%^%^RESET%^");
      }
   }	
