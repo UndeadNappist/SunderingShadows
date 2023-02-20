@@ -42,6 +42,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,3);
 			obj->set_large_wc(1,2);
             obj->set_type("piercing");
+            obj->set_damage_type("piercing");
 			obj->set_prof_type("small blades");
             obj->set_weapon_prof("simple");
 			obj->set_weight(2);
@@ -51,6 +52,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,4);
 			obj->set_large_wc(1,3);
 			obj->set_type("piercing");
+            obj->set_damage_type("piercing");
             obj->set_prof_type("small blades");
 			obj->set_weight(2);
 			break;
@@ -59,6 +61,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,6);
 			obj->set_large_wc(1,3);
          	obj->set_type("bludgeoning");
+            obj->set_damage_type("bludgeoning");
             obj->set_weapon_prof("simple");
             obj->set_prof_type("club");
 			obj->set_weight(5);
@@ -68,6 +71,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,6);
 			obj->set_large_wc(1,6);
             obj->set_type("bludgeoning");
+            obj->set_damage_type("bludgeoning");
 			obj->set_prof_type("staff");
             obj->set_weapon_prof("simple");
 			obj->set_weight(5);
@@ -77,6 +81,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,8);
 			obj->set_large_wc(2,8);
 			obj->set_type("pierce");
+            obj->set_damage_type("piercing");
 			obj->set_property("lance",1);
 			obj->set_prof_type("lance");
 			obj->set_weapon_prof("martial");
@@ -88,6 +93,7 @@ void create_weapon(object obj)
 			obj->set_wc(2,4);
 			obj->set_large_wc(1,6);
 			obj->set_type("bludgeoning");
+            obj->set_damage_type("bludgeoning");
             obj->set_prof_type("mace");
             obj->set_weapon_prof("simple");
 			obj->set_weight(7);
@@ -97,6 +103,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,6);
 			obj->set_large_wc(2,4);
 			obj->set_type("pierce");
+            obj->set_damage_type("piercing");
             obj->set_prof_type("short blades");
             obj->set_weapon_prof("martial");
 			obj->set_weight(7);
@@ -106,6 +113,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,6);
 			obj->set_large_wc(1,4);
 			obj->set_type("slashing");
+            obj->set_damage_type("slashing");
             obj->set_prof_type("small blades");
             obj->set_weapon_prof("simple");
 			obj->set_weight(4);
@@ -115,6 +123,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,6);
 			obj->set_large_wc(3,4);
 			obj->set_type("pierce");
+            obj->set_damage_type("piercing");
             obj->set_prof_type("spear");
             obj->set_weapon_prof("martial");
 			obj->set_weight(8);
@@ -124,6 +133,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,8);
 			obj->set_large_wc(1,8);
 			obj->set_type("slashing");
+            obj->set_damage_type("slashing");
 			obj->set_profs("medium blades");
             obj->set_weapon_prof("martial");
 			obj->set_weight(7);
@@ -133,6 +143,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,6);
 			obj->set_large_wc(1,6);
             obj->set_type("lash");
+            obj->set_damage_type("slashing");
          	obj->set_prof_type("whip");
             obj->set_weapon_prof("exotic");
 			obj->set_weight(3);
@@ -142,6 +153,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,6);
 			obj->set_large_wc(2,4);
 			obj->set_type("bludgeoning");
+            obj->set_damage_type("bludgeoning");
          	obj->set_prof_type("flail");
 			obj->set_weapon_prof("martial");
             obj->set_weight(7);
@@ -151,6 +163,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,8);
 			obj->set_large_wc(1,6);
 			obj->set_type("bludgeoning");
+            obj->set_damage_type("bludgeoning");
             obj->set_prof_type("mace");
             obj->set_weapon_prof("simple");
 			obj->set_weight(7);
@@ -160,6 +173,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,10);
 			obj->set_large_wc(2,6);
 			obj->set_type("pierce");
+            obj->set_damage_type("piercing");
 			obj->set_prof_type("polearm");
             obj->set_weapon_prof("martial");
 			obj->set_weight(9);
@@ -169,6 +183,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,6);
 			obj->set_large_wc(1,8);
 			obj->set_type("pierce");
+            obj->set_damage_type("piercing");
 			obj->set_prof_type("spear");
 			obj->set_weight(5);
 			break;
@@ -177,6 +192,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,6);
 			obj->set_large_wc(2,4);
 			obj->set_type("bludgeoning");
+            obj->set_damage_type("bludgeoning");
             obj->set_prof_type("hammer");
             obj->set_weapon_prof("martial");
 			obj->set_weight(7);
@@ -186,6 +202,7 @@ void create_weapon(object obj)
 			obj->set_wc(1,8);
 			obj->set_large_wc(1,8);
 			obj->set_type("slash");
+            obj->set_damage_type("slashing");
             obj->set_prof_type("axe");
             obj->set_weapon_prof("martial");
 			obj->set_weight(7);
@@ -195,6 +212,8 @@ void create_weapon(object obj)
 			obj->set_wc(2,4);
 			obj->set_large_wc(1,6);
 			obj->set_type("slashing");
+            obj->set_damage_type("slashing");
+            obj->set_weapon_prof("martial");
 			obj->set_weight(7);
 			break;
 	}
@@ -337,7 +356,7 @@ void create_weapon(object obj)
    }
    obj->set_value(x);
    obj->set_property("enchantment",(random(2))+2);
-       obj->set_lore("Omrick Greenwood was a skilled blacksmith in "+
+   obj->set_lore("Omrick Greenwood was a skilled blacksmith in "+
                 "service to the faith of Law.  Omrick strived to bring "+
                 "the message of Law to all in the lands, by crafting and"+
                 " enchanting weapons.  These weapons helped many temples, "+
@@ -346,5 +365,7 @@ void create_weapon(object obj)
                 " was blessed with a special honor.  Now among the faith of"+
                 " The Lord of Battles the favored blacksmith is given the "+
                 "title Omrick.");
-        obj->set_property("lore difficulty",5);
-  }
+    obj->set_property("lore difficulty",5);
+    set_property("repairtype",({ "weaponsmith" }));
+}
+
