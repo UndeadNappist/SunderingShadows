@@ -17,7 +17,11 @@ inherit "/d/common/obj/weapon/gnome_hooked_hammer.c";
 int sundered, hit_count, amount
 object holder;
 
-void remove_sunder() { sundered = 0; } 
+void remove_sunder(object ob)
+{
+    sundered = 0;
+    objectp(ob) && ob->add_ac_bonus(10);
+} 
 
 void create()
 {
@@ -75,7 +79,7 @@ int hit_func(object target)
             tell_object(holder, "PROC SUNDER MESSAGE");
             tell_room(room, "PROC SUNDER MESSAGE ROOM", holder);
             sundered = 1;
-            call_out("remove_sunder", 30);
+            call_out("remove_sunder", 30, target);
         }
         else
         {
