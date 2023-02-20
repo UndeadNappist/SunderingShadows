@@ -18,8 +18,7 @@ void create()
     set_bonus_type("morale");
     set_syntax("cast CLASS blight [on TARGET]");
     set_damage_desc("clevel / 24 + 1 to damage and attack bonus, but no more than 2");
-    set_description("This spell will empower the target with dark energy, giving them a slightly better chance to hit in "
-"combat as well as allowing them to do a small amount more damage.");
+    set_description("This spell will empower the target with dark energy, giving them a slightly better chance to hit in combat as well as allowing them to do a small amount more damage.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
@@ -30,7 +29,7 @@ int preSpell()
 {
 //    if(!ALIGN_D->is_evil(caster)) {
    if((int)caster->query_true_align()%3 != 0) {
-        tell_object(caster,"%^RED%^Only those of evil intent may call on the power to blight a foe.");
+        tell_object(caster,"%^RED%^Only those of evil intent may call on the power to blight an ally.");
         return 0;
     }
     if(!target) { target = caster; }

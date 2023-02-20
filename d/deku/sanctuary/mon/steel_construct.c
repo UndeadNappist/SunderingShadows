@@ -11,7 +11,7 @@ void create() {
    set_long(
       "This construction is made of various shades of steel that range from"+
       " rusted to brand new. It is over seven feet tall with a large helm"+
-      " attatched for the head."
+      " attached for the head."
    );
    set_race("construct");
    set_gender("neuter");

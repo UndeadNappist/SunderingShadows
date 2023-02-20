@@ -56,6 +56,7 @@ varargs string list_commands(string str){
   }
   result += "\n%^ORANGE%^            gossip at random%^RESET%^ - listen out for random rumours"
       +"\n                               from around the Realms"
+      +"\n%^ORANGE%^                        stop - %^RESET%^stop gossiping at random"
       +"\n%^ORANGE%^          dig dirt on [%^RESET%^name%^ORANGE%^]%^RESET%^ - ask around after rumours"
       +"\n                               about the named person"
       +"\n%^ORANGE%^                start rumour%^RESET%^ - start a rumour about"
