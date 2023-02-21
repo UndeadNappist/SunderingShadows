@@ -2,18 +2,37 @@
 // Takes a string, scans for hex codes, replaces them with their ANSI escapes
 // Written by Spade on 8 Feb. 2023
 
-string terminal_color_hex(string raw_string, mapping terminal_information, int x)
+string terminal_color_hex(string raw_string, mapping color_mapping, int screen_width)
 {
-    int i, temp_r, temp_g, temp_b;
+    int i, j, width_remaining, temp_r, temp_g, temp_b, last_space_fragment, last_space_position, characters_since_last_space, bold_enabled;
     string* exploded_argument;
-    string colored_string, temp_color_string, trimmed_raw_string;
+    mapping is_color_code;
 
-    // Split the string up into color escales, add a backslash at the end to prevent the last split (potentially non-escaped) from always being counted as a color.
+    // Keeps track of whether or not a split was a color code.
+    is_color_code = ([]);
+
+    // Split the string up into color escapes, add a backslash at the end to prevent the last split (potentially non-escaped) from always being counted as a color.
     exploded_argument = explode(raw_string, "%^");
 
     for (i = 0; i < sizeof(exploded_argument); ++i)
     {
-        // If the first character of this fragment isn't a #, disregard.
+        // If the first real characters in this string aren't %^ and this is the first split, disregard.
+         if (i == 0 && raw_string[0..1] != "%^" )
+            continue;
+
+        // If the last real characters in this string aren't %^ and this is the first split, disregard.
+        if (i == sizeof(exploded_argument) - 1 && rtrim(raw_string)[<2..<1] != "%^" )
+            continue;
+
+        // If the argument matches an entry in the mapping
+        if (color_mapping[exploded_argument[i]])
+        {
+            is_color_code[i] = 1;
+            exploded_argument[i] = color_mapping[exploded_argument[i]];
+            continue;
+        }
+
+        // If the first character of this fragment isn't a #, check if it has a key in the map.
         if (exploded_argument[i][0] != '#')
             continue;
 
@@ -21,41 +40,89 @@ string terminal_color_hex(string raw_string, mapping terminal_information, int x
         if (sizeof(exploded_argument[i]) != 7)
             continue;
 
-        // If the last real characters in this string aren't %^, disregard.
-        trimmed_raw_string = rtrim(raw_string);
-
-        if (i == sizeof(exploded_argument) - 1 && trimmed_raw_string[sizeof(trimmed_raw_string) - 2] != '%' && trimmed_raw_string[sizeof(trimmed_raw_string) - 1] != '^' )
-            continue;
-
-        // Avoid some bullshit with character concatenation
-        temp_color_string = "00";
-
         // If the Red value is malformed, disregard.
-        temp_color_string[0] = exploded_argument[i][1];
-        temp_color_string[1] = exploded_argument[i][2];
-
-        if (!sscanf(temp_color_string, "%x", temp_r))
+        if (!sscanf(exploded_argument[i][1..2], "%x", temp_r))
             continue;
 
         // If the Green value is malformed, disregard.
-        temp_color_string[0] = exploded_argument[i][3];
-        temp_color_string[1] = exploded_argument[i][4];
-
-        if (!sscanf(temp_color_string, "%x", temp_g))
+        if (!sscanf(exploded_argument[i][3..4], "%x", temp_g))
             continue;
 
         // If the Blue value is malformed, disregard.
-        temp_color_string[0] = exploded_argument[i][5];
-        temp_color_string[1] = exploded_argument[i][6];
-
-        if (!sscanf(temp_color_string, "%x", temp_b))
+        if (!sscanf(exploded_argument[i][5..6], "%x", temp_b))
             continue;
 
+        // Mark this fragment as a color code.
+        is_color_code[i] = 1;
+
+        // Replace the current fragment with its respective color code
         exploded_argument[i] = "\033[38;2;" + temp_r + ";" + temp_g + ";" + temp_b + "m";
     }
 
-    // We are messy here because we add extranious color escapes, but that's okay because the terminal_colour efun will clean it up for us.
-    colored_string = implode(exploded_argument, "%^");
+    // If we have don't a screen width...
+    if (!screen_width)
+    {
+        return implode(exploded_argument, "");
+    }
 
-    return terminal_colour(colored_string, terminal_information, x, 0);
+    // Wrap the string.
+    width_remaining = screen_width;
+    last_space_position = -1;
+
+    for (i = 0; i < sizeof(exploded_argument); ++i)
+    {
+        // If this segment is a color track it and skip it.
+        if (is_color_code[i])
+            continue;
+
+        for (j = 0; j < sizeof(exploded_argument[i]); ++j)
+        {
+            if (exploded_argument[i][j] == 10)
+            {
+                width_remaining = screen_width;
+                continue;
+            }
+
+            if (width_remaining < 1)
+            {
+                if (exploded_argument[i][j] == ' ')
+                {
+                    exploded_argument[i][j] = 10;    // Make this a helper function for fuck's sake
+                    last_space_position = -1;
+                    width_remaining = screen_width;
+                    continue;
+                }
+
+                if (screen_width < characters_since_last_space || last_space_position == -1)
+                {
+                    exploded_argument[last_space_fragment] = exploded_argument[last_space_fragment][0..j - 1] + "\n" + exploded_argument[last_space_fragment][j..<1];    // Make this a helper function for fuck's sake
+                    last_space_position = -1;
+                    width_remaining = screen_width;
+                    continue;
+                }
+
+                exploded_argument[last_space_fragment][last_space_position] = 10;    // Make this a helper function for fuck's sake
+                i = last_space_fragment;
+                j = last_space_position;
+                last_space_position = -1;
+                width_remaining = screen_width;
+                continue;
+            }
+
+            if (exploded_argument[i][j] == ' ')
+            {
+                last_space_fragment = i;
+                last_space_position = j;
+                characters_since_last_space = 0;
+                --width_remaining;
+                continue;
+            }
+
+            --width_remaining;
+            ++characters_since_last_space;
+        }
+    }
+
+    // Join the exploded fragments as a string and return.
+    return implode(exploded_argument, "");
 }
