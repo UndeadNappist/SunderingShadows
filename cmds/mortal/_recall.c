@@ -24,6 +24,32 @@ int cmd_recall(string str)
 {
     int i, num, what;
     string errCheck;
+
+    // No argument
+    if (!str)
+    {
+        remembered = TP->query_rem_obs();
+        strarr = TP->query_rem_obs_sort();
+        if (!remembered || sizeof(remembered) < 1) {
+            tell_object(TP, "You can't remember a single thing.");
+            return 1;
+        }else {
+            tell_object(TP, "%^BOLD%^%^BLUE%^--==%^CYAN%^< %^WHITE%^" +
+                        "Things Remembered %^CYAN%^>%^BLUE%^==--%^RESET%^");
+            for (i = 0; i < sizeof(strarr); i++) {
+                if (!find_object_or_load(remembered[strarr[i]] + ".c")) {
+                    strtemp = strarr[i];
+                    temp = remembered;
+                    map_delete(temp, strtemp);
+                    TP->set_rem_obs(temp, strarr - ({ strarr[i] }));
+                    continue;
+                }
+                write("%^CYAN%^" + sprintf("%-15s %-25s", strarr[i], remembered[strarr[i]]->query_short()) + "%^RESET%^");
+            }
+            return 1;
+        }
+    }
+
     if (str == "locations") {
         remembered = TP->query_rem_rooms();
         strarr = TP->query_rem_rooms_sort();
@@ -158,27 +184,6 @@ int cmd_recall(string str)
         return 1;
     }
 
-    // No argument
-    remembered = TP->query_rem_obs();
-    strarr = TP->query_rem_obs_sort();
-    if (!remembered || sizeof(remembered) < 1) {
-        tell_object(TP, "You can't remember a single thing.");
-        return 1;
-    }else {
-        tell_object(TP, "%^BOLD%^%^BLUE%^--==%^CYAN%^< %^WHITE%^" +
-                    "Things Remembered %^CYAN%^>%^BLUE%^==--%^RESET%^");
-        for (i = 0; i < sizeof(strarr); i++) {
-            if (!find_object_or_load(remembered[strarr[i]] + ".c")) {
-                strtemp = strarr[i];
-                temp = remembered;
-                map_delete(temp, strtemp);
-                TP->set_rem_obs(temp, strarr - ({ strarr[i] }));
-                continue;
-            }
-            write("%^CYAN%^" + sprintf("%-15s %-25s", strarr[i],
-                                       remembered[strarr[i]]->query_short()) + "%^RESET%^");
-        }
-    }
     return 1;
 }
 
