@@ -11,7 +11,7 @@ void create()
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS hellfire ray on TARGET");
     set_damage_desc("half fire, half divine on ranged touch attack");
-    set_description("A blast of hellfire blazes from your hands. Half the damage is fire damage, but the other half results directly from unholy power and is therefore not subject to being reduced by fire resistance. This ray deals damage directly to target soul so good characters will never use it. This spell requires a successful ranged touch attack to hit.");
+    set_description("A blast of hellfire blazes from your hands. Half the damage is fire damage, but the other half results directly from unholy power and is therefore not subject to being reduced by fire resistance. This ray deals damage directly to target's soul, so good characters will never use it. This spell requires a successful ranged touch attack to hit.");
     evil_spell(1);
     set_verbal_comp();
     set_somatic_comp();
