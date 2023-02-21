@@ -42,7 +42,7 @@ void create()
 		"crop, and while none would dine on what was grown "+
 		"in that field, he was confident that he was doing "+
 		"her work.%^CRST%^\n%^C068%^- How Many are our scars, "+
-		"the lost villages of Attaya -%^CRST%^ %^C152%^Carrow Davin%^CRST%^\n");
+		"the lost vllages of Attaya -%^CRST%^ %^C152%^Carrow Davin%^CRST%^\n");
     set_property("lore difficulty", 30);
     set_property("id difficulty", 30);
 
@@ -64,30 +64,55 @@ void init() {
 
 int extra_wield()
 {
+    object *wielded;
+
     owner = environment(this_object());
-     
+    wielded = this_player()->query_wielded();
+    reset_bonus();
     tell_object(owner, "%^C059%^You grip the sickle in your hand with grim resolve.%^RESET%^");
     tell_room(environment(owner), "%^C059%^" + owner->query_cap_name() + " %^C059%^wields the sickle with a grim look.%^RESET%^", owner);
 
-  if((ob = present("calm reaper",ETO)) && living(ETO) && ob != TO)
-  {
-     if(ob->query_wielded())
-     {
-      set_item_bonus("will",6);
-      set_item_bonus("damage bonus", 2);
-    tell_object(owner, "%^C059%^As you wield the second sickle a sense of perfect resolve comes over you.%^RESET%^%^RESET%^");
-     }
-  }	
-	return 1;
-}
 
+    filter_array(wielded, (: $1->query_name() == "calm reaper" :));
+
+    if(sizeof(wielded))
+    {
+        this_object()->set_item_bonus("will",6);
+        this_object()->set_item_bonus("damage bonus", 2);
+        this_object()->set_item_bonus("attack bonus", 4);
+        tell_object(owner, "%^C059%^As you wield the second sickle a sense of perfect resolve comes over you.%^RESET%^%^RESET%^");
+    }
+   return 1;
+}
 int extra_unwield()
 {
-    
-    tell_object(owner, "%^C069%^You release the sickle and feel you can breathe again.%^RESET%^");
+
+    object *wielded;
+	object wielded2;
+    int i;
+
+    owner = environment(this_object());
+    wielded = this_player()->query_wielded();
+
+        tell_object(owner, "%^C069%^You release the sickle and feel you can breathe again.%^RESET%^");
     tell_room(environment(owner), "%^C069%^" + owner->query_cap_name() + "%^C069%^ unwields the sickle and opens their eyes.%^RESET%^", owner);
+
+	reset_bonus();
+    for(i=0;i<sizeof(wielded);i++)
+    {
+        wielded[i]->reset_bonus();
+    }
+	
+
     return 1;
 }
+
+void reset_bonus() {
+    item_bonuses = ([
+        "attack bonus" : 4
+        ]);
+}
+
 
 int extra_damage(object ob)
 {
@@ -119,7 +144,7 @@ int extra_hit(object ob)
         return 0;
     
     count = 0;
-    ename = ob->query_cap_name();
+    ename = ob->query_ca_name();
     oname = owner->query_cap_name();
     oposs = owner->query_possessive();
     
