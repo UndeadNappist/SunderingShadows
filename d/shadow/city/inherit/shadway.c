@@ -27,7 +27,7 @@ void create(){
       "avenue, consisting mostly of storefronts on the ground floor "+
       "and apartments reaching up a story or two above that. The "+
       "avenue gently slopes up a hill toward %^BOLD%^Magistrates' "+
-      "Plaza %^RESET%^in the center of the city.\n\n");
+      "Plaza %^RESET%^in the center of the city.\n");
    set_smell("default","Your nose catches the miasma of thousands "+
       "of humanoids in close proximity.");
    set_listen("default","You hear the dull roar of conversations and "+

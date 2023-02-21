@@ -1035,7 +1035,7 @@ string query_long_exits()
         break;
 
     case 1:
-        dstr = "The only obvious exit with a door is: " + DoorExits[0] + ".\n";
+        dstr = "The only obvious exit with a door is: " + DoorExits[0] + ".";
         break;
 
     default:
