@@ -3,7 +3,7 @@
 
 #include <std.h>
 #include "../defs.h"
-inherit ROOM;
+inherit "/std/library";
 
 void create(){
     ::create();
