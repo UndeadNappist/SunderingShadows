@@ -71,7 +71,7 @@ void heart_beat() {
    if( (object *)TO->query_attackers() == ({}) ) {
       if(flag >= 3) {
          tell_room(ETO,"The headless disappears into the bushes.");
-         TO->move(PATH+"argpath");
+         TO->move("/d/shadowgate/void");
          command("drop all");
          command("offerall");
          TO->remove();
