@@ -95,7 +95,7 @@ string terminal_color_hex(string raw_string, mapping color_mapping, int screen_w
 
                 if (screen_width < characters_since_last_space || last_space_position == -1)
                 {
-                    exploded_argument[last_space_fragment] = exploded_argument[last_space_fragment][0..j - 1] + "\n" + exploded_argument[last_space_fragment][j..<1];    // Make this a helper function for fuck's sake
+                    exploded_argument[i] = exploded_argument[i][0..j - 1] + "\n" + exploded_argument[i][j..<1];    // Make this a helper function for fuck's sake
                     last_space_position = -1;
                     width_remaining = screen_width;
                     continue;
