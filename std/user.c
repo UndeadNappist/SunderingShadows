@@ -1701,19 +1701,22 @@ void heart_beat()
     object *inv;
     string *cns;
     int i, pdq, max, count;
-    object ob,ob2,ob3, myspl;
+    object me, my_environment, ob, ob2, ob3, myspl;
 
     ::heart_beat();
 
-    if(!objectp(TO)) { return; }
-    if(!avatarp(TO) && userp(TO))
+    me = this_object();
+    my_environment = environment(me);
+
+    if(!objectp(me)) { return; }
+    if(!avatarp(me) && userp(me))
     {
         player_age += 2;
-        TO->count_down_timed_tax();
+        me->count_down_timed_tax();
     }
-    else if(avatarp(TO))
+    else if(avatarp(me))
     {
-        if(!TO->query("true_quietness")) player_age += 2;
+        if(!me->query("true_quietness")) player_age += 2;
     }
     ok_to_heal ++;
     if (query_property("fled") < time()) {
@@ -1729,13 +1732,13 @@ void heart_beat()
     if (query_property("cause_wrack_delay") > 0) {
         set_property("cause_wrack_delay",-1);
     }
-    if (TO->query_disable()) TO->iterate_disable();
+    if (me->query_disable()) me->iterate_disable();
     iterate_combat();
 
-    if (down_time && (down_time < time()) && (int)TO->query_age() > ((int)TO->query("down_time_age") + 7200)) {
+    if (down_time && (down_time < time()) && (int)me->query_age() > ((int)me->query("down_time_age") + 7200)) {
         down_time = 0;
-        TO->delete("down_time_age");
-        message("system","Your PK protection from your recent return or death has been lifted.",TO);
+        me->delete("down_time_age");
+        message("system","Your PK protection from your recent return or death has been lifted.",me);
     }
 	//whichever comes first - according to g
 	//6 hours logged in time or 4 RL days - then
@@ -1744,30 +1747,30 @@ void heart_beat()
     // changed to whichever is longer as recent rules state 4 RL day minimum to rejoin plots. N, 2/12.
     if(get_pk_death_flag())
 	{
-        if(!(int)TO->query("pk_death_age"))
+        if(!(int)me->query("pk_death_age"))
         {
-            TO->set("pk_death_age", player_age);
+            me->set("pk_death_age", player_age);
         }
-        if(!(int)TO->query("pk_death_time"))
+        if(!(int)me->query("pk_death_time"))
         {
-            TO->set("pk_death_time", (time() + PK_DEATH_RL_TIME));
-            TO->set_death_time(TO->query("pk_death_time"));
+            me->set("pk_death_time", (time() + PK_DEATH_RL_TIME));
+            me->set_death_time(me->query("pk_death_time"));
         }
-        /*if(player_age > ((int)TO->query("pk_death_age") + PK_DEATH_FLAG_LOGIN_TIME) && time() > (int)TO->query("pk_death_time"))
+        /*if(player_age > ((int)me->query("pk_death_age") + PK_DEATH_FLAG_LOGIN_TIME) && time() > (int)me->query("pk_death_time"))
         {
             remove_pk_death_flag();
         }*/
-        if((player_age < (TO->query("pk_death_age") + 600)) && (time() > (TO->query("pk_death_time") - (PK_DEATH_RL_TIME / 2)))) remove_pk_death_flag();
-        if(time() > (int)TO->query("pk_death_time")) remove_pk_death_flag();
+        if((player_age < (me->query("pk_death_age") + 600)) && (time() > (me->query("pk_death_time") - (PK_DEATH_RL_TIME / 2)))) remove_pk_death_flag();
+        if(time() > (int)me->query("pk_death_time")) remove_pk_death_flag();
     }
 
     if (player_age > static_user["autosave"]) {
-        if (!wizardp(TO)) {
-            message("environment", "Autosaving.", TO);
+        if (!wizardp(me)) {
+            message("environment", "Autosaving.", me);
         }
-        inv = all_inventory(TO);
-        if (objectp(ETO)) {
-            set_primary_start(file_name(ETO));
+        inv = all_inventory(me);
+        if (objectp(my_environment)) {
+            set_primary_start(file_name(my_environment));
         }else {
             set_primary_start("/d/shadow/room/pass/pass3");
         }
@@ -1778,41 +1781,41 @@ void heart_beat()
 
     max = query_formula();
     if (!static_user["stage"]) {
-        if (!wizardp(TO) && query_level() && query_level() >1) {
+        if (!wizardp(me) && query_level() && query_level() >1) {
             ob2 = new("/std/Object");
-            if (!ETO->query_property("no starve") &&
-                !TO->query_property("inactive") &&
-                !TO->is_undead() &&
-                !TO->query_ghost() &&
-                !(TO->query_race() == "soulforged") &&
+            if (!my_environment->query_property("no starve") &&
+                !me->query_property("inactive") &&
+                !me->is_undead() &&
+                !me->query_ghost() &&
+                !(me->query_race() == "soulforged") &&
                 random(2)){
-                if (!TO->query_stuffed())
+                if (!me->query_stuffed())
                 {
                     static_user["emaciated"]++;
                     do_damage("torso",roll_dice((static_user["emaciated"]+1),6));
-                    message("environment","You are getting weaker from Starvation!",TO);
+                    message("environment","You are getting weaker from Starvation!",me);
                 }
-                if (!TO->query_quenched())
+                if (!me->query_quenched())
                 {
                     static_user["emaciated"]++;
                     do_damage("torso",roll_dice((static_user["emaciated"]+1),6));
-                    message("environment","You are getting weaker from Thirst!",TO);
+                    message("environment","You are getting weaker from Thirst!",me);
                 }
 
-                if(!(TO->query_stuffed()&&TO->query_quenched())) {
-                    if(TO->query_hp()<-(TO->query_max_hp()*4/5))
+                if(!(me->query_stuffed()&&me->query_quenched())) {
+                    if(me->query_hp()<-(me->query_max_hp()*4/5))
                     {
-                        TO->add_death("Emaciation");
+                        me->add_death("Emaciation");
                         die();
                     }
                 } else {
                     static_user["emaciated"] = 0;
                 }
             }
-            if (TO->query_poisoning()) {
+            if (me->query_poisoning()) {
                 ob2->set_name("Poison");
                 do_damage("torso",query_poisoning());
-                message("environment","You are getting weaker from Poison!",TO);
+                message("environment","You are getting weaker from Poison!",me);
                 if (objectp(ob3=queryPoisoner())) {
                     add_attacker(ob3);
                 } else {
@@ -1829,11 +1832,11 @@ void heart_beat()
     static_user["stage"]--;
     if (dying > 0) {
         dying --;
-        message("environment","You are slowly slipping closer to death.",TO);
+        message("environment","You are slowly slipping closer to death.",me);
         if (dying <= 0) {
             //dead = 0;
-            message("environment","You have finally died.",TO);
-            TO->dying();
+            message("environment","You have finally died.",me);
+            me->dying();
         }
     }
     if (ok_to_attack()) {
@@ -1841,7 +1844,7 @@ void heart_beat()
     }
     if (query_parrying() && (!sizeof(query_wielded())))
     {
-        if(!FEATS_D->usable_feat(TO, "unarmed parry"))
+        if(!FEATS_D->usable_feat(me, "unarmed parry"))
         {
             write("You no longer have a weapon wielded, so you let down your defenses.");
             set_parrying(0);
@@ -1863,31 +1866,31 @@ void heart_beat()
             }
         }
     }
-    if (TO->query_disable() &&  (!(ob=query_current_attacker()))) {
-        TO->remove_disable();
+    if (me->query_disable() &&  (!(ob=query_current_attacker()))) {
+        me->remove_disable();
     }
     if (player_age > ok_to_heal)
         do_healing(calculate_healing());
     else
         calculate_healing();
-    if (userp(TO) && interactive(TO))
+    if (userp(me) && interactive(me))
     {
-        if ( (query_idle(TO) > 7260) &&
-             !avatarp(TO) &&
-             !TO->query("test_character") &&
-             !TO->query("persist_login"))
+        if ( (query_idle(me) > 7260) &&
+             !avatarp(me) &&
+             !me->query("test_character") &&
+             !me->query("persist_login"))
         {
             "/daemon/messaging_d.c"->avatars_message("notify","%^BOLD%^%^YELLOW%^<< "+TPQN + " has idled out. ["+query_time_logged_in()+"] >>%^RESET%^", ({ }) );
-            TO->force_me("quit");
+            me->force_me("quit");
         }
-        if ((query_idle(TO) > 600) && (!avatarp(TO)) && (!TO->query("test_character")) && (!TO->query_property("inactive")))
+        if ((query_idle(me) > 600) && (!avatarp(me)) && (!me->query("test_character")) && (!me->query_property("inactive")))
         {
-            if(TO && TO->query_forced()) return 1;
+            if(me && me->query_forced()) return 1;
             tell_object(TP, wrap("%^WHITE%^%^BOLD%^You haven't been doing anything and go inactive.\n Press RETURN to go active."));
-            TO->set_property("inactive", 1);
-            TO->force_me("save");
-            tell_room(environment(TO), TPQCN+" goes inactive.\n",
-                      ({ TO }) );
+            me->set_property("inactive", 1);
+            me->force_me("save");
+            tell_room(my_environment, me->query_capital_name()+" goes inactive.\n",
+                      ({ me }) );
             input_to("reactivate",1,time());
         }
     }
@@ -1909,8 +1912,8 @@ void heart_beat()
     if(query_offensive_bonus()){
         if(static_user["stance"] > 120) {
             reset_offensive_scale();
-            tell_object(TO, "%^BOLD%^You relax your stance.");
-            tell_room(ETO, "%^BOLD%^"+TOQCN+" relaxes "+TO->query_possessive()+" stance.",TO);
+            tell_object(me, "%^BOLD%^You relax your stance.");
+            tell_room(my_environment, "%^BOLD%^"+me->query_capital_name()+" relaxes "+me->query_possessive()+" stance.",me);
             static_user["stance"] = 0;
         }
         if (sizeof(query_attackers()) == 0) static_user["stance"]++;
@@ -1920,18 +1923,18 @@ void heart_beat()
     this_object()->remove_property("cleaving");
 
     //There are 3 heart beats per round. Adjust values accordingly.
-    if(objectp(TO))
+    if(objectp(me))
     {
 
-        if((FEATS_D->usable_feat(TO,"mighty resilience") || FEATS_D->usable_feat(TO,"remember the future")) &&
-           !TO->query_property("stab_resilience"))
+        if((FEATS_D->usable_feat(me,"mighty resilience") || FEATS_D->usable_feat(me,"remember the future")) &&
+           !me->query_property("stab_resilience"))
         {
-            TO->set_property("stab_resilience",(TO->query_level()+9)/10);
+            me->set_property("stab_resilience",(me->query_level()+9)/10);
         }
-        if(FEATS_D->usable_feat(TO,"undead graft") &&
-           !TO->query_property("stab_resilience"))
+        if(FEATS_D->usable_feat(me,"undead graft") &&
+           !me->query_property("stab_resilience"))
         {
-            TO->set_property("stab_resilience",(TO->query_level()+9)/20);
+            me->set_property("stab_resilience",(me->query_level()+9)/20);
         }
     }
 
@@ -1951,7 +1954,7 @@ void heart_beat()
 
     /* } */
 
-    if (!avatarp(TO))
+    if (!avatarp(me))
         if (!(user_ticker % 9))
             test_passive_perception();
     user_ticker++;
