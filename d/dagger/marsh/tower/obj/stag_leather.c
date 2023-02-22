@@ -97,7 +97,7 @@ string long;
 }
 
 int strike_func(int damage, object what, object who){
-	if(random(1000) < 75){
+    if(random(1000) < 75){
 	tell_room(environment(query_worn()),"%^GREEN%^A ghostly image of "+
 		"a stag charges out of "+ETOQCN+"'s leather armor and "+
 		"rams into "+who->QCN+", knocking "+who->QO+" down.",({ETO,who}));
@@ -106,5 +106,6 @@ int strike_func(int damage, object what, object who){
 	tell_object(who,"%^GREEN%^A ghostly image of a stag charges out of"+
 		" "+ETOQCN+"'s armor and rams into you, knocking you down!");
 		who->set_paralyzed(random(4),"%^ORANGE%^You are picking yourself back up.");
-	}
+    }
+    return damage;
 }
