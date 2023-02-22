@@ -19,7 +19,13 @@ int *age_brackets() {
     }*/
 }
 
-int *restricted_alignments(string subrace) { return ({ 3, 6, 9 }); }
+int *restricted_alignments(string subrace)
+{
+    if(subrace == "deep gnome")
+        return ({  });    
+    
+    return ({ 3, 6, 9 });
+}
 
 string* restricted_classes(string subrace)
 {
