@@ -105,23 +105,26 @@ void execute_attack()
     place = environment(caster);
     new_conceal = conceal_effect();
     
-    if(new_conceal > current_conceal)
+    if(caster->query_current_attacker())
     {
-        tell_object(caster, "%^C111%^Your body fades a bit, becoming more a part of the astral plane!%^CRST%^");
-        tell_room(place, "%^C117%^" + caster->query_cap_name() + "'s%^C111%^ body fades a bit, becoming more a part of the astral plane!%^CRST%^", caster);
-    }
-    else if(new_conceal < current_conceal)
-    {
-        tell_object(caster, "%^C105%^Your body becomes more solid as it enters more fully into the prime!%^CRST%^");
-        tell_room(place, "%^C105%^" + caster->query_cap_name() + "'s body becomes more solid as it enters more fully into the prime!%^CRST%^", caster);
-    }
+        if(new_conceal > current_conceal)
+        {
+            tell_object(caster, "%^C111%^Your body fades a bit, becoming more a part of the astral plane!%^CRST%^");
+            tell_room(place, "%^C117%^" + caster->query_cap_name() + "'s%^C111%^ body fades a bit, becoming more a part of the astral plane!%^CRST%^", caster);
+        }
+        else if(new_conceal < current_conceal)
+        {
+            tell_object(caster, "%^C105%^Your body becomes more solid as it enters more fully into the prime!%^CRST%^");
+            tell_room(place, "%^C105%^" + caster->query_cap_name() + "'s body becomes more solid as it enters more fully into the prime!%^CRST%^", caster);
+        }
     
-    caster->set_missChance(caster->query_missChance() - current_conceal);
-    caster->set_missChance(caster->query_missChance() + new_conceal);
-    current_conceal = new_conceal;
-    caster->set_property("magic resistance", -spell_conceal);
-    spell_conceal = spell_conceal(current_conceal);
-    caster->set_property("magic resistance", spell_conceal);    
+        caster->set_missChance(caster->query_missChance() - current_conceal);
+        caster->set_missChance(caster->query_missChance() + new_conceal);
+        current_conceal = new_conceal;
+        caster->set_property("magic resistance", -spell_conceal);
+        spell_conceal = spell_conceal(current_conceal);
+        caster->set_property("magic resistance", spell_conceal);
+    }
     
     place->addObjectToCombatCycle(this_object(), 1);
 }
