@@ -2,7 +2,7 @@
 #include <priest.h>
 
 inherit SPELL;
-int counter, element, random, flag;
+int counter, element, random_element, flag;
 string myenergy, mycolor;
 
 #define MYELEMENT ({ "cold", "electricity", "fire", "sonic" })
@@ -15,7 +15,7 @@ void create(){
     set_spell_level( ([ "psywarrior" : 2, "psion" : 2 ]) );
     set_spell_sphere("psychokinesis");
     set_discipline("kineticist");
-    set_syntax("cast CLASS energy emanation [on cold|electricity|fire|sonic]");
+    set_syntax("cast CLASS energy emanation [on cold|electricity|fire|sonic|random]");
     set_description("This power surrounds the psionic character in a glowing halo of energy that lashes out at all those nearby. The amount of damage grows with the manifester, and she can learn to control it better through feats like Perfect Caster. Upon manifesting the power, the psionic character chooses the energy type - cold, electricity, fire, sonic, or random. If no type is designated, it will default to a random selection of energies.");
     set_verbal_comp();
     set_arg_needed();
@@ -41,17 +41,17 @@ void spell_effect(int prof){
         dest_effect();
         return;
     }
-    random = 0;
+    random_element = 0;
     if(!arg){
         arg = "random";
-        random = 1;
+        random_element = 1;
     }
     switch(arg){
         case "cold":        element = 0; break;
         case "electricity": element = 1; break;
         case "fire":        element = 2; break;
         case "sonic":       element = 3; break;
-        default:            element = random(4);
+        default:            element = random(4); random_element = 1;
     }
     
     tell_room(place, "%^RESET%^%^CRST%^%^C255%^The aura surrounding "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C255%^ brightens and takes on "+MYCOLOR[element]+" hue %^C255%^as it emanates "+MYENERGY[element]+" energy%^C255%^!%^CRST%^", caster);
@@ -104,7 +104,7 @@ void execute_attack(){
         define_base_damage(0);
 
         tell_object(caster, "%^RESET%^%^CRST%^%^C255%^The halo of "+MYENERGY[element]+" energy %^C255%^surrounding you lashes out at your enemies!%^CRST%^");
-        tell_room(place, "%^RESET%^%^CRST%^%^C255%^The halo of "+MYENERGY[element]+" energy %^C255%^surrounding "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C255%^ lashes out at "+caster->query_possessive()+" enemies!%^CRST%^", ({caster, ppl[i]}));
+        tell_room(environment(caster), "%^RESET%^%^CRST%^%^C255%^The halo of "+MYENERGY[element]+" energy %^C255%^surrounding "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C255%^ lashes out at "+caster->query_possessive()+" enemies!%^CRST%^", ({caster, ppl[i]}));
 
         for(i=0;i<sizeof(ppl);i++){
             if(!objectp(ppl[i])) continue;
@@ -117,7 +117,7 @@ void execute_attack(){
         }
     }
     
-    if(random) element = random(4);
+    if(random_element) element = random(4);
     counter++;
     if(counter > (clevel * 6)){
         dest_effect();
