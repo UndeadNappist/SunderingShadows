@@ -1,6 +1,7 @@
+inherit WEAPONLESS;
+
 #include <std.h>
 #include "../elf.h"
-inherit WEAPONLESS;
 
 #define VQCN vic->query_cap_name()
 
@@ -87,7 +88,7 @@ void pull3(object targ)
     " out.");
     tell_room(ETO,"%^BOLD%^%^BLUE%^"+targ->QCN+" is pulled beneath the surface of the sea!",targ);
     //targ->set_paralyzed(100,"You are under the water, you can't breathe!");
-    targ->move_player(ROOMS+"water");
+    targ->move_player(ROOMS"water");
  
     return ;
 }
