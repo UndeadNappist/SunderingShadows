@@ -8,7 +8,7 @@ line, temp;
 //  report("Running command map, with string " + str);
   if (!stringp(str))
   {
-    TP->force_me("map");
+    TP->force_me("help map");
     return 1; 
   }
   num = sscanf(str, "%s %s", verb, name);
