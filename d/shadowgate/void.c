@@ -99,7 +99,7 @@ void clean_inventory()
     
     foreach(ob in targets)
     {
-        if(get_eval_cost() < 25000)
+        if(eval_cost() < 25000)
             continue;
                 
         if (!objectp(ob)) {

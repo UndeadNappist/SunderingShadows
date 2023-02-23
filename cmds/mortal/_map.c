@@ -536,7 +536,6 @@ void help()
     +"Map view: <alias mv map view>\n"
     +"Map load: alias ml map load $*\n"
     +"Map check: <alias mc map check>\n"
-    +Map note add: <alias mn map note add $*> \n"
+    +"Map note add: <alias mn map note add $*> \n"
   );
-
 }
