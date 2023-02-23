@@ -20,7 +20,7 @@
 int started, ranger;
 
 void do_elf();
-void do_guard();
+//void do_guard();
 void do_thorby();
 void do_rangerlead();
 
@@ -31,7 +31,7 @@ int startup() {
     if(started) return 2;
     started = 1;
     do_elf();
-    do_guard();
+//    do_guard();
     do_thorby(); 
     do_rangerlead(); 
     call_out("check_mobs", DELAY);
@@ -41,7 +41,7 @@ int startup() {
 void check_mobs(){
 
     do_elf();
-    do_guard();
+//    do_guard();
     if(!random(3))  do_thorby();
     if(!ranger) { 
        if(!random(3))  do_rangerlead(); 

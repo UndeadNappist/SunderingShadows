@@ -425,7 +425,7 @@ int setup_defence(object defender){
   for (i=1;i<9;i++){
     roomname = TABAXROOM + "battlement" + i;
     room = find_object_or_load(roomname);
-    if (objectp(room) && get_eval_cost() > 10000){
+    if (objectp(room) && eval_cost() > 10000){
       tabaxi = new(MOB + "tabaxi_archer");
       if (objectp(tabaxi)){
         tabaxi->move(room);
@@ -538,7 +538,7 @@ void start_attack(object who){
   orogs = ({});
   l = random(sizeof(squad_names));
   for (i=0;i<num;i++){
-    if(get_eval_cost() < 10000)
+    if(eval_cost() < 10000)
         continue;
     
     squad = new(MOB + "orog_squad" );
