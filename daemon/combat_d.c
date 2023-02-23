@@ -1221,7 +1221,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
         return;
 
     //CLEAVE SECTION
-    if(FEATS_D->usable_feat(attacker, "cleave") && objectp(weapon) && !weapon->is_lrweapon())
+    if(FEATS_D->usable_feat(attacker, "cleave") && objectp(weapon) && weapon != attacker && !weapon->is_lrweapon())
     {
         int cleave_dmg, flvl;
         string cleave_type;
