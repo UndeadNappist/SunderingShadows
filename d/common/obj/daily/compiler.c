@@ -102,7 +102,7 @@ void compile_plane(object owner)
     theme = THEMES[random(sizeof(THEMES))];
     
     //Clone the rooms, clone the monsters
-    while(get_eval_cost() > 10000 && x < MAX_WIDTH)
+    while(eval_cost() > 10000 && x < MAX_WIDTH)
     {
         for(int y = 0; y < MAX_HEIGHT; y++)
         {
@@ -141,7 +141,7 @@ void compile_plane(object owner)
     write("Adding room exits...");
     
     //Arrange exits
-    while(get_eval_cost() > 10000 && x < MAX_WIDTH)
+    while(eval_cost() > 10000 && x < MAX_WIDTH)
     {
         if(!sizeof(cloned_rooms))
         {

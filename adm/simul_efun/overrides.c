@@ -10,6 +10,15 @@
  *        log and check for permissions.
  */
 
+void set_author(string str)
+{
+    string author;
+    
+    if(!strlen(str))
+        return;
+    
+    author = str;
+}
 
 object find_player(string str)
 {
