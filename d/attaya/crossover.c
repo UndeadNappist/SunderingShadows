@@ -60,7 +60,11 @@ void init(){
 	call_out("fire", 1, this_player(), 1);
 }
 	
-void fire(object ob, int flag){
+void fire(object ob, int flag)
+{
+    if (!objectp(ob))
+        return;
+
 	if(ob->id("riptide")){ return; }
 	if(flag < sizeof(MESSAGE)){
 		tell_object(ob, "%^BOLD%^%^RED%^"+MESSAGE[flag]+"\n\n");
