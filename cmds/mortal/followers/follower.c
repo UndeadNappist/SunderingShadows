@@ -6,10 +6,11 @@
 
 inherit NPC;
 
-#define FILE "/d/save/retainers/" + followee->query_name() + "/" + (string)slot
+#define FILE "/d/save/retainers/" + followee_name + "/" + (string)slot
 
 
 object followee;
+string followee_name;
 int set = 0;
 int save_counter, level_up_counter, tick, slot;
 
@@ -53,7 +54,11 @@ void restore_follower()
 
 void set_followee(object f)
 {
+    if (!objectp(f))
+        return;
+
     followee = f;
+    followee_name = f->query_name();
     set = 1;
 }
 
