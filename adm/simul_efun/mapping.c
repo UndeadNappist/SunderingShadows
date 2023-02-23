@@ -6,6 +6,7 @@
   -- Tlaloc --
 */
 
+//Removes a key from mapping
 mapping m_delete(mapping map, mixed key)
 {   
     if(!mapp(map))
@@ -19,6 +20,7 @@ mapping m_delete(mapping map, mixed key)
     return map;
 }
 
+//Adds a key to mapping with data value
 mapping m_add(mapping map, mixed key, mixed data)
 {
     if(!mapp(map))
@@ -32,6 +34,7 @@ mapping m_add(mapping map, mixed key, mixed data)
     return map;
 }
 
+//Returns the keys of the mapping
 mixed *m_indices(mapping map)
 {
     if(!mapp(map))
@@ -39,3 +42,4 @@ mixed *m_indices(mapping map)
     
     return keys(map);
 }
+    

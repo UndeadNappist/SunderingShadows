@@ -13,3 +13,10 @@ void create(){
     set_value(100000);
     set_weight(10);
 }
+
+int remove()
+{
+    ::remove();
+
+    return 1;
+}
