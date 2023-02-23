@@ -20,10 +20,7 @@ int *age_brackets() {
 }
 
 int *restricted_alignments(string subrace)
-{
-    if(subrace == "deep gnome")
-        return ({  });    
-    
+{     
     return ({ 3, 6, 9 });
 }
 

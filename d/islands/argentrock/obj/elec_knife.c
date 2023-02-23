@@ -50,6 +50,7 @@ void create(){
     set_thrown_wc(1,6);
     set_thrown_hit_func((:TO,"throwme":));
     set_type("piercing");
+    set_damage_type("piercing");
     set_prof_type("small blades");
     set_size(1);
     set_property("repairtype",({"woodwork", "weaponsmith"}));
