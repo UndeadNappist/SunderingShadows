@@ -101,6 +101,8 @@ force_me("kill "+TPQN+ "");
 }
 
 void rainbow(object target){
+    if(environment(this_object())->is_demiplane_room()) return;
+    
    tell_room((ETO),"%^RESET%^%^GREEN%^The leprechaun points his fingers at "+target->query_cap_name()+" and "+target->query_subjective()+" disappears!",target);
    tell_object(target, "%^RESET%^%^GREEN%^The leprechaun points a finger at you and you are whisked somewhere else!");
    target->move_player(INRMS+"eor");
