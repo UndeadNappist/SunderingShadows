@@ -1873,27 +1873,7 @@ void heart_beat()
         do_healing(calculate_healing());
     else
         calculate_healing();
-    if (userp(me) && interactive(me))
-    {
-        if ( (query_idle(me) > 7260) &&
-             !avatarp(me) &&
-             !me->query("test_character") &&
-             !me->query("persist_login"))
-        {
-            "/daemon/messaging_d.c"->avatars_message("notify","%^BOLD%^%^YELLOW%^<< "+TPQN + " has idled out. ["+query_time_logged_in()+"] >>%^RESET%^", ({ }) );
-            me->force_me("quit");
-        }
-        if ((query_idle(me) > 600) && (!avatarp(me)) && (!me->query("test_character")) && (!me->query_property("inactive")))
-        {
-            if(me && me->query_forced()) return 1;
-            tell_object(TP, wrap("%^WHITE%^%^BOLD%^You haven't been doing anything and go inactive.\n Press RETURN to go active."));
-            me->set_property("inactive", 1);
-            me->force_me("save");
-            tell_room(my_environment, me->query_capital_name()+" goes inactive.\n",
-                      ({ me }) );
-            input_to("reactivate",1,time());
-        }
-    }
+
     if (static_user["rushed"] > 180) {
         static_user["rushed"]=0;
         remove_property("rushed");
@@ -1957,6 +1937,26 @@ void heart_beat()
     if (!avatarp(me))
         if (!(user_ticker % 9))
             test_passive_perception();
+
+    if (userp(me) && interactive(me))
+    {
+        if ((query_idle(me) > 7260) && !avatarp(me) && !me->query("test_character") && !me->query("persist_login"))
+        {
+            "/daemon/messaging_d.c"->avatars_message("notify","%^BOLD%^%^YELLOW%^<< "+TPQN + " has idled out. ["+query_time_logged_in()+"] >>%^RESET%^", ({ }) );
+            me->force_me("quit");
+        }
+        else if ((query_idle(me) > 600) && (!avatarp(me)) && (!me->query("test_character")) && (!me->query_property("inactive")))
+        {
+            if(me && me->query_forced()) return 1;
+            tell_object(TP, wrap("%^WHITE%^%^BOLD%^You haven't been doing anything and go inactive.\n Press RETURN to go active."));
+            me->set_property("inactive", 1);
+            me->force_me("save");
+            tell_room(my_environment, me->query_capital_name()+" goes inactive.\n",
+                      ({ me }) );
+            input_to("reactivate",1,time());
+        }
+    }
+
     user_ticker++;
 }
 
