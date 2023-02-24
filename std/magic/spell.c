@@ -1746,10 +1746,13 @@ mixed WildMagicArea(object where)
 
 varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string classtype)
 {
+    object me;
     string msg, whatsit, whatdo, * myclasses;
     mixed innate_spells, cantrips, deep;
 
-    if (!objectp(TO)) {
+    me = this_object();
+
+    if (!objectp(me)) {
         return;
     }
     if (!objectp(ob)) {
@@ -1804,19 +1807,19 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
         if (!(innate_spells = caster->query_innate_spells())) {
             tell_object(caster, "You have no innate spell of " +
                         spell_name + ".");
-            TO->remove();
+            me->remove();
             return;
         }
         if (member_array(spell_name, innate_spells) == -1) {
             tell_object(caster, "You have no innate spell of " +
                         spell_name + ".");
-            TO->remove();
+            me->remove();
             return;
         }
         if (!caster->can_use_innate_ability(spell_name)) {
             tell_object(caster, "You cannot use the innate spell " +
                         spell_name + " at this time.");
-            TO->remove();
+            me->remove();
             return;
         }
         if (clevel < 1) {
@@ -1831,7 +1834,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     myclasses = keys(spell_levels);
     if (!sizeof(myclasses)) {
         tell_object(caster, "No classes specified for this spell, contact a wiz.");
-        TO->remove();
+        me->remove();
         return;
     }
 
@@ -1851,7 +1854,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     if (member_array(spell_type, myclasses) == -1 && spell_type != "innate" && spell_type != "potion" && spell_type != "cantrip") {
         tell_object(caster, "Invalid caster class specified to " +
                     "invoke this spell, contact a wiz.");
-        TO->remove();
+        me->remove();
         return;
     }
 
@@ -1873,7 +1876,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
 
     if (!targ && target_required) {
         tell_object(caster, "Target needed.");
-        TO->remove();
+        me->remove();
         return;
     }
 
@@ -1896,7 +1899,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
                 }
                 if (!target) {
                     tell_object(caster, "That is not here!\n");
-                    TO->remove();
+                    me->remove();
                     return;
                 }
             }
@@ -1921,7 +1924,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     }
 
     if (!objectp(place)) {
-        TO->remove();
+        me->remove();
         return;
     }
 
@@ -1943,7 +1946,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     define_base_damage(0);
 
     if (!preSpell()) {
-        TO->remove();
+        me->remove();
         return;
     }
 
@@ -1986,7 +1989,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     }
 
     if (spell_type == "potion") {
-        TO->spell_effect(prof);
+        me->spell_effect(prof);
         return 1;
     }
 
@@ -2004,13 +2007,13 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
         }
 
         if (cast_time) {
-            place->set_round(TO, (int)place->query_stage() + cast_time);
+            place->set_round(me, (int)place->query_stage() + cast_time);
         }else {
-            place->set_round(TO, (int)place->query_stage() + spell_level);
+            place->set_round(me, (int)place->query_stage() + spell_level);
         }
         caster->set_casting(1);
     }else {
-        TO->spell_effect(prof);
+        me->spell_effect(prof);
     }
 
     if(TRACK_SPELLS && userp(caster))
