@@ -485,8 +485,12 @@ mixed query_property(string prop)
 {
 // racial bonuses errored when querying from /std/races; had to apply manually
     object* worn;
+    object me, my_environment;
     int num, mylevel, scaled, tmpval;
     string subrace, binding;
+
+    me = this_object();
+    my_environment = environment(me);
 
     num = 0;
 
@@ -496,52 +500,52 @@ mixed query_property(string prop)
     }
 
     if (prop == "untrippable") {
-        if (FEATS_D->usable_feat(TO, "shield master")) {
-            num += TO->query_base_character_level();
+        if (FEATS_D->usable_feat(me, "shield master")) {
+            num += me->query_base_character_level();
             num += 25;
         }
     }
 
     if (prop == "empowered") {
-        if (FEATS_D->usable_feat(TO, "greater spell power")) {
+        if (FEATS_D->usable_feat(me, "greater spell power")) {
             num += 3;
         } else {
-            if (FEATS_D->usable_feat(TO, "improved spell power")) {
+            if (FEATS_D->usable_feat(me, "improved spell power")) {
                 num += 2;
             } else {
-                if (FEATS_D->usable_feat(TO, "spell power")) {
+                if (FEATS_D->usable_feat(me, "spell power")) {
                     num += 1;
                 }
             }
         }
 
-        if(this_object()->is_class("warlock"))
+        if(me->is_class("warlock"))
         {
-            num += (this_object()->query("available burn") / 2);
+            num += (me->query("available burn") / 2);
         }
 
-        if(this_object()->is_class("druid"))
+        if(me->is_class("druid"))
         {
-            if(FEATS_D->has_feat(this_object(), "guardian of nature"))
+            if(FEATS_D->has_feat(me, "guardian of nature"))
             {
-                if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "city"))
+                if(!USER_D->is_valid_terrain(my_environment->query_terrain(), "city"))
                     num += 2;
             }
         }
 
-        if(this_object()->is_class("psion") && this_object()->query("available focus"))
+        if(me->is_class("psion") && me->query("available focus"))
             num += 1;
 
-        if ((string)TO->query_race() == "human") {
-            subrace = (string)TO->query("subrace");
+        if ((string)me->query_race() == "human") {
+            subrace = (string)me->query("subrace");
             if (subrace) {
                 if (strsrch(subrace, "genasi") != -1) {
                     num += 0;
                 }
             }
         }
-        if ((string)TO->query_race() == "elf") {
-            subrace = (string)TO->query("subrace");
+        if ((string)me->query_race() == "elf") {
+            subrace = (string)me->query("subrace");
             if (subrace) {
                 if (subrace == "aquatic elf") {
                     num += 0;
@@ -549,33 +553,33 @@ mixed query_property(string prop)
             }
         }
         num += props[prop];
-        return (num + EQ_D->gear_bonus(TO, "caster level"));
+        return (num + EQ_D->gear_bonus(me, "caster level"));
     }
 // tweaking a few bonuses here with feats overhaul. Nienne, 03/10
 // basic DR from 3 to 2; spell pen changed from 10/20 to 15/15 to match MR
 
     if (prop == "spell penetration") {
-        if (FEATS_D->usable_feat(TO, "spell penetration")) {
+        if (FEATS_D->usable_feat(me, "spell penetration")) {
             num += 2;
         }
-        if (FEATS_D->usable_feat(TO, "greater spell penetration")) {
+        if (FEATS_D->usable_feat(me, "greater spell penetration")) {
             num += 2;
         }
-        if(FEATS_D->usable_feat(this_object(), "mystic arcana"))
+        if(FEATS_D->usable_feat(me, "mystic arcana"))
             num += 1;
 
-        if(this_object()->query_race() == "elf" && this_object()->query("subrace") != "szarkai")
+        if(me->query_race() == "elf" && me->query("subrace") != "szarkai")
             num += 2;
 
         num += props[prop];
-        return (num + EQ_D->gear_bonus(TO, "spell penetration"));
+        return (num + EQ_D->gear_bonus(me, "spell penetration"));
     }
 
     if (prop == "damage penetration") {
-        if (FEATS_D->usable_feat(TO, "penetrating strike")) {
+        if (FEATS_D->usable_feat(me, "penetrating strike")) {
             num += 5;
         }
-        if (FEATS_D->usable_feat(TO, "greater penetrating strike")) {
+        if (FEATS_D->usable_feat(me, "greater penetrating strike")) {
             num += 5;
         }
         num += props[prop];
@@ -583,234 +587,234 @@ mixed query_property(string prop)
     }
 
     if (prop == "fast healing") {
-        if (TO->is_vampire()) {
-            if (!TO->is_in_sunlight()) {
-                int blst = (20000 - (int)TO->query_bloodlust()) / 2000 - 1;
+        if (me->is_vampire()) {
+            if (!me->is_in_sunlight()) {
+                int blst = (20000 - (int)me->query_bloodlust()) / 2000 - 1;
                 num = props[prop] + 5;
                 num -= blst < 0 ? 0 : blst;
                 return num < 0 ? 0 : num;
             }
         }
-        if (TO->query_race() == "shade" || this_object()->is_shade()) {
-            num -= min( ({ 0, (total_light(environment(this_object())) - 2) / 2 }) );
-        } else if (TO->query_race() == "troll" || this_object()->query_race() == "imp") {
+        if (me->query_race() == "shade" || me->is_shade()) {
+            num -= min( ({ 0, (total_light(my_environment) - 2) / 2 }) );
+        } else if (me->query_race() == "troll" || me->query_race() == "imp") {
             num += 2;
         }
-        else if(this_object()->query_race() == "ogre-mage")
+        else if(me->query_race() == "ogre-mage")
             num += 1;
 
-        if(FEATS_D->usable_feat(this_object(), "metabolic healing") && this_object()->query("available focus"))
+        if(FEATS_D->usable_feat(me, "metabolic healing") && me->query("available focus"))
             num += 1;
 
-        if(this_object()->query_mystery() == "shadow" && this_object()->query_class_level("oracle") > 30)
+        if(me->query_mystery() == "shadow" && me->query_class_level("oracle") > 30)
         {
-            if(total_light(environment(this_object())) < 2)
+            if(total_light(my_environment) < 2)
                 num += 1;
         }
 
-        if(this_object()->query_mystery() == "nature" && this_object()->query_class_level("oracle") > 10)
+        if(me->query_mystery() == "nature" && me->query_class_level("oracle") > 10)
         {
-            if(USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "forest"))
+            if(USER_D->is_valid_terrain(my_environment->query_terrain(), "forest"))
                 num += 2;
         }
 
         num += props[prop];
-        return (num + EQ_D->gear_bonus(TO, "fast healing"));
+        return (num + EQ_D->gear_bonus(me, "fast healing"));
     }
 
 // we want this to pick up item "empowered" bonuses only, without spell power feats. Manually applied.
     if (prop == "spell dcs") {
-        if (FEATS_D->usable_feat(TO, "spell focus"))
+        if (FEATS_D->usable_feat(me, "spell focus"))
             num += 1;
 
-        if(FEATS_D->usable_feat(TO, "spell penetration"))
+        if(FEATS_D->usable_feat(me, "spell penetration"))
             num += 1;
 
-        if(FEATS_D->usable_feat(TO, "greater spell penetration"))
+        if(FEATS_D->usable_feat(me, "greater spell penetration"))
             num += 1;
 
-        if(this_object()->is_class("warlock") && this_object()->query("maximum burn"))
+        if(me->is_class("warlock") && me->query("maximum burn"))
         {
-            num += (this_object()->query("available burn") / 3);
+            num += (me->query("available burn") / 3);
 
-            if(FEATS_D->usable_feat(this_object(), "mystic arcana"))
+            if(FEATS_D->usable_feat(me, "mystic arcana"))
                 num += 1;
         }
 
         //num += props["empowered"]; //doesn't seem to do anything
-        return (num + TO->query_property("empowered"));
+        return (num + me->query_property("empowered"));
     }
 
     if (prop == "damage resistance") {
-        if(FEATS_D->usable_feat(this_object(), "planar resilience"))
+        if(FEATS_D->usable_feat(me, "planar resilience"))
         {
             num += 4;
         }
-        if (FEATS_D->usable_feat(TO, "undead graft")) {
+        if (FEATS_D->usable_feat(me, "undead graft")) {
             num += 6;
         }
 
-		if (FEATS_D->usable_feat(TO, "perfect self")) {
+		if (FEATS_D->usable_feat(me, "perfect self")) {
             num += 10;
         }
 
-        if (FEATS_D->usable_feat(TO, "shadow master")) {
-            if (ETO->query_light() < 1) {
+        if (FEATS_D->usable_feat(me, "shadow master")) {
+            if (my_environment->query_light() < 1) {
                 num += 8;
             }
         }
 
-        if(this_object()->query_bloodline() == "orc" && this_object()->query_class_level("sorcerer") > 30)
+        if(me->query_bloodline() == "orc" && me->query_class_level("sorcerer") > 30)
             num += 5;
 
-        if(FEATS_D->usable_feat(this_object(), "armored juggernaut") && !this_object()->is_ok_armour("thief"))
-            num += (BONUS_D->query_stat_bonus(this_object(), "strength") / 2);
+        if(FEATS_D->usable_feat(me, "armored juggernaut") && !me->is_ok_armour("thief"))
+            num += (BONUS_D->query_stat_bonus(me, "strength") / 2);
 
-        if(this_object()->is_shade() || this_object()->query_race() == "nightwing")
+        if(me->is_shade() || me->query_race() == "nightwing")
         {
-            num -= (total_light(environment(this_object())) - 2);
+            num -= (total_light(my_environment) - 2);
         }
-        if (FEATS_D->usable_feat(TO, "damage resistance")) {
+        if (FEATS_D->usable_feat(me, "damage resistance")) {
             num += 2;
         }
-        if (FEATS_D->usable_feat(TO, "damage reduction")) {
-            num += (this_object()->query_guild_level("barbarian") - 10) / 6 + 1;
+        if (FEATS_D->usable_feat(me, "damage reduction")) {
+            num += (me->query_guild_level("barbarian") - 10) / 6 + 1;
 
-            if(FEATS_D->usable_feat(this_object(), "unstoppable"))
+            if(FEATS_D->usable_feat(me, "unstoppable"))
                 num += 3;
         }
-        if (FEATS_D->usable_feat(TO, "shadow master") && objectp(ETO) && ETO->query_light() < 2) {
+        if (FEATS_D->usable_feat(me, "shadow master") && objectp(my_environment) && my_environment->query_light() < 2) {
             num += 10;
         }
-        if (FEATS_D->usable_feat(TO, "armor mastery")) {
-            worn = filter_array(distinct_array(TO->all_armour()), "armor_filter", TO);
+        if (FEATS_D->usable_feat(me, "armor mastery")) {
+            worn = filter_array(distinct_array(me->all_armour()), "armor_filter", me);
             if (sizeof(worn)) {
                 num += query_guild_level("fighter") / 6 + 1;
             }
         }
-        if (FEATS_D->usable_feat(TO, "improved damage resistance")) {
+        if (FEATS_D->usable_feat(me, "improved damage resistance")) {
             num += 2;
         }
-        if(FEATS_D->usable_feat(this_object(), "infused form"))
+        if(FEATS_D->usable_feat(me, "infused form"))
             num += 5;
-        if(this_object()->query_mystery() == "battle" && this_object()->query_class_level("oracle") >= 15)
+        if(me->query_mystery() == "battle" && me->query_class_level("oracle") >= 15)
             num += 5;
 
-        if(this_object()->is_animal())
+        if(me->is_animal())
         {
-            object rider = this_object()->query_current_rider();
+            object rider = me->query_current_rider();
 
             if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
                 num += 5;
         }
 
         num += props[prop];
-        return (num + EQ_D->gear_bonus(TO, "damage resistance"));
+        return (num + EQ_D->gear_bonus(me, "damage resistance"));
     }
 
     if (prop == "magic resistance" || prop == "spell resistance") {
-        if (FEATS_D->usable_feat(TO, "improved resistance")) {
+        if (FEATS_D->usable_feat(me, "improved resistance")) {
             num += 1;
         }
-        if (FEATS_D->usable_feat(TO, "increased resistance")) {
+        if (FEATS_D->usable_feat(me, "increased resistance")) {
             num += 1;
         }
-        if ((string)TO->query_race() == "human") {
-            subrace = (string)TO->query("subrace");
+        if ((string)me->query_race() == "human") {
+            subrace = (string)me->query("subrace");
             if (subrace) {
                 if (strsrch(subrace, "genasi") != -1) {
                     num += 2;
                 }
             }
         }
-        if ((string)TO->query_race() == "gnome") {
-            subrace = (string)TO->query("subrace");
+        if ((string)me->query_race() == "gnome") {
+            subrace = (string)me->query("subrace");
             if (subrace) {
                 if (subrace == "deep gnome" || subrace == "svirfneblin") {
                     num += 1;
                 }
             }
         }
-        if ((string)TO->query_race() == "orc") {
-            subrace = (string)TO->query("subrace");
+        if ((string)me->query_race() == "orc") {
+            subrace = (string)me->query("subrace");
             if (subrace) {
                 if (subrace == "orog" || subrace == "tanarukk") {
                     num += 1;
                 }
             }
         }
-        if ((string)TO->query_race() == "elf") {
-            subrace = (string)TO->query("subrace");
+        if ((string)me->query_race() == "elf") {
+            subrace = (string)me->query("subrace");
             if (subrace) {
                 if (subrace == "fey'ri") {
                     num += 1;
                 }
             }
         }
-        if ((string)TO->query_race() == "deva") {
+        if ((string)me->query_race() == "deva") {
             num += 1;
         }
 
-        if ((string)TO->query_race() == "drow" ||
-            (string)TO->query("subrace") == "szarkai") {
+        if ((string)me->query_race() == "drow" ||
+            (string)me->query("subrace") == "szarkai") {
             num += 2;
         }
 
-        if(FEATS_D->has_feat(this_object(), "eternal warrior") && this_object()->query("available focus") == 2)
+        if(FEATS_D->has_feat(me, "eternal warrior") && me->query("available focus") == 2)
             num += 2;
 
-        if(this_object()->query_acquired_template() == "chaotic")
+        if(me->query_acquired_template() == "chaotic")
             num += 10;
 
         num += props[prop];
-        return (num + EQ_D->gear_bonus(TO, "magic resistance") + EQ_D->gear_bonus(TO, "spell resistance"));
+        return (num + EQ_D->gear_bonus(me, "magic resistance") + EQ_D->gear_bonus(me, "spell resistance"));
     }
 
     if(prop == "darkvision")
     {
-        if(avatarp(this_object()) || wizardp(this_object()))
+        if(avatarp(me) || wizardp(me))
             return 1;
 
-        if(this_object()->query_mystery() == "shadow")
+        if(me->query_mystery() == "shadow")
         {
-            if(this_object()->query_class_level("oracle") >= 15)
+            if(me->query_class_level("oracle") >= 15)
                 num += 1;
         }
-        if(this_object()->query_mystery() == "dragon")
+        if(me->query_mystery() == "dragon")
         {
-            if(this_object()->query_class_level("oracle") >= 15)
+            if(me->query_class_level("oracle") >= 15)
                 num += 1;
         }
-        if(this_object()->query_mystery() == "lunar")
+        if(me->query_mystery() == "lunar")
         {
-            if(this_object()->query_class_level("oracle") >= 15)
+            if(me->query_class_level("oracle") >= 15)
                 num += 1;
         }
 
         num += props[prop];
-        return (num + EQ_D->gear_bonus(TO, "darkvision"));
+        return (num + EQ_D->gear_bonus(me, "darkvision"));
     }
 
-    if (prop == "no death") {
-        if (TO->is_undead()) {
+    if (prop == "no death" && living(me)) {
+        if (me->is_undead()) {
             return 1;
         }
-        if (FEATS_D->usable_feat(TO, "death ward")) {
+        if (FEATS_D->usable_feat(me, "death ward")) {
             return 1;
         }
-        if (FEATS_D->usable_feat(TO, "fated")) {
+        if (FEATS_D->usable_feat(me, "fated")) {
             return 1;
         }
-        if (FEATS_D->usable_feat(TO, "earthen blood")) {
+        if (FEATS_D->usable_feat(me, "earthen blood")) {
             return 1;
         }
-        if(member_array("repose", this_object()->query_divine_domain()) >= 0)
+        if(member_array("repose", me->query_divine_domain()) >= 0)
             return 1;
     }
 
     if (prop == "water breather")
     {
-        if(this_object()->is_undead())
+        if(me->is_undead())
             return 1;
 
         num += props[prop];
@@ -819,15 +823,15 @@ mixed query_property(string prop)
     }
 
     if (prop == "no disarm") {
-        if (FEATS_D->usable_feat(TO, "weapon mastery")) {
+        if (FEATS_D->usable_feat(me, "weapon mastery")) {
             return 1;
         }
-        if(FEATS_D->usable_feat(this_object(), "inevitable steel"))
+        if(FEATS_D->usable_feat(me, "inevitable steel"))
             return 1;
     }
 
     if (prop == "sunlight_umbrella") {
-        if (FEATS_D->usable_feat(TO, "mask of mortality")) {
+        if (FEATS_D->usable_feat(me, "mask of mortality")) {
             return 1;
         }
         num += props[prop];
@@ -835,21 +839,21 @@ mixed query_property(string prop)
     }
 
     if (prop == "negative energy affinity") {
-        if (TO->is_undead()) {
+        if (me->is_undead()) {
             return 1;
         }
-        if(FEATS_D->usable_feat(this_object(), "negative energy conduit"))
+        if(FEATS_D->usable_feat(me, "negative energy conduit"))
         {
             return 1;
         }
-        if(this_object()->query_class_level("oracle") >= 15)
+        if(me->query_class_level("oracle") >= 15)
         {
-            if(this_object()->query_mystery() == "bones")
+            if(me->query_mystery() == "bones")
                 return 1;
         }
         //Unlike other racial bonuses this one must be valid for all
         //half-races as well.
-        if (TO->query("subrace") == "dhampir") {
+        if (me->query("subrace") == "dhampir") {
             return 1;
         }
         num += props[prop];
@@ -857,21 +861,21 @@ mixed query_property(string prop)
     }
 
     if (prop == "verstandnis") {
-        if (FEATS_D->usable_feat(TO, "tongue of the sun and moon")) {
+        if (FEATS_D->usable_feat(me, "tongue of the sun and moon")) {
             return 1;
         }
     }
 
     if (prop == "mind_immunity") {
-        if (FEATS_D->usable_feat(TO, "unyielding soul")) {
+        if (FEATS_D->usable_feat(me, "unyielding soul")) {
             num += 6;
         }
         /*
-        if (FEATS_D->usable_feat(TO, "mind partition")) {
+        if (FEATS_D->usable_feat(me, "mind partition")) {
             num += 14;
         }
         */
-        if (TO->is_undead()) {
+        if (me->is_undead()) {
             return 20;
         }
         num += props[prop];
@@ -883,7 +887,7 @@ mixed query_property(string prop)
 
     if(prop == "spectral_hand")
     {
-        if(PLAYER_D->check_familiar(this_object()))
+        if(PLAYER_D->check_familiar(me))
             return 1;
 
         return props[prop];
@@ -893,35 +897,35 @@ mixed query_property(string prop)
     {
         int rend_max;
 
-        if(this_object()->is_undead())
+        if(me->is_undead())
             return 0;
 
-        if(PLAYER_D->immunity_check(this_object(), "rend"))
+        if(PLAYER_D->immunity_check(me, "rend"))
             return 0;
 
-        rend_max = this_object()->query_character_level() / 5 + 1;
+        rend_max = me->query_character_level() / 5 + 1;
         props["rend"] = min( ({ props["rend"], rend_max }) );
 
         return props[prop];
     }
 
     if (prop == "spell damage resistance") {
-        if (TO->is_vampire()) {
-            if (!TO->is_in_sunlight()) {
+        if (me->is_vampire()) {
+            if (!me->is_in_sunlight()) {
                 num += 10;
             }
         }
-        if(this_object()->is_deva())
+        if(me->is_deva())
         {
             num += 30;
         }
-        if(this_object()->is_shade())
+        if(me->is_shade())
         {
-            num -= (2 * (total_light(environment(this_object())) - 2));
+            num -= (2 * (total_light(my_environment) - 2));
         }
 
-        if ((string)TO->query_race() == "human") {
-            subrace = (string)TO->query("subrace");
+        if ((string)me->query_race() == "human") {
+            subrace = (string)me->query("subrace");
             if (subrace) {
                 if (subrace == "maalish") {
                     num += 5;                          // +5 SR for human Maalish ethnicity
@@ -929,42 +933,42 @@ mixed query_property(string prop)
             }
         }
 
-        if(this_object()->query_bloodline() == "fey" && this_object()->query_class_level("sorcerer") > 30)
+        if(me->query_bloodline() == "fey" && me->query_class_level("sorcerer") > 30)
             num += 10;
 
-		if (FEATS_D->usable_feat(TO, "perfect self")) {
+		if (FEATS_D->usable_feat(me, "perfect self")) {
             num += 50;
         }
         /*
-        if (FEATS_D->usable_feat(TO, "resistance")) {
+        if (FEATS_D->usable_feat(me, "resistance")) {
             num += 5;
         }
-        if (FEATS_D->usable_feat(TO, "increased resistance")) {
+        if (FEATS_D->usable_feat(me, "increased resistance")) {
             num += 7;
         }
-        if (FEATS_D->usable_feat(TO, "improved resistance")) {
+        if (FEATS_D->usable_feat(me, "improved resistance")) {
             num += 9;
         }
         */
 
-        if(this_object()->is_animal())
+        if(me->is_animal())
         {
-            object rider = this_object()->query_current_rider();
+            object rider = me->query_current_rider();
 
             if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
                 num += 5;
         }
 
         num += props[prop];
-        return (num + EQ_D->gear_bonus(TO, "spell damage resistance"));
+        return (num + EQ_D->gear_bonus(me, "spell damage resistance"));
     }
 
     //Added this to allow for a temporary enchantment property - Saide
     if (prop == "enchantment") {
-        if (objectp(ETO) && props[prop] > 0) {
-            if (intp(scaled = TO->query("scaledlevel")) && scaled > 0 && living(ETO)) {
+        if (objectp(my_environment) && props[prop] > 0) {
+            if (intp(scaled = me->query("scaledlevel")) && scaled > 0 && living(my_environment)) {
                 tmpval = props[prop];
-                tmpval = to_int(to_float(scaled) / to_float(ETO->query_base_character_level()) * tmpval);
+                tmpval = to_int(to_float(scaled) / to_float(my_environment->query_base_character_level()) * tmpval);
                 if (tmpval < 1) {
                     tmpval = 0;
                 }
@@ -980,7 +984,7 @@ mixed query_property(string prop)
     }
     if (stringp(prop) && strsrch(prop, "bonus_spell_slots") != -1) {
         num = props[prop];
-        return (num + EQ_D->gear_bonus(TO, prop));
+        return (num + EQ_D->gear_bonus(me, prop));
     }
     return props[prop];
 }
