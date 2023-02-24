@@ -9,7 +9,7 @@ void create(){
 	set_obvious_short("%^BOLD%^%^CYAN%^fl%^BLUE%^o%^CYAN%^w%^BLUE%^i%^CYAN%^ng gl%^BLUE%^i%^CYAN%^tt%^BLUE%^e%^CYAN%^r%^BLUE%^i%^CYAN%^ng s%^BLUE%^a%^CYAN%^sh %^BLUE%^o%^CYAN%^f br%^BLUE%^i%^CYAN%^ght %^BLUE%^a%^CYAN%^z%^BLUE%^u%^CYAN%^r%^BLUE%^e%^RESET%^");
 	set_long("%^BOLD%^%^CYAN%^This sash appears to be moving as if a soft glowing wind were within. The everflowing folds and twists of the sash give a "
 "voluminous impression, and make it appear as if the material is almost a hundred feet long. The sash is fashioned out of an incredibly soft turquoise silk, "
-"yet it seems as though it has been fortified through magic to be as sturdy as canvas.  It looks like it would be able put an item inside of the sash.");
+"yet it seems as though it has been fortified through magic to be as sturdy as canvas.  It looks like you could fit an item within the sash.");
 	set_weight(5);
    set_value(0);
 	set_lore("%^BOLD%^%^BLUE%^The Splendid Sash of the Worlds is a rare and most sought after treasure. Only those of great merit or fortune could ever "
