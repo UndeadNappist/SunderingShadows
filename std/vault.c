@@ -1000,7 +1000,10 @@ string query_long_exits()
         break;
 
     case 1:
-        ndstr = "The only obvious exit is: " + NonDoorExits[0] + ".\n";
+        ndstr = "The only obvious exit is: " + NonDoorExits[0] + ".";
+        if(sizeof(DoorExits)){
+            ndstr += "\n";
+        }
         break;
 
     default:
