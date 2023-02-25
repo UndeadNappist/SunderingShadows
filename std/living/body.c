@@ -2403,6 +2403,12 @@ object* query_wielded()
     return (wielded_objects ? values(wielded_objects) : ({}));
 }
 
+//Replace this with more efficient method
+object* query_worn()
+{
+    return (filter_array(all_inventory(this_object()), (: $1->query_worn() :)));
+}
+
 object query_weapon(string limb)
 {
     if (!wielded_objects) {
