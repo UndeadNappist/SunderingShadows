@@ -76,7 +76,7 @@ void deep_orb_check()
                 deep_inv[j]->remove();
                 sacks += ({ inv[i] });
                 tell_object(environment, "%^RED%^Despite your best efforts to prevent it, the " + this_orb->query_short() + "s %^RED%^merge with one another and blink out of existence!");
-                tell_room(environment(environment), "%^RED%^Despite " + environment->query_capital_name() + "'s best efforts, the " + this_orb->query_short() + "s %^RED%^merge with one another and blink out of existence!", environment);
+                tell_room(environment(environment), "%^RED%^Despite " + environment->query_cap_name() + "'s best efforts, the " + this_orb->query_short() + "s %^RED%^merge with one another and blink out of existence!", environment);
             }
         }
     }
@@ -111,7 +111,7 @@ void heart_beat()
         }
 
         tell_object(environment, "%^RED%^Despite your best efforts to prevent it, the " + this_orb->query_short() + "s%^RED%^ merge with one another and blink out of existence!");
-        tell_room(environment(environment), "%^RED%^Despite " + environment->query_capital_name() + "'s best efforts, the " + this_orb->query_short() + "s%^RED%^ merge with one another and blink out of existence!", environment);
+        tell_room(environment(environment), "%^RED%^Despite " + environment->query_cap_name() + "'s best efforts, the " + this_orb->query_short() + "s%^RED%^ merge with one another and blink out of existence!", environment);
         ob->remove();
         this_orb->remove();
     }

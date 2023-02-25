@@ -1951,7 +1951,7 @@ void heart_beat()
             tell_object(TP, wrap("%^WHITE%^%^BOLD%^You haven't been doing anything and go inactive.\n Press RETURN to go active."));
             me->set_property("inactive", 1);
             me->force_me("save");
-            tell_room(my_environment, me->query_capital_name()+" goes inactive.\n",
+            tell_room(my_environment, me->query_cap_name()+" goes inactive.\n",
                       ({ me }) );
             input_to("reactivate",1,time());
         }

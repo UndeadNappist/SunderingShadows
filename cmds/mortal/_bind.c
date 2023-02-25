@@ -51,7 +51,7 @@ int cmd_bind(string str)
         action = "some rope to bind";
     }
     rope->remove();
-    tell_room(environment, "%^BOLD%^" + binder->query_capital_name() + " uses " + action + " " + binder->query_cap_name() + "'s hands and feet.", ({ binder, bindee }));
+    tell_room(environment, "%^BOLD%^" + binder->query_cap_name() + " uses " + action + " " + binder->query_cap_name() + "'s hands and feet.", ({ binder, bindee }));
     tell_object(binder, "%^BOLD%^You use " + action + " " + bindee->query_cap_name() + "'s hands and feet.");
 /*This should change it so that poses are automatically removed when someone is bound so we no longer have strange poses of people standing while bound.  ~Circe~ 10/3/03  Last change was Sept. 17, 2003
  */
@@ -64,7 +64,7 @@ int cmd_bind(string str)
     }
 
     if (!bindee->query_unconscious())
-        tell_object(bindee, "%^BOLD%^" + binder->query_capital_name() + " uses " + action + " your hands and feet. You might want to <struggle>.");
+        tell_object(bindee, "%^BOLD%^" + binder->query_cap_name() + " uses " + action + " your hands and feet. You might want to <struggle>.");
 
     if (bindee->query_property("submit_bind", binder))
         bindee->remove_property("submit_bind", binder);

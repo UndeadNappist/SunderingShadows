@@ -206,6 +206,14 @@ int caster_level_calcs(object player, string the_class)
     return 0;
 }
 
+string *query_domain_skills(string domain)
+{
+    if(domain == "trickery")
+        return ({ "stealth" });
+    
+    return ({  });
+}
+
 string *query_bonus_languages()
 {
     return ({"celestial", "abyssal", "infernal"});
