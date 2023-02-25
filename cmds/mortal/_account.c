@@ -15,28 +15,38 @@ int cmd_account(string str)
 
     if(archp(TP))
     {
-        if(strsrch(str,"password") != -1)
+        if(stringp(str) && str != "" && str != " ")
         {
-            if(sscanf(str,"%s change password %s",player_name,new_pass) != 2)
+            if(strsrch(str,"password") != -1)
             {
-                tell_object(TP,"Syntax: account <player name> change password <new password>");
-                return 1;
-            }
+                if(sscanf(str,"%s change password %s",player_name,new_pass) != 2)
+                {
+                    tell_object(TP,"Syntax: account <player name> change password <new password>");
+                    return 1;
+                }
 
-            account_object = new(OB_ACCOUNT);
-            account_name = USERCALL->user_call(player_name, "query","user_account");
-            if(!account_name)
-            {
-                tell_object(TP,"No account seems to exist for "+player_name+".");
+                account_object = new(OB_ACCOUNT);
+                account_name = USERCALL->user_call(player_name, "query","user_account");
+                if(!account_name)
+                {
+                    tell_object(TP,"No account seems to exist for "+player_name+".");
+                    if(objectp(account_object)) account_object->exit();
+                    if(objectp(account_object)) destruct(account_object);
+                    return 1;
+                }
+                account_object->law_set_password(TP, player_name, new_pass);
                 if(objectp(account_object)) account_object->exit();
                 if(objectp(account_object)) destruct(account_object);
                 return 1;
             }
-            account_object->law_set_password(TP, player_name, new_pass);
-            if(objectp(account_object)) account_object->exit();
-            if(objectp(account_object)) destruct(account_object);
-            return 1;
         }
+        else
+        {
+            account_object = new(OB_ACCOUNT);
+            account_object->show_menu(this_player());
+        }
+        
+        return 1;
     }
 
     if(avatarp(TP) && stringp(str) && str != "" && str != " ")
