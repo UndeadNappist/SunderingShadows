@@ -13,6 +13,7 @@
 inherit DAEMON;
 
 int cost, micros;
+mixed error;
 
 public mixed call_lpc_file(string file)
 {
@@ -21,14 +22,17 @@ public mixed call_lpc_file(string file)
     int ut1      = 0;
     int ut2      = 0;
     mixed result = 0;
-    object ob    = load_object(file);
+    object ob    = 0;
+    error        = 0;
+    
+    if(error = (mixed)catch(ob = load_object(file)) || error = (mixed)catch(call_other(ob, "eval")))
+        return error;
     
     ut1          = perf_counter_ns();
     cost1        = eval_cost();
     result       = (mixed)call_other(ob, "eval");
     ut2          = perf_counter_ns();
-    cost2        = eval_cost();
-    
+    cost2        = eval_cost();    
     cost         = cost1 - cost2;
     micros       = ut2 - ut1;
     
@@ -72,18 +76,26 @@ int cmd_lpc(string args)
     write_file(path, file);
     
     result = call_lpc_file(path);
-    printf("%s[%s%d%s|%s%d%s] %s(%s)%s\n", HIW, HIC, cost, HIW, HIY, micros, HIW, GRN, args, ESC);
     
-    if(intp(result))
-        color = "%^BOLD%^%^RED%^";
-    else if(stringp(result))
-        color = "%^BOLD%^%^GREEN%^";
-    else if(pointerp(result))
-        color = "%^MAGENTA%^%^BOLD%^";
+    if(error)
+    {
+        write("%^CYAN%^%^BOLD%^ERROR : %^YELLOW%^" + error + "%^RESET%^\n");
+    }
     else
-        color = "%^BOLD%^%^BLUE%^";
+    {
+        printf("%s[%s%d%s|%s%d%s] %s(%s)%s\n", HIW, HIC, cost, HIW, HIY, micros, HIW, GRN, args, ESC);
     
-    write("%^BOLD%^Result : %^RESET%^" + color + result + "%^RESET%^\n");
+        if(intp(result))
+            color = "%^BOLD%^%^RED%^";
+        else if(stringp(result))
+            color = "%^BOLD%^%^GREEN%^";
+        else if(pointerp(result))
+            color = "%^MAGENTA%^%^BOLD%^";
+        else
+            color = "%^BOLD%^%^BLUE%^";
+    
+        write("%^BOLD%^Result : %^RESET%^" + color + result + "%^RESET%^\n");
+    }
     
     if(test = find_object(path))
         destruct(test);
