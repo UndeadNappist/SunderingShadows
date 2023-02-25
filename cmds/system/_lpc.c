@@ -48,13 +48,16 @@ int cmd_lpc(string args)
     seteuid(geteuid());
     seteuid(getuid(previous_object()));
     
+    if(args[0..5] == "return")
+        args = args[6..];
+    
     file = "" +
         "#include <std.h>\n" +
         "#include <daemons.h>\n" +
         "#include <runtime_config.h>\n" +
         "inherit OBJECT;\n" +
         "void create() { seteuid( getuid() ); }\n" +
-        "mixed eval() { " + args + "; }\n" +
+        "mixed eval() { return " + args + "; }\n" +
         "";
     path = user_path(geteuid(this_player()));
     
@@ -86,5 +89,13 @@ int cmd_lpc(string args)
         destruct(test);
     
     return 1;
+}
+
+int help()
+{
+    write("SYNTAX : lpc <evals>\n");
+    write("Effect : calls a function containing <evals>\n");
+    write("Will return [eval cost | eval time] with evals called. Below that will be listed the result.\n");
+    write("Separate lines of code with ; as if you're writing an actual file.\n");
 }
 
