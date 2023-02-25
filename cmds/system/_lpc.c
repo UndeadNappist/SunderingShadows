@@ -15,6 +15,7 @@ inherit DAEMON;
 int cost, micros;
 mixed error;
 
+//Handles the actual call and gathers metrics
 public mixed call_lpc_file(string file)
 {
     int cost1    = 0;
@@ -94,7 +95,7 @@ int cmd_lpc(string args)
         else
             color = "%^BOLD%^%^BLUE%^";
     
-        write("%^BOLD%^Result : %^RESET%^" + color + result + "%^RESET%^\n");
+        write("%^BOLD%^Result : %^RESET%^" + color + identify(result) + "%^RESET%^\n");
     }
     
     if(test = find_object(path))
@@ -108,6 +109,5 @@ int help()
     write("SYNTAX : lpc <evals>\n");
     write("Effect : calls a function containing <evals>\n");
     write("Will return [eval cost | eval time] with evals called. Below that will be listed the result.\n");
-    write("Separate lines of code with ; as if you're writing an actual file.\n");
 }
 
