@@ -47,14 +47,12 @@ int cmd_eval(string a)
         destruct(ret);
     }
     write_file(filename, file);
-    evals = eval_cost();
+
     if (err = catch(ret = (mixed)call_other(filename, "eval"))) {
         write("Error = " + err);
         (mixed)call_other(filename, "eval");
     }else {
-        evals -= eval_cost();
         write(wrap("Result = " + identify(ret)));
-        write("Evaluation Cost : " + evals + "\n");
     }
     //rm( filename );
     if (ret = find_object(filename)) {
