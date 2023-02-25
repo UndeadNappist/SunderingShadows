@@ -117,7 +117,7 @@ void check()
 
     plants -= ({ 0 });
 
-    if( (!objectp(caster)) || (time() > duration) || (!sizeof(plants)) || (!objectp(place = environment(caster))) )
+    if( (!objectp(caster)) || (!sizeof(plants)) || (!objectp(place = environment(caster))) )
     {
         dest_effect();
         return;
