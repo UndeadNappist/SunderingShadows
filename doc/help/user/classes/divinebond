@@ -1,0 +1,3 @@
+%^BOLD%^%^CYAN%^DIVINEBOND%^RESET%^
+
+This is a class feature only available to Paladins that takes the form of a point that can be assigned to one of three feats: weapon bond, armor bond, or bonded steed. Each, while having seperate helpfiles, can be acquired through the syntax 'feats divinebond bonded steed', 'feats divinebond weapon bond' or 'feats divinebond armor bond.'

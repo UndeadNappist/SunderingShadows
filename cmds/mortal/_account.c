@@ -15,7 +15,7 @@ int cmd_account(string str)
 
     if(archp(TP))
     {
-        if(stringp(str) && str != "" && str != " ")
+        if(stringp(str))
         {
             if(strsrch(str,"password") != -1)
             {
@@ -44,9 +44,8 @@ int cmd_account(string str)
         {
             account_object = new(OB_ACCOUNT);
             account_object->show_menu(this_player());
+            return 1;
         }
-        
-        return 1;
     }
 
     if(avatarp(TP) && stringp(str) && str != "" && str != " ")
