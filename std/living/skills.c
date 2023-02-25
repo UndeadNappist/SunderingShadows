@@ -315,7 +315,7 @@ int query_skill(string skill)
             }
             if(myclasses[i] == "cleric" || (this_object()->is_class("cleric") && file->is_prestige_class()))
             {
-                if(member_array(this_object()->query_divine_domain(), "trickery") >= 0)
+                if(member_array("trickery", this_object()->query_divine_domain()) >= 0)
                     myclassskills = (DIR_CLASSES + "/cleric.c")->domain_skills("trickery");
             }
             /*
