@@ -22,14 +22,23 @@ void create(){
    set_heart_beat(0);
    ok_to_use = 0;
    used = 0;
-   call_out("set_max_uses",1);
-   //set_item_bonus("empowered",2);
+   max_uses = -999;
 }
 
-void set_max_uses() {
-   if( !objectp(TO) || !objectp(ETO) )
+void set_max_uses()
+{
+   object me, environment;
+
+   if (max_uses != -999)
       return;
-   max_uses = ( (int)TP->query_stats("intelligence")/3 ) + ( random(5) );
+
+   if (!objectp(me = this_object()))
+      return;
+
+   if (!objectp(environment = environment(me)))
+      return;
+
+   max_uses = ( (int)environment->query_stats("intelligence")/3 ) + ( random(5) );
 }
 
 void query_used() {
@@ -40,11 +49,15 @@ void query_max_uses() {
    return max_uses;
 }
 
-int more_wear() {
+int more_wear()
+{
    write("%^RED%^You wear the ring and feel confident about the coming "+
       "battles.");
    say("%^RED%^"+ETOQCN+" wears the ring and appears to be a much tougher "+
       "opponent.");
+
+   set_max_uses();
+
    return 1;
 }
 

@@ -142,15 +142,20 @@ int remove(){
 
 void strip_temp_values()
 {
-    if(this_object()->is_weapon())
+    object me;
+
+    if (!objectp(me = this_object()))
+        return;
+
+    if(me->is_weapon())
     {
-        this_object()->remove_property("temp_hit_bonus");
-        this_object()->remove_property_value("added short",({ "%^RESET%^%^CYAN%^ %^BOLD%^{%^RESET%^%^CYAN%^vibrating%^BOLD%^}%^RESET%^" }));
-        this_object()->remove_property_value("added short", ({ "%^CYAN%^BOLD%^ {empowered}%^RESET%^" }) );
-        this_object()->remove_property_value("added short",({ "%^RESET%^%^CYAN%^ %^BOLD%^{%^RESET%^%^CYAN%^ablaze%^BOLD%^}%^RESET%^" }));
-        this_object()->remove_property_value("added short", ({ "%^CYAN%^BOLD%^ [bane]%^RESET%^" }) );
-        this_object()->remove_property_value("added short", ({ "%^BLACK%^BOLD%^ [%^GREEN%^eldritch%^BLACK%^]%^RESET%^" }) );
-        this_object()->remove_property_value("added short", ({ "%^MAGENTA%^ {vampiric}%^RESET%^" }) );
+        me->remove_property("temp_hit_bonus");
+        me->remove_property_value("added short",({ "%^RESET%^%^CYAN%^ %^BOLD%^{%^RESET%^%^CYAN%^vibrating%^BOLD%^}%^RESET%^" }));
+        me->remove_property_value("added short", ({ "%^CYAN%^BOLD%^ {empowered}%^RESET%^" }) );
+        me->remove_property_value("added short",({ "%^RESET%^%^CYAN%^ %^BOLD%^{%^RESET%^%^CYAN%^ablaze%^BOLD%^}%^RESET%^" }));
+        me->remove_property_value("added short", ({ "%^CYAN%^BOLD%^ [bane]%^RESET%^" }) );
+        me->remove_property_value("added short", ({ "%^BLACK%^BOLD%^ [%^GREEN%^eldritch%^BLACK%^]%^RESET%^" }) );
+        me->remove_property_value("added short", ({ "%^MAGENTA%^ {vampiric}%^RESET%^" }) );
     }
 }
 
