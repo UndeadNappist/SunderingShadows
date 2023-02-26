@@ -43,6 +43,9 @@ void my_message(string str){
       finish();
       return;
    }
+   if(!objectp(teller) || !objectp(receiver))
+       return;
+   
    str = "daemon/language_d"->translate(str, teller->query_spoken(), teller);
    tell_object(receiver,"%^BOLD%^%^RED%^A message from "+teller->QCN+" "+
       "suddenly enters your mind:");
