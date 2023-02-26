@@ -342,7 +342,7 @@ void follower_level_up(int slot)
         retinue = ([]);
     }
 
-    if (!retinue(slot))
+    if (!retinue[slot])
         return;
 
     ++retinue[slot]["level"];

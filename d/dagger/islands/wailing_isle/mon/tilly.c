@@ -381,11 +381,11 @@ void receive_given_item(object ob){
         force_me("say It's like... a gift? Whatever, just take it, I don't want it.");
         reward = new(OBJ"jar_of_nasty");
         reward->move(this_object());
+        force_me("give jar to "+player->query_name()+"");
         if(present("jar", this_object())){
             force_me("say Got yer greedy lil' hands full, eh? Wouldn't wantcha ta miss out.");
             force_me("drop jar");
         }
-        force_me("give jar to "+player->query_name()+"");
         
         xp_reward = exp_for_level(player->query_level() + 1) / 8;
         player->add_exp(xp_reward);
