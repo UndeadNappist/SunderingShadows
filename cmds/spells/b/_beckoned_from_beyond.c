@@ -164,12 +164,22 @@ void do_summons() {
     	call_out("do_summons_2",ROUND_LENGTH);
 }
 
-void do_summons_2() {
-   	object device,mon;
-    	if (!objectp(caster)) {
-      	TO->remove();
-        	return;
-    	}
+void do_summons_2()
+{
+       object device,mon;
+
+        if (!objectp(caster))
+        {
+            TO->remove();
+            return;
+        }
+
+        if (!stringp(heritage))
+        {
+            this_object()->remove();
+            return;
+        }
+
     	if (environment(caster) != place) {
       	tell_object(caster,"Your movement causes the spellcasting to fail.");
       	tell_room(place,caster->QCN+" stops casting and looks a little disoriented.",caster);
@@ -200,7 +210,7 @@ void do_summons_2() {
     mon->set_property("spell", TO);
     mon->add_id("summoned monster");
     mon->move(place);
-    mon->setup_beastie(caster,heritage);
+    mon->setup_beastie(caster, heritage);
     mon->set_mylevel(clevel);
     mon->set_caster(caster);
     mon->set_property("minion", caster);

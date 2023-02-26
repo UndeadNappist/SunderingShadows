@@ -329,17 +329,26 @@ int zoom(string str)
 {
     string newroom, prefunc, dir, y, path, messa, messb;
     int dist, i, bonus;
-    object who, oldroom, tp;
+    object who, oldroom, rider, me;
 
-    if (owner && (owner != TP))
+    me = this_object();
+    rider = this_player();
+
+    if (!objectp(me))
+        return 0;
+
+    if (!objectp(rider))
+        return 0;
+
+    if (owner && (owner != rider))
         return notify_fail("You are not this animal's owner!\n");
-    if (TP->query_bound() || TP->query_unconscious()) {
-        TP->send_paralyzed_message("info", TP);
+    if (rider->query_bound() || rider->query_unconscious()) {
+        rider->send_paralyzed_message("info", rider);
         return 1;
     }
     if (!str)
         return notify_fail("Please use the format ride <direction> <distance>.\n");
-    if ((object) TP->query_in_vehicle() != TO){
+    if ((object) rider->query_in_vehicle() != me){
         write("You must be on the " + orig_short + " to command it.\n");
         return;
     }
@@ -347,15 +356,15 @@ int zoom(string str)
         sscanf(str, "%s", dir);
         dist = 1;
     }
-    if (TP->query_paralyzed())
-        return notify_fail(TP->query_paralyze_message());
+    if (rider->query_paralyzed())
+        return notify_fail(rider->query_paralyze_message());
     if (!dir)
         return notify_fail("Please use the format ride <direction> <distance>.\n");
     if (query_paralyzed())
         return notify_fail("Your steed can't seem to move.\n");
     if (dist > max_distance || dist < 0)
         return notify_fail("This " + orig_short + " can travel 0-" + max_distance + " per turn.\n");
-    if (TP->query_disable())
+    if (rider->query_disable())
         return notify_fail("You can't leave while doing something else.\n");
     switch (dir) {
     case "n":
@@ -393,18 +402,17 @@ int zoom(string str)
         break;
     }
     // Do the actual moving here
-    tp = TP;
     while (dist) {
-        newroom = environment(TO)->query_exit(dir);
+        newroom = environment(me)->query_exit(dir);
         if (stringp(newroom) && newroom != "/d/shadowgate/void") {
-            TP->force_me(dir);
+            rider->force_me(dir);
         } else {
             return notify_fail("You can't go in that direction!\n");
         }
         dist--;
     }
     write("You bring the " + orig_short + " to a stop.");
-    tell_room(ETP, TPQCN + " brings the " + orig_short + " to a halt.", TP);
+    tell_room(environment(rider), rider->query_cap_name() + " brings the " + orig_short + " to a halt.", rider);
     return 1;
 }
 
