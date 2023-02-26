@@ -301,6 +301,9 @@ int query_skill(string skill)
         if (file_exists(file)) {
             myclassskills = (string*)file->class_skills(TO);
 
+            if (!arrayp(myclassskills))
+                myclassskills = ({});
+
             if (myclasses[i] == "psion" || (TO->is_class("psion") && (int)file->is_prestige_class())) {
                 mydisc = this_object()->query_discipline();
                 myclassskills = (string*)(DIR_CLASSES + "/psion.c")->discipline_skills(mydisc);
@@ -313,12 +316,12 @@ int query_skill(string skill)
                 mydisc = TO->query_mystery();
                 myclassskills = (string*)(DIR_CLASSES + "/oracle.c")->mystery_skills(mydisc);
             }
+            /*
             if(myclasses[i] == "cleric" || (this_object()->is_class("cleric") && file->is_prestige_class()))
             {
-                if(member_array("trickery", this_object()->query_divine_domain()) >= 0)
+                if(member_array(this_object()->query_divine_domain(), "trickery") >= 0)
                     myclassskills = (DIR_CLASSES + "/cleric.c")->domain_skills("trickery");
             }
-            /*
             if (myclasses[i] == "sorcerer" || (TO->is_class("sorcerer") && (int)file->is_prestige_class())) {
                 mydisc = TO->query_bloodline();
                 myclassskills = (string*)(DIR_CLASSES + "/sorcerer.c")->bloodline_skills(mydisc);
