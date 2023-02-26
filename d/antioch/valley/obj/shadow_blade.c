@@ -82,7 +82,7 @@ int wieldme()
 			tell_object(ETO,"%^YELLOW%^The sword seems to recoil"+
 			" from your touch and you get a feeling of wrongness.");
 			tell_room(environment(ETO),"%^YELLOW%^"+ETO->query_cap_name()+""+
-			" frowns slightly as "+ETO->query_objective()+""+
+			" frowns slightly as "+ETO->query_subjective()+""+
 			" wields the %^BOLD%^%^BLACK%^Shadow Blade.%^RESET%^",ETO);
 			while(query_property("enchantment") != x-2) {
 				remove_property("enchantment");
