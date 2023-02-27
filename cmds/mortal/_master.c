@@ -62,7 +62,7 @@ int cmd_master(string args)
             spell_access = 2;
         }
         */
-        else if(myclass == "sorcerer" && FEATS_D->usable_feat(this_player(), "blood is power"))
+        if(myclass == "sorcerer" && FEATS_D->usable_feat(this_player(), "blood is power"))
         {
             spell_access = 1;
         }
