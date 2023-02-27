@@ -97,12 +97,10 @@ spell_effect(int prof)
 
     environment(caster)->set_property("used sticks",1);
 
-    duration = time() + 300 + (ROUND_LENGTH * clevel);
-
     addSpellToCaster();
     spell_successful();
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH + 300;
-    duration = time() + spell_duration;
+    duration = spell_duration;
     set_end_time();
     call_out("dest_effect", duration);
 
