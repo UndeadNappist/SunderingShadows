@@ -56,7 +56,7 @@ void search_maps(){
     player = this_player();
     room = environment(player);
     
-    if(guarded){
+    if(guarded && !present("katerina")){
         power = max(({ player->query_level() / 10, 1 }));
         tell_object(player, "%^RESET%^%^CRST%^%^C101%^As you attempt to poke through the charts on the table, you hear %^C144%^someone %^C101%^clear her throat behind you...%^CRST%^\n");
         tell_room(room, "%^RESET%^%^CRST%^%^C101%^As "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ attempts to poke through the charts on the table, you see a %^C144%^woman %^C101%^enter the room, clearing her throat with an arched brow.%^CRST%^\n", player);
