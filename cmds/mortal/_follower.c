@@ -69,7 +69,7 @@ object make_follower(mapping map, int f_slot)
     f_name = map["name"];
     f_class = map["class"];
     f_race = map["race"];
-    f_level = min( ({ map["level"], 50 }) );
+    f_level = min( ({ map["level"], 25 }) );
     switch(f_class)
     {
     case "fighter":
