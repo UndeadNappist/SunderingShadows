@@ -32,7 +32,7 @@ void create(){
 			 "rch, who offers %^BOLD%^blessings%^RESET%^, %^BOLD%^%^CYAN%^guidance %^RESET%^and %^BOLD%^heali"
 			 "ng %^RESET%^to the travellers who arrive and depart from %^ORANGE%^Kinaro%^WHITE%^. There is a small sign you can read here.");
     set_exits( ([
-//     "southeast" : "/d/steppes/outpost/rooms/archway",
+"southeast" : "/d/steppes/outpost/rooms/archway",
 	"west" : "/d/dagger/kinaro/street5.c",
       ]) );
 
