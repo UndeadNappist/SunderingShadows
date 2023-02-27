@@ -489,8 +489,11 @@ mixed query_property(string prop)
     int num, mylevel, scaled, tmpval;
     string subrace, binding;
 
-    me = this_object();
-    my_environment = environment(me);
+    if (!objectp(me = this_object()))
+        return 0;
+
+    if(!objectp(my_environment = environment(me)))
+        return 0;
 
     num = 0;
 
