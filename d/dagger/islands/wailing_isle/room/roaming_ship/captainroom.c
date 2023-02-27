@@ -56,7 +56,7 @@ void search_maps(){
     player = this_player();
     room = environment(player);
     
-    if(guarded && !present("katerina")){
+    if(guarded){
         power = max(({ player->query_level() / 10, 1 }));
         tell_object(player, "%^RESET%^%^CRST%^%^C101%^As you attempt to poke through the charts on the table, you hear %^C144%^someone %^C101%^clear her throat behind you...%^CRST%^\n");
         tell_room(room, "%^RESET%^%^CRST%^%^C101%^As "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ attempts to poke through the charts on the table, you see a %^C144%^woman %^C101%^enter the room, clearing her throat with an arched brow.%^CRST%^\n", player);
@@ -83,7 +83,7 @@ int retrieve_fun(string str){
     player = this_player();
     room = environment(player);
     
-    if(katerina = present("katerina", room) && (!player->query_invis() || !player->query_hidden())){
+    if((katerina = present("katerina", room)) && (!player->query_invis() || !player->query_hidden())){
         tell_object(player, "%^RESET%^%^CRST%^%^C059%^As you try to search among the charts, an odd blast of wind knocks you away. The captain narrows her eyes suspiciously.%^CRST%^");
         tell_room(room, "%^RESET%^%^CRST%^%^C059%^As "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C059%^ tries to search among the charts, an odd blast of wind knocks them away. The captain narrows her eyes suspiciously.%^CRST%^", player);
         katerina->force_me("say You should leave.");
