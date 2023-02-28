@@ -45,6 +45,9 @@ void spell_effect(int prof){
     if(!target || !objectp(target))
         target = caster->query_current_attacker();
 
+    if(!target || !objectp(target))
+        return;
+
     if(!present(target,environment(caster))){
         tell_object(caster,"%^RESET%^%^CRST%^%^C059%^Your target is not in this area.%^CRST%^\n");
         dest_effect();
