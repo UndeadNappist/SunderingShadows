@@ -374,9 +374,10 @@ void heart_beat()
                         this_object()->set_dragee(critters[i]);
                         return;
                     }
-                    race = critters[i]->query_race();
-                    num = critters[i]->query_id_no(race);
-                    force_me("gag " + race + " " + num);
+                    //race = critters[i]->query_race();
+                    //num = critters[i]->query_id_no(race);
+                    //force_me("gag " + race + " " + num);
+                    critters[i]->set_gagged((int)this_object()->query_stats("wisdom") * (int)this_object()->query_stats("strength") * 10);
                 }
                 if (critters[i]->query_unconscious()) {
                     //race = critters[i]->query_race();

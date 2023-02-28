@@ -75,6 +75,7 @@ void create()
     time_delay = ([]);
 }
 
+/*
 varargs int query_id_no(string id_name)
 {
     int i, limit;
@@ -92,6 +93,7 @@ varargs int query_id_no(string id_name)
     }
     return 0;
 }
+*/
 
 int do_typed_damage_effects(victim, limb, damage, damage_type)
 {
@@ -104,11 +106,13 @@ string adjust_targeted_limb(object victim, string limb)
     return limb;
 }
 
+//Fix this to use deity
 void set_diety(string str)
 {
     diety = str;
 }
 
+//Fix this to use deity
 string query_diety()
 {
     if (stringp(diety)) {
@@ -215,6 +219,7 @@ string query_message_out()
     return message_map[profile]["out"];
 }
 
+//Doesn't seem to be used anymore
 int query_num_attacks()
 {
     int lev;
@@ -241,11 +246,13 @@ int query_num_attacks()
     }
 }
 
+//Move to combat.c
 void set_parrying(int i)
 {
     parrying = i;
 }
 
+//Move to combat.c
 int query_parrying(object att)
 {
     object* weapons, *eweapons;
@@ -335,6 +342,7 @@ void heart_beat()
 
     POISON_D->ProcessPoisons(me);
 
+    // No longer used
     // new stab resets available chances once per round.
     if (objectp(me) && sizeof(me->query_attackers()))
     {
@@ -464,6 +472,7 @@ void heart_beat()
             targs = filter_array(targs, (: userp($1) :));
             targs -= ({ me });
 
+            /*
             foreach(object ob in targs)
             {
                 if(ob->query("no pk"))
@@ -471,13 +480,14 @@ void heart_beat()
 
                 if(ob->query_mp() && !ob->query("no pk") && !wizardp(ob) && !avatarp(ob))
                 {
-                    /*
+                    
                     if(!random(5))
                         tell_object(ob, "%^MAGENTA%^You feel something pull on your mind.");
                     ob->add_mp(-1);
-                    */
+                    
                 }
             }
+            */
 
             add_mp(sizeof(targs));
         }
@@ -510,7 +520,7 @@ void heart_beat()
         }
         
         //Screen Reader Support. Tells screen reader users in the room, briefly, what we are attacking.
-        attacker = me->query_current_attacker();
+        //attacker = me->query_current_attacker();
         
         /*
         if(attacker && userp(me))
@@ -755,6 +765,7 @@ nomask protected int cmd_hook(string cmd)
     return (int)call_other(file, "cmd_" + verb, cmd);
 }
 
+// Does not appear to be used
 // Added to support quest spells
 void set_quest_spells(string* spells)
 {
@@ -887,6 +898,7 @@ string query_sphere()
     return sphere_of_influence;
 }
 
+//No longer used
 void set_sphere(string str)
 {
     sphere_of_influence = str;
@@ -1858,6 +1870,7 @@ void remove()
     ::remove();
 }
 
+//No longer used
 void adjust_biorhythms()
 {
     float freq, temps;
@@ -1898,6 +1911,7 @@ string query_objective()
     return objective(gender);
 }
 
+//This should be in combat.c
 // For attack and damage bonuses -- Thorn 950620
 /////////////////////////////
 
@@ -2244,6 +2258,7 @@ void init_saving_bonus()
     set_property("saving_init", 1);
 }
 
+//doesn't seem to be used
 void add_saving_bonus(string throw, int bonus)
 {
     int i;

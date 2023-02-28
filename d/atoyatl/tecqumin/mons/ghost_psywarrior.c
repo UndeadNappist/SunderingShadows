@@ -363,23 +363,26 @@ void heart_beat(){
       for (i=0;i<count;i++){
         if(critters[i]->query_bound()>100){
           if(critters[i]->query_gagged()){
-            race = critters[i]->query_race();
-            num = critters[i]->query_id_no(race);
-            force_me("drag " + race + " " + num);
+            //race = critters[i]->query_race();
+            //num = critters[i]->query_id_no(race);
+            //force_me("drag " + race + " " + num);
             draggee = critters[i];
+            this_object()->set_dragee(draggee);
             report("Draggee is now: " + query_draggee());
             return;
           }
-          race = critters[i]->query_race();
-          num = critters[i]->query_id_no(race);
-          force_me("gag " + race + " " + num);
+          //race = critters[i]->query_race();
+          //num = critters[i]->query_id_no(race);
+          //force_me("gag " + race + " " + num);
+          critters[i]->set_gagged((int)this_object()->query_stats("wisdom") * (int)this_object()->query_stats("strength") * 10);
         }
         if (critters[i]->query_unconscious()){
-          race = critters[i]->query_race();
-          num = critters[i]->query_id_no(race);
-          rope = new ("/d/common/obj/misc/rope");
-          rope->move(TO);
-          force_me("bind " + race + " " + num);
+          //race = critters[i]->query_race();
+          //num = critters[i]->query_id_no(race);
+          //rope = new ("/d/common/obj/misc/rope");
+          //rope->move(TO);
+          //force_me("bind " + race + " " + num);
+          critters[i]->set_bound(1000 + ((int)this_object()->query_skill("rope use") * 50));
           return;
         } else
         {
