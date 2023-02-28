@@ -2779,23 +2779,23 @@ void receive_message(string msg_class, string msg)
         break;
     case "tell":
         if (sscanf(msg, "%s:%s", pre, post) == 2)
-        msg = "%^BOLD%^RED%^"+pre+":%^RESET%^"+post;
+        msg = "%^BOLD%^%^RED%^"+pre+":%^RESET%^"+post;
         break;
     case "shout":
         if (sscanf(msg, "%s:%s", pre, post) == 2)
-        msg = "%^BOLD%^BLUE%^"+pre+":%^RESET%^"+post;
+        msg = "%^BOLD%^%^BLUE%^"+pre+":%^RESET%^"+post;
         break;
     case "mmin":
     case "min":
     case "mmout":
     case "mout":
-        msg = "%^BOLD%^GREEN%^"+msg;
+        msg = "%^BOLD%^%^GREEN%^"+msg;
         break;
     case "living_item": case "Nliving_item":
-        msg = "%^BOLD%^RED%^"+msg;
+        msg = "%^BOLD%^%^RED%^"+msg;
         break;
     case "inanimate_item": case "Ninanimate_item":
-        msg = "%^BOLD%^MAGENTA%^"+msg;
+        msg = "%^BOLD%^%^MAGENTA%^"+msg;
         break;
     case "animal_emote":
         msg = "%^RESET%^%^YELLOW%^"+msg;
@@ -2864,7 +2864,7 @@ void receive_message(string msg_class, string msg)
     {
         TermInfo = USER_D->myTerm(TO);
         //msg = terminal_colour(msg + "%^RESET%^\n", TermInfo, x, 0);
-        msg = terminal_color_hex("%^CRST%^%^RESET%^" + msg + "%^CRST%^%^RESET%^\n", TermInfo, x, 0);
+        msg = terminal_color_hex(msg + "%^RESET%^\n", TermInfo, x, 0);
         //msg += "%^RESET%^";
         //msg = wrap(msg, x);
     }
