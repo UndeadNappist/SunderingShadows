@@ -43,7 +43,7 @@ spell_effect(int prof)
     int damage, i;
     object* attackers;
 
-    if (!objectp(caster) || !objectp(target)) {
+    if (!target || !caster || !objectp(caster) || !objectp(target)) {
         dest_effect();
         return;
     }

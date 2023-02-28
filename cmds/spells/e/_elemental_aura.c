@@ -114,7 +114,7 @@ void execute_attack(){
 
     if(sizeof(foes)){
         define_base_damage(0);//reroll each turn
-        tell_room(place, "%^RESET%^%^CRST%^"+colormap[element]+capitalize(element)+" around "+caster->query_cap_name()+"%^RESET%^%^CRST%^"+colormap[element]+myverb[element]+caster->query_possessive()+" enemies!%^CRST%^", ({ caster, target }));
+        tell_room(place, "%^RESET%^%^CRST%^"+colormap[element]+"The "+element+" around "+caster->query_cap_name()+"%^RESET%^%^CRST%^ "+colormap[element]+myverb[element]+" "+caster->query_possessive()+" enemies!%^CRST%^", ({ caster, target }));
         tell_object(caster, "%^RESET%^%^CRST%^"+colormap[element]+"The elemental aura "+myverb[element]+" your enemies!%^CRST%^");
 
         define_base_damage(0);
