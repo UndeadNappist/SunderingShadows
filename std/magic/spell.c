@@ -1631,13 +1631,14 @@ mixed WildMagicArea(object where)
     chaotic_entities -= ({ caster });
     chaotic_presence = sizeof(chaotic_entities);
 
-    if (!objectp(where)) {
+    if (!objectp(caster))
         return 0;
-    }
 
-    if (spell_name == "suppress wild magic") {
+    if (!objectp(where))
         return 0;
-    }
+
+    if (spell_name == "suppress wild magic")
+        return 0;
 
     if (where->query_property("wild magic") > roll_dice(1, 100) || caster->query_property("spellscarred") || (!is_lawful(caster) && chaotic_presence && !help_or_harm && !random(10))) {
         wm_affect = where->query_property("wild magic affect");
