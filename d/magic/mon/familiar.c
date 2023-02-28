@@ -119,48 +119,48 @@ int familiar_command(string str)
 void heart_beat()
 {
 
-    object *attackers,
-           room;
+    object *attackers, me, room;
 
     ::heart_beat();
 
-    room = environment(this_object());
-
-    if(!room || !objectp(room))
+    if (!objectp(me = this_object()))
         return;
 
-    if(!objectp(owner) || owner->query_property("familiar") != this_object())
+    if (!objectp(room = environment(me)))
+        return;
+
+    if(!objectp(owner) || owner->query_property("familiar") != me)
     {
-        this_object()->remove();
+        me->remove();
         return;
     }
 
     //Faithful companion finds his master
     if(objectp(owner) && room != environment(owner))
     {
-        this_object()->move(environment(owner));
-        owner->add_follower(this_object());
+        me->move(environment(owner));
+        owner->add_follower(me);
     }
 
     //Companion hides if master is hiding
-    if(!this_object()->query_invis())
+    if(!me->query_invis())
     {
         if(owner->query_hidden() || owner->query_invis())
         {
-            this_object()->set_invis(1);
+            me->set_invis(1);
             tell_object(owner, "Your familiar fades into the shadows.");
         }
     }
     else
     {
         if(!owner->query_hidden() && !owner->query_invis())
-            this_object()->set_invis(0);
+            me->set_invis(0);
     }
 
     add_hp(query_max_hp() / 20);
     bonus = 0;
 
-    if(query_hp() < query_max_hp() / 2 && present("vial", this_object()))
+    if(query_hp() < query_max_hp() / 2 && present("vial", me))
         command("drink vial");
 }
 

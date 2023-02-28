@@ -275,10 +275,18 @@ void defend(){
    return;
 }
 
-int remove(){
+int remove()
+{
+    object me;
+
+    if (!objectp(me = this_object()))
+        return 0;
+
     save_outsider();
-    all_inventory(TO)->remove();
+    all_inventory(me)->remove();
     ::remove();
+
+    return 1;
 }
 
 void heart_beat(){

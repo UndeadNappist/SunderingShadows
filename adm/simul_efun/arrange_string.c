@@ -8,7 +8,9 @@
  */
 string strip_colors(string str)
 {
-    string ret;
+    int i;
+    string ret, temp;
+    string *exploded_argument;
     mapping Uncolor = ([ "RESET" : "\b", "BOLD" : "", "ULINE" : "", "FLASH" : "", "BLACK" : "", "RED" : "",
                          "BLUE" : "", "CYAN" : "", "MAGENTA" : "", "ORANGE" : "", "YELLOW" : "",
                          "GREEN" : "", "WHITE" : "", "BLACK" : "", "B_RED" : "", "B_ORANGE" : "",
@@ -59,7 +61,45 @@ string strip_colors(string str)
                          "C250" : "", "C251" : "", "C252" : "", "C253" : "", "C254" : "", "C255" : "",
                          "C256" : "", "CRST" : "",
                          "ENDTERM" : ""]);
-    ret = terminal_colour(str, Uncolor);
+
+    // Split the string up into color escapes.
+    exploded_argument = explode(str, "%^");
+
+    for (i = 0; i < sizeof(exploded_argument); ++i)
+    {
+        // If the first real characters in this string aren't %^ and this is the first split, disregard.
+         if (i == 0 && str[0..1] != "%^")
+            continue;
+
+        // If the last real characters in this string aren't %^ and this is the first split, disregard.
+        if (i == sizeof(exploded_argument) - 1 && rtrim(str)[<2..<1] != "%^" )
+            continue;
+
+        // If the first character of this fragment isn't a #, check if it has a key in the map.
+        if (exploded_argument[i][0] != '#')
+            continue;
+
+        // If the code isn't seven characters long, disregard.
+        if (sizeof(exploded_argument[i]) != 7)
+            continue;
+
+        // If the Red value is malformed, disregard.
+        if (!sscanf(exploded_argument[i][1..2], "%x", temp))
+            continue;
+
+        // If the Green value is malformed, disregard.
+        if (!sscanf(exploded_argument[i][3..4], "%x", temp))
+            continue;
+
+        // If the Blue value is malformed, disregard.
+        if (!sscanf(exploded_argument[i][5..6], "%x", temp))
+            continue;
+
+        // Replace the current fragment with its respective color code
+        exploded_argument[i] = "";
+    }
+
+    ret = terminal_colour(implode(exploded_argument, "%^"), Uncolor);
     return replace_string(ret, "\b", "");
 }
 

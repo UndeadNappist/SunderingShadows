@@ -144,28 +144,42 @@ void tell(string * lines, object tp, string command){
    call_out("tell",5,lines,tp,command);
 }
 
-void sing_song(string name, object tp){
-   string player;
-   string file;
-   string * lines;
-   tp->remove_property("stop recite");
-   player = tp->query_name();
-   file = read_file(SAVE_DIR player+"/songs/"+name);
-   lines = explode(file,"\n");
-   sing(lines, tp, "sing");
+void sing_song(string name, object tp)
+{
+    string player;
+    string file;
+    string * lines;
+    tp->remove_property("stop recite");
+    player = tp->query_name();
+    file = read_file(SAVE_DIR player+"/songs/"+name);
+    
+    if(!stringp(file))
+    {
+        write("No such song available.");
+        return;
+    }
+    
+    lines = explode(file,"\n");
+    sing(lines, tp, "sing");
 }
 
-void tell_story(string name, object tp){
-
-   string player;
-   string file;
-   string * lines;
-   tp->remove_property("stop recite");
-   player = tp->query_name();
-   file = read_file(SAVE_DIR player+"/story/"+name);
-   lines = explode(file,"\n");
-   tell(lines, tp, "say");
-   
+void tell_story(string name, object tp)
+{
+    string player;
+    string file;
+    string * lines;
+    tp->remove_property("stop recite");
+    player = tp->query_name();
+    file = read_file(SAVE_DIR player+"/story/"+name);
+    
+    if(!stringp(file))
+    {
+        write("No such story available.");
+        return;
+    }
+    
+    lines = explode(file,"\n");
+    tell(lines, tp, "say");
 }
 
 void review_story(string name, object tp){
