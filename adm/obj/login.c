@@ -418,7 +418,7 @@ protected void receive_message(string cl, string msg)
         return;
     }
     TermInfo = USER_D->myTerm(TO, 1);
-    msg = terminal_colour(msg, TermInfo, 140, 0);
+    msg = terminal_color_hex(msg, TermInfo, 140, 0);
     receive(msg);
 }
 
