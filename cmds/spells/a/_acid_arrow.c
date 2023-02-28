@@ -147,6 +147,11 @@ void spell_effect(int prof)
 
 void more_acid()
 {
+    if(!objectp(caster))
+    {
+        dest_effect();
+        return;
+    }
     if(!objectp(target))
     {
         dest_effect();
