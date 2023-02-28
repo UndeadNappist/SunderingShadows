@@ -24,10 +24,13 @@ void create(){
 	set_type("ring");
 	set_limbs(({ "right hand", "left hand" }));
 	set_size(-1);
+    set_property("enchantment", 3);
+    /*
    while ((int)TO->query_property("enchantment") != 3) {
      TO->remove_property("enchantment");
      TO->set_property("enchantment",3);
    }
+   */
       set_item_bonus("damage bonus",1);
 	set_wear((:TO,"wear_func":));
 	set_remove((:TO,"remove_func":));

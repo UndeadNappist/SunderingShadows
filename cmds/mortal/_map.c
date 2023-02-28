@@ -221,6 +221,11 @@ entered: " + title);
     tell_object(TP, MAPPER->show_basic_map(TP));
     break;
   case "show":
+    if (!stringp(name))
+    {
+      this_player()->force_me("help map");
+      return 1;
+    }
     num = sscanf(name, "to %s", verb2);
 //    if (num<1) return notify_fail("Try 'map show to NAME'");
     if(!person = present(verb2,ETP)) return notify_fail("That person is not here.\n");

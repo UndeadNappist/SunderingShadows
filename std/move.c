@@ -44,21 +44,23 @@ int query_size() {
 
 int move(mixed dest)
 {
-    object ob;
-    object prev;
+    object me, environment, ob, prev;
     string str, msg;
 
-    if ( (!this_object()) || (!objectp(this_object())) )
+    if ((!(me = this_object())) || !objectp(me))
         return MOVE_DESTRUCTED;
+
+    environment = environment(me);
+
     if (stringp(dest))
     {
         ob = find_object_or_load(dest);
         if(!objectp(ob))
         {
-            if(objectp(TO))
+            if(objectp(me))
             {
-                msg = identify(TO) + " attempted to move to invalid object.";
-                if(objectp(ETO)) { msg += " environment was "+identify(ETO); }
+                msg = identify(me) + " attempted to move to invalid object.";
+                if(objectp(environment)) { msg += " environment was "+identify(environment); }
             }
             else msg = "Invalid object attempted to move into invalid object.";
             return;
@@ -67,37 +69,37 @@ int move(mixed dest)
         ob = dest;
     if (!ob)
         return MOVE_NOT_ALLOWED;
-    if (!ob->receive_objects(TO))
+    if (!ob->receive_objects(me))
         return MOVE_NOT_ALLOWED;
-    if (objectp(environment(this_object()))) {
-        if (!ETO->loose_object(TO)) return MOVE_NOT_ALLOWED;
+    if (objectp(environment(me))) {
+        if (!environment->loose_object(me)) return MOVE_NOT_ALLOWED;
     }
-    if (living(this_object()) && (living(ob) || ob->query("not living")) && !( (int)ob->move_ok() ))
+    if (living(me) && (living(ob) || ob->query("not living")) && !( (int)ob->move_ok() ))
         return MOVE_NOT_ALLOWED;
     if (!ob->add_encumbrance(query_weight()))
         return MOVE_NO_ROOM;
-    if (environment(this_object()))
+    if (environment(me))
     {
-        if(TO->is_player()) { environment(this_object())->add_encumbrance(-1*(int)TO->query_player_weight()); }
-        else { environment(this_object())->add_encumbrance(-1*query_weight()); }
+        if(me->is_player()) { environment(me)->add_encumbrance(-1*(int)me->query_player_weight()); }
+        else { environment(me)->add_encumbrance(-1*query_weight()); }
     }
-    set_last_location(environment(this_object()));
-    prev = ETO;
-    if(!objectp(TO)) return MOVE_DESTRUCTED;
+    set_last_location(environment(me));
+    prev = environment;
+    if(!objectp(me)) return MOVE_DESTRUCTED;
     if(!objectp(ob)) return MOVE_DESTRUCTED;
     move_object(ob);
-    if(!objectp(TO)) return MOVE_DESTRUCTED;
-    ob->gain_item(TO);
+    if(!objectp(me)) return MOVE_DESTRUCTED;
+    ob->gain_item(me);
 
-    if (ob->is_room() && TO->is_player()) {
+    if (ob->is_room() && me->is_player()) {
         ob->set_had_players();
     }
 
     if (objectp(prev)) {
-        prev->loose_item(TO);
+        prev->loose_item(me);
     }
 
-    if (objectp(TO) && (interactive(TO) || TO->query_property("croom_track"))) {
+    if (objectp(me) && (interactive(me) || me->query_property("croom_track"))) {
         if (objectp(prev) && (!prev->query_property("croom_dirty"))) {
             prev->set_property("croom_dirty", 1);
         }
@@ -142,15 +144,20 @@ int remove(){
 
 void strip_temp_values()
 {
-    if(this_object()->is_weapon())
+    object me;
+
+    if (!objectp(me = this_object()))
+        return;
+
+    if(me->is_weapon())
     {
-        this_object()->remove_property("temp_hit_bonus");
-        this_object()->remove_property_value("added short",({ "%^RESET%^%^CYAN%^ %^BOLD%^{%^RESET%^%^CYAN%^vibrating%^BOLD%^}%^RESET%^" }));
-        this_object()->remove_property_value("added short", ({ "%^CYAN%^BOLD%^ {empowered}%^RESET%^" }) );
-        this_object()->remove_property_value("added short",({ "%^RESET%^%^CYAN%^ %^BOLD%^{%^RESET%^%^CYAN%^ablaze%^BOLD%^}%^RESET%^" }));
-        this_object()->remove_property_value("added short", ({ "%^CYAN%^BOLD%^ [bane]%^RESET%^" }) );
-        this_object()->remove_property_value("added short", ({ "%^BLACK%^BOLD%^ [%^GREEN%^eldritch%^BLACK%^]%^RESET%^" }) );
-        this_object()->remove_property_value("added short", ({ "%^MAGENTA%^ {vampiric}%^RESET%^" }) );
+        me->remove_property("temp_hit_bonus");
+        me->remove_property_value("added short",({ "%^RESET%^%^CYAN%^ %^BOLD%^{%^RESET%^%^CYAN%^vibrating%^BOLD%^}%^RESET%^" }));
+        me->remove_property_value("added short", ({ "%^CYAN%^BOLD%^ {empowered}%^RESET%^" }) );
+        me->remove_property_value("added short",({ "%^RESET%^%^CYAN%^ %^BOLD%^{%^RESET%^%^CYAN%^ablaze%^BOLD%^}%^RESET%^" }));
+        me->remove_property_value("added short", ({ "%^CYAN%^BOLD%^ [bane]%^RESET%^" }) );
+        me->remove_property_value("added short", ({ "%^BLACK%^BOLD%^ [%^GREEN%^eldritch%^BLACK%^]%^RESET%^" }) );
+        me->remove_property_value("added short", ({ "%^MAGENTA%^ {vampiric}%^RESET%^" }) );
     }
 }
 

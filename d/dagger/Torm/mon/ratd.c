@@ -24,7 +24,11 @@ void create(){
   set_funcs(({"bite","bite"}));
   set_func_chance(20);
 }
-void bite(object targ){
+void bite(object targ)
+{
+  if (!objectp(targ))
+    return 0;
+
   tell_room(ETO,"%^BOLD%^%^RED%^The horrid little rat sneaks past "+TPQCN+"'s guard and bites into an ankle.",targ);
   tell_object(targ,"%^BOLD%^%^RED%^The horrid little rat sneaks past your guard and bites your ankle.");
   targ->add_poisoning(random(10)+1);

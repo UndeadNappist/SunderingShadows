@@ -72,7 +72,7 @@ void execute_attack()
 {
     object *party=({});
     object *attackers = ({  });
-    int i, damage, healed;
+    int i, damage, healed, casting_stat;
 
     if(!objectp(caster) || caster->query_ghost())
     {
@@ -142,18 +142,21 @@ void execute_attack()
         if(!random(3))
             continue;
         
+        casting_stat = max( ({ caster->query_stats("intelligence"), caster->query_stats("charisma"), caster->query_stats("wisdom") }) );
+        casting_stat = (casting_stat - 10) / 2;
+        
         userp(ob) && tell_object(ob, "%^C032%^You are e%^C039%^n%^C045%^g%^C051%^u%^C045%^l%^C039%^f%^C032%^ed in %^C214%^r%^C220%^a%^C226%^d%^C220%^i%^C214%^ant%^C032%^, %^C214%^s%^C220%^c%^C226%^o%^C214%^uring l%^C220%^i%^C226%^g%^C214%^ht%^C032%^!%^CRST%^");
         
         set_save("fort");
         
-        if(!do_save(ob))
+        if(!do_save(ob, casting_stat))
             ob->cause_typed_damage(ob, "chest", roll_dice(clevel, 6), "radiant");
         else
             ob->cause_typed_damage(ob, "chest", roll_dice(clevel, 6) / 2, "radiant");
         
         set_save("reflex");
         
-        if(!do_save(ob) && !PLAYER_D->immunity_check("blindness"))
+        if(!do_save(ob, casting_stat) && !PLAYER_D->immunity_check("blindness"))
             ob->set_temporary_blinded(clevel / 20 + 1);
     }
 

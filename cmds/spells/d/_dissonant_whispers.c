@@ -7,7 +7,7 @@ void create() {
     set_spell_level(([ "bard" : 1 ]));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS dissonant whispers on TARGET");
-    set_description("You strike up a discordant, whispering melody that assaults your targets mind. On a failed save, the target takes mental damage. A successful save reduces this mental damage by half.");
+    set_description("You strike up a discordant, whispering melody that assaults your target's mind. On a failed save, the target takes mental damage. A successful save reduces this mental damage by half.");
     set_verbal_comp();
     mental_spell();
     set_save("will");

@@ -83,7 +83,7 @@ int retrieve_fun(string str){
     player = this_player();
     room = environment(player);
     
-    if(katerina = present("katerina", room) && (!player->query_invis() || !player->query_hidden())){
+    if((katerina = present("katerina", room)) && (!player->query_invis() || !player->query_hidden())){
         tell_object(player, "%^RESET%^%^CRST%^%^C059%^As you try to search among the charts, an odd blast of wind knocks you away. The captain narrows her eyes suspiciously.%^CRST%^");
         tell_room(room, "%^RESET%^%^CRST%^%^C059%^As "+player->query_cap_name()+"%^RESET%^%^CRST%^%^C059%^ tries to search among the charts, an odd blast of wind knocks them away. The captain narrows her eyes suspiciously.%^CRST%^", player);
         katerina->force_me("say You should leave.");

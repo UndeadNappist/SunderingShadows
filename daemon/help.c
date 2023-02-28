@@ -138,6 +138,7 @@ string* topics_dir(string directory) {
   string * topicnames = ({ });
   int iter;
   holder = get_dir(directory,-1);
+  if(!pointerp(holder)) holder = ({  });
   holder = filter_array(holder,"anti_dir",TO);
   iter= sizeof(holder);
   while (iter--) {

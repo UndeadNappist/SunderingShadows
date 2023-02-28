@@ -55,10 +55,10 @@ void spell_effect()
             case 3:
             case 7:
             case 9:
-            set_affixed_level(5);
+            set_affixed_spell_level(5);
             break;
             default:
-            set_affixed_level(3);
+            set_affixed_spell_level(3);
             break;
         }
         
