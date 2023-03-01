@@ -4,7 +4,7 @@
 #include <priest.h>
 #include <daemons.h>
 
-#define BAN ({ "soulforged", "deva", "shade", "alaghi", "ghost", "nightwing", "barrus", "illithid", "unborn", "dragon" })
+#define BAN ({ "soulforged", "deva", "shade", "alaghi", "ghost", "nightwing", "barrus", "illithid", "unborn", "dragon", "squole" })
 
 inherit SPELL;
 
