@@ -11,11 +11,15 @@
 
 //Hit interval instead of proc chance. Procs every 3 hits.
 #define HIT_INTERVAL 5
+#define MAX_CHARGES 10
+#define TICKER_INTERVAL 600
 
 inherit "/d/common/obj/weapon/mstaff.c";
 
 string owner;
 int hit_count;
+int charges = MAX_CHARGES;
+int ticker;
 object holder;
 
 string color(string str)
@@ -50,15 +54,54 @@ void create()
 }
 
 void init()
-{   
+{
     ::init();
     
     holder = environment(this_object());
     
-    if(!holder || !userp(holder))
+    if(!userp(holder))
         return;
     
+    add_action("fireball_func", "fireball");
+    add_action("storm_func", "firestorm");
+    add_action("wall_func", "firewall");
+    
     hit_count = 0;
+}
+
+int consume_charges(int x)
+{
+    if(x > charges)
+        return 0;
+    
+    charges -= x;
+    
+    return 1;
+}
+
+int refresh_charges(int x)
+{
+    charges = min( ({ charges + x, MAX_CHARGES }) );
+    charges = max( ({ charges, 0 }) );
+    
+    return charges;
+}
+
+void heart_beat()
+{   
+    ticker++;
+    
+    if(!environment())
+        return;
+    
+    if(!query_worn())
+        return;
+    
+    if(ticker < TICKER_INTERVAL)
+        return;
+    
+    ticker = 0;
+    refresh_charges(1);
 }
 
 int hit_func(object target)
