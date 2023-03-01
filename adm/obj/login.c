@@ -303,18 +303,18 @@ protected void confirm_password(string str2, string str1)
         message("logon",
 "
 
-ANSI color adds very much to your enjoyment of playing.The following
-is an ANSI color test. If you see color, then you support ANSI. If you
-see garbage, then you do NOT support ANSI. If you don't see color and
-you don't see garbage, then ANSI would still probably be a wise
-decision.
+Sundering Shadows and its playerbase make heavy use of ANSI color, which comes in
+several varieties. You are about to be shown a Full ANSI test, and a partial ANSI
+test. If both tests look fine, please enter a 'Y'. If only the partial test looks
+fine, please enter a 'P'. If neither test looks fine, please enter an 'N'.
 
 "
         , this_object());
-        message("logon","ANSI color test: "+HIM+"A"+HIG+"N"+HIC+"S"+HIR+"I"+BLU+
+        message("logon","Full ANSI color test: \e[38;2;254;0;0maR\e[38;2;0;254;0maG\e[38;2;0;0;254maB"+NOR+" test\n\n", this_object());
+        message("logon","Partial ANSI color test: "+HIM+"A"+HIG+"N"+HIC+"S"+HIR+"I"+BLU+
                 " test"+NOR+"\n\n", this_object());
         message("logon","That should have read 'ANSI test' in multiple colors.\n"+
-                "Do you support ANSI? [y/n]: ", this_object());
+                "Do you support ANSI? [y/p/n]: ", this_object());
         input_to("ansi_test");
     } else {
         message("logon", "\nPassword entries do not match.  Choose a password: ",
@@ -325,19 +325,31 @@ decision.
 }
 protected void ansi_test(string str) {
     str=capitalize(str);
-    if (str != "Y" && str != "N") {
-        message("logon", "\nPlease enter Y for yes, or N for no.\n",
+    if (str != "Y" && str != "P" && str != "N")
+    {
+        message("logon", "\nPlease enter Y for yes, P for partially, or N for no.\n",
                 this_object());
-        message("logon", "Do you support ANSI? [y/n]: ", this_object());
+        message("logon", "Do you support ANSI? [y/p/n]: ", this_object());
         input_to("ansi_test");
         return;
     }
     
     __Player->set_gender("other");
     
-    if (str == "Y") {
-        message("logon", "\nANSI supported turned on.  Use 'set term default' to turn it off later in the game.\n\n",this_object());
+    if (str == "Y")
+    {
+        message("logon", "\nFull ANSI support turned on.  Use 'set term default' to turn it off later in the game.\n\n",this_object());
         __Player->setenv("TERM","ansi");
+        __Player->reset_terminal();
+        __Player->set("reader", 0);
+        message("logon", sprintf("If you wish to be able to restore your password, enter your email. You can later change this setting with <chfn> command. Your email address: ", mud_name()), this_object());
+        input_to("enter_email");
+        return;
+    }
+    else if (str == "P")
+    {
+         message("logon", "\nPartial ANSI support turned on.  Use 'set term default' to turn it off later in the game.\n\n",this_object());
+        __Player->setenv("TERM","ansi-no-hex");
         __Player->reset_terminal();
         __Player->set("reader", 0);
         message("logon", sprintf("If you wish to be able to restore your password, enter your email. You can later change this setting with <chfn> command. Your email address: ", mud_name()), this_object());
