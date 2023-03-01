@@ -47,7 +47,7 @@ void spell_effect(int prof) {
    myresist = (mylevel/2) + 5; //lower than other resistance spells because it is lower level and grants specific resistances as well. Adjust if needed.
    if(mytype == "fiendish"){
       tell_object(caster,"%^BOLD%^%^BLACK%^You reach into the depths of "
-         "the %^RESET%^Abyss%^BOLD%^%^BLACK%^ and bring forth otherwordly energies, "
+         "the %^RESET%^Abyss%^BOLD%^%^BLACK%^ and bring forth otherworldly energies, "
          "feeling them settle into your very skin.%^RESET%^");
       tell_room(place,"%^BOLD%^%^BLACK%^Darkness suddenly surrounds "+caster->QCN+" "
          "%^BOLD%^%^BLACK%^and "+caster->QP+" eyes %^RESET%^g%^BOLD%^%^BLACK%^l"
@@ -60,7 +60,7 @@ void spell_effect(int prof) {
    }    
    else if(mytype == "celestial"){
       tell_object(caster,"%^BOLD%^%^WHITE%^You reach into the shimmering "
-         "%^RESET%^%^CYAN%^Astral Plane%^BOLD%^%^WHITE%^ and bring forth otherwordly energies, "
+         "%^RESET%^%^CYAN%^Astral Plane%^BOLD%^%^WHITE%^ and bring forth otherworldly energies, "
          "feeling them settle into your very skin.%^RESET%^");
       tell_room(place,"%^BOLD%^%^WHITE%^An %^RESET%^%^CYAN%^ethereal glow"
          "%^BOLD%^%^WHITE%^ suddenly surrounds "+caster->QCN+" "
@@ -200,8 +200,8 @@ void emote_em(string str){
    if(mytype == "celestial"){
       switch(random(5)){
          case 0: tell_room(environment(caster),"%^RESET%^%^CYAN%^As "+caster->QCN+""
-                    "%^RESET%^%^CYAN%^ turns "+caster->QP+" head, "+caster->QCN+" "
-                    "sparkle with an %^BOLD%^o%^WHITE%^p%^CYAN%^al%^MAGENTA%^e%^CYAN%^"
+                    "%^RESET%^%^CYAN%^ turns "+caster->QP+" head, "+caster->query_subjective()+" "
+                    "sparkles with an %^BOLD%^o%^WHITE%^p%^CYAN%^al%^MAGENTA%^e%^CYAN%^"
                     "sc%^WHITE%^e%^CYAN%^nt %^RESET%^%^CYAN%^gleam.%^RESET%^",caster);
                  tell_object(caster,"%^RESET%^%^CYAN%^You feel a surge of %^BOLD%^joy"
                     "%^RESET%^%^CYAN%^ as warmth spreads across your skin.%^RESET%^");

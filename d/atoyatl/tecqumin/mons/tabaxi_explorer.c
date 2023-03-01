@@ -95,7 +95,7 @@ string long_desc(){
   string desc;
   desc = "%^ORANGE%^This tabaxi is carrying a backpack and a belt equipped"
               +" with various utility items. A fedora style hat is propped"
-              +" rakishly on " + QP + "hat. " + capitalize(QP)
+              +" rakishly on " + QP + " head. " + capitalize(QP)
               +" brownish red coat has rosetted spots. " + capitalize(QS)
               +" is tall and slender, with eyes of "
               + EYECOLOUR[eyecolour] +"%^ORANGE%^. "
