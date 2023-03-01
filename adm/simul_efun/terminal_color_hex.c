@@ -55,8 +55,11 @@ string terminal_color_hex(string raw_string, mapping color_mapping, int screen_w
         // Mark this fragment as a color code.
         is_color_code[i] = 1;
 
-        // Replace the current fragment with its respective color code
-        exploded_argument[i] = "\033[38;2;" + temp_r + ";" + temp_g + ";" + temp_b + "m";
+        // Replace the current fragment with its respective color code if the terminal is FANSI (hehe)
+        if (color_mapping[1] == 1)
+            exploded_argument[i] = "\033[38;2;" + temp_r + ";" + temp_g + ";" + temp_b + "m";
+        else
+            exploded_argument[i] = "";
     }
 
     // If we have don't a screen width...
@@ -71,7 +74,7 @@ string terminal_color_hex(string raw_string, mapping color_mapping, int screen_w
 
     for (i = 0; i < sizeof(exploded_argument); ++i)
     {
-        // If this segment is a color track it and skip it.
+        // If this segment is a color, skip it.
         if (is_color_code[i])
             continue;
 
