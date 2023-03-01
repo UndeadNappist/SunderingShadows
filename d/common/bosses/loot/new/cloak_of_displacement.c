@@ -21,8 +21,8 @@ void create()
     set_id( ({ "cape", "displacement cloak", "cloak of displacement", "dark cloak", "cloak" }) );
     set_short("cloak of displacement");
     set_obvious_short("cloak of displacement");
-    set_long("");
-    set_lore("");
+    set_long("LONG DESC");
+    set_lore("SHORT DESC");
     set_property("lore difficulty", 40);
     set_property("id difficulty", 40);
     set_ac(0);

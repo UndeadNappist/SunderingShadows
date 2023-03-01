@@ -23,8 +23,8 @@ void create()
     set_name("hammer");
     set_id( ({ "hammer", "warhammer", "lord's hammer", "stormlord's hammer", "conduit", "stormlords conduit", "lords hammer", "stormlords hammer" }) );
     set_short("");
-    set_obvious_short("");
-    set_long("");
+    set_obvious_short("SHORT DESC");
+    set_long("LONG DESC");
     set_value(100000);
     set_weight(6);
     set_property("no_curse", 1);
