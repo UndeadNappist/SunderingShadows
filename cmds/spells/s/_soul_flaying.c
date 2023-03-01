@@ -93,9 +93,12 @@ void dest_effect()
         target->add_damage_bonus(bonus);
         target->add_attack_bonus(bonus);
         target->set_property("empowered",bonus);
-        caster->add_saving_bonus("all",bonus);
         target->remove_property("soul flaying");
     }
+
+    if (objectp(caster))
+        caster->add_saving_bonus("all",bonus);
+
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }
