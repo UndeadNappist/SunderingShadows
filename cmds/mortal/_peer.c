@@ -186,7 +186,7 @@ int do_lp(string str)
         message("room_exits", (string)dest->query_short_exits(), this_player());
         message("room_effects", (string)dest->query_effects(), this_player());
         message("Nliving_item", (string)dest->describe_living_contents(({})), this_player());
-        message("Ninanimate_item", (string)dest->describe_item_contents(({})), this_player());
+        message("inanimate_item", (string)dest->describe_item_contents(({})), this_player());
     }
 /*
     message("other_action", this_player()->query_cap_name()+

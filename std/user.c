@@ -2726,8 +2726,11 @@ void receive_message(string msg_class, string msg)
 {
     string *words, str, pre, post, intro, who, blah, blah2, known,the_lang,tmp="",temp, omsg, pname, owho;
     int i, max, x, first_words,second_words, true_msg;
-    object ob;
+    object me, my_environment, ob;
     mapping TermInfo;
+
+    if (!me = this_object())
+        return;
 
     if(!stringp(msg)) { return; }
 
@@ -2736,31 +2739,31 @@ void receive_message(string msg_class, string msg)
         if(!stringp(who)) { error("bad message "+msg); }
         owho = who;
         who = FILTERS_D->filter_colors(who);
-        if (!avatarp(TO) && query_blind() && objectp(ob=find_player(lower_case(who))) && (!wizardp(ob)) )
+        if (!avatarp(me) && query_blind() && objectp(ob=find_player(lower_case(who))) && (!wizardp(ob)) )
         {
             known = "Someone";
         }
         else
         {
-            if(!avatarp(TO)) { known = knownAs(who); }
+            if(!avatarp(me)) { known = knownAs(who); }
             else { known = capitalize(who); }
 
             if(!known)
             {
-	            ob = find_player(who);
-	            if(!objectp(ob) || wizardp(ob) || avatarp(TO))
+                ob = find_player(who);
+                if(!objectp(ob) || wizardp(ob) || avatarp(me))
                 {
-	                known = USERCALL->user_call(who,"getWholeDescriptivePhrase");
-	                if(!stringp(known)) known = capitalize(who);
-	            }
+                    known = USERCALL->user_call(who,"getWholeDescriptivePhrase");
+                    if(!stringp(known)) known = capitalize(who);
+                }
                 else
                 {
-	                known = capitalize(ob->getWholeDescriptivePhrase());
-	            }
+                    known = capitalize(ob->getWholeDescriptivePhrase());
+                }
             }
             else
             {
-	            known = capitalize(known);
+                known = capitalize(known);
             }
         }
         msg = replace_string(msg, "$&$"+owho+"$&$",known);
@@ -2819,7 +2822,7 @@ void receive_message(string msg_class, string msg)
                     if (i % 2 == 0) {
                         tmp += words[i];
                     }else {
-                        if (words[i] == "mumbles through the gag" && TO != TP) {
+                        if (words[i] == "mumbles through the gag" && me != TP) {
                             tmp += "\"" + words[i] + "\"";
                         }else {
                             if (member_array(the_lang, ANIMAL_LANGS) != -1) {
@@ -2827,18 +2830,18 @@ void receive_message(string msg_class, string msg)
                                     temp = "daemon/language_d"->animal_translate(words[i], the_lang, ob);
                                 }
                                 if (stringp(temp)) {
-                                    temp = "daemon/language_d"->animal_translate(temp, the_lang, TO);
+                                    temp = "daemon/language_d"->animal_translate(temp, the_lang, me);
                                 }else {
-                                    temp = "daemon/language_d"->translate(words[i], the_lang, TO);
+                                    temp = "daemon/language_d"->translate(words[i], the_lang, me);
                                 }
                             }else {
                                 if (objectp(ob)) {
-                                    temp = "daemon/language_d"->translate(words[i], the_lang, TO);
+                                    temp = "daemon/language_d"->translate(words[i], the_lang, me);
                                 }
                                 if (stringp(temp)) {
-                                    temp = "daemon/language_d"->animal_translate(temp, the_lang, TO);
+                                    temp = "daemon/language_d"->animal_translate(temp, the_lang, me);
                                 }else {
-                                    temp = "daemon/language_d"->translate(words[i], the_lang, TO);
+                                    temp = "daemon/language_d"->translate(words[i], the_lang, me);
                                 }
                             }
 
@@ -2859,19 +2862,22 @@ void receive_message(string msg_class, string msg)
     omsg = msg;
     x = atoi(str);
     //msg += "\nmsg_class = "+msg_class;
-    if (msg_class[0] == 'N') { msg_class = msg_class[1..sizeof(msg_class)-1]; }
+    if (msg_class[0] == 'N')
+    {
+        TermInfo = USER_D->myTerm(me);
+        msg = terminal_color_hex(msg + "%^RESET%^", TermInfo, x, 0);
+
+        msg_class = msg_class[1..sizeof(msg_class)-1];
+    }
     else if (msg_class != "prompt")
     {
-        TermInfo = USER_D->myTerm(TO);
-        //msg = terminal_colour(msg + "%^RESET%^\n", TermInfo, x, 0);
+        TermInfo = USER_D->myTerm(me);
         msg = terminal_color_hex(msg + "%^RESET%^\n", TermInfo, x, 0);
-        //msg += "%^RESET%^";
-        //msg = wrap(msg, x);
     }
     if (msg_class == "system" || msg_class == "more" || msg_class == "logon")
     {
-        if(msg_class == "logon") { TermInfo = USER_D->myTerm(TO, 1); }
-        else TermInfo = USER_D->myTerm(TO);
+        if(msg_class == "logon") { TermInfo = USER_D->myTerm(me, 1); }
+        else TermInfo = USER_D->myTerm(me);
         msg = terminal_color_hex(msg + "%^RESET%^\n", TermInfo, x, 0);
         receive(msg);
         return;
@@ -2899,7 +2905,7 @@ void receive_message(string msg_class, string msg)
                 the_lang = "common";
             }
 
-            if (TO->query_property("understand_all_langs") || the_lang == "wizish" || wizardp(TO)) {
+            if (me->query_property("understand_all_langs") || the_lang == "wizish" || wizardp(me)) {
                 str = str;
             }else if (objectp(ob) && ob->query_property("verstandnis")) {
                 str = str;
@@ -2908,7 +2914,7 @@ void receive_message(string msg_class, string msg)
                     if (objectp(ob) && !ob->query_property("verstandnis")) {
                         str = "/daemon/language_d"->translate(str, the_lang, ob);
                     }
-                    str = "/daemon/language_d"->translate(str, the_lang, TO);
+                    str = "/daemon/language_d"->translate(str, the_lang, me);
                     if (stringp(pname) && msg_class == "tell") {
                         msg = intro + ":" + pname + ": " + str + "\n";
                     }else {
@@ -2916,10 +2922,10 @@ void receive_message(string msg_class, string msg)
                     }
                 }else {
                     first_words = sizeof(explode(str, " "));
-                    if (objectp(ob) && !TO->query_property("verstandnis")) {
+                    if (objectp(ob) && !me->query_property("verstandnis")) {
                         str = "daemon/language_d"->animal_translate(str, the_lang, ob);
                     }
-                    str = "/daemon/language_d"->animal_translate(str, the_lang, TO);
+                    str = "/daemon/language_d"->animal_translate(str, the_lang, me);
                     second_words = sizeof(explode(str, " "));
 
                     if (second_words >= first_words) {
@@ -2928,22 +2934,22 @@ void receive_message(string msg_class, string msg)
                         }else {
                             msg = intro + ": (" + the_lang + ") " + str + "\n";
                         }
-                    }else if (!second_words && TO != TP) {
+                    }else if (!second_words && me != TP) {
                         msg = "%^MAGENTA%^You think " + known + " was trying to communicate, but you couldn't understand.\n";
-                    }else if (TO != TP) {
+                    }else if (me != TP) {
                         msg = "%^MAGENTA%^You think " + known + " was trying to say (" + the_lang + "):%^RESET%^ " + str + "\n";
                     }
                 }
             }
         }
-        if (TO != ob && query_property("compliant")){
+        if (me != ob && query_property("compliant")){
                 call_out("obey_command", 1, str, TP);
         }
     }
 
     if (msg_class == "reading")
     {
-        msg = "daemon/language_d"->translate(msg,PO->query_language(),TO,1) + "\n";
+        msg = "daemon/language_d"->translate(msg,PO->query_language(),me,1) + "\n";
     }
 
     if (!static_user["term_info"]) { reset_terminal(); }
@@ -2956,15 +2962,15 @@ void receive_message(string msg_class, string msg)
         }
     }
 
-    if (query_unconscious() && (member_array(msg_class, OVERRIDE_IGNORE_MSG) == -1 || msg_class == "say")&& !avatarp(TO))
+    if (query_unconscious() && (member_array(msg_class, OVERRIDE_IGNORE_MSG) == -1 || msg_class == "say")&& !avatarp(me))
     {
         string name;
 
         if (msg_class == "tell")
         {
-            if (objectp(ETO))
+            if (objectp(my_environment = environment(me)))
             {
-	            name = base_name(ETO);
+	            name = base_name(my_environment);
 	            if (name[0..18] != "/d/shadowgate/death") { return; }
             }
         }
