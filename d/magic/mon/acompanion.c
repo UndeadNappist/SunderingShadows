@@ -159,14 +159,14 @@ int animal_command(string str)
 void heart_beat()
 {
 
-    object *attackers,
-           room;
+    object *attackers, me, room;
 
     ::heart_beat();
 
-    room = environment(this_object());
+    if (!objectp(me = this_object()))
+        return;
 
-    if(!room || !objectp(room))
+    if(!objectp(room = environment(me)))
         return;
 
     if(!objectp(owner) || owner->query_property("animal_companion") != this_object() || owner->query_ghost())
