@@ -40,13 +40,14 @@ init()
 
 int break_free(string str)
 {
-    if (!str) {
+    if (!str)
         return 0;
-    }
-    if (str != "free") {
+
+    if (str != "free")
         return 0;
-    }
-    TP->move_player("/d/shadow/room/forest/road30");
+
+    this_player()->move_player("/d/shadow/room/forest/road30");
+
     return 1;
 }
 
