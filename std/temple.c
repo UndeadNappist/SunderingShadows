@@ -513,12 +513,15 @@ void heart_beat()
         
         foreach(object dude in tmp)
         {
-            if(member_array(dude, aggressors) < 0)
+            if(member_array(dude, aggressors) < 0 && objectp(dude))
                 aggressors += ({ dude });
         }
     }
-    
-    sizeof(aggressors) && aggressors = filter_array(aggressors, (: $1->query_diety() != diety :));
+
+    if(!sizeof(aggressors))
+      return;
+
+    aggressors = filter_array(aggressors, (: $1->query_diety() != diety :));
     
     if(!sizeof(aggressors))
         return;

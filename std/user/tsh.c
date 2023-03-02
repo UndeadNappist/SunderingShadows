@@ -335,7 +335,7 @@ nomask string process_input(string arg)
     
     
     
-    if(this_player()->query_property("memorizing"))
+    if(this_player()->query_property("memorizing") && first_arg != "")
     {
         first_arg = explode(do_alias(do_nicknames(arg)), " ")[0];
         
