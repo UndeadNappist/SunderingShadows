@@ -21,3 +21,22 @@ set_exits(([
 
 }
 
+void reset() {
+  object ob;
+  ::reset();
+  if (!objectp(present(getuid(TO)+"_board"))) {
+     ob = new("std/bboard");
+     ob->set_name(getuid(TO)+"board");
+     ob->set_id( ({ "board", getuid(TO)+"_board", "my board" }) );
+     ob->set_board_id("steppe board");
+     ob->set("short", "%^C058%^A stout %^C094%^wooden %^C058%^board%^CRST%^");
+     ob->set("long", "%^C094%^Installed in the centre of the settlement, stout %^C058%^oak boards%^C094%^ support a board with notices %^C240%^nailed %^C094%^to it.%^CRST%^\n");
+     ob->set_max_posts(20);
+     ob->set_location(base_name(TO));
+     ob->move(TO);
+     ob->set_property("no steal",1);
+
+}
+
+}
+
