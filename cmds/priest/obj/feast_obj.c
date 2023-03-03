@@ -107,10 +107,19 @@ void heart_beat()
 
 void dest_effect()
 {
-    tell_object(ETO, "The banquet table vanishes before your eyes!");
-    if (objectp(casting_spell)) {
+    object me, my_environment;
+
+    if (!objectp(me = this_object()))
+        return;
+
+    if (!objectp(my_environment = environment(me)))
+        return;
+
+    tell_object(my_environment, "The banquet table vanishes before your eyes!");
+    if (objectp(casting_spell))
+    {
         casting_spell->dest_effect();
     }
-    TO->remove();
+    me->remove();
     return;
 }
