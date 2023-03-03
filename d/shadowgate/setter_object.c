@@ -978,14 +978,15 @@ string *generate_deity()
 {
     string * choices = ({});
 
-    if (char_sheet["class"] == "cleric" ||
-        char_sheet["class"] == "inquisitor") {
+    if(char_sheet["class"] == "cleric" || char_sheet["class"] == "inquisitor"){
         choices = filter_array(keys(DIETIES), (:member_array($2, DIETIES[$1][2]) != -1:), str_to_align(char_sheet["alignment"]));
-    } else {
+    }
+    else if(char_sheet["class"] == "paladin"){
+        choices = filter_array(keys(DIETIES), (:member_array($2, DIETIES[$1][2]) != -1:), str_to_align(char_sheet["alignment"]));
+        choices = choices - (choices - PALADIN_GODS);
+    }
+    else{
         choices = filter_array(keys(DIETIES), (:member_array($2, DIETIES[$1][1]) != -1:), str_to_align(char_sheet["alignment"])) + ({"godless"});
-        if (char_sheet["class"] == "paladin") {
-            choices = choices - (choices - PALADIN_GODS);
-        }
     }
 
     return choices;

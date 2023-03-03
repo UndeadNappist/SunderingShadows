@@ -1,6 +1,8 @@
 #include <priest.h>
 inherit SPELL;
 
+#define BAN ({ "deva", "shade", "ghost", "unborn" })
+
 void create()
 {
     ::create();
@@ -48,6 +50,11 @@ void spell_effect(int prof)
         {
             if (regexp(earg, implode(RACE_D->query_races(), "|"))) {
                 raceto = earg;
+            }
+            if(member_array(raceto, BAN) != -1){
+                tell_object(caster, "%^C059%^That isn't a proper race selection.%^CRST");
+                dest_effect();
+                return;
             }
             if (regexp(earg, "[0-9]")) {
                 if (atoi(earg) < (clevel / 10 + 1)) {
