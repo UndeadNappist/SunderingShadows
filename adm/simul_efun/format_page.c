@@ -65,7 +65,7 @@ string auto_format_page(string *output, object player)
 {
     int y, z;
     int columns;
-    int scrw = atoi(player->getenv("SCREEN"));
+    int scrw = atoi("" + player->getenv("SCREEN"));
     int scrl = atoi(player->getenv("LINES"));
     int vertical = player->getenv("VCOLUMNS") ? 1 : 0;
     int i;
