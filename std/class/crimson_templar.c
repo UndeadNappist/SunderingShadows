@@ -115,7 +115,7 @@ string requirements() // string version, maybe we'll need this, maybe not, can r
     str = "Prerequisites:\n"
         "    20 Levels"
         "    Lawful Good\n"
-        "    Kreysneothosies or Jarmila follower\n"
+        "    Kreysneothosies, Edea or Jarmila follower\n"
         "    10 Ranks spent in Stealth Skill\n";
 
     return str;
@@ -166,7 +166,7 @@ int prerequisites(object player)
         return 0;
     }
     
-    if(player->query_diety() != "kreysneothosies" && player->query_diety() != "jarmila")
+    if(player->query_diety() != "kreysneothosies" && player->query_diety() != "jarmila" && player->query_diety() != "edea")
     {
         write("fail deity");
         return 0;
