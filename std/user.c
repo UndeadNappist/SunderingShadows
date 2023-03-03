@@ -775,16 +775,20 @@ void after_move_effects()
     }       
 }
 
+// Zero is a fail, one is a succeed.
 varargs void move_player(mixed dest, string msg, int follow_flag)
 {
-    object prev;
+    object me, prev;
     object *inv;
     string here,going,temp1,temp2,temp3;
     int i, illum, bzbd, adj, tmp;
 
-    if(objectp(ETO))
+    if (!objectp(me = this_object()))
+        return 0;
+
+    if(objectp(environment(me)))
     {
-        prev = ETO;
+        prev = environment(me);
         here = file_name(prev);
     }
     else
@@ -817,7 +821,7 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
     {
         if (!query_in_vehicle()->move_forward())
         {
-            return;
+            return 0;
         }
     }
 
@@ -827,7 +831,7 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
     if ( move(dest) != MOVE_OK )
     {
         write("You remain where you are.");
-        return;
+        return 0;
     }
 
     reset_hidden_seen();
@@ -835,13 +839,13 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
     if(this_object()->query("reader"))
         describe_current_room(static_user["verbose_moves"]);
 
-    if (!hiddenp(TO) && !(avatarp(TO) && query_true_invis()))
+    if (!hiddenp(me) && !(avatarp(me) && query_true_invis()))
     {
         if(objectp(prev)) inv = all_inventory(prev);
 
         for (i=0, bzbd = sizeof(inv); i<bzbd; i++)
         {
-            if (!living(inv[i]) || inv[i] == TO) continue;
+            if (!living(inv[i]) || inv[i] == me) continue;
             if (query_magic_hidden()  && !inv[i]->detecting_invis())
             {
 	            continue;
@@ -852,19 +856,19 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
             if (!msg || msg == "") message("mmout", query_mmout(inv[i]),inv[i]);
             else
             {
-	            if (TO->query_in_vehicle() && objectp(TO->query_in_vehicle()))
+	            if (me->query_in_vehicle() && objectp(me->query_in_vehicle()))
                 {
-	                message("mout",query_cap_name()+" rides "+TO->query_in_vehicle()->query_cap_name()+" "+msg+".",inv[i]);
+	                message("mout",query_cap_name()+" rides "+me->query_in_vehicle()->query_cap_name()+" "+msg+".",inv[i]);
 	            }
                 else message("mout", query_mout(msg,inv[i]), inv[i]);
             }
         }
 
-        inv = all_inventory(ETO);
+        inv = all_inventory(environment(me));
         for (i=0, bzbd = sizeof(inv); i<bzbd; i++)
         {
             if (!living(inv[i])) continue;
-            if (inv[i] == TO) continue;
+            if (inv[i] == me) continue;
             if (adj) tmp = (adj-(int)inv[i]->query_stats("wisdom"));
             else tmp = 0;
             if (tmp > random(101)) continue;
@@ -883,9 +887,9 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
             if (!msg || msg == "") message("mmin",query_mmin(inv[i]),inv[i]);
             else
             {
-	            if (TO->query_in_vehicle() && objectp(TO->query_in_vehicle()))
+	            if (me->query_in_vehicle() && objectp(me->query_in_vehicle()))
                 {
-	                message("min", query_cap_name()+" enters riding "+TO->query_in_vehicle()->query_cap_name()+".", inv[i]);
+	                message("min", query_cap_name()+" enters riding "+me->query_in_vehicle()->query_cap_name()+".", inv[i]);
 	            }
                 else message("min",query_min(inv[i]),inv[i]);
             }
@@ -906,6 +910,8 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
 
     if(!this_object()->query("reader"))
         describe_current_room(static_user["verbose_moves"]);
+
+    return 1;
 }
 
 int id(string str)

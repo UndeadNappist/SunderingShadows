@@ -110,7 +110,7 @@ string list_users(string *races, object tp)
                 if (ctime(time())[4..9]=="Jan 14") rabbit="%^BOLD%^wolf";
                 tmp += "%^MAGENTA%^"+ arrange_string(" "+ rabbit+"%^BOLD%^%^BLACK%^ ------------ ",12) +" ";
             }
-            length = atoi((string)TP->getenv("SCREEN"))-32;
+            length = atoi("" + TP->getenv("SCREEN")) - 32;
             if(!length||length<18)
                 length=43;
 

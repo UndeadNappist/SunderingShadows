@@ -68,7 +68,7 @@ int preSpell()
     valid_races = RACE_D->query_races();
     valid_races -= BAN;
     
-    if(member_array(arg, RACE_D->query_races()) < 0)
+    if(member_array(arg, valid_races) < 0)
     {
         tell_object(caster, capitalize(arg) + " is not a valid race. Valid races are :");
         tell_object(caster, "%^GREEN%^" + implode(valid_races, ", "));

@@ -52,19 +52,22 @@ advance_disease()
 
 void heart_beat()
 {
-    if (!objectp(TO)) {
-        return;
-    }
+    object me, my_environment;
 
-    if (!next_step) {
+    if (!objectp(me = this_object()))
         return;
-    }
 
-    if (!ETO->is_living()) {
-        TO->remove();
-    }
-    if (ETO->query_age() > next_step) {
+    if (!objectp(my_environment = environment(me)))
+        return;
+
+    if (!next_step)
+        return;
+
+    if (!my_environment->is_living())
+        me->remove();
+
+    if (my_environment->query_age() > next_step)
         advance_disease();
-    }
+
     return;
 }
