@@ -4251,9 +4251,13 @@ int spell_in_combat_cycle(object room)
 
 void prepend_to_combat_cycle(object room)
 {
-    if (!spell_in_combat_cycle(room)) {
-        room->removeObjectFromCombatCycle(TO); //Race errors
-        room->addObjectToCombatCycle(TO, 1);
+    if (!objectp(room))
+        return;
+
+    if (!spell_in_combat_cycle(room))
+    {
+        room->removeObjectFromCombatCycle(this_object()); //Race errors
+        room->addObjectToCombatCycle(this_object(), 1);
     }
 }
 
