@@ -147,4 +147,5 @@
     "/realms/kismet/obj/rewards/moontiara", \
     "/realms/kismet/obj/rewards/r_orchid", \
     "/realms/nuwisha/obj/iceaura2", \
+    "/realms/spade/rewards/p101b/rhists_embrace", \
 })
