@@ -37,6 +37,7 @@ void spell_effect(int prof) {
 
     foes = target_selector();
     foes += ({target});
+    foes =  distinct_array(foes);
 
     spell_successful();
 
