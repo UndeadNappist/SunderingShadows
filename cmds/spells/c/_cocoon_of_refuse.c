@@ -16,7 +16,7 @@ create() {
     set_spell_name("cocoon of refuse");
     set_spell_level(([ "warlock" : 1 ]));
     set_spell_sphere("invocation_evocation");
-    set_syntax("cast CLASS cocoon of refuse on TARGET");
+    set_syntax("cast CLASS cocoon of refuse [on TARGET]");
     set_damage_desc("tripped for 1d8 rounds");
     set_description("With this spell, the caster causes all loose material in the area to cling to the target, hampering their movement greatly and causing them to trip.");
     set_verbal_comp();
@@ -33,10 +33,12 @@ string query_cast_string() {
 spell_effect(int prof) {
     int save, neededroll, power;
     string strength;
+    
+    spell_successful();
     tell_object(caster, "%^RESET%^%^CRST%^%^C058%^You release the %^C144%^e%^C138%^ne%^C132%^r%^C144%^g%^C138%^y %^RESET%^%^C058%^and the %^C100%^loose material %^C058%^around you begins to swirl around "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C058%^!%^CRST%^");
     tell_object(target, "%^RESET%^%^CRST%^%^C058%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C058%^ releases their %^C144%^d%^C138%^ar%^C132%^k %^C144%^e%^C138%^ne%^C132%^r%^C144%^g%^C138%^y %^C058%^and the %^C100%^loose debris %^C058%^in the area begins to swirl around you!%^CRST%^");
     tell_room(place, "%^RESET%^%^CRST%^%^C058%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C058%^ releases their %^C144%^d%^C138%^ar%^C132%^k %^C144%^e%^C138%^ne%^C132%^r%^C144%^g%^C138%^y %^C058%^and the %^C100%^loose debris %^C058%^in the area begins to spin around "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C058%^!%^CRST%^", ({caster, target}) );
-    if ( do_save(target,-2)) {
+    if ( do_save(target, 0)) {
         tell_object(caster, "%^RESET%^%^CRST%^%^C101%^"+target->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ manages to slip away from your cocoon of refuse!%^CRST%^");
         tell_object(target, "%^RESET%^%^CRST%^%^C101%^You manage to slip away from the swirling material!%^CRST%^");
         tell_room(environment(caster), "%^RESET%^%^CRST%^%^C101%^"+target->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ manages to slip away from the swirling material!%^CRST%^",({caster, target}) );

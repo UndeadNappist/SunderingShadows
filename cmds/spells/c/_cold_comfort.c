@@ -37,6 +37,7 @@ void create()
     set_feats_required(([ "warlock" : "tome of ancient secrets"]));
 }
 
+/*
 int preSpell()
 {
    if(caster->query_property("castspellresist") || caster->query_property("fiery body"))
@@ -47,7 +48,7 @@ int preSpell()
    
    return 1;
 }
-
+*/
 
 string query_cast_string()
 {
