@@ -79,7 +79,7 @@ void spell_effect()
             }
             else
             {
-                set_paralyzed(1);
+                ob->set_paralyzed(1);
             }
         }
     }

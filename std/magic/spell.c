@@ -3023,6 +3023,22 @@ void define_base_damage(int adjust)
         {
             if(caster->query_bloodline() == "orc")
                 sdamage += (BONUS_D->query_stat_bonus(caster, "charisma") * (1 + clevel / 12));
+            
+            if(caster->query_bloodline() == "draconic" && sizeof(immune))
+            {
+                string draconic_element;
+                
+                switch(caster->query("draconic_bloodline"))
+                {
+                    case "red": case "gold": draconic_element = "fire"; break;
+                    case "black": case "green": case "copper": draconic_element = "acid"; break;
+                    case "blue": case "bronze": draconic_element = "electricity"; break;
+                    case "white": case "silver": draconic_element = "cold"; break;
+                }
+                
+                if(member_array(draconic_element, immune) >= 0)
+                    sdamage += clevel;
+            }
         }
 
         if(target && target->is_class("sorcerer"))
