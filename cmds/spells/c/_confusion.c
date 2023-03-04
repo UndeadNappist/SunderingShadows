@@ -46,6 +46,8 @@ void spell_effect(int prof){
     total = clevel/5;
     if(total < 0) total = 0;
     total += 3;
+    
+    spell_successful();
 
     tell_object(target,"%^BOLD%^%^CYAN%^"+caster->QCN+" gazes at you intently as "
         ""+caster->QS+" begins to chant!");

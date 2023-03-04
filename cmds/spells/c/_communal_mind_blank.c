@@ -40,5 +40,12 @@ int preSpell()
     }
 
     spell_successful();
+    dest_effect();
     return 1;
+}
+
+void dest_effect()
+{
+    ::dest_effect();
+    if(objectp(this_object())) this_object()->remove();
 }

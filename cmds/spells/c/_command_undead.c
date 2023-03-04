@@ -32,6 +32,8 @@ void spell_effect()
         dest_effect();
         return;
     }
+    
+    spell_successful();
 
     tell_object(caster, "%^BOLD%^%^BLUE%^You enspell your voice and command " + target->QCN + ":%^RESET%^ " + command + "!");
     tell_room(place, "%^BOLD%^%^BLUE%^" + caster->QCN + " enspells " + caster->QP + " voice and commands " + target->QCN + "%^RESET%^!", caster);
@@ -49,6 +51,12 @@ void spell_effect()
     target->set_property("dominated", 1);
     target->force_me(command);
     target->remove_property("dominated");
-    spell_successful();
+    dest_effect();
     return;
+}
+
+void dest_effect()
+{
+    ::dest_effect();
+    if(objectp(this_object())) this_object()->remove();
 }
