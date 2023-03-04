@@ -86,12 +86,12 @@ int location(string str) {
    string file, place,where;
    int x,y;
 
-    if(!objectp(boat)) 
-	{
-      	boat = new("/d/shadow/virtual/sea/obj/boat.c");
-      	boat->move(room);
-      	room->set_had_players((int)boat->query_had_players());
-    }
+   if(!objectp(boat) && stringp(room))
+   {
+      boat = new("/d/shadow/virtual/sea/obj/boat.c");
+      boat->move(room);
+      room->set_had_players((int)boat->query_had_players());
+   }
 
    if(TP->query_bound() || TP->query_unconscious() || TP->query_paralyzed()){
       TP->send_paralyzed_message("info",TP);
@@ -121,67 +121,76 @@ int location(string str) {
 
 int steer(string str) 
 {
-   	string *exits;
-	if(!objectp(TP)) return 0;
-   	if(!objectp(TO)) return 0;
-	if(!stringp(room)) return 0;
-	
-	if(TP->query_bound() || TP->query_unconscious() 
-	|| TP->query_tripped() || TP->query_paralyzed())
-	{
-      	TP->send_paralyzed_message("info",TP);
-      	return 1;
-   	}
+   string *exits;
+   if(!objectp(TP)) return 0;
+   if(!objectp(TO)) return 0;
+   if(!stringp(room)) return 0;
 
-   	if(owner != "noone" && (string)TPQN != owner)
-	{
-		tell_object(TP, "This is not your boat.  The crew will not respond to you.");
-		return 1;
-	}
+   if(TP->query_bound() || TP->query_unconscious() || TP->query_tripped() || TP->query_paralyzed())
+   {
+      TP->send_paralyzed_message("info",TP);
+      return 1;
+   }
 
-    if(TP->query_property("shapeshifted"))
-        return notify_fail("You can't do that while shapeshifted");
+   if(owner != "noone" && (string)TPQN != owner)
+   {
+      tell_object(TP, "This is not your boat.  The crew will not respond to you.");
+      return 1;
+   }
+
+   if(TP->query_property("shapeshifted"))
+      return notify_fail("You can't do that while shapeshifted");
 
 //return notify_fail("This boat is owned by "+capitalize(owner)+", the crew will not respond to //you.\n");
 
-   	if(find_call_out("steering") != -1) return 1;
-    if(!stringp(str))
-    {
-        tell_object(TP, "Steer in which direction?");
-        return 1;
-    }
-   	str = lower_case(str);
-   	if(member_array(str, VALID_DIRECTIONS) == -1)
-      	return notify_fail("You can't sail in that direction!\n");
-   	if(!objectp(boat)) 
-	{
-      	boat = new("/d/shadow/virtual/sea/obj/boat.c");
-      	boat->move(room);
-      	room->set_had_players((int)boat->query_had_players());
+   if(find_call_out("steering") != -1)
+      return 1;
+
+   if(!stringp(str))
+   {
+      tell_object(TP, "Steer in which direction?");
+      return 1;
+   }
+
+   str = lower_case(str);
+
+   if(member_array(str, VALID_DIRECTIONS) == -1)
+      return notify_fail("You can't sail in that direction!\n");
+
+   if(!objectp(boat))
+   {
+      boat = new("/d/shadow/virtual/sea/obj/boat.c");
+      boat->move(room);
+      room->set_had_players((int)boat->query_had_players());
 /* well, maybe not since it won't update, but leaving this until I'm sure it isn't something like this and just needs a check for room to be set....
   room is a string, not an object, so I suspect that was the cause of the bugs if the boat object or room was cleaned up *Styx* 1/2/04, last change 4/03
       boat->move(find_object_or_load(room));  // hopefully this will work better
 */
       //"/d/shadow/virtual/sea/"+y+","+x+".c");
-   	}
-	if(!objectp(EOB)) 
-	{
-		tell_object(TP, "The environment for your boat is messed up "+
-		"tell Saide or bug report this directly.");
-		return 1;
-	}
-   	exits = EOB->query_exits();
-   	if(member_array(str, exits) == -1 && str != "out")
-      	return notify_fail("You can't sail in that direction, no ocean!\n");
-   	if(str == "out" && !EOB->is_dock())
-      	return notify_fail("You can't sail in that direction!\n");
-   	if(EOB->is_dock() && str != "out")
-      	return notify_fail("You must sail out of the dock first!\n");
-   	tell_room(TO,"%^BOLD%^%^CYAN%^"+TPQCN+" steers the ship "+str,TP);
-   	write("%^BOLD%^%^CYAN%^You steer the ship "+str);
-  	remove_exit("gangplank");
-   	call_out("steering",2,str);
-   	return 1;
+   }
+
+   if(!objectp(EOB))
+   {
+      tell_object(TP, "The environment for your boat is messed up "+
+                  "tell Saide or bug report this directly.");
+      return 1;
+   }
+
+   exits = EOB->query_exits();
+   if(member_array(str, exits) == -1 && str != "out")
+      return notify_fail("You can't sail in that direction, no ocean!\n");
+
+   if(str == "out" && !EOB->is_dock())
+      return notify_fail("You can't sail in that direction!\n");
+
+   if(EOB->is_dock() && str != "out")
+      return notify_fail("You must sail out of the dock first!\n");
+
+   tell_room(TO,"%^BOLD%^%^CYAN%^"+TPQCN+" steers the ship "+str,TP);
+   write("%^BOLD%^%^CYAN%^You steer the ship "+str);
+   remove_exit("gangplank");
+   call_out("steering",2,str);
+   return 1;
 }
 
 void steering(string str) 
@@ -256,7 +265,8 @@ void steering(string str)
    	tell_room(environment(boat),"%^BOLD%^%^YELLOW%^A boat enters the area.");
 }
 
-void set_boat(object ob) {
+void set_boat(object ob)
+{
    boat = ob;
 }
 /*
@@ -269,11 +279,12 @@ void set_y(int i) {
 }
 */
 
-void reset() {
+void reset()
+{
    ::reset();
 // adding random messages & moving for more realism & fun *Styx* 1/2/04, last chg. 4/03
    if(random(3))
-	tell_room(TO, MSGS[random(sizeof(MSGS))] );
+   tell_room(TO, MSGS[random(sizeof(MSGS))] );
    move_random();
 }
 
@@ -285,37 +296,55 @@ object query_boat() {return boat;}
 
 int scan(string str) 
 {
-   if(TP->query_bound() || TP->query_unconscious() || TP->query_tripped()){
+   if(TP->query_bound() || TP->query_unconscious() || TP->query_tripped())
+   {
       TP->send_paralyzed_message("info",TP);
       return 1;
    }
-    if(!objectp(boat)) 
-    {
-        boat = new("/d/shadow/virtual/sea/obj/boat.c");
-      	boat->move(room);
-      	room->set_had_players((int)boat->query_had_players());
-    }
+
+   if(!objectp(boat))
+   {
+      boat = new("/d/shadow/virtual/sea/obj/boat.c");
+      boat->move(room);
+      room->set_had_players((int)boat->query_had_players());
+   }
+
    tell_room(TO,(string)environment(boat)->query_long()+"%^GREEN%^"+environment(boat)->query_smell("default")+"\n%^YELLOW%^"+environment(boat)->query_listen("default")+"\n");
    return 1;
 }
 
-int lower(string str) {
-   if(TP->query_bound() || TP->query_unconscious() || TP->query_tripped()){
-      TP->send_paralyzed_message("info",TP);
+int lower(string str)
+{
+   object player, pawn_environment;
+
+   if (!objectp(player = this_player()))
+      return;
+
+   if (!objectp(boat) || !objectp(pawn_environment = environment(boat)))
+   {
+      return notify_fail("Due to a bug, you are lost at sea. Please disembark via teleport or contact a wiz.");
+   }
+
+   if (player->query_bound() || player->query_unconscious() || player->query_tripped())
+   {
+      player->send_paralyzed_message("info", player);
       return 1;
    }
 
-   if(TP->query_property("shapeshifted"))
+   if (player->query_property("shapeshifted"))
        return notify_fail("You can't do that while shapeshifted");
 
-   if(!str || str != "gangplank") return notify_fail("Lower what?\n");
+   if (!str || str != "gangplank")
+      return notify_fail("Lower what?\n");
 
-   if(EOB->is_dock()) {
-      tell_room(TO,"%^BOLD%^The gangplank has been lowered!");
-      add_exit(base_name(EOB),"gangplank");
+   if(pawn_environment->is_dock())
+   {
+      tell_room(this_object(),"%^BOLD%^The gangplank has been lowered!");
+      add_exit(base_name(pawn_environment),"gangplank");
    }
    else
       return notify_fail("You can't do that in the middle of the ocean!\n");
+
    return 1;
 }
 
@@ -328,32 +357,64 @@ string query_owner() {return owner;}
 void clean_up() {return 1;}
 
    // and also this function to randomly toss them around *Styx*  1/2/04
-void move_random() {
+void move_random()
+{
    string drift;
    string *exits;
-   if(!objectp(TO))  return;
-   if(!objectp(boat)) return;
-   if(find_call_out("steering") != -1) return;//added to check if boat was already being steered during the reset.  This was causing the boats to wind up in a valid locations - Ares /12/22/04
-   exits = EOB->query_exits();
-   if(!sizeof(exits))  return;
-   switch(exits[random(sizeof(exits))]) {
-	case "out" : 	if(EOB->is_dock()) 
-			   drift = "out";	break;
-	case "dock" :				break;
-	case "west" :	drift = "west";		break;
-	case "east" :	drift = "east";		break;
-	case "north":  	drift = "north";	break;
-	case "south":  	drift = "south";	break;
-	default: break;
-   }
-   if(!find_object_or_load(EOB->query_exit(drift))->is_virtual() || 
-	!find_object_or_load(EOB->query_exit(drift))->is_water())
+   object me, pawn_environment;
+
+   if(!objectp(me = this_object()))
       return;
-   if(drift && stringp(drift)) {
-	tell_room(TO, "\n%^CYAN%^A very large wave tosses the boat around and it drifts off course.\n");
-	steering(drift);
+
+   if(!objectp(boat) || !objectp(pawn_environment = environment(boat)))
+      return;
+
+   if(find_call_out("steering") != -1)
+      return; //added to check if boat was already being steered during the reset.  This was causing the boats to wind up in a valid locations - Ares /12/22/04
+
+   exits = pawn_environment->query_exits();
+
+   if(!sizeof(exits))
+      return;
+
+   switch(exits[random(sizeof(exits))])
+   {
+   case "out" :
+   if(pawn_environment->is_dock())
+      drift = "out";
+      break;
+   case "dock":
+      break;
+   case "west":
+      drift = "west";
+      break;
+   case "east":
+      drift = "east";
+      break;
+   case "north":
+      drift = "north";
+      break;
+   case "south":
+      drift = "south";
+      break;
+   default:
+      break;
    }
-   if(!random(3))  call_out("move_random", 5);
+
+   if(!find_object_or_load(pawn_environment->query_exit(drift))->is_virtual() || !find_object_or_load(pawn_environment->query_exit(drift))->is_water())
+      return;
+
+   if(drift && stringp(drift))
+   {
+      tell_room(me, "\n%^CYAN%^A very large wave tosses the boat around and it drifts off course.\n");
+      steering(drift);
+   }
+
+   if(!random(3))
+      call_out("move_random", 5);
 }
 
-int is_boat(){ return 1;}
+int is_boat()
+{
+   return 1;
+}
