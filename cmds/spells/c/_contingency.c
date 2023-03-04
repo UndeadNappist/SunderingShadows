@@ -100,6 +100,7 @@ void spell_effect(int prof) {
   tell_room(place,"%^BOLD%^%^RED%^You hear a sucking noise in the background as if some magic has been sucked into a bottle.");
   tell_object(caster,"Type, <now> to activate");
   set_heart_beat(1);
+  spell_successful();
   addSpellToCaster();
 }
 
