@@ -51,6 +51,7 @@ int cmd_radiant_aura(string str)
 void execute_feat()
 {
     object obj;
+    string diety;
 
     if (!objectp(caster))
         return;
@@ -64,7 +65,9 @@ void execute_feat()
     }
     ::execute_feat();
 
-    tell_object(caster,"%^C032%^You close your eyes and open your mind, channeling %^C039%^e%^C045%^n%^C051%^er%^C045%^g%^C039%^y %^C032%^directly from "+capitalize(caster->query_diety())+".%^CRST%^");
+    if (stringp(diety = caster->query_diety()))
+        tell_object(caster,"%^C032%^You close your eyes and open your mind, channeling %^C039%^e%^C045%^n%^C051%^er%^C045%^g%^C039%^y %^C032%^directly from " + capitalize(diety) + ".%^CRST%^");
+
     caster->set_property("active_feats",({this_object()}));
 
     return;

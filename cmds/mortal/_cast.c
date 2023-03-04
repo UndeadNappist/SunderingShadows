@@ -152,7 +152,7 @@ int cmd_cast(string str)
         
     if (type == "monk") {
         known = TP->query_ki_spells();
-        if (!stringp(str2) || !strlen(str2) || member_array(str2, known) == -1) {
+        if (!stringp(str2) || !strlen(str2) || !stringp(known) || member_array(str2, known) == -1) {
             tell_object(TP, "You know no such ability!");
             return 1;
         }

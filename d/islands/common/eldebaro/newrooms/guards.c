@@ -80,12 +80,15 @@ int read(string str)
     int length, x;
 
     ob = present("barkeep");
-    if(!ob && str == "menu") {
+
+    if(!ob && str == "menu")
+    {
         write("The barkeep isn't here right now, there's no one to serve you.");
-	    return 1;
+        return 1;
     }
-    if(str == "carving" || str == "sign" || str == "board" 
-    || str == "oak board" && ob = present("dartboard")) {
+
+    if(str == "carving" || str == "sign" || str == "board" || str == "oak board" && (ob = present("dartboard")))
+    {
         write("This is a list of those who are recognized by %^RED%^The "+
         "Verre Bar%^RESET%^ as being masters at the game of darts.");
         names = ob->query_mastery_list();
@@ -99,14 +102,15 @@ int read(string str)
         return 1;
     }
             
-    if(str == "menu") {
+    if(str == "menu")
+    {
         menu_item = ob->query_menu();
         length = sizeof(menu_item);
         message("Ninfo", "%^BOLD%^%^BLUE%^This is a menu of the food and drink sold at the Verre Bar.\n", TP);
         message("Ninfo", "%^BLUE%^-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-\n", TP);
         while(length--){
             melnmarn = sprintf("      %%^GREEN%%^ %-20s  %%^BOLD%%^%%^WHITE%%^%2d %%^RESET%%^%%^WHITE%%^ silver pieces.",capitalize(menu_item[length]),(int)ob->get_price(menu_item[length]));
-	        write(melnmarn);
+            write(melnmarn);
         }
         message("Ninfo", "%^BOLD%^%^BLUE%^-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-\n", TP);
         message("Ninfo", "%^RESET%^<buy menu_name> will get you that item.\n", TP);

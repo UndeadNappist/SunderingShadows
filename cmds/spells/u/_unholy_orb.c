@@ -40,6 +40,9 @@ void spell_effect(int prof){
     object *foes;
     object *party;
 
+    if(!objectp(caster))
+      return;
+
     foes = target_selector();
 
    if(caster->query_party()){
@@ -49,11 +52,8 @@ void spell_effect(int prof){
    }
    j = sizeof(foes);
 
-   tell_room(place,"%^BOLD%^%^GREEN%^A sphere of %^BLACK%^dark "+
-      "%^GREEN%^power radiates out from "+CASTER->QCN+"'s "+
-      "hands!%^RESET%^",CASTER);
-   tell_object(CASTER,"%^BOLD%^%^GREEN%^A sphere of %^BLACK%^"+
-      "dark%^GREEN%^ power radiates out from your hands.%^RESET%^");
+   tell_room(place, "%^BOLD%^%^GREEN%^A sphere of %^BLACK%^dark%^GREEN%^ power radiates out from " + caster->query_cap_name() + "'s hands!%^RESET%^", caster);
+   tell_object(caster, "%^BOLD%^%^GREEN%^A sphere of %^BLACK%^dark%^GREEN%^ power radiates out from your hands!%^RESET%^");
 
    for(i=0;i<j;i++){
       if(!objectp(foes[i])) continue;
