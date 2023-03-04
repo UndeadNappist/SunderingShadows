@@ -13,8 +13,8 @@ void create()
     ::create();
     feat_type("permanent");
     feat_category("Presence");
-    feat_name("draconic_bloodline");
-    feat_syntax("draconic_bloodline");
+    feat_name("draconic_blood");
+    feat_syntax("draconic_blood");
     feat_desc("This feat allows a sorcerer with the draconic bloodline to choose their chosen dragon blood. This will determine things like immunity granted and spell damage bonuses.
     
 %^CYAN%^BOLD%^The choices for draconic bloodline are as follows: \n\%^RED%^" + implode(VALID,"\n") + "%^RESET%^");
@@ -27,7 +27,7 @@ int allow_shifted()
     return 1;
 }
 
-int cmd_draconic_bloodline(string args)
+int cmd_draconic_blood(string args)
 {   
     if(this_player()->query("draconic_bloodline"))
     {
@@ -80,7 +80,7 @@ int prerequisites(object ob)
         return 0;
     }
     
-    if(ob->query_mystery() != "draconic")
+    if(ob->query_bloodline() != "draconic")
         return 0;
     
     return ::prerequisites(ob);

@@ -4,6 +4,7 @@
 "arcane":"Your family has always been skilled in the eldritch art of magic.",\
 "boreal":"Your barbaric ancestry burns in your blood.",\
 "celestial":"Someone down the line shared a bed with angels.",\
+"draconic":"At some point in your family’s history, a dragon interbred with your bloodline.",\
 "kobold":"Your kobold ancestors have passed onto you their nimble and arcane nature.",\
 "fey":"The capricious nature of the fey runs in your family.",\
 "ghoul":"One of your ancestors wasn't quite alive.",\
