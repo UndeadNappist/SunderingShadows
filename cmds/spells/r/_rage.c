@@ -57,6 +57,7 @@ void spell_effect(int prof) {
 
     tell_room(place,"%^BOLD%^%^RED%^The essence of battle and the rage of war falls upon "+caster->QCN+".",caster);
     tell_object(caster, "%^BOLD%^%^RED%^The essence of battle and the rage of war falls upon you.");
+    spell_successful();
 
     mybonus = clevel/8;
     caster->add_attack_bonus(mybonus);
