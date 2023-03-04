@@ -25,9 +25,7 @@ void create()
     feat_name("warrior path");
     feat_prereq("Psywarrior L7");
     feat_syntax("warrior_path [PATH]");
-    feat_desc("This feat allows the psywarrior to choose their warrior path.
-
-Warrior paths grant unique bonuses when using trance.
+    feat_desc("This feat allows the psywarrior to choose their warrior path. Warrior paths grant unique bonuses when using trance. You can change your warrior path once every three weeks.
 
 %^BOLD%^You can select from the following warrior paths:
  Ascetic

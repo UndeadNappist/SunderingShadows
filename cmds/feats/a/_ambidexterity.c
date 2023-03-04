@@ -10,7 +10,7 @@ void create()
     feat_category("TwoWeapons");
     feat_name("ambidexterity");
     feat_prereq("Base Dexterity 13");
-    feat_desc("Ambidexterity allows a character to wield two weapons which are normal size to that character. A human could wield two medium sized weapons, a giant could wield two large sized weapons. Small-sized creatures don't have access to nor do they need this feat.");
+    feat_desc("Ambidexterity allows a character to wield two weapons that are normal size to that character. A human could wield two medium sized weapons or a giant could wield two large sized weapons. Small-sized creatures don't have access to this, as they do not need this feat to properly wield two small weapons.");
     permanent(1);
     set_replaces_feat("weapon finesse");
     set_required_for(({"two weapon fighting","improved two weapon fighting","unassailable parry","whirl"}));

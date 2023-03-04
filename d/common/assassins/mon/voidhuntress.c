@@ -39,12 +39,12 @@ void create()
     add_money("platinum", random(2000));
     set_property("full attacks", 1);
     set_monster_feats(({ "dodge", "evasion", "knockdown", "expertise", "mobility", "powerattack", "rush", "dodge", "evasion", "scramble", "spring attack", "crit", "hide in plain sight", "void stalker", "penetrating strike", "greater penetrating strike", "weapon focus", "weapon specialization", "greater weapon focus", "greater weapon specialization", "epic weapon focus", "epic weapon specialization", "lethal strikes", "bravery", "rapid strikes", "improved rapid strikes", "unarmed parry" }));
-    set_spells(({ "horrid wilting",
-                  "fear",
+    set_spells(({ "enervation",
+                  "ray of enfeeblement",
                   "weird",
                   "greater dispel magic", }));
     set_property("cast and attack", 1);
-    set_spell_chance(13);
+    set_spell_chance(25);
     set_funcs(({ "strike", "crit" }));
     set_func_chance(50);
     set_scrambling(1);
@@ -88,8 +88,9 @@ void strike(object targ)
         targ->die();
         return;
     }
-    
+    set_property("magic", 1);
     targ->cause_typed_damage(targ, 0, roll_dice(10, 8), "slashing");
+    set_property("magic", -1);
 
     if (!targ->reflex_save(80)) {
         targ->set_paralyzed(roll_dice(1, 2) * 8, "%^BOLD%^%^BLACK%^You re %^BLACK%^re%^RESET%^%^MAGENTA%^c%^BOLD%^%^BLACK%^ov%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^ring%^BLACK%^ from %^BLACK%^fi%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^r%^RESET%^%^MAGENTA%^c%^BOLD%^%^BLACK%^e %^BLACK%^at%^RESET%^%^MAGENTA%^t%^MAGENTA%^a%^BOLD%^%^BLACK%^c%^RESET%^%^MAGENTA%^k%^BOLD%^%^BLACK%^!%^RESET%^");
