@@ -47,7 +47,7 @@ int cmd_dispell(string str)
         if (atoi(str) > (sizeof(spells) - 1)) {
             write("%^BOLD%^%^CYAN%^No spell under this number.");
         } else if (objectp(spells[atoi(str)])) {
-            write("BOLD%^%^CYAN%^You dispell " + spells[atoi(str)]->query_spell_display());
+            write("%^BOLD%^%^CYAN%^You dispell " + spells[atoi(str)]->query_spell_display());
             spells[atoi(str)]->dest_effect();
         } else {
             write("%^BOLD%^%^CYAN%^No spell under this number.");

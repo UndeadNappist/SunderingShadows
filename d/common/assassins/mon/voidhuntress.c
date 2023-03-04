@@ -3,19 +3,24 @@
 inherit MONSTER;
 
 string reason;
+int sealed;
 
 void create()
 {
+    object obj;
+    
     ::create();
     set_name("voidhuntress");
     set_id(({ "outsider", "assassin", "voidhuntress" }));
     set_short("%^BOLD%^%^BLACK%^A%^RESET%^%^MAGENTA%^s%^BOLD%^%^BLACK%^sa%^RESET%^%^MAGENTA%^s%^MAGENTA%^s%^BOLD%^%^BLACK%^in%^RESET%^");
-    set_long("%^BOLD%^%^BLACK%^This slim %^MAGENTA%^f%^RESET%^%^MAGENTA%^e%^BOLD%^%^MAGENTA%^mi%^RESET%^%^MAGENTA%^n%^BOLD%^%^MAGENTA%^ine %^RESET%^%^MAGENTA%^f%^BOLD%^%^MAGENTA%^i%^RESET%^%^MAGENTA%^g%^BOLD%^%^MAGENTA%^ur%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^ is dressed from head to toe in black outfit, with only her gloving %^MAGENTA%^viol%^RESET%^%^MAGENTA%^e%^BOLD%^%^MAGENTA%^t%^BLACK%^ eyes %^MAGENTA%^piercing%^BLACK%^ through black head bands. She carries an assortment of tools and weapons in numerous leather sheaths and pouches over her clothing.%^RESET%^
-");
+    set_long("%^BOLD%^%^BLACK%^This slim %^MAGENTA%^f%^RESET%^%^MAGENTA%^e%^BOLD%^%^MAGENTA%^mi%^RESET%^%^MAGENTA%^n%^BOLD%^%^MAGENTA%^ine %^RESET%^%^MAGENTA%^f%^BOLD%^%^MAGENTA%^i%^RESET%^%^MAGENTA%^g%^BOLD%^%^MAGENTA%^ur%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^ is dressed from head to toe in black outfit, with only her gloving %^MAGENTA%^viol%^RESET%^%^MAGENTA%^e%^BOLD%^%^MAGENTA%^t%^BLACK%^ eyes %^MAGENTA%^piercing%^BLACK%^ through black head bands. She carries an assortment of tools and weapons in numerous leather sheaths and pouches over her clothing.%^RESET%^");
     set_race("outsider");
     set_gender("female");
     set_class("fighter");
     set_mlevel("fighter", 50);
+    set_class("sorcerer");
+    set_mlevel("sorcerer", 50);
+    set_guild_level("sorcerer", 50);
     set("base_class", "fighter");
     set_mlevel("assassin", 10);
     add_search_path("/cmds/feats");
@@ -30,16 +35,18 @@ void create()
     set_stats("charisma", 12);
     set_stats("dexterity", 26);
     set_stats("constitution", 18);
+    set_skill("athletics", 65);
     add_money("platinum", random(2000));
     set_property("full attacks", 1);
-    set_monster_feats(({ "dodge", "evasion", "knockdown", "expertise", "mobility", "powerattack", "rush", "dodge", "evasion", "scramble", "spring attack", "crit", "hide in plain sight", "void stalker", "penetrating strike", "greater penetrating strike", "weapon focus", "weapon specialization", "greater weapon focus", "greater weapon specialization", "epic weapon focus", "epic weapon specialization", "lethal strikes" }));
-    set_spells(({ "horrid wilthing",
+    set_monster_feats(({ "dodge", "evasion", "knockdown", "expertise", "mobility", "powerattack", "rush", "dodge", "evasion", "scramble", "spring attack", "crit", "hide in plain sight", "void stalker", "penetrating strike", "greater penetrating strike", "weapon focus", "weapon specialization", "greater weapon focus", "greater weapon specialization", "epic weapon focus", "epic weapon specialization", "lethal strikes", "bravery", "rapid strikes", "improved rapid strikes", "unarmed parry" }));
+    set_spells(({ "horrid wilting",
                   "fear",
-                  "weird", }));
+                  "weird",
+                  "greater dispel magic", }));
     set_property("cast and attack", 1);
     set_spell_chance(13);
-    set_funcs(({ "strike" }));
-    set_func_chance(30);
+    set_funcs(({ "strike", "crit" }));
+    set_func_chance(50);
     set_scrambling(1);
     set_parrying(1);
     set_attacks_num(8);
@@ -48,7 +55,19 @@ void create()
     set_max_level(35);
     set_base_damage_type("silver");
     reason = "";
-    new("/d/atoyatl/tecqumin/obj/seal.c")->move(TO);
+    obj = new("/d/atoyatl/tecqumin/obj/seal.c");
+    obj->set_property("monsterweapon", 1);
+    obj->move(TO);
+    
+    sealed = 0;
+}
+
+void init(){
+    ::init();
+    if(!sealed){
+        this_object()->force_me("set seal");
+        sealed = 1;
+    }
 }
 
 void strike(object targ)
@@ -65,13 +84,23 @@ void strike(object targ)
     tell_object(targ, "%^BOLD%^%^BLACK%^The assassin %^BLACK%^p%^RESET%^%^MAGENTA%^h%^BOLD%^%^BLACK%^ases%^BLACK%^ through your defenses, unleashing fierce %^BLACK%^fl%^RESET%^%^MAGENTA%^u%^BOLD%^%^BLACK%^r%^RESET%^%^MAGENTA%^r%^MAGENTA%^y%^BOLD%^ %^BLACK%^of %^BLACK%^bl%^RESET%^%^MAGENTA%^o%^BOLD%^%^BLACK%^w%^RESET%^%^MAGENTA%^s%^MAGENTA%^!");
     tell_room(ETO, "%^BOLD%^%^BLACK%^The assassin %^BLACK%^phase%^RESET%^%^MAGENTA%^s%^BOLD%^%^BLACK%^ through%^RESET%^ " + targ->QCN + "'%^BOLD%^%^BLACK%^s defenses unleashing fierce %^BLACK%^f%^RESET%^%^MAGENTA%^l%^BOLD%^%^BLACK%^urr%^RESET%^%^MAGENTA%^y%^BOLD%^ %^BLACK%^of %^RESET%^%^MAGENTA%^b%^MAGENTA%^l%^BOLD%^%^BLACK%^o%^RESET%^%^MAGENTA%^w%^MAGENTA%^s%^BOLD%^%^BLACK%^!%^RESET%^", targ);
 
+    if(!userp(targ)){
+        targ->die();
+        return;
+    }
+    
     targ->cause_typed_damage(targ, 0, roll_dice(10, 8), "slashing");
 
-    if (!targ->reflex_save(40)) {
+    if (!targ->reflex_save(80)) {
         targ->set_paralyzed(roll_dice(1, 2) * 8, "%^BOLD%^%^BLACK%^You re %^BLACK%^re%^RESET%^%^MAGENTA%^c%^BOLD%^%^BLACK%^ov%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^ring%^BLACK%^ from %^BLACK%^fi%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^r%^RESET%^%^MAGENTA%^c%^BOLD%^%^BLACK%^e %^BLACK%^at%^RESET%^%^MAGENTA%^t%^MAGENTA%^a%^BOLD%^%^BLACK%^c%^RESET%^%^MAGENTA%^k%^BOLD%^%^BLACK%^!%^RESET%^");
     }
 
     return 1;
+}
+
+void crit_fun(object target){
+    this_object()->force_me("crit");
+    return;
 }
 
 void set_paralyzed(int time, string message)
@@ -143,3 +172,4 @@ void heart_beat()
     }
     return;
 }
+
