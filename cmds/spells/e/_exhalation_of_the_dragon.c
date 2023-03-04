@@ -61,6 +61,12 @@ void spell_effect(int prof)
         dest_effect();
         return;
     }
+    
+    if(!stringp(thetarg))
+    {
+        dest_effect();
+        return;
+    }
 
     if(thetarg == "attacker")
     {
@@ -74,7 +80,11 @@ void spell_effect(int prof)
     }
     else
     {
-        target = present(thetarg,environment(caster));
+        if(!objectp(target = present(thetarg,environment(caster))))
+        {
+            dest_effect();
+            return;
+        }
         if(!objectp(target))
         {
             if(userp(caster)) { realname = caster->realName(thetarg); }
