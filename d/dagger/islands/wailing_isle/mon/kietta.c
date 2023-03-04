@@ -395,7 +395,7 @@ void receive_given_item(object ob){
         return 1;
     }
     if((ob->id("quest_item_horn")) && (quest == 4)){
-        if(!ob->is_quest_object()){
+        if(!ob->is_quest_horn()){
             force_me("emoteat "+player->query_name()+" %^RESET%^%^CRST%^%^C101%^$M tucks the item away in a drawer.%^CRST%^");
             force_me("say De spirits be tankful.");
             ob->remove();
