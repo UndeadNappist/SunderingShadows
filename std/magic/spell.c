@@ -3030,7 +3030,7 @@ void define_base_damage(int adjust)
                 
                 switch(caster->query("draconic_bloodline"))
                 {
-                    case "red": case "gold": draconic_element = "fire"; break;
+                    case "red": case "gold": case "brass": draconic_element = "fire"; break;
                     case "black": case "green": case "copper": draconic_element = "acid"; break;
                     case "blue": case "bronze": draconic_element = "electricity"; break;
                     case "white": case "silver": draconic_element = "cold"; break;

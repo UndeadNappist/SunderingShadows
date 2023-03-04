@@ -1099,6 +1099,7 @@ int query_resistance_percent(string res, object source)
     if(this_object()->is_class("sorcerer") && this_object()->query_class_level("sorcerer") > 30)
     {
         int sorc_level = this_object()->query_class_level("sorcerer");
+        string draconic = this_object()->query("draconic_bloodline");
 
         switch(this_object()->query_bloodline())
         {
@@ -1130,6 +1131,16 @@ int query_resistance_percent(string res, object source)
             case "boreal":
             if(res == "cold")
                 mod = 20 + sorc_level * 2;
+            break;
+            
+            case "draconic":
+            switch(draconic)
+            {
+                case "fire": case "gold": case "brass": res == "fire" && mod = 100; break;
+                case "black": case "green": case "copper": res == "acid" && mod = 100; break;
+                case "blue": case "bronze": res == "electricity" && mod = 100; break;
+                case "white": case "silver": res == "cold" && mod = 100; break;
+            }
             break;
         }
     }

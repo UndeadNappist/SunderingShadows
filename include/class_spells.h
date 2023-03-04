@@ -76,8 +76,8 @@ class_spell_storage =
         ({"biting wind","frostfield","frost orb","ice storm","cone of cold","freezing sphere","avalanche","polar ray", "polar midnight"}),
     "celestial":
         ({"bless", "resist energy", "dispel evil", "break curse", "angelic aspect", "greater dispel magic", "sunburst", "gate"}),
-    //"draconic":
-    //    ({"armor","resist energy","fireball","fear","acid breath","disintegrate","protection from spells","shapechange"}),
+    "draconic":
+        ({"armor","resist energy","dispel magic","fear","mind fog","true seeing","spell turning","frightful aspect","overwhelming presence"}),
     //"elemental":
     //    ({"burning hands","scorcher","fireball","ice storm","cone of cold","chain lightning","incendiary cloud","meteor swarm"}),
     "fey":

@@ -48,6 +48,9 @@ mapping class_featmap(string myspec, object player)
     
     if(myspec == "arcane")
         return ([ 1 : ({ "simple weapon proficiency", "spell focus", "arcane bond" }), 31 : ({ "blood is power" }) ]);
+
+    if(myspec == "draconic")
+        return ([ 1 : ({ "simple weapon proficiency", "spell focus", "draconic bloodline" }), 31 : ({ "blood is power" }) ]);
     
     return ([ 1 : ({ "simple weapon proficiency", "spell focus", }), 31 : ({ "blood is power" }) ]);
 }

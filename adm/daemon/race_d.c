@@ -309,6 +309,8 @@ int can_fly(object ob)
         return 1;
     if(ob->query_bloodline() == "infernal" && ob->query_class_level("sorcerer") > 30)
         return 1;
+    if(ob->query_bloodline() == "draconic" && ob->query_class_level("sorcerer") > 30)
+        return 1;
     
     if(FEATS_D->usable_feat(ob, "air totem"))
         return 1;
