@@ -33,8 +33,8 @@ void create(){
         ({"/d/tharis/newtharis/mounts/riding_lizard","/d/tharis/newtharis/mounts/bicorn"})
         );
     set_animal_price(
-        ({"lizard"}),
-        ({500})
+        ({"lizard","bicorn"}),
+        ({500,700})
         );
    set_stalls(20);
    ::fill_stalls();

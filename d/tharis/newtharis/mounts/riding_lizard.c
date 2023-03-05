@@ -16,6 +16,6 @@ void create(){
   set_max_distance(500);
   set_enter_room(" rides in.");
   set_exit_room("leaves riding a large lizard.");
-  set_vehicle_short("%^RESET%^%^C058%^Large riding %^RESET%^%^C064%^l%^C070%^i%^C072%^z%^C077%^a%^C070%^r%^C064%^d%^CRST%^");
+  set_vehicle_short("lizard");
   set_riding_level(8);
 }
