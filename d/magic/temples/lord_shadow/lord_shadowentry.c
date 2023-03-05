@@ -24,6 +24,7 @@ void create() {
    set_exits(([
       "northwest": "/d/tharis/newtharis/rooms/north6",
       "enter": "/d/magic/temples/shar_path5",
+	  "south": "/d/tharis/newtharis/rooms/stable_path",
       "temple": "/d/magic/temples/lord_shadow/lord_shadow",
    ]));
 }
