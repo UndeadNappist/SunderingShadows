@@ -29,8 +29,15 @@ int preSpell(){
          "rebirth or clone spell.%^RESET%^");
       return 0;
    }
+   /*
    if((int)caster->query_property("rebirth time")+DELAY > time()){
       tell_object(caster,"You cannot cast this sort of spell yet.");
+      return 0;
+   }
+   */
+   if(caster->cooldown("rebirth") || caster->cooldown("clone"))
+   {
+      tell_object(caster,"You cannot cast a rebirth effect again so soon.");
       return 0;
    }
    return 1;
