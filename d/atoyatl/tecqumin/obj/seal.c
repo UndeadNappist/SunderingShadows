@@ -55,10 +55,7 @@ int set_seal(string str){
   
 //insert code to make it dependent on a quest / event
   quests = TP->query_quests();
-  if (sizeof(quests)<1 || (member_array ("Fettered the %^MAGENTA%^U%^BLUE%^nf%^MAGENTA%^e%^BLUE%^tt"
-    +"%^MAGENTA%^e%^BLUE%^red", quests) == -1 && member_array("%^RED%^Defeated %^RESET%^%^BLUE%^The"
-     +"%^MAGENTA%^ U%^BLUE%^n%^MAGENTA%^f%^BLUE%^e%^MAGENTA%^tt"
-     +"%^BLUE%^e%^MAGENTA%^r%^BLUE%^e%^MAGENTA%^d", quests) == -1) ){
+  if(sizeof(quests)<1 || (member_array ("Fettered the %^MAGENTA%^U%^BLUE%^nf%^MAGENTA%^e%^BLUE%^tt%^MAGENTA%^e%^BLUE%^red", quests) == -1 && member_array("%^RED%^Defeated %^RESET%^%^BLUE%^The%^MAGENTA%^ U%^BLUE%^n%^MAGENTA%^f%^BLUE%^e%^MAGENTA%^tt%^BLUE%^e%^MAGENTA%^r%^BLUE%^e%^MAGENTA%^d", quests) == -1) || !this_player()->is_void_assassin()){
    
     tell_object(TP, "The seal will not work for you - you have not earned the gratitude of the spirits of the %^CYAN%^Tecqumin%^RESET%^ ancestors.");
     return 1;

@@ -4,6 +4,7 @@ inherit MONSTER;
 
 string reason;
 int sealed;
+object target_object;
 
 void create()
 {
@@ -38,12 +39,15 @@ void create()
     set_skill("athletics", 65);
     add_money("platinum", random(2000));
     set_property("full attacks", 1);
-    set_monster_feats(({ "dodge", "evasion", "knockdown", "expertise", "mobility", "powerattack", "rush", "dodge", "evasion", "scramble", "spring attack", "crit", "hide in plain sight", "void stalker", "penetrating strike", "greater penetrating strike", "weapon focus", "weapon specialization", "greater weapon focus", "greater weapon specialization", "epic weapon focus", "epic weapon specialization", "lethal strikes", "bravery", "rapid strikes", "improved rapid strikes", "unarmed parry" }));
+    set_monster_feats(({ "dodge", "evasion", "knockdown", "expertise", "mobility", "powerattack", "rush", "dodge", "evasion", "scramble", "spring attack", "crit", "hide in plain sight", "void stalker", "penetrating strike", "greater penetrating strike", "weapon focus", "weapon specialization", "greater weapon focus", "greater weapon specialization", "epic weapon focus", "epic weapon specialization", "lethal strikes", "bravery", "rapid strikes", "improved rapid strikes", "unarmed parry", "weapon training" }));
     set_spells(({ "enervation",
                   "ray of enfeeblement",
-                  "weird",
+                  "phantasmal killer",
                   "greater dispel magic", }));
     set_property("cast and attack", 1);
+    set_property("function and attack", 1);
+    set_property("dance-of-cuts", 1);
+    set_property("no death", 1);
     set_spell_chance(25);
     set_funcs(({ "strike", "crit" }));
     set_func_chance(50);
@@ -68,6 +72,15 @@ void init(){
         this_object()->force_me("set seal");
         sealed = 1;
     }
+}
+
+int is_void_assassin(){
+    return 1;
+}
+
+void set_target_object(object target){
+    if(objectp(target)) target_object = target;
+    return;
 }
 
 void strike(object targ)
@@ -126,16 +139,16 @@ void set_reason(string why)
 
 void heart_beat()
 {
-    object* ppl, targ;
+    object* ppl, targ, assassin, room;
     int i;
 
     ::heart_beat();
 
-    if (!objectp(TO) || !objectp(ETO)) {
+    if (!objectp(assassin = this_object()) || !objectp(room = environment(assassin))) {
         return;
     }
 
-    ppl = filter_array(all_living(ETO), "is_non_immortal_player", FILTERS_D);
+    ppl = filter_array(all_living(room), "is_non_immortal_player", FILTERS_D);
 
     for (i = 0; sizeof(ppl), i < sizeof(ppl); i++) {
         int j;
@@ -145,7 +158,7 @@ void heart_beat()
             continue;
         }
         if (ppl[i]->query_unconscious()) {
-            tell_room(ETO, "%^BOLD%^%^BLACK%^The assassin lands a %^BLACK%^fi%^RESET%^%^MAGENTA%^n%^BOLD%^%^BLACK%^a%^RESET%^%^MAGENTA%^l%^BOLD%^%^BLACK%^ blow at%^RESET%^ " + ppl[i]->QCN);
+            tell_room(room, "%^BOLD%^%^BLACK%^The assassin lands a %^BLACK%^fi%^RESET%^%^MAGENTA%^n%^BOLD%^%^BLACK%^a%^RESET%^%^MAGENTA%^l%^BOLD%^%^BLACK%^ blow at%^RESET%^ " + ppl[i]->QCN);
 
             ppl[i]->die();
             if (strlen(reason)) {
@@ -160,14 +173,19 @@ void heart_beat()
         }
     }
 
-    if (!sizeof(TO->query_attackers())) {
-        tell_room(ETO, "%^BOLD%^%^MAGENTA%^The %^RESET%^%^MAGENTA%^a%^BOLD%^%^MAGENTA%^s%^RESET%^%^MAGENTA%^s%^BOLD%^%^MAGENTA%^assi%^RESET%^%^MAGENTA%^n%^BOLD%^%^MAGENTA%^ steps into shadows and %^MAGENTA%^d%^RESET%^%^MAGENTA%^i%^BOLD%^%^MAGENTA%^sappea%^RESET%^%^MAGENTA%^r%^BOLD%^%^MAGENTA%^s%^RESET%^%^MAGENTA%^.");
-        TO->move("/d/shadowgate/void");
-        TO->remove();
+    if(!sizeof(assassin->query_attackers())){
+        if(objectp(target_object) && target_object->is_living() && assassin->cooldown("void stalker")){
+            assassin->force_me("void_stalker "+target_object->query_name());
+            assassin->force_me("crit "+target_object->query_name());
+            return;
+        }
+        tell_room(room, "%^BOLD%^%^MAGENTA%^The %^RESET%^%^MAGENTA%^a%^BOLD%^%^MAGENTA%^s%^RESET%^%^MAGENTA%^s%^BOLD%^%^MAGENTA%^assi%^RESET%^%^MAGENTA%^n%^BOLD%^%^MAGENTA%^ steps into shadows and %^MAGENTA%^d%^RESET%^%^MAGENTA%^i%^BOLD%^%^MAGENTA%^sappea%^RESET%^%^MAGENTA%^r%^BOLD%^%^MAGENTA%^s%^RESET%^%^MAGENTA%^.");
+        assassin->move("/d/shadowgate/void");
+        assassin->remove();
         return;
     }
 
-    targ = TO->query_current_attacker();
+    targ = assassin->query_current_attacker();
     if (!objectp(targ)) {
         return;
     }
