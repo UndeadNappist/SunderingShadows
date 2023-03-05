@@ -29,8 +29,8 @@ void create(){
            //"up" : "/d/tharis/newtharis/rooms/stable_aviary"
 			]));
 	set_animal(
-        ({"lizard"}),
-        ({"/d/tharis/newtharis/mounts/riding_lizard"})
+        ({"lizard","bicorn"}),
+        ({"/d/tharis/newtharis/mounts/riding_lizard","/d/tharis/newtharis/mounts/bicorn"})
         );
     set_animal_price(
         ({"lizard"}),
