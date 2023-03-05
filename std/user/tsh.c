@@ -330,12 +330,9 @@ int adminBlock(){
 nomask string process_input(string arg)
 {
     string first_arg;
-    mapping my_aliases, my_nicks;
+    mapping my_aliases, my_nicks;  
     
-    
-    
-    
-    if(this_player()->query_property("memorizing") && first_arg != "")
+    if(this_player()->query_property("memorizing") && strlen(arg) && arg != "")
     {
         first_arg = explode(do_alias(do_nicknames(arg)), " ")[0];
         
