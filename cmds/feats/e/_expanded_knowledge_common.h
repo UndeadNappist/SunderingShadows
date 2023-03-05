@@ -42,7 +42,7 @@ if (srow["levels"]["psion"] && srow["levels"]["psywarrior"]) {
 
 too_high = 0;
 
-if(caster->is_class("psion") && sminpow > 8)
+if(this_player()->is_class("psion") && sminpow > 8)
     too_high = 1;
 else if(sminpow > 5)
     too_high = 1;

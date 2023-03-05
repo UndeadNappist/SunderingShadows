@@ -413,6 +413,12 @@ int confirm_remove(string str, object ob, string feat, string extradata)
     if (feat == "skill focus") {
         ob->delete("skill_focus");
     }
+    if(feat == "expanded knowledge 1")
+        ob->delete("expanded_knowledge_1");
+    if(feat == "expanded knowledge 2")
+        ob->delete("expanded_knowledge_2");
+    if(feat == "expanded knowledge 3")
+        ob->delete("expanded_knowledge_3");
 
     price = calculate_feat_cost(ob) / 8;
     if (!avatarp(ob)) {
