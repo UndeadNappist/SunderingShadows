@@ -19,7 +19,7 @@ void create(){
 	set_items(([
 			"roosts" : "%^RESET%^%^CRST%^%^C136%^These %^RESET%^%^C144%^roosts %^RESET%^%^C136%^are spacious and well-padded, with a thick layer of soft, fragrant %^RESET%^%^C229%^straw %^RESET%^%^C136%^for cushion. The walls of the roosts are made of sturdy, %^RESET%^%^C094%^woven branches%^RESET%^%^C136%^, with narrow gaps that allow %^RESET%^%^C159%^fresh air %^RESET%^%^C136%^to circulate throughout the space.%^CRST%^",
 			"training arena" : "%^RESET%^%^CRST%^%^C035%^The southeastern path leads to a vast arena ringed by steep, %^RESET%^%^C250%^r%^C249%^o%^C248%^c%^C249%^k%^C250%^y m%^C249%^o%^C248%^u%^C247%^n%^C248%^t%^C249%^a%^C250%^i%^C249%^n%^C248%^s%^RESET%^%^C035%^. It is there that the skilled %^RESET%^%^C060%^trainers %^RESET%^%^C035%^of the %^RESET%^%^C094%^b%^C130%^e%^C136%^s%^C142%^t%^C143%^i%^C136%^a%^C130%^r%^RESET%^%^C094%^y %^RESET%^%^C035%^teach and exercise the exotic beasts housed here.%^CRST%^",
-			
+			"perches" : "%^RESET%^%^CRST%^%^C244%^These %^RESET%^%^C059%^perches %^RESET%^%^C244%^are situated in high, open spaces, with commanding views of the surrounding %^RESET%^%^C064%^l%^C070%^a%^C076%^n%^C082%^d%^C083%^s%^C082%^c%^C076%^a%^C070%^p%^C064%^e%^RESET%^%^C244%^. Constructed from thick, heavy %^RESET%^%^C059%^iron bars%^RESET%^%^C244%^, each one is carefully crafted and welded to form a strong and stable structure that would support even a drake. The surface of each perch is lined with rough, durable %^RESET%^%^C094%^leather%^RESET%^%^C244%^, providing a tough and resilient surface for the animals' claws to cling to.%^CRST%^"
 			]));
 	set_exits(([
            "down" : "/d/tharis/newtharis/rooms/stable_courtyard",

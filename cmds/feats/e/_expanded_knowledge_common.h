@@ -1,6 +1,6 @@
 int ret;
 mapping srow;
-int maxpow, sminpow = 0;
+int maxpow, sminpow = 0, too_high;
 
 if (!stringp(args)) {
     write("%^YELLOW%^Your current expanded knowledge " + expanded_level + " is %^BLUE%^" + TP->query("expanded_knowledge_" + expanded_level) + "%^YELLOW%^.");
@@ -40,7 +40,15 @@ if (srow["levels"]["psion"] && srow["levels"]["psywarrior"]) {
     }
 }
 
-if (!(sminpow > 0 && sminpow < maxpow)) {
+too_high = 0;
+
+if(caster->is_class("psion") && sminpow > 8)
+    too_high = 1;
+else if(sminpow > 5)
+    too_high = 1;
+    
+
+if (!(sminpow > 0 && sminpow < maxpow) || too_high) {
     write("%^YELLOW%^The power %^BLUE%^" + args + "%^YELLOW%^ is not of appropriate level to be cast as expanded knowledge.");
     return 1;
 }
