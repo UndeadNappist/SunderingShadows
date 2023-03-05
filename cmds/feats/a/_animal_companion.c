@@ -142,7 +142,11 @@ void execute_feat()
     }
     
     companion = caster->query_property("animal_companion");
-    pack = caster->query_protectors() + caster->query_followers() + (pointerp(caster->query_property("pack animal")) ? ({caster}) : ({  }));
+    pack = caster->query_protectors() + caster->query_followers();
+
+    if (pointerp(caster->query_property("pack animal")))
+        pack += ({caster});
+
     pack = distinct_array(pack);
     pack = filter_array(pack, (: $1->query_pack_member() :));
 

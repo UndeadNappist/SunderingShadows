@@ -16,7 +16,7 @@ This spell uses 1 414 gp as a material component. A character must be at least l
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
-	set_helpful_spell(1);
+    set_helpful_spell(1);
 }
 
 string query_casting_string()
@@ -27,7 +27,8 @@ string query_casting_string()
 int preSpell()
 {
     string sfob, stob;
-    if(sscanf(arg,"%s",sfob)!=1)
+
+    if (!stringp(arg) || sscanf(arg, "%s", sfob) != 1)
     {
         tell_object(caster, "You must specify object you are going to empower.");
         return 0;

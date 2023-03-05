@@ -62,8 +62,12 @@ void spell_effect(int prof) {
 void test(){
 
     int max_damage, add_tally, thp;
+
     if (!objectp(target))    // To avoid errors when player quits - Thorn
+    {
         dest_effect();
+        return;
+    }
 
     if (!target->is_ok_armour("mage"))
     {
