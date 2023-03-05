@@ -75,30 +75,51 @@ void create()
 
 void stabbed()
 {
-    force_me("emote jerks around flailing wildly");
-    if (TO->query_hp() < 0) {
+    object me, my_environment, player;
+
+    if (!objectp(me = this_object()))
         return;
-    }
+
+    if (!objectp(my_environment = environment(me)))
+        return;
+
+    if (!objectp(player = this_player()))
+        return;
+
+    force_me("emote jerks around flailing wildly");
+
+    if (query_hp() < 0)
+        return;
+
     add_attack_bonus(5);
     set_func_chance(0);
     execute_attack();
-    tell_room(ETO, "%^RED%^As the illithid feels the steel dig into him he lets loose a blast of defensive energy.");
-    cone(TP);
+    tell_room(my_environment, "%^RED%^As the illithid feels the steel dig into him he lets loose a blast of defensive energy.");
+    cone(player);
     set_func_chance(30);
     add_attack_bonus(-5);
 }
 
 void init()
 {
+    object me, player;
+
+    if (!objectp(me = this_object()))
+        return;
+
+    if (!objectp(player = this_player()))
+        return;
+
     ::init();
-    if (wizardp(TP)) {
+
+    if (wizardp(player))
         return 1;
-    }
-    if ((string)TP->query_name() == "vampire illithid") {
+
+    if ((string)player->query_name() == "vampire illithid")
         return 1;
-    }
-    TO->force_me("kill " + TPQN);
-    TO->kill_ob(TP, 1);
+
+    me->force_me("kill " + player->query_name());
+    me->kill_ob(player, 1);
 }
 
 int kill_ob(object victim, int which)
@@ -118,28 +139,35 @@ int kill_ob(object victim, int which)
 
 void cone(object targ)
 {
-    if (!objectp(TO)) {
+    object me, my_environment;
+
+    if (!objectp(me = this_object()))
         return;
-    }
-    if (!present(targ->query_name(), ETO)) {
-        return;                                 // changed to query targ name, as present requires a string for the first argument, not an object - Ares
-    }
-    if (targ->query_paralyzed()) {
+
+    if (!objectp(my_environment = environment(me)))
+        return;
+
+    if (!present(targ->query_name(), my_environment))
+        return;
+
+    if (targ->query_paralyzed())
+    {
         set_func_chance(0);
         execute_attack();
         set_func_chance(30);
         return 1;
     }
+
     tell_object(targ, "%^BOLD%^BLUE%^The Vampire Illithid psionically assaults your brain!");
-    tell_room(ETO, "%^BOLD%^BLUE%^The Vampire Illithid focuses a psionic assault on " + targ->query_cap_name() + ".", targ);
+    tell_room(my_environment, "%^BOLD%^BLUE%^The Vampire Illithid focuses a psionic assault on " + targ->query_cap_name() + ".", targ);
     if (!SAVING_THROW_D->will_save(targ, 20)) {
         tell_object(targ, "Your body freezes up!");
-        tell_room(ETO, targ->query_cap_name() + "'s body freezes up!", targ);
-        targ->set_paralyzed(40 + (random(30)), "Your muscles won't budge.");
+        tell_room(my_environment, targ->query_cap_name() + "'s body freezes up!", targ);
+        targ->set_paralyzed(3 + (random(7)), "Your muscles won't budge.");
         return 1;
     }
     tell_object(targ, "You resist the attack!");
-    tell_room(ETO, targ->query_cap_name() + " seems to shake off the attack!", targ);
+    tell_room(my_environment, targ->query_cap_name() + " seems to shake off the attack!", targ);
     return 1;
 }
 
@@ -147,11 +175,19 @@ void brain_me1(object targ)
 {
     int i, hp_loss;
     string curclass, * classes;
+    object me, my_environment;
 
-    if (!SAVING_THROW_D->fort_save(targ, 20)) {
+    if (!objectp(me = this_object()))
+        return;
+
+    if (!objectp(my_environment = environment(me)))
+        return;
+
+    if (!SAVING_THROW_D->fort_save(targ, 20))
+    {
         tell_object(targ, "%^BOLD%^As the tentacle hits you it grabs ahold of your head and starts to burrow towards your brain!");
-        tell_room(ETO, "%^BOLD%^As the tentacle hits " + targ->query_cap_name() + " it grabs ahold of " + targ->query_possessive() + " head and starts to burrow into it!", targ);
-        set_attack_limbs((string*)TO->query_attack_limbs() - ({ limb }));
+        tell_room(my_environment, "%^BOLD%^As the tentacle hits " + targ->query_cap_name() + " it grabs ahold of " + targ->query_possessive() + " head and starts to burrow into it!", targ);
+        set_attack_limbs((string*)me->query_attack_limbs() - ({ limb }));
         num -= 1;
         if (num < 1) {
             num = 1;
@@ -167,13 +203,21 @@ void brain_me1(object targ)
 
 void burrow1(object targ)
 {
-    if (!present(targ, ETO)) {
+    object me, my_environment;
+
+    if (!objectp(me = this_object()))
+        return;
+
+    if (!objectp(my_environment = environment(me)))
+        return;
+
+    if (!present(targ, my_environment))
         return 1;
-    }
+
     if (!SAVING_THROW_D->fort_save(targ, 20) && !targ->query_paralyzed()) {
         tell_object(targ, "%^BOLD%^You grab ahold of the tentacle and tear it out of your head!");
-        tell_room(ETO, "%^BOLD%^" + targ->query_cap_name() + " grabs ahold of the tentacle and tears it out of " + targ->query_possessive() + " head!", targ);
-        set_attack_limbs((string*)TO->query_attack_limbs() + ({ limb }));
+        tell_room(my_environment, "%^BOLD%^" + targ->query_cap_name() + " grabs ahold of the tentacle and tears it out of " + targ->query_possessive() + " head!", targ);
+        set_attack_limbs((string*)me->query_attack_limbs() + ({ limb }));
         num += 1;
         if (num < 1) {
             num = 1;
@@ -186,7 +230,7 @@ void burrow1(object targ)
         return 1;
     }
     tell_object(targ, "%^BOLD%^The tentacle burrows deeper into your head!");
-    tell_room(ETO, "%^BOLD%^" + targ->query_cap_name() + " cries out in pain as the tentacle tears into " + targ->query_possessive() + " head!", targ);
+    tell_room(my_environment, "%^BOLD%^" + targ->query_cap_name() + " cries out in pain as the tentacle tears into " + targ->query_possessive() + " head!", targ);
     targ->do_damage(targ->return_target_limb(), roll_dice(1, 6));
     call_out("burrow1", 5, targ);
     return 1;

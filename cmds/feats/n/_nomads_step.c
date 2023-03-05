@@ -125,6 +125,9 @@ void execute_feat()
 
 void execute_attack()
 {
+    if (!objectp(caster))
+        return;
+
     caster->remove_property("using instant feat");
     dest_effect();
 }
@@ -132,6 +135,6 @@ void execute_attack()
 void dest_effect()
 {
     ::dest_effect();
-    remove_feat(TO);
+    remove_feat(this_object());
     return;
 }
