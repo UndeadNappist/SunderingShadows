@@ -13,7 +13,7 @@ void create()
     ::create();
     feat_type("permanent");
     feat_category("Presence");
-    feat_name("draconic_blood");
+    feat_name("draconic blood");
     feat_syntax("draconic_blood");
     feat_desc("This feat allows a sorcerer with the draconic bloodline to choose their chosen dragon blood. This will determine things like immunity granted and spell damage bonuses.
     
