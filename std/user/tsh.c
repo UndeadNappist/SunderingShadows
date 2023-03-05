@@ -331,8 +331,11 @@ nomask string process_input(string arg)
 {
     string first_arg;
     mapping my_aliases, my_nicks;  
-    
-    if(this_player()->query_property("memorizing") && strlen(arg) && arg != "")
+
+    if (!stringp(arg) || arg == "")
+        return arg;
+
+    if(this_player()->query_property("memorizing") && strlen(arg))
     {
         first_arg = explode(do_alias(do_nicknames(arg)), " ")[0];
         

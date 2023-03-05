@@ -46,34 +46,54 @@ void create(){
    }),0);
 }
 
-void summon_hedgehog(){
-   object ob;
-   ob=new("/d/attaya/newseneca/mon/clover.c");
-   if ( (!objectp(ob)) || (!objectp(TO)) || (!objectp(ETO)) ) return;
-   ob->move(ETO);
-   tell_room(ETO,"A hedgehog emerges from the pocket at Verity's hip, yawning and blinking its eyes.");
+void summon_hedgehog()
+{
+   object me, my_environment, clover;
+
+   if (!objectp(me = this_object()))
+       return;
+
+   if (!objectp(my_environment = environment(me)))
+      return;
+
+   if (!objectp(clover = new("/d/attaya/newseneca/mon/clover.c")))
+      return;
+
+   clover->move(my_environment);
+   tell_room(my_environment, "A hedgehog emerges from the pocket at Verity's hip, yawning and blinking its eyes.");
    return;
 }
 
-void reset(){
+void reset()
+{
    ::reset();
-   if(!present("clover",ETO)){
+
+   if(!present("clover", environment(this_object())))
       call_out("summon_hedgehog",1);
-   }
 }
 
-void catch_say(string msg){
-   if(!objectp(TO)) return;
+void catch_say(string msg)
+{
+   object player;
+
+   if (!objectp(player = this_player()))
+      return;
+
+   if(!objectp(this_object()))
+      return;
+
    ::catch_say(msg);
-   if(!objectp(TP)) return;
-   if(interactive(TP)){
-      call_out("reply_func",1,msg,TP);
+
+   if(interactive(player))
+   {
+      call_out("reply_func",1, msg, player);
       return;
    }
    return;
 }
 
-void reply_func(string msg, object who){
+void reply_func(string msg, object who)
+{
    string name;
    set_spoken("wizish");
    name = who->query_name();
@@ -106,12 +126,16 @@ void reply_func(string msg, object who){
 }
 
 //starting with one item - space to add more as Odin or whoever else codes them ~Circe~ 8/15/19
-void receive_given_item(object obj) {
+void receive_given_item(object obj)
+{
   string name, *ids;
   object obj2;
 
-  if(!objectp(obj) || !objectp(TP) || !objectp(ETO)) return;
-  switch(obj->query_name()){
+  if (!objectp(obj))
+     return;
+
+  switch(obj->query_name())
+  {
     case "Bonestripper": // trade for Guardian of Tel-Quessir
       obj2 = new(OBJ+"guardianoftelquessir.c");
       trade_em(obj, obj2);
@@ -124,16 +148,31 @@ void receive_given_item(object obj) {
   }
 }
 
-void trade_em(object obj, object obj2) {
+void trade_em(object obj, object obj2)
+{
    int ench;
    string *ids;
-   if(!objectp(obj) || !objectp(obj2)) return;
-   if(!objectp(TP) || !objectp(ETO)) return;
+   object me, my_environment, player;
+
+   if (!objectp(me = this_object()))
+     return;
+
+  if (!objectp(my_environment = environment(me)))
+     return;
+
+  if (!objectp(player = this_player()))
+     return;
+
+   if(!objectp(obj) || !objectp(obj2))
+      return;
+
    ids = obj->query_id();
    force_me("say Hey! Just what I was looking for...");
-   if(present("clover",ETO) && !random(3)){
+
+   if(present("clover", my_environment) && !random(3))
+   {
       force_me("emote grins at Clover and holds the "+ids[0]+" out for the hedgehog to inspect.");
-      tell_room(ETO,"Clover's nose twitches as she inspects the "+ids[0]+" and then squeaks, climbing up Verity before settling into a pouch at her hip.");
+      tell_room(my_environment,"Clover's nose twitches as she inspects the "+ids[0]+" and then squeaks, climbing up Verity before settling into a pouch at her hip.");
       force_me("laugh");
       force_me("say Looks like it's the real deal!");
    }
@@ -147,11 +186,11 @@ void trade_em(object obj, object obj2) {
       obj2->set_property("enchantment", (ench * -1));
    }
    ids = obj2->query_id();
-   if((int)obj2->move(TP) != 0) {
-      obj2->move(ETO);
+   if((int)obj2->move(player) != 0) {
+      obj2->move(my_environment);
       force_me("emote sets the "+ids[0]+" down.");
    }else{
-      obj2->move(TP);
-      force_me("emoteat "+TPQN+" hands the "+ids[0]+" to $N.");
+      obj2->move(player);
+      force_me("emoteat "+player->query_name()+" hands the "+ids[0]+" to $N.");
    }
 }
