@@ -148,6 +148,9 @@ int stuck_merc(string str)
         return 0;
     }
 
+    if (!objectp(MERC))
+        return;
+
     summon_merc(str);
     MERC->set_heart_beat(1);
     MERC->move(EETO);

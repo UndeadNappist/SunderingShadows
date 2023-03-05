@@ -1843,31 +1843,34 @@ string query_background()
     return background;
 }
 
-void remove()
+int remove()
 {
     int i;
+    object me;
     object* inv;
 
-    if (!objectp(TO)) {
-        return;
+    if (!objectp(me = this_object()))
+        return 0;
+
+    inv = all_inventory(me);
+    for (i = 0; i < sizeof(inv); i++)
+    {
+        if (!inv[i])
+            continue;
+
+        if (inv[i]->drop() && inv[i])
+            inv[i]->remove();
+            /* Some objects call remove() in drop() */
     }
 
-    inv = all_inventory(this_object());
-    for (i = 0; i < sizeof(inv); i++) {
-        if (!inv[i]) {
-            continue;
-        }
-        if (inv[i]->drop() && inv[i]) {
-            inv[i]->remove();
-        }
-/* Some objects call remove() in drop() */
-    }
-    if (objectp(previous_object())) {
+    if (objectp(previous_object()))
         log_file("living/remove", this_object()->query_name() + " removed " + file_name(previous_object()) + ".\n");
-    } else {
+    else
         log_file("living/remove", this_object()->query_name() + " removed " + file_name(this_object()) + ".\n");
-    }
+
     ::remove();
+
+    return 1;
 }
 
 //No longer used
