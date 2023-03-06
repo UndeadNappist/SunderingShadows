@@ -7,7 +7,7 @@ inherit STABLE;
 
 void create(){
 	::create();
-	set_property("indoors",1); 
+	set_property("indoors",0); 
     set_property("light",1);
 	set_terrain(OLD_MOUNTS);
     set_travel(PAVED_ROAD);
@@ -26,7 +26,7 @@ void create(){
 			]));
 	set_exits(([
            "north" : "/d/tharis/newtharis/rooms/stable_path",
-           //"up" : "/d/tharis/newtharis/rooms/stable_aviary"
+           "up" : "/d/tharis/newtharis/rooms/stable_aviary"
 			]));
 	set_animal(
         ({"lizard","bicorn"}),

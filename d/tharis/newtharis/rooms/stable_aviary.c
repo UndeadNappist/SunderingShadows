@@ -7,7 +7,7 @@ inherit STABLE;
 
 void create(){
 	::create();
-	set_property("indoors",1); 
+	set_property("indoors",0); 
     set_property("light",1);
 	set_terrain(OLD_MOUNTS);
     set_travel(PAVED_ROAD);
@@ -27,12 +27,12 @@ void create(){
            "down" : "/d/tharis/newtharis/rooms/stable_courtyard",
 			]));
 	set_animal(
-        ({"lizard","bicorn"}),
-        ({"/d/tharis/newtharis/mounts/riding_lizard","/d/tharis/newtharis/mounts/bicorn"})
+        ({"hell boar"}),
+        ({"/d/tharis/newtharis/mounts/hell_boar"})
         );
     set_animal_price(
-        ({""}),
-        ({500})
+        ({"hell boar"}),
+        ({50000})
         );
    set_stalls(20);
    ::fill_stalls();
