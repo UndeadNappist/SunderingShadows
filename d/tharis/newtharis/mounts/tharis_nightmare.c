@@ -4,7 +4,7 @@ inherit "/std/flying_mount.c";
 void create(){
    ::create();
    set_name("nightmare");
-   set_vehicle_short("nightmare");
+   set_vehicle_short("%^RESET%^%^C240%^n%^C241%^i%^C242%^g%^C243%^h%^C244%^t%^C088%^m%^C124%^a%^C160%^r%^C196%^e%^CRST%^");
    set_short("%^RESET%^%^CRST%^%^C244%^Tharisian %^RESET%^%^C240%^n%^C241%^i%^C242%^g%^C244%^t%^C088%^m%^C124%^a%^C160%^r%^C196%^e%^CRST%^");
    set_id(({"mount","nightmare","tharisian nightmare"}));
    set_race("nightmare");

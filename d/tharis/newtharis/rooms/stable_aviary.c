@@ -27,12 +27,12 @@ void create(){
            "down" : "/d/tharis/newtharis/rooms/stable_courtyard",
 			]));
 	set_animal(
-        ({"dire bat","nightmare"}),
+        ({"dire bat","nightmare","shadow drake"}),
         ({"/d/tharis/newtharis/mounts/dire_bat","/d/tharis/newtharis/mounts/tharis_nightmare"})
         );
     set_animal_price(
-        ({"dire bat","nightmare"}),
-        ({50000,75000})
+        ({"dire bat","nightmare","shadow drake"}),
+        ({50000,75000,100000})
         );
    set_stalls(20);
    ::fill_stalls();
