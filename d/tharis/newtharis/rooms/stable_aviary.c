@@ -28,7 +28,7 @@ void create(){
 			]));
 	set_animal(
         ({"dire bat","nightmare","shadow drake"}),
-        ({"/d/tharis/newtharis/mounts/dire_bat","/d/tharis/newtharis/mounts/tharis_nightmare"})
+        ({"/d/tharis/newtharis/mounts/dire_bat","/d/tharis/newtharis/mounts/tharis_nightmare","/d/tharis/newtharis/mounts/shadow_drake"})
         );
     set_animal_price(
         ({"dire bat","nightmare","shadow drake"}),
