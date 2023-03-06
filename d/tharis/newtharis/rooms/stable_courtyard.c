@@ -29,12 +29,12 @@ void create(){
            "up" : "/d/tharis/newtharis/rooms/stable_aviary"
 			]));
 	set_animal(
-        ({"lizard","bicorn"}),
-        ({"/d/tharis/newtharis/mounts/riding_lizard","/d/tharis/newtharis/mounts/bicorn"})
+        ({"lizard","bicorn","hell boar"}),
+        ({"/d/tharis/newtharis/mounts/riding_lizard","/d/tharis/newtharis/mounts/bicorn","/d/tharis/newtharis/mounts/hell_boar"})
         );
     set_animal_price(
-        ({"lizard","bicorn"}),
-        ({500,700})
+        ({"lizard","bicorn","hell boar"}),
+        ({500,700,1000})
         );
    set_stalls(20);
    ::fill_stalls();

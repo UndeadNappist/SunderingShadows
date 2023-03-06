@@ -27,11 +27,11 @@ void create(){
            "down" : "/d/tharis/newtharis/rooms/stable_courtyard",
 			]));
 	set_animal(
-        ({"hell boar"}),
-        ({"/d/tharis/newtharis/mounts/hell_boar"})
+        ({"dire bat"}),
+        ({"/d/tharis/newtharis/mounts/dire_bat"})
         );
     set_animal_price(
-        ({"hell boar"}),
+        ({"dire bat"}),
         ({50000})
         );
    set_stalls(20);
