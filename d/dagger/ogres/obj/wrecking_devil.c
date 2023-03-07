@@ -46,14 +46,10 @@ int hit_func(object target)
 {
     int damage, room, my_dex_bonus;
     
-    holder = environment(this_object());
-    
-    if(!objectp(holder) || !objectp(target))
+    if(!objectp(holder = environment(this_object())) || !objectp(target))
         return 0;
     
-    room = environment(holder);
-    
-    if(!objectp(room) || room != environment(target))
+    if(!objectp(room = environment(holder)))
         return 0;
     
     hit_count++;
@@ -69,11 +65,11 @@ int hit_func(object target)
         case 0: //Trip
         tell_object(holder, "PROC TRIP MESSAGE");
         tell_room(room, "PROC TRIP MESSAGE ROOM", holder);
-        if(BONUS_D->combat_maneuver(target, holder, 0))
+        if(BONUS_D->combat_maneuver(target, holder, my_dex_bonus))
             target->set_tripped(roll_dice(1, 4));
         break;
         default: //Sunder or damage
-        if(!sundered && BONUS_D->combat_maneuver(target, holder, 0))
+        if(!sundered && BONUS_D->combat_maneuver(target, holder, my_dex_bonus))
         {
             target->add_ac_bonus(-10);
             tell_object(holder, "PROC SUNDER MESSAGE");
@@ -93,9 +89,7 @@ int hit_func(object target)
 
 int wield_func()
 {
-    holder = environment(this_object());
-    
-    if(!objectp(holder))
+    if(!objectp(holder = environment(this_object())))
         return 0;
     
     if(holder->query_base_character_level() < MIN_LEVEL)
@@ -111,9 +105,7 @@ int wield_func()
 
 int unwield_func()
 {
-    holder = environment(this_object());
-    
-    if(!objectp(holder))
+    if(!objectp(holder = environment(this_object())))
         return 0;
     
     tell_object(holder, "UNWIELD MESSAGE");
