@@ -320,6 +320,9 @@ void build_index()
                         if (!mapp(level)) {
                             continue;
                         }
+                        if(keys(level)[0] == "classless")
+                            continue;
+                        
                         spelltable = ([]);
 
                         spelltable["quick"] = add_quick_name(all_spells[x]);
