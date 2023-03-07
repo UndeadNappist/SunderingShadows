@@ -56,7 +56,7 @@ string terminal_color_hex(string raw_string, mapping color_mapping, int screen_w
         is_color_code[i] = 1;
 
         // Replace the current fragment with its respective color code if the terminal is FANSI (hehe)
-        if (color_mapping[1] == 1)
+        if (color_mapping["C256"] == "true")
             exploded_argument[i] = "\033[38;2;" + temp_r + ";" + temp_g + ";" + temp_b + "m";
         else
             exploded_argument[i] = "";
