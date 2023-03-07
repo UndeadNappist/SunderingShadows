@@ -66,7 +66,7 @@ void alarm_observe()
 
 int die()
 {
-    remove_hound();
+    remove_alarm();
 }
 
 void remove_alarm()
