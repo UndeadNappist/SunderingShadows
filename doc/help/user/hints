@@ -17,7 +17,6 @@
 %^CYAN%^New to the game? Check out our handy %^GREEN%^Newbie Guide!%^CYAN%^ Find it at %^GREEN%^http://sunderingshadows.com/doku.php?id=cyric_s_newbie_tutorial%^CYAN%^. Great for any new character to learn from, for players new and old.
 %^CYAN%^New to the game? Check out our handy %^GREEN%^Newbie Guide!%^CYAN%^ Find it at %^GREEN%^http://sunderingshadows.com/doku.php?id=cyric_s_newbie_tutorial%^CYAN%^. Great for any new character to learn from, for players new and old.
 %^CYAN%^New to the game? Check out our handy %^GREEN%^Newbie Guide!%^CYAN%^ Find it at %^GREEN%^http://sunderingshadows.com/doku.php?id=cyric_s_newbie_tutorial%^CYAN%^. Great for any new character to learn from, for players new and old.
-
 %^CYAN%^Don't forget to apply your skill points! Check %^GREEN%^<help skills>%^CYAN%^.
 %^CYAN%^Find a typo or a bug or you simply wish to offer an idea or a praise? Type %^GREEN%^<help game> %^CYAN%^to see your options!
 %^CYAN%^Find item collectors in some of the major cities who will award you exp for returning misplaced artifacts from across the realms!
@@ -28,19 +27,19 @@
 %^CYAN%^If you don't want to sell something by accident, use %^CYAN%^<keep>%^GREEN%^.
 %^CYAN%^If you find yourself stuck in a broken room, try %^GREEN%^<fixroom> %^CYAN%^or %^GREEN%^<fixmore> %^CYAN%^to reset the room.
 %^CYAN%^If you find yourself wearing a cursed magical item, a church will remove it for a fee. Many casters also have the power to break a curse, so it doesn't hurt to ask around.
-%^CYAN%^If you need to review the last round of a line conversations, or emotes, says, or tells, use %^GREEN%^<last>%^CYAN%^.
+%^CYAN%^If you need to review the last round of a line's conversations, or emotes, says, or tells, use %^GREEN%^<last>%^CYAN%^.
 %^CYAN%^Keep your health above zero.
-%^CYAN%^Kill your enemies to avoid being killed.
+%^CYAN%^Having trouble with some of these fancy colors? Check out %^GREEN%^<help set>%^CYAN%^ and our term options may be just what you need.
 %^CYAN%^Knocked out a bad guy (or a good guy, if YOU are the bad guy)? Use some rope to %^GREEN%^<bind> %^CYAN%^them before they regain consciousness! See %^GREEN%^<help bind> %^CYAN%^for more information and inspiration!
 %^CYAN%^Low on funds and can't afford to rent or buy a boat? Sea ferries are available with stops at the Mainland, Laerad, Deku and Graez. Look for the local seaports to view your options.
 %^CYAN%^Magical equipment has a chance of being cursed! Be sure to have it identified or evaluated at any of the local churches.
 %^CYAN%^Make your own maps using the %^GREEN%^<map> %^RESET%^%^CYAN%^command! See %^GREEN%^<help map> %^CYAN%^to learn more.
 %^CYAN%^Many major cities have portal service in psionic guilds that allow you to travel quickly between the cities and islands!
 %^CYAN%^Maps of the areas surrounding Shadow and Tabor can be found in the cities where the item collectors loiter.
-%^CYAN%^Most quest givers will be prompted by simply saying 'hello'. If this does not work, try looking at them. Usually their description will hint at the appropriate action.
+%^CYAN%^Most quest givers will be prompted by simply saying 'hello'. Colored speech is not recommended - the ' or " alias can help you speak even if you have a colorful say alias. If this does not work, try looking at them. Usually their description will hint at the appropriate action.
 %^CYAN%^Need a little extra help in combat, or just feeling a little lonely? Visit the mercenary camp west of Shadow, and tell Sault you need to hire a mercenary.
 %^CYAN%^Need to slander someone's good name, or let the world know of your heroic deeds? Try out the %^GREEN%^<gossip>  %^RESET%^%^CYAN%^command to learn how to spread some dirt.
-%^CYAN%^People die if you kill them.
+%^CYAN%^People die if you kill them. Often times, boring. Alternatives to death can be fun to roleplay, though.
 %^CYAN%^Please join us on Discord! %^ULINE%^%^GREEN%^https://discord.gg/4AzcyjKv28
 %^CYAN%^Please join us on Discord! %^ULINE%^%^GREEN%^https://discord.gg/4AzcyjKv28
 %^CYAN%^Please join us on Discord! %^ULINE%^%^GREEN%^https://discord.gg/4AzcyjKv28
@@ -70,7 +69,7 @@
 %^CYAN%^Using the %^GREEN%^<actions>%^CYAN%^ command is an easy way to see what actions are able to be performed in a room.
 %^CYAN%^Using the %^GREEN%^<buff> %^RESET%^%^CYAN%^command allows casters to refresh their defensive spells in a single command. See %^GREEN%^<help buff> %^CYAN%^for more information!
 %^CYAN%^Want to pass through an area without being seen or heard? Trying using %^GREEN%^<sneak %^ULINE%^DIRECTION%^RESET%^%^GREEN%^>%^CYAN%^. The more stealthy you are, the better chance you will have.
-%^CYAN%^Wondering what you have equipped where?  Type %^GREEN%^<limbs>%^CYAN%^ too see what all you have on what limb.
+%^CYAN%^Wondering what you have equipped where? Type %^GREEN%^<limbs>%^CYAN%^ too see what all you have on what limb.
 %^CYAN%^You can disable these messages with %^GREEN%^<set hints off>%^CYAN%^.
 %^CYAN%^You can manipulate your mood with %^GREEN%^<fortune>%^CYAN%^ command.
 %^CYAN%^You can track your own progress or keep character notes by using pcnotes. See %^GREEN%^<help pcnote> %^CYAN%^for more information!
