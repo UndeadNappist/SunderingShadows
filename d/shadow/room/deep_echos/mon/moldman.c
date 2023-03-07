@@ -47,38 +47,45 @@ object obj;
   // set_exp(5000);
   set_new_exp(15,"normal");
   if(random(3)==1)
-    new(OBJ"headband_acc")->move(TO);
+    new(OBJ"headband_acc")->move(this_object());
   force_me("wearall");
 }
 
-void spork(){  //poof at ppl in room
-  object *ppl;
-  int i;
-  if(!ETO) return;
-  
-  ppl=filter_array(all_living(ETO),"is_non_immortal_player",FILTERS_D);
-  
-  tell_room(ETO, 
-    "%^ORANGE%^A puff of spores burst from mold man.");
-  for (i = 0; i < sizeof (ppl); i++){
-    if(!objectp(ppl[i])) continue;
-    if(!"/daemon/saving_throw_d.c"->fort_save(ppl[i],-15)) {
-	 tell_object(ppl[i],
-	   "%^ORANGE%^The spores cause you to cough and choke.");
-	 ppl[i]->set_paralyzed(40,"The spores eat through your body.");
-	 ppl[i]->add_attacker(TO);
-	 ppl[i]->cause_typed_damage(ppl[i],0,roll_dice(1,6),"acid");
-	 }
-	
-  }
-}
-// spores each round
-void heart_beat(){
-  ::heart_beat();
-  nom++;
-  if( nom ==ROUND_LENGTH){
-    spork();
-	nom = 0;
-  }
+void spork()
+{
+    object *ppl, me, my_environment;
+    int i;
 
+    if(!objectp(me = this_object()) || !objectp(my_environment = environment(me)))
+        return;
+  
+    ppl=filter_array(all_living(ETO),"is_non_immortal_player",FILTERS_D);
+  
+    tell_room(my_environment, "%^ORANGE%^A puff of spores burst from mold man.");
+
+    for (i = 0; i < sizeof (ppl); i++)
+    {
+        if(!objectp(ppl[i]))
+            continue;
+
+        if(!"/daemon/saving_throw_d.c"->fort_save(ppl[i],-15))
+        {
+          tell_object(ppl[i], "%^ORANGE%^The spores cause you to cough and choke.");
+          ppl[i]->set_paralyzed(40,"The spores eat through your body.");
+          ppl[i]->add_attacker(me);
+          ppl[i]->cause_typed_damage(ppl[i],0,roll_dice(1,6),"acid");
+        }
+    }
+}
+
+void heart_beat()
+{
+    ::heart_beat();
+    nom++;
+
+    if (nom == ROUND_LENGTH)
+    {
+        spork();
+        nom = 0;
+    }
 }

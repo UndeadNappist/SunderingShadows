@@ -15,11 +15,15 @@ void create()
 
 void do_setup(object ob)
 {
-    object *inv,obj;
-    string *classes,*ids,file;
-    int i,caster=0,num=0;
+    object *inv, obj, me;
+    string *classes, *ids, file;
+    int i, caster=0, num=0;
 
-    if(!objectp(ob)) { return; }
+    if (!objectp(me = this_object()))
+        return;
+
+    if (!objectp(ob))
+        return;
 
     classes = (string *)ob->query_classes();
     inv     = all_inventory(ob);
@@ -57,15 +61,25 @@ void do_setup(object ob)
 
     for(i=0;i<sizeof(inv);i++)
     {
-        if(!objectp(inv[i])) { continue; }
-        if(inv[i]->is_container()) { continue; }
-        if(inv[i]->id("kit")) { continue; }
+        if(!objectp(inv[i]))
+            continue;
+
+        if(inv[i]->is_container())
+            continue;
+
+        if(inv[i]->id("kit"))
+            continue;
+
         obj = new(base_name(inv[i]));
-        obj->move(TO);
+        obj->move(me);
         obj->set_property("monsterweapon",1);
         ids = (string *)obj->query_id();
-        if(obj->is_armor()) { TO->force_me("wear "+ids[0]+""); }
-        if(obj->is_weapon() && !num) { TO->force_me("wield "+ids[0]+""); num = 1; }
+
+        if(obj->is_armor())
+            me->force_me("wear "+ids[0]+"");
+
+        if(obj->is_weapon() && !num)
+            me->force_me("wield "+ids[0]+""); num = 1;
     }
 
     if(caster)
@@ -89,55 +103,74 @@ void do_setup(object ob)
 
 void kill_player(object ob)
 {
-    if(!objectp(ob)) { return; }
+    object me;
 
-    TO->force_me("stab "+ob->query_true_name()+"");
-    TO->force_me("rush "+ob->query_true_name()+"");
-    TO->force_me("kill "+ob->query_true_name()+"");
+    if (!objectp(me = this_object()))
+        return;
+
+    if(!objectp(ob))
+        return;
+
+    me->force_me("stab "+ob->query_true_name()+"");
+    me->force_me("rush "+ob->query_true_name()+"");
+    me->force_me("kill "+ob->query_true_name()+"");
+
     return;
 }
 
 void heart_beat()
 {
-    object *attackers;
+    object *attackers, me;
     int i;
 
     ::heart_beat();
 
-    if(!objectp(TO)) { return; }
+    if(!objectp(me = this_object()))
+        return;
 
-    attackers = (object *)TO->query_attackers();
+    attackers = (object *)me->query_attackers();
 
-    if(sizeof(attackers) && !TO->query_property("engaged"))
+    if(sizeof(attackers) && !me->query_property("engaged"))
     {
-        TO->force_me("scramble");
-        TO->force_me("parry");
-        TO->force_me("whirl");
+        me->force_me("scramble");
+        me->force_me("parry");
+        me->force_me("whirl");
         for(i=0;i<sizeof(attackers);i++)
         {
-            if(!objectp(attackers[i])) { continue; }
-            TO->force_me("rush "+attackers[i]->query_true_name()+"");
+            if(!objectp(attackers[i]))
+                continue;
+
+            me->force_me("rush "+attackers[i]->query_true_name()+"");
         }
         return;
     }
-    if(!sizeof(attackers)) { TO->remove_property("engaged"); }
+
+    if(!sizeof(attackers))
+        me->remove_property("engaged");
     return;
 }
 
 void init()
-{  
-    if(!objectp(TO)) { return; }
-    if(interactive(TP) && !avatarp(TP))
+{
+    object me, player;
+
+    if(!objectp(me = this_object()))
+        return;
+
+    if (!objectp(player = this_player()))
+        return;
+
+    if(interactive(player) && !avatarp(player))
     {
-        if(!query_property("is_setup")) { do_setup(TP); }
-        TO->force_me("say Well, my friend, I see you have made it this far in your quest.");
-        TO->force_me("laugh");
-        TO->force_me("say I am sure you have made your way preying upon the weak -- it is "
-            "always the case with those such as yourself.");
-        TO->force_me("shrug");
-        TO->force_me("say Well, now we shall see how you fare against an opponent of similar "
-            "ability to your own!");
-        TO->force_me("grin");
+        if(!query_property("is_setup"))
+            do_setup(TP);
+
+        me->force_me("say Well, my friend, I see you have made it this far in your quest.");
+        me->force_me("laugh");
+        me->force_me("say I am sure you have made your way preying upon the weak -- it is always the case with those such as yourself.");
+        me->force_me("shrug");
+        me->force_me("say Well, now we shall see how you fare against an opponent of similar ability to your own!");
+        me->force_me("grin");
         call_out("kill_player",10,TP);
     }
     ::init();
@@ -145,11 +178,16 @@ void init()
 
 void die(object ob)
 {
-    //if(!objectp(ob)) { return; }
-    TO->force_me("say You have indeed proven yourself worthy to advance.");
-    TO->force_me("say One day we will meet again.");
-    TO->move("/d/shadowgate/void"); 
-    TO->remove();
+    object me;
+
+    if(!objectp(me = this_object()))
+        return;
+
+    me->force_me("say You have indeed proven yourself worthy to advance.");
+    me->force_me("say One day we will meet again.");
+    me->move("/d/shadowgate/void");
+    me->remove();
+
     return;
 }
 

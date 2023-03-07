@@ -1464,7 +1464,7 @@ string query_long(string unused)
     }
     */
 
-    x = ((player_data["general"]["hp"] * 100) / (player_data["general"]["max_hp"]) + 1);
+    x = ((player_data["general"]["hp"] * 100) / min((player_data["general"]["max_hp"]), 1));
     if (x > 90) {
         reg += "%^YELLOW%^" + sub + " are in top shape.%^RESET%^\n";
     } else if (x > 75) {
