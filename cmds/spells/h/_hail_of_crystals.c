@@ -38,15 +38,22 @@ void spell_effect(int prof)
 
 void execute_attack()
 {
-    object *foes;
+    object *foes, *rooms_nearby, me;
     string target_limb;
-    int i,damage;
+    int i, damage;
 
-    if(!objectp(caster))
+    if (!objectp(caster))
     {
         dest_effect();
         return;
     }
+
+    if (objectp(me = this_object()))
+        return;
+
+    if (!objectp(place))
+        return;
+
     if (!flag)
     {
         flag = 1;
@@ -56,68 +63,79 @@ void execute_attack()
 
     foes = target_selector();
     foes -= ({caster});
-    if(caster->query_followers()) { foes -= caster->query_followers(); }
+    if (caster->query_followers())
+        foes -= caster->query_followers();
 
     if(time > clevel * 3)
     {
         dest_effect();
+        return;
     }
-    else
+
+    if (arrayp(rooms_nearby = nearbyRoom(place, 2)))
+        message("info", "%^BOLD%^%^BLACK%^Shards of %^MAGENTA%^c%^RED%^r%^YELLOW%^y%^GREEN%^s%^CYAN%^t%^BLUE%^a%^RESET%^%^MAGENTA%^l %^BOLD%^%^BLACK%^slice through the sky, shearing everything within the storm!", rooms_nearby);
+
+    define_base_damage(0); //lazy re-roll
+    damage = sdamage;
+
+    for (i=0; sizeof(foes), i < sizeof(foes); ++i)
     {
-        message("info","%^BOLD%^%^BLACK%^Shards of %^MAGENTA%^c%^RED%^r"+
-            "%^YELLOW%^y%^GREEN%^s%^CYAN%^t%^BLUE%^a%^RESET%^%^MAGENTA%^l "+
-            "%^BOLD%^%^BLACK%^slice through the sky, shearing everything "+
-            "within the storm!", nearbyRoom(place,2));
-        define_base_damage(0); //lazy re-roll
-        damage = sdamage;
+        if (!objectp(foes[i]))
+            continue;
 
-        for (i=0;sizeof(foes),i<sizeof(foes);i++)
-        {
-            if (!objectp(foes[i])) continue;
-            if (!objectp(caster))
-            {
-                dest_effect();
-                return;
-            }
-            if (!present(caster,place) && caster != target)
-            {
-                dest_effect();
-                return;
-            }
-            if(!present(foes[i],place)) continue;
-
-            target_limb = foes[i]->return_target_limb();
-
-            if(do_save(foes[i],0))
-            {
-                damage_targ(foes[i], target_limb, damage/2,"slashing");
-            }
-            else { damage_targ(foes[i], target_limb, damage,"slashing"); }
-
-            if(objectp(foes[i])) spell_kill(foes[i], caster);
-        }
-
-        time++;
-
-        if (present(caster,place))
-        {
-            environment(caster)->addObjectToCombatCycle(TO,1);
-        }
-        else
+        if (!objectp(caster))
         {
             dest_effect();
             return;
         }
+
+        if (!present(caster, place) && caster != target)
+        {
+            dest_effect();
+            return;
+        }
+
+        if (!present(foes[i], place))
+            continue;
+
+        target_limb = foes[i]->return_target_limb();
+
+        if (do_save(foes[i], 0))
+            damage_targ(foes[i], target_limb, damage/2,"slashing");
+        else
+            damage_targ(foes[i], target_limb, damage,"slashing");
+
+        if (objectp(foes[i]))
+            spell_kill(foes[i], caster);
+    }
+
+    ++time;
+
+    if (present(caster, place))
+        environment(caster)->addObjectToCombatCycle(me, 1);
+    else
+    {
+        dest_effect();
+        return;
     }
 }
 
 
 void dest_effect()
 {
-    if(objectp(place)) tell_room(place,"%^BOLD%^%^WHITE%^The crystals churning in the air grind to dust and are blown away by the wind.");
+    object me;
+
+    if (objectp(place))
+        tell_room(place, "%^BOLD%^%^WHITE%^The crystals churning in the air grind to dust and are blown away by the wind.");
+
     ::dest_effect();
-    if(objectp(TO)) TO->remove();
+
+    if(objectp(me = this_object()))
+        me->remove();
 }
 
 
-string query_cast_string() { return ""+caster->QCN+" withdraws three tourmaline gems from a pouch."; }
+string query_cast_string()
+{
+    return ""+caster->QCN+" withdraws three tourmaline gems from a pouch.";
+}
