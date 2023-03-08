@@ -301,26 +301,28 @@ varargs mixed query(string what, mixed element)
     int i, query_flag = 0;
 
     res = 0;
-    if (!ob_data) {
+
+    if (!ob_data)
         init_ob();
-    }
-    if (!stringp(what)) {
+
+    if (!stringp(what))
         return 0;
-    }
-    if (!ob_data[what]) {
+
+    if (!ob_data[what])
         return 0;
-    }
-    if (!element) {
+
+    if (!element)
         res = ob_data[what];
-    }else if (stringp(element)) {
+
+    else if (stringp(element))
         res = ob_data[what][element];
-    }else if ((intp(element)) && pointerp(ob_data[what]) &&
-              (element < sizeof(ob_data[what]))) {
+
+    else if ((intp(element)) && pointerp(ob_data[what]) && (element < sizeof(ob_data[what])))
         res = ob_data[what][element];
-    }
-    if (pointerp(res) && previous_object() != this_object()) {
+
+    if (pointerp(res) && previous_object() != this_object())
         res += ({});
-    }
+
     return res;
 }
 
