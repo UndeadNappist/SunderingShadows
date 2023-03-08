@@ -93,57 +93,80 @@ void room_check(){
     return;
 }
 
-void execute_attack(){
+void execute_attack()
+{
     object* foes = ({}), targ;
     int i, dam;
 
-    if(!flag){
+    if (!objectp(caster))
+        return;
+
+    if(!flag)
+    {
         flag = 1;
         ::execute_attack();
         return;
     }
 
-    place = environment(caster);
+    if (!objectp(place = environment(caster)))
+    {
+        dest_effect();
+        return;
+    }
 
-    if(!objectp(caster) || !objectp(place) || counter < 0){
+    if(counter < 0)
+    {
         dest_effect();
         return;
     }
 
     foes = caster->query_attackers();
 
-    if(sizeof(foes)){
+    if(sizeof(foes))
+    {
         define_base_damage(0);//reroll each turn
         tell_room(place, "%^RESET%^%^CRST%^"+colormap[element]+"The "+element+" around "+caster->query_cap_name()+"%^RESET%^%^CRST%^ "+colormap[element]+myverb[element]+" "+caster->query_possessive()+" enemies!%^CRST%^", ({ caster, target }));
         tell_object(caster, "%^RESET%^%^CRST%^"+colormap[element]+"The elemental aura "+myverb[element]+" your enemies!%^CRST%^");
 
         define_base_damage(0);
 
-        for(i = 0; i < sizeof(foes); i++){
+        for(i = 0; i < sizeof(foes); ++i)
+        {
             dam = sdamage;
 
-            if(!objectp(foes[i])) continue;
-            if(do_save(foes[i], 0)) dam /= 2;
+            if (!objectp(foes[i]))
+                continue;
+
+            if (do_save(foes[i], 0))
+                dam /= 2;
 
             tell_object(foes[i], "%^RESET%^%^CRST%^"+colormap[element]+"You are "+yourverb[element]+" by a shield of "+element+" as you strike "+caster->query_cap_name()+"%^RESET%^%^CRST%^"+colormap[element]+"!%^CRST%^");
             damage_targ(foes[i], foes[i]->return_target_limb(), dam, element);
         }
     }
+
     prepend_to_combat_cycle(place);
     counter--;
 }
 
-void dest_effect(){
+void dest_effect()
+{
+    object me;
+
     remove_call_out("room_check");
-    if(objectp(caster)){
-        tell_room(environment(caster), "%^RESET%^%^CRST%^"+colormap[element]+"The elemental aura around "+caster->query_cap_name()+"%^RESET%^%^CRST%^"+colormap[element]+" fades away.", caster);
+
+    if (objectp(caster))
+    {
+        if (objectp(environment(caster)))
+            tell_room(environment(caster), "%^RESET%^%^CRST%^"+colormap[element]+"The elemental aura around "+caster->query_cap_name()+"%^RESET%^%^CRST%^"+colormap[element]+" fades away.", caster);
         tell_object(caster, "%^RESET%^%^CRST%^"+colormap[element]+"The elemental aura around you fades away.%^CRST%^", caster);
         caster->remove_property("elemental aura");
         caster->remove_property_value("added short", ({ shortmap[element] }));
     }
+
     ::dest_effect();
-    if (objectp(this_object())){
-        TO->remove();
-    }
+
+    if (objectp(me = this_object()))
+        me->remove();
 }
 
