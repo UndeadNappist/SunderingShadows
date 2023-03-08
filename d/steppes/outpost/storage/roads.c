@@ -9,7 +9,7 @@ void create(){
    ::create();
     set_property("indoors",0);
     set_name("ruined road");
-    set_short("%^C059%^ruined %^C102%^road%^CRST%^");
+    set_short("%^C059%^quiet %^C102%^road%^CRST%^");
     set_long("%^C102%^Centuries ago there must have been a %^C066%^small settlement%^C102%^ here. The road here is formed of interlocking stones that must have been placed centuries ago. There is some damage here and there but someone has been careful to clear away any debris.%^CRST%^\n");
       
     set_items(([
