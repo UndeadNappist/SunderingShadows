@@ -12,7 +12,7 @@ void create(){
 		set_terrain(STONE_BUILDING);
 		set_travel(PAVED_ROAD);
 		set_property("no sticks", 1);
-		set_property("light",2);
+		set_property("light",1);
 		set_property("indoors",1);
 		
 		set_name("general store of tharis");
