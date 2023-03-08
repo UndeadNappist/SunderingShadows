@@ -20,4 +20,12 @@ set_exits(([
 ]));
 
 }
+void reset()
+{
+	::reset();
+	if(!present("soldier"))
+	{
+           new(MOBS"dwarf_soldier")->move(TO);
+	}
+}
 

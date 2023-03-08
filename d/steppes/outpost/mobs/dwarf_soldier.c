@@ -127,7 +127,7 @@ void make_me(){
     switch(i){
         case 0:        set_short("%^C108%^A %^CRST%^" +dwarf_adj+ "%^C108%^ %^C100%^dwarven%^C108%^ soldier%^CRST%^"); break;
         case 1:        set_short("%^C108%^A %^CRST%^" +dwarf_type+ "%^C108%^ %^C100%^dwarf%^C108%^ soldier%^CRST%^"); break;
-        case 2:        set_short("%^C108%^A %^CRST%^" +dwarf_adj+ " " +dwarf_type+ "%^C100%^dwarven%^C108%^ soldier%^CRST%^"); break;
+        case 2:        set_short("%^C108%^A %^CRST%^" +dwarf_adj+ " " +dwarf_type+ "%^C100%^dwarf%^C108%^ soldier%^CRST%^"); break;
     }
 
     set_long("%^C059%^Dressed in %^C249%^simple armour%^C059%^ and wielding a %^C100%^worn weapon%^C059%^, this %^CRST%^" +dwarf_type+ "%^C059%^ stands resolutely in protection of the steppes outpost. They grip their weapon tightly and are constantly scanning the %^C074%^horizon%^C059%^ for some threat. The equipment itself is %^C251%^threadbare%^C059%^, as if they are equipped in hand me downs.%^CRST%^\n"); 
