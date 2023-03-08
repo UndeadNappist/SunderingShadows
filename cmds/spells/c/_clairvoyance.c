@@ -58,7 +58,7 @@ string query_cast_string()
         tell_object(caster,"%^BOLD%^Closing your eyes, you press your fingers"+
             " to your temple, and focus your energies.");
         tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+" closes "+caster->QP+" eyes"+
-            ", pressing "+caster->QP+" fingers to "+caster->QS+" temples.");
+            ", pressing "+caster->QP+" fingers to "+caster->QS+" temples.", caster);
         return "display";
     }
     tell_object(caster,"%^BOLD%^Seeking inner calm, you open your mind to the world around you and the target you seek.");

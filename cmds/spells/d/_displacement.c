@@ -65,7 +65,7 @@ void spell_effect(int prof)
     }
     else{
         if((string)TO->query_spell_type() == "bard"){
-            tell_object(caster, "%^RESET%^%^CRST%^%^C092%^You hum softly, using the vibrations in the air to %^C165%^b%^C171%^l%^C177%^u%^C165%^r %^RESET%^%^C092%^ "+(caster == target ? "your" : (target->query_cap_name() + "%^RESET%^%^CRST%^%^C092%^'s"))+" appearance, making "+(caster == target ? "you" : "them")+" harder to target!%^CRST%^");
+            tell_object(caster, "%^RESET%^%^CRST%^%^C092%^You hum softly, using the vibrations in the air to %^C165%^b%^C171%^l%^C177%^u%^C165%^r %^RESET%^%^C092%^"+(caster == target ? "your" : (target->query_cap_name() + "%^RESET%^%^CRST%^%^C092%^'s"))+" appearance, making "+(caster == target ? "you" : "them")+" harder to target!%^CRST%^");
         }
         else{
             tell_object(caster, "%^RESET%^%^CRST%^%^C092%^You feel the spell take hold to %^C165%^b%^C171%^l%^C177%^u%^C165%^r %^RESET%^%^C092%^"+(caster == target ? "your" : (target->query_cap_name() + "%^RESET%^%^CRST%^%^C092%^'s"))+" appearance, making " + (caster == target ? "you" : "them")+" harder to target!%^CRST%^");
