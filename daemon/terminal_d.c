@@ -865,7 +865,7 @@ void create() {
                       "C253":ANSI2(253),
                       "C254":ANSI2(254),
                       "C255":ANSI2(255),
-                      1:1,                // Denotes a hexy terminal.
+                      "C256":"true",                // Denotes a hexy terminal.
                       "STATUS":"",
                       "WINDOW":"",
                       "INITTERM":"",

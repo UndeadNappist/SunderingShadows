@@ -18,13 +18,23 @@ void create(){
     set_weight(0);
 }
 
-int move(mixed dest){
-	if(ETO && objectp(ETO))
-		if(interactive(ETO))
-			return 0;
-	::move(dest);
-	set_heart_beat(10);
+int move(mixed dest)
+{
+    object me, my_environment();
 
+    if (!objectp(me = this_object()))
+        return 0;
+
+    if !(objectp(my_environment = environment(me)))
+        return 0;
+
+    if(interactive(my_environment))
+        return 0;
+
+    ::move(dest);
+    set_heart_beat(10);
+
+    return 1;
 }
 
 set_caster(object ob)
@@ -126,27 +136,25 @@ void init(){
 	add_action("dismiss","dismiss");
 }
 
-int cmd(string str){
-	object ob;
-	string what, who, what2, holder;
+int cmd(string str)
+{
+    object ob;
+    string what, who, what2, holder;
 
-	if(!objectp(mon))
+    if (!objectp(mon))
     {
         remove();
-        return 0;
+        return 1;
     }
 
-	if(!str) return notify_fail("Care to tell it what to do?\n");
+    if (!str)
+        return notify_fail("Care to tell it what to do?\n");
 
+    if(sscanf(str, "%s to %s", who, what) != 2)
+        return notify_fail("Syntax: <command OBJECT to ACTION>\n");
 
-	//if(freed)
-	//	return notify_fail("It has broken your spell!\n");
-
-	if(sscanf(str, "%s to %s", who, what) != 2)
-		return notify_fail("Syntax: <command OBJECT to ACTION>\n");
-
-	if(!mon->id(who))
-		return 0;
+    if(!mon->id(who))
+        return 0;
 
     if(what == "follow")
     {
@@ -155,19 +163,21 @@ int cmd(string str){
         return 1;
     }
 
-	if(what[0..3] == "kill") {
-		if(sscanf(what, "kill %s",who) == 1)
-			if(ob = present(who,environment(caster)))
-				if(!caster->ok_to_kill(ob))
-					return notify_fail("You are not allowed to kill that creature!\n");
-	}
+    if(what[0..3] == "kill")
+    {
+        if(sscanf(what, "kill %s",who) == 1)
+            if(ob = present(who,environment(caster)))
+                if(!caster->ok_to_kill(ob))
+                    return notify_fail("You are not allowed to kill that creature!\n");
+    }
+
     if(what[0..3] == "wear")
         return notify_fail("This summon cannot wear anything.");
 
-	if(!mon->force_me(what))
-		return notify_fail("You fail to command the "+mon->query_name()+" to "+what+"!\n");
+    if(!mon->force_me(what))
+        return notify_fail("You fail to command the "+mon->query_name()+" to "+what+"!\n");
 
-	return 1;
+    return 1;
 }
 
 
