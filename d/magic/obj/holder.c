@@ -20,12 +20,12 @@ void create(){
 
 int move(mixed dest)
 {
-    object me, my_environment();
+    object me, my_environment;
 
     if (!objectp(me = this_object()))
         return 0;
 
-    if !(objectp(my_environment = environment(me)))
+    if (!objectp(my_environment = environment(me)))
         return 0;
 
     if(interactive(my_environment))
