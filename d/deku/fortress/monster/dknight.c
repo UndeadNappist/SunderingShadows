@@ -40,15 +40,16 @@ void create() {
   set_func_chance(10);
 }
 
-void point(object targ) {
-if(!"/daemon/saving_throw_d.c"->fort_save(targ,-15))
-        return 1;
-    tell_room(environment(targ), "The death knight chills "+
-        targ->query_cap_name()+" with his fingers.", targ);
-    tell_object(targ, "The death knight chills you with his "+
-        "fingers.");
-     set_property("magic",1);
-  targ->cause_typed_damage(targ, "torso", 10000, "cold");
-     remove_property("magic");
-  return 1;
+void point(object targ){
+    tell_room(environment(targ), "The death knight chills "+targ->query_cap_name()+" with his fingers.", targ);
+    tell_object(targ, "The death knight chills you with his fingers.");
+    
+    if(!"/daemon/saving_throw_d.c"->fort_save(targ,-15) && !targ->query_property("no death")){
+        set_property("magic",1);
+        targ->cause_typed_damage(targ, "torso", 10000, "cold");
+        remove_property("magic");
+    }
+    else targ->cause_typed_damage(targ, "torso", roll(3, 10), "cold");
+    return 1;
 }
+
