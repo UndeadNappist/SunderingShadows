@@ -13,7 +13,7 @@ create(){
     set_spell_level(([ "mage" : 1, "bard" : 1, "cleric" : 1, "paladin" : 1 ]));
     set_syntax("cast CLASS monster summoning i (on TYPE)");
     set_spell_sphere("conjuration_summoning");
-    set_description("This spell will summon creatures from other planes to protect the caster, becoming aggressive to anyone attempting to harm the caster. They will return to their home plane when either exhausted or the spell duration is completed. Approaches to the use of this spell vary, as some users put out a call for aid while others coerce these creatures into servitude.\n\nThe spell will default to animals, but you can specify between these types: animals, elementals, or insects. Sorcerers of the abyssal bloodline can also specify demons, and will summon them by default.");
+    set_description("This spell will summon creatures from other planes to protect the caster, becoming aggressive to anyone attempting to harm the caster. They will return to their home plane when either exhausted or the spell duration is completed. Approaches to the use of this spell vary, as some users put out a call for aid while others coerce these creatures into servitude.\n\nThe spell will default to animals, but you can specify between these types: animals, elementals, insects, or modrons. Sorcerers of the abyssal bloodline can also specify demons, and will summon them by default.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
@@ -99,7 +99,7 @@ void skin_fun(object monster){
     if(caster->is_class("cleric") && member_array("creation", caster->query_divine_domain()) >= 0) monster->set_property("spell damage resistance", 10);
     
     if(!arg) arg = "animals";
-    if(arg != "animals" && arg != "elementals" && arg != "insects") arg = "animals";
+    if(arg != "animals" && arg != "elementals" && arg != "insects" && arg != "modrons") arg = "animals";
     switch(arg){
         case "animals" : // bobcat, badger, warthog, hawk, wolf, viper
             switch(random(6)){
@@ -140,30 +140,26 @@ void skin_fun(object monster){
             switch(random(6)){
                 case 0 :
                     monster->set_short("%^C101%^d%^C144%^u%^C255%^s%^C252%^t %^C101%^m%^C252%^e%^C144%^p%^C255%^h%^C144%^i%^C101%^t%^CRST%^");
-                    monster->set_race("mephit");
                     break;
                 case 1 :
                     monster->set_short("%^C252%^i%^C255%^c%^C045%^e %^C252%^m%^C051%^e%^C255%^p%^C252%^h%^C255%^i%^C045%^t%^CRST%^");
-                    monster->set_race("mephit");
                     break;
                 case 2 :
                     monster->set_short("%^C202%^m%^C196%^a%^C202%^g%^C208%^m%^C202%^a m%^C196%^e%^C202%^p%^C208%^h%^C202%^i%^C196%^t%^CRST%^");
-                    monster->set_race("mephit");
                     break;
                 case 3 :
                     monster->set_short("%^C100%^m%^C058%^u%^C100%^d m%^C101%^e%^C100%^ph%^C058%^i%^C100%^t%^CRST%^");
-                    monster->set_race("mephit");
                     break;
                 case 4 :
                     monster->set_short("%^C243%^s%^C245%^m%^C247%^o%^C245%^k%^C243%^e %^C245%^m%^C247%^e%^C245%^p%^C243%^h%^C245%^i%^C247%^t%^CRST%^");
-                    monster->set_race("mephit");
                     break;
                 default :
                     monster->set_short("%^C249%^s%^C251%^t%^C253%^e%^C255%^a%^C253%^m %^C251%^m%^C253%^e%^C255%^p%^C253%^h%^C251%^i%^C249%^t%^CRST%^");
-                    monster->set_race("mephit");
+                    
             }
+            monster->set_race("elemental");
             monster->set_body_type("humanoid");
-            monster->set_name("elemental");
+            monster->set_name("mephit");
             monster->add_id("elemental");
             break;
         case "insects" : // giant versions - ant, wasp, centipede, spider, scorpion, mosquito
@@ -200,6 +196,26 @@ void skin_fun(object monster){
             }
             monster->set_name("insect");
             monster->add_id("insect");
+            break;
+        case "modrons" : // modrons - monodrone, duodrone, tridrone
+            switch(random(6)){
+                case 0..2 :
+                    monster->set_short("%^C142%^s%^C143%^p%^C144%^h%^C145%^e%^C146%^r%^C145%^i%^C144%^c%^C143%^a%^C142%^l %^C184%^m%^C178%^o%^C184%^n%^C178%^o%^C172%^d%^C184%^r%^C178%^o%^C172%^ne%^CRST%^");
+                    monster->set_name("monodrone");
+                    monster->add_id("monodrone");
+                    break;
+                case 3..4 :
+                    monster->set_short("%^C136%^b%^C130%^o%^C136%^x%^C130%^y %^C184%^d%^C178%^u%^C178%^o%^C172%^d%^C184%^r%^C178%^o%^C172%^ne%^CRST%^");
+                    monster->set_name("duodrone");
+                    monster->add_id("duodrone");
+                    break;
+                default :
+                    monster->set_short("%^C226%^p%^C220%^y%^C214%^r%^C226%^a%^C220%^m%^C214%^i%^C226%^d%^C220%^a%^C214%^l %^C184%^t%^C178%^r%^C178%^i%^C172%^d%^C184%^r%^C178%^o%^C172%^ne%^CRST%^");
+                    monster->set_name("tridrone");
+                    monster->add_id("tridrone");
+            }
+            monster->set_race("modron");
+            monster->set_body_type("humanoid");
             break;
         default :
             message("info", "Something broke! Please inform Chernobog.", place);
