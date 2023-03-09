@@ -15,7 +15,7 @@ int follow;
 
 object set_owner(object ob) { owner = ob; return owner;  }
 int    set_follow(int x)    { follow = x; return follow; }
-int    is_minion()          { return 1;                  }
+int    is_minion()          { return 1;                 }
 
 void create()
 {
@@ -51,7 +51,8 @@ void heart_beat()
         this_object()->move(environment(owner));
         owner->add_follower(this_object());
     }
-}
+}       
+    
 
 /*
 The idea of this system is to, first of all, have a player command that handles minions
