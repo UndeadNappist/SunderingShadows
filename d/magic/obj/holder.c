@@ -18,23 +18,12 @@ void create(){
     set_weight(0);
 }
 
-int move(mixed dest)
-{
-    object me, my_environment;
-
-    if (!objectp(me = this_object()))
-        return 0;
-
-    if (!objectp(my_environment = environment(me)))
-        return 0;
-
-    if(interactive(my_environment))
-        return 0;
-
-    ::move(dest);
-    set_heart_beat(10);
-
-    return 1;
+int move(mixed dest){
+	if(ETO && objectp(ETO))
+		if(interactive(ETO))
+			return 0;
+	::move(dest);
+	set_heart_beat(10);
 }
 
 set_caster(object ob)
@@ -65,18 +54,14 @@ set_freed(int x){
 void defend(){
     int num,numfoes;
     object *tmp;
-
     tmp = ({});
     numfoes=sizeof(tmp = caster->query_attackers());
-
-
 	for(num =0;num < numfoes;num++){
 		if(!objectp(tmp[num])) continue;
 		if(member_array(tmp[num], (object *)mon->query_attackers()) != -1)
 			continue;
 		mon->kill_ob(tmp[num],1);
 	}
-
     return;
 }
 
@@ -84,15 +69,11 @@ void heart_beat()
 {
 	if(!objectp(mon))
 		remove();
-
 	if(!objectp(caster))
 		remove();
-
     if(sizeof(caster->query_attackers())) { defend(); }
-
     // taking this out to make the elementals more useful -Ares
     /*
-
 	if(!freed)
     {
 		if(random(100) < 5)
@@ -105,7 +86,6 @@ void heart_beat()
 		if(!freed && (object *)caster->query_attackers() != ({}))
 			defend();
 	}
-
 	if(freed){
 		count++;
 		if(count > 5){
@@ -131,65 +111,51 @@ void remove()
 
 void init(){
 	::init();
-
 	add_action("cmd","command");
 	add_action("dismiss","dismiss");
 }
 
-int cmd(string str)
-{
-    object ob;
-    string what, who, what2, holder;
-
-    if (!objectp(mon))
+int cmd(string str){
+	object ob;
+	string what, who, what2, holder;
+	if(!objectp(mon))
     {
         remove();
-        return 1;
-    }
-
-    if (!str)
-        return notify_fail("Care to tell it what to do?\n");
-
-    if(sscanf(str, "%s to %s", who, what) != 2)
-        return notify_fail("Syntax: <command OBJECT to ACTION>\n");
-
-    if(!mon->id(who))
         return 0;
-
+    }
+	if(!str) return notify_fail("Care to tell it what to do?\n");
+	//if(freed)
+	//	return notify_fail("It has broken your spell!\n");
+	if(sscanf(str, "%s to %s", who, what) != 2)
+		return notify_fail("Syntax: <command OBJECT to ACTION>\n");
+	if(!mon->id(who))
+		return 0;
     if(what == "follow")
     {
         caster->add_follower(mon);
         tell_object(caster,"The "+mon->query_short()+" is now following you.");
         return 1;
     }
-
-    if(what[0..3] == "kill")
-    {
-        if(sscanf(what, "kill %s",who) == 1)
-            if(ob = present(who,environment(caster)))
-                if(!caster->ok_to_kill(ob))
-                    return notify_fail("You are not allowed to kill that creature!\n");
-    }
-
+	if(what[0..3] == "kill") {
+		if(sscanf(what, "kill %s",who) == 1)
+			if(ob = present(who,environment(caster)))
+				if(!caster->ok_to_kill(ob))
+					return notify_fail("You are not allowed to kill that creature!\n");
+	}
     if(what[0..3] == "wear")
         return notify_fail("This summon cannot wear anything.");
-
-    if(!mon->force_me(what))
-        return notify_fail("You fail to command the "+mon->query_name()+" to "+what+"!\n");
-
-    return 1;
+	if(!mon->force_me(what))
+		return notify_fail("You fail to command the "+mon->query_name()+" to "+what+"!\n");
+	return 1;
 }
 
-
-
 int dismiss(string str){
-
 	if(!str || !mon->id(str))
-        return notify_fail("Dismiss what?\n");
-
+		return 0;
 	if(freed)
 		return notify_fail("You have no power over this being any more.\n");
 
+	tell_room(environment(caster),"%^BOLD%^"+caster->query_cap_name()+" dismisses the "+mon->query_name()+"!",caster);
     if(objectp(caster)) { caster->remove_property("has_elemental"); }
 	tell_object(caster,"%^BOLD%^You dismiss the "+mon->query_name()+"!\n");
 	call_out("timed",1);
