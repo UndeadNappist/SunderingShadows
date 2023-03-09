@@ -3019,6 +3019,7 @@ varargs int property_special(mixed arg, object enemy_weapon, object attacker)
     if (frequency < 10) {
         frequency = 10;
     }
+    if(enchantment <= 0) frequency = 0;
     if (random(100) > frequency) {
         return damage;
     }
