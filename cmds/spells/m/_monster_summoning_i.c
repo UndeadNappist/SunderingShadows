@@ -2,6 +2,8 @@
 #include <magic.h>
 #include <rooms.h>
 
+#define TYPES ({ "animals", "insects", "elementals", "modrons" })
+
 inherit SPELL;
 
 object* monsters = ({});
@@ -99,7 +101,7 @@ void skin_fun(object monster){
     if(caster->is_class("cleric") && member_array("creation", caster->query_divine_domain()) >= 0) monster->set_property("spell damage resistance", 10);
     
     if(!arg) arg = "animals";
-    if(arg != "animals" && arg != "elementals" && arg != "insects" && arg != "modrons") arg = "animals";
+    if(member_array(arg, TYPES) < 0) arg = "animals";
     switch(arg){
         case "animals" : // bobcat, badger, warthog, hawk, wolf, viper
             switch(random(6)){
