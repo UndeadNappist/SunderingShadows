@@ -185,7 +185,7 @@ int cmd(string str)
 int dismiss(string str){
 
 	if(!str || !mon->id(str))
-        return notifY_fail("Dismiss what?\n");
+        return notify_fail("Dismiss what?\n");
 
 	if(freed)
 		return notify_fail("You have no power over this being any more.\n");
