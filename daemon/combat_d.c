@@ -877,7 +877,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
         alignments = ({ "alignment 147", "alignment 369", "alignment 123", "alignment 789" });
         enemy_alignments = ({ "369", "147", "789", "123" });
         align_text = ({ "%^C220%^h%^C226%^ol%^C220%^y w%^C226%^rat%^C220%^h", "%^C124%^u%^C160%^n%^C196%^ho%^C160%^l%^C124%^y %^C160%^f%^C196%^u%^C160%^r%^C124%^y", "%^C214%^r%^C220%^i%^C226%^ghteo%^C220%^u%^C214%^s j%^C220%^u%^C226%^sti%^C220%^c%^C214%^e", "%^C089%^re%^C090%^be%^C091%^ll%^C090%^io%^C089%^us m%^C090%^i%^C091%^g%^C090%^h%^C089%^t" });
-        a_colors = ({ "%^C255%^", "%^C259%^", "%^C021%^", "%^C124%^" });
+        a_colors = ({ "%^C255%^", "%^C059%^", "%^C021%^", "%^C124%^" });
 
         target_align = (string)target->query_true_align();
         effective_level = attacker->query_prestige_level("magus");

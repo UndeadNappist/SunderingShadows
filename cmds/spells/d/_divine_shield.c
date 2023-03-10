@@ -50,8 +50,8 @@ void spell_effect(int prof)
                     "solidify around your arm, as a divine shield manifests.");
 
         if (objectp(place)) {
-            tell_room(place, "%^ORANGE%^The air begins to waver and solidfy " +
-                      "around " + caster->QCN + "'s arm, as a divine shield manifests.!", caster);
+            tell_room(place, "%^ORANGE%^The air begins to waver and solidify " +
+                      "around " + caster->QCN + "'s arm, as a divine shield manifests.", caster);
         }
 
         if (file_exists("/d/magic/obj/shields/" + normalizedDeity + ".c")) {

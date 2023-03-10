@@ -15,6 +15,7 @@ void create()
     ::create();
     set_spell_name("hurl through hell");
     set_spell_level(([ "warlock" : 4 ]));
+    set_spell_sphere("conjuration_summoning");
     set_heritage("infernal");
     set_syntax("cast CLASS hurl through hell on TARGET");
     set_damage_desc("Untyped Damage over several rounds and blind and shaken");
