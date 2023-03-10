@@ -18,7 +18,7 @@ void create() {
     set_spell_level(([ "mage" : 2, "bard" : 3, "inquisitor" : 2, "magus" : 3 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS detect invisibility");
-    set_description("Detect invisibility will let a mage see all magically invisible and even hidden people in the near vicinity. The spell's duration gets longer as the mage grows in level.");
+    set_description("Detect invisibility will let a mage see all magically invisible people in the near vicinity. The spell's duration gets longer as the mage grows in level.");
     set_verbal_comp();
     set_somatic_comp();
     set_components(([

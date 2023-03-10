@@ -14,7 +14,7 @@ void create() {
     set_syntax("cast CLASS see the unseen");
     set_description("This invocation allows a warlock to magically augment their vision, "
 "allowing vastly improved sight in areas of extreme light or darkness, as well as the "
-"ability to perceive hidden items and beings.");
+"ability to perceive invisible beings.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
