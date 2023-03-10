@@ -1,8 +1,8 @@
 /*
   _form_of_doom.c
-  
+
   Complete rewrite from old version.
-  
+
   -- Tlaloc --
 */
 
@@ -39,31 +39,31 @@ int preSpell()
         tell_object(caster, "You already have an aura of oppression up.");
         return 0;
     }
-    
+
     return 1;
 }
 
 void spell_effect()
 {
     int duration;
-    
+
     ::spell_effect();
-  
+
     my_name = caster->query_cap_name();
     my_poss = caster->query_possessive();
     my_pron = caster->query_subjective();
-    
+
     tell_object(caster, "%^C066%^You manifest a horrfying visage, deep from your subconscious, transforming into a nightmarish version of yourself.%^CRST%^");
     tell_room(place, "%^C066%^" + my_name + " transforms into a nightmarish entity, covered in ooze and lashing tentacles!%^CRST%^", caster);
-    
+
     statbonus = min( ({ 4, (30 - caster->query_stats("strength")) }) );
     caster->add_stat_bonus("strength", statbonus);
     caster->add_ac_bonus(5);
     caster->add_skill_bonus("athletics", 5);
     caster->set_property("damage resistance", 5);
-    
+
     caster->set_property("spelled", ({ this_object() }));
-    
+
     caster->set_property("added short",({" %^C060%^(%^C066%^h%^C072%^o%^C078%^r%^C072%^r%^C066%^ifying%^C060%^)%^CRST%^"}));
     caster->set_property("oppression", 1);
     addSpellToCaster();
@@ -121,7 +121,7 @@ void execute_attack()
     }
 
     foes = caster->query_attackers();
-    
+
     if(!sizeof(foes))
         saved = ({  });
 
@@ -130,19 +130,19 @@ void execute_attack()
         tell_object(caster, "%^C066%^Your %^C078%^tentacles%^C066%^ lash out, casting %^C078%^woe%^C066%^ unto your enemies!%^CRST%^");
         tell_room(place, "%^C066%^The tentacles %^C078%^lash out%^C066%^ with horrifying %^C078%^fury%^C066%^!%^CRST%^", caster);
     }
-    
+
     foreach(object ob in foes)
     {
         if(!objectp(ob))
             continue;
-        
+
         if(environment(ob) != place)
             continue;
-        
+
         if(BONUS_D->process_hit(caster, target, 1, 0, 0, 0))
             damage_targ(ob, "chest", roll_dice(caster->query_prestige_level("psywarrior") / 10, 8) + BONUS_D->query_stat_bonus(caster, "intelligence"), "void");
     }
-    
+
     foes -= saved;
 
     if(sizeof(foes))
@@ -151,12 +151,12 @@ void execute_attack()
         {
             if(!objectp(ob) || ob->query_ghost())
                 continue;
-            
+
             your_name = ob->query_cap_name();
-            
+
             if(place != environment(ob))
                 continue;
-            
+
             if(!do_save(ob, 0) && !PLAYER_D->immunity_check("fear"))
             {
                 tell_object(ob, "%^C066%^You %^C078%^recoil%^C066%^ with %^C078%^fear%^C066%^ from %^C078%^" + my_name + "'s%^C066%^ horrible visage!%^CRST%^");
@@ -165,14 +165,14 @@ void execute_attack()
             }
             else
             {
-                tell_object(ob, "%^BOLD%^You manage to shrug off the oppressive aura.%^RESET%^");
-                tell_room(place, "BOLD%^" + your_name + " manages to shrug off the oppressive aura.%^RESET%^", ob);
+                tell_object(ob, "%^C063%^You manage to shrug off the oppressive aura.%^CRST%^");
+                tell_room(place, "%^C063%^" + ob->query_cap_name() + " %^C063%^manages to shrug off the oppressive aura.%^CRST%^", ob);
                 saved += ({ ob });
             }
         }
 
     }
-    
+
     prepend_to_combat_cycle(place);
     counter--;
 }
@@ -181,19 +181,19 @@ void dest_effect()
 {
     remove_call_out("room_check");
     if (objectp(caster))
-    {       
+    {
         tell_room(environment(caster), "", caster);
         tell_object(caster, "");
         caster->remove_property_value("added short",({" %^C060%^(%^C066%^h%^C072%^o%^C078%^r%^C072%^r%^C066%^ifying%^C060%^)%^CRST%^"}));
         caster->remove_property("oppression");
-        
+
         caster->add_stat_bonus("strength", -statbonus);
         caster->add_ac_bonus(-5);
         caster->add_skill_bonus("athletics", -5);
         caster->set_property("damage resistance", -5);
     }
     ::dest_effect();
-    
+
     if (objectp(this_object()))
         this_object()->remove();
 }

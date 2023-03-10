@@ -41,12 +41,12 @@ void room_check()
 
 int preSpell()
 {
-    
+
     if (caster->query_property("oppression")) {
         tell_object(caster, "You are already under the effects of this kind of power!");
         return 0;
     }
-    
+
     /*
     if (caster->query_property("iron body")) {
         tell_object(caster, "You already have protection of this nature!");
@@ -110,10 +110,10 @@ void execute_attack()
     }
 */
     foes = caster->query_attackers();
-    
+
     if(!sizeof(foes))
         saved = ({  });
-    
+
     foes -= saved;
 
     if(sizeof(foes))
@@ -122,7 +122,7 @@ void execute_attack()
         {
             if(!objectp(ob))
                 continue;
-            
+
             if(!do_save(ob, 0) && !PLAYER_D->immunity_check("fear"))
             {
                 tell_object(ob, "%^C081%^You cower in %^C069%^fear%^C081%^ from %^C069%^" + caster->query_cap_name() + "'s%^C081%^ oppressive aura!%^CRST%^");
@@ -131,8 +131,8 @@ void execute_attack()
             }
             else
             {
-                tell_object(ob, "%^BOLD%^You manage to shrug off the oppressive aura.%^RESET%^");
-                tell_room(place, "BOLD%^" + ob->query_cap_name() + " manages to shrug off the oppressive aura.%^RESET%^", ob);
+                tell_object(ob, "%^C063%^You manage to shrug off the oppressive aura.%^CRST%^");
+                tell_room(place, "%^C063%^" + ob->query_cap_name() + " %^C063%^manages to shrug off the oppressive aura.%^CRST%^", ob);
                 saved += ({ ob });
             }
         }
