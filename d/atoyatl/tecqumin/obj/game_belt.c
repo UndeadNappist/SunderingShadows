@@ -19,7 +19,7 @@ This broad belt is designed to offer padding and support to the waist, rather th
 LUJKE
         );
         set_weight(3);
-   set_value(150000);
+   set_value(10000);
         set_lore(
 @AVATAR
 The Tecqumin people are known to have played some form of game which involved teams of players wearing belts of this design. The belt offered protection from impacts of the heavy stone ball that was used, as well as guarding against the strains involved in playing the game.
