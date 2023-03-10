@@ -10,7 +10,7 @@ void create()
     ::create();
     set_name("stag beetle");
     set_short("A giant stag beetle");
-    set_id(({ "beetle", "stag beetle", "giant beetle", "giant stag beetle", "insect" }));
+    set_id(({ "beetle", "stag beetle", "giant beetle", "giant stag beetle", "insect", "ekibi_insect" }));
     set_long("This enormous beetle is well over five feet long with a " +
              "slender body supported by six jointed legs.  By far the " +
              "most impressive feature on this insect are the two antler-" +

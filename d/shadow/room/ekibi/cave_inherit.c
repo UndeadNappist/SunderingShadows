@@ -87,7 +87,7 @@ void pick_critters(){
 }
 
 void search_pile(){
-   if(present("insect")){
+   if(present("ekibi_insect")){
       tell_object(TP,"The insect seems to be in the way.");
       return;
    }
