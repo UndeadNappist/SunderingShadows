@@ -1781,3 +1781,25 @@ string* query_ki_spells()
 }
 
 //End Monk Functions
+
+//Centralized skill checks - Tlaloc -
+int skill_check(string what_skill, int passed_dc, int opposed)
+{
+    int DC, roll;
+    
+    if(!passed_dc) return 0;
+    if(!what_skill || !stringp(what_skill)) return 0;
+    if(member_array(what_skill, keys(skills))) return 0;
+    
+    //Add any mods to passed_dc here
+    //
+    //
+    DC = passed_dc;
+    opposed && DC += 10; //If it's an opposed check, it's d20 vs 10
+    roll = roll_dice(1, 20);
+    roll += skills[what_skill];
+    
+    if(roll >= DC) return 1;
+    
+    return 0;
+}
