@@ -910,12 +910,19 @@ void wizard_interface(object user, string type, string targ)
 {
     string* msg, whatsit, whatdo, improv, old_spell_type, featneeded, altclass, way;
     object* weaps, wildspell, shapeob;
+    object me, my_player;
     int nodo, i, casting_level, valid_domain;
     int preserve_in_memory = 0;
 
+    if (!objectp(me = this_object()))
+        return;
+
+    if (!objectp(my_player = this_player()))
+        return;
+
     if (!type) {
         tell_object(caster, "Something has gone wrong, the spell has no type specified!");
-        TO->remove();
+        me->remove();
         return;
     }
     spell_type = type;
@@ -960,28 +967,28 @@ void wizard_interface(object user, string type, string targ)
     }
 
     if (spell_type == "psion" || spell_type == "psywarrior") {
-        if (FEATS_D->usable_feat(user, "expanded knowledge 3") && ((string)TO->query_spell_name() == (string)user->query("expanded_knowledge_3"))) {
-            if (!TO->query_spell_level(psyclass)) {
+        if (FEATS_D->usable_feat(user, "expanded knowledge 3") && ((string)me->query_spell_name() == (string)user->query("expanded_knowledge_3"))) {
+            if (!me->query_spell_level(psyclass)) {
                 spell_type = altclass;
             }
         }
-        if (FEATS_D->usable_feat(user, "expanded knowledge 2") && ((string)TO->query_spell_name() == (string)user->query("expanded_knowledge_2"))) {
-            if (!TO->query_spell_level(psyclass)) {
+        if (FEATS_D->usable_feat(user, "expanded knowledge 2") && ((string)me->query_spell_name() == (string)user->query("expanded_knowledge_2"))) {
+            if (!me->query_spell_level(psyclass)) {
                 spell_type = altclass;
             }
         }
-        if (FEATS_D->usable_feat(user, "expanded knowledge 1") && ((string)TO->query_spell_name() == (string)user->query("expanded_knowledge_1"))) {
-            if (!TO->query_spell_level(psyclass)) {
+        if (FEATS_D->usable_feat(user, "expanded knowledge 1") && ((string)me->query_spell_name() == (string)user->query("expanded_knowledge_1"))) {
+            if (!me->query_spell_level(psyclass)) {
                 spell_type = altclass;
             }
         }
-        if ((FEATS_D->usable_feat(user, "body cognition") || FEATS_D->usable_feat(user, "mind over matter")) && ((string)TO->query_spell_name() == "true metabolism")) {
-            if (!TO->query_spell_level(psyclass)) {
+        if ((FEATS_D->usable_feat(user, "body cognition") || FEATS_D->usable_feat(user, "mind over matter")) && ((string)me->query_spell_name() == "true metabolism")) {
+            if (!me->query_spell_level(psyclass)) {
                 spell_type = altclass;
             }
         }
-        if ((FEATS_D->usable_feat(user, "presence of mind") || FEATS_D->usable_feat(user, "mental fortress")) && ((string)TO->query_spell_name() == "timeless body")) {
-            if (!TO->query_spell_level(psyclass)) {
+        if ((FEATS_D->usable_feat(user, "presence of mind") || FEATS_D->usable_feat(user, "mental fortress")) && ((string)me->query_spell_name() == "timeless body")) {
+            if (!me->query_spell_level(psyclass)) {
                 spell_type = altclass;
             }
         }
@@ -991,7 +998,7 @@ void wizard_interface(object user, string type, string targ)
 
     if (!casting_level) {
         tell_object(user, "The " + spell_type + " class cannot cast such a spell!\n");
-        TO->remove();
+        me->remove();
         return;
     }
 
@@ -1060,13 +1067,13 @@ void wizard_interface(object user, string type, string targ)
             }
             if (!target) {
                 tell_object(caster, "That is not here!");
-                TO->remove();
+                me->remove();
                 return;
             }
 
             if ((!living(target)) && (!non_living_ok)) {
                 tell_object(caster, "That is not a living being!");
-                TO->remove();
+                me->remove();
                 return;
             }
         }else {
@@ -1094,14 +1101,14 @@ void wizard_interface(object user, string type, string targ)
             if(!objectp(target))
             {
                 tell_object(caster, "You must CHOOSE a target for this " + whatsit + "!");
-                TO->remove();
+                me->remove();
                 return;
             }
         }
         if ((!(check_light(caster)) && target != caster && target != environment(caster)) ||
             (caster->query_blind() && target != caster && target != environment(caster))) {
             tell_object(caster, "You can't see your target!");
-            TO->remove();
+            me->remove();
             return;
         }
     }
@@ -1110,7 +1117,7 @@ void wizard_interface(object user, string type, string targ)
     if (peace) {
         if ((object*)caster->query_attackers() != ({})) {
             tell_object(caster, "You must be at peace to use this " + whatsit + ".");
-            TO->remove();
+            me->remove();
             return;
         }
     }
@@ -1120,14 +1127,14 @@ void wizard_interface(object user, string type, string targ)
         weaps = caster->query_wielded();
         if (weaps != ({}) &&
             (!caster->query_property("shapeshifted") ||
-             (string)TP->query("relationship_profile") == "spell_alter_self_999" ||
-             (string)TP->query("relationship_profile") == "shadow_apotheosis")) {
+             (string)my_player->query("relationship_profile") == "spell_alter_self_999" ||
+             (string)my_player->query("relationship_profile") == "shadow_apotheosis")) {
             for (i = 0; i < sizeof(weaps); i++) {
                 if (spell_type == "monk") {
                     if ((int)weaps[i]->query_size() > 1) {
                         tell_object(caster, "Your " + weaps[i]->query_short() + " interferes " +
                                     "with your attempt to cast your monk spell!");
-                        TO->remove();
+                        me->remove();
                         return;
                     }else {
                         continue;
@@ -1170,13 +1177,13 @@ void wizard_interface(object user, string type, string targ)
             }
             if (nodo) {
                 tell_object(caster, "Your hands must be free to " + whatdo + " this " + whatsit + "!");
-                TO->remove();
+                me->remove();
                 return;
             }
         }
         if (caster->query_bound()) {
-            TP->send_paralyzed_message("info", TP);
-            TO->remove();
+            my_player->send_paralyzed_message("info", my_player);
+            me->remove();
             return;
         }
     }
@@ -1185,7 +1192,7 @@ void wizard_interface(object user, string type, string targ)
     if (verbal_comp) {
         if (place->query_property("silence") || caster->query_gagged()) {
             tell_object(caster, "You must be able to speak to " + whatdo + " this " + whatsit + "!");
-            TO->remove();
+            me->remove();
             return;
         }
     }
@@ -1195,12 +1202,12 @@ void wizard_interface(object user, string type, string targ)
         if (!FEATS_D->usable_feat(caster, "ragecaster")) {
             if (!help_or_harm) {
                 tell_object(caster, "That spell is far too complex for you to cast successfully in your current state!");
-                TO->remove();
+                me->remove();
                 return;
             }
             if (arg_needed || (target_required && target != caster)) {
                 tell_object(caster, "That spell is far too complex for you to cast successfully in your current state!");
-                TO->remove();
+                me->remove();
                 return;
             }
         }
@@ -1211,13 +1218,13 @@ void wizard_interface(object user, string type, string targ)
         if(caster->query_property("prismatic sphere"))
         {
             tell_object(caster, "%^YELLOW%^Your spell fizzles at it is blocked by the prismatic sphere!%^RESET%^");
-            TO->remove();
+            me->remove();
             return;
         }
         else if(target && target->query_property("prismatic sphere"))
         {
             tell_object(caster, "%^YELLOW%^Your spell fizzles at it is blocked by the prismatic sphere!%^RESET%^");
-            TO->remove();
+            me->remove();
             return;
         }
     }
@@ -1226,7 +1233,7 @@ void wizard_interface(object user, string type, string targ)
         shapeob = caster->query_property("shapeshifted");
         if (!objectp(shapeob)) {
             tell_object(caster, "Your shapeshift has glitched! Please contact an imm.");
-            TO->remove();
+            me->remove();
             return;
         }
         if (strsrch((string)caster->query("relationship_profile"), "druid_") >= 0) {
@@ -1234,25 +1241,25 @@ void wizard_interface(object user, string type, string targ)
                 !FEATS_D->usable_feat(caster, "ragecaster")) {
                 if (!shapeob->can_cast()) {
                     tell_object(caster, "You can't cast while shapeshifted unless you have the wild spellcraft feat.");
-                    TO->remove();
+                    me->remove();
                     return;
                 }
 // Removing the limitations on which spells work in shift, to make wild spellcraft match natural spell feat (3.5/5e). N, 8/20.
 /*                if (!help_or_harm) {
                     tell_object(caster, "That spell is far too complex for you to cast successfully in your current state!");
-                    TO->remove();
+                    me->remove();
                     return;
                 }
                 if (arg_needed || (target_required && target != caster)) {
                     tell_object(caster, "That spell is far too complex for you to cast successfully in your current state!");
-                    TO->remove();
+                    me->remove();
                     return;
                 } */
             }
         }
         if (!shapeob->can_cast()) {
             tell_object(caster, "You can't cast while in this form!");
-            TO->remove();
+            me->remove();
             return;
         }
     }
@@ -1270,7 +1277,7 @@ void wizard_interface(object user, string type, string targ)
         (!stringp(improv = query_property("improvised")) ||
          !MAGIC_D->can_cast(caster, casting_level, spell_type, improv, spell_duration))) {
         tell_object(caster, "You cannot " + whatdo + " that " + whatsit + ".\n");
-        TO->remove();
+        me->remove();
         return;
     }
 
@@ -1279,13 +1286,13 @@ void wizard_interface(object user, string type, string targ)
         mycost = check_point_cost(casting_level);
         if (!mycost) {
             tell_object(caster, "Something is wrong with the point cost for this " + whatsit + ". Please contact a wiz.");
-            TO->remove();
+            me->remove();
             return;
         }else {
             mypp = caster->query_mp();
             if (mypp < mycost) {
                 tell_object(caster, "You do not have enough power points to " + whatdo + " that " + whatsit + "!");
-                TO->remove();
+                me->remove();
                 return;
             }
         }
@@ -1299,19 +1306,19 @@ void wizard_interface(object user, string type, string targ)
 
         if (!stringp(way)) {
             tell_object(caster, "You do not have a monk specialization set. Visit a temple and choose one!");
-            TO->remove();
+            me->remove();
             return;
         }
         mycost = query_spell_level("monk") / 3;
         mycost = mycost > 6 ? 6 : mycost;
         if (!mycost) {
             tell_object(caster, "Something is wrong with the ki cost for this " + whatsit + ". Please contact a wiz.");
-            TO->remove();
+            me->remove();
             return;
         }
         if (!caster->spend_ki(mycost)) {
             tell_object(caster, "You do not have enough available ki to " + whatdo + " that " + whatsit + "!");
-            TO->remove();
+            me->remove();
             return;
         }
     }
@@ -1325,12 +1332,12 @@ void wizard_interface(object user, string type, string targ)
         }
         if (!mycost) {
             tell_object(caster, "Something is wrong with the arcana cost for this " + whatsit + ". Please contact a wiz.");
-            TO->remove();
+            me->remove();
             return;
         }
         if (!USER_D->spend_pool(caster, mycost, "arcana")) {
             tell_object(caster, "You do not have enough available arcana to " + whatdo + " that " + whatsit + "!");
-            TO->remove();
+            me->remove();
             return;
         }
     }
@@ -1339,7 +1346,7 @@ void wizard_interface(object user, string type, string targ)
     featneeded = query_feat_required(spell_type);
     if (featneeded != "me" && !FEATS_D->usable_feat(caster, featneeded)) {
         tell_object(caster, "You cannot " + whatdo + " that " + whatsit + ".\n");
-        TO->remove();
+        me->remove();
         return;
     }
 
@@ -1358,8 +1365,8 @@ void wizard_interface(object user, string type, string targ)
         return;
     }
     if (!preSpell()) {
-        if (objectp(TO)) {
-            TO->remove();
+        if (objectp(me)) {
+            me->remove();
         }
         return;
     }
@@ -1479,7 +1486,7 @@ void wizard_interface(object user, string type, string targ)
     if (!preserve_in_memory) {
         if (!caster->check_memorized(spell_type, improv)) {
             tell_object(caster, "You cannot " + whatdo + " this " + whatsit + " at this time.");
-            TO->remove();
+            me->remove();
             return;
         }
     }
@@ -1504,9 +1511,9 @@ void wizard_interface(object user, string type, string targ)
 
     if (0) {
         if (target) {
-            TP->setAdminBlock(100);
+            my_player->setAdminBlock(100);
         }else {
-            TP->setAdminBlock(100);
+            my_player->setAdminBlock(100);
         }
     }
 
@@ -1545,7 +1552,7 @@ void wizard_interface(object user, string type, string targ)
         }else {
             place->set_round(wildspell, (int)place->query_stage() + casting_level);
         }
-        TO->remove();
+        me->remove();
         return;
     }
 
@@ -1554,14 +1561,14 @@ void wizard_interface(object user, string type, string targ)
         caster->remove_property("quicken spell");
         tell_object(caster, "%^BOLD%^Your spell is quickened.%^RESET%^");
         caster->set_casting(0);
-        TO->spell_effect(TO->calculate_prof_state());
+        me->spell_effect(me->calculate_prof_state());
         return;
     }
 
     if (cast_time) {
-        place->set_round(TO, (int)place->query_stage() + cast_time);
+        place->set_round(me, (int)place->query_stage() + cast_time);
     }else {
-        place->set_round(TO, (int)place->query_stage() + casting_level);
+        place->set_round(me, (int)place->query_stage() + casting_level);
     }
     return;
 }
