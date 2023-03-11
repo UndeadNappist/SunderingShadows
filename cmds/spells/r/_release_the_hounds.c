@@ -52,6 +52,7 @@ void spell_effect(){
         hound->set_hp(hound->query_max_hp());
         hound->set_overall_ac(-clevel);
         hound->set_exp(0);
+        hound->set_owner(caster);
         hound->add_id(caster->query_name()+"_hound");
         hound->set_resistance_percent("negative energy", 100);
         hound->set_resistance_percent("positive energy", 100);
@@ -79,10 +80,33 @@ void spell_effect(){
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 3;
     set_end_time();
     call_out("dest_effect", spell_duration);
+    call_out("check", ROUND_LENGTH);
+}
+
+void check()
+{
+    if(!objectp(caster))
+    {
+        dest_effect();
+        return;
+    }
+    
+    pointerp(mons) && mons = filter_array(mons, (: objectp($1) :));
+    
+    if(!sizeof(mons))
+    {
+        dest_effect();
+        return;
+    }
+    
+    call_out("check", ROUND_LENGTH);
 }
 
 void dest_effect(){
     int i;
+    
+    remove_all_out("check");
+    
     for(i=0; i<sizeof(mons); i++){
         if(objectp(mons[i])){
             if(objectp(caster)) caster->remove_protector(mons[i]);

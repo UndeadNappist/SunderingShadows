@@ -44,6 +44,7 @@
 #define NPC "/std/npc"
 #define GUARDSMAN "/std/guardsman.c"
 #define SHAPESHIFT "/std/shapeshift.c"
+#define MINION "/std/minion.c"
 
 // DEPRECATED SHORT FORMS OF FUNCTIONS
 #define TP this_player()
