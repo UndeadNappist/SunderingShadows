@@ -1,5 +1,12 @@
+/*
+  _races.c
+  
+  Functional rewrite.
+  
+  -- Tlaloc --
+*/
+
 #include <std.h>
-#define RACE_D "/adm/daemon/race_d.c"
 
 #define MON_DIR "/std/races/monster_races"
 #define USER_DIR "/std/races/"
@@ -19,8 +26,7 @@ int cmd_races(string str){
         printf("%s\n", implode(race_list, ", "));
         printf("\n\n   Use <races [racename]> to see valid limbs.\n");
         return 1;
-    }
-    
+    }    
     if(member_array(str, race_list) < 0)
     {
         write("That is not a valid race.\n");
@@ -31,22 +37,6 @@ int cmd_races(string str){
     limb_list = tmp->limbs();
     
     printf("%s\n", sizeof(limb_list) ? implode(limb_list, ", ") : "No limbs listed for that race");    
-    
-/*  
-    tmp = "";
-    if(str){
-      if(!RACE_D->is_race(str)) return notify_fail("Not a valid race.\n");
-      race_list = RACE_D->query_limbs(str);
-    } else {
-      //race_list = RACE_D->query_races();
-    }
-    for(i=0;i<sizeof(race_list);i++){
-      tmp += race_list[i] + ",  ";
-    }
-    tmp += "\n\n   Use <races [racename]> to see valid limbs.\n";
-    tmp += "Wizzes also see <mraces> for other valid body types for mobs.";
-    TP->more(explode(tmp, "\n"));
-*/
     return 1;
 }
 
