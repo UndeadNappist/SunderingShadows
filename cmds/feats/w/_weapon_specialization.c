@@ -12,6 +12,7 @@ void create()
     feat_prereq("Weapon Focus, Fighter L4");
     feat_desc("You gain a +2 bonus on all damage rolls you make.");
     permanent(1);
+    set_required_for( ({ "greater weapon specialization" }) );
 }
 
 int allow_shifted() { return 1; }
@@ -28,8 +29,8 @@ int prerequisites(object ob) {
     }
     if(ob->query_class_level("oracle") > 20 && ob->query_mystery() == "battle")
         oracle = 1;
-    
-    if(!FEATS_D->has_feat(ob, "weapon focus") && ob->query_class_level("fighter") + magus < 4 && !oracle) {
+        
+    if(ob->query_class_level("fighter") + magus < 4 && !oracle) {
         dest_effect();
         return 0;
     }

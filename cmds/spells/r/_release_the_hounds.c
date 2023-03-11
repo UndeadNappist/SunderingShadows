@@ -105,7 +105,7 @@ void check()
 void dest_effect(){
     int i;
     
-    remove_all_out("check");
+    remove_call_out("check");
     
     for(i=0; i<sizeof(mons); i++){
         if(objectp(mons[i])){
