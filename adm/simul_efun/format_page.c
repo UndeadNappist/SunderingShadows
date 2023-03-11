@@ -73,6 +73,9 @@ string auto_format_page(string *output, object player)
 
     // "Best fit columns algorithm"
 
+    if(!sizeof(output))
+        return "";
+    
     // Maximum width of the column
     z = max(map(output, (:sizeof(strip_colors($1)):))) + 2;
 
