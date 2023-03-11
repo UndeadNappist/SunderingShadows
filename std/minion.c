@@ -30,6 +30,9 @@ void create()
     set_size(2);
     set_damage(1, 1);
     set_gender("neuter");
+    follow = 1;
+    
+    set_monster_feats( ({ "perfect caster" }) );
 }
 
 void heart_beat()
@@ -52,8 +55,41 @@ void heart_beat()
         owner->add_follower(this_object());
     }
 }       
-    
 
+int setup_minon(int clevel, spell_level, string type)
+{
+    if(!clevel || !spell_level)
+        return 0;
+    
+    if(!strlen(type))
+        return 0;
+    
+    set_new_exp(1, "low");
+    set("aggressive", 1);
+    remove_property("swarm");
+    set_mlevel("fighter", clevel);
+    set_guild_level("fighter", clevel);
+    
+    switch(type)
+    {
+        case "lesser":
+        break;
+        case "standard":
+        set_hd(clevel, spell_level);
+        break;
+        case "greater":
+        break;
+    }
+    
+    if(objectp(owner))
+    {
+        owner->add_follower(this_object());
+        owner->add_protector(this_object());
+        set_property("minion", owner);
+    }
+    
+    return 1;
+}
 /*
 The idea of this system is to, first of all, have a player command that handles minions
 
