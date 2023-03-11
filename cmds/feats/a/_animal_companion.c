@@ -147,8 +147,11 @@ void execute_feat()
     if (pointerp(caster->query_property("pack animal")))
         pack += ({caster});
 
-    sizeof(pack) && pack = distinct_array(pack);
-    sizeof(pack) && pack = filter_array(pack, (: $1->query_pack_member() :));
+    if (arrayp(pack) && sizeof(pack))
+        pack = distinct_array(pack);
+
+    if (arrayp(pack) && sizeof(pack))
+        pack = filter_array(pack, (: $1->query_pack_member() :));
 
     if(objectp(companion) || sizeof(pack))
     {
