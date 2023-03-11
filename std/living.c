@@ -1802,7 +1802,7 @@ string query_al_title()
 
 int can_fly()
 {
-    string file;
+    object file;
     string* flyraces =    ({ "deva", "faery", "nightwing", "imp", "strix", "dragonkin" });
     string* flysubraces = ({ "fey'ri", "rock gnome", "trixie", "sildruath", "avian"});
     string* flyprofiles = ({ "druid_bird_999", "druid_dragon_999", "mage_red_dragon_999", "mage_demon_999", "vampire_bat_999", "vampire_vampire_999", "vampire_varghulf_999", "mage_pixie_999" });
