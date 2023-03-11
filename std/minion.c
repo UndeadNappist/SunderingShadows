@@ -73,13 +73,22 @@ int setup_minon(int clevel, spell_level, string type)
     switch(type)
     {
         case "lesser":
+        set_hd(clevel / 2 + 1, spell_level);
+        set_max_hp(1);
         break;
         case "standard":
         set_hd(clevel, spell_level);
         break;
         case "greater":
+        set_hd(clevel, spell_level);
+        set_max_hp(clevel * 100);
+        set_static_bab(clevel);
+        set_property("effective enchantment", clevel / 7 + 1);
+        set_attacks_num(clevel / 13 + 1);
         break;
     }
+    
+    set_hp(query_max_hp());
     
     if(objectp(owner))
     {
