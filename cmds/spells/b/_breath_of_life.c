@@ -41,7 +41,8 @@ string what_alignment(int align)
     return alignment;
 }
 
-spell_effect(int prof) {
+spell_effect(int prof)
+{
     string what, theirname;
     object corpse, targ;
 
@@ -49,8 +50,9 @@ spell_effect(int prof) {
 
     if(!objectp(target))
     {
-        if(targ = find_object(arg))
+        if(targ = find_object("" + arg))
             target = targ;
+
         else if(stringp(arg))
         {
             theirname = caster->realName(lower_case(arg));
