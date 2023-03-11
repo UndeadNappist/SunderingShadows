@@ -1806,6 +1806,8 @@ int query_sight_bonus()
     object file;
     int temp_bonus = 0;
     
+    //sight_bonus = (int)RACE_D->query_sight_bonus(this_object()->query("race"));
+    sight_bonus = 0;
     temp = this_object()->query_acquired_template();
     
     if(temp)
@@ -1814,8 +1816,19 @@ int query_sight_bonus()
         
         if(objectp(file))
             temp_bonus = file->sight_bonus();
-    }          
+    }
     
+    if(strlen(temp = this_object()->query("race")))
+    {
+        if(!catch(file = load_object("/std/races/" + replace_string(temp, " ", "_") + ".c")))
+            temp_bonus += file->sight_bonus(this_object()->query("subrace"));
+    }
+
+    if(member_array("cavern", this_object()->query_divine_domain()) >= 0 ||
+       member_array("moon", this_object()->query_divine_domain()) >= 0 ||
+       member_array("darkness", this_object()->query_divine_domain()) >= 0)
+       temp_bonus += 2;
+              
     return (EQ_D->gear_bonus(TO, "sight bonus") + sight_bonus + temp_bonus);
 }
 
