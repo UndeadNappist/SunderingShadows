@@ -254,7 +254,7 @@ int cmd_master(string args)
             if(FEATS_D->usable_feat(TP, "spell knowledge")) {
                 bonuslimit += 2;
             }
-            if(myclass == " warlock" && FEATS_D->usable_feat(TP, "tome of ancient secrets")) {
+            if(myclass == "warlock" && FEATS_D->usable_feat(TP, "tome of ancient secrets")) {
                 bonuslimit += 4;
             }
             if(FEATS_D->usable_feat(TP, "greater spell knowledge")) {
