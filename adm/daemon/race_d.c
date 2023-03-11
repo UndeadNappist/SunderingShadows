@@ -293,7 +293,12 @@ int query_max_mon_dam(string limb, string b_type) {
 
 int can_fly(object ob)
 {
+    if(!objectp(ob))
+        return 0;
+    
+    return ob->can_fly();
 
+/*
     string* flyraces = ({ "deva", "faery", "nightwing", "imp", "strix", "dragonkin" });
     string* flysubraces = ({ "fey'ri", "rock gnome", "trixie", "sildruath", "avian"});
     string* flyprofiles = ({ "druid_bird_999", "druid_dragon_999", "mage_red_dragon_999", "mage_demon_999", "vampire_bat_999", "vampire_vampire_999", "vampire_varghulf_999", "mage_pixie_999" });
@@ -318,6 +323,7 @@ int can_fly(object ob)
     return (member_array(TP->query_visual_race(), flyraces) != -1) ||
         (member_array(TP->query("subrace"), flysubraces) != -1) ||
         (member_array(TP->query("relationship_profile"), flyprofiles) != -1);
+*/
 }
 
 int is_valid_blooddrain_target(object targobj, object vampobj)

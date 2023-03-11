@@ -12,7 +12,7 @@ int check_climb(int climb_info, object ob)
     }
     if (ob->query_property("spider climb") ||
         ob->query_property("flying") ||
-        RACE_D->can_fly(ob)) {
+        ob->can_fly()) {
         return 1;
     }
     skill = ob->query_skill("athletics") + roll_dice(1, 20);

@@ -1800,6 +1800,32 @@ string query_al_title()
     }
 }
 
+int can_fly()
+{
+    string file;
+    string* flyraces =    ({ "deva", "faery", "nightwing", "imp", "strix", "dragonkin" });
+    string* flysubraces = ({ "fey'ri", "rock gnome", "trixie", "sildruath", "avian"});
+    string* flyprofiles = ({ "druid_bird_999", "druid_dragon_999", "mage_red_dragon_999", "mage_demon_999", "vampire_bat_999", "vampire_vampire_999", "vampire_varghulf_999", "mage_pixie_999" });
+
+    if(this_object()->is_deva())
+        return 1;   
+    if(this_object()->query_bloodline() == "celestial" && this_object()->query_class_level("sorcerer") > 30)
+        return 1;
+    if(this_object()->query_bloodline() == "infernal" && this_object()->query_class_level("sorcerer") > 30)
+        return 1;
+    if(this_object()->query_bloodline() == "draconic" && this_object()->query_class_level("sorcerer") > 30)
+        return 1;
+    if(FEATS_D->usable_feat(this_object(), "air totem"))
+        return 1;
+    if(this_object()->query_property("flying"))
+        return 1;
+    if(!catch(file = load_object("/std/races/" + this_object()->query("race"))))
+        if(file->is_flying())
+            return 1;
+        
+    return member_array(this_object()->query_visual_race(), flyraces) >= 0 || member_array(this_object()->query("subrace"), flysubraces) >= 0 || member_array(this_object()->query("relationship_profile"), flyprofiles) >= 0;
+}
+    
 int query_sight_bonus()
 {
     string temp;
