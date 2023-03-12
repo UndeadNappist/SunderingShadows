@@ -4,6 +4,13 @@
 //      created by Sulam 911219
 //      security changes by Descartes of Borg 930810
 
+
+/*
+  This only still exists so I can update the new update command file when needed.
+  
+  -- Tlaloc --
+*/
+
 #include <std.h>
 #include <rooms.h>
 #include <security.h>

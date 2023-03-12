@@ -38,7 +38,12 @@ int cmd_update(string str)
         }
         
         foreach(string temp in files)
+        {
+            if(file_size(file + "/" + temp) == -1)
+                continue;
+            
             do_update(file + "/" + temp, 0);
+        }
         
         return 1;
     }
@@ -153,7 +158,7 @@ int do_update(string file, int deep)
     }
     
     if(!catch(ob = load_object(file)))
-        write(file + " : updated and loaded.");
+        write(file + "%^GREEN%^BOLD%^ : updated and loaded.%^RESET%^");
     else
     {
         write(file + " : ERROR in loading file.");
@@ -163,7 +168,7 @@ int do_update(string file, int deep)
     if(file[0] != '/')
         file = "/" + file;
     
-    ob->reset();
+    objectp(ob) && function_exists("reset", ob) && ob->reset();
     
     foreach(object obj in obs)
         ob && obj->move(ob);
