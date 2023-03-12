@@ -10,6 +10,7 @@ void create()
     set_spell_name("creeping doom");
     set_spell_level(([ "oracle" : 7, "druid" : 7 ]));
     set_mystery("nature");
+    set_circle("pestilence");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS creeping doom [on TARGET]");
     set_damage_desc("Piercing damage over several rounds. Successful save per round reduces damage by half.");

@@ -6,7 +6,7 @@ void create()
 {
     ::create();
     set_spell_name("greater restoration");
-    set_spell_level(([ "cleric" : 7, "druid" : 7 ]));
+    set_spell_level(([ "cleric" : 7 ]));
     set_domains( ({ "renewal" }) );
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS greater restoration on TARGET");

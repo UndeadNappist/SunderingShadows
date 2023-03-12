@@ -30,8 +30,8 @@ void create()
     ::create();
     set_spell_name("fiery body");
     set_spell_level(([ "mage" : 9, "oracle" : 9, "warlock" : 4, "cleric" : 9, "druid" : 9 ]));
-    set_mystery("flame");
     set_domains("fire");
+    set_circle("wildfire");
     set_bonus_type("body");
     set_spell_sphere("alteration");
     set_syntax("cast CLASS fiery body");

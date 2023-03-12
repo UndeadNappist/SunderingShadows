@@ -10,6 +10,7 @@ void create() {
     set_spell_name("epidemic");
     set_spell_level(([ "cleric":6, "druid":6, "mage":7]));
     set_spell_sphere("necromancy");
+    set_circle("pestilence");
     set_domains("plague");
     set_damage_desc("Random disease");
     set_syntax("cast CLASS epidemic");
