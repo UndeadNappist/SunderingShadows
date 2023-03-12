@@ -19,7 +19,7 @@ string query_blocked_exit(object what, string direction)
     if(what->query_blocked(direction))
         return "O";
     
-    dest = what->query_exit(direction);
+    dest = (string)what->query_exit(direction);
     
     if(!dest)
         return "#";
