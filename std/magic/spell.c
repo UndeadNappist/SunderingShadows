@@ -1364,10 +1364,11 @@ void wizard_interface(object user, string type, string targ)
         remove();
         return;
     }
-    if (!preSpell()) {
-        if (objectp(me)) {
+    if (!preSpell())
+    {
+        if (objectp(me))
             me->remove();
-        }
+
         return;
     }
 
@@ -1483,10 +1484,14 @@ void wizard_interface(object user, string type, string targ)
         }
     }
 
-    if (!preserve_in_memory) {
-        if (!caster->check_memorized(spell_type, improv)) {
+    if (!preserve_in_memory)
+    {
+        if (!caster->check_memorized(spell_type, improv))
+        {
             tell_object(caster, "You cannot " + whatdo + " this " + whatsit + " at this time.");
-            me->remove();
+
+            if (objectp(me))
+                me->remove();
             return;
         }
     }

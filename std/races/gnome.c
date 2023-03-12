@@ -131,7 +131,7 @@ mapping daily_uses(string subrace) {
     switch(subrace) {
       case "forest gnome": return ([ "ghost step" : 1 ]); break;
       case "svirfneblin": case "deep gnome": // please add change-self 1/day to svirfneblin when disguise code is in.
-        return ([ "blindness" : 1, "displacement" : 1, "misdirection" : 1, "dancing lights" : 1, "alter self" : 1 ]); break;
+        return ([  "displacement" : 1,"alter self" : 1 ]); break;
       default: return ([]); break;
     }
 }

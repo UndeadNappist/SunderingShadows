@@ -1832,8 +1832,6 @@ int query_sight_bonus()
     object file;
     int temp_bonus = 0;
     
-    //sight_bonus = (int)RACE_D->query_sight_bonus(this_object()->query("race"));
-    sight_bonus = 0;
     temp = this_object()->query_acquired_template();
     
     if(temp)
