@@ -21,7 +21,7 @@ int sort(string one,string two)
 int cmd_limbs(string str) 
 {
     string *total_limbs,*current_limbs,*missing_limbs,*extra_limbs,*limbs,race,tmp;
-    object *armors,targ;
+    object *armors,targ, file;
     int i,j,limb_ac;
 
     if(!stringp(str)) { targ = TP; }
@@ -29,10 +29,15 @@ int cmd_limbs(string str)
     if(!objectp(targ=find_player(str))) { targ = TP; }
 
     race = (string)targ->query_race();
+    
+    if(catch(file = load_object("/std/races/" + race)))
+        return notify_fail("There is an issue with your race file.\n");
+    else
+        total_limbs = file->limbs(this_player()->query("subrace"));
 
-    total_limbs   = RACE_D->query_limbs(race);
+    //total_limbs   = RACE_D->query_limbs(race);
     total_limbs   += ({ "torso" });
-
+    
     current_limbs = targ->query_limbs();
 
     if(sizeof(total_limbs) != sizeof(current_limbs))
