@@ -42,6 +42,8 @@ string school_of_opposition;
 string sorc_bloodline;
 string oracle_mystery;
 string psion_discipline;
+string druid_circle;
+string paladin_oath;
 string inquisition;
 //by Circe, for psions 7/16/05
 string* divine_domain = ({}); // For cleric domains -Ares 4/7/07
@@ -821,6 +823,30 @@ string set_inquisition(string str)
 string query_inquisition()
 {
     return inquisition;
+}
+
+string set_druid_circle(string str)
+{
+    druid_circle = str;
+    
+    return druid_circle;
+}
+
+string query_druid_circle()
+{
+    return druid_circle;
+}
+
+set_paladin_oath(string str)
+{
+    paladin_oath = str;
+    
+    return paladin_oath;
+}
+
+string query_paladin_oath()
+{
+    return paladin_oath;
 }
 
 void set_acquired_template(string str)
