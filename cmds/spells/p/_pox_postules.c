@@ -17,6 +17,7 @@ void create()
     set_spell_name("pox postules");
     set_spell_level(([ "druid" : 2, "cleric" : 2 ]));
     set_domains("plague");
+    set_circle("pestilence");
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS pox postules on TARGET");
     set_damage_desc("-4 to dex, sickened");

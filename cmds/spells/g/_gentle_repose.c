@@ -5,7 +5,7 @@ void create()
 {
     ::create();
     set_spell_name("gentle repose");
-    set_spell_level(([ "cleric" : 2, "mage" : 3, "druid":2]));
+    set_spell_level(([ "cleric" : 2, "mage" : 3 ]));
     set_syntax("cast CLASS gentle repose");
     set_spell_sphere("necromancy");
     set_domains("repose");

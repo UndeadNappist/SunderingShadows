@@ -10,6 +10,7 @@ void create() {
     set_spell_level(([ "paladin":3, "cleric":3, "druid":3, "mage":4]));
     set_spell_sphere("necromancy");
     set_domains("plague");
+    set_circle("pestilence");
     set_damage_desc("Random disease");
     set_syntax("cast CLASS contagion on TARGET");
     set_description("The subject contracts one of the following diseases: blinding sickness, cackle fever, filth fever, mindfire, red ache, shakes, or slimy doom. The disease is contracted immediately (the onset period does not apply). The spell's caster level is used as its spell power. The disease will progress then as usual.");
