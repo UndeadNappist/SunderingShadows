@@ -9,7 +9,7 @@ void create()
 {
     ::create();
     set_spell_name("heal");
-    set_spell_level(([ "cleric" : 6, "inquisitor" : 6, "oracle" : 6, "druid" : 6 ]));
+    set_spell_level(([ "cleric" : 6, "inquisitor" : 6, "oracle" : 6, "druid" : 7 ]));
     set_mystery("life");
     set_spell_sphere("healing");
     set_syntax("cast CLASS heal on TARGET");

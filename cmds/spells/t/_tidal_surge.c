@@ -12,8 +12,8 @@ inherit SPELL;
 void create()
 {
     ::create();
-    set_spell_name("tidal surge"); // Tsunami
-    set_spell_level(([ "druid" : 9 ]));
+    set_spell_name("tidal surge");
+    set_spell_level(([ "druid" : 5 ]));
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS tidal surge on TARGET");
     set_description("This spell will draw all of the water in the atmosphere for miles and miles around to a place above "
