@@ -1181,7 +1181,7 @@ string* query_id()
         known_ids += hidden_ids;
     }
 
-    return known_ids;
+    return arrayp(known_ids) ? known_ids : ({  });
 }
 
 string* query_hidden_id()

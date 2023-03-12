@@ -1846,7 +1846,7 @@ int query_sight_bonus()
     
     if(strlen(temp = this_object()->query("race")) && temp != "unborn")
     {
-        if(file = load_object("/std/races/" + temp) + ".c")
+        if(file = load_object("/std/races/" + temp + ".c"))
             temp_bonus += file->sight_bonus(this_object()->query("subrace"));
     }
 
