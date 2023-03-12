@@ -8,7 +8,7 @@ inherit SPELL;
 void create() {
     ::create();
     set_spell_name("daylight");
-    set_spell_level(([ "cleric" : 3, "oracle" : 3, "paladin" : 3 ]));
+    set_spell_level(([ "cleric" : 3, "oracle" : 3, "paladin" : 3, "druid" : 3 ]));
     set_spell_sphere("invocation_evocation");
     set_domains("sun");
     set_mystery(({"heavens"}));
