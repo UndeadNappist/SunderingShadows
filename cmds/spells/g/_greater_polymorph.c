@@ -143,7 +143,7 @@ void dest_effect()
     
     if(objectp(caster))
     {
-        if(caster != target)
+        if(caster != target && objectp(target))
             tell_object(caster, "You feel your polymorph magic slip away from " + target->query_cap_name() + ".");
         
         caster->remove_property("greater polymorph");
