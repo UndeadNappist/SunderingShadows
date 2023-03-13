@@ -116,10 +116,12 @@ void dest_effect()
         return;
 
     tell_object(my_environment, "The banquet table vanishes before your eyes!");
+
     if (objectp(casting_spell))
-    {
         casting_spell->dest_effect();
-    }
-    me->remove();
+
+    if (objectp(me))    // I suspect that this object is being removed from dest effect, but just in case...
+        me->remove();
+
     return;
 }
