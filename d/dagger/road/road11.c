@@ -10,7 +10,7 @@ void create(){
     set_property("light", 2);
     set_short("The Dagger Sea coast road.");
     set_long(
-      "%^CYAN%^You are on the end of the cliffs of dagger.  To the east you can see where the cliffs end, and turn into the beach.  To the northeast you can see the bridge crossing the river Shelk."
+      "%^CYAN%^You are on the end of the cliffs of Dagger.  To the east you can see where the cliffs end, and turn into the beach.  To the northeast you can see the bridge crossing the river Shelk."
     );
     set_smell("default", "You can smell the salts of the sea on the cool breeze.");
     set_listen("default", "The sound of the waves on the cliffs below float up to your ears.");

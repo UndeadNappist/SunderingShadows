@@ -14,7 +14,7 @@ manifesting as a minor resistance to certain types of energy. As follows by %^BO
   -%^BOLD%^celestial:%^RESET%^ acid
   -%^BOLD%^fey:%^RESET%^ sonic
   -%^BOLD%^demonic:%^RESET%^ electricity
-  -%^BOLD%^astral:%^RESET%^ psychic
+  -%^BOLD%^astral:%^RESET%^ mental
   -%^BOLD%^gloom:%^RESET%^ cold
   -%^BOLD%^infernal:%^RESET%^ fire");
     permanent(1);

@@ -10,7 +10,7 @@ void create() {
     set_property("light", 2);
     set_short("Road through Dagger.");
     set_long(
-   "%^CYAN%^You are just southwest of the bend in the road through dagger.  To the southwest you can see the road stretch towards Muileann, past Torm.  To the northwest is the Yniam plains, and to the northeast is the town of Daggerdale."
+   "%^CYAN%^You are just southwest of the bend in the road through Dagger.  To the southwest you can see the road stretch towards Muileann, past Torm.  To the northwest is the Yniam plains, and to the northeast is the town of Daggerdale."
     );
     set_smell("default", "You can smell the salts of the sea on the cool breeze.");
     set_listen("default", "The sound of the waves on the cliffs below float up to your ears.");
