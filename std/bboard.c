@@ -26,7 +26,7 @@ inherit OBJECT;
  */
 
 int max_posts;
-string location, board_id;
+string owner, location, board_id;
 string *edit_ok;
 int ooc_board;
 int anonymous_board;
@@ -172,7 +172,7 @@ void edit_stop_ed() {
 int remove_message(string str) {
     int number, x;
     string title;
-
+    object player;
 
     if(!str) {
         notify_fail("You must specify which note you wish to remove!\n");
@@ -182,21 +182,22 @@ int remove_message(string str) {
         notify_fail("Invalid message number!\n");
         return 0;
     }
+    player = this_player();
     number --;
     title = (string)BBOARD_D->get_title(board_id, number);
     x = (int)BBOARD_D->remove_message(board_id, number);
     if(x==BBOARD_OK) {
         write("Message "+(number+1)+" removed.\n");
-        tell_room(ETP,TPQCN+" removed message # "+(number+1)+" on the "+query_name()+".",TP);
+        tell_room(environment(player), player->query_cap_name()+" removed message # "+(number+1)+" on the "+query_name()+".", player);
     }
     else if(x == INVALID_MSG) write("Invalid message number.\n");
-    else if(x == ILLEGAL_ACCESS) write("You may only remove your own posts.\n");
+    else if(x == ILLEGAL_ACCESS && player->query_name() != owner) write("You may only remove your own posts.\n");
     else write("Error "+x+" in removing post.\n");
     seteuid(UID_LOG);
     if (x == BBOARD_OK) {
-        log_file("player/boards",capitalize(TPQN)+" removed a post "+(number+1)+"  titled '"+title+"' from "+query_short()+" on "+ctime(time())+".\n");
+        log_file("player/boards", player->query_cap_name()+" removed a post "+(number+1)+"  titled '"+title+"' from "+query_short()+" on "+ctime(time())+".\n");
     } else {
-        log_file("playerboards",capitalize(TPQN)+" failed to remove a post "+(number+1)+"  titled '"+title+"' from "+query_short()+" on "+ctime(time())+".\n");
+        log_file("playerboards", player->query_cap_name()+" failed to remove a post "+(number+1)+"  titled '"+title+"' from "+query_short()+" on "+ctime(time())+".\n");
     }
     return 1;
 }
@@ -512,3 +513,9 @@ int do_purge() {
   BBOARD_D->purge_read(board_id);
   return 1;
 }
+
+void set_owner(string str){
+    owner = str;
+    return;
+}
+

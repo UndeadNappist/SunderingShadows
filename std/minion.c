@@ -37,22 +37,26 @@ void create()
 
 void heart_beat()
 {
-    object room;
+    object me = this_object(), my_environment, owners_environment;
     
     ::heart_beat();
     
-    if(!objectp(owner))
+    if (!objectp(owner))
         return;
-    
-    room = environment(this_object());
-    
-    if(!objectp(room))
+
+    if (!objectp(owners_environment = environment(owner)))
         return;
-    
-    if(follow && room != environment(owner))
+
+    if (!objectp(me))
+        return;
+
+    if (!objectp(my_environment = environment(me)))
+        return;
+
+    if (follow && my_environment != owners_environment)
     {
-        this_object()->move(environment(owner));
-        owner->add_follower(this_object());
+        me->move(owners_environment);
+        owner->add_follower(me);
     }
 }       
 
