@@ -118,7 +118,7 @@ void go_out(){
         tell_room(room, "%^RESET%^%^CRST%^%^C058%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C058%^'s cigar goes out, the tobacco finished; They dispose of the remaining butt.%^CRST%^\n", player);
         tell_object(player, "%^RESET%^%^CRST%^%^C058%^Your cigar goes out, the tobacco finished. You dispose of the remaining butt.%^CRST%^\n");
     }
-    else tell_room(player, "RESET%^%^CRST%^%^C058%^The cigar goes out, completely spent.%^CRST%^");
+    else tell_room(player, "%^RESET%^%^CRST%^%^C058%^The cigar goes out, completely spent.%^CRST%^");
     cigar->remove_property("lit cigar");
     remove_call_out("take_drag");
     lit = 0;

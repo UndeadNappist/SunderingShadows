@@ -10,7 +10,7 @@ void make_me();
 void create(){
    ::create();
    set_name("hound officer");
-   set_id(({"hound","hound officer","officer","hound militia"}));
+   set_id(({"hound","hound officer","officer","hound militia", "hound soldier"}));
    set_short("officer");
 set_long("%^C246%^Dressed in "+
 "%^C251%^dark clothing and "+
