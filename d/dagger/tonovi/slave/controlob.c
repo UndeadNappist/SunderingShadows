@@ -57,19 +57,27 @@ int comm_slave(string str){
 }
 
 
-int free_slave(string str){
-    if(!objectp(sl_ob) || !objectp(master) ){
-      TO->remove();
-      return 1;
+int free_slave(string str)
+{
+    object me = this_object(), player = this_player();
+
+    if (!objectp(me) || !objectp(player))
+        return 0;
+
+    if (!objectp(sl_ob) || !objectp(master))
+    {
+        me->remove();
+        return 1;
     }
 
-    if(!str || str != "slave"){
-      tell_object(TP, "free what?");
-      return 1;
+    if(!str || str != "slave")
+    {
+        tell_object(player, "free what?");
+        return 1;
     }
 
     sl_ob->excape_master();
-    TO->remove();
+    me->remove();
     return 1;
 }
 
