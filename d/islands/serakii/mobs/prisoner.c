@@ -93,7 +93,7 @@ int free_fun(string str) {
 }
 }
 
-    void go_home(object to)
+int go_home(object to)
 {
     if (!objectp(to)) {
         return;
