@@ -23,20 +23,25 @@ void create()
     set_id(({ "buffobxyz" }));
     set_name("buff object");
 }
+
 void init()
 {
     ::init();
     add_action("abort", "abort");
     add_action("abort", "stop");
 }
+
 void abort()
 {
+    object me = this_object();
+
     owner_check();
     tell_object(owner, "Aborting...");
-    if (objectp(TO)) {
-        TO->remove();
-    }
-    return;
+
+    if (objectp(me))
+        return me->remove();
+
+    return 0;
 }
 void heart_beat()
 {
