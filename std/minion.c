@@ -22,7 +22,7 @@ void create()
     ::create();
     
     set_name("minion");
-    set_id( ({ "minion" }) );
+    set_id( ({ "minion", "summoned monster" }) );
     set_short("A generic minion");
     set_hd(1, 1);
     set_hp(10);
@@ -57,6 +57,7 @@ void heart_beat()
     {
         me->move(owners_environment);
         owner->add_follower(me);
+        owner->add_protector(me);
     }
 }       
 
@@ -99,6 +100,7 @@ int setup_minon(int clevel, spell_level, string type)
         owner->add_follower(this_object());
         owner->add_protector(this_object());
         set_property("minion", owner);
+        set_follow(1);
     }
     
     return 1;
