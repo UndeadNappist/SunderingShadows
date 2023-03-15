@@ -30,6 +30,7 @@ void create()
 	set_damage(2,4);
 	set_attacks_num(1);
 	set_race("snake");
+    set_property("no corpse", 1);
     set_hit_funcs( ([ "mouth" : (: this_object(), "bite_func" :) ]));
     set_func_chance(50);
 }

@@ -23,9 +23,11 @@ void create()
     //set_spell_level( ([ "cleric" : 5, "druid" : 5 ]) );
     set_spell_level( ([ "classless" : 5 ]) );
     set_spell_sphere("alteration");
+    set_domains( ({ "animal" }) );
+    set_circle("grove");
     set_syntax("cast CLASS sticks into snakes");
     set_damage_desc("creates a bunch of snakes");
-    set_description("");
+    set_description("With this spell, you turn various sticks in the area into writhing, biting snakes that will attack your foe. These snakes have a chance of poisoning or tripping your enemy as they attack. These snakes will only last for a relatively short time, scaling with caster level. The snakes are lesser summons and will only take one hit before dying. The number of snakes scales with caster level as well. Some areas have no sticks and will render this spell ineffective.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
@@ -34,7 +36,7 @@ void create()
 
 int preSpell()
 {
-    if(place->query_property("no stick"))
+    if(place->query_property("no sticks"))
     {
         tell_object(caster, "There are no sticks here.");
         return 0;
@@ -65,11 +67,14 @@ void spell_effect()
         if(!objectp(snake)) continue;
         snakes += ({ snake });
         snake->set_owner(caster);
-        snake->setup_minion(clevel, 5, "lesser");
+        snake->setup_minion(clevel, spell_level, "lesser");
         type = TYPES[random(sizeof(TYPES))];
         snake->add_id( ({ type }) );
         snake->set_short("%^GREEN%^" + type + "%^RESET%^");
     }
+    
+    spell_duration = (ROUND_LENGTH * 5) + (ROUND_LENGTH * clevel / 10);
+    set_end_time();
     
     call_out("check", ROUND_LENGTH);
 }
@@ -100,7 +105,7 @@ void dest_effect()
     foreach(object ob in snakes)
         objectp(ob) && ob->remove();
     
-    objectp(caster) && tell_object(caster, "DISMISS SNAKES MESSAGE");
+    objectp(caster) && tell_object(caster, "Your snakes twist and writh and turn back into sticks.");
     
     ::dest_effect();
     if(objectp(this_object())) destruct(this_object());
