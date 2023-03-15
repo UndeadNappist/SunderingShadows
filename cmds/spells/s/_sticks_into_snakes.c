@@ -20,7 +20,8 @@ void create()
 {
     ::create();
     set_spell_name("sticks into snakes");
-    set_spell_level( ([ "cleric" : 5, "druid" : 5 ]) );
+    //set_spell_level( ([ "cleric" : 5, "druid" : 5 ]) );
+    set_spell_level( ([ "classless" : 5 ]) );
     set_spell_sphere("alteration");
     set_syntax("cast CLASS sticks into snakes");
     set_damage_desc("creates a bunch of snakes");
