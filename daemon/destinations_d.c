@@ -322,6 +322,24 @@ varargs void generate_waystations(string destination, int stages, int spacing, s
 
   object dest_room,  * rooms_checked, * latest_rooms, *next_rooms;
   int i, j;
+  
+  if(!stringp(destination))
+  {
+      report("Destination is not a string");
+      return;
+  }
+  if(!objectp(dest_room = find_object_or_load(destination)))
+  {
+      report("Problem loading destination.");
+      return;
+  }
+  if(catch(dest_room->short_desc()))
+  {
+      report("Problem loading destination short description");
+      return;
+  }
+  
+  /*
   if (!stringp(destination) || catch(destination->short_desc()))
   {
     if (catch(destination->short_desc())) report("Problem loading destination short desc");
@@ -329,23 +347,28 @@ varargs void generate_waystations(string destination, int stages, int spacing, s
     return;
   }
   dest_room = find_object_or_load(destination);
+  */
   rooms_checked = ({});
   latest_rooms = ({dest_room});
   next_rooms = ({});
 
+  /*
   if (destination ==0){
     report("Destination set to zero");
     return;
   }
+  */
   if (stages == 0){
     stages = 1;
   }
   if (spacing == 0){
     spacing =1;
   }
+  /*
   if (!objectp(dest_room)){
     return;
   }
+  */
   if (!nogo){
     nogo = ({});
   }
