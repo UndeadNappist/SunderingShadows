@@ -90,6 +90,7 @@ int spell_level,
     mypp,
     mycost,
     healing_spell,
+    summon_spell,
     aoe_spell,           //aoe that stays in the room
     traveling_aoe_spell, //damage aoe spell that follows the caster
     traveling_spell,     //spell that follows the caster
@@ -545,6 +546,16 @@ int query_evil_spell()
     return evil_spell;
 }
 
+void summon_spell()
+{
+    summon_spell = 1;
+}
+
+int query_summon_spell()
+{
+    return summon_spell;
+}
+   
 void versatile()
 {
     versatile = 1;

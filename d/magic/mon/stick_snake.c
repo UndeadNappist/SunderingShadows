@@ -7,6 +7,7 @@
 */
 
 #include <std.h>
+#include <daemons.h>
 
 inherit MINION;
 
@@ -35,14 +36,33 @@ void create()
 
 int bite_func(object target)
 {
+    object room;
+    
     if(!objectp(target))
         return 0;
     
     if(!strlen(type))
         return 0;
     
-    switch(type)
+    if(target->query_poisoning())
+        return 0;
+    
+    if(!objectp(room = environment(this_object())))
+        return 0;
+    
+    if(!SAVING_THROW_D->fort_save(target, this_object()->query_level() + 10))
     {
+	    tell_player(target,"%^BOLD%^%^RED%^You feel the horrid poison filter into your blood!"); 
+	    target->add_poisoning(5);
+        return 10;
     }
+    if(!SAVING_THROW_D->reflex_save(target, this_object()->query_level() + 10))
+    {
+        tell_room(room, "The " + type + " wraps around " + target->query_cap_name() + "'s legs and trips " + target->query_objective() + " to the ground!", target);
+        tell_object(target, "The " + type + " wraps around your legs and trips you to the ground!");
+        target && target->set_tripped(6);
+        return 0;
+    }
+       
 }
 
