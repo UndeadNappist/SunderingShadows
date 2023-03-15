@@ -65,7 +65,6 @@ void spell_effect()
         tell_object(target, "%^GREEN%^You concentrate and ignore effects of the itchy curse.%^RESET%^");
         tell_object(caster, "%^GREEN%^"+target->query_cap_name()+" shakes the curse off.%^RESET%^");
         ::dest_effect();
-        me->remove();
         return;
     }
 
