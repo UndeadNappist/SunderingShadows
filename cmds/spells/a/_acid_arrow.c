@@ -49,12 +49,12 @@ string query_cast_string(){
             break;
     }
     tell_object(caster, ""+coloring+"You shout out %^C093%^m%^C099%^a%^C105%^gic%^C099%^a%^C093%^l w%^C099%^o%^C105%^r%^C099%^d%^C093%^s "+coloring+"in a powerful voice, holding a %^C144%^d%^C101%^a%^C100%^rt "+coloring+"aloft.%^CRST%^");
-    tell_room(place, ""coloring+caster->query_cap_name()+coloring+" shouts out %^C093%^m%^C099%^a%^C105%^gic%^C099%^a%^C093%^l w%^C099%^o%^C105%^r%^C099%^d%^C093%^s "+coloring+"in a powerful voice, holding a %^C144%^d%^C101%^a%^C100%^rt "+coloring+"aloft.%^CRST%^", caster);
+    tell_room(place, ""+coloring+caster->query_cap_name()+coloring+" shouts out %^C093%^m%^C099%^a%^C105%^gic%^C099%^a%^C093%^l w%^C099%^o%^C105%^r%^C099%^d%^C093%^s "+coloring+"in a powerful voice, holding a %^C144%^d%^C101%^a%^C100%^rt "+coloring+"aloft.%^CRST%^", caster);
     return "display";
 }
 
 void spell_effect(int prof){
-    string coloring, arrowtype, shortmsg;
+    string arrowtype, shortmsg;
     int need, roll;
 
     if(!objectp(caster) || !objectp(place)){
