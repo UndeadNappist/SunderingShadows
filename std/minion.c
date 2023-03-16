@@ -11,6 +11,7 @@
 inherit WEAPONLESS;
 
 object owner;
+string minion_type;
 int follow;
 
 object set_owner(object ob) { owner = ob; return owner;  }
@@ -59,6 +60,9 @@ void heart_beat()
         owner->add_follower(me);
         owner->add_protector(me);
     }
+    
+    if(minion_type == "greater" && query_hp() < query_max_hp())
+        add_hp(query_max_hp() / 100);
 }       
 
 int setup_minon(int clevel, spell_level, string type)
@@ -74,6 +78,7 @@ int setup_minon(int clevel, spell_level, string type)
     remove_property("swarm");
     set_mlevel("fighter", clevel);
     set_guild_level("fighter", clevel);
+    minion_type = type;
     
     switch(type)
     {
@@ -89,7 +94,7 @@ int setup_minon(int clevel, spell_level, string type)
         break;
         case "greater":
         set_hd(clevel, spell_level);
-        set_max_hp(clevel * 100);
+        set_max_hp(50 + clevel * (20 + spell_level));
         set_static_bab(clevel);
         set_property("effective enchantment", clevel / 7 + 1);
         set_attacks_num(clevel / 13 + 1);
