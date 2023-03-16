@@ -23,9 +23,12 @@ create(){
     set_somatic_comp();
     versatile();
     set_target_required(1);
+    set_immunities(({"cold"}));
 }
 
-string query_cast_string(){ 
+string query_cast_string(){
+    element = (string)caster->query("elementalist");
+    if(element) set_immunities(({ element }));
     return "%^RESET%^%^CRST%^%^C059%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C059%^ utters a morose chant.%^CRST%^";
 }
 
@@ -48,8 +51,6 @@ spell_effect(int prof){
         dest_effect();
         return;
     }
-
-    element = (string)caster->query("elementalist");
 
     switch(element){
         case "acid":
