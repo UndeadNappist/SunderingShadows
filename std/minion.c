@@ -84,6 +84,8 @@ int setup_minon(int clevel, spell_level, string type)
         case "standard":
         set_hd(clevel, spell_level);
         set_overall_ac(-clevel);
+        set_resistance_percent("negative energy", 100);
+        set_resistance_percent("positive_energy", 100);
         break;
         case "greater":
         set_hd(clevel, spell_level);
