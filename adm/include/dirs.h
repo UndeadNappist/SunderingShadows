@@ -55,6 +55,8 @@
 #define DIR_LORE_HELP           DIR_USER_HELP+"/lore"
 #define DIR_MYSTERIES_HELP      DIR_USER_HELP+"/mysteries"
 #define DIR_BLOODLINES_HELP     DIR_USER_HELP+"/bloodlines"
+#define DIR_PACTS_HELP          DIR_USER_HELP+"/pacts"
+#define DIR_CIRCLES_HELP        DIR_USER_HELP+"/circles"
 #define DIR_POLICIES_HELP       DIR_USER_HELP+"/policies"
 #define DIR_RACES_HELP          DIR_USER_HELP+"/races"
 #define DIR_ROLEPLAYING_HELP    DIR_USER_HELP+"/roleplaying"
