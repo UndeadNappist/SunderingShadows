@@ -26,7 +26,7 @@ void create()
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS swarm skin");
     set_damage_desc("Piercing damage and disease to attackers");
-    set_description("You speak the language of swarm, calling to you a swarm of vicious, disgusting flies. They cover your skin in a protective layer, biting all who would attack you. Those bitten must make a fortitude save or be infected with filth fever. Attackers also have a chance of becoming sickened for one round.");
+    set_description("You speak the language of swarm, calling to you a swarm of vicious, disgusting flies. They cover your skin in a protective layer, biting all who would attack you. Those bitten must make a fortitude save or be infected with filth fever. Attackers also have a chance of becoming sickened, on a failed fort save, for one round.");
     set_save("fort");
     traveling_aoe_spell(1);
     set_immunities( ({ "piercing" }) );
