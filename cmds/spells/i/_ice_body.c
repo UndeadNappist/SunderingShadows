@@ -9,7 +9,7 @@ void effect(int direction)
     caster->set_property("poison immunity", direction);
     caster->set_property("disease immunity", direction);
     caster->set_property("no blind", direction);
-    caster->set_resistance_percent("cold", 110 * direction);
+    caster->set_resistance_percent("cold", 80 * direction);
     caster->set_resistance_percent("electricity", 50 * direction);
     caster->set_resistance_percent("fire", -50 * direction);
 
@@ -25,8 +25,8 @@ void create()
     set_bonus_type("body");
     set_spell_sphere("alteration");
     set_syntax("cast CLASS ice body");
-    set_damage_desc("blind, disease, poison immune. 110% cold resistance");
-    set_description("This spell transforms your body into living ice. You gain immunity to disease, poison and blindness. In addition, You gain 110% cold resistance, 50% electricity resistance and -50% fire resistance.");
+    set_damage_desc("blind, disease, poison immune. 80% cold resistance");
+    set_description("This spell transforms your body into living ice. You gain immunity to disease, poison and blindness. In addition, You gain 80% cold resistance, 50% electricity resistance and -50% fire resistance.");
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
