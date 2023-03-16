@@ -83,6 +83,7 @@ int setup_minon(int clevel, spell_level, string type)
         break;
         case "standard":
         set_hd(clevel, spell_level);
+        set_overall_ac(-clevel);
         break;
         case "greater":
         set_hd(clevel, spell_level);
@@ -90,6 +91,7 @@ int setup_minon(int clevel, spell_level, string type)
         set_static_bab(clevel);
         set_property("effective enchantment", clevel / 7 + 1);
         set_attacks_num(clevel / 13 + 1);
+        set_overall_ac(-clevel);
         break;
     }
     
