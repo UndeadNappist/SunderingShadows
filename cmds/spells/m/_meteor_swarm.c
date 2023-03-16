@@ -23,6 +23,7 @@ void create()
     splash_spell(1);
     set_save("reflex");
     set_target_required(1);
+    set_immunities(({ "fire" }));
 }
 
 
@@ -46,7 +47,11 @@ void spell_effect(int prof)
     }
 
     element = (string)caster->query("elementalist");
-    
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
     switch(element)
     {
     case "acid":        mycolor = "%^RESET%^%^CRST%^%^C065%^"; break;

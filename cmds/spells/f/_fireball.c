@@ -26,37 +26,37 @@ void create()
     splash_spell(1);
     set_components(([ "mage" : ([ "bat guano":1, "sulfur":1, ]), ]));
     set_save("reflex");
+    set_immunities(({ "fire" }));
 }
 
 
 string query_cast_string(){
     element = (string)caster->query("elementalist");
-
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
     switch(element){
         case "acid":
             tell_object(caster, "%^RESET%^%^CRST%^%^C065%^You chant rapidly, creating an %^C077%^o%^C071%^r%^C070%^b %^C076%^o%^C070%^f %^C071%^a%^C077%^c%^C071%^i%^C070%^d %^RESET%^%^C065%^in your hand.%^CRST%^");
             tell_room(place, "%^RESET%^%^CRST%^%^C065%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C065%^ chants rapidly, creating an %^C077%^o%^C071%^r%^C070%^b %^C076%^o%^C070%^f %^C071%^a%^C077%^c%^C071%^i%^C070%^d %^RESET%^%^C065%^in "+caster->query_possessive()+" hand.%^CRST%^",caster);
-            set_immunities(({"acid"}));
             break;
         case "cold":
             tell_object(caster, "%^RESET%^%^CRST%^%^C027%^You chant rapidly, creating an %^C045%^o%^C051%^r%^C045%^b %^C039%^of %^C045%^f%^C051%^ros%^C045%^t %^RESET%^%^C027%^in your hand.%^CRST%^");
             tell_room(place, "%^RESET%^%^CRST%^%^C027%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C027%^ chants rapidly, creating an %^C045%^o%^C051%^r%^C045%^b %^C039%^of %^C045%^f%^C051%^ros%^C045%^t %^RESET%^%^C027%^in "+caster->query_possessive()+" hand.%^CRST%^",caster);
-            set_immunities(({"cold"}));
             break;
         case "electricity":
             tell_object(caster, "%^RESET%^%^CRST%^%^C100%^You chant rapidly, creating an %^C228%^o%^C231%^r%^C228%^b %^C226%^of %^C228%^l%^C231%^i%^C228%^gh%^C226%^t%^C231%^n%^C228%^in%^C226%^g %^RESET%^%^C100%^in your hand.%^CRST%^");
             tell_room(place, "%^RESET%^%^CRST%^%^C100%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C100%^ chants rapidly, creating an %^C228%^o%^C231%^r%^C228%^b %^C226%^of %^C228%^l%^C231%^i%^C228%^gh%^C226%^t%^C231%^n%^C228%^in%^C226%^g %^RESET%^%^C100%^in "+caster->query_possessive()+" hand.%^CRST%^",caster);
-            set_immunities(({"electricity"}));
             break;
         case "sonic":
             tell_object(caster, "%^RESET%^%^CRST%^%^C090%^You chant rapidly, creating an %^C212%^o%^C206%^r%^C212%^b %^C218%^of s%^C212%^o%^C206%^u%^C212%^n%^C218%^d %^RESET%^%^C090%^in your hand.%^CRST%^");
             tell_room(place, "%^RESET%^%^CRST%^%^C090%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C090%^ chants rapidly, creating an %^C212%^o%^C206%^r%^C212%^b %^C218%^of s%^C212%^o%^C206%^u%^C212%^n%^C218%^d %^RESET%^%^C090%^in "+caster->query_possessive()+" hand.%^CRST%^",caster);
-            set_immunities(({"sonic"}));
             break;
         default:
             tell_object(caster, "%^RESET%^%^CRST%^%^C124%^You chant rapidly, creating an %^C208%^o%^C214%^r%^C208%^b %^C202%^of %^C208%^f%^C214%^i%^C208%^r%^C202%^e %^RESET%^%^C124%^in your hand.%^CRST%^");
             tell_room(place, "%^RESET%^%^CRST%^%^C124%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C124%^ chants rapidly, creating an %^C208%^o%^C214%^r%^C208%^b %^C202%^of %^C208%^f%^C214%^i%^C208%^r%^C202%^e %^RESET%^%^C124%^in "+caster->query_possessive()+" hand.%^CRST%^",caster);
-            set_immunities(({"fire"}));
             break;
     }
     return "display";

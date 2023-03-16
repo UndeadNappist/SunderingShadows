@@ -30,6 +30,11 @@ void create() {
 
 int preSpell() {
     element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
     switch(element){
         case "acid": 
             set_immunities(({"acid"})); 

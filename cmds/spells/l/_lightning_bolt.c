@@ -28,7 +28,11 @@ void create(){
 
 string query_cast_string(){
     element = (string)caster->query("elementalist");
-    if(element) set_immunities(({ element }));
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
     return "%^RESET%^%^CRST%^%^C101%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ clenches "+caster->query_possessive()+" hands into fists while muttering %^C058%^harsh %^C101%^words.%^CRST%^";
 }
 

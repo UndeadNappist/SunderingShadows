@@ -42,6 +42,11 @@ void create(){
 
 void spell_effect(int prof){
     element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
     switch(element) {
       case "acid":
         tell_object(caster,"%^RESET%^%^GREEN%^As you chant, a deafening %^BOLD%^%^BLACK%^hiss %^RESET%^%^GREEN%^encompasses the area, as a cloud of %^BOLD%^%^GREEN%^t%^YELLOW%^o%^BLACK%^x%^YELLOW%^i%^GREEN%^c %^RESET%^%^GREEN%^gas explodes outward from you!");

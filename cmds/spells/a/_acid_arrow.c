@@ -29,7 +29,11 @@ void create(){
 
 string query_cast_string(){
     element = (string)caster->query("elementalist");
-    if(element) set_immunities(({ element }));
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
     switch(element){
         case "cold":
             coloring = "%^C039%^";

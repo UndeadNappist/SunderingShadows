@@ -59,6 +59,11 @@ void spell_effect(int prof) {
     else ownparty = ({ caster });
 
     element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
     // force-type to fire if anything outside the normal five-element subset. Since the non-interactive doesn't have a switch to fix this, it's necessary.
     if(element != "acid" && element != "cold" && element != "electricity" && element != "sonic") element = "fire";
 
