@@ -56,12 +56,14 @@ int isMagic()
     return 5;
 }
 
-set_caster(object ob)
+int set_caster(object ob)
 {
-    if (objectp(ob)) {
+    if (objectp(ob))
         caster = ob;
-    }else {
+    else
+    {
         remove();
+        return 1;
     }
 }
 
@@ -132,19 +134,27 @@ void defend()
     return;
 }
 
-void heart_beat()
+int heart_beat()
 {
     object* tmp;
     int i, j;
+
     tmp = ({});
+
     ::heart_beat();
-    if (!objectp(caster)) {
+
+    if (!objectp(caster))
+    {
         remove();
+        return 1;
     }
-    if (!objectp(TO)) {
+
+    if (!objectp(TO))
+    {
         remove();
+        return 1;
     }
-    if ((object*)caster->query_attackers() != ({})) {
+
+    if ((object*)caster->query_attackers() != ({}))
         defend();
-    }
 }
