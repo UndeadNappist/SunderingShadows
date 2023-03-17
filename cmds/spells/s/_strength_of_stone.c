@@ -13,7 +13,6 @@ void create() {
     set_spell_name("strength of stone");
     set_spell_level(([ "druid" : 3, "cleric" : 3 ]));
     set_spell_sphere("alteration");
-    set_circle("claw");
     set_domains("earth");
     set_bonus_type("sacred");
     set_syntax("cast CLASS strength of stone [ON TARGET]");
