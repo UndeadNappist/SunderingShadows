@@ -97,13 +97,13 @@ int init_shape(object obj, string str)
     if(objectp(obj) && obj->query_druid_circle() == "claw")
     {
         lvl = obj->query_prestige_level("druid");
-        set_shape_bonus("attack bonus", 3 + lvl / 10);
-        set_shape_bonus("damage bonus", 3 + lvl / 10);
+        set_shape_bonus("attack bonus", 3 + (lvl / 10));
+        set_shape_bonus("damage bonus", 3 + (lvl / 10));
         set_shape_bonus("athletics", 4);
         set_ac_bonus(2 + lvl / 12);
     }
        
-    ::init_shape(obj, str);    
+    return ::init_shape(obj, str);    
 }
 
 int can_cast()
