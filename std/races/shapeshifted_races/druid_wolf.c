@@ -90,6 +90,22 @@ int change_outof_message(object obj)
     return 1;
 }
 
+int init_shape(object obj, string str)
+{
+    int lvl;
+    
+    if(objectp(obj) && obj->query_druid_circle() == "claw")
+    {
+        lvl = obj->query_prestige_level("druid");
+        set_shape_bonus("attack bonus", 3 + lvl / 10);
+        set_shape_bonus("damage bonus", 3 + lvl / 10);
+        set_shape_bonus("athletics", 4);
+        set_ac_bonus(2 + lvl / 12);
+    }
+       
+    ::init_shape(obj, str);    
+}
+
 int can_cast()
 {
     if(!objectp(query_owner())) { return 0; }
