@@ -41,15 +41,24 @@ void spell_effect(int prof)
 
 void execute_attack()
 {
-    object *attackers,room;
+    object *attackers, me = this_object(), room;
     int i;
 
-    ::execute_attack();
-    if(!objectp(caster))
+    if (!objectp(caster))
     {
         dest_effect();
         return;
     }
+
+    if (!objectp(me))
+    {
+        dest_effect();
+        return;
+    }
+
+    ::execute_attack();
+
+
     room      = environment(caster);
     attackers = caster->query_attackers();
     attackers = filter_array(attackers,"is_non_immortal",FILTERS_D);
@@ -79,5 +88,4 @@ void dest_effect(){
     }
     ::dest_effect();
     if(objectp(TO)) TO->remove();
-
 }
