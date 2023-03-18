@@ -14,6 +14,7 @@ void create(){
     ::create();
     set_spell_name("holy word");
     set_spell_level(([ "cleric" : 7,"inquisitor":6 ]));
+    set_domains("good");
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS holy word on [TARGET]");
     set_description("This spell channels holy magic directly to the caster and releases it at a target in the form of a silent "
