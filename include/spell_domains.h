@@ -5,16 +5,16 @@
 #define SPELL_DOMAINS (([\
  "ashra"    : ({ "charm", "nightmare", "darkness", "evil" }), \
  "edea"     : ({ "good", "renewal", "protection", "creation" }), \
- "callamir" : ({ "charm", "travel", "good", "trickery"}), \
+ "callamir" : ({ "charm", "travel", "good", "trickery", "freedom" }), \
  "cevahir" :  ({ "strength", "war", "repose", "knowledge" }) , \
  "jarmila" :  ({ "renewal", "sun", "fire", "good", }) , \
- "khyron" :   ({ "fire", "destruction", "suffering", "chaos", }) , \
+ "khyron" :   ({ "fire", "destruction", "evil", "chaos", "storms" }) , \
  "kismet" :   ({ "knowledge", "magic", "protection", "fate"}) , \
- "kreysneothosies" : ({ "protection", "war", "law", "good", }) , \
+ "kreysneothosies" : ({ "protection", "war", "law", "good", "strength" }) , \
  "lord shadow" : ({ "cold", "darkness", "evil", "law", "suffering" }) , \
  "lysara" :   ({ "travel", "fate", "repose", "moon" }) , \
- "nilith" :  ({ "destruction", "undeath", "chaos", "evil", }), \
- "nimnavanon" : ({ "renewal", "plant", "animal", "earth", }) , \
+ "nilith" :  ({ "destruction", "undeath", "chaos", "evil", "war" }), \
+ "nimnavanon" : ({ "renewal", "plant", "animal", "earth" }) , \
  "seija" :   ({ "air", "cold", "fire", "earth", }) , \
  "the faceless one" : ({ "illusion", "madness", "darkness", "evil", }) , \
  "ebolek" : ({ "plague", "evil", }), \
