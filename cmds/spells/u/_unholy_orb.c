@@ -18,6 +18,7 @@ void create(){
     ::create();
     set_spell_name("unholy orb");
     set_spell_level(([ "cleric" : 6 ]));
+    set_domains("evil");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS unholy orb");
     set_description("The orb is a spell normally prepared by a priest who expects to encounter enemies whose alignment "
