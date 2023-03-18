@@ -15,7 +15,7 @@
  "lysara" :   ({ "travel", "fate", "repose", "moon" }) , \
  "nilith" :  ({ "destruction", "undeath", "chaos", "evil", "war" }), \
  "nimnavanon" : ({ "renewal", "plant", "animal", "earth" }) , \
- "seija" :   ({ "air", "cold", "fire", "earth", }) , \
+ "seija" :   ({ "air", "cold", "fire", "earth", "balance" }) , \
  "the faceless one" : ({ "illusion", "madness", "darkness", "evil", }) , \
  "ebolek" : ({ "plague", "evil", }), \
  "mephasm" : ({ "evil", "law", }), \
