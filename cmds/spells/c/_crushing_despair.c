@@ -13,7 +13,8 @@ void create()
     ::create();
     set_author("nienne");
     set_spell_name("crushing despair");
-    set_spell_level(([ "bard" : 3, "mage" : 4 ]));
+    set_spell_level(([ "bard" : 3, "mage" : 4, "cleric" : 4 ]));
+    set_domains("void");
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS crushing despair [on TARGET]");
     set_description("By means of this spell, the caster invokes a tangible feeling of despair over their target, attempting to sap their morale. It will inflict a penalty to the target's attacks, damage, core skills, saving throws and spellpower. Such an effect is not dispellable by normal magics, but will fade over time.");
