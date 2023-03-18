@@ -842,6 +842,9 @@ int immunity_check(object obj, string type)
             if(obj->query_class_level("oracle") > 30)
                 return 1;
         }
+        
+        if(member_array("glory", obj->query_divine_domains()) >= 0)
+            return 1;
 
         switch (myrace) {
 
