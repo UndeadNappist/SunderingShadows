@@ -90,6 +90,7 @@ int spell_level,
     mypp,
     mycost,
     healing_spell,
+    summon_spell,
     aoe_spell,           //aoe that stays in the room
     traveling_aoe_spell, //damage aoe spell that follows the caster
     traveling_spell,     //spell that follows the caster
@@ -545,6 +546,16 @@ int query_evil_spell()
     return evil_spell;
 }
 
+void summon_spell()
+{
+    summon_spell = 1;
+}
+
+int query_summon_spell()
+{
+    return summon_spell;
+}
+   
 void versatile()
 {
     versatile = 1;
@@ -1030,6 +1041,15 @@ void wizard_interface(object user, string type, string targ)
             return;
         }
     }
+    
+    /*
+    if(summon_spell && caster->query_property("summon spell"))
+    {
+        tell_object(caster, "You can't concentrate on more than one summon spell at a time.");
+        ::remove;
+        return;
+    }
+    */
 
     if(this_player()->is_deva() && target && !query_helpful())
     {
@@ -1548,6 +1568,8 @@ void wizard_interface(object user, string type, string targ)
     if (query_traveling_aoe_spell()) {
         caster->set_property("travaoe", 1);
     }
+    
+    objectp(caster) && summon_spell && caster->set_property("summon spell", 1);
 
     if (objectp(wildspell = WildMagicArea(environment(caster)))) {
         caster->remove_property("spell_casting");
@@ -1985,6 +2007,13 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
             return;
         }
     }
+    
+    if(summon_spell && caster->query_property("summon spell"))
+    {
+        tell_object(caster, "You can't concentrate on more than one summon spell at a time.");
+        ::remove();
+        return;
+    }
 
     if (query_aoe_spell()) {
         caster->add_aoe(query_spell_name());
@@ -2000,6 +2029,9 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
         if(!caster->query_property("travaoe"))
             caster->set_property("travaoe", 1);
     }
+    
+    if(summon_spell && !caster->query_property("summon spell"))
+        caster->set_property("summon spell", 1);
 
     if (spell_type == "potion") {
         me->spell_effect(prof);
@@ -2421,6 +2453,9 @@ void before_cast_dest_effect()
             caster->remove_property("travaoe");
         }
     }
+    
+    objectp(caster) && summon_spell && caster->remove_property("summon spell");
+    
     if (objectp(TO)) {
         TO->remove();
     }
@@ -2440,6 +2475,8 @@ void dest_effect()
         objectp(caster)) {
         caster->remove_property("travaoe");
     }
+    
+    objectp(caster) && summon_spell && caster->remove_property("summon spell");
 
     /*
     if(sizeof(bonus_type))
@@ -2469,6 +2506,8 @@ int remove()
         objectp(caster)) {
         caster->remove_property("travaoe");
     }
+    
+    objectp(caster) && summon_spell && caster->remove_property("summon spell");
 
     if(sizeof(bonus_type) && applied_bonus_type)
     {

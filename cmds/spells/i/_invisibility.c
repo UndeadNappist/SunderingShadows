@@ -29,29 +29,50 @@ If target so wishes it might %^ORANGE%^<appear>%^RESET%^.");
 
 string query_cast_string()
 {
-    return "%^CYAN%^"+caster->QCN+" chants rhythmically, "+caster->QP+" voice getting slowly lower and harder to hear.";
+    return "%^CYAN%^"+caster->query_cap_name()+" chants rhythmically, "+caster->query_posessive()+" voice getting slowly lower and harder to hear.";
 }
 
 spell_effect(int prof)
 {
-    if (!target) target=caster;
+    object me;
 
-    if (!silent_casting) {
-        if ((string)TO->query_spell_type() == "potion") {
+    if (!objectp(caster) || !objectp(place))
+    {
+        ::dest_effect();
+        return;
+    }
+
+    if (!objectp(me = this_object()))
+    {
+        ::dest_effect();
+        return;
+    }
+
+    if (!objectp(target))
+        target = caster;
+
+    if (!silent_casting)
+    {
+        if ((string)me->query_spell_type() == "potion")
             tell_object(caster, "%^CYAN%^As the potion warms your stomach, you look down and realise your body is fading!%^RESET%^");
-        } else{
-            if (interactive(caster)) {
-                if (target == caster) {
+        else
+        {
+            if (interactive(caster))
+            {
+                if (target == caster)
+                {
                     tell_object(caster, "%^CYAN%^You continue to chant as your body starts to fade from sight.");
-                    tell_room(place, "%^CYAN%^" + caster->QCN + " continues to chant as " + caster->QS + " starts to fade and you are able to see through " + caster->QO + "!", caster);
-                }else {
-                    tell_object(caster, "%^CYAN%^You face " + target->QCN + ", the palms of your hands held towards " + target->QO + ", and continue to chant the spell.");
-                    tell_object(target, "%^CYAN%^" + caster->QCN + " faces you, the palms of " + caster->QP + " hands held towards you, as " + caster->QS + " continues to chant.");
-                    tell_room(place, "%^CYAN%^" + caster->QCN + " faces " + target->QCN + ", the palms of " + caster->QP + " hands held towards " + target->QO + ", as " + caster->QS + " continues to chant.", ({ caster, target }));
+                    tell_room(place, "%^CYAN%^" + caster->query_cap_name() + " continues to chant as " + caster->query_subjective() + " starts to fade and you are able to see through " + caster->query_objective() + "!", caster);
                 }
-            }else {
-                tell_room(place, "%^CYAN%^A whispering sound emits from " + caster->QCN + " as the area glows with a black aura.");
+                else
+                {
+                    tell_object(caster, "%^CYAN%^You face " + target->query_cap_name() + ", the palms of your hands held towards " + target->query_objective() + ", and continue to chant the spell.");
+                    tell_object(target, "%^CYAN%^" + caster->query_cap_name() + " faces you, the palms of " + caster->query_posessive() + " hands held towards you, as " + caster->query_subjective() + " continues to chant.");
+                    tell_room(place, "%^CYAN%^" + caster->query_cap_name() + " faces " + target->query_cap_name() + ", the palms of " + caster->query_posessive() + " hands held towards " + target->query_objective() + ", as " + caster->query_subjective() + " continues to chant.", ({ caster, target }));
+                }
             }
+            else
+                tell_room(place, "%^CYAN%^A whispering sound emits from " + caster->query_cap_name() + " as the area glows with a black aura.");
         }
     }
     call_out("targ_vanish", 2, prof);
@@ -59,61 +80,79 @@ spell_effect(int prof)
 
 void targ_vanish(int prof)
 {
-    if (!target)
-    {
-        tell_object(caster,"You look around, confused as to where your target went, and shrug.");
-        tell_room(caster->query_cap_nam()+" looks around, and shrugs in confusion.", caster);
-        TO->remove();
-        return;
-    }
-    if ( !present(target,environment(caster)) ) {
-        tell_object(caster,"You look around, confused as to where your target went, and shrug.");
-        tell_room(caster->QCN+" looks around, and shrugs in confusion.", caster);
-        TO->remove();
-        return;
-    }
-    if (target->query_invis()) {
-        tell_object(caster,target->QCN+" is already invisible.");
-        TO->remove();
-        return;
-    }
-    if(target->query_property("visible")){
+    object me = this_object();
 
-        tell_object(caster,"The spell fails utterly on "+target->QCN+".");
-        TO->remove();
+    if (!objectp(me) || !objectp(caster) || !objectp(target) || !objectp(place))
+        return;
+
+    if (!objectp(target))
+    {
+        tell_object(caster, "You look around, confused as to where your target went, and shrug.");
+        tell_room(place, caster->query_cap_name()+" looks around, and shrugs in confusion.", caster);
+        me->remove();
         return;
     }
+
+    if (!present(target, place))
+    {
+        tell_object(caster, "You look around, confused as to where your target went, and shrug.");
+        tell_room(place, caster->query_cap_name()+" looks around, and shrugs in confusion.", caster);
+        me->remove();
+        return;
+    }
+
+    if (target->query_invis())
+    {
+        tell_object(caster, target->query_cap_name()+" is already invisible.");
+        me->remove();
+        return;
+    }
+
+    if(target->query_property("visible"))
+    {
+        tell_object(caster, "The spell fails utterly on "+target->query_cap_name()+".");
+        me->remove();
+        return;
+    }
+
     spell_successful();
 //    call_out("dest_effect",clevel*ROUND_LENGTH*10*prof/100);
-    invisob=new("/d/magic/obj/invisob.c");
-    invisob->set_property("spell",TO);
-    invisob->set_property("spelled", ({TO}) );
-    if((string)TO->query_spell_type() == "potion") invisob->set_property("potion",1); // to vary the messages!
+    invisob = new("/d/magic/obj/invisob.c");
+    invisob->set_property("spell", me);
+    invisob->set_property("spelled", ({me}) );
+
+    if((string)me->query_spell_type() == "potion")
+        invisob->set_property("potion", 1); // to vary the messages!
+
     invisob->move_is_ok(1);
     invisob->move(target);
     invisob->set_prof(prof);
     invisob->move_is_ok(0);
 //   if (caster != target) {
-      addSpellToCaster();
+    addSpellToCaster();
 //    }
     return;
 }
 
 void dest_effect()
 {
+    object me = this_object();
+
     if (objectp(invisob))
-    {
         invisob->show_up();
-    }
+
     if(objectp(target))   // added this check for objectp on target 11/3/02 *Styx*
-	target->remove_property("visible");
+        target->remove_property("visible");
+
     ::dest_effect();
-    if(objectp(TO)) TO->remove();
+
+    if(objectp(me))
+        me->remove();
 }
 
 
 void reverse_spell()
 {
-    target->set_property("visible",1);
-    call_out("dest_effect",clevel*8);
+    target->set_property("visible", 1);
+    call_out_walltime("dest_effect", clevel * 8);
 }

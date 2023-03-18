@@ -99,7 +99,7 @@ int sight_bonus(string subrace)
     }
     switch (subrace) {
     case "duergar":
-    case "gray dwarf": return -2; break;                   // copying darkvis races; uncertain if accurate
+    case "gray dwarf": return 2; break;                   // copying darkvis races; uncertain if accurate
 
     default: return 2; break;
     }

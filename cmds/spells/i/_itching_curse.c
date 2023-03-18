@@ -28,9 +28,12 @@ void create()
 
 int preSpell()
 {
+    if (!objectp(caster))
+        return 0;
+
     if(target->query_property("itching_curse"))
     {
-        tell_object(caster,"The target is already itchy.");
+        tell_object(caster, "The target is already itchy.");
         return 0;
     }
     return 1;
@@ -38,37 +41,49 @@ int preSpell()
 
 void spell_effect()
 {
+    object me;
     int i;
 
-    tell_object(caster,"%^GREEN%^You extend your hand and proclaim an itching curse on "+target->QCN);
-    tell_room(place,"%^GREEN%^"+caster->QCN+" points with their hand at "+target->QCN+"%^RESET%^",({target,caster}));
-    tell_object(target,"%^GREEN%^You feel very itchy after "+caster->QCN+" proclaims a curse.%^RESET%^");
-
-    if(do_save(target,0))
+    if (!objectp(me = this_object()))
     {
-        tell_object(target,"%^GREEN%^You concentrate and ignore effects of the itchy curse.%^RESET%^");
-        tell_object(caster,"%^GREEN%^"+target->QCN+" shakes the curse off.%^RESET%^");
         ::dest_effect();
-        TO->remove();
+        return;
+    }
+
+    if (!objectp(caster) || !objectp(target) || !objectp(place))
+    {
+        ::dest_effect();
+        return;
+    }
+
+    tell_object(caster, "%^GREEN%^You extend your hand and proclaim an itching curse on "+target->query_cap_name());
+    tell_room(place, "%^GREEN%^"+caster->query_cap_name()+" points with their hand at "+target->query_cap_name()+"%^RESET%^",({target,caster}));
+    tell_object(target, "%^GREEN%^You feel very itchy after "+caster->query_cap_name()+" proclaims a curse.%^RESET%^");
+
+    if(do_save(target, 0))
+    {
+        tell_object(target, "%^GREEN%^You concentrate and ignore effects of the itchy curse.%^RESET%^");
+        tell_object(caster, "%^GREEN%^"+target->query_cap_name()+" shakes the curse off.%^RESET%^");
+        ::dest_effect();
         return;
     }
 
     spell_duration = (clevel + roll_dice(1, 6)) * ROUND_LENGTH;
     set_end_time();
-    call_out("dest_effect",spell_duration);
-    call_out("itch_itch",ROUND_LENGTH);
+    call_out("dest_effect", spell_duration);
+    call_out("itch_itch", ROUND_LENGTH);
 
-    bonus = clevel/18+1;
+    bonus = clevel / 18 + 1;
 
-    for(i=0;i<sizeof(CORE_SKILLS);i++)
-        target->add_skill_bonus(CORE_SKILLS[i],-bonus);
+    for (i = 0; i < sizeof(CORE_SKILLS); ++i)
+        target->add_skill_bonus(CORE_SKILLS[i], -bonus);
+
     target->add_attack_bonus(-bonus);
-    target->add_saving_bonus("all",-bonus);
+    target->add_saving_bonus("all", -bonus);
 
-    target->set_property("spelled", ({TO}) ); //Makes the curse dispellable
+    target->set_property("spelled", ({me}) ); //Makes the curse dispellable
     addSpellToCaster();
     spell_successful();
-
 }
 
 void itch_itch()
@@ -78,12 +93,14 @@ void itch_itch()
         dest_effect();
         return;
     }
-    tell_object(target,"%^GREEN%^Unbearable itching distracts you.%^RESET%^");
-    call_out("itch_itch",ROUND_LENGTH*3);
+
+    tell_object(target, "%^GREEN%^Unbearable itching distracts you.%^RESET%^");
+    call_out("itch_itch", ROUND_LENGTH*3);
 }
 
-void dest_effect()
+int dest_effect()
 {
+    object me;
     int i;
 
     remove_call_out("itch_itch");
@@ -91,12 +108,19 @@ void dest_effect()
     {
         tell_object(target, "%^GREEN%^Annoying itch finally fades.%^RESET%^");
         target->remove_property("itching_curse");
-        target->remove_property_value("spelled", ({TO}) );
-        for(i=0;i<sizeof(CORE_SKILLS);i++)
+        target->remove_property_value("spelled", ({me}) );
+
+        for(i = 0; i < sizeof(CORE_SKILLS); ++i)
             target->add_skill_bonus(CORE_SKILLS[i],bonus);
+
         target->add_attack_bonus(bonus);
-        target->add_saving_bonus("all",bonus);
+        target->add_saving_bonus("all", bonus);
     }
+
     ::dest_effect();
-    if(objectp(TO)) TO->remove();
+
+    if(objectp(me = this_object()))
+        me->remove();
+
+    return 1;
 }

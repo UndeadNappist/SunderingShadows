@@ -172,7 +172,7 @@ void discharge_weapon(){
         attackers = katerina->query_attackers();
         damage = roll_dice(powerlevel * psize * 2, 10);
         for( i = 0; i < (powerlevel * psize); i++){
-            if(i > sizeof(attackers)) continue;
+            if(sizeof(attackers) <= i) continue;
             if(!objectp(attackers[i])) continue;
             target = attackers[i];
             if(!objectp(target)) continue;

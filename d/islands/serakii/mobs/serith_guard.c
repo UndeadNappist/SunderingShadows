@@ -181,8 +181,7 @@ void doHeight()
     feet = height / 12;
     halves = "";
     if (height % 12) {
-        halves = (height % 12 < 4) ? "" : ((height % 12 < 9) ? " and a
-half" : "");
+        halves = (height % 12 < 4) ? "" : ((height % 12 < 9) ? " and a half" : "");
         if (height % 12 > 8) {
             height++;
         }
@@ -200,7 +199,7 @@ init()
 
 {
     ::init();
-  ob=(present("hound",ETO));
+  ob=(present("hound soldier",ETO));
   if(ob){ call_out("kill_hound",1,ob); } 
 }
 

@@ -51,41 +51,46 @@ int break_free(string str)
     return 1;
 }
 
-void handle_player_object(object ob)
+int handle_player_object(object ob)
 {
+    object me = this_object();
     string start;
-    if (!objectp(TO)) {
-        return;
-    }
-    if (!objectp(ob) || !userp(ob)) {
-        return;
-    }
-    if (PRISON_D->is_imprisoned(ob->query_true_name())) {
+
+    if (!objectp(me))
+        return 0;
+
+    if (!objectp(ob) || !userp(ob))
+        return 0;
+
+    if (PRISON_D->is_imprisoned(ob->query_true_name()))
+    {
         ob->move_player(JAIL);
-        return;
+        return 1;
     }
+
     ob->set_property("voided", 1);
-    if (stringp(start == ob->getenv("start"))) {
+
+    if (stringp(start == ob->getenv("start")))
+    {
         ob->move_player(start);
-        return;
-    }else {
-        ob->move_player("/d/shadow/room/forest/road30");
-        return;
+        return 1;
     }
-    return;
+
+    ob->move_player("/d/shadow/room/forest/road30");
+    return 1;
 }
 
-void clean_inventory()
+int clean_inventory()
 {
-    object * players, *targets;
-    object ob;
+    object *players, *targets;
+    object me = this_object(), ob;
     object trash;
 
-    if (!objectp(TO)) {
-        return;
-    }
+    if (!objectp(me))
+        return 0;
     
-    players = filter_array(all_inventory(TO), (:userp($1):));
+    players = filter_array(all_inventory(me), (:userp($1):));
+
     if (sizeof(players))
     {
         foreach(ob in players)
@@ -93,7 +98,7 @@ void clean_inventory()
     }
     
     trash = load_object("/d/shadowgate/trash");
-    targets = deep_inventory(this_object());
+    targets = deep_inventory(me);
     
     if(sizeof(targets) > 100)
         targets = targets[0..99];
@@ -103,46 +108,49 @@ void clean_inventory()
         if(eval_cost() < 25000)
             continue;
                 
-        if (!objectp(ob)) {
+        if (!objectp(ob))
             continue;
-        }
         
-        if (userp(ob)) {
+        if (userp(ob))
+        {
             handle_player_object(ob);
             continue;
         }
         
-        if(objectp(trash))
+        if (objectp(trash))
         {
             ob->move(trash);
         }
         else
         {
-            if(catch(ob->remove()))
+            if (catch(ob->remove()))
                 destruct(ob);
         }   
     }
     
     sizeof(targets) && objectp(trash) && destruct(trash);
     
-    return;
+    return 1;
 }
 
-void check_my_inventory()
+int check_my_inventory()
 {
+    object me = this_object();
     mixed error;
     
-    if (!objectp(TO)) {
-        return;
-    }
-    if (clonep(TO)) {
+    if (!objectp(me))
+        return 0;
+
+    if (clonep(me))
+    {
         clean_inventory();
         reclaim_objects();
-        TO->remove();
-        return;
+        me->remove();
+        return 1;
     }
+
     error = catch(clean_inventory());
     reclaim_objects();
     call_out("check_my_inventory", 10);
-    return;
+    return 1;
 }

@@ -20,7 +20,8 @@ void damage();
 void create() {
     ::create();
     set_spell_name("frozen breath");
-    set_spell_level(([ "cleric" : 5 ]));
+    set_spell_level(([ "cleric" : 5, "druid" : 5 ]));
+    set_circle("winter");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS frozen breath on TARGET");
     set_description("This spell will call forth a breath of ice to chill your foes.  It can be used in two ways - when "

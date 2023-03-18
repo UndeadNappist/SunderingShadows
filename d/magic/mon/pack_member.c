@@ -67,55 +67,56 @@ void init()
 
 void heart_beat()
 {
-
-    object *attackers,
-           room;
+    object *attackers, me = this_object(), my_environment;
            
     ::heart_beat();
-    
-    room = environment(this_object());
+
+    if (!objectp(me))
+        return;
+
+    my_environment = environment(me);
     
     if(!objectp(owner))
     {
-        this_object()->remove();
-        destruct(this_object());
+        me->remove();
+        destruct(me);
         return;
     }
     
     //Faithful companion finds his master
-    if(objectp(owner) && room != environment(owner))
+    if(objectp(owner) && my_environment != environment(owner))
     {
-        this_object()->move(environment(owner));
-        owner->add_follower(this_object());
+        me->move(environment(owner));
+        owner->add_follower(me);
     }
     
     //Companion hides if master is hiding
-    if(!this_object()->query_invis())
+    if(!me->query_invis())
     {
         if(owner->query_hidden() || owner->query_invis())
         {
-            this_object()->set_invis(1);
+            me->set_invis(1);
             tell_object(owner, "Your animal companion fades into the shadows.");
         }
     }
     else
     {
         if(!owner->query_hidden() && !owner->query_invis())
-            this_object()->set_invis(0);
+            me->set_invis(0);
     }
     
     attackers = owner->query_attackers();
     
-    this_object()->add_damage_bonus(-bonus);
-    this_object()->add_attack_bonus(-bonus);
+    me->add_damage_bonus(-bonus);
+    me->add_attack_bonus(-bonus);
     
     if(sizeof(attackers))
     {
         foreach(object ob in attackers)
-            this_object()->kill_ob(ob);
+            me->kill_ob(ob);
             
         if(FEATS_D->usable_feat(owner, "hunters bond") &&
-        owner->is_favored_enemy(this_object()->query_current_attacker()))
+        owner->is_favored_enemy(me->query_current_attacker()))
         {
             bonus = 2 + (FEATS_D->usable_feat(owner, "second favored enemy") * 2) + (FEATS_D->usable_feat(owner, "third favored enemy") * 2);
         }
@@ -128,11 +129,11 @@ void heart_beat()
         bonus = 0;
     }
     
-    if(query_hp() < query_max_hp() / 2 && present("vial", this_object()))
+    if(query_hp() < query_max_hp() / 2 && present("vial", me))
         command("drink vial");
     
-    this_object()->add_damage_bonus(bonus);
-    this_object()->add_attack_bonus(bonus);
+    me->add_damage_bonus(bonus);
+    me->add_attack_bonus(bonus);
 }
 
 void special_attack(object target)

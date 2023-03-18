@@ -116,7 +116,8 @@ int remove(){
     object *inv;
     int i;
 
-    if (!objectp(this_object())) return 1;
+    if (!this_object() || !objectp(this_object())) return 0;
+    
     env = environment(this_object());
     if (env) {
         env->add_encumbrance(-1*query_weight());
@@ -138,7 +139,9 @@ int remove(){
     //This is to catch any lingering (temporary) added shorts
     strip_temp_values();
     
-    destruct(this_object());
+    if(catch(destruct(this_object())))
+        return 0;
+    
     return 1;
 }
 

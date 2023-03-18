@@ -11,6 +11,7 @@
 inherit WEAPONLESS;
 
 object owner;
+string minion_type;
 int follow;
 
 object set_owner(object ob) { owner = ob; return owner;  }
@@ -22,7 +23,7 @@ void create()
     ::create();
     
     set_name("minion");
-    set_id( ({ "minion" }) );
+    set_id( ({ "minion", "summoned monster" }) );
     set_short("A generic minion");
     set_hd(1, 1);
     set_hp(10);
@@ -37,23 +38,31 @@ void create()
 
 void heart_beat()
 {
-    object room;
+    object me = this_object(), my_environment, owners_environment;
     
     ::heart_beat();
     
-    if(!objectp(owner))
+    if (!objectp(owner))
         return;
-    
-    room = environment(this_object());
-    
-    if(!objectp(room))
+
+    if (!objectp(owners_environment = environment(owner)))
         return;
-    
-    if(follow && room != environment(owner))
+
+    if (!objectp(me))
+        return;
+
+    if (!objectp(my_environment = environment(me)))
+        return;
+
+    if (follow && my_environment != owners_environment)
     {
-        this_object()->move(environment(owner));
-        owner->add_follower(this_object());
+        me->move(owners_environment);
+        owner->add_follower(me);
+        owner->add_protector(me);
     }
+    
+    if(minion_type == "greater" && query_hp() < query_max_hp())
+        add_hp(query_max_hp() / 100);
 }       
 
 int setup_minon(int clevel, spell_level, string type)
@@ -69,6 +78,7 @@ int setup_minon(int clevel, spell_level, string type)
     remove_property("swarm");
     set_mlevel("fighter", clevel);
     set_guild_level("fighter", clevel);
+    minion_type = type;
     
     switch(type)
     {
@@ -78,13 +88,17 @@ int setup_minon(int clevel, spell_level, string type)
         break;
         case "standard":
         set_hd(clevel, spell_level);
+        set_overall_ac(-clevel);
+        set_resistance_percent("negative energy", 100);
+        set_resistance_percent("positive_energy", 100);
         break;
         case "greater":
         set_hd(clevel, spell_level);
-        set_max_hp(clevel * 100);
+        set_max_hp(50 + clevel * (20 + spell_level));
         set_static_bab(clevel);
         set_property("effective enchantment", clevel / 7 + 1);
         set_attacks_num(clevel / 13 + 1);
+        set_overall_ac(-clevel);
         break;
     }
     
@@ -95,6 +109,7 @@ int setup_minon(int clevel, spell_level, string type)
         owner->add_follower(this_object());
         owner->add_protector(this_object());
         set_property("minion", owner);
+        set_follow(1);
     }
     
     return 1;

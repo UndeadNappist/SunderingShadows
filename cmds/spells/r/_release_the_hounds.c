@@ -48,11 +48,12 @@ void spell_effect(){
         hound->set_property("spell_creature", this_object());
         hound->set_property("spell", this_object());
         hound->set_property("minion", caster);
-        hound->set_max_hp(clevel * 10 + 30);
-        hound->set_hp(hound->query_max_hp());
-        hound->set_overall_ac(-clevel);
+        //hound->set_max_hp(clevel * 10 + 30);
+        //hound->set_hp(hound->query_max_hp());
+        //hound->set_overall_ac(-clevel);
         hound->set_exp(0);
         hound->set_owner(caster);
+        hound->setup_minion(clevel, spell_level, "standard");
         hound->add_id(caster->query_name()+"_hound");
         hound->set_resistance_percent("negative energy", 100);
         hound->set_resistance_percent("positive energy", 100);

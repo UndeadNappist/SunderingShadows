@@ -1,6 +1,5 @@
 #include <std.h>
 
-#include "../serakii.h"
 inherit MONSTER;
 
 void go_home(object to);
@@ -51,55 +50,55 @@ void init() {
     add_action("free_fun","free");
 }
 
-
-
-int free_fun(string str) {
-    if(!str) { return 0; }
-
-    if( (str == "captive") || (str == "prisoner") || 
-(str == "slave") ) {
-
-
-        tell_object(TP,"%^RESET%^%^ORANGE%^You unbind the person chained to the stake in the beach...%^RESET%^");
-        tell_room(ETO,"%^RESET%^RED%^\nAs they are unbound, they cough \n%^RESET%^");
-
-    switch(random(5)){
-        case 0:   
-            force_me("say Thank you.. Thank you..\n"); 
-            force_me("say I was captured by pirates, they brought us here..\n");
-            go_home(TO);
-        break;
-        
-        case 1:
-            force_me("say Kismet be praised.\n"); 
-            force_me("say They took more of us through that archway to the north..\n");
-            go_home(TO);
-        break;
-
-        case 2:
-            force_me("say They powered the gate with something..\n"); 
-            force_me("say Then they marched mounted troops through. I wonder where the archway leads?\n");
-            go_home(TO);    
-        break;
-
-        default:
-            force_me("emote groans, unable to speak...");
-            go_home(TO);
-        break;
-
-
-        return 1;
-    }
-}
-}
-
-    void go_home(object to)
+int free_fun(string str)
 {
-    if (!objectp(to)) {
-        return;
+    object me = this_object();
+
+    if (!objectp(me))
+        return 0;
+
+    if (!stringp(str) || !(str == "captive" || str == "prisoner" || str == "slave"))
+        return 0;
+
+    tell_object(TP,"%^RESET%^%^ORANGE%^You unbind the person chained to the stake in the beach...%^RESET%^");
+    tell_room(ETO,"%^RESET%^RED%^\nAs they are unbound, they cough \n%^RESET%^");
+
+    switch(random(5))
+    {
+    case 0:
+        force_me("say Thank you.. Thank you..\n");
+        force_me("say I was captured by pirates, they brought us here..\n");
+    break;
+        
+    case 1:
+        force_me("say Kismet be praised.\n");
+        force_me("say They took more of us through that archway to the north..\n");
+    break;
+
+    case 2:
+        force_me("say They powered the gate with something..\n");
+        force_me("say Then they marched mounted troops through. I wonder where the archway leads?\n");
+    break;
+
+    default:
+        force_me("emote groans, unable to speak...");
+    break;
     }
-    tell_room(ETO,"%^RESET%^RED%^\nThe now freed prisoner runs down the beach to safety...\n%^RESET%^");
-    to->move("/d/shadowgate/void");
-    //to->remove();
+
+    return go_home(me);
+}
+
+int go_home(object to)
+{
+    object my_environment;
+
+    if (!objectp(to))
+        return 0;
+
+    if (objectp(my_environment = environment(to)))
+        tell_room(my_environment, "%^RESET%^RED%^\nThe now freed prisoner runs down the beach to safety...\n%^RESET%^");
+
+    to->remove();
+
     return 1;
 }

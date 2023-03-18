@@ -11,7 +11,7 @@
  "khyron" :   ({ "fire", "destruction", "suffering", "chaos", }) , \
  "kismet" :   ({ "knowledge", "magic", "protection", "fate"}) , \
  "kreysneothosies" : ({ "protection", "war", "law", "good", }) , \
- "lord shadow" : ({ "cold", "darkness", "evil", "law", }) , \
+ "lord shadow" : ({ "cold", "darkness", "evil", "law", "suffering" }) , \
  "lysara" :   ({ "travel", "fate", "repose", "moon" }) , \
  "nilith" :  ({ "destruction", "undeath", "chaos", "evil", }), \
  "nimnavanon" : ({ "renewal", "plant", "animal", "earth", }) , \

@@ -29,10 +29,17 @@ void create(){
     set_save("reflex");
     versatile();
     splash_spell(1);
+    set_immunities(({"fire"}));
 }
 
 string query_cast_string(){
-   return "%^RESET%^%^CRST%^%^C178%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C178%^ fans out "+caster->query_possessive()+" hands and begins to chant.%^CRST%^";
+    element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
+    return "%^RESET%^%^CRST%^%^C178%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C178%^ fans out "+caster->query_possessive()+" hands and begins to chant.%^CRST%^";
 }
 
 void spell_effect(int prof){
@@ -74,7 +81,6 @@ void spell_effect(int prof){
     
     targetname = target->query_cap_name();
     castername = caster->query_cap_name();
-    element = (string)caster->query("elementalist");
     switch(element){
         case "acid":
             tell_object(target, "%^RESET%^%^CRST%^%^C064%^"+castername+"%^RESET%^%^CRST%^%^C064%^ aims a %^C046%^spray %^RESET%^%^C064%^of %^C190%^corrosive %^C077%^a%^C071%^c%^C070%^i%^C076%^d %^RESET%^%^C064%^at you!%^CRST%^");

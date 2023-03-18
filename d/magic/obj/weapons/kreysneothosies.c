@@ -9,7 +9,7 @@ void create(){
    "%^BOLD%^g%^CYAN%^h%^ORANGE%^te%^CYAN%^o%^RESET%^%^ORANGE%^u%^BOLD%^s"+
    " Vi%^RESET%^%^ORANGE%^n%^BOLD%^%^CYAN%^d%^ORANGE%^i%^RESET%^%^ORANGE%^c"+
    "%^BOLD%^%^CYAN%^a%^ORANGE%^t%^RESET%^%^ORANGE%^i%^BOLD%^on%^RESET%^");
-   set_short("%^YELLOW%^A %^RED%^w%^ORANGE%^ick%^RED%^e%^ORANGE%^d, "+
+   set_short("%^YELLOW%^A %^RED%^w%^ORANGE%^ick%^RED%^e%^ORANGE%^d "+
    "%^RESET%^%^ORANGE%^g%^BOLD%^o%^RESET%^%^ORANGE%^l%^BOLD%^d%^RESET%^%^ORANGE%^e%^BOLD%^n "+
    "%^CYAN%^kh%^ORANGE%^o%^RESET%^%^ORANGE%^p%^BOLD%^e%^CYAN%^s%^ORANGE%^h%^RESET%^");
    set_id(({"khopesh","sword","weapon","vindication","righteous"+

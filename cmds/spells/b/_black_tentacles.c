@@ -14,21 +14,14 @@ void create()
     ::create();
     set_author("nienne");
     set_spell_name("black tentacles");
-    set_spell_level(([ "mage" : 4, "warlock" : 3, "magus" : 4, "cleric" : 4, "druid" : 6 ]));
+    set_spell_level(([ "mage" : 4, "warlock" : 3, "magus" : 4, "cleric" : 4 ]));
     set_domains("nightmare");
     set_spell_sphere("conjuration_summoning");
     set_syntax("cast CLASS black tentacles");
-    set_description("This spell summons up a mass of writhing black " +
-                    "tentacles from the earth at your feet. These will " +
-                    "ensnare anything nearby to slow their escape, and attempt to " +
-                    "knock them from their feet.");
+    set_description("This spell summons up a mass of writhing black tentacles from the earth at your feet. These will ensnare anything nearby to slow their escape, and attempt to knock them from their feet.");
     set_verbal_comp();
     set_somatic_comp();
     splash_spell(3);
-    // school specific mage spell
-    set_components(([
-                        "mage" : ([ "carbon" : 1, ]),
-                        ]));
     set_feats_required(([ "warlock" : "tome of ancient secrets"]));
 }
 
@@ -112,6 +105,7 @@ void spell_effect(int prof)
             inven[i]->set_tripped(1, "%^RESET%^%^C241%^You're regaining your %^RESET%^%^C049%^b%^C050%^a%^C051%^l%^C123%^a%^C051%^n%^C050%^c%^C049%^e%^RESET%^%^C241%^!%^CRST%^", 1);
             continue;
         }
+        
     }
 
     addSpellToCaster();

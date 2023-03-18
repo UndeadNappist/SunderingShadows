@@ -27,14 +27,14 @@ void create()
     set_domains(({ "good" }));
     set_syntax("cast CLASS holy phoenix");
     set_description("With this ability, the cleric sends a fervent prayer to their deity "
-					"sacrificing themselves for the lives of their friends and to the bane of "
-					"there enemies. Such a sacrifice always looks favorable by the gods.");
+                    "sacrificing themselves for the lives of their friends and to the bane of "
+                    "there enemies. Such a sacrifice always looks favorable by the gods.");
     set_arg_needed();
-	set_damage_desc("divine");
+    set_damage_desc("divine");
     set_verbal_comp();
     set_somatic_comp();
-	splash_spell(3);
-	set_save("reflex");
+    splash_spell(3);
+    set_save("reflex");
 }
 
 string query_cast_string(){
@@ -60,15 +60,20 @@ int preSpell()
 void spell_effect(int prof)
 {
     object peep;
+
     victims = target_selector();
 
-    if (!sizeof(victims)) {
-        tell_object(caster,"%^BOLD%^%^GREEN%^Your spell fails to connect to anyone.");
+    if (!sizeof(victims))
+    {
+        tell_object(caster, "%^BOLD%^%^GREEN%^Your spell fails to connect to anyone.");
         dest_effect();
     }
 
     foreach(peep in victims)
     {
+        if (!objectp(peep))
+            continue;
+
         tell_object(peep, "%^C195%^Bright %^C190%^light %^C195%^hits you, starting to %^C088%^burn %^C195%^your skin!%^RESET%^");
         tell_room(place, "%^C195%^" + peep->QCN + "'s eyes flinches as the %^C190%^bright light %^C195%^begins to cover them!%^RESET%^", peep);
 
@@ -87,26 +92,33 @@ void spell_effect(int prof)
 
 void second_hit()
 {
-    object peep;
+    object peep, peep_environment;
+
     define_base_damage(0);
 
     foreach(peep in victims)
     {
+        if (!objectp(peep))
+            continue;
+
+        if (!objectp(peep_environment = environment(peep)))
+            continue;
+
         tell_object(peep, "%^C195%^Another surge of %^C190%^light %^C195%^bursts from" +caster->QCN+ "%^C202%^striking %^C195%^you with greater intensity!%^RESET%^");
-        tell_object(environment(peep), "%^C195%^" + peep->QCN + " trembles violently as the %^C190%^light continues to blast into " + peep->QP + " body.", peep);
-        if (!do_save(peep)) {
-            //damage_targ(peep, peep->return_peep_limb(), sdamage *1.5, "divine");
+        tell_object(peep_environment, "%^C195%^" + peep->QCN + " trembles violently as the %^C190%^light continues to blast into " + peep->QP + " body.", peep);
+
+        if (!do_save(peep))
             peep->cause_typed_damage(peep, "torso", sdamage, "divine");
-        } else {
+        else
+        {
             tell_object(peep, "%^C109%^You steel yourself and shrug off the worst of the pain.%^RESET%^");
-            //damage_targ(peep, peep->return_target_limb(), sdamage *.75, "divine");
             peep->cause_typed_damage(peep, "torso", sdamage / 2, "divine");
         }
     }
 
-    if (!sizeof(victims)) {
+    if (!arrayp(victims) || !sizeof(victims))
         dest_effect();
-    }
+
     caster->set_paralyzed(30, "%^C195%^Your body feels %^C088%^burning hot %^C195%^as if the %^C142%^energy %^C195%^is trying to escape! You are about to %^C124%^explode%^C195%^!");
     call_out("last_hit", 15);
 }
@@ -203,9 +215,3 @@ void dest_effect() {
     if(objectp(TO)) TO->remove();
     return;
 }
-
-
-	
-	
-	
-	
