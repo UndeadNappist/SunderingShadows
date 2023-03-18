@@ -1,0 +1,14 @@
+%^BOLD%^%^GREEN%^CIRCLES%^RESET%^
+
+Druids gain their powers from the natural forces of the world, and likewise tend to and support those forces whenever possible. Druids organize themselves into conclaves or Circles, dedicated to a specific aspect of nature.
+
+%^ORANGE%^%^ULINE%^Druidic Circles currently available:%^RESET%^
+
+ * %^GREEN%^Circle of Winter
+ * %^GREEN%^Circle of Wildfire
+ * %^GREEN%^Circle of Pestilence
+ * %^GREEN%^Circle of the Claw
+
+Each circle has an individual help file. For example: %^ORANGE%^<help circle of wildfire>%^RESET%^.
+
+%^CYAN%^See also:%^RESET%^ druid, *circles, individual circle files
