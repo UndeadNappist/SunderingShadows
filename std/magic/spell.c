@@ -3803,7 +3803,7 @@ varargs int do_save(object targ, int mod, int get_dc)
         if (member_array(caster->query_alignment(), targ->query_property("protection_from_alignment")) != -1)
             DC -= 2;
     }
-    if(targ->is_class("cleric") && member_array("balance", targ->query_divine_domains()) >= 0)
+    if(targ->is_class("cleric") && member_array("balance", targ->query_divine_domain()) >= 0)
         DC -= 2;
 
     if (FEATS_D->usable_feat(targ, "disruptive"))
