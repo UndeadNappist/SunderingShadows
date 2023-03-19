@@ -6,7 +6,7 @@
 %^RESET%^%^CYAN%^Saving throws:%^RESET%^ fort/will strong, reflex weak
 %^RESET%^%^CYAN%^Class Skills:%^RESET%^ endurance, healing, perception, survival
 %^RESET%^%^CYAN%^Class Feats:%^RESET%^
- %^RESET%^L1: light armor proficiency, medium armor proficiency, shield proficiency, simple weapon proficiency, spell focus, divine domain, animal companion
+ %^RESET%^L1: light armor proficiency, medium armor proficiency, shield proficiency, simple weapon proficiency, spell focus, druid circle, animal companion
  %^RESET%^L3: tracklessstep
  %^RESET%^L4: shapeshift
  %^RESET%^L5: nature sense
@@ -28,6 +28,8 @@ Druids prepare individual spells with the %^ORANGE%^<prepare>%^RESET%^ command f
 
 Druids also get the following cantrips (type 'recall cantrip spells'):
 Create Water, Detect Magic, Detect Poison, Guidance, Resistance, Light, Mending
+
+Druids live and operate in various conclaves, called druid circles, each dedicated to a certain set of ideals. Druids may choose from the following druid circles: %^ORANGE%^Circle of the Claw, Circle of Pestilence, Circle of Wildfire, and Circle of Winter.%^RESET%^
 
 They can cast in any armor they can wear, but not while wielding anything. 
 
