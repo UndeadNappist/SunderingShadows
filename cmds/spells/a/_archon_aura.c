@@ -1,5 +1,5 @@
 /*
-  _archons_aura.c
+  _archon_aura.c
 
   Non-evil version of oppression.
 
@@ -21,11 +21,11 @@ void create()
 {
     ::create();
     set_author("tlaloc");
-    set_spell_name("archons aura");
+    set_spell_name("archon aura");
     set_spell_sphere("enchantment_charm");
     set_spell_level( ([ "cleric" : 4, "paladin" : 3, "inquisitor" : 4 ]) );
     set_domains("glory");
-    set_syntax("cast CLASS archons aura");
+    set_syntax("cast CLASS archon aura");
     set_damage_desc("Shaken on attackers on failed save.");
     set_description("This spell surrounds the caster in a majestic aura of justice, causing enemies caught in the aura to be shaken unless they make a will saving throw. This aura will attempt to apply the shaken effect every round until the will save is made, then will no longer affect that target for the duration of combat.");
     traveling_spell(1);
