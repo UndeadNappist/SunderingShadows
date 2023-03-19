@@ -2867,29 +2867,40 @@ void reset_all_status_effects()
 {
     object* myFeats;
     int x;
-    POISON_D->ClearAllPoisons(TO);
-    TO->set_bound(0, 0);
-    TO->set_blind(0);
-    TO->set_blindfolded(0);
-    TO->set_temporary_blinded(0);
-    TO->set_tripped(0, 0);
-    TO->set_unconscious(0, 0);
-    TO->set_gagged(0, 0);
-    TO->set_asleep(0, 0);
-    TO->remove_paralyzed();
-    TO->remove_all_disable();
-    myFeats = (object*)TO->query_property("active_feats");
-    if (pointerp(myFeats)) {
-        for (x = 0; x < sizeof(myFeats); x++) {
-            if (objectp(myFeats[x])) {
+
+    if (!objectp(this_object()))
+        return;
+
+    POISON_D->ClearAllPoisons(this_object());
+
+    set_bound(0, 0);
+    set_blind(0);
+    set_blindfolded(0);
+    set_temporary_blinded(0);
+    set_tripped(0, 0);
+    set_unconscious(0, 0);
+    set_gagged(0, 0);
+    set_asleep(0, 0);
+    remove_paralyzed();
+    remove_all_disable();
+
+    myFeats = (object*)query_property("active_feats");
+
+    if (pointerp(myFeats))
+    {
+        for (x = 0; x < sizeof(myFeats); ++x)
+        {
+            if (objectp(myFeats[x]))
                 myFeats[x]->dest_effect();
-            }
+
             continue;
         }
     }
-    if (TO->query_invis()) {
-        TO->set_magic_hidden(0);
-        TO->set_invis();
+
+    if (query_invis())
+    {
+        set_magic_hidden(0);
+        set_invis();
     }
 }
 
