@@ -220,8 +220,8 @@ void check_me()
         //such as chill touch on a player and the mob dies,
         //spell should not get removed if the target is still valid - Saide
         if (query_target_required() && !objectp(target)) {
-            if (objectp(this_object())) {
-                remove();
+            if (objectp(TO)) {
+                TO->remove();
             }
             return;
         }
@@ -231,7 +231,7 @@ void check_me()
     //later don't require the target to still be alive up - Saide
     /*if(query_target_required() && !objectp(target))
        {
-        if(objectp(this_object())) { remove(); }
+        if(objectp(TO)) { TO->remove(); }
        }*/
     call_out("check_me", 5);
 }
@@ -650,7 +650,7 @@ void startCasting()
     if(FEATS_D->usable_feat(this_player(), "resilient arcana"))
         roll += roll_dice(2, 8);
 
-    displaystring = query_cast_string() + "\n";
+    displaystring = TO->query_cast_string() + "\n";
 
     if (displaystring == "display\n") {
         displayflag = 1;
@@ -779,7 +779,7 @@ int check_reflection()
         return 0;
     }
 
-    if ((int)query_helpful()) {
+    if ((int)TO->query_helpful()) {
         return 0;
     }
 
@@ -1807,7 +1807,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
         if(!pointerp(deep) || !sizeof(deep) || member_array(spell_name, deep) < 0)
         {
             tell_object(caster, "You have no deep magic named " + spell_name + ".");
-            remove();
+            this_object()->remove();
             return;
         }
 
@@ -1825,7 +1825,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
         if(!sizeof(cantrips) || member_array(spell_name, cantrips) < 0)
         {
             tell_object(caster, "You have no cantrips named " + spell_name + ".");
-            remove();
+            this_object()->remove();
             return;
         }
 
@@ -1954,7 +1954,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     }
 
     if(has_bonus_type()) {
-        remove();
+        this_object()->remove();
         return;
     }
 
@@ -2304,20 +2304,20 @@ void check_fizzle(object ob)
     hasBeenCast = 1;
 
     if (!caster || !objectp(caster)) {
-        remove();
+        TO->remove();
         return;
     }
     caster->set_casting(0);
-    if ((object)caster->query_property("spell_casting") == this_object()) {
+    if ((object)caster->query_property("spell_casting") == TO) {
         caster->remove_property("spell_casting");
     }
     if (objectp(place)) {
-        place->remove_combatant(this_object());
+        place->remove_combatant(TO);
     }
 
     if (target_required && !target) {
         caster->removeAdminBlock();
-        remove();
+        TO->remove();
         return;
     }
 
@@ -2330,7 +2330,7 @@ void check_fizzle(object ob)
         caster->remove_property("enlarge spell");
         tell_object(caster, "%^CYAN%^Your spell is countered and fails to materialize!");
         tell_room(place, "%^CYAN%^" + caster->query_cap_name() + " gasps as " + caster->query_possessive() + " spell fails to materialize!", caster);
-        remove();
+        this_object()->remove();
         return;
     }
 
@@ -2338,7 +2338,7 @@ void check_fizzle(object ob)
     {
         sendDisbursedMessage(target);
         caster->removeAdminBlock();
-        remove();
+        this_object()->remove();
         return;
     }
 
@@ -2346,19 +2346,19 @@ void check_fizzle(object ob)
         tell_object(caster, "%^CYAN%^Your " + whatsit + " disperses being cast in a no magic field.");
         tell_room(place, "%^CYAN%^" + caster->QCN + "'s " + whatsit + " fizzles harmlessly.");
         caster->removeAdminBlock();
-        remove();
+        TO->remove();
         return;
     }
 
-    prof = calculate_prof_state();
+    prof = TO->calculate_prof_state();
 
     caster->removeAdminBlock();
     if (prof >= FULL_EFFECT) {
-        objectp(this_object()) && spell_effect(prof);
+        objectp(this_object()) && TO->spell_effect(prof);
     } else if (prof < random(100)) {
-        do_spell_blowup(prof);
+        TO->do_spell_blowup(prof);
     } else {
-        spell_effect(prof);
+        TO->spell_effect(prof);
     }
 
     if (objectp(caster)) {
@@ -2374,7 +2374,7 @@ int calculate_prof_state()
 
 void do_spell_blowup(int prof)
 {
-    MAGIC_D->spell_failure(this_object(), prof);
+    MAGIC_D->spell_failure(TO, prof);
 }
 
 void spell_successful() //revoked exp bonuses from casting. This function seems redundant now? Nienne, 06/10.
@@ -2382,7 +2382,7 @@ void spell_successful() //revoked exp bonuses from casting. This function seems 
     int stat;
     string *buffs;
 
-    if (!objectp(this_object()) || !objectp(caster)) {
+    if (!objectp(TO) || !objectp(caster)) {
         return;
     }
     remove_reflection_effects(original_caster, original_target);
@@ -2456,8 +2456,8 @@ void before_cast_dest_effect()
     
     objectp(caster) && summon_spell && caster->remove_property("summon spell");
     
-    if (objectp(this_object())) {
-        remove();
+    if (objectp(TO)) {
+        TO->remove();
     }
     return;
 }
@@ -2494,7 +2494,7 @@ void dest_effect()
 
 int remove()
 {
-    if (!objectp(this_object())) {
+    if (!objectp(TO)) {
         return 1;
     }
     if (query_aoe_spell() &&
@@ -2628,9 +2628,9 @@ varargs int do_spell_damage(object victim, string hit_limb, int wound, string da
             spell_kill(victim, caster);
             victim->add_attacker(caster);
         }else {
-            victim->add_attacker(this_object());
+            victim->add_attacker(TO);
             victim->check_death();
-            victim->remove_attacker(this_object());
+            victim->remove_attacker(TO);
         }
         victim->set_toattack(1);
     }
@@ -3184,7 +3184,7 @@ void spell_effect(int prof)
 void death_check(object fool)
 {
     if (!fool) {
-        dest_effect();
+        TO->dest_effect();
     }
 }
 
@@ -3329,8 +3329,8 @@ void removeSpellFromCaster()
     }else {
         spells = caster->query_property("dispellable spells");
     }
-    if (member_array(this_object(), spells) != -1) {
-        spells -= ({ this_object() });
+    if (member_array(TO, spells) != -1) {
+        spells -= ({ TO });
         spells -= ({ 0 });
         caster->remove_property("dispellable spells");
         caster->set_property("dispellable spells", spells);
@@ -3350,7 +3350,7 @@ void addSpellToCaster()
     } else {
         spells = caster->query_property("dispellable spells");
     }
-    spells += ({ this_object() });
+    spells += ({ TO });
     caster->remove_property("dispellable spells");
     caster->set_property("dispellable spells", spells);
 }
@@ -3368,7 +3368,7 @@ void addSpellToTarget()
     } else {
         spells = target->query_property("dispellable spells");
     }
-    spells += ({ this_object() });
+    spells += ({ TO });
     target->remove_property("dispellable spells");
     target->set_property("dispellable spells", spells);
 }
@@ -3387,7 +3387,7 @@ int preload_interface(int arg_reg_num, object arg_target, string arg_cname, int 
 {
     clevel = arg_clevel;
     reg_num = arg_reg_num;
-    arg_target->set_property("spelled", ({ this_object() }));
+    arg_target->set_property("spelled", ({ TO }));
     preloaded = 1;
     return 1;
 }
@@ -3978,7 +3978,7 @@ object* target_filter(object* targets)
     if (!query_helpful()) {
         if (FEATS_D->usable_feat(caster, "perfect caster") || FEATS_D->usable_feat(caster, "flawless control")) {
             if (sizeof(targets)) {
-                targets = filter_array(targets, "perfect_filter", this_object());
+                targets = filter_array(targets, "perfect_filter", TO);
             }
         }
 
@@ -4074,7 +4074,7 @@ object *target_selector()
         if(!sizeof(slctd))
         {
             tell_object(caster, "%^YELLOW%^All of your targets resisted your magic!%^RESET%^");
-            remove();
+            this_object()->remove();
             return ({  });
         }
     }
@@ -4255,7 +4255,7 @@ int evade_splash(object splashtarg)
     }
     worn = splashtarg->all_armour();
     worn = distinct_array(worn);
-    worn = filter_array(worn, "light_armor_filter", this_object());
+    worn = filter_array(worn, "light_armor_filter", TO);
 //allowing users of Evade Burst to avoid damage per spell and class abilities ~Circe~ 10/26/19
     if (sizeof(worn) && !splashtarg->query_property("evadeburst")) {
         return 0;                                                          //wearing something too heavy!
@@ -4283,7 +4283,7 @@ int stalwart_splash(object splashtarg)
     }
     worn = splashtarg->all_armour();
     worn = distinct_array(worn);
-    worn = filter_array(worn, "medium_armor_filter", this_object());
+    worn = filter_array(worn, "medium_armor_filter", TO);
 
     if (!do_save(splashtarg, evbonus)) {
         return 0;
@@ -4306,7 +4306,7 @@ int spell_in_combat_cycle(object room)
     combat_presence = map_array(values(room->query_lookAhead()),
                                 (: member_array($2,
                                                 map_array($1, (: $1[0] :))) != -1 :),
-                                this_object());
+                                TO);
     if (!arrayp(combat_presence)) {
         return 0;
     }
@@ -4478,7 +4478,7 @@ void help()
     {
         write("%^BOLD%^RED%^This spell has diminishing returns.%^RESET%^");
     }
-    if (is_curse()) {
+    if (TO->is_curse()) {
         write("%^BOLD%^%^RED%^This spell is a curse.");
     }
     if(versatile)

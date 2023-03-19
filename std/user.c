@@ -1010,7 +1010,6 @@ void remove()
   catch(destroy_autoload_obj());
   CHAT_D->remove_user();
   MULTI_D->quit(query_name());
-  catch(tsh_cleanup());
   weaponless_users::remove();
 }
 
