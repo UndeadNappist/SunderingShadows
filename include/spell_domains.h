@@ -12,11 +12,11 @@
  "kismet" :   ({ "knowledge", "magic", "protection", "fate"}) , \
  "kreysneothosies" : ({ "protection", "war", "law", "good", "strength" }) , \
  "lord shadow" : ({ "cold", "darkness", "evil", "law", "suffering" }) , \
- "lysara" :   ({ "travel", "fate", "repose", "moon" }) , \
+ "lysara" :   ({ "travel", "fate", "repose", "moon", "water" }) , \
  "nilith" :  ({ "destruction", "undeath", "chaos", "evil", "war" }), \
  "nimnavanon" : ({ "renewal", "plant", "animal", "earth" }) , \
- "seija" :   ({ "air", "cold", "fire", "earth", "balance" }) , \
- "the faceless one" : ({ "illusion", "madness", "darkness", "evil", }) , \
+ "seija" :   ({ "air", "water", "fire", "earth", "balance" }) , \
+ "the faceless one" : ({ "illusion", "madness", "darkness", "evil", "suffering" }) , \
  "ebolek" : ({ "plague", "evil", }), \
  "mephasm" : ({ "evil", "law", }), \
  "velik" : ({ "freedom", "chaos", }), \

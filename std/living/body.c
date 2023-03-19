@@ -878,7 +878,7 @@ int query_resistance(string res)
             break;
 
             case "cold":
-            if(member_array("cold", domains) >= 0)
+            if(member_array("cold", domains) >= 0 || member_array("water", domains) >= 0)
                 myres += TO->query_class_level("cleric");
             break;
 
