@@ -1,6 +1,4 @@
-#include "/d/dagger/tonovi/town/short.h"
-
-inherit MAIN;
+inherit CROOM;
 
 void create(){
     ::create();
