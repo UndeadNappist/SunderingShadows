@@ -25,6 +25,9 @@ varargs int do_save(object ob, int dc, string type, raw_save)
     string *classes,file;
     object rider;
     
+    if(!objectp(ob) || !stringp(type))
+        return;
+    
     saves = ({ 0, 0, 0 });
     save = 0;
     mod = 0;
