@@ -2,6 +2,7 @@
 // The Wailing Isle - Roaming Ship Captain's Quarters
 
 #include <std.h>
+#include <move.h>
 #include "../../defs.h"
 inherit VAULT;
 
@@ -94,7 +95,13 @@ int retrieve_fun(string str){
         tell_object(player, "%^RESET%^%^CRST%^%^C101%^You quickly grab the %^C144%^map%^C101%^, rolling it up and pocketing it.%^CRST%^");
         tell_room(room, "%^RESET%^%^CRST%^%^C101%^"+player->query_cap_name()+"%^RESET%^%^CRST%^%^C144%^ searches among the charts on the table, rolling up a %^C144%^map %^C101%^and pocketing it.%^CRST%^", player);
         map = new(OBJ"map");
-        map->move(player);
+        if((int)(map->move(player)) != MOVE_OK){
+            tell_room(room, "%^C101%^Lacking anywhere to fit, the map falls to the floor.%^CRST%^");
+            map->move(room);
+        }
+        else{
+            map->move(player);
+        }
         player->set("wailing isle quest", 10);
     }
     else{

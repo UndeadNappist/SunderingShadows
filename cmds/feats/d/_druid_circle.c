@@ -30,13 +30,14 @@ void create()
 %^BOLD%^You can select from the following druid circles:
 
 Claw
+Growth
 Pestilence
 Wildfire
 Winter%^RESET%^
 
 To start selection process type <druid_circle>.
 
-%^RED%^%^BOLD%^See also :%^RESET%^ circle of the claw, circle of pestilence, circle of winter, circle of wildfire");
+%^RED%^%^BOLD%^See also :%^RESET%^ circle of the claw, circle of pestilence, circle of winter, circle of wildfire, circle of wild growth");
     allow_tripped(1);
 }
 

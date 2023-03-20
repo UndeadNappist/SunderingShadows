@@ -2872,6 +2872,12 @@ void define_clevel()
         }
     }
     
+    if(spell_type == "druid")
+    {
+        if(caster->query("druid circle") == "grove" && !USER_D->is_valid_terrain(place->query_terrain(), "city"))
+            clevel += 1;
+    }
+    
     if(spell_type == "warlock" && FEATS_D->usable_feat(caster, "mystic arcana"))
         clevel += 2;
 
@@ -3726,6 +3732,12 @@ varargs int do_save(object targ, int mod, int get_dc)
         if(member_array("nightmare", caster->query_divine_domain()) >= 0 && spell_sphere == "illusion")
             DC += 1;
         if(member_array("hedonism", caster->query_divine_domain()) >= 0 && spell_sphere == "enchantment_charm" && caster->query_intox())
+            DC += 1;
+    }
+    
+    if(spell_type == "druid")
+    {
+        if(caster->query("druid circle") == "grove" && !USER_D->is_valid_terrain(place->query_terrain(), "city"))
             DC += 1;
     }
 
