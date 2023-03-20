@@ -2882,7 +2882,7 @@ void reset_all_status_effects()
     set_gagged(0, 0);
     set_asleep(0, 0);
     remove_paralyzed();
-    remove_all_disable();
+    this_object()->remove_all_disable();
 
     myFeats = (object*)query_property("active_feats");
 
