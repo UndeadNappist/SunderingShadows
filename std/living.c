@@ -745,7 +745,7 @@ nomask protected int cmd_hook(string cmd)
         }
     }
 
-    if (query_ghost() && !avatarp(this_object())) {
+    if (this_object()->query_ghost() && !avatarp(this_object())) {
         if (objectp(environment(this_object()))) {
             if (base_name(environment(this_object())) == DEATH_ROOM) {
                 return (int)call_other(file, "cmd_" + verb, cmd);
@@ -1437,7 +1437,7 @@ string query_long(string unused)
     string pre, stuff, extra, reg, short, sub, race, the_race, dis;
     int i, x, height, weight;
 
-    if (query_ghost()) {
+    if (this_object()->query_ghost()) {
         return "An ethereal presence.\n";
     }
 
@@ -1536,7 +1536,7 @@ string query_desc(string unused)
     int x, height, weight;
     object shape;
 
-    if (query_ghost()) {
+    if (this_object()->query_ghost()) {
         return "An ethereal presence.\n";
     }
     reg = "";
@@ -2716,7 +2716,7 @@ void post_exit_func()
 
 string query_tripped_message()
 {
-    if (query_max_internal_encumbrance() < query_internal_encumbrance() && !query_ghost()) {
+    if (query_max_internal_encumbrance() < query_internal_encumbrance() && !this_object()->query_ghost()) {
         return "%^RED%^You are over encumbered and cannot move!%^RESET%^";
     }
     return ::query_tripped_message();
@@ -2725,7 +2725,7 @@ string query_tripped_message()
 int query_tripped()
 {
     int i = ::query_tripped();
-    return i || (query_max_internal_encumbrance() < query_internal_encumbrance() && !query_ghost());
+    return i || (query_max_internal_encumbrance() < query_internal_encumbrance() && !this_object()->query_ghost());
 }
 
 void set_all_stats(int* all_stats)

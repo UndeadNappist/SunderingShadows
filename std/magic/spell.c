@@ -4478,9 +4478,9 @@ void help()
     {
         write("%^BOLD%^RED%^This spell has diminishing returns.%^RESET%^");
     }
-    //if (this_object()->is_curse()) {
-    //    write("%^BOLD%^%^RED%^This spell is a curse.");
-    //}
+    if (this_object()->is_curse()) {
+        write("%^BOLD%^%^RED%^This spell is a curse.");
+    }
     if(versatile)
     {
         write("%^BOLD%^RED%^This spell can be altered with master of elements.");
