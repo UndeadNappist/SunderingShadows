@@ -1232,6 +1232,9 @@ int cause_typed_damage(object targ, string limb, int damage, string type)
 {
     object attacker;
     int amt;
+    
+    if(!objectp(targ))
+        return 0;
 
     if (!objectp(attacker = targ->query_property("beingDamagedBy")))
     {
