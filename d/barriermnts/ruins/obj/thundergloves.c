@@ -143,7 +143,7 @@ int thunder_fun(string str)
     wearer->add_cooldown("Item -- Gloves o' Thunder", 86400);
 
     tell_object(wearer, "%^BLACK%^%^BOLD%^You clap your hands together, and a great peal of thunder shakes the area around you!%^RESET%^\n");
-    tell_room(wearers_environment,"%^BLACK%^%^BOLD%^"+wearer->query_cap_name()+" claps "+wearer->query_posessive()+" hands together, and a great peal of thunder shakes the area around you!%^RESET%^\n", wearer);
+    tell_room(wearers_environment,"%^BLACK%^%^BOLD%^"+wearer->query_cap_name()+" claps "+wearer->query_possessive()+" hands together, and a great peal of thunder shakes the area around you!%^RESET%^\n", wearer);
 
     for(i = 0; i < sizeof(pplz); ++i)
     {

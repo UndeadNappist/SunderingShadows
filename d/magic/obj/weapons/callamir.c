@@ -18,7 +18,7 @@ void create()
 "middle of a short sword is a dagger. The slender blade is made up of pure "+
 "arandur. The hilt is made of %^WHITE%^d%^GREEN%^l%^WHITE%^ar%^GREEN%^u%^WHITE%^n%^CYAN%^, "+
 "and is engraved with a running %^WHITE%^r%^RESET%^a%^BOLD%^bb%^RESET%^i%^BOLD%^t%^CYAN%^. "+
-"The crossgaurd is made of a %^RESET%^%^ORANGE%^s%^BOLD%^%^BLACK%^pa%^RESET%^%^ORANGE%^r"+
+"The crossguard is made of a %^RESET%^%^ORANGE%^s%^BOLD%^%^BLACK%^pa%^RESET%^%^ORANGE%^r"+
 "%^BOLD%^%^BLACK%^ro%^RESET%^%^ORANGE%^w %^BOLD%^%^CYAN%^in flight, it's %^RESET%^%^ORANGE%^w"+
 "%^BOLD%^%^BLACK%^ing%^RESET%^%^ORANGE%^s %^BOLD%^%^CYAN%^wrapped around the blade. ");
         set_damage_type("slashing");

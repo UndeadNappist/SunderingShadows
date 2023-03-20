@@ -14,7 +14,7 @@
 
 inherit FEAT;
 
-string *valid_choices = ({ "claw", "winter", "wildfire", "pestilence" });
+string *valid_choices = ({ "claw", "winter", "wildfire", "pestilence", "wild growth" });
 
 void create()
 {
@@ -30,7 +30,7 @@ void create()
 %^BOLD%^You can select from the following druid circles:
 
 Claw
-Growth
+Wild Growth
 Pestilence
 Wildfire
 Winter%^RESET%^

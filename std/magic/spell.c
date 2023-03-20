@@ -2874,7 +2874,7 @@ void define_clevel()
     
     if(spell_type == "druid")
     {
-        if(caster->query("druid circle") == "grove" && !USER_D->is_valid_terrain(place->query_terrain(), "city"))
+        if(caster->query("druid circle") == "wild growth" && !USER_D->is_valid_terrain(place->query_terrain(), "city"))
             clevel += 1;
     }
     
@@ -3737,7 +3737,7 @@ varargs int do_save(object targ, int mod, int get_dc)
     
     if(spell_type == "druid")
     {
-        if(caster->query("druid circle") == "grove" && !USER_D->is_valid_terrain(place->query_terrain(), "city"))
+        if(caster->query("druid circle") == "wild growth" && !USER_D->is_valid_terrain(place->query_terrain(), "city"))
             DC += 1;
     }
 
