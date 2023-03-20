@@ -843,7 +843,7 @@ int immunity_check(object obj, string type)
                 return 1;
         }
         
-        if(member_array("glory", obj->query_divine_domains()) >= 0)
+        if(member_array("glory", obj->query_divine_domain()) >= 0)
             return 1;
 
         switch (myrace) {
