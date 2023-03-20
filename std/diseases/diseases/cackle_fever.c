@@ -53,25 +53,29 @@ advance_disease()
 
 void heart_beat()
 {
-    if (!objectp(TO)) {
+    if (!objectp(this_object()))
         return;
-    }
 
-    if (!next_step) {
+    if(!objectp(environment(this_object())))
         return;
-    }
 
-    if (!ETO->is_living()) {
-        TO->remove();
-    }
-    if (ETO->query_age() > next_step) {
+    if (!next_step)
+        return;
+
+    if (!environment(this_object())->is_living())
+        this_object()->remove();
+
+    if (environment(this_object())->query_age() > next_step)
         advance_disease();
-    }
 
-    if (stage > 1) {
-        if (!random(120)) {
-            tell_object(ETO, "\n%^BOLD%^%^BLUE%^Your burst out in sudden laughter.%^RESET%^");
-            tell_room(EETO, "%^ORANGE%^" + ETO->QCN + " bursts out in sudden laughter!%^RESET%^", ETO);
+    if (stage > 1)
+    {
+        if (!random(120))
+        {
+            tell_object(environment(this_object()), "\n%^BOLD%^%^BLUE%^Your burst out in sudden laughter.%^RESET%^");
+
+            if (objectp(environment(environment(this_object()))))
+                tell_room(environment(environment(this_object())), "%^ORANGE%^" + environment(this_object())->query_cap_name() + " bursts out in sudden laughter!%^RESET%^", environment(this_object()));
         }
     }
 

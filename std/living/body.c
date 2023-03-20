@@ -1232,17 +1232,20 @@ int cause_typed_damage(object targ, string limb, int damage, string type)
 {
     object attacker;
     int amt;
-    if (!objectp(attacker = targ->query_property("beingDamagedBy"))) {
+
+    if (!objectp(attacker = targ->query_property("beingDamagedBy")))
+    {
         attacker = previous_object();
-        if(attacker->is_feat() && objectp(attacker->query_caster())) {
+
+        if (!objectp(attacker))
+            return 0;
+
+        if(attacker->is_feat() && objectp(attacker->query_caster()))
             attacker = attacker->query_caster();
-        }
     }
 
     if(damage <= 0)
-    {
         log_file("reports/negative_damage", "Negative or zero damage value passed : " + base_name(previous_object()) + "\n");
-    }
 
     damage = (int)COMBAT_D->typed_damage_modification(attacker, targ, limb, damage, type);
     return targ->cause_damage_to(targ, limb, damage);
