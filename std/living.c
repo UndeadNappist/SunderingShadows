@@ -1456,7 +1456,7 @@ string query_long(string unused)
         pre += "%^CYAN%^" + ::query_long("junk") + "%^RESET%^\n";
     }
 
-    if (query_disguised() || (avatarp(this_object()) && query_disguised())) {
+    if (this_object()->query_disguised() || (avatarp(this_object()) && this_object()->query_disguised())) {
         if (description) {
             pre += "%^GREEN%^" + capitalize(query_vis_name()) + " " + description + "%^RESET%^\n";
         }
@@ -1555,7 +1555,7 @@ string query_desc(string unused)
     if (::query_long("junk")) {
         pre += "%^CYAN%^" + ::query_long("junk") + "%^RESET%^\n";
     }
-    if (avatarp(this_object()) && query_disguised()) {
+    if (avatarp(this_object()) && this_object()->query_disguised()) {
         if (description) {
             pre += "%^GREEN%^" + capitalize(query_vis_name()) + " " + description + "%^RESET%^\n";
         }
