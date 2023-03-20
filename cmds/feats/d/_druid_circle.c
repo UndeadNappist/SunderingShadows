@@ -35,7 +35,7 @@ Pestilence
 Wildfire
 Winter%^RESET%^
 
-To start selection process type <druid_circle>.
+To start selection process type <druid_circle [CIRCLE]>.
 
 %^RED%^%^BOLD%^See also :%^RESET%^ circle of the claw, circle of pestilence, circle of winter, circle of wildfire, circle of wild growth");
     allow_tripped(1);
@@ -54,7 +54,7 @@ int prerequisites(object ob)
     return ::prerequisites(ob);
 }
 
-int cmd_warrior_path(string str)
+int cmd_druid_circle(string str)
 {
     object feat;
 
