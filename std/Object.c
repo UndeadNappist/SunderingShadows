@@ -769,7 +769,7 @@ mixed query_property(string prop)
             num += 10;
 
         num += props[prop];
-        return (num + EQ_D->gear_bonus(me, "magic resistance") + EQ_D->gear_bonus(me, "spell resistance"));
+        return (num + max(({ EQ_D->gear_bonus(me, "magic resistance"), EQ_D->gear_bonus(me, "spell resistance") })));
     }
 
     if(prop == "darkvision")
