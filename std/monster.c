@@ -144,8 +144,8 @@ void create()
     path = ({});
     monster_feats = ({});
     set_sight_bonus(1);
-    if (objectp(this_object())) {
-        catch("/daemon/quests"->isMon(this_object()));
+    if (objectp(TO)) {
+        catch("/daemon/quests"->isMon(TO));
     }
 }
 
@@ -156,11 +156,11 @@ void create()
 
 void reset()
 {
-    if (!objectp(this_object())) {
+    if (!objectp(TO)) {
         return;
     }
-    catch("/daemon/quests"->isMon(this_object()));
-    if (!objectp(environment(this_object()))) {
+    catch("/daemon/quests"->isMon(TO));
+    if (!objectp(ETO)) {
         return;
     }
     ::reset();
@@ -188,7 +188,7 @@ void set_stabbed_func(mixed val)
     if(!stringp(str))
     {
         if(intp(str)) lev = to_int(str);
-        cls = (string *)query_classes();
+        cls = (string *)TO->query_classes();
         if(sizeof(cls)) str = cls[0];
         else str = "fighter";
     }
@@ -226,7 +226,7 @@ void set_monster_feats(string* feats)
         monster_feats += ({ feats[i] });
     }
     //builds a list of combat usable feats - Saide
-    MONSTER_FEAT_D->init_combat_feats(this_object());
+    MONSTER_FEAT_D->init_combat_feats(TO);
 }
 
 string* query_monster_feats()
@@ -240,19 +240,19 @@ void init()
     int i;
     string* temp = ({});
 
-    if (!objectp(this_object())) {
+    if (!objectp(TO)) {
         return;
     }
-    if (!objectp(environment(this_object()))) {
+    if (!objectp(ETO)) {
         return;
     }
-    if (base_name(environment(this_object())) == ROOM_VOID) {
+    if (base_name(ETO) == ROOM_VOID) {
         return;
     }                                               // they don't need to call init() when they're in the void.
     //moved call to ::init down here to see if it helps with
     //the new() errors - Saide - June 2016
     ::init();
-    if (!objectp(this_object())) {
+    if (!objectp(TO)) {
         return;
     }
     if (!objectp(TP)) {
@@ -269,8 +269,8 @@ void init()
     }
 
 
-    if (!heart_beat_on || !query_heart_beat(this_object())) {
-        if (objectp(this_object())) {
+    if (!heart_beat_on || !query_heart_beat(TO)) {
+        if (objectp(TO)) {
             set_heart_beat(heart_beat_on = 1);
         }
     }
@@ -313,7 +313,7 @@ void init()
 
 void kill_msg(object tp)
 {
-    tell_object(tp, "%^RED%^%^BOLD%^" + capitalize(query_name()) + " attacks you!%^RESET%^");
+    tell_object(tp, "%^RED%^%^BOLD%^" + capitalize(this_object()->query_name()) + " attacks you!%^RESET%^");
 }
 
 object make_corpse()
@@ -340,19 +340,19 @@ void do_kit_stuff()
     string type;
     object ob;
 
-    if (!objectp(this_object())) {
+    if (!objectp(TO)) {
         return;
     }
 
-    num = (int)query_property("add kits");
-    if (!present("kitxyz", this_object()) && num == -1) {
+    num = (int)TO->query_property("add kits");
+    if (!present("kitxyz", TO) && num == -1) {
         return;
     }
     if (!num) {
         return;
     }
 
-    level = (int)query_level();
+    level = (int)TO->query_level();
     switch (level) {
     case 0..11:
         type = "/d/common/obj/potion/healing.c";
@@ -374,20 +374,20 @@ void do_kit_stuff()
         avg = 50;
         break;
     }
-    if (!present("kitxyz", this_object()) && num != -1) {
+    if (!present("kitxyz", TO) && num != -1) {
         ob = new(type);
         ob->set_uses(num);
-        ob->move(this_object());
-        remove_property("add kits");
-        set_property("add kits", -1);
+        ob->move(TO);
+        TO->remove_property("add kits");
+        TO->set_property("add kits", -1);
     }
 
-    if (!present("kitxyz", this_object())) {
+    if (!present("kitxyz", TO)) {
         return;
     }
 
-    hp = (int)query_hp();
-    max_hp = (int)query_max_hp();
+    hp = (int)TO->query_hp();
+    max_hp = (int)TO->query_max_hp();
 
     if (hp >= max_hp) {
         return;
@@ -413,10 +413,10 @@ void heart_beat()
 
     ::heart_beat();
 
-    if (!objectp(this_object())) {
+    if (!objectp(TO)) {
         return;
     }
-    if (!objectp(environment(this_object()))) {
+    if (!objectp(ETO)) {
         return;
     }
 
@@ -440,15 +440,15 @@ void heart_beat()
     }
     if (!stage) {
         if (1) {
-            if (!objectp(this_object())) {
+            if (!objectp(TO)) {
                 return;
             }
             ob2 = new("/std/Object");
 
-            if (query_poisoning()) {
+            if (this_object()->query_poisoning()) {
                 ob2->set_name("Poison");
                 do_damage("torso", query_poisoning());
-                message("environment", "You are getting weaker from Poison!", this_object());
+                message("environment", "You are getting weaker from Poison!", TO);
                 if (objectp(ob3 = queryPoisoner())) {
                     add_attacker(ob3);
                 }else {
@@ -463,7 +463,7 @@ void heart_beat()
         stage = 60;
     }
     stage--;
-    if (!objectp(this_object())) {
+    if (!objectp(TO)) {
         return;
     }
     if (speed && moving >= speed) {
@@ -517,7 +517,7 @@ object* ob_party(object ob)
     object* party;
     string party_name;
 
-    if (!objectp(this_object()) || !objectp(ob)) {
+    if (!objectp(TO) || !objectp(ob)) {
         return ({ ob });
     }
     party_name = ob->query_party();
@@ -535,15 +535,15 @@ void die(object ob)
     int i, tmp_size, quest_exp;
     string* currs, quest_str;
 
-    if (!objectp(this_object())) {
+    if (!objectp(TO)) {
         return;
     }
-    if (!objectp(environment(this_object()))) {
+    if (!objectp(ETO)) {
         return;
     }
 
     if (!query_property("new_exp_set")) {
-        set_new_exp(query_highest_level(), "normal");
+        set_new_exp(TO->query_highest_level(), "normal");
     }
 
     if (functionp(__Die)) {
@@ -551,11 +551,11 @@ void die(object ob)
             return;
         }
     }else if (stringp(__Die)) {
-        tell_room(environment(this_object()), __Die, this_object());
+        tell_room(ETO, __Die, TO);
     }else {
-        tell_room(environment(this_object()), "%^RED%^" + query_cap_name() + " drops dead before you.%^RESET%^", this_object());
-        if (environment(this_object())->query_property("arena")) {
-            destall(this_object());
+        tell_room(ETO, "%^RED%^" + TO->QCN + " drops dead before you.%^RESET%^", TO);
+        if (ETO->query_property("arena")) {
+            destall(TO);
             return;
         }
     }
@@ -567,7 +567,7 @@ void die(object ob)
             quest_exp = query_level() * 1000;
         }
 
-        live = all_living(environment(this_object()));
+        live = all_living(ETO);
         live = filter_array(live, "is_non_immortal_player", FILTERS_D);
         if (sizeof(live)) {
             for (i = 0; i < sizeof(live); i++) {
@@ -584,9 +584,9 @@ void die(object ob)
                     continue;
                 }
                 // usually they won't get added if they're not in the room, unless they are a ghost or died in the room where the monster died, or they're in a room in /d/magic/room
-                if (environment(party[i]) != environment(this_object())) {
+                if (environment(party[i]) != ETO) {
                     if ((!party[i]->query_ghost()) && // if they're dead, we'll assume they died here.  Might not always be true, but should be fairly often
-                        (party[i]->query_death_place() != environment(this_object())) && // if they died to the monster but already prayed, their death place should be this monster's environment
+                        (party[i]->query_death_place() != ETO) && // if they died to the monster but already prayed, their death place should be this monster's environment
                         (strsrch(base_name(environment(party[i])), "/d/magic/room/") == -1)) {
                         continue;
                     }                                                                                     // if they are in /d/magic/room/, it might be inside of a web, ie the one cast by Vecna, so go ahead and add
@@ -601,7 +601,7 @@ void die(object ob)
     }
 
     tmp = make_corpse();
-    tmp->move(environment(this_object()));
+    tmp->move(ETO);
     tmp_size = sizeof(currs = query_currencies());
 
     if (tmp_size && has_value()) {
@@ -626,16 +626,16 @@ void die(object ob)
         }
     }
 
-    if (query_property("riding")) {
-        if (query_owner() && objectp(query_owner())) {
-            (query_owner())->remove_pet(this_object());
+    if (TO->query_property("riding")) {
+        if (TO->query_owner() && objectp(TO->query_owner())) {
+            (TO->query_owner())->remove_pet(TO);
         }
     }
 
-    if (query_property("death effects")) {
-        "/daemon/death_effects_d"->get_death_effect(this_object());
+    if (TO->query_property("death effects")) {
+        "/daemon/death_effects_d"->get_death_effect(TO);
     }
-    move(ROOM_VOID);
+    TO->move(ROOM_VOID);
     remove();
     
     if(objectp(this_object()))
@@ -656,7 +656,7 @@ varargs void move_player(mixed dest, string msg)
     if (!objectp(this_object())) {
         return;
     }
-    if (!objectp(prev = environment(this_object()))) {
+    if (!objectp(prev = ETO)) {
         return;
     }
     here = file_name(prev);
@@ -679,7 +679,7 @@ varargs void move_player(mixed dest, string msg)
             remove_property("posed");
         }
         if (!id("summoned monster") || id("greater summon")) {
-            if (!hiddenp(this_object()) && !(avatarp(this_object()) && query_invis())) {
+            if (!hiddenp(this_object()) && !(avatarp(TO) && query_invis())) {
                 inv = all_inventory(prev);
                 for (i = 0, bzbd = sizeof(inv); i < bzbd; i++) {
                     if (!living(inv[i]) || inv[i] == this_object()) {
@@ -694,14 +694,14 @@ varargs void move_player(mixed dest, string msg)
                     if (!msg || msg == "") {
                         message("mmout", query_mmout(inv[i]), inv[i]);
                     }else {
-                        if (query_in_vehicle() && objectp(query_in_vehicle())) {
-                            message("mout", query_cap_name() + " rides " + query_in_vehicle()->query_cap_name() + " " + msg + ".", inv[i]);
+                        if (TO->query_in_vehicle() && objectp(TO->query_in_vehicle())) {
+                            message("mout", query_cap_name() + " rides " + TO->query_in_vehicle()->query_cap_name() + " " + msg + ".", inv[i]);
                         } else {
                             message("mout", query_mout(msg, inv[i]), inv[i]);
                         }
                     }
                 }
-                if (!objectp(this_object()) || !objectp(environment(this_object()))) {
+                if (!objectp(TO) || !objectp(ETO)) {
                     return;
                 }
                 // If something's fucked up, don't even bother trying.
@@ -723,8 +723,8 @@ varargs void move_player(mixed dest, string msg)
                     if (!msg || msg == "") {
                         message("mmin", query_mmin(inv[i]), inv[i]);
                     }else {
-                        if (query_in_vehicle() && objectp(query_in_vehicle())) {
-                            message("min", query_cap_name() + " enters riding " + query_in_vehicle()->query_cap_name() + ".", inv[i]);
+                        if (TO->query_in_vehicle() && objectp(TO->query_in_vehicle())) {
+                            message("min", query_cap_name() + " enters riding " + TO->query_in_vehicle()->query_cap_name() + ".", inv[i]);
                         } else {
                             message("min", query_min(inv[i]), inv[i]);
                         }
@@ -747,46 +747,46 @@ void move_around()
     string* exits, door;
     string exit, exitfile;  // *added local exitfile variable for use below
 
-    if (!this_object()) {
+    if (!TO) {
         return;
     }
-    if (!objectp(environment(this_object()))) {
+    if (!objectp(ETO)) {
         return;
     }
     if (no_moving) {
         return;
     }
-    environment(this_object())->setupExits();
+    ETO->setupExits();
     if (query_current_attacker()) {
         return;
     }
-    if (environment(this_object())) {
-        exits = (string*)environment(this_object())->query_obvious_exits();
+    if (ETO) {
+        exits = (string*)ETO->query_obvious_exits();
     }else {
         exits = 0;
     }
     if (sizeof(exits)) {
         exit = exits[random(sizeof(exits))];
-        exitfile = (string)environment(this_object())->query_exit(exit);      // *need this to check below
-        if (door = environment(this_object())->query_door(exit)) {
+        exitfile = (string)ETO->query_exit(exit);      // *need this to check below
+        if (door = ETO->query_door(exit)) {
             if (member_array(exitfile, query_nogo()) != -1) {
                 return;
             }
-            if (environment(this_object())->query_locked(door)) {
+            if (ETO->query_locked(door)) {
                 return;
             }
-            if (!environment(this_object())->query_open(door) && !will_open) {
+            if (!ETO->query_open(door) && !will_open) {
                 return;
             }
             if (will_open) {
                 command("open " + door);
             }
         }
-        if (will_avoid_traps && environment(this_object())->query_trap_status(exit, exit)) {
+        if (will_avoid_traps && ETO->query_trap_status(exit, exit)) {
             return;
         }
         if (member_array(exitfile, query_nogo()) == -1) { // *if it's not in the array, go ahead
-//      (environment(this_object())->query_exit(exit))->init();  // *was-but we already have filename now, so this saves querying the exit again
+//      (ETO->query_exit(exit))->init();  // *was-but we already have filename now, so this saves querying the exit again
             seteuid(UID_ROOT);
             if (objectp(find_object_or_load(exitfile))) {
                 exitfile->init();
@@ -954,21 +954,21 @@ void set_level(int x)
     set_stats("charisma", x * 3 / 2);
     set_max_mp((query_stats("intelligence") / 2) * x);
     set_mp(query_max_mp());
-    set_mlevel(query_class(), query_level());
+    set_mlevel(TO->query_class(), TO->query_level());
     if (!query_static_bab()) {
-        static_bab = (int)query_level();
+        static_bab = (int)TO->query_level();
     }
     // Added to give the mobs a bonus to push them back up to the THACO they had before the change
     // -Ares 8/22/06
     // And we don't need it since the thaco has been changed back
-    //if(!BONUS_ADDED) { BONUS_ADDED = 1; if(x > 20) { add_attack_bonus((x - 20)/2); } }
+    //if(!BONUS_ADDED) { BONUS_ADDED = 1; if(x > 20) { TO->add_attack_bonus((x - 20)/2); } }
 }
 
 int query_level()
 {
     level = query_highest_level();
     if (level == 0) {
-        return query_hd();
+        return TO->query_hd();
     }
     return level;
 }
@@ -1002,12 +1002,12 @@ void set_body_type(string str)
     }
 
     set_wielding_limbs((string*)RACE_D->query_monster_wielding_limbs(str));
-    if (objectp(this_object())) {
-        set_fingers((int)RACE_D->query_monster_fingers(str));
+    if (objectp(TO)) {
+        TO->set_fingers((int)RACE_D->query_monster_fingers(str));
 
         // from weaponless_monsters.c
-        set_attack_limbs((string*)RACE_D->query_monster_wielding_limbs(str));
-        set_attacks_num(sizeof(query_attack_limbs()));
+        TO->set_attack_limbs((string*)RACE_D->query_monster_wielding_limbs(str));
+        TO->set_attacks_num(sizeof(TO->query_attack_limbs()));
     }
 
     body_type = str;
@@ -1184,11 +1184,11 @@ void receive_message(string cl, string msg)
         if (!no_catch_tell) {
             this_object()->catch_tell(msg);
         }
-        if (cl == "say" && TP != this_object()) {
+        if (cl == "say" && TP != TO) {
 // so this was going into a freak-out loop with people's speech catching instead of just the 'say'. Let's fix! N, 8/15.
-//            catch_say(msg);
+//            TO->catch_say(msg);
             sscanf(msg, "%s:%s", str1, str2);
-            catch_say(str2);
+            TO->catch_say(str2);
         }
     }
 }
@@ -1250,8 +1250,8 @@ void steal_fun()
     int coin;
     int inven;
 
-    who = "/daemon/find_target_d"->find_player_target(this_object());
-    if (who == this_object()) {
+    who = "/daemon/find_target_d"->find_player_target(TO);
+    if (who == TO) {
         return 1;
     }
     coin = random(2);
@@ -1261,14 +1261,14 @@ void steal_fun()
         what = "item";
     }
     if (what == "money") {
-        force_me("pp " + who->query_name());
+        TO->force_me("pp " + who->query_name());
     }else {
         items = all_inventory(who);
         if (items == ({})) {
             return 1;
         }
         inven = random(sizeof(items));
-        force_me("steal " + items[inven]->query_name() + " from " + who->query_name());
+        TO->force_me("steal " + items[inven]->query_name() + " from " + who->query_name());
     }
 }
 
@@ -1346,19 +1346,19 @@ int check_action(string str)
     }
     switch (charm) {
     case 1: if (charmed_int[verb]) {
-            temp = (: call_other, this_object(), charmed_int[verb] :);
+            temp = (: call_other, TO, charmed_int[verb] :);
     }else {
-            temp = (: call_other, this_object(), norm_int[verb] :);
+            temp = (: call_other, TO, norm_int[verb] :);
     }
         break;
 
-    case 0: temp = (: call_other, this_object(), norm_int[verb] :);
+    case 0: temp = (: call_other, TO, norm_int[verb] :);
         break;
 
     case -1: if (!offend_int[verb]) {
-            temp = (: call_other, this_object(), norm_int[verb] :);
+            temp = (: call_other, TO, norm_int[verb] :);
     }else {
-            temp = (: call_other, this_object(), offend_int[verb] :);
+            temp = (: call_other, TO, offend_int[verb] :);
     }
         break;
     }
@@ -1399,7 +1399,7 @@ int query_is_npc()
 
 int force_NPC(string command)
 {
-    return force_me(command);
+    return this_object()->force_me(command);
 }
 
 void disable_catch_tell(int def_tell)
@@ -1409,22 +1409,22 @@ void disable_catch_tell(int def_tell)
 
 int do_stab_func()
 {
-    if (!objectp(this_object())) {
+    if (!objectp(TO)) {
         return 0;
     }
     if (!stringp(stabbed)) {
         return 0;
     }
     if (!query_property("fstabbed")) {
-        message("combat", stabbed, environment(this_object()));
+        message("combat", stabbed, environment(TO));
         return 0;
     }
-    return call_other(this_object(), stabbed);
+    return call_other(TO, stabbed);
 }
 
 int has_stab_func()
 {
-    if (!objectp(this_object())) {
+    if (!objectp(TO)) {
         return 0;
     }
     if (!stringp(stabbed)) {
@@ -1439,9 +1439,9 @@ int has_stab_func()
 void set_max_level(int lvl)
 {
     max_level = lvl;
-    if (intp(query_highest_level())) {
-        if (max_level < ((int)query_highest_level() + 6)) {
-            max_level = ((int)query_highest_level() + 6);
+    if (intp(TO->query_highest_level())) {
+        if (max_level < ((int)TO->query_highest_level() + 6)) {
+            max_level = ((int)TO->query_highest_level() + 6);
         }
     }
 }
@@ -1488,18 +1488,18 @@ string query_vis_cap_name()
 // Garrett 02/02/02
 string getNameAsSeen(object ob)
 {
-    return query_name();
+    return TO->query_name();
 }
 
 string getParsableName()
 {
-    return capitalize(query_name());
+    return capitalize(TO->query_name());
 }
 
 void saveMonster(string path)
 {
     if (!stringp(path)) {
-        path = base_name(this_object());
+        path = base_name(TO);
     }
     seteuid(getuid());
     "/daemon/yuck_d"->save_inventory(this_object(), path);
@@ -1510,7 +1510,7 @@ void restoreMonster(string path)
 {
     seteuid(getuid());
     if (!stringp(path)) {
-        path = base_name(this_object());
+        path = base_name(TO);
     }
 
     if (!file_exists(path + ".o")) {
@@ -1528,7 +1528,7 @@ void clearMonster(string path)
     seteuid(getuid());
 
     if (!stringp(path)) {
-        path = base_name(this_object());
+        path = base_name(TO);
     }
 
     if (!file_exists(path + ".o")) {
@@ -1559,7 +1559,7 @@ varargs void do_walk(int iteration)
     rooms = ({});
     finalpath = ({});
 
-    if (!objectp(this_object()) || !objectp(environment(this_object()))) {
+    if (!objectp(TO) || !objectp(ETO)) {
         stop_walking();
         return;
     }
@@ -1567,14 +1567,14 @@ varargs void do_walk(int iteration)
     if (is_walking == 0 || !stringp(destination)) {
         return;
     }
-    if (file_name(environment(this_object())) == destination) {
+    if (file_name(ETO) == destination) {
 // changed this from a waystation check that wasn't working Lujke September 16 2005
         reach_destination();
         stop_walking();
         return;
     }
 
-    startroom = environment(this_object()); // already done an objectp check on environment(this_object())
+    startroom = ETO; // already done an objectp check on ETO
 
 // If there is no path already set, find a the nearest waystation
 // if the mob is not already at one. Otherwise, find the next
@@ -1606,12 +1606,12 @@ varargs void do_walk(int iteration)
     }
 // additions by *Styx* 2/1/06
     if (will_open) {
-        if (door = environment(this_object())->query_door(path[0])) {
-            if (environment(this_object())->query_locked(door)) {
+        if (door = ETO->query_door(path[0])) {
+            if (ETO->query_locked(door)) {
                 stop_walking();
                 return;
             }
-            if (!environment(this_object())->query_open(door)) {
+            if (!ETO->query_open(door)) {
                 command("open " + door);
             }
         }
@@ -1623,8 +1623,8 @@ varargs void do_walk(int iteration)
 // function if it has.  Then remove the step that has just been completed
 // from the remaining path array.
 
-    if (objectp(environment(this_object()))) {
-        if (file_name(environment(this_object())) == destination) {
+    if (objectp(ETO)) {
+        if (file_name(ETO) == destination) {
             // This will mean that the mob has reached the destination
             stop_walking();
             reach_destination();
@@ -1726,9 +1726,9 @@ varargs int set_new_exp(int level, string perc)
     int exp, div;
 
     if (!intp(level) || level < 1) {
-        level = (int)query_level();
-        if (level < (int)query_highest_level()) {
-            level = (int)query_highest_level();
+        level = (int)TO->query_level();
+        if (level < (int)TO->query_highest_level()) {
+            level = (int)TO->query_highest_level();
         }
     }
 
@@ -1785,11 +1785,11 @@ varargs int set_new_exp(int level, string perc)
         exp = (exp * div) / 100;
     }
 
-    set_property("new_exp_set", 1);
-    set_property("new_exp_amount", exp);
-    set_property("new_exp_level", level);
-    set_property("new_exp_perc", perc);
-    set_exp(exp);
+    TO->set_property("new_exp_set", 1);
+    TO->set_property("new_exp_amount", exp);
+    TO->set_property("new_exp_level", level);
+    TO->set_property("new_exp_perc", perc);
+    TO->set_exp(exp);
     return exp;
 }
 
@@ -1797,7 +1797,7 @@ void set_mob_magic_resistance(string perc)
 {
     int base_level, modifier;
 
-    base_level = query_highest_level();
+    base_level = TO->query_highest_level();
     base_level = base_level > 50 ? 50 : base_level;
 
     if (!stringp(perc) || perc == "" || perc == " ") {
@@ -1859,7 +1859,7 @@ void set_mob_magic_resistance(string perc)
         break;
     }
     
-    set_property("magic resistance", modifier);
+    TO->set_property("magic resistance", modifier);
 }
 
 void set_use_monster_flag(int f)
@@ -1956,28 +1956,28 @@ string* query_temporary_feats()
 
 int move(mixed dest)
 {
-    if (!objectp(this_object())) {
+    if (!objectp(TO)) {
         return ::move(dest);
     }
-    if (!query_property("new_exp_set")) {
-        if (query_property("minion")) {
-            set_new_exp(1, "normal");
-            set_property("new_exp_set", 1);
+    if (!TO->query_property("new_exp_set")) {
+        if (TO->query_property("minion")) {
+            TO->set_new_exp(1, "normal");
+            TO->set_property("new_exp_set", 1);
         }else {
-            set_new_exp((int)query_highest_level(), "normal");
-            set_property("new_exp_set", 1);
+            TO->set_new_exp((int)TO->query_highest_level(), "normal");
+            TO->set_property("new_exp_set", 1);
         }
     }
 
-    if (!query_property("has_random_treasure") && !query_property("no_random_treasure")) {
-        "/daemon/random_monster_treasure_d.c"->assign_treasure(this_object());
+    if (!TO->query_property("has_random_treasure") && !TO->query_property("no_random_treasure")) {
+        "/daemon/random_monster_treasure_d.c"->assign_treasure(TO);
     }
     return ::move(dest);
 }
 
 void mon_look(){
     string dsc;
-    dsc = environment(this_object())->query_short();
+    dsc = ETO->query_short();
     tell_object(TP, dsc);
     return;
 }
@@ -2030,15 +2030,15 @@ int light_blind_remote(int actionbonus, object whichroom, int distance) {
               // proper light!
               return 0;
           } else {
-              //      tell_object(this_object(),"first return");
+              //      tell_object(TO,"first return");
               return (_total_light - (LIGHT_MAX_RANGE - actionbonus));
           }
       } else {
-          //      tell_object(this_object(),"second return");
+          //      tell_object(TO,"second return");
           return calc - actionbonus;
       }
   } else {
-      //      tell_object(this_object(),"second if");
+      //      tell_object(TO,"second if");
       if (calc > 0) {
           if (_total_light < LIGHT_MAX_RANGE) {
               return 0;
