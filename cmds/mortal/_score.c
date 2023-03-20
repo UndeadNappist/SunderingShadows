@@ -187,8 +187,8 @@ mixed* genoutput(object targ)
         output += ({ ({ "Divine Domain", "%^BOLD%^%^WHITE%^" + implode(targ->query_divine_domain(), "/") }) });
     }
     
-    if (targ->query_druid_circle()) {
-        output += ({ ({ "Druid Circle", "%^BOLD%^%^WHITE%^" + targ->query_druid_circle() }) });
+    if (targ->query("druid circle")) {
+        output += ({ ({ "Druid Circle", "%^BOLD%^%^WHITE%^" + targ->query("druid circle") }) });
     }   
 
     output += ({ ({ "Play Time", "%^BOLD%^%^WHITE%^" + parse_time(targ->query_age()) }) });

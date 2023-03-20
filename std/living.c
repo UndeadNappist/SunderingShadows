@@ -42,7 +42,7 @@ string school_of_opposition;
 string sorc_bloodline;
 string oracle_mystery;
 string psion_discipline;
-string druid_circle;
+//string druid_circle;
 string paladin_oath;
 string inquisition;
 //by Circe, for psions 7/16/05
@@ -824,7 +824,7 @@ string query_inquisition()
 {
     return inquisition;
 }
-
+/*
 string set_druid_circle(string str)
 {
     druid_circle = str;
@@ -836,6 +836,7 @@ string query_druid_circle()
 {
     return druid_circle;
 }
+*/
 
 set_paladin_oath(string str)
 {

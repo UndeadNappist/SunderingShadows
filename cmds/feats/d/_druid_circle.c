@@ -72,10 +72,10 @@ int execute_feat()
 
     if(!arg)
     {
-        if(!strlen(this_player()->query_druid_circle()))
+        if(!strlen(this_player()->query("druid circle")))
             write("You have no druid circle chosen");
         else
-            write("%^BOLD%^You current druid circle is: %^RESET%^RED%^" + this_player()->query_druid_circle());
+            write("%^BOLD%^You current druid circle is: %^RESET%^RED%^" + this_player()->query("druid circle"));
         return 1;
     }
 
@@ -105,7 +105,7 @@ void confirm_selection(string str)
     }
 
     write("%^BOLD%^You declare your druid circle as : %^CYAN%^" + arg + ".");
-    this_player()->set_druid_circle(arg);
+    this_player()->set("druid circle",arg);
     this_player()->add_cooldown("druid circle change", DELAY);
     dest_effect();
     return;
