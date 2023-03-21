@@ -109,13 +109,8 @@ int dest_effect()
 {
     object me, my_environment;
 
-    if (!objectp(me = this_object()))
-        return 0;
-
-    if (!objectp(my_environment = environment(me)))
-        return 0;
-
-    tell_object(my_environment, "The banquet table vanishes before your eyes!");
+    if (objectp(me = this_object()) && objectp(my_environment = environment(me)))
+        tell_object(my_environment, "The banquet table vanishes before your eyes!");
 
     if (objectp(casting_spell))
         casting_spell->dest_effect();
