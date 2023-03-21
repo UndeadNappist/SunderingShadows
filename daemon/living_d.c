@@ -26,6 +26,7 @@ string* list_classes()
     return classlist;
 }
 
+/*
 int immunity_check(object obj, string type)
 {
     string myrace, mysubrace;
@@ -116,6 +117,7 @@ int immunity_check(object obj, string type)
 
     return 0;
 }
+*/
 
 int check_aura(object target, string type)
 {
@@ -151,6 +153,7 @@ int check_aura(object target, string type)
     return 0;
 }
 
+/*
 int opposed_alignment(object me, object you)
 {
     string* opposed;
@@ -180,3 +183,4 @@ int opposed_alignment(object me, object you)
 
     return 0;
 }
+*/

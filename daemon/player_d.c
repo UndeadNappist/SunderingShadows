@@ -615,6 +615,7 @@ int sizeof_monsters()
     return sizeof(monsters4);
 }
 
+/*
 int opposed_alignment(object me, object you)
 {
     string *opposed;
@@ -640,6 +641,7 @@ int opposed_alignment(object me, object you)
     
     return 0;
 }
+*/
     
 
 int check_aura(object target, string type)
