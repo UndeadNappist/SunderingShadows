@@ -105,15 +105,15 @@ void heart_beat()
     return;
 }
 
-void dest_effect()
+int dest_effect()
 {
     object me, my_environment;
 
     if (!objectp(me = this_object()))
-        return;
+        return 0;
 
     if (!objectp(my_environment = environment(me)))
-        return;
+        return 0;
 
     tell_object(my_environment, "The banquet table vanishes before your eyes!");
 
@@ -123,5 +123,5 @@ void dest_effect()
     if (objectp(me))    // I suspect that this object is being removed from dest effect, but just in case...
         me->remove();
 
-    return;
+    return 1;
 }
