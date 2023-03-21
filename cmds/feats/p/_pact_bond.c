@@ -94,7 +94,13 @@ void execute_feat()
     string type;
     
     ::execute_feat();
-    
+
+    if (!objectp(caster))
+    {
+        dest_effect();
+        return;
+    }
+
     if(caster->query_property("using instant feat"))
     {
         tell_object(caster,"You are already in the middle of using a feat!");
@@ -138,7 +144,7 @@ void execute_feat()
     companion->set_race("outsider");
     companion->set_name(arg);
     companion->set_id( ({ arg, "familiar", caster->query_name() + "'s familiar" }) );
-    companion->set_short(sprintf("%s's faithful %s familiar.",capitalize(caster->query_name()),arg));
+    companion->set_short(sprintf("%s's faithful %s familiar.", caster->query_cap_name(), arg));
     companion->set_level(class_level);
     companion->set_hd(comp_hd, 14);
     companion->set_attacks_num(2 + class_level / 8);
