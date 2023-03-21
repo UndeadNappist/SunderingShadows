@@ -32,7 +32,7 @@ string query_cast_string()
 
 void spell_effect(int prof)
 {
-    object *victims;
+    object me = this_object(), *victims;
     string myname, yourname;
 
     myname = caster->QCN;
@@ -45,7 +45,7 @@ void spell_effect(int prof)
     if(!sizeof(victims))
     {
         tell_object(caster, "You release a wave of psionic energy, but nothing else happens...");
-        this_object()->remove();
+        dest_effect();
         return;
     }
 

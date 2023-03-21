@@ -11,7 +11,7 @@ void create()
     ::create();
     set_spell_name("vortex");
     set_spell_level(([ "mage" : 7, "druid" : 7, "cleric" : 7 ]));
-    set_domains("storms");
+    set_domains(({ "storms", "water" }));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS vortex");
     set_damage_desc("bludgeoning, paralyzed");

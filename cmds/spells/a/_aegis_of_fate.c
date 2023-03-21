@@ -65,7 +65,7 @@ void spell_effect(int prof)
     }
     prevAc = random(clevel / 8) + 1;
     target->add_ac_bonus(prevAc);
-    magRes = random(clevel / 3) + 1;
+    magRes = random(clevel / 10) + 1;
     target->set_property("magic resistance", (magRes));
     target->set_property("raised resistance", 1);
     addSpellToCaster();

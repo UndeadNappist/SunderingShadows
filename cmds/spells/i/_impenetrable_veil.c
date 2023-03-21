@@ -12,7 +12,8 @@ void create()
 {
     ::create();
     set_spell_name("impenetrable veil");
-    set_spell_level(([ "mage" : 9, "bard" : 6 ]));
+    set_spell_level(([ "mage" : 9, "bard" : 6, "cleric" : 9 ]));
+    set_domains("void");
     set_spell_sphere("abjuration");
     set_syntax("cast CLASS impenetrable veil on TARGET");
     set_damage_desc("+5 to stealth checks on sneaking, untrackable, protection from scrying");

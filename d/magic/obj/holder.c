@@ -98,15 +98,17 @@ void heart_beat()
 void remove()
 {
     object mySpell;
-    if(objectp(mySpell = TO->query_property("spell")))
-    {
+
+    if (objectp(mySpell = query_property("spell")))
         mySpell->dest_effect();
-    }
-    if(objectp(mon))
-    {
-		mon->remove();
-	}
-	return ::remove();
+
+    if (objectp(mon))
+        mon->remove();
+
+    if (!objectp(this_object()))
+        return;
+
+    return ::remove();
 }
 
 void init(){

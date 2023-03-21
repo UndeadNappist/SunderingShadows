@@ -35,7 +35,6 @@ LUJKE
         TO->set_property("enchantment",6);
         set_wear((:TO,"wear_func":));
         set_remove((:TO, "remove_func":));
-        set_overallStatus(320);
         set_item_bonus("damage", 4);
         set_item_bonus("dexterity", -2);
         set_item_bonus("constitution", 2);

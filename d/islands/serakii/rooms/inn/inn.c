@@ -14,6 +14,7 @@ void create() {
     set_terrain(GRASSLANDS);
     set_travel(PAVED_ROAD);
     set_property("indoors",1);
+    set_property("light",2);
     set_name("Rook's Rest Tavern");
     set_short("%^C061%^R%^C245%^o%^C061%^"+
 	"o%^C245%^k%^C061%^'s Re%^C094%^s%^C061%^"+

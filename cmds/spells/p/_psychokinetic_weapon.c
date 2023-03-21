@@ -37,13 +37,14 @@ int preSpell()
 }
 
 void spell_effect(int prof){
-	if(!objectp(environment(caster))){
-		dest_effect();
-		return;
-	}
-	place = environment(caster);
-	make_sword();
+    if(!objectp(environment(caster))){
+	dest_effect();
+	return;
+    }
+    place = environment(caster);
+    make_sword();
     spell_successful();
+    addSpellToCaster();
 }
 
 void make_sword(){

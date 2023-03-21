@@ -384,7 +384,7 @@ mapping index_castable_spells(object player, string myclass)
     string playerdisc = player->query_discipline();
     string warlockheritage = player->query("warlock heritage");
     string playerway = player->query("monk way");
-    string circle = player->query_druid_circle();
+    string circle = player->query("druid circle");
     string classfile;
 
     // Pseudoclass for classes that use other classes spell lists, such as sorcerers.

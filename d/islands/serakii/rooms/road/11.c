@@ -13,6 +13,7 @@ set_exits(([
 
 "northeast" : ROAD"10",
 "southwest" : TOWN"11",
+"east" : "/d/player_houses/cecile/mall/room/path",
 ]));
 
 }

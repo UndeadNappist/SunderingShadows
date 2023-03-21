@@ -51,6 +51,7 @@ void spell_effect()
         
         switch(ob->query_true_align())
         {
+            case 0:
             case 1:
             case 3:
             case 7:

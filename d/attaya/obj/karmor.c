@@ -39,7 +39,7 @@ void create(){
    set_value(20000);
    set_size(3);
    set_property("enchantment",5);
-   set_property("magic resistance",10);
+   set_property("magic resistance",3);
    set_property("fortitude",3);
    set_property("reflex",3);
    set_property("will",3);

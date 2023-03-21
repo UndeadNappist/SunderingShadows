@@ -231,30 +231,50 @@ int scare(object targ)
 
 void heart_beat()
 {
-   object targ;
-   ::heart_beat();
-      if(query_attackers() == ({})) return;
-	if(!random(30)) {
-         targ = TO->query_current_attacker();
-         if(present("fury staff")){
-            if(!targ) return;
+    object me = this_object(), targ;
+
+    if (!objectp(me))
+        return;
+
+    ::heart_beat();
+
+    if(query_attackers() == ({}))
+       return;
+
+    if(!random(30))
+    {
+        targ = me->query_current_attacker();
+
+        if(present("fury staff"))
+         {
+            if (!objectp(targ))
+                return;
+
             force_me("fall "+targ->query_name()+"");
             return;
          }
-         if(present("spring staff")){
+
+        if(present("spring staff"))
+        {
             force_me("spring");
             return;
-         }
-         if(present("flame staff")){
-            if(!targ) return;
+        }
+
+         if(present("flame staff"))
+         {
+            if(!targ)
+                return;
+
             force_me("summer "+targ->query_name()+"");
             return;
          }
-         if(present("ice staff")){
+
+         if(present("ice staff"))
+         {
             force_me("winter");
             return;
          }
-      return;
-	}
-   return;
+    }
+
+    return;
 }

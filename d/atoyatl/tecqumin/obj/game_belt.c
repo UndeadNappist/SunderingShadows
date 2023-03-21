@@ -32,7 +32,6 @@ AVATAR
         set_size(-1);
         TO->set_property("enchantment",6);
         set_wear((:TO,"wear_func":));
-        set_overallStatus(320);
        set_property("quest required", "%^GREEN%^Sealed the %^BLUE%^U%^MAGENTA%^nf"
     +"%^BLUE%^e%^MAGENTA%^tt%^BLUE%^e%^MAGENTA%^r%^BLUE%^e%^MAGENTA%^d"
     +" %^GREEN%^back into the %^BLUE%^v%^BOLD%^%^BLACK%^o%^RESET%^i%^BLUE%^d");
