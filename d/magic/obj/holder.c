@@ -95,18 +95,18 @@ void heart_beat()
 	}*/
 }
 
-void remove()
+int remove()
 {
     object mySpell;
+
+    if (!objectp(this_object()))
+        return;
 
     if (objectp(mySpell = query_property("spell")))
         mySpell->dest_effect();
 
     if (objectp(mon))
         mon->remove();
-
-    if (!objectp(this_object()))
-        return;
 
     return ::remove();
 }
@@ -160,10 +160,8 @@ int dismiss(string str){
 	tell_room(environment(caster),"%^BOLD%^"+caster->query_cap_name()+" dismisses the "+mon->query_name()+"!",caster);
     if(objectp(caster)) { caster->remove_property("has_elemental"); }
 	tell_object(caster,"%^BOLD%^You dismiss the "+mon->query_name()+"!\n");
-	call_out("timed",1);
-	return 1;
-}
 
-timed(){
-	remove();
+    remove();
+
+	return 1;
 }

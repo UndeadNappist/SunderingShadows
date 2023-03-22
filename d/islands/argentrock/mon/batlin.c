@@ -385,19 +385,23 @@ void do_it()
     broadcast_area("/d/islands/argentrock/rooms", "%^RESET%^%^RED%^A tremble passes from beneath your feet to your body as you hear a loud sound of an earthquake coming from a distance.%^RESET%^");
     //message("broadcast", "%^RED%^A tremble passes from beneath your feet to your body as you hear a loud sound of an earthquake coming from a distance.", users(), all_living(ETO));
 
-    for (i = 0; i < all; i++) {
-        if (!objectp(living[i])) {
+    for (i = 0; i < all; i++)
+    {
+        if (!objectp(living[i]))
             continue;
-        }
-        if (!userp(living[i]) && !interactive(living[i]) && !living[i]->is_merc()) {
+
+        if (!userp(living[i]) && !interactive(living[i]) && !living[i]->is_merc())
+        {
             living[i]->die();
-        }
-        if (wizardp(living[i])) {
             continue;
         }
-        if (avatarp(living[i])) {
+
+        if (wizardp(living[i]))
             continue;
-        }
+
+        if (avatarp(living[i]))
+            continue;
+
         living[i]->add_attacker(TO);
         living[i]->continue_attack();
         switch (random(50))

@@ -21,25 +21,41 @@
 int okExit(string exit);
 inherit MONSTER;
 
-void move_around() {
-    string *exits;
-    string exit;
+void move_around()
+{
+    object my_environment, next_environment;
+    string *exits, exit, next_room_path;
 
-    if(!this_object()) return;
-    if(!objectp(ETO)) return;
-    ETO->setupExits();
-    if(query_current_attacker()) return;
-    if(environment(this_object()))
-      exits = (string *)environment(this_object())->query_exits();
-    else
-      exits = 0;
+    if(!this_object())
+        return;
+
+    if(!objectp(my_environment = environment(this_object())))
+        return;
+
+    my_environment->setupExits();
+
+    if(query_current_attacker())
+        return;
+
+    exits = (string *)my_environment->query_exits();
+
     seteuid(UID_SYSTEM);
-    if(sizeof(exits)){
-      exit = exits[random(sizeof(exits))];
-      (environment(this_object())->query_exit(exit))->init();
-      if(okExit(exit))
-        command(exit);
+
+    if(sizeof(exits))
+    {
+        exit = exits[random(sizeof(exits))];
+
+        if (!stringp(next_room_path = my_environment->query_exit(exit)))
+            return;
+
+        if (!objectp(next_environment = find_object_or_load(next_room_path)))
+
+        next_environment->init();
+
+        if(okExit(exit))
+            command(exit);
     }
+
     moving = 0;
 }
 
