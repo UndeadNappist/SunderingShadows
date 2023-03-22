@@ -3040,7 +3040,8 @@ void define_base_damage(int adjust)
             {
                 tell_object(caster, "%^BOLD%^Your spell is maximized.%^RESET%^");
                 caster->remove_property("maximize spell");
-                sdamage = clevel * 5;
+                //sdamage = clevel * 5;
+                sdamage = roll_dice(clevel, 5, 1); //roll with advantage
             }
         } else if (slevel > 0 && slevel < 20) {
             sdamage = roll_dice(clevel, 5 + slevel);
@@ -3141,6 +3142,11 @@ void define_base_damage(int adjust)
                     sdamage *= 2;
                 }
             }
+        }
+        //Quickened spell does less damage
+        if(caster->query_property("quicken spell"))
+        {
+            sdamage /= 3;
         }
         else if (FEATS_D->is_active(caster, "eldritch warfare")) {
             sdamage /= 3;

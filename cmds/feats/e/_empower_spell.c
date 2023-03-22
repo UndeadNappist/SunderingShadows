@@ -14,7 +14,7 @@ void create()
     feat_name("empower spell");
     feat_prereq("31 levels in any single spellcaster class");
     feat_syntax("empower_spell");
-    feat_desc("This Meta Magic feat will cause your next spell to behave as though it were two spell levels higher. This feat is not available to psionic classes. This feat has a long cooldown");
+    feat_desc("This Meta Magic feat will cause your next spell to behave as though it were two spell levels higher. This feat is not available to psionic classes. This feat has a cooldown");
     set_required_for(({ }));
 }
 
@@ -81,7 +81,7 @@ void execute_feat()
 
     tell_object(caster, "You use your meta magic knowledge to empower your next spell.");
     caster->set_property("empower spell", 1);
-    caster->add_cooldown("empower spell", 600);
+    caster->add_cooldown("empower spell", 180);
 
     return;
 }
