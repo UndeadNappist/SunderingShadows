@@ -24,7 +24,7 @@ int roll_dice(int num, int sides, int adv)
 
     if (adv != 0)
     {
-        for (i = 0; i < num; ++ i)
+        for (i = 0; i < num; ++i)
         {
             roll  = random(sides) + 1;
             roll2 = random(sides) + 1;
