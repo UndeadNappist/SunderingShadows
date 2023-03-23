@@ -22,7 +22,7 @@ void create(){
 "place he died fully healed and wearing any gear he was wearing at the time of death that is still present.\n\n%^BOLD%^"
 "%^RED%^Special Note%^RESET%^:  This spell takes place right at the moment of death, before the caster has entered "
 "Lysara's plane.  As such, should the caster accept the rebirth, he will remember the moments before his death, much as "
-"if he hadn't died at all.  If he refuses the rebirth, the death will continue as normal.");
+"if he hadn't died at all.  If he refuses the rebirth, or if 5 minutes passes, the death will continue as normal.");
     set_verbal_comp();
     set_property("magic",1);
     set_peace_needed(1);
