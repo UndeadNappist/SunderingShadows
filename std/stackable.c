@@ -29,6 +29,7 @@ void create()
     ::create();
 
     set_property("no alter", 1);
+    set_value(query("base_value") * query("quantity"));
 }
 
 string query_long(string str)
@@ -76,6 +77,8 @@ int combine_function(string str)
 
     that_obj->remove();
 
+    set_value(query("base_value") * query("quantity"));
+
     return 1;
 }
 
@@ -111,6 +114,8 @@ int split_function(string args)
     new_stack = new(base_name(this_object()));
     new_stack->set("quantity", size_to_split);
     new_stack->move(player);
+
+    set_value(query("base_value") * query_quantity());
 
     return 1;
 }
