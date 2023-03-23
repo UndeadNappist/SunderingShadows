@@ -80,56 +80,86 @@ void spell_effect(int prof){
     execute_attack();
 }
 
-void execute_attack(){
+void execute_attack()
+{
+    object *rooms_nearby;
+
     if(!flag){
         flag = 1;
         ::execute_attack();
         return;
     }
-    if(!objectp(caster)){
+
+    if(!objectp(caster))
+    {
         dest_effect();
         return;
     }
+
+    if (!objectp(place))
+    {
+        dest_effect();
+        return;
+    }
+
     foes = target_selector();
 
     j = sizeof(foes);
-    if(time > clevel * 3){
+
+    if(time > clevel * 3)
+    {
         dest_effect();
+        return;
     }
-    else{
+
+    if (arrayp(rooms_nearby = nearbyRoom(place, 2)))
+    {
         switch(element){
             case "acid":
-                message("info", "%^RESET%^%^CRST%^%^C065%^Fist sized %^C077%^g%^C071%^l%^C070%^o%^C076%^b%^C070%^s %^C065%^of %^C077%^a%^C071%^c%^C070%^i%^C076%^d %^RESET%^%^C065%^pour out of the sky %^C190%^burning %^RESET%^%^C065%^into everything in sight!%^CRST%^", nearbyRoom(place,2));
+                message("info", "%^RESET%^%^CRST%^%^C065%^Fist sized %^C077%^g%^C071%^l%^C070%^o%^C076%^b%^C070%^s %^C065%^of %^C077%^a%^C071%^c%^C070%^i%^C076%^d %^RESET%^%^C065%^pour out of the sky %^C190%^burning %^RESET%^%^C065%^into everything in sight!%^CRST%^", rooms_nearby);
                 break;
             case "electricity":
-                message("info", "%^RESET%^%^CRST%^%^C100%^The furious %^C059%^s%^C243%^t%^C245%^o%^C243%^r%^C059%^m %^RESET%^%^C100%^above sends %^C228%^st%^C231%^r%^C228%^ea%^C226%^k%^C228%^s %^C100%^of %^C228%^l%^C231%^i%^C228%^gh%^C226%^t%^C231%^n%^C228%^in%^C226%^g%^RESET%^%^C100%^ all around!%^CRST%^", nearbyRoom(place,2));
+                message("info", "%^RESET%^%^CRST%^%^C100%^The furious %^C059%^s%^C243%^t%^C245%^o%^C243%^r%^C059%^m %^RESET%^%^C100%^above sends %^C228%^st%^C231%^r%^C228%^ea%^C226%^k%^C228%^s %^C100%^of %^C228%^l%^C231%^i%^C228%^gh%^C226%^t%^C231%^n%^C228%^in%^C226%^g%^RESET%^%^C100%^ all around!%^CRST%^", rooms_nearby);
                 break;
             case "fire":
-                message("info", "%^RESET%^%^CRST%^%^C124%^The clouds above %^C196%^burn %^RESET%^%^C124%^as %^C208%^f%^C214%^l%^C208%^a%^C202%^m%^C208%^i%^C214%^n%^C208%^g %^C202%^b%^C208%^o%^C214%^l%^C208%^t%^C202%^s %^RESET%^%^C124%^rain down, %^C196%^immolating %^RESET%^%^C124%^the area!%^CRST%^", nearbyRoom(place,2));
+                message("info", "%^RESET%^%^CRST%^%^C124%^The clouds above %^C196%^burn %^RESET%^%^C124%^as %^C208%^f%^C214%^l%^C208%^a%^C202%^m%^C208%^i%^C214%^n%^C208%^g %^C202%^b%^C208%^o%^C214%^l%^C208%^t%^C202%^s %^RESET%^%^C124%^rain down, %^C196%^immolating %^RESET%^%^C124%^the area!%^CRST%^", rooms_nearby);
                 break;
             case "sonic":
-                message("info", "%^RESET%^%^CRST%^%^C090%^The storm above unleashes a %^C218%^p%^C212%^a%^C206%^nde%^C212%^m%^C206%^oni%^C212%^u%^C218%^m %^C090%^of deadly %^C243%^n%^C247%^o%^C251%^i%^C243%^s%^C247%^e %^RESET%^%^C090%^and %^C243%^v%^C247%^i%^C251%^b%^C243%^r%^C247%^a%^C251%^t%^C243%^i%^C247%^o%^C251%^n%^C243%^s %^RESET%^%^C090%^that %^C092%^ravages %^C090%^everything in sight!", nearbyRoom(place,2));
+                message("info", "%^RESET%^%^CRST%^%^C090%^The storm above unleashes a %^C218%^p%^C212%^a%^C206%^nde%^C212%^m%^C206%^oni%^C212%^u%^C218%^m %^C090%^of deadly %^C243%^n%^C247%^o%^C251%^i%^C243%^s%^C247%^e %^RESET%^%^C090%^and %^C243%^v%^C247%^i%^C251%^b%^C243%^r%^C247%^a%^C251%^t%^C243%^i%^C247%^o%^C251%^n%^C243%^s %^RESET%^%^C090%^that %^C092%^ravages %^C090%^everything in sight!", rooms_nearby);
                 break;
             default:
-                message("info", "%^RESET%^%^CRST%^%^C081%^S%^C087%^h%^C123%^ar%^C087%^d%^C081%^s %^C075%^of %^C087%^i%^C123%^c%^C087%^e %^RESET%^%^C039%^pour out of the sky, %^C051%^slamming %^C039%^into everything in sight!%^CRST%^", nearbyRoom(place,2));
+                message("info", "%^RESET%^%^CRST%^%^C081%^S%^C087%^h%^C123%^ar%^C087%^d%^C081%^s %^C075%^of %^C087%^i%^C123%^c%^C087%^e %^RESET%^%^C039%^pour out of the sky, %^C051%^slamming %^C039%^into everything in sight!%^CRST%^", rooms_nearby);
                 break;
         }
 
-        for (i=0;i<j;i++){
-            if(!objectp(foes[i])) continue;
-            if(!objectp(caster)){
+        for (i=0;i<j;++i)
+        {
+            if(!objectp(foes[i]))
+                continue;
+
+            if(!objectp(caster))
+            {
                 dest_effect();
                 return;
             }
-            if(foes[i] == caster && caster != target) continue;
-            if(interactive(foes[i]) && newbiep(foes[i])) continue;
-            if(foes[i]->query_property("no detect")) continue;
+
+            if(foes[i] == caster && caster != target)
+                continue;
+
+            if(interactive(foes[i]) && newbiep(foes[i]))
+                continue;
+
+            if(foes[i]->query_property("no detect"))
+                continue;
 //added by Circe to stop scry detectors, etc, from being hit.
-            if(!present(caster,place) && caster != target){
+            if(!present(caster,place) && caster != target)
+            {
                 dest_effect();
                 return;
             }
-            if(!present(foes[i],place)) continue;
+
+            if(!present(foes[i],place))
+                continue;
 
             target_limb = foes[i]->return_target_limb();
             damage_targ(foes[i], target_limb, sdamage,element);

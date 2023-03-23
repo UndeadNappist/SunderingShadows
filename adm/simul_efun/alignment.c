@@ -71,6 +71,9 @@ int opposed_alignment(object me, object you)
     my_align = me->query_true_align();
     your_align = you->query_true_align();
     
+    if(!your_align)
+        return 1;
+    
     if(my_align == 5 || your_align == 5)
         return 0;
     

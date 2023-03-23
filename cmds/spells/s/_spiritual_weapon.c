@@ -48,8 +48,8 @@ void summon_servant() {
     string deity = caster->query_diety();
     string normalizedDeity;
     normalizedDeity = replace_string(deity," ","_");
-    if(deity == "godless")
-        normalizedDeity = "kismet";
+    if (deity == "godless" || deity == "velik" || deity == "ebolek" || deity == "eucalia" || deity == "cacia" || deity == "mephasm")
+        normalizedDeity = "generic";
 
     tell_object(caster,"%^CYAN%^%^BOLD%^As you complete the spell a weapon forms out of thin air in front of you.%^RESET%^");
     tell_room(place,"%^CYAN%^%^BOLD%^As "+caster->QCN+" completes the spell a weapon forms out of thin air.%^RESET%^",caster);

@@ -308,6 +308,12 @@ display_common()
 reset_common(string str)
 {
     int i, rstpos;
+
+    if (!stringp(str))
+    {
+        write("%^BOLD%^%^RED%^Please select something to reset.");
+        return 1;
+    }
     
     str = replace_string(str, " ", "_");
     str = lower_case(str);
