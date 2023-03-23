@@ -3049,7 +3049,8 @@ void define_base_damage(int adjust)
             {
                 tell_object(caster, "%^BOLD%^Your spell is maximized.%^RESET%^");
                 caster->remove_property("maximize spell");
-                sdamage = clevel * (slevel + 5);
+                //sdamage = clevel * (slevel + 5);
+                sdamage = roll_dice(clevel, slevel + 5, 1);
             }
         } else {
             sdamage = roll_dice(clevel, 8);
@@ -3057,7 +3058,8 @@ void define_base_damage(int adjust)
             {
                 tell_object(caster, "%^BOLD%^Your spell is maximized.%^RESET%^");
                 caster->remove_property("maximize spell");
-                sdamage = clevel * 8;
+                //sdamage = clevel * 8;
+                sdamage = roll_dice(clevel, 8, 1);
             }
         }
         /*
