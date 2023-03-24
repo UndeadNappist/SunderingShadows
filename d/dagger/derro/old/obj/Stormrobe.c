@@ -97,7 +97,7 @@ int wear_it(){
 	  if((!ETO->is_class("psion") && ETO->is_class("mage")) ||
     	  (ETO->is_class("cleric") && !ETO->is_class("psion"))) 
     	  {		
-        	ETO->set_property("magic resistance",10);
+        	ETO->set_property("magic resistance", 2);
 	  }
 	    ETO->add_sight_bonus(5);
 	    set_heart_beat(1);
@@ -128,7 +128,7 @@ int remove_it(){
     (ETO->is_class("cleric") && !ETO->is_class("psion"))) 
     {
     
-		ETO->set_property("magic resistance",-10); 
+		ETO->set_property("magic resistance",-2);
     }
     return 1;
 }
