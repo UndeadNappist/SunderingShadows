@@ -19,7 +19,7 @@ int* restricted_alignments(string subrace)
 
 string* restricted_classes(string subrace)
 {
-    return ({ "paladin", "inquisitor", "barbarian", "psion", "psywarrior", });
+    return ({ "paladin", "inquisitor", "barbarian", "psion", "psywarrior", "monk" });
 }
 
 string* restricted_deities(string subrace)
