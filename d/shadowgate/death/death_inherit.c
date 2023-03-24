@@ -96,6 +96,7 @@ int raise_player(string verb)
             TP->delete("no pk");
             TP->remove_pk_death_flag();
         }
+        this_player()->delete("just_been_pkilled");
         tell_object(TP,"%^BOLD%^You have choosen to return to life!%^RESET%^");
         tell_room(environment(TP),"%^BOLD%^"+TP->QCN+" has returned from the dead!",TP);
         if(stringp(WHICH_CALL_OUT)) { remove_call_out(WHICH_CALL_OUT); }
