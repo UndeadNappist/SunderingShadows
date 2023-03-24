@@ -1342,11 +1342,12 @@ int do_damage(string limb, int damage)
 
     // added to stop doing damage in pkills when a player is at -100% health.  Should prevent
     // MOST accidental pkills -Ares 4/12/06
-    if (query_hp() < (-1 * query_max_hp()))
+    if (query_hp() <= (-1 * query_max_hp()))
     {
         if (damage > 0) {
             damage = 0;
-        }                              // stuck this here so they'll heal if they're knocked out below -100% -Ares
+            set_hp(-query_max_hp());
+        }
     }
     if (!objectp(attacker = me->query_property("beingDamagedBy")))
     {

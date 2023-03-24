@@ -1379,7 +1379,7 @@ int crit_damage(object attacker, object targ, object weapon, int size, int damag
         }
     }
 
-    return crit_dam;
+    return crit_dam + damage;
 }
 
 int unarmed_enchantment(object who)
@@ -1402,7 +1402,6 @@ int unarmed_enchantment(object who)
 varargs void calculate_damage(object attacker, object targ, object weapon, string target_thing, int critical_hit)
 {
     int attacker_size, damage, mod;
-    int critical_damage;
     int res, eff_ench, ench;
     int i, j, mysize, sneak;
     int speed, enchantment, fired = 0, cant_shot=0, bonus_hit_damage = 0;// added for new stamina formula -Ares
@@ -1490,9 +1489,6 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         damage += COMBAT_D->unarmed_enchantment(attacker);
     }
 
-    if(critical_hit)
-        bonus_hit_damage += crit_damage(attacker, targ, weapon, attacker_size, damage, cant_shot);
-    
     damage = damage_done(attacker, weapon, damage, fired);
 
     if (!objectp(targ) || !objectp(attacker)) {
@@ -1501,6 +1497,10 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
 
     if (objectp(weapon) && !attacker->query_property("shapeshifted")) {
         weapon->reaction_to_hit(targ, damage);
+    }
+
+    if (critical_hit) {
+        damage = crit_damage(attacker, targ, weapon, attacker_size, damage, cant_shot);
     }
     
     if(targ && targ->query_property("warlocks curse") == attacker)
