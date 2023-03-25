@@ -143,6 +143,7 @@
     "/d/underdark/mines/obj/dragonmask", \
     "/d/underdark/mines/obj/gnorobe", \
     "/d/underdark/ud_ruins/obj/fomorian_leather", \
+    "/realms/chernobog/player_rewards/balur_hat", \
     "/realms/kismet/obj/rewards/k_balurhat", \
     "/realms/kismet/obj/rewards/moontiara", \
     "/realms/kismet/obj/rewards/r_orchid", \

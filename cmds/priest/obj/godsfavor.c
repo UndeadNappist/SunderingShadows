@@ -37,11 +37,17 @@ void dest_effect(){
 }
 
 
-void remove(){
-    if(objectp(PO)){
-        if(!avatarp(PO) && (strsrch(base_name(PO),"_gods") == -1)) { return; }
-    }
-    destruct(TO);
+int remove()
+{
+    object function_caller = previous_object();
+
+    if(objectp(function_caller))
+        if(!avatarp(function_caller) && (strsrch(base_name(function_caller),"_gods") == -1))
+            return 0;
+
+    destruct(this_object());
+
+    return 1;
 }
 
 
