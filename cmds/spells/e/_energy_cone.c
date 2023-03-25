@@ -35,11 +35,11 @@ void spell_effect(int prof){
     string energy, color, dam_type, thetarg, args, realname;
 
     damage = 0;
-    /*if(!arg) {
+    if(!arg) {
         tell_object(caster, "%^RESET%^%^CRST%^%^C059%^You need to specify a target and a type for this power!%^CRST%^");
         dest_effect();
         return;
-    }*/
+    }
     if(sscanf(arg,"%s as %s",thetarg,args) != 2){
         thetarg = arg;
         args = "random";
