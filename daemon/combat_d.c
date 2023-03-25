@@ -1707,6 +1707,7 @@ int damage_done(object attacker, object weap, int damage, int isranged)
 {
     object* wielded;
     int prof;
+    string type;
 
     if (!objectp(attacker)) {
         return damage;
@@ -1717,68 +1718,58 @@ int damage_done(object attacker, object weap, int damage, int isranged)
     if (!objectp(weap)) {
         return damage;
     }
-    if (!weap->query_prof_type()) {
+    if(!strlen(type = weap->query_prof_type()))
         return damage;
-    }
-    switch (weap->query_weapon_prof()) {
-    case "simple":  if (FEATS_D->usable_feat(attacker, "simple weapon proficiency")) {
-            prof = 100;
-    }
-        break;
-
-    case "martial": if (FEATS_D->usable_feat(attacker, "martial weapon proficiency")) {
-            prof = 100;
-    }
-        break;
-
-    case "exotic":  if (FEATS_D->usable_feat(attacker, "exotic weapon proficiency")) {
-            prof = 100;
-    }
-        break;
-
-    default: prof = 30; break;
-    }
-
-    if (avatarp(attacker)) {
+    
+    if(avatarp(attacker))
         prof = 100;
-    }
+    else if(FEATS_D->usable_feat(attacker, type + " weapon proficiency"))
+        prof = 100;
+    else
+        prof = 30;
 
-    if(FEATS_D->usable_feat(attacker, "advanced training"))
-        prof = to_int(prof * 1.10);
+    if(attacker->is_class("fighter") && FEATS_D->usable_feat(attacker, "advanced training"))
+        prof += 10;
 
-    if (pointerp(wielded = (object*)attacker->query_wielded()) && !attacker->query_property("shapeshifted")) {
-        if (isranged) {
-            if (FEATS_D->usable_feat(attacker, "deadeye")) {
-                prof = to_int(prof * 1.30);
-            }
-        }else if (attacker->validate_combat_stance("two hander")) {
-            if (FEATS_D->usable_feat(attacker, "strength of arm")) {
-                prof = to_int(prof * 1.30);
-            }
-        }else if (attacker->validate_combat_stance("weapon and shield")) {
-            if (FEATS_D->usable_feat(attacker, "counter") && (int)attacker->query_shieldMiss()) {
-                prof = to_int(prof * 1.30);
-            }
-        }else if (attacker->validate_combat_stance("one hander")) {
-            if (FEATS_D->usable_feat(attacker, "opportunity strikes")) {
-                prof = to_int(prof * 1.30);
-            }
-            if (FEATS_D->usable_feat(attacker, "artful precision")) {
-                prof = to_int(prof * 1.20);
-            }
+    if (pointerp(wielded = (object*)attacker->query_wielded()) && !attacker->query_property("shapeshifted"))
+    {
+        if (isranged)
+        {
+            if (FEATS_D->usable_feat(attacker, "deadeye"))
+                prof += 30;
+        }
+        else if (attacker->validate_combat_stance("two hander"))
+        {
+            if (FEATS_D->usable_feat(attacker, "strength of arm"))
+                prof += 30;
+        }
+        else if (attacker->validate_combat_stance("weapon and shield"))
+        {
+            if (FEATS_D->usable_feat(attacker, "counter") && (int)attacker->query_shieldMiss())
+                prof += 30;
+        }
+        else if (attacker->validate_combat_stance("one hander"))
+        {
+            if (FEATS_D->usable_feat(attacker, "opportunity strikes"))
+                prof += 30;
+            if (FEATS_D->usable_feat(attacker, "artful precision"))
+                prof += 20;
         }
     }
 
-    if (prof == 0) {
+    if (prof == 0)
         return 0;
-    }
-    if (prof < 0) {
+
+    if (prof < 0)
+    {
         damage = absolute_value((damage * prof) / 100 + 1);
         attacker->cause_typed_damage(attacker, "torso", damage, weap->query_damage_type());
         tell_object(attacker, "You hurt yourself with your weapon because of your inexperience.");
         tell_room(environment(attacker), attacker->query_cap_name() + " hurts " + attacker->query_objective() + "self with " + attacker->query_possessive() + " weapon.", attacker);
         return 0;
-    }else {
+    }
+    else
+    {
         damage = (damage * prof) / 100;
         if(counter_damage)
         {
