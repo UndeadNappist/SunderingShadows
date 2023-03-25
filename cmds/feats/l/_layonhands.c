@@ -13,7 +13,7 @@
 
 inherit FEAT;
 
-#define FEATTIMER 80
+#define FEATTIMER 30
 
 void create()
 {
@@ -54,6 +54,13 @@ int cmd_layonhands(string str)
 void execute_feat()
 {
     int delay;
+    
+    if((int)caster->query_property("using instant feat"))
+    {
+        tell_object(caster,"You are already in the middle of using a feat!");
+        dest_effect();
+        return;
+    }
  
     if(!(int)USER_D->spend_pool(this_player(), 1, "grace"))
     {
@@ -72,6 +79,7 @@ void execute_feat()
     //delay_msg(FEATTIMER,"%^BOLD%^%^WHITE%^You can %^CYAN%^layonhands%^WHITE%^ again.%^RESET%^");
     caster->remove_property("using layonhands");
     caster->set_property("using layonhands",delay);
+    caster->set_property("using instant feat", 1);
     return;
 }
 
@@ -113,6 +121,7 @@ void execute_attack()
     amount = 200 + roll_dice(amount, 6);
     dedication = caster->query_dedication();
     attackers = caster->query_attackers();
+    spell_kill(target, caster);
     
     //If used offensively, has to pass touch attack test
     if(member_array(target, attackers) >= 0 && BONUS_D->process_hit(caster, target, 1, 0, 0, 1) <= 0)
