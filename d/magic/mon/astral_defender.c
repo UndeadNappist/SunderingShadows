@@ -1,6 +1,6 @@
 #include "summoned_monster.h"
 
-inherit MONSTER;
+inherit MINION;
 
 string COLORS = ({"%^BLUE%^","%^RED%^","%^BLUE%^","%^RED%^","%^ORANGE%^","%^MAGENTA%^","%^GREEN%^","%^CYAN%^","%^WHITE%^"});
 

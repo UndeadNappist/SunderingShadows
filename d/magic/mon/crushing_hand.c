@@ -3,7 +3,7 @@
 #include <std.h>
 #include <magic.h>
 
-inherit WEAPONLESS;
+inherit MINION;
 
 object target;
 int busy;

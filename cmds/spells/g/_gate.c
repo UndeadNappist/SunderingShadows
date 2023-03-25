@@ -71,6 +71,7 @@ void spell_effect(int prof)
     //arg = lower_case(arg);
     if(arg == "summoning")
     {
+        summon_spell();
         do_summons();
         return;
     }
@@ -158,6 +159,8 @@ void do_summons_2()
     beastie->setup_beastie(caster,beastalign);
     beastie->set_caster(caster);
     beastie->set_mylevel(clevel);
+    beastie->set_owner(caster);
+    beastie->setup_minion(clevel, spell_level, "greater");
 
     addSpellToCaster();
 }

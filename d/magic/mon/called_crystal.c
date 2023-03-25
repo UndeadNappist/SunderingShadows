@@ -3,7 +3,7 @@ kill, which can become obscene with the PT XP bonus and
 cycling shifters - Octothorpe 1/6/12*/
 
 #include <std.h>
-inherit WEAPONLESS;
+inherit MINION;
 
 #define COLORS ({"%^BOLD%^%^BLUE%^blue","%^BOLD%^%^GREEN%^green","%^BOLD%^%^RED%^red","%^BOLD%^%^MAGENTA%^pink","%^YELLOW%^yellow","%^BOLD%^%^WHITE%^white","%^BOLD%^%^CYAN%^sky blue"})
 

@@ -2,7 +2,7 @@
 #include "summoned_monster.h"
 
 
-inherit MONSTER;
+inherit MINION;
 
 
 varargs void setup_plant(string the_plant);

@@ -1,7 +1,7 @@
 //ielemental.c. Nienne, 07/05.
 
 #include "summoned_monster.h"
-inherit WEAPONLESS;
+inherit MINION;
 
 void create(){
    int num;
