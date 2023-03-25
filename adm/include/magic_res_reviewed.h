@@ -6,6 +6,7 @@
 
 // Living objects (mobs)
 #define MAGIC_RES_MOBS ({ \
+    "/cmds/avatar/generic_guard", \
     "/d/antioch/antioch2/mons/sebastian", \
     "/d/antioch/valley/mons/dragonet", \
     "/d/attaya/tunnels/mons/book", \
