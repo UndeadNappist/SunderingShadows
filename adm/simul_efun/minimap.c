@@ -21,7 +21,7 @@ string query_blocked(object what, string direction)
     
     dest = what->query_exit(direction);
     
-    if(!dest)
+    if(!dest || clonep(dest))
         return "#";
     else
     {
