@@ -62,7 +62,7 @@ string query_cast_string()
         return "display";
     }
     tell_object(caster,"%^BOLD%^Seeking inner calm, you open your mind to the world around you and the target you seek.");
-    tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+" closes "+caster->QP+" eyes and takes on an expression of calm.");
+    tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+" closes "+caster->QP+" eyes and takes on an expression of calm.", caster);
     return "display";
 }
 
