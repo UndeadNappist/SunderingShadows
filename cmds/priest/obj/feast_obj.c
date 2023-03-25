@@ -105,21 +105,18 @@ void heart_beat()
     return;
 }
 
-void dest_effect()
+int dest_effect()
 {
     object me, my_environment;
 
-    if (!objectp(me = this_object()))
-        return;
+    if (objectp(me = this_object()) && objectp(my_environment = environment(me)))
+        tell_object(my_environment, "The banquet table vanishes before your eyes!");
 
-    if (!objectp(my_environment = environment(me)))
-        return;
-
-    tell_object(my_environment, "The banquet table vanishes before your eyes!");
     if (objectp(casting_spell))
-    {
         casting_spell->dest_effect();
-    }
-    me->remove();
-    return;
+
+    if (objectp(me))    // I suspect that this object is being removed from dest effect, but just in case...
+        me->remove();
+
+    return 1;
 }
