@@ -6,7 +6,7 @@
 #include "/d/shadow/room/goblin/short.h"
 inherit MONSTER;
 
-int xx, dlevel;
+int xx, dlevel, flag;
 
 void create()
 {
@@ -154,16 +154,46 @@ int special_spell()
 
 void init()
 {
-    string mrace = TP->query_race(), mname = TP->query_name();
-    ::init();
-    if (avatarp(TP) || TP->query_invis() || mrace == "goblin" || mname == "dryzil") {
+    object player = this_player();
+
+    if (!objectp(player = this_player()))
         return;
-    }
-    call_out("coverass", 2, TP);
+
+    if (!userp(player))
+        return;
+
+    if (!avatarp(player) || player->query_invis() || player->query_race() == "goblin")
+        return;
+
+    ::init();
+
+    call_out("coverass", 2, player);
 }
 
 void coverass(object targ)
 {
+    if (!objectp(targ) || !objectp(this_object()))
+        return;
+
+    if (flag == 1)
+        return;
+
     force_me("block east");
     force_me("kill " + targ->query_name());
+
+    flag = 1;
+}
+
+void heart_beat()
+{
+    ::heart_beat();
+
+    if (!objectp(this_object()))
+        return;
+
+    if (flag == 0)
+        return;
+
+    if (query_attackers() != ({}))
+        flag = 0;
 }
