@@ -19,6 +19,7 @@ void create()
     set_syntax("cast CLASS reanimate");
     set_description("Animating dead is a pathetic craft for the weak. A true necromancer's art is to change what was into something more potent and powerful that can serve his fell desires and schemes. This spell uses a fallen corpse to make an undead creature from rotting flesh. Such a creature is more potent than lesser skeletons and zombies, and will serve the warlock until discorporated. This spell, without a doubt, is evil." + ("/cmds/spells/a/_animate_dead"->extra_help()));
     evil_spell(1);
+    summon_spell();
     set_helpful_spell(1);
     set_arg_needed();
 }
@@ -89,6 +90,9 @@ void spell_effect(int prof)
     undead->control(caster);
     caster->add_follower(undead);
     controller->add_monster(undead);
+    
+    undead->set_owner(caster);
+    undead->setup_minion(clevel, spell_level, "greater");
 
     caster->set_property("raised", 1);
 
