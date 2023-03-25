@@ -9,35 +9,34 @@
  * @param sides M
  * @reutn Sum of the roll
  */
-<<<<<<< HEAD
- 
+
 //Tlaloc added advantage/disadvantage modifier 9.18.21
 //Updated to add flat amount as advantage on rolls (20% of max)
- 
+
 int roll_dice(int num, int sides, int adv)
 {
     int x, cnt;
 
     cnt = 0;
-        
+
     for (x = 0; x < num; x++)
         cnt += random(sides) + 1;
-    
+
     if(adv != 0)
     {
         int max, mod;
-        
+
         max = num * sides;
         mod = adv * ((max * 20) / 100);
         cnt += mod;
         cnt = cnt > max ? max : cnt;
         cnt = cnt < num ? num : cnt;
-    }     
-        
+    }
+
     return cnt;
 }
-=======
 
+/* Editing this out for the moment due to merge conflict - Yves, 3/25/23
 // Tlaloc added advantage/disadvantage modifier 9.18.21
 // Shifted to take the maximum of each die, as opposed to the maximum of each pool - Spade, 23 March 2023
 
@@ -72,4 +71,4 @@ int roll_dice(int num, int sides, int adv)
     return aggregator;
 
 }
->>>>>>> 0afb5ca5150d2ae5d11de4a71280e0c5c7eb4d28
+*/
