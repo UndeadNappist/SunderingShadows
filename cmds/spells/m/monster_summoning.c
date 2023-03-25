@@ -18,6 +18,7 @@ void create() {
 "monsters will vanish.");
     set_verbal_comp();
     set_somatic_comp();
+    summon_spell();
     set_components(([
       "mage" : ([ "tiny bag" : 1, "small candle" : 1, ]),
     ]));

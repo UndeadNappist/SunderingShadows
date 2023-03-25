@@ -1041,15 +1041,13 @@ void wizard_interface(object user, string type, string targ)
             return;
         }
     }
-    
-    /*
+       
     if(summon_spell && caster->query_property("summon spell"))
     {
         tell_object(caster, "You can't concentrate on more than one summon spell at a time.");
-        ::remove;
+        ::remove();
         return;
     }
-    */
 
     if(this_player()->is_deva() && target && !query_helpful())
     {
@@ -4500,6 +4498,10 @@ void help()
     }
     if (this_object()->is_curse()) {
         write("%^BOLD%^%^RED%^This spell is a curse.");
+    }
+    if(summon_spell)
+    {
+        write("%^BOLD%^%^RED%^This is a summon spell.");
     }
     if(versatile)
     {
