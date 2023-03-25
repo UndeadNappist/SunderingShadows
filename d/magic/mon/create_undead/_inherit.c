@@ -2,7 +2,7 @@
 #include <daemons.h>
 #include <magic.h>
 
-inherit WEAPONLESS;
+inherit MINION;
 
 object master;
 object weapon;
