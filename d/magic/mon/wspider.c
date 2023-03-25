@@ -1,6 +1,6 @@
 //Coded by the one and only master of monsters...BANE//
 #include "summoned_monster.h"
-inherit WEAPONLESS;
+inherit MINION;
 void create(){
     ::create();
     set_id(({"spider","whisper","Whisper Spider", "forestmon" }));

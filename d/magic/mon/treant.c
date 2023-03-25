@@ -2,7 +2,7 @@
 
 #include <std.h>
 
-inherit WEAPONLESS;
+inherit MINION;
 
 void make_me();
 void remove_summoned(object ob);

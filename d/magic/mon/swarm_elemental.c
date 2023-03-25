@@ -3,7 +3,7 @@
 //3/22/13
 #include <std.h>
 
-inherit MONSTER;
+inherit MINION;
 
 object spell;
 

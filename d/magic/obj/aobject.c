@@ -5,7 +5,7 @@
 #include <std.h>
 #define SAVE_DIR = "/d/magic/obj/save/"
 
-inherit WEAPONLESS;
+inherit MINION;
 
 object thing, caster;
 
