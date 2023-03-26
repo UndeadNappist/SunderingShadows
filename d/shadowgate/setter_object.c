@@ -531,7 +531,7 @@ display_stats()
 
     write("%^RESET%^--==%^BOLD%^< %^GREEN%^You must now assign your %^CYAN%^character stats %^WHITE%^>%^RESET%^==--\n");
 
-    if (char_sheet["stat_mod"]) {
+    if (!undefinedp(char_sheet["stat_mod"])) {
         race_stats[STATS[char_sheet["stat_mod"]]] += 2;
     }
 
