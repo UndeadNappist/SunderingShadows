@@ -27,12 +27,6 @@ create(){
 }
 
 string query_cast_string(){
-    element = (string)caster->query("elementalist");
-    if(element){
-        set_immunities(({ element }));
-        define_clevel();
-        define_base_damage(0);
-    }
     return "%^RESET%^%^CRST%^%^C059%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C059%^ utters a morose chant.%^CRST%^";
 }
 
@@ -44,6 +38,13 @@ spell_effect(int prof){
         target = 0;
         dest_effect();
         return;
+    }
+    
+    element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
     }
 
     target_limb = target->return_target_limb();

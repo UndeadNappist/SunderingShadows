@@ -30,12 +30,6 @@ void create()
 
 string query_cast_string()
 {
-    element = (string)caster->query("elementalist");
-    if(element){
-        set_immunities(({ element }));
-        define_clevel();
-        define_base_damage(0);
-    }
     return caster->QCN + " rubs a disc of bronze while muttering some words.";
 }
 
@@ -51,7 +45,12 @@ spell_effect(int prof)
         return;
     }
     target_limb = target->return_target_limb();
-
+    element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
     switch (element) {
     case "acid":
         if (interactive(caster)) {

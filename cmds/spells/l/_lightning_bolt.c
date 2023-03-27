@@ -27,12 +27,6 @@ void create(){
 }
 
 string query_cast_string(){
-    element = (string)caster->query("elementalist");
-    if(element){
-        set_immunities(({ element }));
-        define_clevel();
-        define_base_damage(0);
-    }
     return "%^RESET%^%^CRST%^%^C101%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ clenches "+caster->query_possessive()+" hands into fists while muttering %^C058%^harsh %^C101%^words.%^CRST%^";
 }
 
@@ -48,7 +42,14 @@ spell_effect(int prof) {
     }
     target_limb = target->return_target_limb();
     spell_kill(target, caster);
-
+    
+    element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
+    
     switch(element){
         case "acid":
             tell_object(caster, "%^RESET%^%^CRST%^%^C065%^You hurl your fist forth and a %^C077%^b%^C071%^o%^C070%^l%^C076%^t %^C070%^o%^C071%^f %^C077%^a%^C071%^c%^C070%^i%^C076%^d %^RESET%^%^C065%^streaks forth towards "+target->query_cap_name()+"%^RESET%^%^CRST%^%^C065%^!%^CRST%^");

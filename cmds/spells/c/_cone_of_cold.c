@@ -29,12 +29,6 @@ void create(){
 
 
 string query_cast_string(){
-    element = (string)caster->query("elementalist");
-    if(element){
-        set_immunities(({ element }));
-        define_clevel();
-        define_base_damage(0);
-    }
     if(spell_type == "monk"){
         tell_object(caster, "%^RESET%^%^CRST%^%^C101%^You take in a deep breath, focusing your %^C100%^ki%^RESET%^%^C101%^.%^CRST%^");
         tell_room(place, "%^RESET%^%^CRST%^%^C101%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C101%^ inhales %^C100%^deeply%^C101%^...%^CRST%^", caster);
@@ -53,7 +47,14 @@ void spell_effect(int prof){
 
     YOU = caster->query_cap_name();
     HIM = target->query_cap_name();
-
+    
+    element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
+    
     if(interactive(caster)){
         switch(element){
             case "acid":

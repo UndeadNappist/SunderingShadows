@@ -30,11 +30,7 @@ void create() {
 
 int preSpell() {
     element = (string)caster->query("elementalist");
-    if(element){
-        set_immunities(({ element }));
-        define_clevel();
-        define_base_damage(0);
-    }
+    
     switch(element){
         case "acid": 
             set_immunities(({"acid"})); 
@@ -63,6 +59,14 @@ void spell_effect(int prof){
     string colorings;
 
     profs = prof;
+    
+    element = caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
+    if(!stringp(element)) element = "cold";
 
     switch(element){
         case "acid": colorings = "%^C064%^"; break;

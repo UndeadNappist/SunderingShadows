@@ -63,6 +63,8 @@ void create()
    	set_hit((:TO,"hit_func":));
    	set_prof_type("instrument");
    	set_weapon_speed(6);
+    
+    set_property("repairtype", ({ "jewel" }));
 }
 
 int wieldme(){

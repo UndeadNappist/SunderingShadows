@@ -52,7 +52,6 @@ string query_cast_string()
         set_immunities(({"sonic"}));
         break;
     default:
-        element = "electricity";
         tell_object(caster,"%^BOLD%^%^CYAN%^As you chant rapidly, sparks of lightning begin to gather in your hand.%^RESET%^");
         tell_room(place,"%^BOLD%^%^CYAN%^"+caster->QCN+" chants rapidly, gathering sparks of lightning into "+caster->QP+" hand.%^RESET%^",caster);
         set_immunities(({"electricity"}));
@@ -83,7 +82,15 @@ void spell_effect(int prof)
     }
 
     spell_successful();
-
+    
+    element = caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
+    if(!stringp(element)) element = "electricity";
+    
     if (interactive(caster))
     {
         switch(element)
