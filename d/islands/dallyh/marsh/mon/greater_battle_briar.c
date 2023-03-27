@@ -163,10 +163,10 @@ void impale(object targ)
     if(!objectp(ETO)) return;
     if(!objectp(targ)) return;
 
-    tell_object(targ, TOQCN+"%^RESET%^%^ORANGE%^ swings both its "+
+    tell_object(targ, TOQCN+"%^RESET%^%^ORANGE%^ swings both of its "+
     "forehands at you!%^RESET%^");
 
-    tell_room(ETO, TOQCN+"%^RESET%^%^ORANGE%^ swings both its vicious "+
+    tell_room(ETO, TOQCN+"%^RESET%^%^ORANGE%^ swings both of its vicious "+
     "forehands at "+targ->QCN+"%^RESET%^%^ORANGE%^!%^RESET%^", targ);
     if(!intp(mod = TO->query("damage mod")) || mod < 1) mod = 1;
     dam = roll_dice(30,6) * mod;

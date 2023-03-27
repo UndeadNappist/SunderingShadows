@@ -12,9 +12,9 @@ void create(){
         " the center of this beautifully carved %^ORANGE%^oak%^RESET%^ statue. Her"+
         " hand outstretched defiantly showing her symbol to"+
         " her unseen enemy. \n\n To her left is a male elf in %^BOLD%^%^BLACK%^leather"+
-        " %^RESET%^armor weilding scimitars, standing poised and ready for action. A"+
+        " %^RESET%^armor wielding scimitars, standing poised and ready for action. A"+
         " symbol is worn loosely around his neck, and"+
-        " a wolf sits obediantly at his feet. \n\nBehind and slightly to the right of the"+
+        " a wolf sits obediently at his feet. \n\nBehind and slightly to the right of the"+
         " central figure is a female elf with long hair wearing %^BOLD%^%^GREEN%^platemail%^RESET%^, her"+
         " hands are clasping a symbol and she stands"+
         " firmly in prayer. \n\nImmediately right of the center figure a male elf covered"+

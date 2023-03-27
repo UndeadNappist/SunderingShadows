@@ -12,8 +12,8 @@ void create() {
     set_spell_level(([ "mage" : 7, "cleric" : 7, "bard" : 6 ]));
     set_spell_sphere("enchantment_charm");
     set_syntax("cast CLASS waves of ecstasy");
-    set_damage_desc("living creatures are stunned on failed save. staggered on successful save.");
-    set_description("This spell sends waves of intense pleasure that cause all within range to falter. Affected creatures are stunned rounds on a failed save, or staggered for one round on a successful save.");
+    set_damage_desc("living creatures are stunned on failed save, staggered on successful save.");
+    set_description("This spell sends waves of intense pleasure that cause all within range to falter. Affected creatures are stunned for up to three rounds on a failed save, or staggered for one round on a successful save.");
     set_save("will");
     set_verbal_comp();
     set_somatic_comp();
