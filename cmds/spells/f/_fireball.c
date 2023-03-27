@@ -32,11 +32,6 @@ void create()
 
 string query_cast_string(){
     element = (string)caster->query("elementalist");
-    if(element){
-        set_immunities(({ element }));
-        define_clevel();
-        define_base_damage(0);
-    }
     switch(element){
         case "acid":
             tell_object(caster, "%^RESET%^%^CRST%^%^C065%^You chant rapidly, creating an %^C077%^o%^C071%^r%^C070%^b %^C076%^o%^C070%^f %^C071%^a%^C077%^c%^C071%^i%^C070%^d %^RESET%^%^C065%^in your hand.%^CRST%^");
@@ -77,6 +72,13 @@ void spell_effect(int prof){
         tell_object(caster, "%^RESET%^%^CRST%^%^C059%^Your target is not in this area.%^CRST%^\n");
         dest_effect();
         return;
+    }
+    
+    element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
     }
 
     YOU = caster->query_cap_name();
