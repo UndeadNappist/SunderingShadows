@@ -34,6 +34,6 @@ void reset()
 {
     ::reset();
 
-    if(!present("reaver", TP))
-        new("/realms/kismet/mon/ashraplot/d_priest")->move(TO);
+    if(!present("reaver", this_object()))
+        new("/realms/kismet/mon/ashraplot/d_priest")->move(this_object());
 }
