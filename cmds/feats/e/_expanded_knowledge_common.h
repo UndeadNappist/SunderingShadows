@@ -44,7 +44,7 @@ too_high = 0;
 
 if(this_player()->is_class("psion") && sminpow > 8)
     too_high = 1;
-else if(sminpow > 5)
+else if(this_player()->is_class("psywarrior") && sminpow > 5)
     too_high = 1;
     
 
