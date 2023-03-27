@@ -2,8 +2,9 @@
 
 inherit OBJECT;
 
-string fname;
+string fname, *sortrem;
 object caster;
+mapping remembered;
 
 void init()
 {
@@ -31,11 +32,8 @@ void mem_dest(string str)
     input_to("mem_dest2");
 }
 
-void mem_dest2(string str)
-{
+void mem_dest2(string str){
     string dname;
-    mapping remembered;
-    string * sortrem;
 
     if (!(regexp(str, "[A-Za-z0-9]+"))) {
         dname = "trace";
@@ -52,9 +50,20 @@ void mem_dest2(string str)
 
     remembered[dname] = fname;
     sortrem = distinct_array(({ dname }) + sortrem);
+    if(sizeof(sortrem) > (int)TP->query_base_stats("intelligence") && !avatarp(TP))
+            shorten((int)TP->query_base_stats("intelligence"));
     caster->set_rem_rooms(remembered, sortrem);
 
     tell_object(caster,"%^BOLD%^%^WHITE%^You memorize " + fname->query_short() + "%^RESET%^%^BOLD%^ as %^ORANGE%^" + dname + "%^RESET%^.");
 
-    TO->remove();
+    this_object()->remove();
 }
+
+void shorten(int newsize){
+    while(sizeof(sortrem) > newsize){
+        map_delete(remembered, sortrem[sizeof(sortrem) - 1]);
+        sortrem -= ({ sortrem[sizeof(sortrem) - 1] });
+    }
+    return;
+}
+
