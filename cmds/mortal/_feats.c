@@ -528,6 +528,8 @@ int cmd_feats(string str)
                 this_player()->delete("expanded_knowledge_1");
                 this_player()->delete("expanded_knowledge_2");
                 this_player()->delete("expanded_knowledge_3");
+                this_player()->delete("skill_focus");
+                this_player()->delete("spellmastery_spell");
                 num_feats = ((int)TP->query_level() / 3) + 1;
                 TP->set("free_feats", num_feats);
                 if (!avatarp(TP)) {
