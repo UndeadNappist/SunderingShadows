@@ -77,6 +77,7 @@ int thunderstomp(string str){
       tell_object(ETO,"%^ORANGE%^You stomp your %^BOLD%^%^BLACK%^hoof %^RESET%^%^ORANGE%^into the ground "+
 	  "causing %^BOLD%^b%^WHITE%^o%^ORANGE%^lts of l%^WHITE%^i%^ORANGE%^gh%^WHITE%^t%^ORANGE%^n%^WHITE%^i%^ORANGE%^ng "+
 	  "%^RESET%^%^ORANGE%^to raise up around you!%^WHITE%^");
+      tell_room(environment(this_player()), "%^BOLD%^" + this_player()->query_cap_name() + " stomps " + this_player()->query_possessive() + " hoof into the ground, causing bolts of lightning to raise up around " + this_player()->query_objective() + "!%^RESET%^\n", this_player());
       return 1;
    }    
    if(sscanf(str,"%s",targ) == 1){
