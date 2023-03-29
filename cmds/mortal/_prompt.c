@@ -2,32 +2,44 @@
 
 inherit DAEMON;
 
-void cmd_prompt(string str){
+void cmd_prompt(string str)
+{
     string my_prompt;
-    
+    object player = this_player();
+
+    if (!objectp(player))
+        return;
+
     if(!str)
     {
-        my_prompt = this_player()->getenv("prompt");
+        my_prompt = player->getenv("prompt");
+
+        if (!stringp(my_prompt))
+        {
+            tell_object(player, "You don't seem to have a prompt... Call a wiz.");
+            return;
+        }
+
         my_prompt = replace_string(my_prompt, "%^", "%%%^^^");
-        tell_object(this_player(), "Your current prompt is:");
-        tell_object(this_player(), my_prompt);
+        tell_object(player, "Your current prompt is:");
+        tell_object(player, my_prompt);
         return 1;
     }
         
     if(str == "reset")
     {
-        TP->setenv("prompt","%^BOLD%^BLACK%^-%^RED%^>%^RESET%^");
-        TP->initialize();
+        player->setenv("prompt","%^BOLD%^BLACK%^-%^RED%^>%^RESET%^");
+        player->initialize();
         write("Prompt reset.");
         return 1;
     }
     if (sizeof(str) > 1024) {
-        tell_object(TP,"Your prompt is too long!");
+        tell_object(player,"Your prompt is too long!");
         return 1;
     }
 
-    TP->setenv("prompt", str);
-    TP->initialize();
+    player->setenv("prompt", str);
+    player->initialize();
     write("Prompt changed.");
     return 1;
 }

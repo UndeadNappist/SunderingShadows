@@ -21,7 +21,7 @@ mixed * genoutput(object targ)
     
     output+=({({"Carrying","%^RESET%^%^"+targ->query_internal_encumbrance()+"%^BOLD%^%^GREEN%^/%^WHITE%^"+targ->query_max_internal_encumbrance()})});
     
-    if(!(targ->is_undead() || FEATS_D->usable_feat(targ,"timeless body"))){
+    if(!(targ->is_undead() || FEATS_D->usable_feat(targ,"timeless body")) && max != 0){
         cur = targ->query_stuffed();
         perc = cur*100/max;
         output+=({({"Hunger","%^BOLD%^"+perc+"% ("+hunger2str(perc)+"%^WHITE%^%^BOLD%^)"})});
