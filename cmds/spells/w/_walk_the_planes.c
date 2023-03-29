@@ -85,8 +85,8 @@ void spell_effect(int prof){
             break;
         default:
             tell_object(caster,"Your pact fails to reach out to a suitable plane, and the spell fails.");
-            tell_room(place,caster->QCN+" pauses and looks a little disoriented.",caster);
-            TO->remove();
+            tell_room(place, caster->query_cap_name() + " pauses and looks a little disoriented.", caster);
+            dest_effect();
             return;
             break;
     }
@@ -249,8 +249,11 @@ void move_caster(object endplace, int prof){
     dest_effect();
 }
 
-void dest_effect() {
+void dest_effect()
+{
     ::dest_effect();
-    if(objectp(TO)) TO->remove();
+
+    if(objectp(this_object()))
+        this_object()->remove();
 }
 
