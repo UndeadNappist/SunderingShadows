@@ -29,11 +29,6 @@ void create(){
 
 string query_cast_string(){
     element = (string)caster->query("elementalist");
-    if(element){
-        set_immunities(({ element }));
-        define_clevel();
-        define_base_damage(0);
-    }
     switch(element){
         case "cold":
             coloring = "%^C039%^";
@@ -76,6 +71,32 @@ void spell_effect(int prof){
     if(!caster->ok_to_kill(target)){
         dest_effect();
         return 1;
+    }
+    
+    if(!element){
+        element = (string)caster->query("elementalist");
+        switch(element){
+            case "cold":
+                coloring = "%^C039%^";
+                break;
+            case "electricity":
+                coloring = "%^C100%^";
+                break;
+            case "fire":
+                coloring = "%^C124%^";
+                break;
+            case "sonic":
+                coloring = "%^C090%^";
+                break;
+            default:
+                coloring = "%^C064%^";
+                break;
+        }
+    }
+    if(element != "acid"){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
     }
 
     target_limb = target->return_target_limb();
