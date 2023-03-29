@@ -54,7 +54,7 @@ void create(){
         "greater spell penetration",
         "spell power",
         "perfect caster", }));
-    set_powerlevel(5);
+    set_powerlevel(1);
     set_resistance_percent("acid", 125);
     set_property("swarm", 1);
     handicap = 0;

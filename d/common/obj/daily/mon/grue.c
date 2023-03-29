@@ -54,7 +54,7 @@ void create(){
     set_spells(({
         "interstellar void",
         "tremor",}));
-    set_powerlevel(5);
+    set_powerlevel(1);
     counter = 1;
     handicap = 0;
 }
