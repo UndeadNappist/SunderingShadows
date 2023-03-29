@@ -2863,11 +2863,8 @@ void define_clevel()
         }
     }
 
-    if (FEATS_D->usable_feat(caster, "ragecaster")) {
-        clevel = caster->query_base_character_level(); // CHECK ME!
-        if (caster->query_property("raged")) {
-            clevel += 2;
-        }
+    if (FEATS_D->usable_feat(caster, "ragecaster") && caster->query_property("raged")) {
+        clevel = caster->query_base_character_level();
     }
     
     if(spell_type == "druid")
