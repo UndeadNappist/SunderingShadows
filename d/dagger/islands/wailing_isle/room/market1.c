@@ -13,7 +13,3 @@ void create(){
         ]));
 }
 
-void reset(){
-    if(!present("ambiance device")) new(MON"ambiance_market")->move(this_object());
-}
-

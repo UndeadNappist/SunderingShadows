@@ -13,7 +13,7 @@ void create(){
     set_property("indoors", 0);
     set_name("a beach along the bay");
     set_short("%^RESET%^%^CRST%^%^C172%^a b%^C100%^e%^C172%^a%^C100%^c%^C172%^h along the %^C116%^bay%^CRST%^");
-    set_long("%^RESET%^%^CRST%^%^C186%^Soft sand surrounds you as %^C250%^seagulls%^C186%^ circle overhead. The %^C039%^w%^C045%^a%^C051%^t%^C045%^e%^C039%^r%^C045%^s%^RESET%^%^C186%^ are calm here, lapping %^C229%^gently%^C186%^ against the shore with a %^C229%^hypnotic%^C186%^ rhythm. Looking beyond the %^C179%^breakers%^C186%^, the %^%^C033%^v%^C038%^a%^C043%^s%^C042%^t %^C043%^s%^C038%^e%^C033%^a%^RESET%^%^C186%^ spreads wide against the horizon with her promises of %^C184%^fortune%^C186%^ and %^C184%^freedom%^C186%^. %^C186%^To the northwest, craggy %^C253%^cliffs%^C186%^ loom over the bones of a once lively port town, a %^C193%^haunting backdrop%^C186%^ to the %^C246%^re%^C244%^so%^C246%^un%^C248%^di%^C246%^ng %^C244%^wa%^C246%^il%^C248%^s%^RESET%^%^C186%^ that echo over the isle. Across the bay to the south, a %^C040%^t%^C041%^h%^C042%^r%^C043%^i%^C042%^v%^C041%^i%^C040%^n%^C041%^g %^C042%^f%^C043%^o%^C042%^r%^C041%^e%^C040%^s%^C041%^t%^RESET%^%^C186%^ sits in the lee of the %^C253%^cliffs%^C186%^, full of %^C210%^c%^C203%^o%^C196%^l%^C197%^o%^C204%^r%^RESET%^%^C186%^ and %^C043%^li%^C042%^f%^C043%^e%^RESET%^%^C186%^.%^CRST%^\n");
+    set_long("%^RESET%^%^CRST%^%^C186%^Soft sand surrounds you as %^C250%^seagulls%^C186%^ circle overhead. The %^C039%^w%^C045%^a%^C051%^t%^C045%^e%^C039%^r%^C045%^s%^RESET%^%^C186%^ are calm here, lapping %^C229%^gently%^C186%^ against the shore with a %^C229%^hypnotic%^C186%^ rhythm. Looking beyond the %^C179%^breakers%^C186%^, the %^%^C033%^v%^C038%^a%^C043%^s%^C042%^t %^C043%^s%^C038%^e%^C033%^a%^RESET%^%^C186%^ spreads wide against the horizon with her promises of %^C184%^fortune%^C186%^ and %^C184%^freedom%^C186%^. %^C186%^To the northwest, craggy %^C253%^cliffs%^C186%^ loom over the bones of a once lively port town, a %^C193%^haunting backdrop%^C186%^ to the %^C246%^re%^C244%^so%^C246%^un%^C248%^di%^C246%^ng %^C244%^wa%^C246%^il%^C248%^s%^RESET%^%^C186%^ that echo over the isle. Across the bay to the south, a %^C040%^d%^C041%^e%^C042%^n%^C043%^s%^C042%^e %^C041%^f%^C042%^o%^C043%^r%^C042%^e%^C041%^s%^C040%^t%^RESET%^%^C186%^ full of %^C043%^li%^C042%^f%^C043%^e%^C186%^ and %^C210%^c%^C203%^o%^C196%^l%^C197%^o%^C204%^r%^RESET%^%^C186%^ vibrantly grows.%^CRST%^\n");
     set_smell("default","%^RESET%^%^CRST%^%^C116%^The %^C123%^scents%^C116%^ of the %^C045%^vast sea%^C116%^ leave a %^C123%^salty tinge%^C116%^ in your nose.%^CRST%^");
     set_listen("default","%^RESET%^%^CRST%^%^C044%^Th%^C080%^e s%^C050%^ou%^C044%^nd %^C080%^of %^C050%^ge%^C080%^nt%^C044%^ly %^C050%^la%^C080%^pp%^C044%^in%^C050%^g %^C080%^wa%^C044%^ve%^C050%^s%^RESET%^%^C044%^ is %^C050%^me%^C080%^sm%^C044%^er%^C050%^iz%^C044%^i%^C080%^ng%^RESET%^%^C040%^.%^CRST%^");
     set_items(([
@@ -28,7 +28,43 @@ void create(){
         ]));
 }
 
-void reset(){
-    if(!present("ambiance device")) new(MON"ambiance_beach")->move(this_object());
+void heart_beat(){
+    object room;
+    
+    ::heart_beat();
+    
+    room = this_object();
+    if(!objectp(room)) return;
+    
+    if(random(100) < 4){
+        switch(random(8)){
+            case 0 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C186%^Small %^C159%^waves%^C186%^ lap at the shoreline.%^CRST%^");
+                break;
+            case 1 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C186%^A %^C180%^crab%^C186%^ scurries beneath the %^C187%^sand%^C186%^.%^CRST%^");
+                break;
+            case 2 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C186%^Seagulls %^C187%^circle%^C186%^ overhead, now and then %^C187%^diving%^C186%^ down to grab a bite to eat.%^CRST%^");
+                break;
+            case 3 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C187%^Some shouts coming from the wharf are muffled by the breeze.%^CRST%^");
+                break;
+            case 4 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C195%^A salty sea breeze picks up, tugging at your clothing.%^CRST%^");
+                break;
+            case 5 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C186%^A %^C153%^small wave%^C186%^ crashes upon the shore, the waterline rising high before quickly receding.%^CRST%^");
+                break;
+            case 6 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C186%^A sandpiper hops along the shore, poking around for a meal.%^CRST%^");
+                break;
+            case 7 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C194%^Light scatters like %^C153%^diamonds%^C194%^ across the surface of the %^C086%^turquoise sea%^C194%^.%^CRST%^");
+                break;
+            default :
+                tell_room(room, "Something broke here, tell Chernobog");
+        }
+    }
 }
 
