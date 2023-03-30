@@ -13,3 +13,7 @@ void create(){
         ]));
 }
 
+void reset(){
+    ::reset();
+    if(!present("merchant")) new(MON "random_vendor")->move(this_object());
+}
