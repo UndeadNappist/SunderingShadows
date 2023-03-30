@@ -217,7 +217,7 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
                 }
             }
             if (FEATS_D->usable_feat(victim, "counter") || (attacker->validate_combat_stance("one hander") && FEATS_D->usable_feat(attacker, "elaborate parry"))) {
-                if (random(4)) {
+                if (!random(4)) {
                     counter_attack(victim);
                 }
             }
