@@ -24,24 +24,28 @@ int cmd_recall(string str)
 {
     int i, num, what;
     string errCheck;
+    object player = this_player();
+
+    if (!objectp(player))
+        return 1;
 
     // No argument
     if (!str)
     {
-        remembered = TP->query_rem_obs();
-        strarr = TP->query_rem_obs_sort();
+        remembered = player->query_rem_obs();
+        strarr = player->query_rem_obs_sort();
         if (!remembered || sizeof(remembered) < 1) {
-            tell_object(TP, "You can't remember a single thing.");
+            tell_object(player, "You can't remember a single thing.");
             return 1;
         }else {
-            tell_object(TP, "%^BOLD%^%^BLUE%^--==%^CYAN%^< %^WHITE%^" +
+            tell_object(player, "%^BOLD%^%^BLUE%^--==%^CYAN%^< %^WHITE%^" +
                         "Things Remembered %^CYAN%^>%^BLUE%^==--%^RESET%^");
             for (i = 0; i < sizeof(strarr); i++) {
                 if (!find_object_or_load(remembered[strarr[i]] + ".c")) {
                     strtemp = strarr[i];
                     temp = remembered;
                     map_delete(temp, strtemp);
-                    TP->set_rem_obs(temp, strarr - ({ strarr[i] }));
+                    player->set_rem_obs(temp, strarr - ({ strarr[i] }));
                     continue;
                 }
                 write("%^CYAN%^" + sprintf("%-15s %-25s", strarr[i], remembered[strarr[i]]->query_short()) + "%^RESET%^");
@@ -51,14 +55,14 @@ int cmd_recall(string str)
     }
 
     if (str == "locations") {
-        remembered = TP->query_rem_rooms();
-        strarr = TP->query_rem_rooms_sort();
+        remembered = player->query_rem_rooms();
+        strarr = player->query_rem_rooms_sort();
         if (!remembered || sizeof(remembered) < 1) {
-            tell_object(TP, "You can't remember a single location.");
+            tell_object(player, "You can't remember a single location.");
             return 1;
         }else {
             int roomnw;
-            int maxknown = TP->query_base_stats("intelligence") + ( FEATS_D->usable_feat(this_player(), "worldly traveler") * 5);
+            int maxknown = player->query_base_stats("intelligence") + ( FEATS_D->usable_feat(this_player(), "worldly traveler") * 5);
 
             string* output = ({});
 
@@ -77,29 +81,29 @@ int cmd_recall(string str)
                     strtemp = strarr[i];
                     temp = remembered;
                     map_delete(temp, strtemp);
-                    TP->set_rem_rooms(temp, strarr - ({ strarr[i] }));
+                    player->set_rem_rooms(temp, strarr - ({ strarr[i] }));
                     continue;
                 }
                 output += ({ "%^RESET%^%^CYAN%^ " + arrange_string(strarr[i], roomnw + 1) + remembered[strarr[i]]->query_short() });
             }
 
-            tell_object(TP, auto_format_page(output, TP, 34));
+            tell_object(player, auto_format_page(output, player, 34));
         }
         return 1;
     }
     if (str == "monsters" || sscanf(str, "monster %d", what) == 1) {
-        remembered = TP->query_study_mons();
-        strarr = TP->query_study_mons_sort();
+        remembered = player->query_study_mons();
+        strarr = player->query_study_mons_sort();
         if (!remembered || sizeof(remembered) < 1) {
-            tell_object(TP, "You haven't studied a foe.");
+            tell_object(player, "You haven't studied a foe.");
             return 1;
         }else {
             string* output = ({});
-            int maxknown = TP->query_base_stats("intelligence") * 2;
+            int maxknown = player->query_base_stats("intelligence") * 2;
 
-            if (FEATS_D->usable_feat(TP, "monster lore")) {
-                if (TP->query_base_stats("wisdom") > TP->query_base_stats("intelligence")) {
-                    maxknown = (int)TP->query_base_stats("wisdom") * 2;
+            if (FEATS_D->usable_feat(player, "monster lore")) {
+                if (player->query_base_stats("wisdom") > player->query_base_stats("intelligence")) {
+                    maxknown = (int)player->query_base_stats("wisdom") * 2;
                 }
             }
 
@@ -108,12 +112,12 @@ int cmd_recall(string str)
 
             if (str != "monsters") {
                 if (what >= 0 && what < num) {
-                    tell_object(TP, strarr[what]->query_short());
-                    tell_object(TP, strarr[what]->query_long());
-                    "/cmds/mortal/_study"->do_monster_read(TP, strarr[what]);
+                    tell_object(player, strarr[what]->query_short());
+                    tell_object(player, strarr[what]->query_long());
+                    "/cmds/mortal/_study"->do_monster_read(player, strarr[what]);
                     return 1;
                 }else {
-                    tell_object(TP, "That's not a valid option.");
+                    tell_object(player, "That's not a valid option.");
                     return 1;
                 }
             }
@@ -128,27 +132,27 @@ int cmd_recall(string str)
                     strtemp = strarr[i];
                     temp = remembered;
                     map_delete(temp, strtemp);
-                    TP->set_study_mons(temp, strarr - ({ strarr[i] }));
+                    player->set_study_mons(temp, strarr - ({ strarr[i] }));
                     continue;
                 }
                 output += ({ "%^RESET%^%^CYAN%^ " + i + ". " + strarr[i]->query_short() });
             }
 
-            tell_object(TP, auto_format_page(output, TP, 34));
+            tell_object(player, auto_format_page(output, player, 34));
         }
         return 1;
     }else if (sscanf(str, "monster %s", errCheck) == 1) {
-        tell_object(TP, "That's not a valid option.");
+        tell_object(player, "That's not a valid option.");
         return 1;
     }
     if (str == "innate spells") {
-        if (recall_innate_spells(TP)) {
+        if (recall_innate_spells(player)) {
             return 1;
         }
     }
     if(str == "cantrip spells")
     {
-        if(recall_cantrips(TP))
+        if(recall_cantrips(player))
             return 1;
     }  
     if(str == "deep spells")
@@ -157,30 +161,43 @@ int cmd_recall(string str)
             return 1;
     }
     if (str == "monk spells") {
-        tell_object(TP, "See <help ki>");
+        tell_object(player, "See <help ki>");
         return 1;
     }
     if (str == "relationships") {
-        mapping relationships = TP->getRelationships();
+        mapping relationships = player->getRelationships();
         string known = ({});
 
-        map_mapping(relationships, (:(!user_exists($1)) && $3->remove_relationship($1):), TP);
+        if (!mapp(relationships))
+        {
+            tell_object(player, "Something is wrong with your relationships. Please call a wiz!");
+            return 1;
+        }
+        
+        map_mapping(relationships, (:(!user_exists($1)) && $3->remove_relationship($1):), player);
 
         known = collapse_array(map(values(relationships), (:values($1):)));
+
+        if (!arrayp(known))
+        {
+            tell_object(player, "This command could not be completed. Please contact a wiz!");
+            return 1;
+        }
+
         known = sort_array(distinct_array(known), 1);
 
-        tell_object(TP, "%^BOLD%^%^BLUE%^--==%^CYAN%^< %^WHITE%^People Remembered %^CYAN%^>%^BLUE%^==--%^RESET%^");
-        tell_object(TP,auto_format_page(known, TP, 34));
+        tell_object(player, "%^BOLD%^%^BLUE%^--==%^CYAN%^< %^WHITE%^People Remembered %^CYAN%^>%^BLUE%^==--%^RESET%^");
+        tell_object(player,auto_format_page(known, player, 34));
 
         return 1;
     }
     if (str == "spells") {
-        tell_object(TP, "Please specify which spells you " +
+        tell_object(player, "Please specify which spells you " +
                     "would like to recall: <recall classname spells>.");
         return 1;
     }
 
-    if (recall_spells(str, TP)) {
+    if (recall_spells(str, player)) {
         return 1;
     }
 
@@ -234,7 +251,7 @@ int* magic_arsenal_feat(object ob, int* spells)
             if (!spells[i]) {
                 continue;
             }
-            spells[i] += TP->query_level() / 10 + 1;
+            spells[i] += player->query_level() / 10 + 1;
         }
     }
     if (FEATS_D->usable_feat(ob, "gift of the shadows")) {
@@ -242,7 +259,7 @@ int* magic_arsenal_feat(object ob, int* spells)
             if (!spells[i]) {
                 continue;
             }
-            spells[i] += TP->query_level() / 10 + 1;
+            spells[i] += player->query_level() / 10 + 1;
         }
     }
     
@@ -362,7 +379,7 @@ int recall_innate_spells(object who)
         MyMsg += "\n%^BOLD%^%^WHITE%^" + sprintf("%-20s %-5s", tmp, "At Will");
         MyMsg += "%^RESET%^";
     }
-    tell_object(TP, MyMsg);
+    tell_object(this_player(), MyMsg);
     return 1;
 }
 
@@ -371,6 +388,7 @@ int recall_spells(string type, object who)
     int i, num, x, * max, cur = 0, flag, * lkeys, spell_level, class_level;
     mapping spells;
     string* skeys, * tmp = ({ "" }), * words, name, ccolor, spell_type, sp_class, f_msg, s_msg, dirl, mystat, strhold, subrace, myextra;
+    object player = this_player();
 
     spell_level = -1; //for all levels - Saide
     if (!type) {
@@ -392,13 +410,13 @@ int recall_spells(string type, object who)
         return 0;
     }
     if (words[1] != "spells") {
-        tell_object(TP, "Please specify which spells you would like to recall: <recall classname spells>.");
+        tell_object(player, "Please specify which spells you would like to recall: <recall classname spells>.");
         return 1;
     }
 
     spell_type = words[0];
     if (spell_type == "warlock") {
-        tell_object(TP, "You don't need to worry about prepared spells! Just <master> them and cast!");
+        tell_object(player, "You don't need to worry about prepared spells! Just <master> them and cast!");
         return 1;
     }
     if (spell_type == "psywarrior" || spell_type == "psion") {
@@ -559,15 +577,15 @@ int recall_spells(string type, object who)
             string* obuff, oline;
             int y, z;
             int columns;
-            int scrw = atoi(TP->getenv("SCREEN"));
-            int vertical = TP->getenv("VCOLUMNS") ? 1 : 0;
+            int scrw = atoi(player->getenv("SCREEN"));
+            int vertical = player->getenv("VCOLUMNS") ? 1 : 0;
 
             scrw = scrw > 34 ? scrw : 72;
 
             z = max(map_array(output, (: sizeof(strip_colors($1)) :))) + 2;
             columns = scrw / z;
             columns = columns < 1 ? 1 : columns;
-            y = atoi(TP->getenv("COLUMNS"));
+            y = atoi(player->getenv("COLUMNS"));
             y = y < 1 ? 1 : y;
             columns = columns > y ? y : columns;
             x = 0;
@@ -577,20 +595,20 @@ int recall_spells(string type, object who)
             {
                 if (regexp(oline, "Level")) {
                     if (sizeof(obuff)) {
-                        tell_object(TP, format_page(obuff, columns, scrw, vertical));
+                        tell_object(player, format_page(obuff, columns, scrw, vertical));
                     }
                     obuff = ({});
-                    tell_object(TP, oline);
+                    tell_object(player, oline);
                     continue;
                 }
                 obuff += ({ oline });
             }
-            tell_object(TP, format_page(obuff, columns, scrw));
+            tell_object(player, format_page(obuff, columns, scrw));
         }
 
         return 1;
     }else {
-        tell_object(TP, f_msg);
+        tell_object(player, f_msg);
         return 1;
     }
     return 1;
