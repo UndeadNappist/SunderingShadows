@@ -140,7 +140,7 @@ int hit_func(object target)
     {
         tell_object(owner, "%^WHITE%^%^BOLD%^You hit " + ename + ".%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
         tell_object(target, "%^WHITE%^%^BOLD%^" + pname + " hits you.%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
-        tell_room(envirnonment(owner), "%^WHITE%^%^BOLD%^" + pname + " hits " + ename + ".%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
+        tell_room(environment(owner), "%^WHITE%^%^BOLD%^" + pname + " hits " + ename + ".%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
         target->cause_typed_damage(target, target->return_target_limb(), dam, "divine");
     }
     

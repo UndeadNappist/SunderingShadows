@@ -201,7 +201,7 @@ void execute_attack()
         target->execute_attack();
     
     //if (!(res = thaco(target, bonus))) {
-    if(BONUS_D->combat_maneuver(target, caster))
+    if(!BONUS_D->combat_maneuver(target, caster))
     {
         tell_object(caster, "%^RED%^" + target->QCN + " sidesteps your shieldbash at the "
                     "last instant and you scramble to stay on your feet!%^RESET%^");
