@@ -17,8 +17,8 @@
 
 #define LINE "%^BOLD%^%^BLUE%^-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-%^RESET%^\n"
 #define SCROLL_PATH "/d/magic/scroll"
-#define BACKUP_DIR "/d/magic/spellbook/backup_books"
-#define SAVE_DIR "/d/magic/spellbook/save"
+#define BACKUP_DIR "/d/save/spellbook/backup_books"
+#define SAVE_DIR "/d/save/spellbook/save"
 
 inherit "/std/spell_vend.c" ;
 
