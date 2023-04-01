@@ -190,7 +190,7 @@ string currency = "gold";
 
 void init() {
    ::init();
-   //add_action("buy", "buy");
+   add_action("buy", "buy");
    add_action("key","retrieve");
    add_action("read","read");
    add_action("exit_stage","exit");
