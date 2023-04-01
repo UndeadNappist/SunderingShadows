@@ -16,6 +16,7 @@ void create() {
                    ([ "RESET": "",
                       "BOLD": "",
                       "ULINE": "",
+                      "ITALIC": "",
                       "FLASH":"",
                       "BLACK":"",
                       "RED":"",
@@ -300,6 +301,7 @@ void create() {
                    "ansi-no-hex":
                    ([ "RESET":ANSI("0;37;40"),
                       "BOLD":ANSI(1),
+                      "ITALIC":ANSI(3),
                       "ULINE":ANSI(4),
                       //"FLASH":ANSI(5),
                       "FLASH":"",
@@ -586,6 +588,7 @@ void create() {
                    "ansi":
                    ([ "RESET":ANSI("0;37;40"),
                       "BOLD":ANSI(1),
+                      "ITALIC":ANSI(3),
                       "ULINE":ANSI(4),
                       //"FLASH":ANSI(5),
                       "FLASH":"",
@@ -873,6 +876,7 @@ void create() {
                    "ansi-no-black":
                    ([ "RESET":ANSI("0;37;40"),
                       "BOLD":ANSI(1),
+                      "ITALIC":ANSI(3),
                       "ULINE":ANSI(4),
                       //"FLASH":ANSI(5),
                       "FLASH":"",
@@ -1159,8 +1163,10 @@ void create() {
                    "ansi-no-bgcolors":
                    ([ "RESET":ANSI("0;37;40"),
                       "BOLD":ANSI(1),
+                      "ITALIC":ANSI(3),
                       "ULINE":ANSI(4),
-                      "FLASH":ANSI(5),
+                      //"FLASH":ANSI(5),
+                      "FLASH":"",
                       "BLACK":ANSI(30),
                       "RED":ANSI(31),
                       "GREEN":ANSI(32),
@@ -1444,8 +1450,10 @@ void create() {
                    "ansi-no-bg-no-black":
                    ([ "RESET":ANSI("0;37;40") + ANSI2(0),
                       "BOLD":ANSI(1),
+                      "ITALIC":ANSI(3),
                       "ULINE":ANSI(4),
-                      "FLASH":ANSI(5),
+                      //"FLASH":ANSI(5),
+                      "FLASH":"",
                       "BLACK":ANSI(30),
                       "RED":ANSI(31),
                       "GREEN":ANSI(32),
