@@ -25,7 +25,6 @@ void create()
     set_somatic_comp();
     set_non_living_ok(1);
     evil_spell(1);
-    summon_spell();
     set_components(([
                         "mage" : ([ "drop of blood" : 1, "bit of bone" : 1, ]),
                         ]));
@@ -82,7 +81,6 @@ void spell_effect(int prof)
         controller->move(caster);
     }
 
-    /*
     num_mon = (int)caster->query_property("raised");
     if (!intp(num_mon)) {
         num_mon = 0;
@@ -93,7 +91,6 @@ void spell_effect(int prof)
         TO->remove();
         return;
     }
-    */
 
     spell_successful();
 
@@ -101,7 +98,6 @@ void spell_effect(int prof)
         undead = new(UNDEADDIR + "skeleton");
         lvl = 1;
 
-        /*
         if (num_mon > 4) {
             undead->remove();
             tell_object(caster, "%^RESET%^%^BOLD%^%^BLACK%^RAISING MORE IS %^WHITE%^BEYOND%^BLACK%^ YOUR PATHETIC %^BLACK%^M%^WHITE%^ASTERY!%^RESET%^%^RESET%^");
@@ -109,7 +105,6 @@ void spell_effect(int prof)
             TO->remove();
             return;
         }
-        */
 
         inven = all_inventory(targs[i]);
         inven->move(undead);
