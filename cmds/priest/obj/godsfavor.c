@@ -32,8 +32,14 @@ int clean_up(){
 }
 
 
-void dest_effect(){
-    destruct(TO);
+int dest_effect()
+{
+    if (!objectp(this_object()))
+        return 0;
+
+    destruct(this_object());
+
+    return 1;
 }
 
 
@@ -51,15 +57,18 @@ int remove()
 }
 
 
-int save_me(string file){
+int save_me(string file)
+{
     return 1;
 }
 
 
-int now(string str){
+int now(string str)
+{
     string where, temple, diety, playername;
     int mypower,startpower,endpower,bonus;
     object player, room;
+
     player = this_player();
     playername = player->query_cap_name();
     room = environment(player);
