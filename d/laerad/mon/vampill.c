@@ -70,7 +70,7 @@ void create()
     }
     set_moving(1);
     set_speed(15);
-    set_stabbed_func((: TO, "stabbed" :));
+    //set_stabbed_func((: TO, "stabbed" :));
 }
 
 void stabbed()
