@@ -1,9 +1,9 @@
 /*
   _bestial_frenzy.c
-  
+
   Soft rage effect for Beast master and their
   companions.
-  
+
   -- Tlaloc --
 */
 
@@ -22,13 +22,12 @@ void create()
     feat_category("BeastMastery");
     feat_name("bestial frenzy");
     feat_prereq("Beast Master L7");
-    feat_classes("base_class");
     feat_syntax("bestial_frenzy");
     feat_desc("Sometimes the thrill of the hunt can be overwhelming, releasing a feral " +
     "wrath within the Beast Master and his pack alike. This manifests as a keen killer instinct. " +
     "The Beast Master and their companions enter a rage, gaining +2 to attack, +2 to damage, more max HP " +
-    ", as well as a +2 to fast healing for its duraton. This does not stack with other " +
-    "rage effects.");
+    ", as well as a +2 to fast healing for its duraton. The frenzy is tiring and at the end of the duration " +
+    "the Beast Master will become fatigued. This does not stack with other rage effects.");
     allow_blind(1);
 }
 
@@ -38,13 +37,13 @@ int prerequisites(object ob)
 {
     if(!objectp(ob))
         return 0;
-    
+
     if(ob->query_class_level("beast_master") < 7)
     {
         dest_effect();
         return 0;
     }
-   
+
     return ::prerequisites(ob);
 }
 
@@ -93,25 +92,27 @@ void execute_feat()
         dest_effect();
         return;
     }
-    
+
     companion = caster->query_property("animal_companion");
     pack = filter(caster->query_followers(), (: $1->query_pack_member() :));
-    
+
     if(!companion)
     {
         tell_object(caster, "%^BOLD%^You can't enter a bestial frenzy without your pack.%^RESET%^");
         return;
     }
-    
+
     if (caster->query_property("effect_exhausted") || caster->query_property("effect_fatigued")) {
         tell_object(caster, "%^BOLD%^You are fatigued or exhausted and cannot rage.%^RESET%^");
         dest_effect();
         return;
     }
-    
+
+    ::execute_feat();
+
     tell_object(caster, cm("You lose yourself to the thrill of the hunt."));
     caster->set_property("active_feats", ({ TO }));
-    
+
     caster->set_property("raged", 1);
     caster->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
     caster->set_property("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
@@ -122,9 +123,9 @@ void execute_feat()
     //caster->add_stat_bonus("dexterity", 4);
     //caster->add_stat_bonus("constitution", 4);
     caster->set_property("fast healing", 2);
-        
+
     tell_object(caster, cm("Your " + companion->query_name() + " loses itself to the thrill of the hunt."));
-        
+
     companion->set_property("raged", 1);
     companion->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
     companion->set_property("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
@@ -135,16 +136,16 @@ void execute_feat()
     //companion->add_stat_bonus("dexterity", 4);
     //companion->add_stat_bonus("constitution", 4);
     companion->set_property("fast healing", 2);
-    
+
     if(sizeof(pack))
     {
         tell_object(caster, cm("Your pack loses itself to the thrill of the hunt."));
-        
+
         foreach(object animal in pack)
         {
             if(!objectp(animal))
                 continue;
-            
+
             animal->set_property("raged", 1);
             animal->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
             animal->set_property("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
@@ -157,7 +158,7 @@ void execute_feat()
             animal->set_property("fast healing", 2);
         }
     }
-    
+
     call_out("dest_effect", ROUND_LENGTH * caster->query_guild_level("ranger") * 4);
 }
 
@@ -178,8 +179,8 @@ void dest_effect()
             //caster->add_stat_bonus("dexterity", -4);
             //caster->add_stat_bonus("constitution", -4);
             caster->set_property("fast healing", -2);
-            "/std/effect/status/fatigued"->apply_effect(target, 36);
-            
+            "/std/effect/status/fatigued"->apply_effect(caster, 36);
+
             if(objectp(companion))
             {
                 companion->remove_property("raged");
@@ -192,15 +193,15 @@ void dest_effect()
                 //companion->add_stat_bonus("constitution", -4);
                 companion->set_property("fast healing", -2);
             }
-            
+
             if(sizeof(pack))
             {
-        
+
                 foreach(object animal in pack)
                 {
                     if(!objectp(animal))
                         continue;
-            
+
                     animal->remove_property("raged", 1);
                     animal->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
                     animal->add_attack_bonus(-2);
@@ -213,7 +214,7 @@ void dest_effect()
                 }
             }
         }
-    }            
+    }
 
     ::dest_effect();
     remove_feat(TO);

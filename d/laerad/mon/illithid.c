@@ -99,7 +99,7 @@ void create()
     stoned = 0;
     set_moving(1);
     set_speed(50);
-    set_stabbed_func((: TO, "stabbed" :));
+    //set_stabbed_func((: TO, "stabbed" :));
 }
 
 void stabbed()
