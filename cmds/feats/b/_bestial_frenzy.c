@@ -25,7 +25,7 @@ void create()
     feat_syntax("bestial_frenzy");
     feat_desc("Sometimes the thrill of the hunt can be overwhelming, releasing a feral " +
     "wrath within the Beast Master and his pack alike. This manifests as a keen killer instinct. " +
-    "The Beast Master and their companions enter a rage, gaining +2 to attack, +2 to damage, more max HP " +
+    "The Beast Master and their companions enter a rage, gaining +4 to attack, +4 to damage, more max HP " +
     ", as well as a +2 to fast healing for its duraton. The frenzy is tiring and at the end of the duration " +
     "the Beast Master will become fatigued. This does not stack with other rage effects.");
     allow_blind(1);
@@ -116,8 +116,8 @@ void execute_feat()
     caster->set_property("raged", 1);
     caster->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
     caster->set_property("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
-    caster->add_attack_bonus(2);
-    caster->add_damage_bonus(2);
+    caster->add_attack_bonus(4);
+    caster->add_damage_bonus(4);
     caster->add_max_hp_bonus(flevel * 2);
     //caster->add_stat_bonus("strength", 4);
     //caster->add_stat_bonus("dexterity", 4);
@@ -129,8 +129,8 @@ void execute_feat()
     companion->set_property("raged", 1);
     companion->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
     companion->set_property("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
-    companion->add_attack_bonus(2);
-    companion->add_damage_bonus(2);
+    companion->add_attack_bonus(4);
+    companion->add_damage_bonus(4);
     companion->add_max_hp_bonus(flevel * 2);
     //companion->add_stat_bonus("strength", 4);
     //companion->add_stat_bonus("dexterity", 4);
@@ -149,8 +149,8 @@ void execute_feat()
             animal->set_property("raged", 1);
             animal->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
             animal->set_property("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
-            animal->add_attack_bonus(2);
-            animal->add_damage_bonus(2);
+            animal->add_attack_bonus(4);
+            animal->add_damage_bonus(4);
             animal->add_max_hp_bonus(flevel * 2);
             //animal->add_stat_bonus("strength", 4);
             //animal->add_stat_bonus("dexterity", 4);
@@ -172,8 +172,8 @@ void dest_effect()
             caster->remove_property_value("active_feats", ({ TO }));
             caster->remove_property("raged");
             caster->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
-            caster->add_attack_bonus(-2);
-            caster->add_damage_bonus(-2);
+            caster->add_attack_bonus(-4);
+            caster->add_damage_bonus(-4);
             caster->add_max_hp_bonus(-flevel * 2);
             //caster->add_stat_bonus("strength", -4);
             //caster->add_stat_bonus("dexterity", -4);
@@ -185,8 +185,8 @@ void dest_effect()
             {
                 companion->remove_property("raged");
                 companion->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
-                companion->add_attack_bonus(-2);
-                companion->add_damage_bonus(-2);
+                companion->add_attack_bonus(-4);
+                companion->add_damage_bonus(-4);
                 companion->add_max_hp_bonus(-flevel * 2);
                 //companion->add_stat_bonus("strength", -4);
                 //companion->add_stat_bonus("dexterity", -4);
@@ -204,8 +204,8 @@ void dest_effect()
 
                     animal->remove_property("raged", 1);
                     animal->remove_property_value("added short", ({ "%^RESET%^%^BOLD%^%^RED%^ (%^RESET%^%^RED%^enraged%^BOLD%^)%^RESET%^" }));
-                    animal->add_attack_bonus(-2);
-                    animal->add_damage_bonus(-2);
+                    animal->add_attack_bonus(-4);
+                    animal->add_damage_bonus(-4);
                     animal->add_max_hp_bonus(-flevel * 2);
                     //animal->add_stat_bonus("strength", -4);
                     //animal->add_stat_bonus("dexterity", -4);
