@@ -26,6 +26,7 @@ void create(){
         ({"buildings", "village", "road"}) : "%^RESET%^%^CRST%^%^C139%^A narrow %^C243%^cobblestone road%^C139%^ winds its way through the village and up along the steep foothills of the cliffs. The %^C144%^buildings%^C139%^ seem to have fallen into disrepair over time, although one can see signs of the %^C125%^co%^C124%^lo%^C196%^rf%^C197%^ul %^C198%^gr%^C199%^an%^C200%^de%^C201%^ur%^RESET%^%^C139%^ they once possessed. The %^C140%^market square%^C139%^ and its shops are along the first tier of the cliff side, while the higher tier seem to be the %^C144%^crumbling residences%^C139%^ of the permanent citizens of the island.%^CRST%^",
         "forest" : "%^RESET%^%^CRST%^%^C040%^The lush beauty of this %^C046%^forest%^C040%^ stands in contrast to the stark bleakness of the %^C250%^cliffs%^C040%^ and its crumbling %^C243%^village%^C040%^. Even from this distance you can see %^C047%^verdant fauna%^C040%^ and %^C160%^fr%^C088%^ui%^C094%^t b%^C100%^ea%^C172%^ri%^C166%^ng %^C160%^tr%^C088%^e%^C089%^es%^RESET%^%^C040%^. The forest is very much alive and thriving, and so overgrown as to be almost impassable except to someone who knows its secrets well.%^CRST%^",
         ]));
+    set_heart_beat(1);
 }
 
 void heart_beat(){

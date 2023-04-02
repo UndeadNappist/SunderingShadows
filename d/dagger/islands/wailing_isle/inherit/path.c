@@ -23,6 +23,7 @@ void create(){
         "view" : "%^CRST%^%^RESET%^%^C038%^The vast sea spreads out before you to the east beyond the bay, light twinkling along its surface like %^C255%^d%^C253%^i%^C250%^a%^C255%^mo%^C250%^n%^C253%^d%^C255%^s%^RESET%^%^C038%^. In the other direction, a %^C020%^waterfall%^C038%^ plunges down from the %^C255%^majestic white cliffs%^C038%^, broken into several streams by outcroppings, the %^C250%^mist%^C038%^ refracted into a myriad of %^C160%^t%^C166%^i%^C184%^n%^C118%^y %^C051%^ra%^C153%^in%^C135%^bo%^C063%^ws%^RESET%^%^C038%^. The view is truly %^C189%^awe inspiring%^C038%^.%^CRST%^",
         "sea" : "%^RESET%^%^CRST%^%^C044%^Light ripples over the surface of the %^C038%^azure water%^C044%^ like diamonds, %^C051%^luring%^C044%^ you into its bountiful depths. The %^C250%^breeze%^C044%^ is constant, bringing with it the scents of the sea, and it whispers the %^C051%^promises%^C044%^ of adventures abound and treasures not yet plundered. The vastness of the sea is humbling to some... and something to be conquered by others.%^CRST%^",
         ]));
+    set_heart_beat(1);
 }
 
 void heart_beat(){

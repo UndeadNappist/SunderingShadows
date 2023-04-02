@@ -27,6 +27,7 @@ void create(){
         ({"flowers", "window boxes"}) : "%^RESET%^%^CRST%^%^C146%^Little bursts of %^C127%^c%^C126%^o%^C125%^l%^C124%^o%^C196%^r%^RESET%^%^C146%^ and %^C040%^l%^C046%^i%^C082%^f%^C076%^e%^RESET%^%^C146%^ poke up from small %^C101%^wooden window boxes%^C146%^, while a few %^C125%^pots%^C146%^ tucked along porches or in small %^C070%^ga%^C076%^rde%^C070%^ns%^RESET%^%^C146%^ lining the path add a touch of %^C141%^whimsy%^C146%^ to the rows of derelict homes.%^CRST%^",
         "trees" : "%^RESET%^%^RESET%^%^C065%^Despite the %^C059%^harshness%^C065%^ of the %^C243%^r%^C245%^o%^C243%^ck%^C245%^y t%^C243%^err%^C245%^ai%^C243%^n%^RESET%^%^C065%^ and the tinge of %^C195%^salt%^C065%^ in the air, these %^C064%^trees%^C065%^ manage to, while not exactly thrive, survive. A small testament to the %^C060%^resilience%^RESET%^%^C065%^ of the isle and its people.%^CRST%^",
         ]));
+    set_heart_beat(1);
 }
 
 void heart_beat(){

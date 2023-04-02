@@ -23,6 +23,7 @@ void create(){
         ({"plant life", "mosses"}) : "%^RESET%^%^CRST%^%^C070%^Nature has started to reclaim parts of the isle as it falls further into %^C064%^disrepair%^C070%^.%^CRST%^",
         "visitors" : "%^RESET%^%^CRST%^%^C100%^Never was a dirtier lot found! Pirates, thieves, drunks and other unsavory types flood the streets, looking for a %^C142%^good time%^C100%^ or the chance to make some %^C142%^coin%^C100%^. Many of these fearless folks are drawn to the sea with nothing left to lose, and will take what they can get out of life.%^CRST%^",
         ]));
+    set_heart_beat(1);
 }
 
 void heart_beat(){

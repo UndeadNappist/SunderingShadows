@@ -31,6 +31,7 @@ void create(){
     set_exits(([
         "southeast" : ROOMS"watermill",
         ]));
+    set_heart_beat(1);
 }
 
 void init(){

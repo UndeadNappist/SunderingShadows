@@ -26,6 +26,7 @@ void create(){
         ({"longboats", "boats"}) : "%^RESET%^%^CRST%^%^C101%^These boats bob in the water, tethered to the wooden posts of the wharf.%^CRST%^",
         "ships" : "%^RESET%^%^CRST%^%^C178%^The ships float %^C090%^majestically%^C178%^ on the bay, awaiting their next %^C172%^adventure%^C178%^. They feature %^C250%^great sails%^C178%^, meant for the deep seas. Absent from their masts are the colors of any of the city states of the realm, and a few even sport %^C059%^black flags%^C178%^ with malicious icons.%^CRST%^",
         ]));
+    set_heart_beat(1);
 }
 
 void heart_beat(){
