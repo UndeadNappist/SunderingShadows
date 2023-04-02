@@ -53,26 +53,29 @@ advance_disease()
 
 void heart_beat()
 {
-    if (!objectp(TO)) {
-        return;
-    }
+    object my_environment, hosts_environment;
 
-    if (!next_step) {
+    if (!objectp(this_object()))
         return;
-    }
 
-    if (!ETO->is_living()) {
-        TO->remove();
-    }
-    if (ETO->query_age() > next_step) {
+    if (!objectp(my_environment = environment(this_object())))
+        return;
+
+    if (!next_step)
+        return;
+
+    if (!my_environment->is_living())
+        remove();
+
+    if (my_environment->query_age() > next_step)
         advance_disease();
-    }
 
-    if (stage > 1) {
-        if (!random(120)) {
-            tell_object(ETO, "\n%^BOLD%^%^BLUE%^Your shake and twitch.%^RESET%^");
-            tell_room(EETO, "%^ORANGE%^" + ETO->QCN + " shakes and twitches.%^RESET%^", ETO);
-        }
+    if (stage > 1 && !random(120))
+    {
+        tell_object(my_environment, "\n%^BOLD%^%^BLUE%^Your shake and twitch.%^RESET%^");
+
+        if (objectp(hosts_environment = environment(my_environment)))
+            tell_room(hosts_environment, "%^ORANGE%^" + my_environment->query_cap_name() + " shakes and twitches.%^RESET%^", my_environment);
     }
 
     return;

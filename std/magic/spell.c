@@ -1645,23 +1645,10 @@ mixed special_spell_handling(string which)
 
 mixed WildMagicArea(object where)
 {
-    object nspell, *chaotic_entities;
+    object nspell, *chaotic_entities, *environs;
     int psi_immune, slev, count, chaotic_presence;
     mixed wmlev, * wm_affect = ({});
     string wmclass, file, rspell, wm_notify;
-
-    psi_immune = 1;
-    slev = query_spell_level(spell_type);
-    wmlev = slev;
-    wmclass = spell_type;
-
-    //if(wmclass == "psion" || wmclass == "psywarrior")
-    //    return 0;
-
-    chaotic_entities = filter_array(all_living(place), (: $1->query_acquired_template() == "chaotic" :));
-    //chaotic_presence = sizeof(filter_array(all_living(place), (: $1->query_acquired_template() == "chaotic" :)));
-    chaotic_entities -= ({ caster });
-    chaotic_presence = sizeof(chaotic_entities);
 
     if (!objectp(caster))
         return 0;
@@ -1671,6 +1658,20 @@ mixed WildMagicArea(object where)
 
     if (spell_name == "suppress wild magic")
         return 0;
+
+    psi_immune = 1;
+    slev = query_spell_level(spell_type);
+    wmlev = slev;
+    wmclass = spell_type;
+
+    if (!arrayp(environs = all_living(place)))
+    {
+        chaotic_entities = filter_array(all_living(place), (: $1->query_acquired_template() == "chaotic" :));
+        chaotic_entities -= ({ caster });
+        chaotic_presence = sizeof(chaotic_entities);
+    }
+    else
+        chaotic_presence = 0;
 
     if (where->query_property("wild magic") > roll_dice(1, 100) || caster->query_property("spellscarred") || (!is_lawful(caster) && chaotic_presence && !help_or_harm && !random(10))) {
         wm_affect = where->query_property("wild magic affect");

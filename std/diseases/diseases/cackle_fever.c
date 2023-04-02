@@ -53,30 +53,29 @@ advance_disease()
 
 void heart_beat()
 {
+    object my_environment, hosts_environment;
+
     if (!objectp(this_object()))
         return;
 
-    if(!objectp(environment(this_object())))
+    if (!objectp(my_environment = environment(this_object())))
         return;
 
     if (!next_step)
         return;
 
-    if (!environment(this_object())->is_living())
-        this_object()->remove();
+    if (!my_environment->is_living())
+        remove();
 
-    if (environment(this_object())->query_age() > next_step)
+    if (my_environment->query_age() > next_step)
         advance_disease();
 
-    if (stage > 1)
+    if (stage > 1 && !random(120))
     {
-        if (!random(120))
-        {
-            tell_object(environment(this_object()), "\n%^BOLD%^%^BLUE%^Your burst out in sudden laughter.%^RESET%^");
+            tell_object(my_environment, "\n%^BOLD%^%^BLUE%^Your burst out in sudden laughter.%^RESET%^");
 
-            if (objectp(environment(environment(this_object()))))
-                tell_room(environment(environment(this_object())), "%^ORANGE%^" + environment(this_object())->query_cap_name() + " bursts out in sudden laughter!%^RESET%^", environment(this_object()));
-        }
+            if (objectp(hosts_environment = environment(my_environment)))
+                tell_room(hosts_environment, "%^ORANGE%^" + my_environment->query_cap_name() + " bursts out in sudden laughter!%^RESET%^", my_environment);
     }
 
     return;
