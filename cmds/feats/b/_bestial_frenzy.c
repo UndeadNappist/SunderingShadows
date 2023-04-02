@@ -22,6 +22,7 @@ void create()
     feat_category("BeastMastery");
     feat_name("bestial frenzy");
     feat_prereq("Beast Master L7");
+    feat_classes("base_class");
     feat_syntax("bestial_frenzy");
     feat_desc("Sometimes the thrill of the hunt can be overwhelming, releasing a feral " +
     "wrath within the Beast Master and his pack alike. This manifests as a keen killer instinct. " +
