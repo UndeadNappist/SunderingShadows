@@ -59,6 +59,7 @@ nosave int speed,      //Movement speed
            ticker,
            already_listened,
            init_pause,
+           swarm,
            no_moving,  //I guess this is a movement override
            moving;     //Are we moving?
            

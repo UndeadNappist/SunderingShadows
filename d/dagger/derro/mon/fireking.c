@@ -62,7 +62,7 @@ void create(){
    set_hp(500);
    set_exp(20000);
    set("aggressive","agg_func");
-   set_stabbed_func((:TO,"stabbed":));
+   //set_stabbed_func((:TO,"stabbed":));
    remove_property("swarm");
 }
 

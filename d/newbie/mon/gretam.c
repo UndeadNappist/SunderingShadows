@@ -18,7 +18,7 @@ void create() {
    set_property("no attack", 1);
    set_hp(100);
    set_max_hp(100);
-   set_stabbed_func( (: TO,"stab_func" :) );
+   //set_stabbed_func( (: TO,"stab_func" :) );
    set_exp(10);
    remove_std_db();
     set_nwp("healing",4);
