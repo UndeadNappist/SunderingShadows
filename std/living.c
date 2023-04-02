@@ -1849,8 +1849,8 @@ int can_fly()
         return 1;
     if(query_property("flying"))
         return 1;
-    if(!catch(file = load_object("/std/races/" + query("race"))))
-        if(file->is_flying())
+    if (!catch(file = load_object("/std/races/" + query("race"))) && objectp(file))
+        if (file->is_flying())
             return 1;
         
     return member_array(query_visual_race(), flyraces) >= 0 || member_array(query("subrace"), flysubraces) >= 0 || member_array(query("relationship_profile"), flyprofiles) >= 0;

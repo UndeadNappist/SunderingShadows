@@ -157,40 +157,45 @@ int set_memorized(string myclass, string spell, int num)
 {
     int level;
 
-    if (!spells_memorized) {
+    if (!spells_memorized)
         resetMemorized();
-    }
-    if (!num) {
+
+    if (!num)
         num = 1;
-    }
-    if (!spell) {
+
+    if (!spell)
         return 0;
-    }
-    if (myclass == "bard" ||
-        myclass == "sorcerer" ||
-        myclass == "oracle" ||
-        myclass == "inquisitor" ||
-        myclass == "magus") { //get spontaneous settings
-        if (sscanf(spell, "level %d", level) != 1) {
+
+    if (myclass == "bard" || myclass == "sorcerer" || myclass == "oracle" || myclass == "inquisitor" || myclass == "magus")
+    {
+    //get spontaneous settings
+        if (sscanf(spell, "level %d", level) != 1)
             return 0;
-        }
+
         spell = "generic";
-    }else if (myclass == "psywarrior" || myclass == "psion") { //add psions when ready for power points
+    }
+    else if (myclass == "psywarrior" || myclass == "psion") //add psions when ready for power points
         return 1;
-    }else {
+    else
+    {
         level = (int)MAGIC_D->query_spell_level(myclass, spell);
-        if (!level) {
+
+        if (!level)
             return 0;
-        }
     }
 
-    if (!mapp(spells_memorized[myclass])) {
+    if (level < 1 || sizeof(spells_memorized[myclass]) < level)
+        return 0;
+
+    if (!mapp(spells_memorized[myclass]))
         add_mem_class(myclass);
-    }
-    if (spells_memorized[myclass][level][spell]) {
+
+    if (spells_memorized[myclass][level][spell])
+    {
         spells_memorized[myclass][level][spell] = spells_memorized[myclass][level][spell] + num;
         return 1;
     }
+
     spells_memorized[myclass][level][spell] = num;
     return 1;
 }
