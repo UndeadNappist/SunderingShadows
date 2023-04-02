@@ -1,7 +1,7 @@
 #include <std.h>
 inherit OBJECT;
 
-#define BLACKLIST ({ "buy", "prepare", "cast" })
+#define BLACKLIST ({ "buy", "prepare", "cast", "shoot", "heal" })
 
 object caster, * mons = ({});
 string * undead_list = ({ "skeleton", "graveknight", "skelemage", "skelehorse", "vampire_spawn", "vampire_knight", "animus", });
