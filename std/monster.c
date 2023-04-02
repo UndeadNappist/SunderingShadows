@@ -307,7 +307,7 @@ void init()
             init_pause = 1;
     }
     
-    if(get_eval_cost() < 50000)
+    if(eval_cost() < 50000)
         return;
     
     ::init();
@@ -523,7 +523,10 @@ void die(object killer)
     
     //Can make monsters with no corpse
     if(!this_object()->query_property("no corpse"))
-        corpse = make_corpse();
+    {
+        if(objectp(corpse = make_corpse()))
+            corpse->move(environment(this_object()));
+    }
     
     my_stuff = all_inventory(this_object());
     
