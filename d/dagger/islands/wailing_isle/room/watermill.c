@@ -27,6 +27,7 @@ void create(){
         "northeast" : ROOMS"path3",
         "northwest" : ROOMS"waterfalls",
         ]));
+    set_heart_beat(1);
 }
 
 void heart_beat(){
