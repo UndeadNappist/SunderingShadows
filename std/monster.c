@@ -282,7 +282,7 @@ void check_encounter(object player)
                 if(aggro > player->query_stats("charisma"))
                 {
                     kill_ob(player);
-                    kill_message(player);
+                    kill_msg(player);
                 }
             }
         }
