@@ -326,7 +326,7 @@ void init()
     
     ::init();
 
-    check_encounter();
+    check_encounter(this_player());
 }
 
 void kill_msg(object tp)
