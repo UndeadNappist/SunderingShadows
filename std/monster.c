@@ -279,7 +279,7 @@ void check_encounter(object player)
         {
             if(!player->query_invis() || query_property("invis attack"))
             {
-                if(aggro > player->query_stats("charisma"))
+                if(aggro > (int)player->query_stats("charisma"))
                 {
                     kill_ob(player);
                     kill_msg(player);
