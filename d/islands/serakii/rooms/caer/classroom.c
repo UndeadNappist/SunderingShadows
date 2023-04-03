@@ -42,7 +42,7 @@ void create() {
     ]));
 
 set_smell("default","%^C058%^You smell %^C094%^wood %^C058%^polish.%^CRST%^");
-set_listen("default","%^C068%^Student %^C062%^talk all around you.%^CRST%^");
+set_listen("default","%^C068%^Students %^C062%^talk all around you.%^CRST%^");
 
 set_exits(([
     "east" : CAER"library",

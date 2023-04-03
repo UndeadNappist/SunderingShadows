@@ -726,7 +726,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             target->set_temporary_blinded(1, "Your vision is clouded!");
         }
         if (FEATS_D->usable_feat(attacker, "spell critical")) {
-            tell_object(attacker, "%^CYAN%^You unleash wave of %^YELLOW%^w%^MAGENTA%^i%^WHITE%^l%^RED%^d %^GREEN%^m%^BLUE%^a%^WHITE%^g%^ORANGE%^i%^RED%^c%^RESET%^%^CYAN%^ at " + ename + "!%^RESET%^");
+            tell_object(attacker, "%^CYAN%^You unleash a wave of %^YELLOW%^w%^MAGENTA%^i%^WHITE%^l%^RED%^d %^GREEN%^m%^BLUE%^a%^WHITE%^g%^ORANGE%^i%^RED%^c%^RESET%^%^CYAN%^ at " + ename + "!%^RESET%^");
             tell_object(target, "%^CYAN%^" + pname + " unleashes a wave of %^YELLOW%^w%^MAGENTA%^i%^WHITE%^l%^RED%^d %^GREEN%^m%^BLUE%^a%^WHITE%^g%^ORANGE%^i%^RED%^c%^RESET%^%^CYAN%^ to burn through you!%^RESET%^");
             tell_room(environment(attacker), "%^CYAN%^" + pname + " unleashes a wave of %^YELLOW%^w%^MAGENTA%^i%^WHITE%^l%^RED%^d %^GREEN%^m%^BLUE%^a%^WHITE%^g%^ORANGE%^i%^RED%^c%^RESET%^%^CYAN%^ at " + ename + "!%^RESET%^", ({ target, attacker }));
             target->cause_typed_damage(target, target->return_target_limb(), 10 + roll_dice(1 + attacker->query_character_level() / 15, 8), "untyped");
@@ -746,8 +746,8 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
         {
             if(attacker->query_class_level("oracle") >= 31)
             {
-                tell_object(attacker, "%^MAGENTA%^BOLD%^Your weapon strikes with magical force!%^RESET%^");
-                tell_object(target, "MAGENTA%^BOLD%^" + pname + "'s weapon strikes you with magical force!%^RESET%^");
+                tell_object(attacker, "%^MAGENTA%^%^BOLD%^Your weapon strikes with magical force!%^RESET%^");
+                tell_object(target, "%^MAGENTA%^%^BOLD%^" + pname + "%^MAGENTA%^%^BOLD%^'s weapon strikes you with magical force!%^RESET%^");
                 target->cause_typed_damage(target, target->return_target_limb(), 10 + roll_dice(1 + attacker->query_class_level("oracle") / 15, 8), "force");
             }
         }
