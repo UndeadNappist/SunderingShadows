@@ -60,6 +60,7 @@ nosave int speed,      //Movement speed
            already_listened,
            init_pause,
            swarm,
+           heart_beat_on,
            no_moving,  //I guess this is a movement override
            moving;     //Are we moving?
            
@@ -245,6 +246,18 @@ private void check_heart_beat()
         set_heart_beat(1);
     }
     call_out("check_heart_beat", 18);
+}
+
+int set_heart_beat(int flag)
+{
+    return efun::set_heart_beat((__COMBAT_SPEED__)*flag);
+
+    return efun::set_heart_beat(flag);
+}
+
+int query_heart_status()
+{
+    return heart_beat_on;
 }
 
 void check_encounter(object player)
@@ -741,7 +754,7 @@ void __SHINIT()
     init_stats();
     init_skills(0);
     init_living();
-    set_heart_beat(1);
+    set_heart_beat(heart_beat_on = 1);
     speed = 0;
     set_gender("neuter");
 }
