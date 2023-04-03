@@ -243,7 +243,7 @@ private void check_heart_beat()
     if(!query_heart_beat(this_object()))
     {
         calculate_healing();
-        set_heart_beat(1);
+        set_heart_beat(heart_beat_on = 1);
     }
     call_out("check_heart_beat", 18);
 }
