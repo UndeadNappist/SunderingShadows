@@ -265,7 +265,7 @@ void check_encounter(object player)
     object *dudes;
     object env = environment(this_object());
     string *temp = ({  });
-    int aggro;
+    mixed aggro;
     
     if(!env) return;
     if(!objectp(player)) return;
@@ -279,10 +279,15 @@ void check_encounter(object player)
         {
             if(!player->query_invis() || query_property("invis attack"))
             {
-                if(aggro > (int)player->query_stats("charisma"))
+                if(intp(aggro) && aggro > (int)player->query_stats("charisma"))
                 {
                     kill_ob(player);
                     kill_msg(player);
+                }
+                else
+                {
+                    if(stringp(aggro) && function_exists(aggro, this_object()))
+                        call_other(this_object(), aggro);
                 }
             }
         }
