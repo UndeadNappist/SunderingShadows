@@ -536,7 +536,7 @@ void die(object killer)
         if(!objectp(ob))
             continue;
      
-        if(ob->query_property("monster weapon") || !ob->query_short())
+        if(ob->query_property("monsterweapon") || !ob->query_short())
         {
             destruct(ob);
             continue;
