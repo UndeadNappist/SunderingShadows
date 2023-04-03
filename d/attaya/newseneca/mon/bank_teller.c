@@ -29,7 +29,7 @@ void create(){
    set_body_type("human");
    set_exp(10);
    set_property("no bow",1);
-   set_stabbed_func( (: TO,"stab_func" :) );
+   //set_stabbed_func( (: TO,"stab_func" :) );
 }
 
 void heart_beat(){
