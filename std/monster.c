@@ -569,18 +569,21 @@ void die(object killer)
         }
     }
     
-    money = new("/std/obj/coins");
-    curr = query_currencies();
-    
-    if(objectp(corpse) && objectp(money) && money->has_value() && sizeof(curr))
+    if(objectp(corpse) && has_value())
     {
+        money = new("/std/obj/coins");
+        curr = query_currencies();
+        
         foreach(string str in curr)
         {
+            if(!query_money(str))
+                continue;
+            
             money->add_money(str, query_money(str));
             add_money(str, -query_money(str));
         }
     
-        money->move(corpse);
+        money->has_value() && money->move(corpse);
     }
     
     if(this_object()->query_property("death effects"))
