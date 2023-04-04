@@ -22,6 +22,7 @@ void create()
                     "it and <command sword to follow>. This is a greater summons, and cannot be used simultaneously with other greater summons.");
     set_verbal_comp();
     set_somatic_comp();
+    summon_spell();
     set_components(([
                         "mage" : ([ "mini platinum sword" : 1, ]),
                     ]));
@@ -96,6 +97,8 @@ void make_sword()
     ob->set_property("minion", caster);
     ob->set_property("effective_enchantment", ((int)CLEVEL / 7));
     caster->set_property("mages_sword", ob);
+    ob->set_owner(caster);
+    ob->setup_minion(clevel, spell_level, "greater");
     ob->move(environment(caster));
     addSpellToCaster();
     return;

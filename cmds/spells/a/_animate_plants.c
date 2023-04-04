@@ -62,7 +62,7 @@ spell_effect(int prof)
         return;
     }
 
-    num = 8;
+    num = 20;
 
     for(i=0;i<num;i++)
     {
@@ -91,6 +91,8 @@ spell_effect(int prof)
         plant->move(environment(caster));
         caster->add_follower(plant);
         caster->add_protector(plant);
+        plant->set_owner(caster);
+        plant->setup_minion(clevel, spell_level, "lesser");
 
         tell_room(place,"%^BOLD%^%^GREEN%^A bit of foliage near "+caster->QCN+" comes to life and transforms into a miniature "+plant->QCN+"!",caster);
         tell_object(caster,"%^BOLD%^%^GREEN%^A bit of foliage near you comes to life and transforms into a miniature "+plant->QCN+"!");
