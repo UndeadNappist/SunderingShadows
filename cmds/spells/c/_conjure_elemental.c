@@ -21,6 +21,7 @@ To dismiss elemental use %^ORANGE%^<dismiss elemental>%^RESET%^.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
+    summon_spell();
     set_casting_time(2);
     set_components(([
       "mage" : ([ "soft clay" : 2, ]),
@@ -151,6 +152,8 @@ void next_step(int prof) {
     }
 
     ob->setup_elemental(caster);
+    ob->set_owner(caster);
+    ob->setup_minion(clevel, spell_level, "greater");
     ob->set_property("spelled", ({TO}));
     elem = ob;
     device = new("/d/magic/obj/holder");

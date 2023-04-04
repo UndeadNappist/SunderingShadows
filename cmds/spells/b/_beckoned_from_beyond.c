@@ -24,6 +24,7 @@ To dismiss outsider, %^ORANGE%^<dismiss outsider>%^RESET%^.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
+    summon_spell();
     set_helpful_spell(1);
 }
 
@@ -104,6 +105,8 @@ void spell_effect(int prof) {
         mon->set_new_exp(1,"low");
         mon->set_property("minion", caster);
         mon->move(environment(caster));
+        mon->set_owner(caster);
+        mon->setup_minion(clevel, spell_level, "standard");
         caster->add_follower(mon);
         caster->add_protector(mon);
     }
@@ -214,6 +217,8 @@ void do_summons_2()
     mon->set_mylevel(clevel);
     mon->set_caster(caster);
     mon->set_property("minion", caster);
+    mon->set_owner(caster);
+    mon->setup_minion(clevel, spell_level, "greater");
     
     //gets set earlier in the code - Saide, December 2016
     //addSpellToCaster();

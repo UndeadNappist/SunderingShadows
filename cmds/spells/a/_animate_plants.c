@@ -22,6 +22,7 @@ void create()
     set_description("This spell will animate any foliage, roots, or plants in an area for the purpose of protecting the caster. The animated plants will take on the essence of plants from all different aspects of the wild. The plants will have the same characteristics as those ordinarily found in the wilds, but will be of much smaller scale.");
     set_verbal_comp();
     set_somatic_comp();
+    summon_spell();
     set_helpful_spell(1);
 }
 
