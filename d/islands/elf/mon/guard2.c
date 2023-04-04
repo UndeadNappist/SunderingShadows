@@ -11,6 +11,7 @@
 inherit "/std/guardsman.c";
 
 int horn; // used to keep the horn from spamming
+int round;
 
 void set_guard_stuff();
 void hairColor();
