@@ -572,7 +572,7 @@ void die(object killer)
     money = new("/std/obj/coins");
     curr = query_currencies();
     
-    if(objectp(corpse) && objectp(money) && sizeof(curr))
+    if(objectp(corpse) && objectp(money) && money->has_value() && sizeof(curr))
     {
         foreach(string str in curr)
         {
