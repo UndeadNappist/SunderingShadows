@@ -572,13 +572,16 @@ void die(object killer)
     money = new("/std/obj/coins");
     curr = query_currencies();
     
-    foreach(string str in curr)
+    if(objectp(corpse) && objectp(money) && sizeof(curr))
     {
-        money->add_money(str, query_money(str));
-        add_money(str, query_money(str));
-    }
+        foreach(string str in curr)
+        {
+            money->add_money(str, query_money(str));
+            add_money(str, -query_money(str));
+        }
     
-    sizeof(curr) && money->move(corpse);
+        money->move(corpse);
+    }
     
     if(this_object()->query_property("death effects"))
         catch(load_object("/daemon/death_effects_d")->get_death_effect(this_object()));
