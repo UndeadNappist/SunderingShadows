@@ -17,8 +17,7 @@ void create()
     ::create();
     report("%^BOLD%^%^CYAN%^New Ghost warrior made");
     set_name("Ghost warrior");
-    set_id(({ "ghost", "tecqumin", "warrior", "tecqumin warrior", "monster",
-              "tecqumin ghost warrior", "ghost warrior", }));
+    set_id(({ "ghost", "tecqumin", "warrior", "tecqumin warrior", "monster", "tecqumin ghost warrior", "ghost warrior", "undead"}));
     set_short("%^RESET%^%^ORANGE%^Tecqumin %^BOLD%^%^WHITE%^gh"
               + "%^RESET%^o%^BOLD%^%^WHITE%^st %^RESET%^"
               + "%^ORANGE%^warrior");

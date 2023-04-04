@@ -19,8 +19,7 @@ void create()
     is_raising = 0;
     ignoring = 0;
     set_name("Ghostly priest");
-    set_id(({ "ghost", "tecqumin", "priest", "tecqumin priest", "monster",
-              "ghostly priest", "ghost priest", }));
+    set_id(({ "ghost", "tecqumin", "priest", "tecqumin priest", "monster", "ghostly priest", "ghost priest", "undead"}));
     set_short("%^BOLD%^%^WHITE%^gh%^RESET%^o%^BOLD%^%^WHITE%^stly"
               + " %^RESET%^%^CYAN%^Tecqumin %^ORANGE%^priest%^RESET%^");
     set_race("ghost");
