@@ -50,7 +50,7 @@ if(random(4))
   set_scrambling(1);
   set_max_level(32);
   set_property("swarm",1);
-  set_stabbed_func((:TO,"stabbed":));
+  //set_stabbed_func((:TO,"stabbed":));
   set_stats("strength",20);
 }
 
