@@ -26,6 +26,8 @@ void create()
     set_property("undead", 1);
     set_body_type("human");
     set_property("full attacks", 1);
+    set_property("no_random_treasure", 1);
+    set_property("no corpse", 1);
 
     set_stats("strength", 22);
     set_stats("dexterity", 16);
@@ -80,3 +82,4 @@ void set_weap_enchant(int level)
         if (weapon_2->is_weapon())
             weapon_2->set_property("enchantment", level);
 }
+
