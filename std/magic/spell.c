@@ -10,7 +10,7 @@
 
 #define NO_EFFECT -100
 #define TRACK_SPELLS 1
-#define MAX_RAISE 5
+#define MAX_RAISE 10
 #define HEADER sprintf("%s%s=%s<%s%|20s%s>%s=%s%s\n", HIB, repeat_string("-", ((width - 24) / 2)),HIC, HIW, capitalize(spell_name), HIC, HIB, repeat_string("-",(width - 24) / 2), NOR)
 #define SUBHEAD "%^BLACK%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
 #define FOOTER "%^BLUE%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"

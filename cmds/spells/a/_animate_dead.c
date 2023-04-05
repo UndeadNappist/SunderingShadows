@@ -7,6 +7,7 @@ inherit SPELL;
 int num_mon;
 
 #define UNDEADDIR "/d/magic/mon/create_undead/"
+#define MAX_POOL 10
 
 void fail();
 
@@ -86,7 +87,7 @@ void spell_effect(int prof)
     if (!intp(num_mon)) {
         num_mon = 0;
     }
-    if (num_mon >= 5) {
+    if (num_mon >= MAX_POOL) {
         tell_object(caster, "%^RESET%^%^BOLD%^%^BLACK%^YOU ARE %^WHITE%^NOT %^WHITE%^WORTHY%^BLACK%^ TO RAISE MORE!%^RESET%^%^RESET%^");
         tell_room(environment(caster), "%^CYAN%^" + caster->QCN + " seems to strain doing something.%^RESET%^", caster);
         TO->remove();
@@ -99,7 +100,7 @@ void spell_effect(int prof)
         undead = new(UNDEADDIR + "skeleton");
         lvl = 1;
 
-        if (num_mon > 4) {
+        if (num_mon >= MAX_POOL) {
             undead->remove();
             tell_object(caster, "%^RESET%^%^BOLD%^%^BLACK%^RAISING MORE IS %^WHITE%^BEYOND%^BLACK%^ YOUR PATHETIC %^BLACK%^M%^WHITE%^ASTERY!%^RESET%^%^RESET%^");
             tell_room(environment(caster), "%^CYAN%^" + caster->QCN + " seems to strain doing something.%^RESET%^", caster);

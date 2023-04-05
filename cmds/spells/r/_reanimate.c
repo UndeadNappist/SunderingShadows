@@ -8,6 +8,7 @@ int num_mon;
 void fail();
 
 #define UNDEADDIR "/d/magic/mon/create_undead/"
+#define MAX_POOL 10
 
 void create()
 {
@@ -40,7 +41,7 @@ void spell_effect(int prof)
     object controller, undead, corpse, * corpses = ({}), * undeadl;
     int lvl;
 
-    if ((int)caster->query_property("raised") > 4) {
+    if ((int)caster->query_property("raised") >= MAX_POOL) {
         tell_object(caster, "%^BOLD%^%^BLACK%^You can't raise any more undead.%^RESET%^");
         TO->remove();
         return;

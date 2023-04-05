@@ -65,7 +65,7 @@ void spell_effect(int prof) {
         ob->set_property("spell_creature", TO);
         ob->set_property("spell", TO);
         //ob->set_property("minion", caster);
-        ob->add_id("summoned monster");
+        //ob->add_id("summoned monster");
         ob->add_id(caster->query_name()+"phantommonster");
         mons += ({ob});
         break;
@@ -130,6 +130,26 @@ void spell_effect(int prof) {
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH;
     set_end_time();
     call_out("dest_effect",spell_duration);
+    call_out("check", ROUND_LENGTH);
+}
+
+void check()
+{
+    if(!objectp(caster))
+    {
+        dest_effect();
+        return;
+    }
+    
+    mons = filter_array(mons, (: objectp($1) :));
+    
+    if(!sizeof(mons))
+    {
+        dest_effect();
+        return;
+    }
+    
+    call_out("check", ROUND_LENGTH);
 }
 
 void dest_effect() {
