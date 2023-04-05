@@ -19,6 +19,7 @@ void create()
                     "it will return to its business.  Such creatures can only be summoned within the wilderness they call home. If this creature loses you it will return to its home, and you'll have to recast this spell.");
     set_verbal_comp();
     set_somatic_comp();
+    summon_spell();
     set_helpful_spell(1);
 }
 
@@ -76,14 +77,18 @@ spell_effect(int prof)
     mon->set_property("spell", TO);
     mon->set_property("spell_creature", TO);
     setup_beastie(mon);
-    mon->set_mylevel(clevel);
+    //mon->set_mylevel(clevel);
     mon->move(place);
-    caster->add_protector(mon);
-    caster->add_follower(mon);
+    //caster->add_protector(mon);
+    //caster->add_follower(mon);
+    mon->set_owner(caster);
+    mon->setup_minion(clevel, spell_level, "standard");
     mon->set_property("minion", caster);
+    /*
     if (caster->is_class("druid")) {
         mon->set_hp(mon->query_hp() + ((clevel + 10) * 2));
     }
+    */
     tell_room(place, mon->query_short() + " approaches at " + caster->QCN + "'s call.", caster);
     tell_object(caster, mon->query_short() + " appears at your call.");
     if (foes != ({}) && target != caster) {

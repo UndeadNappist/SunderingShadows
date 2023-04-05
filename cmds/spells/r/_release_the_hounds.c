@@ -19,6 +19,7 @@ void create(){
     set_verbal_comp();
     set_somatic_comp();
 	set_helpful_spell(1);
+    summon_spell();
     set_arg_needed(1);
     set_feats_required(([ "inquisitor" : "chains of justice"]));
 }

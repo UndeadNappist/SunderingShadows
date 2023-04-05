@@ -18,6 +18,7 @@ void create() {
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
+    summon_spell();
 	set_helpful_spell(1);
 }
 
@@ -50,14 +51,16 @@ void spell_effect() {
     tell_room(place,"%^GREEN%^Four copies of "+caster->QCN+"%^RESET%^%^GREEN%^ pop into being!%^RESET%^");
     for (i=0;i<max;i++) {
         ob = new("/d/magic/mon/illusion");
+        ob->set_owner(caster);
+        ob->setup_minion(clevel, spell_level, "standard");
         ob->move(place);
-        caster->add_protector(ob);
+        //caster->add_protector(ob);
         ob->set_property("spelled", ({TO}) );
         ob->set_property("spell_creature", TO);
         ob->set_property("spell", TO);
         ob->set_property("minion", caster);
-        ob->set_max_hp(clevel*10+30);
-        ob->set_hp(ob->query_max_hp());
+        //ob->set_max_hp(clevel*10+30);
+        //ob->set_hp(ob->query_max_hp());
         ob->add_id(caster->query_true_name()+"_illusion");
         ob->set_race((string)caster->query_race());
         ob->set_gender((string)caster->query_gender());
@@ -65,11 +68,11 @@ void spell_effect() {
         ob->set_long((string)caster->getWholeDescriptivePhrase() + " " +(string)caster->query_description());
         ob->set_overall_ac(-clevel);
         ob->set_exp(0);
-        ob->add_id("summoned monster");
+        //ob->add_id("summoned monster");
         ob->add_id(caster->query_name()+"illusion");
         mons += ({ob});
-        caster->add_follower(ob);
-        caster->add_protector(ob);
+        //caster->add_follower(ob);
+        //caster->add_protector(ob);
     }
     addSpellToCaster();
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 3;

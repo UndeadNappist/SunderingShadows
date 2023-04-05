@@ -27,7 +27,7 @@ void create()
     set_short("A generic minion");
     set_hd(1, 1);
     set_hp(10);
-    set_exp(1);
+    set_exp(0);
     set_size(2);
     set_damage(1, 1);
     set_gender("neuter");
@@ -98,6 +98,8 @@ int setup_minon(int clevel, spell_level, string type)
         set_static_bab(clevel);
         set_property("effective enchantment", clevel / 7 + 1);
         set_attacks_num(clevel / 13 + 1);
+        set_attack_bonus(1 + clevel / 10);
+        set_damage_bonus(1 + clevel / 10);
         set_overall_ac(-clevel);
         break;
     }

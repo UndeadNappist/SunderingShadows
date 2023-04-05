@@ -22,6 +22,7 @@ To command weapon use %^ORANGE%^<command weapon to %^ORANGE%^%^ULINE%^ACTION%^RE
 To force lost weapon to follow use %^ORANGE%^<command weapon to follow>%^RESET%^");
     set_verbal_comp();
     set_somatic_comp();
+    summon_spell();
     set_helpful_spell(1);
 }
 
@@ -60,6 +61,8 @@ void summon_servant() {
     ob->set_long(("/d/magic/obj/weapons/"+normalizedDeity)->query_long());
     ob->set_id(ob->query_id()+("/d/magic/obj/weapons/"+normalizedDeity)->query_id());
     ob->setup_servant(caster,clevel);
+    ob->set_owner(caster);
+    ob->setup_minion(clevel, spell_level, "greater");
 
     control = new("/d/magic/obj/holder");
     control->set_caster(caster);

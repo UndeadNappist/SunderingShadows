@@ -59,7 +59,7 @@ void spell_effect()
     tell_object(caster, "CASTER MESSAGE");
     tell_room(place, "ROOM MESSAGE", caster);
     
-    num = 3 + clevel / 5;
+    num = 5 + clevel / 5;
     
     for(int x = 0; x < num; x++)
     {

@@ -28,7 +28,8 @@
   "winter":SHADOW_SEA "2,19.sea",\
   "rilynath":SHADOW_SEA "49,0.sea",\
   "ice":SHADOW_SEA "16,30.sea",\
-  "wailing_isle":DAGGER_SEA "16,12.sea",])
+  "wailing_isle":DAGGER_SEA "16,12.sea",\
+  "isto_delmah":SHADOW_SEA "5,43.sea", ])
 
 inherit OBJECT;
 object boat_room;

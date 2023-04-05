@@ -21,6 +21,7 @@ To command ally use %^ORANGE%^<command ally to %^ORANGE%^%^ULINE%^ACTION%^RESET%
 To force lost ally to follow use %^ORANGE%^<command ally to follow>%^RESET%^");
     set_verbal_comp();
     set_somatic_comp();
+    summon_spell();
     set_helpful_spell(1);
     set_feats_required(([ "bard" : "epic tales" ]));
 }
@@ -52,6 +53,8 @@ void summon_servant() {
     ob=new("/d/magic/mon/spiritual_ally.c");
     ob->set_alignment(caster->query_alignment());
     ob->setup_servant(caster,clevel);
+    ob->set_owner(caster);
+    ob->setup_minion(clevel, spell_level, "greater");
 
     control = new("/d/magic/obj/holder");
     control->set_caster(caster);
