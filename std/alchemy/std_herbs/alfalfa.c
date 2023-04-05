@@ -12,7 +12,7 @@ void create()
 
 int mutate_alchemical_state(int current_state)
 {
-    current_state = current_state << 2;
+    current_state <<= 2;
     current_state ^= 18;
     return current_state;
 }
