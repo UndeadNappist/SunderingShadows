@@ -89,6 +89,8 @@ Additional codes:
   %^MAGENTA%^$_SC%^WHITE%^ spell combat
   %^MAGENTA%^$_SR%^WHITE%^ spell recall
   %^MAGENTA%^$_ES%^WHITE%^ eldritch shield
+  %^MAGENTA%^$_UP%^WHITE%^ used undead pool
+  %^MAGENTA%^$_MP%^WHITE%^ max undead pool
   %^MAGENTA%^$EL%^WHITE%^ elementalist
   %^MAGENTA%^$r%^WHITE%^ rage status
   %^MAGENTA%^$E%^WHITE%^ eldritch essence
