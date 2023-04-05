@@ -76,6 +76,7 @@ int setup_minon(int clevel, spell_level, string type)
     set_new_exp(1, "low");
     set("aggressive", 1);
     remove_property("swarm");
+    set_level(clevel);
     set_mlevel("fighter", clevel);
     set_guild_level("fighter", clevel);
     minion_type = type;
