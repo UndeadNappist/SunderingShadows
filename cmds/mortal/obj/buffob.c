@@ -51,14 +51,14 @@ void heart_beat()
 
     if (!objectp(ETO)) {
         if (objectp(TO)) {
-            TO->remove();
+            remove();
         }
         return;
     }
 
     if (my_room != EETO) {
         if (objectp(TO)) {
-            TO->remove();
+            remove();
         }
         return;
     }
@@ -67,7 +67,7 @@ void heart_beat()
 
     if (ETO != owner) {
         if (objectp(TO)) {
-            TO->remove();
+            remove();
         }
         return;
     }
@@ -75,7 +75,7 @@ void heart_beat()
     if (sizeof(owner->query_attackers())) {
         tell_object(owner, "The fighting breaks your concentration, you need to be at peace to buff.");
         if (objectp(TO)) {
-            TO->remove();
+            remove();
         }
         return;
     }
@@ -84,19 +84,21 @@ void heart_beat()
 
     if (count > 90) { // delete in 90 heart beats if heart_beat error doesn't stop it from counting - should be deleted next time buff is used anyway
         if (objectp(TO)) {
-            TO->remove();
+            remove();
         }
         return;
     }
 
-    if (!sizeof(spells)) {
-        if (!mapp(buffs) || !sizeof(keys(buffs))) {
+    if (!sizeof(spells))
+    {
+        if (!mapp(buffs) || !sizeof(keys(buffs)))
+        {
             buffs = (mapping)owner->query("buff_list");
-            if (!mapp(buffs) || !sizeof(keys(buffs))) {
+            if (!mapp(buffs) || !sizeof(keys(buffs)))
+            {
                 tell_object(owner, "You don't have any buffs to cast.");
-                if (objectp(TO)) {
-                    TO->remove();
-                }
+                if (objectp(TO))
+                    remove();
                 return;
             }
             spells = keys(buffs);
@@ -104,9 +106,8 @@ void heart_beat()
         }
     }
 
-    if (!objectp(TO)) {
+    if (!objectp(TO))
         return;
-    }
 
     cast_normal_spells();
 
@@ -114,204 +115,212 @@ void heart_beat()
 
     return;
 }
+
 void cast_special_spells()
 {
     object targ;
-    string special, spell, myclass, file, my_target, * to_cast = ({}), * been_cast = ({});
+    string special, spell, *spell_args, myclass, file, my_target, * to_cast = ({}), * been_cast = ({});
     int i, j;
 
     owner_check();
-    if (!sizeof(special_spells)) {
+
+    if (!sizeof(special_spells))
         return;
-    }
 
-    if (owner->query_casting()) {
+    if (owner->query_casting())
         return;
-    }
 
-    if (sizeof(special_spells)) {
-        normal_special_spells = ({});
-        party_special = ({});
-        special_specials = ({});
+    normal_special_spells = ({});
+    party_special = ({});
+    special_specials = ({});
 
-        for (i = 0; i < sizeof(special_spells); i++) {
-            spell = special_spells[i];
-            if (!buffs[spell]) {
+    for (i = 0; i < sizeof(special_spells); ++i)
+    {
+        spell = special_spells[i];
+        if (!buffs[spell])
+            continue;
+
+        special = buffs[spell]["special"];
+        spell_args = explode(buffs[spell]["special"], " ");
+
+        if (sizeof(spell_args) < 2)
+        {
+            message("info", "You must specify a class when defining a special spell. Skipping.", owner);
+            continue;
+        }
+
+        if (special) {
+
+            if (strsrch(special, "$T") != -1) {
+                party_special += ({ spell });
                 continue;
             }
-            special = buffs[spell]["special"];
-            /* myclass = get_class(spell); */
-            myclass = explode(buffs[spell]["special"], " ")[1];
 
-            if (special) {
+            if (strsrch(special, "$") != -1) {
+                special_specials += ({ spell });
+                continue;
+            }
 
-                if (strsrch(special, "$T") != -1) {
-                    party_special += ({ spell });
-                    continue;
-                }
-
-                if (strsrch(special, "$") != -1) {
-                    special_specials += ({ spell });
-                    continue;
-                }
-
-                if (strsrch(special, "$") == -1) {
-                    normal_special_spells += ({ spell });
-                    continue;
-                }
+            if (strsrch(special, "$") == -1) {
+                normal_special_spells += ({ spell });
+                continue;
             }
         }
+    }
 
-        if (sizeof(normal_special_spells)) {
-            for (i = 0; i < sizeof(normal_special_spells); i++) {
-                spell = normal_special_spells[i];
+    if (sizeof(normal_special_spells))
+    {
+        for (i = 0; i < sizeof(normal_special_spells); ++i)
+        {
+            spell = normal_special_spells[i];
 
-                if (member_array(spell, normal_special_spells_cast) != -1) {
-                    continue;
-                }
+            if (member_array(spell, normal_special_spells_cast) != -1)
+                continue;
 
-                if (has_spell(owner, spell)) {
-                    normal_special_spells_cast += ({ spell });
-                    continue;
-                }
-
-                special = buffs[spell]["special"];
-                if (!special) {
-                    tell_object(owner, "Your spell " + spell + " doesn't seem to have a special cast string.  Aborting...");
-                    if (objectp(TO)) {
-                        TO->remove();
-                    }
-                    return;
-                }
-
-                /* myclass = cast_check(spell); */
-                tell_object(owner, "Attempting to: " + special);
-                owner->force_me(special);
+            if (has_spell(owner, spell))
+            {
                 normal_special_spells_cast += ({ spell });
+                continue;
+            }
+
+            special = buffs[spell]["special"];
+            if (!special)
+            {
+                tell_object(owner, "Your spell " + spell + " doesn't seem to have a special cast string.  Aborting...");
+                if (objectp(TO))
+                    remove();
+
                 return;
             }
+
+            /* myclass = cast_check(spell); */
+            tell_object(owner, "Attempting to: " + special);
+            owner->force_me(special);
+            normal_special_spells_cast += ({ spell });
+            return;
+        }
+    }
+
+    // these work basically the same as the normal special spells, but with slightly more robust target checking -Ares
+    if (sizeof(special_specials)) {
+        for (i = 0; i < sizeof(special_specials); ++i)
+        {
+            spell = special_specials[i];
+
+            if (member_array(spell, special_specials_cast) != -1)
+                continue;
+
+            // not 100% sure on this, since it's possible for them to have strings with odd targets, may have to remove or make them specify a target with $  -observe for now -Ares
+            if (has_spell(owner, spell))
+            {
+                special_specials_cast += ({ spell });
+                continue;
+            }
+
+            special = buffs[spell]["special"];
+            if (!special)
+            {
+                tell_object(owner, "Your spell " + spell + " doesn't seem to have a special cast string.  Aborting...");
+                if (objectp(TO))
+                    remove();
+                return;
+            }
+
+            my_target = parse_special_target(special);
+
+            if (!objectp(targ = present(my_target, environment(owner)))) {
+                if (!objectp(targ = present(my_target, owner))) {
+                    tell_object(owner, "Your target " + my_target + " doesn't seem to be here.");
+                    if (objectp(TO))
+                        remove();
+
+                    return;
+                }
+            }
+
+            myclass = cast_check(spell);
+            special = replace_string(special, "$" + my_target, my_target);
+
+            tell_object(owner, "Attempting to: " + special);
+            owner->force_me(special);
+            special_specials_cast += ({ spell });
+            return;
+        }
+    }
+
+    if (sizeof(party_special)) {
+        if (party && !sizeof(party_members)) {
+            party_members = query_party();
+            if (!sizeof(party_members))
+                party_members += ({ owner });
         }
 
-        // these work basically the same as the normal special spells, but with slightly more robust target checking -Ares
-        if (sizeof(special_specials)) {
-            for (i = 0; i < sizeof(special_specials); i++) {
-                spell = special_specials[i];
+        for (i = 0; i < sizeof(party_members); ++i)
+            special_spells_map[party_members[i]] = ([ "party_special_spells" : party_special ]);
+    }
 
-                if (member_array(spell, special_specials_cast) != -1) {
+    if (party)
+    {
+        party_members = query_party();
+        if (!sizeof(party_members))
+            party_members += ({ owner });
+    }
+
+    if (sizeof(party_special) && sizeof(party_members))
+    {
+        for (i = 0; i < sizeof(party_members); ++i)
+        {
+            targ = party_members[i];
+            if (!objectp(targ))
+                continue;
+
+            to_cast = special_spells_map[targ]["party_special_spells"];
+            been_cast = special_spells_map[targ]["party_special_spells_cast"];
+            if (!pointerp(been_cast))
+                been_cast = ({});
+
+            if (sizeof(to_cast) == sizeof(been_cast))
+                continue;
+
+            for (j = 0; j < sizeof(to_cast); ++j)
+            {
+                spell = to_cast[j];
+                if (environment(targ) != environment(owner))
+                {
+                    been_cast += ({ spell });
+                    special_spells_map[targ]["party_special_spells"] = to_cast;
+                    special_spells_map[targ]["party_special_spells_cast"] = been_cast;
                     continue;
                 }
 
                 // not 100% sure on this, since it's possible for them to have strings with odd targets, may have to remove or make them specify a target with $  -observe for now -Ares
-                if (has_spell(owner, spell)) {
-                    special_specials_cast += ({ spell });
-                    continue;
-                }
-
-                special = buffs[spell]["special"];
-                if (!special) {
-                    tell_object(owner, "Your spell " + spell + " doesn't seem to have a special cast string.  Aborting...");
-                    if (objectp(TO)) {
-                        TO->remove();
-                    }
-                    return;
-                }
-
-                my_target = parse_special_target(special);
-
-                if (!objectp(targ = present(my_target, environment(owner)))) {
-                    if (!objectp(targ = present(my_target, owner))) {
-                        tell_object(owner, "Your target " + my_target + " doesn't seem to be here.");
-                        if (objectp(TO)) {
-                            TO->remove();
-                        }
-                        return;
-                    }
-                }
-
-                myclass = cast_check(spell);
-                special = replace_string(special, "$" + my_target, my_target);
-
-                tell_object(owner, "Attempting to: " + special);
-                owner->force_me(special);
-                special_specials_cast += ({ spell });
-                return;
-            }
-        }
-
-        if (sizeof(party_special)) {
-            if (party && !sizeof(party_members)) {
-                party_members = query_party();
-                if (!sizeof(party_members)) {
-                    party_members += ({ owner });
-                }
-            }
-
-            for (i = 0; i < sizeof(party_members); i++) {
-                special_spells_map[party_members[i]] = ([ "party_special_spells" : party_special ]);
-            }
-        }
-
-        if (party) {
-            party_members = query_party();
-            if (!sizeof(party_members)) {
-                party_members += ({ owner });
-            }
-        }
-
-        if (sizeof(party_special) && sizeof(party_members)) {
-            for (i = 0; i < sizeof(party_members); i++) {
-                targ = party_members[i];
-                if (!objectp(targ)) {
-                    continue;
-                }
-
-                to_cast = special_spells_map[targ]["party_special_spells"];
-                been_cast = special_spells_map[targ]["party_special_spells_cast"];
-                if (!pointerp(been_cast)) {
-                    been_cast = ({});
-                }
-
-                if (sizeof(to_cast) == sizeof(been_cast)) {
-                    continue;
-                }
-
-                for (j = 0; j < sizeof(to_cast); j++) {
-                    spell = to_cast[j];
-                    if (environment(targ) != environment(owner)) {
-                        been_cast += ({ spell });
-                        special_spells_map[targ]["party_special_spells"] = to_cast;
-                        special_spells_map[targ]["party_special_spells_cast"] = been_cast;
-                        continue;
-                    }
-
-                    // not 100% sure on this, since it's possible for them to have strings with odd targets, may have to remove or make them specify a target with $  -observe for now -Ares
-                    if (has_spell(targ, spell)) {
-                        been_cast += ({ spell });
-                        special_spells_map[targ]["party_special_spells"] = to_cast;
-                        special_spells_map[targ]["party_special_spells_cast"] = been_cast;
-                        continue;
-                    }
-
-                    my_target = (string)owner->knownAs((string)targ->query_true_name());
-                    special = buffs[spell]["special"];
-
-                    if (!special) {
-                        tell_object(owner, "Your spell " + spell + " doesn't seem to have a special cast string.  Aborting...");
-                        if (objectp(TO)) {
-                            TO->remove();
-                        }
-                        return;
-                    }
-
-                    myclass = cast_check(spell);
-                    special = replace_string(special, "$T", my_target);
-                    tell_object(owner, "Attempting to: " + special);
-                    owner->force_me(special);
+                if (has_spell(targ, spell))
+                {
                     been_cast += ({ spell });
                     special_spells_map[targ]["party_special_spells"] = to_cast;
                     special_spells_map[targ]["party_special_spells_cast"] = been_cast;
+                    continue;
+                }
+
+                my_target = (string)owner->knownAs((string)targ->query_true_name());
+                special = buffs[spell]["special"];
+
+                if (!special)
+                {
+                    tell_object(owner, "Your spell " + spell + " doesn't seem to have a special cast string.  Aborting...");
+                    if (objectp(TO))
+                        remove();
                     return;
                 }
+
+                myclass = cast_check(spell);
+                special = replace_string(special, "$T", my_target);
+                tell_object(owner, "Attempting to: " + special);
+                owner->force_me(special);
+                been_cast += ({ spell });
+                special_spells_map[targ]["party_special_spells"] = to_cast;
+                special_spells_map[targ]["party_special_spells_cast"] = been_cast;
+                return;
             }
         }
     }
@@ -499,25 +508,30 @@ mixed can_cast(string spell)
     tell_object(owner, "You can't cast the spell " + spell + ", please make sure you have it prepared.");
     return 0;
 }
+
 void sort_spells()
 {
     mapping buff;
     string spell;
     int i;
-    if (!sizeof(spells)) {
+
+    if (!sizeof(spells))
         return;
-    }
-    for (i = 0; i < sizeof(spells); i++) {
+
+    for (i = 0; i < sizeof(spells); ++i)
+    {
         spell = spells[i];
         buff = buffs[spell];
-        if (buff["special"]) {
+
+        if (buff["special"])
             special_spells += ({ spell });
-        }else {
+        else
             normal_spells += ({ spell });
-        }
     }
+
     return;
 }
+
 object* query_party()
 {
     string my_party;
@@ -527,7 +541,7 @@ object* query_party()
     if (!my_party) {
         tell_object(owner, "You aren't in a party.  Aborting...");
         if (objectp(TO)) {
-            TO->remove();
+            remove();
         }
         return 0;
     }
@@ -541,7 +555,7 @@ string cast_check(string spell)
     if (!myclass = can_cast(spell)) {
         tell_object(owner, "You can't seem to cast the spell: " + spell + ".  Aborting...");
         if (objectp(TO)) {
-            TO->remove();
+            remove();
         }
         return 0;
     }
@@ -597,7 +611,7 @@ void owner_check()
 {
     if (!objectp(owner)) {
         if (objectp(TO)) {
-            TO->remove();
+            remove();
         }
         return;
     }
