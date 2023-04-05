@@ -27,6 +27,7 @@ void create(){
     set_property("undead",1);
     set_body_type("human");
     set_property("full attacks",1);
+    set_property("no corpse");
 
     set_stats("strength",22);
     set_stats("dexterity",16);

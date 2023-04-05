@@ -102,6 +102,7 @@ void spell_effect(int prof)
     max *= 2;
 
     for (i = 0; i < max; i++) {
+        if(num_mon >= MAX_POOL) continue;
         undead = new(UNDEADDIR + "skeleton");
         lvl = 1;
         

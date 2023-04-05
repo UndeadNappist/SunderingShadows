@@ -46,10 +46,12 @@ string query_cast_string()
 int preSpell()
 {
     string destination;
-    if(arg == "summoning" && (caster->query_property("has_elemental") || caster->query_property("mages_sword")))
+    //if(arg == "summoning" && (caster->query_property("has_elemental") || caster->query_property("mages_sword")))
+    if(arg == "summoning")
     {
-        tell_object(caster,"You already have a powerful summoned creature under your control.");
-        return 0;
+        summon_spell();
+        //tell_object(caster,"You already have a powerful summoned creature under your control.");
+        //return 0;
     }
     if (sscanf(arg,"%s | %s",purpose,destination) != 2 && arg != "summoning")
     {
@@ -71,7 +73,6 @@ void spell_effect(int prof)
     //arg = lower_case(arg);
     if(arg == "summoning")
     {
-        summon_spell();
         do_summons();
         return;
     }
