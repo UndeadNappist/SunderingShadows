@@ -84,7 +84,7 @@ int setup_minon(int clevel, spell_level, string type)
     {
         case "lesser":
         set_hd(clevel / 2 + 1, spell_level);
-        set_max_hp(20);
+        set_max_hp(1 + clevel / 3);
         break;
         case "standard":
         set_hd(clevel, spell_level);

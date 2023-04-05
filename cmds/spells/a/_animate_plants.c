@@ -62,7 +62,7 @@ spell_effect(int prof)
         return;
     }
 
-    num = 20;
+    num = 10 + clevel / 5;
 
     for(i=0;i<num;i++)
     {
@@ -73,11 +73,13 @@ spell_effect(int prof)
 
         plant->set("aggressive",1);
         plant->remove_property("swarm");
-        plant->set_mlevel("fighter",clevel);
-        plant->set_guild_level("fighter",clevel);
+        plant->set_owner(caster);
+        plant->setup_minion(clevel, spell_level, "lesser");
+        //plant->set_mlevel("fighter",clevel);
+        //plant->set_guild_level("fighter",clevel);
         plant->set_attacks_num(0);
-        plant->set_max_hp(clevel*8+30);
-        plant->set_hp(plant->query_max_hp());//kinda silly to be badly injured on summon
+        //plant->set_max_hp(clevel*8+30);
+        //plant->set_hp(plant->query_max_hp());//kinda silly to be badly injured on summon
         plant->set_property("spelled",({TO}));
         plant->set_property("spell_creature",TO);
         plant->set_property("spell",TO);
@@ -89,10 +91,8 @@ spell_effect(int prof)
         plant->set_new_exp(1,"low");
         plant->set_property("minion", caster);
         plant->move(environment(caster));
-        caster->add_follower(plant);
-        caster->add_protector(plant);
-        plant->set_owner(caster);
-        plant->setup_minion(clevel, spell_level, "lesser");
+        //caster->add_follower(plant);
+        //caster->add_protector(plant);
 
         tell_room(place,"%^BOLD%^%^GREEN%^A bit of foliage near "+caster->QCN+" comes to life and transforms into a miniature "+plant->QCN+"!",caster);
         tell_object(caster,"%^BOLD%^%^GREEN%^A bit of foliage near you comes to life and transforms into a miniature "+plant->QCN+"!");
