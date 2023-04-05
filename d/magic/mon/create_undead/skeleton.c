@@ -20,7 +20,7 @@ void create(){
     set_level(8);
     set_hd(8,8);
 
-    set_max_hp(random(30)+255);
+    set_max_hp(20);
     set_hp(query_max_hp());
 
     set_wielding_limbs(({"right hand","left hand"}));
