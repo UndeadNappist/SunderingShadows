@@ -49,7 +49,7 @@ To check how many undead you have rised use %^ORANGE%^<poolsize>%^RESET%^";
 void spell_effect(int prof)
 {
     object* targs = ({}), * temp = ({}), * inven = ({}), undead, controller;
-    int i, j, lvl, flag;
+    int i, j, lvl, flag, max;
 
     if (target && objectp(target) && !target->is_room()) {
         if (!target->is_corpse()) {
@@ -95,11 +95,17 @@ void spell_effect(int prof)
     }
 
     spell_successful();
+    
+    max = (MAX_POOL - num_mon);
+    max = min( ({ sizeof(targs), max }) );
+    caster->set_property("raised", max);
+    max *= 2;
 
-    for (i = 0; i < sizeof(targs) && i < 2; i++) {
+    for (i = 0; i < max; i++) {
         undead = new(UNDEADDIR + "skeleton");
         lvl = 1;
-
+        
+        /*
         if (num_mon >= MAX_POOL) {
             undead->remove();
             tell_object(caster, "%^RESET%^%^BOLD%^%^BLACK%^RAISING MORE IS %^WHITE%^BEYOND%^BLACK%^ YOUR PATHETIC %^BLACK%^M%^WHITE%^ASTERY!%^RESET%^%^RESET%^");
@@ -107,36 +113,37 @@ void spell_effect(int prof)
             TO->remove();
             return;
         }
-
-        inven = all_inventory(targs[i]);
-        inven->move(undead);
-
-        targs[i]->remove();
-        num_mon += lvl;
+        */
+        
+        if(i < sizeof(targs))
+        {    
+            inven = all_inventory(targs[i]);
+            inven->move(undead);
+            targs[i]->remove();
+        }
+        //num_mon += lvl;
 
         undead->set_property("raised", 1);
-        undead->set_property("minion", caster);
+        //undead->set_property("minion", caster);
         undead->move(environment(caster));
 
-        undead->set_guild_level("fighter", clevel);
+        //undead->set_guild_level("fighter", clevel);
         undead->set_weap_enchant(clevel / 12);
         undead->set_skill("athletics", clevel);
         undead->set_skill("perception", clevel);
-        undead->set_level(clevel);
-        undead->set_hd(clevel, 4);
+        //undead->set_level(clevel);
+        //undead->set_hd(clevel, 4);
 
-        undead->set_max_hp(clevel * 10);
-        undead->set_hp(undead->query_max_hp());
-        undead->set_overall_ac(5 - clevel);
+        //ndead->set_max_hp(clevel * 10);
+        //undead->set_hp(undead->query_max_hp());
+        //undead->set_overall_ac(5 - clevel);
         undead->control(caster);
-        caster->add_follower(undead);
-
-        undead->add_id("summoned monster");
+        //caster->add_follower(undead);
+        //undead->add_id("summoned monster");
         undead->set_property("spell", TO);
         undead->set_property("spell_creature", TO);
         undead->set_property("minion", caster);
         controller->add_monster(undead);
-        caster->set_property("raised", 1);
         undead->set_owner(caster);
         undead->setup_minion(clevel, spell_level, "lesser");
 

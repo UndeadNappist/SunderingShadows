@@ -1,5 +1,7 @@
 #include <std.h>
 
+#define MAX_POOL 10
+
 void raise_ghosts(int clevel, int limit, object caster, object controller)
 {
     object *temp, *targs, undead, target;
@@ -36,6 +38,8 @@ void raise_ghosts(int clevel, int limit, object caster, object controller)
     i = 0;
     foreach(target in targs)
     {
+        if(nummon >= MAX_POOL)
+            continue;
         if (i>limit)
             break;
         if(nummon>clevel)
@@ -87,7 +91,7 @@ void raise_ghosts(int clevel, int limit, object caster, object controller)
             undead->set_property("spell_creature", TO);
             undead->set_property("keep exp",1);
             undead->set_exp((int)undead->query_hd()*50);
-            caster->set_property("raised", lvl/6);
+            caster->set_property("raised", 1);
             undead->set_property("raised " + undead_to_raise(), lvl / 6);
             controller->add_monster(undead);
         }
