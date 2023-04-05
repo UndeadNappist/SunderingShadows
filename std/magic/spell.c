@@ -10,6 +10,7 @@
 
 #define NO_EFFECT -100
 #define TRACK_SPELLS 1
+#define MAX_RAISE 5
 #define HEADER sprintf("%s%s=%s<%s%|20s%s>%s=%s%s\n", HIB, repeat_string("-", ((width - 24) / 2)),HIC, HIW, capitalize(spell_name), HIC, HIB, repeat_string("-",(width - 24) / 2), NOR)
 #define SUBHEAD "%^BLACK%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
 #define FOOTER "%^BLUE%^BOLD%^" + repeat_string("-", width) + "%^RESET%^"
@@ -1042,11 +1043,27 @@ void wizard_interface(object user, string type, string targ)
         }
     }
        
-    if(summon_spell && caster->query_property("summon spell"))
+    if(summon_spell && (caster->query_property("summon spell") || caster->query_property("raised")))
     {
-        tell_object(caster, "You can't concentrate on more than one summon spell at a time.");
+        tell_object(caster, "You are already concentrating on a summon or undead spell.");
         ::remove();
         return;
+    }
+    
+    if(query_property("undead spell"))
+    {
+        if(caster->query_property("summon spell"))
+        {
+            tell_object(caster, "You can summon undead while concentrating on a summon spell.");
+            ::remove();
+            return;
+        }
+        if(caster->query_property("raised") >= MAX_RAISE)
+        {
+            tell_object(caster, "You are not worthy to raise more undead.");
+            ::remove();
+            return;
+        }
     }
 
     if(this_player()->is_deva() && target && !query_helpful())
@@ -2012,6 +2029,22 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
         tell_object(caster, "You can't concentrate on more than one summon spell at a time.");
         ::remove();
         return;
+    }
+    
+    if(query_property("undead spell"))
+    {
+        if(caster->query_property("summon spell"))
+        {
+            tell_object(caster, "You can summon undead while concentrating on a summon spell.");
+            ::remove();
+            return;
+        }
+        if(caster->query_property("raised") >= MAX_RAISE)
+        {
+            tell_object(caster, "You are not worthy to raise more undead.");
+            ::remove();
+            return;
+        }
     }
 
     if (query_aoe_spell()) {
@@ -4503,6 +4536,10 @@ void help()
     if(summon_spell)
     {
         write("%^BOLD%^%^RED%^This is a summon spell.");
+    }
+    if(query_property("undead spell"))
+    {
+        write("%^BOLD%^%^RED%^This is an undead raising spell.");
     }
     if(versatile)
     {

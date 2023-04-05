@@ -21,6 +21,7 @@ void create()
     set_syntax("cast CLASS animate dead [on TARGET]");
     set_damage_desc("raises no more than three skeletal champions at a time");
     set_description("%^RESET%^With this spell, the caster uses remnants of the negative energy released upon a recent death in order to summon an undead skeleton. Many faiths and cultures condemn this spell and similar powers as it serves the caster's selfish, often evil, motives. Frequent users of this spell are known to be inherently evil." + extra_help());
+    set_property("undead spell", 1);
     set_verbal_comp();
     set_somatic_comp();
     set_non_living_ok(1);

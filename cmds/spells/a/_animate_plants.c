@@ -35,11 +35,13 @@ int preSpell()
         return 0;
     }
 
+    /*
     if(present("plant 4",place))
     {
         tell_object(caster,"There are already too many animated plants here. You can't create any more.");
         return 0;
     }
+    */
 
     return 1;
 }

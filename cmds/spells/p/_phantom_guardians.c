@@ -46,7 +46,7 @@ void spell_effect(int prof) {
 
     switch (arg) {
     case "centaurs":
-        tell_room(place,"%^B_GREEN%^The emeralds shape into "+(prof/50)+" glowing translucent centaurs.");
+        tell_room(place,"%^B_GREEN%^The emeralds shape into a glowing translucent centaur.");
         ob = new("/d/magic/mon/pcentaur");
         ob->move(place);
         ob->set_owner(caster);
