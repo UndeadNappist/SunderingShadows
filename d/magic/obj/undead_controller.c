@@ -201,7 +201,7 @@ int dismiss(string str)
         return 0;
     }
     tell_object(caster, "%^RESET%^%^BOLD%^%^BLACK%^THE SOULS %^BLACK%^R%^BLACK%^E%^BLACK%^J%^BLACK%^O%^BLACK%^I%^BLACK%^C%^BLACK%^E%^BLACK%^ IN %^BLACK%^F%^BLACK%^R%^BLACK%^E%^BLACK%^E%^BLACK%^D%^BLACK%^O%^BLACK%^M%^RESET%^%^RESET%^");
-    tell_room(environment(caster), "%^BOLD%^%^GREEN%^The undead creature crumble to dust!%^", ({ caster }));
+    tell_room(environment(caster), "%^BOLD%^%^GREEN%^The undead creature crumbles to dust!%^", ({ caster }));
     remove();
     return 1;
 }
