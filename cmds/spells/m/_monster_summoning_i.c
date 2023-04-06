@@ -13,7 +13,7 @@ create(){
     ::create();
     set_spell_name("monster summoning i");
     set_spell_level(([ "mage" : 1, "bard" : 1, "cleric" : 1, "paladin" : 1 ]));
-    set_syntax("cast CLASS monster summoning i (on TYPE)");
+    set_syntax("cast CLASS monster summoning i [on TYPE]");
     set_spell_sphere("conjuration_summoning");
     set_description("This spell will summon creatures from other planes to protect the caster, becoming aggressive to anyone attempting to harm the caster. They will return to their home plane when either exhausted or the spell duration is completed. Approaches to the use of this spell vary, as some users put out a call for aid while others coerce these creatures into servitude.\n\nThe spell will default to animals, but you can specify between these types: animals, elementals, insects, or modrons. Sorcerers of the abyssal bloodline can also specify demons, and will summon them by default.");
     summon_spell();
