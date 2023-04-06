@@ -43,6 +43,8 @@ void spell_effect(){
     string hounds;
     int i;
     
+    spell_successful();
+    
     for(i = 0; i < 4; i++){
         hound = new("/d/magic/mon/inq_hound");
         hound->set_property("spelled", ({ this_object() }) );
@@ -73,8 +75,8 @@ void spell_effect(){
         }
         
         hound->move(place);
-        caster->add_follower(hound);
-        caster->add_protector(hound);
+        //caster->add_follower(hound);
+        //caster->add_protector(hound);
     }
     tell_room(place, "%^RESET%^%^CRST%^%^C144%^Four large "+hounds+" %^RESET%^%^C144%^step into being, flanking "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C144%^.");
     

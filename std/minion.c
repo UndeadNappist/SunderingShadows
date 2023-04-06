@@ -65,7 +65,7 @@ void heart_beat()
         add_hp(query_max_hp() / 100);
 }       
 
-int setup_minon(int clevel, spell_level, string type)
+int setup_minion(int clevel, spell_level, string type)
 {
     if(!clevel || !spell_level)
         return 0;
