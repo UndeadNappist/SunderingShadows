@@ -210,6 +210,8 @@ void burrow1(object targ)
 
     if (!objectp(my_environment = environment(me)))
         return;
+    
+    if(!objectp(targ)) return;
 
     if (!present(targ, my_environment))
         return 1;

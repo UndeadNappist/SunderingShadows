@@ -101,7 +101,7 @@ int bite_attack(object tp, object targ)
     {
         tell_object(tp,"%^GREEN%^You lightning quick bite %^BOLD%^%^BLACK%^deeply%^RESET%^%^GREEN%^ into "+targ->QCN+"'s "+(my_limb=targ->return_target_limb())+"!");
         tell_object(targ,"%^GREEN%^"+tp->QCN+" lightning quick bites %^BOLD%^%^BLACK%^deeply%^RESET%^ into your "+my_limb+"!");
-        tell_room(ENV(tp),"%^GREEN%^"+tp->QCN+" snakes "+tp->QP+" lightning quick bites %^BOLD^%^BLACK%^deeply%^RESET%^ into "+targ->QCN+"'s "+my_limb+"!",({tp,targ}));
+        tell_room(ENV(tp),"%^GREEN%^"+tp->QCN+" snakes "+tp->QP+" lightning quick bites %^BOLD%^%^BLACK%^deeply%^RESET%^ into "+targ->QCN+"'s "+my_limb+"!",({tp,targ}));
         targ->cause_typed_damage(targ,targ->return_target_limb(),roll_dice(1 + clevel / 3,8),"piercing");
     }
 }

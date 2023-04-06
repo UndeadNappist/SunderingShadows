@@ -18,4 +18,5 @@ void create()
         set_strength(10);
         set_my_mess("You slurp down the iced treat and a chill goes down your spine.");
         set_your_mess("slurps up some iced nectar.");
+        set_type("water");
 }

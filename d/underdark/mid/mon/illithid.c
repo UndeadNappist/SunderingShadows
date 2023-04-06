@@ -51,7 +51,7 @@ void create() {
     set_damage(2,4);
     set_funcs(({"cone"}));
     set_func_chance(40);
-    set_stabbed_func((:TO,"stabbed":));
+    //set_stabbed_func((:TO,"stabbed":));
     stoned = 0;
     stoning = 0;
     ob = new("/d/magic/scroll");
