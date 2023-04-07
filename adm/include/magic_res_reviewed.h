@@ -21,4 +21,5 @@
 // Items
 #define MAGIC_RES_ITEMS ({ \
     "/d/azha/obj/gmr_ring", \
+    "/d/islands/elf/obj/mr_ring", \
 })
