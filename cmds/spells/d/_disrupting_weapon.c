@@ -26,17 +26,31 @@ void spell_effect()
 {
     string poisonf;
     object targ;
-    targ = present(arg,caster);
+
+    if (!objectp(caster))
+    {
+        remove();
+        return;
+    }
+
+    if (!stringp(arg))
+    {
+        tell_object(caster, "You must supply arguments to this spell!");
+        remove();
+        return;
+    }
+
+    targ = present(arg, caster);
     if(!objectp(targ))
     {
         tell_object(caster, "Cant find "+arg+" in your inventory!");
-        TO->remove();
+        remove();
         return;
     }
     if(!targ->is_weapon())
     {
         tell_object(caster, "That is not a weapon!");
-        TO->remove();
+        remove();
         return;
     }
 
@@ -77,5 +91,5 @@ void dest_effect()
     }
     ::dest_effect();
     if(objectp(TO))
-        TO->remove();
+        remove();
 }

@@ -44,7 +44,21 @@ spell_effect(int prof) {
 
     ::spell_effect();
 
-    if(objectp(corpse=present(arg,place)))
+    if (!stringp(arg))
+    {
+        tell_object(caster, "You must supply arguments for this spell!");
+        dest_effect();
+        return;
+    }
+
+    if (!objectp(place))
+    {
+        tell_object(caster, "You find yourself in a strange place, where space does not hold you, time does not sway you, and magic cannot reach you. Call a wiz.");
+        dest_effect();
+        return;
+    }
+
+    if (objectp(corpse = present(arg, place)))
         theirname = corpse->query_original_name();
     else
         theirname = caster->realName(lower_case(arg));
