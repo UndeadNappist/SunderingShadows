@@ -19,9 +19,11 @@ void create() {
     set_discipline("egoist");
     set_monk_way("way of the shadow");
     set_syntax("cast CLASS shadow double");
+    set_damage_desc("greater summon");
     set_description("This spell will conjure a ghostly double of the caster, drawn from his or her own "
 "shadow. The shadow will automatically follow and protect you. Should you lose it, though, simply go into the room with "
-"it and <command shadow to follow>. This is a greater summons, and cannot be used simultaneously with other greater summons.");
+"it and <command shadow to follow>. This is a greater summon.");
+    summon_spell();
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
@@ -66,6 +68,8 @@ void make_sword() {
     caster->add_follower(ob);
     ob->set_gender(caster->query_gender());
     ob->set_alignment(caster->query_alignment());
+    ob->set_owner(caster);
+    ob->setup_minion(clevel, spell_level, "greater");
 
     ob->set_heart(1);
     ob->set_stats("intelligence",8);
@@ -78,8 +82,8 @@ void make_sword() {
     ob->set_overall_ac(-clevel);
     ob->set_hd(clevel,12);
     ob->set_stats("strength",15);
-    ob->set_max_hp(clevel*12+100);
-    ob->set_hp(ob->query_max_hp());
+    //ob->set_max_hp(clevel*12+100);
+    //ob->set_hp(ob->query_max_hp());
     ob->set_caster(caster);
     ob->move(environment(caster));
     ob->set_property("spell",TO);
