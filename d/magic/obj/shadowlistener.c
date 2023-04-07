@@ -49,6 +49,7 @@ void die(object ob){
 
 void heart_beat()
 {
+    ::heart_beat();
    if(!objectp(caster)) return;
    if(!objectp(follower)) return;
    if(!objectp(TO)) { return; }

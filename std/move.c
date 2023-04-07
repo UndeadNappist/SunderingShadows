@@ -54,7 +54,12 @@ int move(mixed dest)
 
     if (stringp(dest))
     {
-        ob = find_object_or_load(dest);
+        if(clonep(ob))
+            ob = find_object(dest);
+        else
+            ob = load_object(dest);
+        
+        //ob = find_object_or_load(dest);
         if(!objectp(ob))
         {
             if(objectp(me))
