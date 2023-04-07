@@ -50,6 +50,12 @@ int preSpell()
     if(arg == "summoning")
     {
         summon_spell();
+        
+        if(caster->query_property("summon spell") || caster->query_property("raised"))
+        {
+            tell_object(caster, "You are already concentrating on a similar spell.");
+            return 0;
+        }
         //tell_object(caster,"You already have a powerful summoned creature under your control.");
         //return 0;
     }
