@@ -163,7 +163,7 @@ void create()
     init_stats();
     init_skills(0);
     init_living();
-    set_heart_beat(1);
+    set_heart_beat(heart_beat_on = 1);
     speed = 0;
     set_gender("neuter");
     set_gender("male");
@@ -589,7 +589,7 @@ void die(object killer)
     if(this_object()->query_property("death effects"))
         catch(load_object("/daemon/death_effects_d")->get_death_effect(this_object()));
     
-    set_heart_beat(0);
+    set_heart_beat(heart_beat_on = 0);
     
     if(catch(this_object()->remove()) || (objectp(this_object()) && !this_object()->remove()))
         this_object()->move(ROOM_VOID);
