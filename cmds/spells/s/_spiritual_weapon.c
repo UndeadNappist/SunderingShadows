@@ -71,7 +71,7 @@ void summon_servant() {
     control->set_property("spelled", ({TO}) );
     control->set_elemental(ob);
 
-    caster->add_follower(ob);
+    //caster->add_follower(ob);
 
     ob->move(environment(caster));
 
