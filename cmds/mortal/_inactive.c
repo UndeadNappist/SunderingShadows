@@ -12,11 +12,11 @@ inherit DAEMON;
 int cmd_inactive(){
     object player = this_player();
     if(player && player->query_forced()) return 1;
-	tell_object(player, wrap("You go inactive.\nPress RETURN to become active again.\n"));
-	player->set_property("inactive", 1);
-	tell_room(environment(player), ""+player->query_cap_name()+" goes inactive.\n", player );
+    tell_object(player, wrap("You go inactive.\nPress RETURN to become active again.\n"));
+    player->set_property("inactive", 1);
+    tell_room(environment(player), ""+player->query_cap_name()+" goes inactive.\n", player );
     input_to("reactivate", 1, time());
-	return 1;
+    return 1;
 }
 
 int reactivate(string str, int when){
@@ -30,7 +30,7 @@ int reactivate(string str, int when){
 }
 
 void help(){
-	write(
+    write(
 "
 %^CYAN%^NAME%^RESET%^
 
@@ -49,7 +49,7 @@ Your inactive status will appear on the who list as well will be appended to you
 quit, who, pkilling, rules
 
 "
-	);
-	return 1;
+    );
+    return 1;
 }
 
