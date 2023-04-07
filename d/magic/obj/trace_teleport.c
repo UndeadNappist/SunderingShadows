@@ -1,4 +1,5 @@
 #include <std.h>
+#include <daemons.h>
 
 inherit OBJECT;
 
@@ -34,6 +35,7 @@ void mem_dest(string str)
 
 void mem_dest2(string str){
     string dname;
+    int mem_size;
 
     if (!(regexp(str, "[A-Za-z0-9]+"))) {
         dname = "trace";
@@ -50,8 +52,9 @@ void mem_dest2(string str){
 
     remembered[dname] = fname;
     sortrem = distinct_array(({ dname }) + sortrem);
-    if(sizeof(sortrem) > (int)TP->query_base_stats("intelligence") && !avatarp(TP))
-            shorten((int)TP->query_base_stats("intelligence"));
+    mem_size = (int)TP->query_base_stats("intelligence") + (FEATS_D->usable_feat(TP, "worldly traveler") * 5);
+    if(sizeof(sortrem) > mem_size && !avatarp(TP))
+            shorten(mem_size);
     caster->set_rem_rooms(remembered, sortrem);
 
     tell_object(caster,"%^BOLD%^%^WHITE%^You memorize " + fname->query_short() + "%^RESET%^%^BOLD%^ as %^ORANGE%^" + dname + "%^RESET%^.");
