@@ -22,6 +22,7 @@ void create() {
        "can be commanded and will automatically follow the manifester and attack "
        "her enemies. If the sword becomes lost somehow, simply go into the room "
        "with it and <command sword to follow>.");
+    summon_spell();
     set_verbal_comp();
     set_somatic_comp();
 }
