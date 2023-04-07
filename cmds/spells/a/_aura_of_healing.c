@@ -140,7 +140,7 @@ void execute_attack()
             }
 
             if ((int)dude->query_hp() < (int)dude->query_max_hp() &&
-                !(dude->query_property("negative energy affinity") ^ undead_caster)) {
+                (!(dude->query_property("negative energy affinity") ^ undead_caster) || dude->query_property("heart of darkness"))) {
                 userp(dude) && tell_object(dude, "%^CYAN%^The magical energy adds a bit of strength to you!%^RESET%^");
                 userp(dude) && tell_room(place, "%^CYAN%^Some of " + dude->QCN + "'s wounds seem to heal!%^RESET%^", caster);
                 damage_targ(dude, dude->return_target_limb(), sdamage, energy_type);
