@@ -126,13 +126,21 @@ void init()
         command("say %^RED%^Hail, brother.%^RESET%^");
         return;
     }
+    
+    call_out("react_to_player", 1, this_player());
+}
 
+void react_to_player(object ob)
+{
+    if(!objectp(ob) || environment(ob) != environment(this_object()))
+        return;
+    
     command("say %^RED%^Ancient spirits of the Kinnesaruda...guide my hand in vengeance against this invader!%^RESET%^");
     command("say %^RED%^ Death to all who oppose us!%^RESET%^");
-    command("stab " + player->query_name());
+    command("stab " + ob->query_name());
 
-    if(!random(4) && objectp(this_object()) && objectp(player))
-        force_me("crit " + player->query_name());
+    if(!random(4) && objectp(this_object()))
+        force_me("crit " + ob->query_name());
 }
 
 void die(object ob){
@@ -143,8 +151,9 @@ void die(object ob){
       ob3 = new(OBJ"screamer");
       ob3->move(ETO);
    }
-   TO->move("/d/shadowgate/void");
-   TO->remove();
+   //TO->move("/d/shadowgate/void");
+   //TO->remove();
+   ::die();
 }
 
 void fire(object targ){
