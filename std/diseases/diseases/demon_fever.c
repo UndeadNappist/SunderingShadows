@@ -52,26 +52,22 @@ advance_disease()
 
 void heart_beat()
 {
-    if (!objectp(TO)) {
-        return;
-    }
+    object disease_bearer;
 
-    if (!next_step) {
+    if (!objectp(this_object()))
         return;
-    }
 
-    if (!ETO->is_living()) {
-        TO->remove();
-    }
-    if (ETO->query_age() > next_step) {
+    if (!next_step)
+        return;
+
+    if (!objectp(disease_bearer = environment(this_object())))
+        remove();
+
+    if (disease_bearer->query_age() > next_step)
         advance_disease();
-    }
 
-    if (stage > 2) {
-        if (!random(120)) {
-            tell_object(ETO, "\n%^BOLD%^%^BLUE%^You feel significantly under the weather.%^RESET%^");
-        }
-    }
+    if (stage > 2 && !random(120))
+        tell_object(disease_bearer, "\n%^BOLD%^%^BLUE%^You feel significantly under the weather.%^RESET%^");
 
     return;
 }

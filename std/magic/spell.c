@@ -1995,7 +1995,8 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     define_base_spell_level_bonus();
     define_base_damage(0);
 
-    if (!preSpell()) {
+    if (!preSpell())
+    {
         me->remove();
         return;
     }
@@ -2064,6 +2065,12 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     if(summon_spell && !caster->query_property("summon spell"))
         caster->set_property("summon spell", 1);
 
+    if (!objectp(me))
+    {
+        ::remove();
+        return;
+    }
+
     if (spell_type == "potion") {
         me->spell_effect(prof);
         return 1;
@@ -2078,19 +2085,18 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
 
         receive_opportunity_attacks();
 
-        if (objectp(target) && target != caster) {
+        if (objectp(target) && target != caster)
             check_reflection();
-        }
 
-        if (cast_time) {
+        if (cast_time)
             place->set_round(me, (int)place->query_stage() + cast_time);
-        }else {
+        else
             place->set_round(me, (int)place->query_stage() + spell_level);
-        }
+
         caster->set_casting(1);
-    }else {
-        me->spell_effect(prof);
     }
+    else
+        me->spell_effect(prof);
 
     if(TRACK_SPELLS && userp(caster))
         MAGIC_D->track_spell(spell_name, clevel);
