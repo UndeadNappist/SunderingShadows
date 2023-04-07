@@ -20,6 +20,7 @@ void create() {
 "are rather manifestations of the psion's own protective impulse.  The warriors will stand before the psion, mindlessly "
 "protecting him in the event of attacks.");
     set_verbal_comp();
+    summon_spell();
     set_somatic_comp();
     set_helpful_spell(1);
 }
