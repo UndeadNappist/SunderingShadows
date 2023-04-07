@@ -47,7 +47,7 @@ void status_effect()
                 }
 
                 if (effect->query_name() == "effect_fatigued") {
-                    effect->dest_effect();
+                    effect->dest_effect(target);
                 }
             }
     }
