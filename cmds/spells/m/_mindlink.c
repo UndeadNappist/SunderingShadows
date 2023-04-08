@@ -28,13 +28,23 @@ string query_cast_string() {
     return "%^CYAN%^"+YOU+" closes "+MINE+" eyes and concentrates deeply.";
 }
 
-void spell_effect(int prof) {
+void spell_effect(int prof)
+{
     string *ignored, *casterallowed, *targallowed;
 
+    if (!stringp(arg))
+    {
+        tell_object(caster, "This spell needs arguments!");
+
+        remove();
+        return;
+    }
+
     arg = lower_case(arg);
+
     if (!(who = find_player(caster->realNameVsProfile(arg)))) {
         tell_object(CASTER,capitalize(arg)+" cannot be found to establish a link.\n");
-        TO->remove();
+        remove();
         return;
     }
     cname = CASTER->query_name();
@@ -43,38 +53,38 @@ void spell_effect(int prof) {
     Ccname = CASTER->QCN;
     if (avatarp(who) && !who->query_disguised()) {
         tell_object(CASTER,capitalize(arg)+" cannot be found to establish a link.\n");
-        TO->remove();
+        remove();
         return;
     }
    if(avatarp(who) && arg == (string)who->query_true_name()) {
       tell_object(CASTER,capitalize(arg)+" cannot be found to establish a link.\n");
-      TO->remove();
+      remove();
       return;
    }
     if (arg == cname) {
         tell_object(CASTER,"You cannot establish a link with yourself.\n");
-        TO->remove();
+        remove();
         return;
     }
     if (who->query_invis() && (int)who->query_level() > (int)CASTER->query_level()) {
         tell_object(CASTER,capitalize(arg)+" cannot be found to establish a link.\n");
-        TO->remove();
+        remove();
         return;
     }
     if (who->is_player() && !interactive(who)) {
         tell_object(CASTER, who->QCN+" is link-dead and cannot hear you.\n");
-        TO->remove();
+        remove();
         return;
     }
 	if(who->query_ghost())
 	{
 		tell_object(CASTER,capitalize(arg)+" cannot be found to establish a link.\n");
-		TO->remove();
+		remove();
 		return;
 	}
     if (who->query_blocked("tell")) {
         write(who->QCN+" is currently blocking all tells.");
-        TO->remove();
+        remove();
         return;
     }
     ignored = who->query_ignored();
@@ -84,7 +94,7 @@ void spell_effect(int prof) {
     }
     if ((member_array(cname, ignored) != -1)) {
         tell_object(CASTER, who->QCN+" is ignoring you.\n");
-        TO->remove();
+        remove();
         return;
     }
     casterallowed = CASTER->query_property("allowed tell");
@@ -94,7 +104,7 @@ void spell_effect(int prof) {
     if (member_array(cname,targallowed) != -1
         && member_array(whoname,casterallowed) != -1) {
         tell_object(CASTER,"You already have a mental link with "+who->QCN+".\n");
-        TO->remove();
+        remove();
         return;
     }
     tell_object(CASTER, "%^CYAN%^You establish a mental connection with "+who->QCN+".");

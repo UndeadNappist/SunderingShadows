@@ -30,6 +30,14 @@ void spell_effect()
     mapping info;
     string pname, wname, pposs;
 
+    if (!stringp(arg))
+    {
+        tell_object(caster, "This spell needs arguments!");
+
+        dest_effect();
+        return;
+    }
+
     weapon = present(arg, caster);
 
     if(!objectp(weapon))
@@ -72,9 +80,11 @@ void spell_effect()
 
 void dest_effect()
 {
-    if(weapon && objectp(weapon))
+    if (weapon && objectp(weapon))
         load_object("/d/magic/obj/weap_effects/empowered.c")->remove_prop(weapon);
+
     ::dest_effect();
-    if(objectp(this_object()))
-        this_object()->remove();
+
+    if (objectp(this_object()))
+        remove();
 }

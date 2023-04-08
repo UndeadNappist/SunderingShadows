@@ -46,6 +46,14 @@ string query_cast_string()
 int preSpell()
 {
     string destination;
+
+    if (!stringp(arg))
+    {
+        tell_object(caster, "This spell needs arguments!");
+
+        return 0;
+    }
+
     //if(arg == "summoning" && (caster->query_property("has_elemental") || caster->query_property("mages_sword")))
     if(arg == "summoning")
     {
@@ -59,12 +67,14 @@ int preSpell()
         //tell_object(caster,"You already have a powerful summoned creature under your control.");
         //return 0;
     }
-    if (sscanf(arg,"%s | %s",purpose,destination) != 2 && arg != "summoning")
+
+    if (sscanf(arg, "%s | %s", purpose,destination) != 2 && arg != "summoning")
     {
         tell_object(caster, "Syntax: cast mage gate on summoning OR \n\t"+
         "cast mage gate on travel | location");
         return 0;
     }
+
     return 1;
 }
 
