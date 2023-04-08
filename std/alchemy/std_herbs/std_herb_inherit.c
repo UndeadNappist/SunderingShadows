@@ -3,13 +3,14 @@
 // Originally coded by ~Circe~ 4/19/08
 // Descriptions and actions by Lurue
 
-inherit "/std/stackable.c";
+inherit "/std/alchemy/herb_inherit.c";
 
 
 void create()
 {
-    ::create();
-
+    set_name("a paper packet of " + alchemical_id);
+    set_id(({ "herb", "herbs", alchemical_id, "packet", "packet of " + alchemical_id }));
+    set_short("A paper packet of " + alchemical_id);
     set_weight(1);
 }
 
