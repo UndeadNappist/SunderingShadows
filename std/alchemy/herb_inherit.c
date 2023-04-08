@@ -10,7 +10,6 @@ void create()
 {
     ::create();
 
-    set("reagent", 1);
     set_weight(1);
 }
 
@@ -36,17 +35,17 @@ int use_em(string str)
     case 0..74:
         tell_object(player, "You use the %^GREEN%^" + this_object()->query_short() + " %^RESET%^and soon feel it affecting you in a helpful way.");
         tell_room(environment(player), "" + player->query_cap_name() + " uses some %^GREEN%^" + this_object()->query_short() + "%^RESET%^.", player);
-        this_object()->remove();
+        remove();
         break;
     case 75..94:
         tell_object(player, "You use the %^GREEN%^" + herb_name + " %^RESET%^and wait, but feel no effect.");
         tell_room(environment(player), "" + player->query_cap_name() + " uses some %^GREEN%^" + this_object()->query_short() + "%^RESET%^.", player);
-        this_object()->remove();
+        remove();
         break;
     default:
         tell_object(player, "You use the %^GREEN%^"+herb_name+" %^RESET%^and soon begin to feel nauseous and ill!");
         tell_room(environment(player), "" + player->query_cap_name() + " uses some %^GREEN%^" + this_object()->query_cap_name() + "%^RESET%^.", player);
-        this_object()->remove();
+        remove();
         break;
    }
 
