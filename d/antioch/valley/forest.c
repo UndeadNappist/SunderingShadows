@@ -72,7 +72,6 @@ void init()
 {
 	::init();
 	add_action("ride","ride");
-	add_action("observe_em","observe");
 }
 
 int search_here(string str){

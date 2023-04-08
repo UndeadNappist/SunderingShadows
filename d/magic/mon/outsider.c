@@ -407,7 +407,10 @@ int remove()
 {
     reset_all_status_effects();
     save_outsider();
-    all_inventory(TO)->remove();
+
+    if (objectp(this_object()))
+        all_inventory(this_object())->remove();
+
     ::remove();
 }
 
