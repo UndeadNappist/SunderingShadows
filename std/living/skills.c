@@ -798,6 +798,9 @@ void __internal_add_exp(int x)
 {
     int exp, i, s;
     string* cls;
+    
+    if(this_object()->query_property("inactive"))
+        return;
 
     if (TO->query("new_class_type")) {
         ::add_exp(x);
@@ -1472,6 +1475,7 @@ void add_exp(int exp)
     if (!userp(TO)) {
         return;
     }
+    
     if (exp < 1) {
         return __internal_add_exp(exp);
     }
@@ -1503,6 +1507,7 @@ void party_exp(int exp, object tmp)
     if (USER_D->no_exp(TO)) {
         return;
     }
+    
     if (exp > 0) {
         exp = max( ({ 1, (exp * XP_PERCENT) / 100 }) );
         exp = WORLD_EVENTS_D->check_exp_events(exp, TO);
