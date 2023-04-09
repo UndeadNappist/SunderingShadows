@@ -130,7 +130,7 @@ int on_entry(object ob, object origin){
     return 1;
   }
   for (i=0;i<sizeof(rooms);i++){
-    room = find_object_or_load(rooms[i]);
+    room = find_object_or_load("/d/atoyatl/tecqumin/tabaxi/rooms/" + rooms[i]);
     if (!objectp(room)){
       continue;
     }

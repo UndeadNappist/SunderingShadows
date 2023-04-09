@@ -20,7 +20,7 @@ void create() {
     set_property("no attack", 1);
     set_hp(100);
     set_max_hp(100);
-//    set_stabbed_func( (: TO,"stab_func" :) );
+    //set_stabbed_func( (: TO,"stab_func" :) );
     set_max_sp(query_hp());
     set_sp(query_max_sp());
 //    set_mp(random(500));

@@ -652,12 +652,12 @@ void eject()
                             + " among their %^BOLD%^%^YELLOW%^tr%^RESET%^%^ORANGE%^ea"
                             + "%^BOLD%^%^YELLOW%^s%^WHITE%^u%^YELLOW%^r%^RESET%^%^ORANGE%^"
                             + "e%^BOLD%^s%^RESET%^ has expired");
-                critters[i]->move(ROOMS + "processional1");
+                critters[i]->move(ROOMS + "processional");
                 critters[i]->force_me("look");
             }
         }
     }
-    room = find_object_or_load(ROOMS + "processional1");
+    room = find_object_or_load(ROOMS + "processional");
     if (objectp(room)) {
         room->remove_exit("east");
     }

@@ -144,15 +144,18 @@ void insert(string str)
 
 void checkdone()
 {
+    if (!objectp(this_object()))
+        return;
+
   number_check(rin,gin,bin,yin); 
   if((rin + gin + bin + yin) == 4)
   {
-    tell_room(ETP,"%^BOLD%^As the last crystal is slid into place, the "+
+    tell_room(this_object(), "%^BOLD%^As the last crystal is slid into place, the "+
 	"center white crystal begins to glow dimly as well.  The "+
 	"pedestal begins to emit a soft hum as all of the crystals "+
 	"raise up just slightly from the surface, and it looks as "+
 	"if you could press each one.");
-      present("adilon",TO)->crysin();
+      present("adilon", this_object())->crysin();
   }
 }
 
