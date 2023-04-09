@@ -132,15 +132,19 @@ void init()
 
 void react_to_player(object ob)
 {
+    string target_name;
+
     if(!objectp(ob) || environment(ob) != environment(this_object()))
         return;
-    
+
+    target_name = ob->query_name();
+
     command("say %^RED%^Ancient spirits of the Kinnesaruda...guide my hand in vengeance against this invader!%^RESET%^");
     command("say %^RED%^ Death to all who oppose us!%^RESET%^");
-    command("stab " + ob->query_name());
+    command("stab " + target_name);
 
     if(!random(4) && objectp(this_object()))
-        force_me("crit " + ob->query_name());
+        force_me("crit " + target_name);
 }
 
 void die(object ob){
