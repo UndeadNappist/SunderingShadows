@@ -253,16 +253,19 @@ void do_horse()
 void heart_beat()
 {
     ::heart_beat();
-    if(!objectp(TO)) return;
-    if(!objectp(ETO)) return;
 
-    if(TO->query_in_vehicle())
+    if(!objectp(this_object()))
+        return;
+
+    if (query_in_vehicle())
     {
         command("unwield sword");
         command("wield lance");
     }
 
-    if(!sizeof(query_wielded())) { command("wield sword"); }
+    if (!sizeof(query_wielded()))
+        command("wield sword");
+
     return;
 }
 
