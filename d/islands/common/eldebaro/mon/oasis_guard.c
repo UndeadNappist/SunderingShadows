@@ -20,18 +20,21 @@ int is_eldebaro_monster(object ob)
 
 void check_my_environment()
 {
-    object *vics;
+    object *vics, environment;
     int x;
-    if(!objectp(TO)) return;
-    if(!objectp(ETO)) return;
-    vics = filter_array(all_living(ETO), "is_eldebaro_monster", TO);
-    vics -= TO->query_attackers();
-    if(!sizeof(vics)) return;
-    for(x = 0;x < sizeof(vics);x++)
-    {
-        TO->force_me("kill "+vics[x]->query_name());
-        continue;
-    }
+
+    if(!objectp(environment = environment(this_object())))
+        return;
+
+    vics = filter_array(all_living(environment), "is_eldebaro_monster", this_object());
+    vics -= query_attackers();
+
+    if(!sizeof(vics))
+        return;
+
+    for(x = 0; x < sizeof(vics); ++x)
+        force_me("kill "+vics[x]->query_name());
+
     return;    
 }
 
@@ -44,8 +47,11 @@ void init()
 
 void heart_beat()
 {
+    if(!objectp(this_object()))
+        return;
+
     ::heart_beat();
-    if(!objectp(TO)) return;
     check_my_environment();
+
     return;
 }
