@@ -17,9 +17,7 @@ void create() {
     set_spell_level(([ "cleric" : 2 ]));
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS lightning touch on TARGET");
-    set_description("Wrapping their hand with crackling bolts of lightning, with this spell the caster tries to deliever "
-"a shocking attack onto a foe.  If the caster fails to touch the target, the lighting dispurses into a flashy, but "
-"harmless effect.");
+    set_description("Wrapping their hand with crackling bolts of lightning, with this spell the caster tries to deliver a shocking attack onto a foe. If the caster fails to touch the target, the lightning disperses into a flashy, but harmless effect.");
     set_verbal_comp();
     set_somatic_comp();
     set_target_required(1);
