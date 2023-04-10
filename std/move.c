@@ -54,11 +54,10 @@ int move(mixed dest)
 
     if (stringp(dest))
     {
-        
-        if(!objectp(ob = find_object(dest)))
-            return MOVE_NOT_ALLOWED;
-        
-        //ob = find_object_or_load(dest);
+        // if(!objectp(ob = find_object(dest)))
+        //    return MOVE_NOT_ALLOWED;
+        ob = find_object_or_load(dest);
+
         if(!objectp(ob))
         {
             if(objectp(me))
