@@ -484,7 +484,7 @@ void cull_levels()
 
     cap = CHARACTER_LEVEL_CAP + 1;
     delete("no advance");
-    
+
     /*
     switch(player_position)
     {
@@ -673,7 +673,7 @@ void describe_current_room(int verbose)
                 borg += "It is completely dark.";
             }
         }
-        
+
         message("room_description", borg, this_object());
         if (stringp(tmp = (string)env->query_smell("default"))) {
             message("smell", tmp, this_object());
@@ -694,11 +694,11 @@ void describe_current_room(int verbose)
     }else if (light_blind(1) <= -1) {
         borg += "It is somewhat dark.\n";
     }
-    
+
     //Minimap
     if(userp(this_object()) && query("minimap"))
         message("info", simple_map(this_object()), this_object());
-    
+
     borg += (verbose ? (string)env->query_long(0) + " " : (string)env->query_short());
     message("room_description", borg, this_object());
 
@@ -772,7 +772,7 @@ void after_move_effects()
     {
         remove_property("shadow walk");
         tell_object(this_object(), "%^BOLD%^%^BLACK%^The shadow protection fades.%^RESET%^");
-    }       
+    }
 }
 
 // Zero is a fail, one is a succeed.
@@ -835,7 +835,7 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
     }
 
     reset_hidden_seen();
-    
+
     if(query("reader"))
         describe_current_room(static_user["verbose_moves"]);
 
@@ -879,7 +879,7 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
             }
             if (query_hidden())
                 continue;
-            
+
             //For screenreader support. Follow message messes up their ability to *see* room exits
             //if(inv[i]->query("reader") && follow_flag)
             //    continue;
@@ -898,11 +898,11 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
         if (query_followers())
             move_followers(prev);
     }
-    
+
     if(is_class("warlock"))
     {
         if(!query_property("shadow walk"))
-        {    
+        {
             set_property("shadow walk", 1);
             call_out("after_move_effects", 6);
         }
@@ -1025,19 +1025,19 @@ int quit()
                 "Sweet dreams!",
                 "You be well now!",
         });
-    
+
     mixed errors;
 
     if(catch(break_all_spells()))
         message("environment", "Error breaking spells.", this_object());
-    
+
     inv=all_inventory(this_object());
-    
+
     if(!sizeof(inv))
         log_out_empty = 1;
     else
         log_out_empty = 0;
-    
+
     set_hidden(0);
     set_magic_hidden(0);
     //YUCK_D->save_inventory(this_object());
@@ -1066,16 +1066,16 @@ int quit()
     LAWBOUNTY_D->add_hm_info(this_object());
     move("/d/shadowgate/freezer");
     inv = all_inventory(this_object());
-    
+
     foreach(object ob in inv)
     {
         if(!objectp(ob))
             continue;
-        
+
         ob->unequip();
         objectp(ob) && ob->strip_temp_values();
     }
-    
+
     /*
     for(x = 0;x < sizeof(inv);x++)
     {
@@ -1087,14 +1087,14 @@ int quit()
     */
     if(catch(YUCK_D->save_inventory(this_object())))
         tell_object(this_object(), "Inventory save failed.");
-    
+
     //inv=all_inventory(this_object());
-    
+
     foreach(object ob in inv)
     {
         if(!objectp(ob))
             continue;
-        
+
         if((objectp(ob) && strlen(errors = catch(ob->remove()))))
         {
             log_file("quit", "quit error " + query_name() + ": " + errors + "\n");
@@ -1197,7 +1197,7 @@ void break_all_spells()
                 if(objectp(spell_ob))
                 {
                     if(catch(spell_ob->dest_effect()))
-                        spell_ob->remove();                   
+                        spell_ob->remove();
                 }
             }
             remove_property("dispellable spells");
@@ -1267,10 +1267,10 @@ void new_body()
             mylvl = CHARACTER_LEVEL_CAP - 1;
         }
         newmax = PWPOINTS[mylvl];
-        
+
         if(FEATS_D->has_feat(this_object(), "eternal warrior"))
             newmax += 50;
-        
+
         this_player()->set_max_mp(newmax);
     }
     if (is_class("psion")) {
@@ -1608,26 +1608,26 @@ void setup()
 void check_inventory()
 {
     string temp_name, error;
-    
+
     if(query_race() == "unborn" || !strlen(query_race()))
         return;
-    
+
     if(log_out_empty)
         return;
-    
+
     temp_name = query_name();
-    
+
     if(!sizeof(all_inventory(this_object())))
     {
         tell_object(this_object(), "Empty inventory: attempting restore now...");
         log_file("inventory_fail", "Inventory empty on " + temp_name + ".\n");
-        
+
         if(!get_dir("/inv/backup_inv/" + temp_name[0..0] + "/" + temp_name + "/"))
         {
             tell_object(this_object(),"No backup currently exists for this character!");
             return 1;
         }
-        
+
         if(error = catch(YUCK_D->load_inventory(this_object(), "/inv/backup_inv/" + temp_name[0..0] + "/" + temp_name)))
         {
             tell_object(this_object(), "Inventory restore error! Contact an admin.");
@@ -1637,7 +1637,7 @@ void check_inventory()
             tell_object(this_object(), "Inventory restore complete.");
     }
 }
-        
+
 void init_mud_guilds(){
   string *tmp, *tmpguild;
   int i;
@@ -1940,7 +1940,7 @@ void heart_beat()
 
     if (userp(me) && interactive(me))
     {
-        if ((query_idle(me) > 7260) && !avatarp(me) && !query("test_character") && !query("persist_login"))
+        if ((query_idle(me) > 3600) && !avatarp(me) && !query("test_character"))
         {
             "/daemon/messaging_d.c"->avatars_message("notify","%^BOLD%^%^YELLOW%^<< "+this_player()->query_name() + " has idled out. ["+query_time_logged_in()+"] >>%^RESET%^", ({ }) );
             force_me("quit");
@@ -2115,7 +2115,7 @@ nomask void die()
         set("rage death avoided", time() + 7200);
         return;
     }
-    
+
     if(query_mystery() == "heavens" && query_class_level("oracle") > 30 && !cooldown("star child"))
     {
         tell_object(this_object(), "%^BOLD%^%^RED%^With the last blow you feel the darkness beginning to flow inwards from the edge of your vision...Suddenly you're on your knees in a pool of your  own%^RESET%^%^RED%^blood %^BOLD%^%^RED%^with your extremities going numb.");
@@ -2127,7 +2127,7 @@ nomask void die()
         add_cooldown("star child", 7200);
         return;
     }
-    
+
     if((query_race() == "half-orc" || query_race() == "orc") && !cooldown("orc ferocity"))
     {
         if(query("subrace") != "tanarukk" && query("subrace") != "orog")
@@ -2140,7 +2140,7 @@ nomask void die()
             return;
         }
     }
-   
+
     if(query_property("raged"))
         command("rage");
 
@@ -2166,8 +2166,8 @@ nomask void die()
         }
 
         return;
-    }   
-    
+    }
+
     if(query_property("effect_fatigued"))
     {
         find_object("/std/effect/status/fatigued")->dest_effect(this_object());
@@ -2188,9 +2188,9 @@ nomask void die()
         find_object("/std/effect/status/sickened")->dest_effect(this_object());
         remove_property("effect_sickened");
     }
-    
+
     clear_followers();
-       
+
     ghost = 1;
     ob = this_object();
     add_stuffed(25);
@@ -4804,7 +4804,7 @@ int light_blind_remote(int actionbonus, object whichroom, int distance) {
   }
   _total_light = total_light(whichroom);
   _sight_bonus = query_sight_bonus();
-  
+
   if(_total_light > 0 && is_class("radiant_servant"))
       return 0;
 
