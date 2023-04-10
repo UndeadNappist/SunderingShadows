@@ -129,7 +129,7 @@ int cmd(string str){
             if(!objectp(mons[i])) continue;
             if(!present(mons[i], environment(caster))) continue;
             caster->add_follower(mons[i]);
-            tell_object(caster, "%^Your " + mons[i]->query_short() + " falls in line with you.");
+            tell_object(caster, "%^C059%^Your "+mons[i]->query_short()+"%^C059%^ falls in line with you.%^CRST%^");
         }
         return 1;
     }
@@ -146,8 +146,8 @@ int dismiss(string str){
     if(!str || str != "undead") return 0;
     
     tell_object(caster, "%^C059%^THE SOULS REJOICE IN FREEDOM FROM THEIR MORTAL PRISONS!%^CRST%^");
-    if(sizeof(mons) > 1) tell_room(environment(caster), "%^BOLD%^%^GREEN%^The undead creatures crumble to dust!%^", caster );
-    else tell_room(environment(caster), "%^BOLD%^%^GREEN%^The undead creature crumbles to dust!%^", caster );
+    if(sizeof(mons) > 1) tell_room(environment(caster), "%^C064%^The undead creatures crumble to dust!%^CRST%^", caster );
+    else tell_room(environment(caster), "%^C064%^The undead creature crumbles to dust!%^CRST%^", caster );
     remove();
     return 1;
 }
