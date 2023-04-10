@@ -11,10 +11,15 @@ void create()
     set_spell_level(([ "mage" : 8, "cleric" : 8 ]));
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS create greater undead");
+    set_description("Animating dead is a pathetic craft for the weak. A true necromancer's art is to change what was into something more potent and powerful that can serve his fell desires and schemes. This spell uses a fallen corpse to make an undead creature from rotting flesh. Such a creature is more potent than lesser skeletons and zombies, and will serve the necromancer until discorporated. This spell, without a doubt, is evil."+extra_help());
     evil_spell(1);
     set_helpful_spell(1);
     set_arg_needed();
     set_property("undead spell", 1);
+}
+
+string extra_help(){
+    return "\n\nEach lesser undead minion uses four pool slots out of a maximum pool size of twenty, and this resource is shared between all undead creation spells.\n%^ORANGE%^<dismiss undead>%^RESET%^ destroys your current undead retinue%^RESET%^\n%^ORANGE%^<command undead to %^ORANGE%^%^ULINE%^ACTION%^RESET%^%^ORANGE%^>%^RESET%^ will command undead to perform an action%^RESET%^\n%^ORANGE%^<command undead to follow>%^RESET%^ forces lost undead to follow you%^RESET%^\n%^ORANGE%^<poolsize>%^RESET%^ lists how many undead minions you have under your control%^RESET%^";
 }
 
 string query_cast_string()
@@ -36,7 +41,7 @@ void setup_undead_scaling(object undead)
     undead->set_skill("spellcraft", clevel);
     undead->set_skill("perception", clevel - clevel / 10);
     undead->set_property("spell penetration", clevel / 10);
-    undead->set_property("raised", 2);
+    undead->set_property("raised", 4);
     undead->set_hd(clevel, 8);
     undead->set_max_hp(clevel * 14 + 100);
     undead->set_hp(undead->query_max_hp());
