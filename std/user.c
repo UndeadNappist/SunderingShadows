@@ -858,7 +858,7 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
             {
 	            if (query_in_vehicle() && objectp(query_in_vehicle()))
                 {
-	                message("mout",query_cap_name()+" rides "+query_in_vehicle()->query_cap_name()+" "+msg+".",inv[i]);
+	                message("mout",this_object()->query_cap_name()+" rides "+query_in_vehicle()->query_cap_name()+" "+msg+".",inv[i]);
 	            }
                 else message("mout", query_mout(msg,inv[i]), inv[i]);
             }
@@ -889,7 +889,7 @@ varargs void move_player(mixed dest, string msg, int follow_flag)
             {
 	            if (query_in_vehicle() && objectp(query_in_vehicle()))
                 {
-	                message("min", query_cap_name()+" enters riding "+query_in_vehicle()->query_cap_name()+".", inv[i]);
+	                message("min", this_object()->query_cap_name()+" enters riding "+query_in_vehicle()->query_cap_name()+".", inv[i]);
 	            }
                 else message("min",query_min(inv[i]),inv[i]);
             }
@@ -1054,7 +1054,7 @@ int quit()
     if (query_invis() && !wizardp(this_object())) { set_invis(); }
     remove_stat_bonuses();
     save_player( query_name() );
-    if(objectp(environment(this_object()))) { message("emote",query_cap_name()+" has left the game.",environment(this_object())); }
+    if(objectp(environment(this_object()))) { message("emote",this_object()->query_cap_name()+" has left the game.",environment(this_object())); }
     //log_file("player/logon", query_name()+" (quit): "+ctime(time())+"\n");
 
     if(!query("true_quietness"))
@@ -1145,7 +1145,7 @@ int dead_quit()
     if (query_invis() && !wizardp(this_object())) set_invis();
     remove_stat_bonuses();
     save_player( query_name() );
-    message("emote",query_cap_name()+"'s soul has truly left this world!",environment(this_object()));
+    message("emote",this_object()->query_cap_name()+"'s soul has truly left this world!",environment(this_object()));
     log_file("player/enter", query_name()+" (dead): "+ctime(time())+"\n");
     NOTIFY_D->logon_notify("%^YELLOW%^"+query_vis_cap_name()+"'s %^YELLOW%^soul has truly left this world!%^RESET%^",this_object());
     PLAYER_D->add_player_info();
@@ -1397,11 +1397,11 @@ void setup()
         set_property("death_room", tmp);
         move(tmp);
 
-        tell_room(environment(this_object()), query_cap_name() + " joins in the afterlife", this_object());
+        tell_room(environment(this_object()), this_object()->query_cap_name() + " joins in the afterlife", this_object());
         NOTIFY_D->mud_notify("joined", this_player(), " in the afterlife");
     }    else if (PRISON_D->is_imprisoned(query_name())) {
         move(JAIL);
-        tell_room(environment(this_object()), query_cap_name() + " joins in JAIL.", this_object());
+        tell_room(environment(this_object()), this_object()->query_cap_name() + " joins in JAIL.", this_object());
         NOTIFY_D->mud_notify("joined", this_player(), " (IN OOC JAIL)");
     }else {
         if ((string)query("my_virtual_room")) {
@@ -1540,7 +1540,7 @@ void setup()
         load_autoload_obj();
 
         if (!query("true_quietness")) {
-            tell_room(environment(this_object()), query_cap_name() + " joins", this_object());
+            tell_room(environment(this_object()), this_object()->query_cap_name() + " joins", this_object());
             NOTIFY_D->mud_notify("joined", this_player());
         }
         do_encumbrance();
@@ -1951,7 +1951,7 @@ void heart_beat()
             tell_object(this_player(), wrap("%^WHITE%^%^BOLD%^You haven't been doing anything and go inactive.\n Press RETURN to go active."));
             set_property("inactive", 1);
             force_me("save");
-            tell_room(my_environment, query_cap_name()+" goes inactive.\n",
+            tell_room(my_environment, this_object()->query_cap_name()+" goes inactive.\n",
                       ({ me }) );
             input_to("reactivate",1,time());
         }
@@ -2107,9 +2107,9 @@ nomask void die()
 
     if (FEATS_D->usable_feat(this_object(), "unyielding rage") && query_property("raged") && (int)query("rage death avoided") < time()) {
         tell_object(this_object(), "%^BOLD%^%^RED%^With the last blow you feel the darkness beginning to flow inwards from the edge of your vision...Suddenly you're on your knees in a pool of your own %^RESET%^%^RED%^blood %^BOLD%^%^RED%^with your extremities going numb.");
-        tell_room(environment(this_object()), "%^BOLD%^%^RED%^" + query_cap_name() + " falls to the ground in a bloody mess.", this_object());
+        tell_room(environment(this_object()), "%^BOLD%^%^RED%^" + this_object()->query_cap_name() + " falls to the ground in a bloody mess.", this_object());
         tell_object(this_object(), "%^BOLD%^No...no...this cannot be happening...there are so many more enemies left to kill and blood to be spilt...GET UP AND FIGHT!");
-        tell_room(environment(this_object()), "%^RESET%^%^RED%^With a blood-curdling scream, " + query_cap_name() + " springs from the ground and looks ready to beat back Kelemvor himself.", this_object());
+        tell_room(environment(this_object()), "%^RESET%^%^RED%^With a blood-curdling scream, " + this_object()->query_cap_name() + " springs from the ground and looks ready to beat back Kelemvor himself.", this_object());
         force_me("say I will not die until I murder you lot!");
         set_hp(query_max_hp() / 2);
         set("rage death avoided", time() + 7200);
@@ -2119,10 +2119,10 @@ nomask void die()
     if(query_mystery() == "heavens" && query_class_level("oracle") > 30 && !cooldown("star child"))
     {
         tell_object(this_object(), "%^BOLD%^%^RED%^With the last blow you feel the darkness beginning to flow inwards from the edge of your vision...Suddenly you're on your knees in a pool of your  own%^RESET%^%^RED%^blood %^BOLD%^%^RED%^with your extremities going numb.");
-        tell_room(environment(this_object()), "%^BOLD%^%^RED%^" + query_cap_name() + " falls to the ground in a bloody mess.", this_object());
+        tell_room(environment(this_object()), "%^BOLD%^%^RED%^" + this_object()->query_cap_name() + " falls to the ground in a bloody mess.", this_object());
         tell_object(this_object(), "%^BOLD%^A beam of starlight illuminates your fallen form, expanding as it engulfs your entire being.%^RESET%^");
         tell_object(this_object(), "%^BOLD%^The energy fills your soul, and you feel yourself reborn.....a star child. You stand and continue to fight!%^RESET%^");
-        tell_room(environment(this_object()), "%^BOLD%^A beam of starlight illuminates " + query_cap_name() + ". " + query_pronoun() + " stands once more, reborn and ready to fight!", this_object());
+        tell_room(environment(this_object()), "%^BOLD%^A beam of starlight illuminates " + this_object()->query_cap_name() + ". " + query_pronoun() + " stands once more, reborn and ready to fight!", this_object());
         set_hp(query_max_hp() / 2);
         add_cooldown("star child", 7200);
         return;
@@ -2134,7 +2134,7 @@ nomask void die()
         {
             tell_object(this_object(), "%^BOLD%^%^RED%^As you are struck down, you find the will in your blood to continue the fight.");
             tell_object(this_object(), "%^BOLD%^You stand u and brush yourself up, ready to stick it out to the very end!!");
-            tell_room(environment(this_object()), "%^RESET%^%^RED%^" + query_cap_name() + " stands and continues to fight!", this_object());
+            tell_room(environment(this_object()), "%^RESET%^%^RED%^" + this_object()->query_cap_name() + " stands and continues to fight!", this_object());
             set_hp(query_max_hp() / 2);
             add_cooldown("orc ferocity", 7200);
             return;
@@ -2155,7 +2155,7 @@ nomask void die()
 
         tell_object(this_object(), "You have been defeated in combat.");
 
-        tell_room(environment(this_object()), query_cap_name() + " has been defeated in combat.", this_object());
+        tell_room(environment(this_object()), this_object()->query_cap_name() + " has been defeated in combat.", this_object());
 
         set_hp(query_max_hp());
         reset_all_status_problems();
@@ -3222,8 +3222,8 @@ void revive(int xploss)
     //up to a maximum of 50% tax - Saide - November 2016
     message("my_action", "You return from the dead!", this_object());
     remove_property("stomached_kits");
-    message("other_action", query_cap_name()+ " returns from the dead.", environment());
-    //  tell_room(environment(this_object()), query_cap_name()+" returns from the dead.\n", this_object());
+    message("other_action", this_object()->query_cap_name()+ " returns from the dead.", environment());
+    //  tell_room(environment(this_object()), this_object()->query_cap_name()+" returns from the dead.\n", this_object());
     new_body();
     reset_condition();
     ghost = 0;
@@ -5595,7 +5595,7 @@ int reactivate(string str,int when){
            tell_object(this_object(),"You have been inactive for "+(time()-when)+" seconds.");
         else
            tell_object(this_object(),"You have been inactive for "+((time()-when)/60)+" minutes.");
-        tell_room(environment(this_object()), query_cap_name()+" goes active.\n", ({ this_object() }) );
+        tell_room(environment(this_object()), this_object()->query_cap_name()+" goes active.\n", ({ this_object() }) );
         return 1;
    return 1;
 }
