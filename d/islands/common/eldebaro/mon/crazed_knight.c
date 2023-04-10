@@ -101,14 +101,12 @@ void create()
     }));
     if(!present("horse")) { call_out("do_horse",1,TO); }
     add_money("platinum",random(500));
-    ob = new("/d/common/obj/weapon/longsword");
-    ob->set_property("enchantment", 5);
-    ob->move(TO);
     ob = new("/d/common/obj/armour/shield");
     ob->set_property("enchantment", 5);
     ob->move(TO);
     command("wear shield");
     ob = new(ELOB+"lance_of_thorns");
+    command("wield lance");
     if(random(4)) ob->set_property("monsterweapon", 1);
     ob->move(TO);
 
@@ -247,25 +245,6 @@ void do_horse()
     horse->set_owner(TO);
     horse->move(ETO);
     TO->force_me("mount horse");
-    return;
-}
-
-void heart_beat()
-{
-    ::heart_beat();
-
-    if(!objectp(this_object()))
-        return;
-
-    if (query_in_vehicle())
-    {
-        command("unwield sword");
-        command("wield lance");
-    }
-
-    if (!sizeof(query_wielded()))
-        command("wield sword");
-
     return;
 }
 

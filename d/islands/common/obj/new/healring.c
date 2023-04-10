@@ -80,7 +80,7 @@ void heart_beat()
     if (!this_object()->query_worn())
         return;
 
-    if ((wearer->query_hp_() * 100 / wearer->query_max_hp()) < 34 && !wearer->query_unconscious() && !wearer->query_bound() && uses > 0)
+    if ((wearer->query_hp() * 100 / wearer->query_max_hp()) < 34 && !wearer->query_unconscious() && !wearer->query_bound() && uses > 0)
     {
         tell_object(wearer, "%^BOLD%^%^WHITE%^The ring feels your pain and heals you completely!%^RESET%^");
         wearer->add_hp(wearer->query_max_hp());
