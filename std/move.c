@@ -47,7 +47,7 @@ int move(mixed dest)
     object me, environment, ob, prev;
     string str, msg;
 
-    if ((!(me = this_object())) || !objectp(me))
+    if (!objectp(me = this_object()))
         return MOVE_DESTRUCTED;
 
     environment = environment(me);
