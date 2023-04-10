@@ -11,11 +11,15 @@ void create()
     set_spell_level(([ "innate" : 8 ]));
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS create spawn");
-    set_description("With this spell a vampire can use the recently deceased to raise a powerful undead vampire spawn to aid them in combat. This power behaves the same way similar spells of creating undead does, but it is unique to vampires."+("/cmds/spells/c/_create_undead"->extra_help()));
+    set_description("With this spell a vampire can use the recently deceased to raise a powerful undead vampire spawn to aid them in combat. This power behaves the same way similar spells of creating undead does, but it is unique to vampires."+extra_help());
     evil_spell(1);
     set_property("undead spell");
     set_helpful_spell(1);
     set_arg_needed();
+}
+
+string extra_help(){
+    return "\n\nEach lesser undead minion uses three pool slots out of a maximum pool size of twenty, and this resource is shared between all undead creation spells.\n%^ORANGE%^<dismiss undead>%^RESET%^ destroys your current undead retinue%^RESET%^\n%^ORANGE%^<command undead to %^ORANGE%^%^ULINE%^ACTION%^RESET%^%^ORANGE%^>%^RESET%^ will command undead to perform an action%^RESET%^\n%^ORANGE%^<command undead to follow>%^RESET%^ forces lost undead to follow you%^RESET%^\n%^ORANGE%^<poolsize>%^RESET%^ lists how many undead minions you have under your control%^RESET%^";
 }
 
 string query_cast_string()
@@ -36,7 +40,7 @@ void setup_undead_scaling(object undead)
 {
     //undead->set_guild_level("fighter", clevel);
     //undead->set_mlevel("fighter", clevel);
-    undead->set_property("raised", 2);
+    undead->set_property("raised", 1);
     undead->set_owner(caster);
     undead->setup_minion(clevel, spell_level, "standard");
     if (caster->is_class("vampire_lord")) {
