@@ -1042,7 +1042,7 @@ int quit()
     set_magic_hidden(0);
     //YUCK_D->save_inventory(this_object());
     //crash_money = 0;
-    if(environment(this_object())->is_demiplane_room())
+    if(environment() && environment()->is_demiplane_room())
         command("leave demiplane");
     if (query_followers()) clear_followers();
     set_property("silent_equip",1);
