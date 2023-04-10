@@ -239,6 +239,7 @@ void end_charmed(object targ,object cast)
 
 void dest_effect()
 {
+    remove_call_out("still_charmed");
 
     if(objectp(target) && target->query_property("is charmed"))
     {
