@@ -46,17 +46,17 @@ string is_mount;
 // adding a new function for special cases (war horses, etc.) to insure above checks are made and try to zap some bugs once and for all *Styx*  12/12/04
 int restrict_mount_ok(object who);
 
-void movement(object tp)
-{
-    TO->move(environment(tp));
+void movement(object tp) {
+  TO->move(environment(tp));
 }
 
-void create()
-{
-    ::create();
-    rider=0;
-    riderObj = 0;
-    set_property("riding",1);
+void create() {  // added "void" (declaration) for bug prevention *Styx* 7/14/05
+  ::create();
+  rider=0;
+  riderObj = 0;
+  set_property("riding",1);
+  //    if(base_name(TO) != "/std/riding_animal")
+  //        write_file("/d/save/ra.log",base_name(TO)+"\n");
 }
 
 void init() {  // added "void" (declaration) for bug prevention *Styx* 7/14/05
@@ -79,11 +79,9 @@ void heart_beat()
     ::heart_beat();
     if (!objectp(TO))
         return;
-    if (objectp(riderObj) && riderObj->query_ghost())
-    {
+    if (objectp(riderObj) && riderObj->query_ghost()) {
         rider = 0;
         riderObj = 0;
-        recalculate_max_hp_from_interactions();
     }
     if (objectp(riderObj) && (riderObj->query_unconscious() || riderObj->query_bound() || riderObj->query_tripped())) {
         tell_object(riderObj, "%^BOLD%^You fall from your mount.");
@@ -91,7 +89,6 @@ void heart_beat()
         riderObj->set_in_vehicle(0);
         rider = 0;
         riderObj = 0;
-        recalculate_max_hp_from_interactions();
     }
     if (query_unconscious() || query_paralyzed() || query_tripped() || query_bound()) {
 
@@ -100,7 +97,6 @@ void heart_beat()
             tell_room(ETO, "%^BOLD%^" + TO->QCN + " collapses and " + riderObj->QCN + " falls to the ground.", riderObj);
             riderObj->set_in_vehicle(0);
             riderObj = 0;
-            recalculate_max_hp_from_interactions();
             rider = 0;
         } else {                // objectp(riderObj)
             rider = 0;
@@ -285,7 +281,6 @@ int enter(string str)
 
             rider = TPQCN;
             riderObj = TP;
-            recalculate_max_hp_from_interactions();
             return 1;
         } else {
             write("You fail to mount the " + orig_short + ".");
@@ -307,7 +302,6 @@ int exit(string str)
     tell_room(ETP, TPQCN + " dismounts the " + orig_short + ".", TP);
     TP->set_in_vehicle(0);
     riderObj = 0;
-    recalculate_max_hp_from_interactions();
     rider = 0;
     return 1;
 }
@@ -470,7 +464,6 @@ int kill_something(string str)
         return 1;
     }
     riderObj = TP;
-    recalculate_max_hp_from_interactions();
     if (query_peaceful())
         return notify_fail("This animal cannot fight.\n");
     if (!do_prof())
