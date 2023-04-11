@@ -19,7 +19,7 @@
 inherit CONTAINER;
 
 mixed* deaths;
-mapping player_data, magic, severed, healing;
+mapping player_data, magic, severed, healing, max_hp_components;
 nosave mapping body;
 nosave mapping resistances;
 nosave mapping MyAcArmour;
@@ -137,10 +137,7 @@ int add_max_hp_bonus(int hp)
 
 int query_max_hp_bonus()
 {
-    int my_max_hp_bonus;
-    my_max_hp_bonus = max_hp_bonus;
-
-    return (my_max_hp_bonus + EQ_D->gear_bonus(this_object(), "max hp bonus"));
+    return (max_hp_bonus + EQ_D->gear_bonus(this_object(), "max hp bonus"));
 }
 
 void set_diety(string str)
@@ -647,11 +644,11 @@ int query_true_max_hp()
 int query_max_hp_base()
 {
     int num, mypsi;
-    string file, myrace, subrace;
 
     if (!objectp(this_object()))
         return 0;
 
+    // Max HP from events
     if (!userp(this_object()))
     {
         num = WORLD_EVENTS_D->monster_modification_event(player_data["general"]["max_hp"], "health", this_object());
@@ -659,16 +656,44 @@ int query_max_hp_base()
         return num;
     }
 
+    // Max HP from stats
     if (this_object()->is_undead())
         num = "/daemon/bonus_d.c"->query_con_bonus((int)this_object()->query_stats("charisma"));
-
     else if(FEATS_D->has_feat(this_object(), "natures gift"))
         num = BONUS_D->query_con_bonus(this_object()->query_stats("wisdom"));
-
     else
         num = "/daemon/bonus_d.c"->query_con_bonus((int)this_object()->query_stats("constitution"));
 
     num = num * (int)this_object()->query_highest_level();
+
+
+
+
+    // Max HP from interactions
+    if(this_object()->is_animal())
+    {
+        object rider = this_object()->query_current_rider();
+            
+        if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
+                num += (rider->query_level() * 2);
+    }
+
+    // Warlock Soul Burn mechanic
+    if(this_object()->is_class("warlock"))
+    {
+        int temp;
+
+        temp = (player_data["general"]["max_hp"] * 5) / 100;
+        num -= (this_object()->query("available burn") * temp);
+    }
+
+    num += player_data["general"]["max_hp"];
+    return num;
+}
+
+void recalculate_max_hp_from_feats()
+{
+    int num;
 
     if (FEATS_D->usable_feat(this_object(), "toughness"))
         num += ((int)this_object()->query_level()) / 2;
@@ -678,62 +703,28 @@ int query_max_hp_base()
 
     if (FEATS_D->usable_feat(this_object(), "epic toughness"))
         num += this_object()->query_level();
-    
-    if(this_object()->is_animal())
-    {
-        object rider = this_object()->query_current_rider();
-            
-        if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
-                num += (rider->query_level() * 2);
-    }
 
-    //Represents the Unholy Fortitude Feat for Agent of the Grave
-    if(FEATS_D->usable_feat(this_object(), "negative energy conduit"))
+    if (FEATS_D->usable_feat(this_object(), "negative energy conduit"))
         num += this_object()->query_prestige_level(this_object()->query("base_class"));
 
     if (FEATS_D->usable_feat(TO, "psionic body"))
     {
-        mypsi = 0;
-        mypsi += FEATS_D->calculate_psionic_feats(this_object());
-
-        if (mypsi < 1)
-            mypsi = 1;
-
-        mypsi = mypsi * 5;
+        int mypsi = FEATS_D->calculate_psionic_feats(this_object()) * 5;
 
         if (FEATS_D->usable_feat(this_object(), "battle psyche"))
-            mypsi = mypsi * 3;
+            mypsi *= 3;
 
         num += mypsi;
     }
-    
-    //Warlock Soul Burn mechanic
-    //More burn lowers max HP but gives other bonuses
-    if(this_object()->is_class("warlock"))
-    {
-        int temp;
-        
-        temp = (player_data["general"]["max_hp"] * 5) / 100;
-        num -= (this_object()->query("available burn") * temp);
-    }
 
-    myrace = (string)this_object()->query_race();
-    subrace = (string)this_object()->query("subrace");
+    max_hp_components["feats"] = num;
 
-    if (intp(USER_D->get_scaled_level(this_object())))
-    {
-        num += sum_array(this_object()->query("hp_array"), (int)this_object()->query_base_character_level());
-        num = WORLD_EVENTS_D->monster_modification_event(num, "health", this_object());
-        return num;
-    }
-
-    num += player_data["general"]["max_hp"];
-    return num;
+    recalculate_max_hp();
 }
 
 void recalculate_max_hp()
 {
-    player_data["general"]["functional_max_hp"] = query_max_hp_base() + query_max_hp_bonus() + 1;
+    player_data["general"]["functional_max_hp"] = max_hp_components["feats"] + query_max_hp_base() + query_max_hp_bonus() + 1;
 }
 
 int query_max_hp()
