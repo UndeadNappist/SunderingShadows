@@ -853,8 +853,6 @@ string query_paladin_oath()
 void set_acquired_template(string str)
 {
     acquired_template = str;
-
-    recalculate_max_hp_from_stats();
 }
 
 string query_acquired_template(string str)
@@ -1412,20 +1410,21 @@ int add_bloodlust(int x)
 
 void add_stat_bonus(string stat, int amount)
 {
-    if (!stat_bonus) {
+    if (!stat_bonus)
         stat_bonus = ([]);
-    }
-    if (stat_bonus[stat]) {
+
+    if (stat_bonus[stat])
         stat_bonus[stat] += amount;
-    } else {
+    else
         stat_bonus[stat] = amount;
-    }
-    if (!stat_bonus[stat]) {
+
+    if (!stat_bonus[stat])
         map_delete(stat_bonus, stat);
-    }
-    if (interactive(this_object()) && stat == "strength") {
+
+    if (interactive(this_object()) && stat == "strength")
         do_encumbrance();
-    }
+
+    recalculate_max_hp_from_stats();
 }
 
 // added to be able to pull description for corpses or anything needing it without all the added stuff below  *Styx*  2/15/03
