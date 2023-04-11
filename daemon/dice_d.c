@@ -1,3 +1,5 @@
+//NOT USED - EFUN NOW
+
 int roll_dice(int num, int sides) {
   int x,cnt;
   
