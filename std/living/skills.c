@@ -626,7 +626,8 @@ varargs void set_mlevel(string str, int lev)
     else
         mlevels[str] = lev;
 
-    recalculate_max_hp_from_stats();
+    recalculate_max_hp_from_stats(1);
+    recalculate_max_hp_from_feats();
 }
 
 mapping query_levels()
