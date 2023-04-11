@@ -103,7 +103,7 @@ int poolsize(string str){
 int cmd(string str){
     object ob;
     string what, who, what2, holder, *command;
-    int i, flag;
+    int i;
 
     if(clean_mons()) return 0;
     if(!str) return 0;
@@ -115,7 +115,6 @@ int cmd(string str){
     if(member_array(command[0], BLACKLIST) != -1) return notify_fail("YOU CANNOT MAKE SUCH A DEMAND OF THE UNDEAD!");
 
     if(what[0..3] == "kill"){
-        flag = 1;
         if(sscanf(what, "kill %s", who) == 1){
             if(ob = present(who, environment(caster))){
                 if(!caster->ok_to_kill(ob)) return notify_fail("KILLING THAT IS BENEATH YOUR NOTICE.");
@@ -124,12 +123,24 @@ int cmd(string str){
     }
 
     if(what == "follow"){
-        flag = 1;
         for(i = 0; i < sizeof(mons); i++){
             if(!objectp(mons[i])) continue;
             if(!present(mons[i], environment(caster))) continue;
             caster->add_follower(mons[i]);
+            caster->add_protector(mons[i]);
+            mons[i]->set_follow(1);
             tell_object(caster, "%^C059%^Your "+mons[i]->query_short()+"%^C059%^ falls in line with you.%^CRST%^");
+        }
+        return 1;
+    }
+    
+    if(what == "halt"){
+        for(i = 0; i < sizeof(mons); i++){
+            if(!objectp(mons[i])) continue;
+            if(!present(mons[i], environment(caster))) continue;
+            caster->remove_follower(mons[i]);
+            mons[i]->set_follow(0);
+            tell_object(caster, "%^C059%^Your "+mons[i]->query_short()+"%^C059%^ stops where it stands.%^CRST%^");
         }
         return 1;
     }
