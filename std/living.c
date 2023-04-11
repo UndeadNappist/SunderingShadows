@@ -1137,13 +1137,14 @@ object queryPoisoner()
 
 void set_stats(string str, int x)
 {
-    if (x > 55 && str != "exceptional_strength") {
+    if (x > 55 && str != "exceptional_strength")
         x = 55;
-    }
+
     stats[str] = x;
-    if (str == "strength") {
+    if (str == "strength")
         set_max_internal_encumbrance(MAX_ENCUMBRANCE[x]);
-    }
+
+    recalculate_max_hp_from_stats();
 }
 
 void set_hidden(int xxx)
