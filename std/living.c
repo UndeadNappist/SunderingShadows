@@ -853,6 +853,8 @@ string query_paladin_oath()
 void set_acquired_template(string str)
 {
     acquired_template = str;
+
+    recalculate_max_hp_from_stats();
 }
 
 string query_acquired_template(string str)
