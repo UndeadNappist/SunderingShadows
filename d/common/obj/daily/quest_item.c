@@ -86,7 +86,7 @@ void reward_player(object who)
     mats = who->query_level() * 200;
     mats_ob->set_count(mats);
     mats_ob->move(who);
-    tell_object(who, sprintf("You are awarded %d XP, %d enchanting materials and %d gold!", exp, mats, money));
+    tell_object(who, sprintf("You are awarded some XP, %d enchanting materials and %d gold!", mats, money));
     
     ::remove();
 }    
