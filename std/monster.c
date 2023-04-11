@@ -1024,6 +1024,8 @@ void receive_message(string cl, string msg)
         }
     }
     
+    msg = strip_colors(msg);
+    
     if(!no_catch_tell)
         this_object()->catch_tell(msg);
     
