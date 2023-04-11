@@ -493,12 +493,17 @@ int add_my_feat(object ob, string type, string feat)
         if(gain_feat(ob,type,feat,ob->query_character_level()))
         {
             num = ob->query_class_feats_gained();
-            if(!num) num = 0;
+
+            if(!num)
+                num = 0;
+
             num += 1;
             ob->set_class_feats_gained(num);
             update_usable(ob);
+
             if(feat == "grandmaster of the way")
                 ob->init_ki();
+
             return 1;
         }
         else return 0;
@@ -1224,36 +1229,35 @@ void remove_feat(object ob, string type, string feat)
     int* levels, i, level;
     string* tmp;
 
-    if (!objectp(ob)) {
+    if (!objectp(ob))
         return;
-    }
-    if (!stringp(type)) {
-        return;
-    }
 
-    if (!stringp(feat)) {
+    if (!stringp(type))
         return;
-    }
+
+    if (!stringp(feat))
+        return;
 
     feats = get_feats(ob, type);
     levels = keys(feats);
     level = -1;
-    if (!sizeof(levels)) {
+
+    if (!sizeof(levels))
         return;
-    }
-    for (i = 0; i < sizeof(levels) && level == -1; i++) {
+
+    for (i = 0; i < sizeof(levels) && level == -1; ++i)
+    {
         tmp = feats[levels[i]];
-        if (member_array(feat, tmp) != -1) {
+        if (member_array(feat, tmp) != -1)
             level = levels[i];
-        }
     }
+
     tmp -= ({ feat });
     feats[level] = tmp;
-    if (is_feat(feat)) {
-        if (is_permanent(ob, feat)) {
+
+    if (is_feat(feat))
+        if (is_permanent(ob, feat))
             reverse_permanent_feat(ob, feat);
-        }
-    }
 
     set_feats(ob, type, feats);
     //redundant since query_player_feat works entirely differently now - Saide
@@ -1349,6 +1353,9 @@ void set_feats(object ob,string type,mapping feats)
         ob->set_other_feats(feats);
         break;
     }
+
+    ob->recalculate_max_hp_from_feats();
+
     return;
 }
 
