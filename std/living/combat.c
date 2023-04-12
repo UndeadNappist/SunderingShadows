@@ -281,8 +281,23 @@ void send_messages(int magic, object current, string what, int x, object attacke
 object *query_hunted() { return query_combat_mapps("arrays", "hunters"); }
 object *query_attackers()
 {
-    if(!sizeof(query_combat_mapps("arrays", "attackers"))) COMBAT_D->clean_attacker_flags(TO);
-    return pointerp(combat_arrays["attackers"]) ? filter_array(combat_arrays["attackers"], (: objectp($1) :)) : ({  });
+    object *tmp;
+    
+    if(!objectp(this_object()))
+        return ({  });
+    
+    if(!arrayp(tmp = combat_arrays["attackers"]))
+        tmp = ({  });
+    
+    if(!sizeof(tmp))
+        COMBAT_D->clean_attacker_flags(this_object());
+
+    tmp = filter_array(tmp, (: objectp($1) :));
+    
+    return tmp;
+    
+    //if(!sizeof(query_combat_mapps("arrays", "attackers"))) COMBAT_D->clean_attacker_flags(TO);
+    //return pointerp(combat_arrays["attackers"]) ? filter_array(combat_arrays["attackers"], (: objectp($1) :)) : ({  });
     //return pointerp(query_combat_mapps("arrays", "attackers")) ? filter_array(query_combat_mapps("arrays", "attackers"), (: objectp($1) :)) : ({  });
 }
 int sight_adjustment() { return COMBAT_D->sight_adjustment(TO); }
