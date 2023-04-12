@@ -1426,7 +1426,7 @@ void add_stat_bonus(string stat, int amount)
     if (interactive(this_object()) && stat == "strength")
         do_encumbrance();
 
-    recalculate_max_hp_from_stats();
+    this_object()->recalculate_max_hp_from_stats();
 }
 
 // added to be able to pull description for corpses or anything needing it without all the added stuff below  *Styx*  2/15/03

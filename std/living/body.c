@@ -64,8 +64,8 @@ void init_limb_data()
     fake_limbs = ({});
     wielded_objects = ([]);
     severed = ([]);
-    if (!healing || healing == ([])) {
-        healing = ([]);
+    if (!healing || !mapp(healing) || healing == ([])) {
+        healing = ([ "stuffed": 1000, "quenched": 1000, "intox": 0, "bloodlust": 0 ]);
     }
     if (!magic) {
         magic = ([ "points" : 0, "max points" : 0 ]);
