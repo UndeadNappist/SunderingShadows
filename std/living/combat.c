@@ -282,7 +282,8 @@ object *query_hunted() { return query_combat_mapps("arrays", "hunters"); }
 object *query_attackers()
 {
     if(!sizeof(query_combat_mapps("arrays", "attackers"))) COMBAT_D->clean_attacker_flags(TO);
-    return filter_array(query_combat_mapps("arrays", "attackers"), (: objectp($1) :));
+    return pointerp(combat_arrays["attackers"]) ? filter_array(combat_arrays["attackers"], (: objectp($1) :)) : ({  });
+    //return pointerp(query_combat_mapps("arrays", "attackers")) ? filter_array(query_combat_mapps("arrays", "attackers"), (: objectp($1) :)) : ({  });
 }
 int sight_adjustment() { return COMBAT_D->sight_adjustment(TO); }
 void miss(int magic, object target, string type, string target_thing)
