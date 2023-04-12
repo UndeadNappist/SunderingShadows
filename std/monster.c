@@ -162,6 +162,7 @@ void create()
     init_limb_data();
     init_stats();
     init_skills(0);
+    this_object()->init_max_hp();
     init_living();
     set_heart_beat(heart_beat_on = 1);
     speed = 0;
@@ -766,6 +767,7 @@ void __SHINIT()
     init_limb_data();
     init_stats();
     init_skills(0);
+    this_object()->init_max_hp();
     init_living();
     set_heart_beat(heart_beat_on = 1);
     speed = 0;
@@ -1023,8 +1025,6 @@ void receive_message(string cl, string msg)
             return;
         }
     }
-    
-    msg = strip_colors(msg);
     
     if(!no_catch_tell)
         this_object()->catch_tell(msg);
