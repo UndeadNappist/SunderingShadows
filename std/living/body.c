@@ -648,6 +648,9 @@ int query_max_hp_base()
 
 void recalculate_max_hp_from_soulburn(int dont_recalculate_total)
 {
+    if (!mapp(max_hp_components))
+        max_hp_components = ([ "stats": 0, "feats": 0, "soulburn": 0, "interactions": 0 ]);
+
     max_hp_components["soulburn"] = -(this_object()->query("available burn") * query_max_hp_base() / 20);
 
     if (!dont_recalculate_total)
@@ -657,6 +660,9 @@ void recalculate_max_hp_from_soulburn(int dont_recalculate_total)
 void recalculate_max_hp_from_interactions(int dont_recalculate_total)
 {
     int num;
+
+    if (!mapp(max_hp_components))
+        max_hp_components = ([ "stats": 0, "feats": 0, "soulburn": 0, "interactions": 0 ]);
 
     if(this_object()->is_animal())
     {
@@ -676,6 +682,9 @@ void recalculate_max_hp_from_stats(int dont_recalculate_total)
 {
     int num;
 
+    if (!mapp(max_hp_components))
+        max_hp_components = ([ "stats": 0, "feats": 0, "soulburn": 0, "interactions": 0 ]);
+
     if (this_object()->is_undead())
         num = "/daemon/bonus_d.c"->query_con_bonus((int)this_object()->query_stats("charisma"));
     else if(FEATS_D->has_feat(this_object(), "natures gift"))
@@ -694,6 +703,9 @@ void recalculate_max_hp_from_stats(int dont_recalculate_total)
 void recalculate_max_hp_from_feats(int dont_recalculate_total)
 {
     int num;
+
+    if (!mapp(max_hp_components))
+        max_hp_components = ([ "stats": 0, "feats": 0, "soulburn": 0, "interactions": 0 ]);
 
     if (FEATS_D->usable_feat(this_object(), "toughness"))
         num += ((int)this_object()->query_level()) / 2;
@@ -732,6 +744,9 @@ void init_max_hp()
 
 void recalculate_max_hp()
 {
+    if (!mapp(max_hp_components))
+        max_hp_components = ([ "stats": 0, "feats": 0, "soulburn": 0, "interactions": 0 ]);
+
     if (!userp(this_object()))
         player_data["general"]["functional_max_hp"] = WORLD_EVENTS_D->monster_modification_event(player_data["general"]["max_hp"], "health", this_object()) + max_hp_components["interactions"] + 1;
 
