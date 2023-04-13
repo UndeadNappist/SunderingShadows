@@ -9,7 +9,7 @@ void create() {
     feat_name("gird the soul");
     feat_prereq("Crypt Stalker L1");
     feat_desc(""
-"Crypt stalkers rely on their faith and their unwavering hatred of undead to inure them to the effects of undead attacks. They have studied relentless in their pursuits of the undead and have reaped the benefits. They have gained extensive knowledge of the crypts where the undead often reside. The Crypt Stalker gains the Death Ward feat along with 20% negative energy resistance. Additionally, they gain a bonus when studying undead creatures.");
+"Crypt stalkers rely on their faith and their unwavering hatred of undead to inure them to the effects of undead attacks. They have studied relentless in their pursuits of the undead and have reaped the benefits. They have gained extensive knowledge of the crypts where the undead often reside. The Crypt Stalker gains an immunity to death effects along with 20% negative energy resistance. Additionally, they gain a bonus when studying undead creatures.");
     permanent(1);
     set_required_for(({}));
 }
