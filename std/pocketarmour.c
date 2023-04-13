@@ -113,6 +113,7 @@ void unwear()
     string catchbug;
     int answer;
     mapping itembonuses;
+    object previous_wearer;
 
     if(!objectp(wornBy))
         return;
@@ -171,8 +172,12 @@ void unwear()
         message("other_action", (string)wornBy->query_cap_name() +" removes " + (string)wornBy->query_possessive() + " "+short_desc+".", environment(wornBy), ({ wornBy }));
     }
 
+    previous_wearer = wornBy;
     wornBy = 0;
     actualLimbs = allocate(1);
+
+    previous_wearer->recalculate_max_hp_from_stats(1);
+    previous_wearer->recalculate_max_hp_from_feats();
 }
 
 void unequip() {
@@ -262,10 +267,16 @@ int query_size() {
   else return ::query_size();
 }
 
-void set_worn(object who) {
- wornBy = who;
- cursed = who->query_name();
- if(TO->query_property("player enchanted")) CHECK_D->validate(TO);
+void set_worn(object who)
+{
+    wornBy = who;
+    cursed = who->query_name();
+
+    if(this_object()->query_property("player enchanted"))
+        CHECK_D->validate(this_object());
+
+    who->recalculate_max_hp_from_stats(1);
+    who->recalculate_max_hp_from_feats();
 }
 
 object query_worn() { return wornBy; }
