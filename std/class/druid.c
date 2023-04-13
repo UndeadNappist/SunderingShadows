@@ -121,7 +121,8 @@ int number_of_attacks(object player)
     int num;
     if(!objectp(player)) { return 0; }
     // same number of attacks as cleric
-    num = "/daemon/bonus_d.c"->attack_bonus("cleric",player->query_class_level("druid"),player);
+    //num = "/daemon/bonus_d.c"->attack_bonus("cleric",player->query_class_level("druid"),player);
+    num = attack_bonus(player);
     num = num / 7;
 
     if(FEATS_D->usable_feat(player,"natural fighting"))

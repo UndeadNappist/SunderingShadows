@@ -211,7 +211,8 @@ int number_of_attacks(object player)
     if (!objectp(player)) {
         return 0;
     }
-    num = "/daemon/bonus_d.c"->attack_bonus("monk", player->query_class_level("monk"), player);
+    //num = "/daemon/bonus_d.c"->attack_bonus("monk", player->query_class_level("monk"), player);
+    num = attack_bonus(player);
     num = num / 7;
     return num;
 }
