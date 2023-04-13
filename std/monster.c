@@ -594,8 +594,16 @@ void die(object killer)
     
     if(catch(this_object()->remove()) || (objectp(this_object()) && !this_object()->remove()))
         this_object()->move(ROOM_VOID);
+    
     objectp(this_object()) && destruct(this_object());
     
+    //Yes an additional check for very persistent buggy monsters
+    if(objectp(this_object()))
+    {
+        this_object()->move("/d/shadowgate/trash");
+        destruct(load_object("/d/shadowgate/trash")); //put it inside a box and crush it
+    }       
+   
     return;
 }
 

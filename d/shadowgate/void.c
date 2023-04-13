@@ -124,7 +124,7 @@ int clean_inventory()
         else
         {
             if (catch(ob->remove()))
-                destruct(ob);
+                catch(destruct(ob));
         }   
     }
     
