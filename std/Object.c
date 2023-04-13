@@ -812,6 +812,9 @@ mixed query_property(string prop)
         }
         if(member_array("repose", me->query_divine_domain()) >= 0)
             return 1;
+        if (FEATS_D->usable_feat(me, "gird the soul")) {
+            return 1;
+        }
     }
 
     if (prop == "water breather")

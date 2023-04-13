@@ -16,7 +16,8 @@ void create(){
     set_hd(1, 1);
     set_class("fighter");
     set_mlevel("fighter", 1);
-    set_hp(10000000);
+    set_max_hp(10000000);
+    set_hp(query_max_hp());
     set_property("no death", 1);
     set_property("no bows", 1);
     set_property("no dominate", 1);
