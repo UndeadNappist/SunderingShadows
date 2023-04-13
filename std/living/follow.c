@@ -69,7 +69,11 @@ void clear_followers()
     if(!followers) return;
     for(i=0; i<sizeof(followers); i++)
     {
-        if(followers[i]) { followers[i]->set_following(0); }
+        if(followers[i])
+        {
+            followers[i]->set_following(0);
+            followers[i]->set_follow(0);
+        }
     }
     followers = ({});
 }

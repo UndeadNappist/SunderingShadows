@@ -67,12 +67,19 @@ void spell_effect(int prof) {
 
 void spell_effect_next()
 {
-    if(!TELEPORT->teleport_object(caster,caster,endplace,clevel))
+    
+    if(!TELEPORT->object_can_be_teleported(caster,caster,endplace,clevel))
     {
         tell_object(caster,"You sense something is wrong with your spell and loose concentration.");
         tell_room(place,caster->QCN+" "+
                   "looks startled.",caster);
     }
+    else
+    {
+        caster->clear_followers();
+        TELEPORT->teleport_object(caster,caster,endplace,clevel);
+    }
+        
     dest_effect();
 }
 
