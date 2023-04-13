@@ -2,8 +2,8 @@ inherit "/std/alchemy/std_herbs/herb_inherit.c";
 
 void create()
 {
-    set("alchemical_id", "$");
-    set_long("This is a small paper packet containing some $. The % of the $ can be used ^ &.");
+    set("alchemical_id", "marjoram");
+    set_long("This is a small paper packet containing some marjoram. The flowers of the marjoram can be used as a powder to aid with digestion by relieving the feeling of bloating.");
     set("base_value", 35);
 
     ::create();
