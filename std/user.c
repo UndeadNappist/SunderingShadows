@@ -1350,6 +1350,9 @@ void setup()
 
     if (!skills)
         init_skills(0);
+    
+    if(!mapp(player_data))
+        init_limb_data();
 
     if (!max_hp_components)
         this_object()->init_max_hp();
