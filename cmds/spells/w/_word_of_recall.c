@@ -64,7 +64,7 @@ void spell_effect_next()
         return;
     }
 
-    if (!TELEPORT->can_be_teleported(caster, caster, endplace, clevel)) {
+    if (!TELEPORT->object_can_be_teleported(caster, caster, endplace, clevel)) {
         tell_object(caster, "You sense something is wrong with your spell and loose concentration.");
         tell_room(place, caster->QCN + " looks startled.", caster);
     }
