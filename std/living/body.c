@@ -2078,6 +2078,10 @@ string equip_armour_to_limb(object arm, string* limb)
     check_armor_active_feats(TO, type, (string)limb[0], "equip");
 
     ac -= (int)arm->query_ac();
+
+    recalculate_max_hp_from_stats(1);
+    recalculate_max_hp_from_feats();
+
     return 0;
 }
 
@@ -2116,6 +2120,10 @@ int remove_armour_from_limb(object arm, string* limb)
     if (TO->is_player()) {
         ApplyObjectBonuses(arm, TO, "remove", "wear");
     }
+
+    recalculate_max_hp_from_stats(1);
+    recalculate_max_hp_from_feats();
+
     return 1;
 }
 
