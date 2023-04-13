@@ -1603,83 +1603,94 @@ void ApplyObjectBonuses(object ob, object targ, string which, string type)
     string bonus_name, bonus_extra, * items = ({}), * bskills;
     mixed prop;
     int cur_bonus = 0, x, i, num = 0;
-    if (!objectp(ob)) {
+
+    if (!objectp(ob))
         return;
-    }
-    if (!objectp(targ)) {
+
+    if (!objectp(targ))
         return;
-    }
-    if (type == "wield" && !ob->is_weapon()) {
+
+    if (type == "wield" && !ob->is_weapon())
         return;
-    }
-    if (type == "wear" && !ob->is_armor()) {
+
+    if (type == "wear" && !ob->is_armor())
         return;
-    }
-    if ((type == "move" && ob->is_weapon()) || (type == "move" && ob->is_armor())) {
+
+    if ((type == "move" && ob->is_weapon()) || (type == "move" && ob->is_armor()))
         return;
-    }
-    if ((type == "move" && !ob->is_weapon()) || (type == "move" && !ob->is_armor())) {
-        if (!ob->query_property("inanimate_bonus")) {
+
+    if ((type == "move" && !ob->is_weapon()) || (type == "move" && !ob->is_armor()))
+        if (!ob->query_property("inanimate_bonus"))
             return;
-        }
-    }
-    if (targ->query_property("no bonuses")) {
+
+    if (targ->query_property("no bonuses"))
         return;
-    }
-    if (!stringp(which)) {
+
+    if (!stringp(which))
         return;
-    }
-    if (!stringp(type)) {
+
+    if (!stringp(type))
         return;
-    }
-    for (x = 0; x < sizeof(VALID_BONUSES); x++) {
+
+    for (x = 0; x < sizeof(VALID_BONUSES); ++x)
+    {
         bonus_name = VALID_BONUSES[x];
-        if (!ob->BonusCheck(bonus_name)) {
+        if (!ob->BonusCheck(bonus_name))
             continue;
-        }
+
         prop = ob->query_property(bonus_name);
-        if (!prop) {
+
+        if (!prop)
             continue;
-        }
-        if (bonus_name == "skill bonus") {
-            if (!mapp(prop)) {
+
+        if (bonus_name == "skill bonus")
+        {
+            if (!mapp(prop))
                 continue;
-            }
+
             bskills = keys(prop);
-            for (i = 0; i < sizeof(bskills); i++) {
+            for (i = 0; i < sizeof(bskills); ++i)
+            {
                 bonus_extra = bskills[i];
-                if (!stringp(bonus_extra)) {
+
+                if (!stringp(bonus_extra))
                     continue;
-                }
+
                 cur_bonus = prop[bskills[i]];
-                if (!intp(cur_bonus)) {
+                if (!intp(cur_bonus))
                     continue;
-                }
-                if (which == "remove") {
+
+                if (which == "remove")
                     cur_bonus = 0 - cur_bonus;
-                }
+
                 targ->add_skill_bonus(bonus_extra, cur_bonus);
                 continue;
             }
             continue;
-        }else {
+        }
+        else
             cur_bonus = to_int(prop);
-        }
-        if (!intp(cur_bonus)) {
+
+        if (!intp(cur_bonus))
             continue;
-        }
-        if (which == "remove") {
+
+        if (which == "remove")
             cur_bonus = 0 - cur_bonus;
-        }
-        if (bonus_name == "attack bonus") {
+
+        if (bonus_name == "attack bonus")
+        {
             targ->add_attack_bonus(cur_bonus);
             continue;
         }
-        if (bonus_name == "damage bonus") {
+
+        if (bonus_name == "damage bonus")
+        {
             targ->add_damage_bonus(cur_bonus);
             continue;
         }
-        if (bonus_name == "sight bonus") {
+
+        if (bonus_name == "sight bonus")
+        {
             targ->add_sight_bonus(cur_bonus);
             continue;
         }
@@ -1692,13 +1703,15 @@ void ApplyObjectBonuses(object ob, object targ, string which, string type)
             targ->add_skill_bonus(bonus_extra, cur_bonus);
             continue;
            }*/
-        if (bonus_name == "ac bonus") {
-            if (which == "remove") {
+        if (bonus_name == "ac bonus")
+        {
+            if (which == "remove")
                 cur_bonus = 0;
-            }
+
             targ->set_ac_bonus(cur_bonus);
             continue;
         }
+
         if (bonus_name == "magic resistance" || bonus_name == "magic" ||
             bonus_name == "empowered" || bonus_name == "spell penetration" ||
             strsrch(bonus_name, "bonus_spell_slots") != -1) {
@@ -1706,7 +1719,10 @@ void ApplyObjectBonuses(object ob, object targ, string which, string type)
             continue;
         }
     }
-    return;
+
+
+    recalculate_max_hp_from_stats(1);
+    recalculate_max_hp_from_feats();
 }
 
 //END OF BONUS APPLYING FUNCTION
@@ -2091,38 +2107,39 @@ int remove_armour_from_limb(object arm, string* limb)
     string type;
 
     type = (string)arm->query_type();
-    for (i = 0; i < sizeof(limb); i++) {
-        if (!body) {
+
+    for (i = 0; i < sizeof(limb); ++i)
+    {
+        if (!body)
             continue;
-        }
-        if (!body[limb[i]]) {
+
+        if (!body[limb[i]])
             continue;
-        }
-        if (member_array(type, body[limb[i]]["armour"]) != -1) {
+
+        if (member_array(type, body[limb[i]]["armour"]) != -1)
             body[limb[i]]["armour"] -= ({ type });
-        }
+
         body[limb[i]]["armour_ob"] -= ({ arm });
     }
 
-    if (type == "shield") {
-        if (TO->validate_combat_stance("weapon and shield")) {
+    if (type == "shield")
+    {
+        if (TO->validate_combat_stance("weapon and shield"))
             TO->set_combat_stance("one hander");
-        }else {
+        else
             TO->set_combat_stance("unarmed");
-        }
     }
+
     check_armor_active_feats(TO, type, (string)limb[0], "remove");
 
     ac += (int)arm->query_ac();
-    if (ac > 10) {
-        ac = 10;
-    }
-    if (TO->is_player()) {
-        ApplyObjectBonuses(arm, TO, "remove", "wear");
-    }
 
-    recalculate_max_hp_from_stats(1);
-    recalculate_max_hp_from_feats();
+    if (ac > 10)
+        ac = 10;
+
+    // This is where our max HP is implicitly updated.
+    if (TO->is_player())
+        ApplyObjectBonuses(arm, TO, "remove", "wear");
 
     return 1;
 }
