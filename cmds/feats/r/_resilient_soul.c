@@ -9,7 +9,7 @@ void create()
    feat_category("PactInvocation");
    feat_name("resilient soul");
    feat_prereq("Warlock L1");
-   feat_desc("Some soul are stronger than others. Your soul has become accustomed to its purpose and so now recovers from the rigors of soul burn more easily. With this feat, soul burn recovers more quickly.");
+   feat_desc("Some soul are stronger than others. Your soul has become accustomed to its purpose and so now recovers from the rigors of soul burn more easily. With this feat, soul burn recovers more quickly. In addition, your Reclaim Soul feat has its cooldown reduced.");
    permanent(1);
    allow_blind(1);
    set_required_for(({}));
