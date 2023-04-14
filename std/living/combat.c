@@ -233,7 +233,7 @@ void execute_attack()
         adjust_combat_mapps("static vars", "attack count", 1, 1);
     }
     return;
-}   
+}
 
 // this shouldn't get called by anything besides execute_attack.
 protected void internal_execute_attack() { return COMBAT_D->internal_execute_attack(TO); }
@@ -282,20 +282,20 @@ object *query_hunted() { return query_combat_mapps("arrays", "hunters"); }
 object *query_attackers()
 {
     object *tmp;
-    
+
     if(!objectp(this_object()))
         return ({  });
-    
+
     if(!arrayp(tmp = combat_arrays["attackers"]))
         tmp = ({  });
-    
+
     if(!sizeof(tmp))
         COMBAT_D->clean_attacker_flags(this_object());
 
     tmp = filter_array(tmp, (: objectp($1) :));
-    
+
     return tmp;
-    
+
     //if(!sizeof(query_combat_mapps("arrays", "attackers"))) COMBAT_D->clean_attacker_flags(TO);
     //return pointerp(combat_arrays["attackers"]) ? filter_array(combat_arrays["attackers"], (: objectp($1) :)) : ({  });
     //return pointerp(query_combat_mapps("arrays", "attackers")) ? filter_array(query_combat_mapps("arrays", "attackers"), (: objectp($1) :)) : ({  });
@@ -360,7 +360,7 @@ int query_temporary_blinded()
 {
     if(this_object()->true_seeing())
         return 0;
-    
+
     return query_combat_mapps("static_vars", "blinded");
 }
 int query_blindfolded() { return query_combat_mapps("vars", "blindfolded"); }
@@ -535,34 +535,56 @@ mixed query_combat_mapps(string type, string which)
 int is_vulnerable_to(object source)
 {
     object attacker;
-    
+
     if(!source)
         return 0;
-    
+
     if(environment(this_object()) != environment(source))
         return 0;
-    
+
     if(this_object()->query_property("quarry") == source && FEATS_D->is_active(this_object(), "wild hunter"))
         return 0;
-    
+
     if(this_object()->query_paralyzed() || this_object()->query_bound())
         return 1;
-    
+
     if(this_object()->query_blind() && !FEATS_D->usable_feat(this_object(), "blindfight") && !this_object()->true_seeing())
         return 1;
-    
+
     attacker = this_object()->query_current_attacker();
-    
+
     if(attacker && attacker != source)
         return 1;
-    
+
     if(attacker && attacker == source && FEATS_D->usable_feat(attacker, "shatter defenses")){
         if(this_object()->query_property("effect_frightened") || this_object()->query_property("effect_panicked") || this_object()->query_property("effect_shaken")) return 1;
     }
-    
+
     return 0;
-}    
-    
+}
+
+// return a DC with a base value modified by level and stat bonus
+int calculate_dc(int level, mixed stats, int mod) {
+    int base, dc_level = 0, stat_bonus = 0;
+    object me = this_object();
+
+    if(!intp(level) || !level || level == 0) dc_level = me->query_highest_level();
+    else dc_level = level;
+
+    if (arrayp(stats)) {
+        foreach(int stat in stats) {
+            int temp_stat_bonus = BONUS_D->query_stat_bonus(me, stat);
+            if(temp_stat_bonus > stat_bonus) stat_bonus = temp_stat_bonus;
+        }
+    }
+    else if (stringp(stats)) BONUS_D->query_stat_bonus(me, stats);
+
+    base = 20; //mirroring the base in feat.c
+    dc_level = min( ({ dc_level, 60 }) );
+    stat_bonus = min( ({ stat_bonus, 10 }) );
+
+    return base + dc_level + stat_bonus + mod;
+}
 
 mapping query_combat_vars() { return combat_vars; }
 mapping query_combat_messages() { return combat_messages; }

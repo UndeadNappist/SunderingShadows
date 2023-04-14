@@ -3723,7 +3723,7 @@ varargs int do_save(object targ, int mod, int get_dc)
     }
 
     DC = classlvl + 10;
-    DC += min( ({ BONUS_D->query_stat_bonus(targ, get_casting_stat()), 10 }) );
+    DC += min( ({ BONUS_D->query_stat_bonus(caster, get_casting_stat()), 10 }) );
     DC += ((query_spell_level(spell_type) + 1) / 2);
     DC += min( ({ caster->query_property("spell dcs"), 10 }) );
     type = get_save();
