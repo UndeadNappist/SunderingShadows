@@ -639,20 +639,20 @@ int base_attack()
     if(query_property("transformed") || query_property("dance-of-cuts"))
         return query_base_character_level();
     
-    tmp = query_classes();
+    tmp = this_object()->query_classes();
     
     if(!arrayp(tmp) || !sizeof(tmp))
         return 0;
     
     foreach(string cls in tmp)
     {
+        if(nullp(base_attacks[cls]))
+            continue;
+        
         full_level = to_float(query_base_character_level());
         class_level = to_float(query_prestige_level(cls));
         
         if(!full_level || !class_level)
-            continue;
-        
-        if(!base_attacks[cls])
             continue;
     
         if(full_level < 20.00)
