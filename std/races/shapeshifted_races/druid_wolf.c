@@ -94,7 +94,7 @@ int init_shape(object obj,string mysubrace)
 {
     string *subraces;
     int lvl;
-    
+
     if(!objectp(obj)) { return 0; } //
     if(obj->query_property("shapeshifted") || obj->query_property("altered")) { return 0; } // can't shapeshift twice
     obj->set_property("shapeshifted",shape = new(base_name(TO)+".c")); // makes a new shape and sets the shapeshifted property to it, this is where all the work is done, very important
@@ -159,7 +159,7 @@ int shape_attack(object tp, object targ)
 {
     object etp,*attackers;
     string *specials=({}),*active_specials=({});
-    int i,chance,dice;
+    int i,chance,dice,dc_result;
 
     etp = environment(tp);
 
@@ -212,6 +212,7 @@ int shape_attack(object tp, object targ)
     for(i=0;i<sizeof(active_specials);i++)
     {
         if(!objectp(tp) || !objectp(targ)) { return 0; }
+        dc_result = tp->calculate_dc(chance, FEATS_D->usable_feat(tp, "weapon finesse") ? "dexterity" : "strength");
 
         switch(active_specials[i])
         {
@@ -222,7 +223,7 @@ int shape_attack(object tp, object targ)
             tell_object(targ,"%^RESET%^%^BOLD%^%^GREEN%^"+tp->QCN+" leaps up and tears at your face, nearly ripping your eyes out!");
             tell_room(etp,"%^RESET%^%^BOLD%^%^GREEN%^"+tp->QCN+" leaps up and tears at "+targ->QCN+"'s face, nearly ripping out "+targ->QP+" eyes!",({tp,targ}));
 
-            if(!targ->reflex_save(chance)) { targ->set_temporary_blinded(dice/2); }
+            if(!targ->reflex_save(dc_result)) { targ->set_temporary_blinded(dice/2); }
             break;
 
 
@@ -243,7 +244,7 @@ int shape_attack(object tp, object targ)
             tell_object(targ,"%^RESET%^%^GREEN%^"+tp->QCN+" digs "+tp->QP+" teeth into your shoulder and drags you to the ground!");
             tell_room(etp,"%^RESET%^%^GREEN%^"+tp->QCN+" digs "+tp->QP+" teeth into "+targ->QCN+"'s shoulder and drags "+targ->QO+" to the ground!",({tp,targ}));
 
-            if(!targ->fort_save(chance)) { targ->set_tripped(roll_dice(1,dice),"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
+            if(!targ->fort_save(dc_result)) { targ->set_tripped(roll_dice(1,dice),"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
             break;
 
         case "high damage":

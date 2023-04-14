@@ -94,7 +94,7 @@ int init_shape(object obj,string mysubrace)
 {
     string *subraces;
     int lvl;
-    
+
     if(!objectp(obj)) { return 0; } //
     if(obj->query_property("shapeshifted") || obj->query_property("altered")) { return 0; } // can't shapeshift twice
     obj->set_property("shapeshifted",shape = new(base_name(TO)+".c")); // makes a new shape and sets the shapeshifted property to it, this is where all the work is done, very important
@@ -156,7 +156,7 @@ int bite_attack(object tp, object targ) // bear bite attack significantly more l
 {
     object etp,*attackers;
     string *specials=({}),*active_specials=({}),my_limb;
-    int i,chance,dice;
+    int i,chance,dice,dc_result;
 
     etp = environment(tp);
 
@@ -210,6 +210,7 @@ int bite_attack(object tp, object targ) // bear bite attack significantly more l
     {
         if(!objectp(tp) || !objectp(targ)) { return 0; }
 
+        dc_result = tp->calculate_dc(chance, FEATS_D->usable_feat(tp, "weapon finesse") ? "dexterity" : "strength");
         switch(active_specials[i])
         {
 
@@ -229,7 +230,7 @@ int bite_attack(object tp, object targ) // bear bite attack significantly more l
             tell_object(targ,"%^YELLOW%^"+tp->QCN+" bites into your "+my_limb+" and yanks you off of your feet!");
             tell_room(etp,"%^YELLOW%^"+tp->QCN+" bites into "+targ->QCN+"'s "+my_limb+" and yanks "+targ->QO+" off of "+targ->QP+" feet!",({tp,targ}));
 
-            if(!targ->reflex_save(chance+5)) { targ->set_tripped(roll_dice(1,dice/2),"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
+            if(!targ->reflex_save(dc_result)) { targ->set_tripped(roll_dice(1,dice/2),"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
             break;
 
         case "high damage":
@@ -260,7 +261,7 @@ int claw_attack(object tp, object targ)
 {
     object etp,*attackers;
     string *specials=({}),*active_specials=({}),my_limb;
-    int i,chance,dice;
+    int i,chance,dice,dc_result;
 
     etp = environment(tp);
 
@@ -308,6 +309,7 @@ int claw_attack(object tp, object targ)
     {
         if(!objectp(tp) || !objectp(targ)) { return 0; }
 
+        dc_result = tp->calculate_dc(chance, FEATS_D->usable_feat(tp, "weapon finesse") ? "dexterity" : "strength");
         switch(active_specials[i])
         {
 
@@ -317,7 +319,7 @@ int claw_attack(object tp, object targ)
             tell_object(targ,"%^BLUE%^"+tp->QCN+" knocks your feet out from under you with a swipe of "+tp->QP+" mighty paw!");
             tell_room(etp,"%^BLUE%^"+tp->QCN+" knocks "+targ->QCN+"'s feet out from under "+targ->QO+" with a swipe of "+tp->QP+" mighty paw!",({tp,targ}));
 
-            if(!targ->reflex_save(chance+5)) { targ->set_tripped(roll_dice(1,dice/2),"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
+            if(!targ->reflex_save(dc_result)) { targ->set_tripped(roll_dice(1,dice/2),"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
             break;
 
         case "high damage":
