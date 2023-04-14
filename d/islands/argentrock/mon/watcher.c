@@ -28,7 +28,8 @@ void create()
   add_search_path("/cmds/ranger");
   add_search_path("/cmds/fighter");
   set_hd(60,10);
-  set_hp(random(2000)+2000);
+  set_max_hp(random(2000)+2000);    
+  set_hp(this_object()->query_max_hp());
   set_overall_ac(-15);
   set_alignment(9);
   set_stats("intelligence",15);
