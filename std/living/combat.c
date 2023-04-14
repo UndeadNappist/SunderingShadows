@@ -108,6 +108,26 @@ protected void internal_execute_attack();  // this is the renamed execute_attack
 mixed return_player_target(int flag); //should return a player target if flag is > roll_dice(1,100) - Saide
 object *query_active_protectors(object obj); // different way to do protection
 
+mapping base_attacks = ([
+                        "fighter"    : 1.00,
+                        "paladin"    : 1.00,
+                        "ranger"     : 1.00,
+                        "barbarian"  : 1.00,
+                        "psywarrior" : 0.75,
+                        "thief"      : 0.75,
+                        "druid"      : 0.75,
+                        "cleric"     : 0.75,
+                        "inquisitor" : 0.75,
+                        "monk"       : 0.75,
+                        "magus"      : 0.75,
+                        "warlock"    : 0.75,
+                        "bard"       : 0.75,
+                        "oracle"     : 0.75,
+                        "psion"      : 0.50,
+                        "mage"       : 0.50,
+                        "sorcerer"   : 0.50,
+                       ]);
+
 //  This function is used to initialize various variables
 void init_attack()
 {
@@ -597,3 +617,73 @@ void set_combat_messages(mapping val) { if(!mapp(val)) { return; } else return c
 void set_combat_counters(mapping val) { if(!mapp(val)) { return; } else return combat_counters = val; }
 void set_combat_static_vars(mapping val) { if(!mapp(val)) { return; } else return combat_static_vars = val; }
 void set_combat_arrays(mapping val) { if(!mapp(val)) { return; } else return combat_arrays = val; }
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// This section is migrated from bonus_d.c for purposes of optimization.
+//
+// -- Tlaloc --
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+int base_attack()
+{
+    int bonus, ret;
+    float penalty, full_level, class_level, diff;
+    string *tmp;
+    
+    if(!objectp(this_object()))
+        return 0;
+    
+    if(query_property("transformed") || query_property("dance-of-cuts"))
+        return query_base_character_level();
+    
+    tmp = query_classes();
+    
+    if(!arrayp(tmp) || !sizeof(tmp))
+        return 0;
+    
+    foreach(string cls in tmp)
+    {
+        full_level = to_float(query_base_character_level());
+        class_level = to_float(query_prestige_level(cls));
+        
+        if(!full_level || !class_level)
+            continue;
+        
+        if(!base_attacks[cls])
+            continue;
+    
+        if(full_level < 20.00)
+        {
+            bonus = to_int(class_level * base_attacks[cls]);
+        }
+        else
+        {
+            diff = (1.00 - base_attacks[cls]) / 0.05;
+            
+            penalty = diff * (class_level / full_level);
+            bonus = to_int(class_level - penalty);
+        }
+        
+        ret += bonus < 0 ? 0 : bonus;
+        
+        if(!userp(this_object()))
+            return ret;
+    }
+    
+    return ret;
+}
+
+int number_of_attacks()
+{
+    int num;
+    
+    if(!objectp(this_object()))
+        return 0;
+    
+    num = base_attack() / 7;
+    
+    return num;
+}
