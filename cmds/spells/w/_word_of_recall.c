@@ -43,6 +43,7 @@ void spell_effect(int prof)
                   "looks startled.", caster);
         damage_targ(caster, caster->return_target_limb(), sdamage / 4, "mental");
         dest_effect();
+        return;
     }
     call_out("spell_effect_next", ROUND_LENGTH);
 }
@@ -54,19 +55,21 @@ void spell_effect_next()
         return;
     }
 
-    if (!objectp(ENV(caster))) {
+    if (!objectp(environment(caster))) {
         dest_effect();
         return;
     }
 
-    if (ENV(caster) != place) {
+    if (environment(caster) != place) {
         dest_effect();
         return;
     }
 
-    if (!TELEPORT->object_can_be_teleported(caster, caster, endplace, clevel)) {
+    if (!TELEPORT->object_can_be_teleported(caster, endplace, clevel)) {
         tell_object(caster, "You sense something is wrong with your spell and loose concentration.");
         tell_room(place, caster->QCN + " looks startled.", caster);
+        dest_effect();
+        return;
     }
     else
     {
