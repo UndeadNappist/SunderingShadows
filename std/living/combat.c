@@ -577,7 +577,7 @@ int calculate_dc(int level, mixed stats, int mod) {
             if(temp_stat_bonus > stat_bonus) stat_bonus = temp_stat_bonus;
         }
     }
-    else if (stringp(stats)) BONUS_D->query_stat_bonus(me, stats);
+    else if (stringp(stats)) stat_bonus = BONUS_D->query_stat_bonus(me, stats);
 
     base = 20; //mirroring the base in feat.c
     dc_level = min( ({ dc_level, 60 }) );
