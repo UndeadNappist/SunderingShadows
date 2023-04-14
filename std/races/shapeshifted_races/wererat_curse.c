@@ -102,7 +102,7 @@ int shape_attack(object tp, object targ)
 {
     object etp,*attackers;
     string *specials=({}),*active_specials=({});
-    int i,chance,dice,;
+    int i,chance,dice;
 
     etp = environment(tp);
 
