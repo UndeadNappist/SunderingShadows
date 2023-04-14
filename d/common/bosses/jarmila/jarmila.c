@@ -55,7 +55,8 @@ void create()
     set_true_seeing(1);
 
     set_hd(75, 10);
-    set_hp(125000);
+    set_max_hp(125000);
+    set_hp(this_object()->query_max_hp());
     set_new_exp(75, "boss");
     set_overall_ac(-75);
 
