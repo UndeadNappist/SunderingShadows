@@ -54,6 +54,10 @@ int clean_mons(){
     for(i = 0; i < sizeof(mons); i++){
         if(!objectp(mons[i])) continue;
         temp += ({ mons[i] });
+        if((poolsize + (int)mons[i]->query_property("raised")) > MAX_RAISE){
+            mons[i]->remove();
+            continue;
+        }
         poolsize += (int)mons[i]->query_property("raised");
     }
     if(!sizeof(temp)){
