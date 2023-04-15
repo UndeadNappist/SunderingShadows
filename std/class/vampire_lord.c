@@ -203,10 +203,10 @@ int caster_level_calcs(object player, string the_class)
 
     //level = player->query_class_level(base);
     level = player->query_class_level(the_class);
-    
+
     if(base == the_class)
         level += player->query_class_level("vampire_lord");
-    
+
     return level;
 }
 
@@ -243,7 +243,7 @@ void advanced_func(object player)
 
 int hit_dice(object ob)
 {
-    return base_class_ob(ob)->hit_dice();
+    return base_class_ob(ob)->hit_dice(ob);
 }                                                                  // hit dice rolled for hitpoints each level
 
 int default_hitpoints(object ob)

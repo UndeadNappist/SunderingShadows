@@ -145,12 +145,12 @@ int prerequisites(object player)
     if (!player->is_class(base)) {
         return 0;
     }
-       
+
     if ((player->query_base_character_level()) < 20) {
         write("fail level");
         return 0;
     }
-    
+
     if ((player->query_stats("intelligence")) < 14) {
         write("fail intelligence");
         return 0;
@@ -186,10 +186,10 @@ int caster_level_calcs(object player, string the_class)
 
     //level = player->query_class_level(base);
     level = player->query_class_level(the_class);
-    
+
     if(base == the_class)
         level += player->query_class_level("duelist");
-    
+
     return level;
 }
 
@@ -208,7 +208,7 @@ string new_save_type(object ob) { return base_class_ob(ob)->new_save_type(); }
 // unsure on this one, will have to investigate
 void advanced_func(object player) { return base_class_ob(player)->advance_func(player); }
 
-int hit_dice(object ob) { return base_class_ob(ob)->hit_dice(); }  // hit dice rolled for hitpoints each level
+int hit_dice(object ob) { return base_class_ob(ob)->hit_dice(ob); }  // hit dice rolled for hitpoints each level
 
 int default_hitpoints(object ob) { return base_class_ob(ob)->default_hitpoints(); } // hitpoints per level above level 20
 

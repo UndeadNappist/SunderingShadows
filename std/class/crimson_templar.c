@@ -141,7 +141,7 @@ int prerequisites(object player)
         return 0;
     }
     skills = player->query_skills();
-    
+
     //if(player->query("subrace") == "tiefling")
     //    return 0;
 
@@ -153,19 +153,19 @@ int prerequisites(object player)
     {
         return 0;
     }
-       
+
     if ((player->query_class_level(base)) < 20)
     {
         write("fail level");
         return 0;
     }
-    
+
     if(player->query_true_align() != 1)
     {
         write("fail alignment");
         return 0;
     }
-    
+
     if(player->query_diety() != "kreysneothosies" && player->query_diety() != "jarmila" && player->query_diety() != "edea")
     {
         write("fail deity");
@@ -203,10 +203,10 @@ int caster_level_calcs(object player, string the_class)
 
     //level = player->query_class_level(base);
     level = player->query_class_level(the_class);
-    
+
     if(base == the_class)
         level += player->query_class_level("crimson_templar");
-    
+
     return level;
 }
 
@@ -225,7 +225,7 @@ string new_save_type(object ob) { return base_class_ob(ob)->new_save_type(); }
 // unsure on this one, will have to investigate
 void advanced_func(object player) { return base_class_ob(player)->advance_func(player); }
 
-int hit_dice(object ob) { return base_class_ob(ob)->hit_dice(); }  // hit dice rolled for hitpoints each level
+int hit_dice(object ob) { return base_class_ob(ob)->hit_dice(ob); }  // hit dice rolled for hitpoints each level
 
 int default_hitpoints(object ob) { return base_class_ob(ob)->default_hitpoints(); } // hitpoints per level above level 20
 

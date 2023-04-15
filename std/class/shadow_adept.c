@@ -115,7 +115,7 @@ int caster_level_calcs(object player, string the_class)
 
     //level = player->query_class_level(base);
     level = player->query_class_level(the_class);
-    
+
     if(base == the_class)
         level += player->query_class_level("shadow_adept");
     return level;
@@ -139,7 +139,7 @@ string new_save_type(object ob) { return base_class_ob(ob)->new_save_type(); }
 // unsure on this one, will have to investigate
 void advanced_func(object player) { return base_class_ob(player)->advance_func(player); }
 
-int hit_dice(object ob) { return base_class_ob(ob)->hit_dice(); }  // hit dice rolled for hitpoints each level
+int hit_dice(object ob) { return base_class_ob(ob)->hit_dice(ob); }  // hit dice rolled for hitpoints each level
 
 int default_hitpoints(object ob) { return base_class_ob(ob)->default_hitpoints(); } // hitpoints per level above level 20
 
@@ -168,9 +168,9 @@ mapping query_class_spells(object ob) { return base_class_ob(ob)->query_class_sp
 mapping query_innate_spells(object player)
 {
     mapping innate_spells;
-    
-    innate_spells = ([ 
-                      
+
+    innate_spells = ([
+
         "umbral sight"              : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
         "shield of shadows"         : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
         "shadow vortex"             : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
@@ -179,8 +179,8 @@ mapping query_innate_spells(object player)
         "shadow blast"              : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
         "shadow double"             : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
         "nightmare maw"             : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
-        "shadow nova"               : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),                    
+        "shadow nova"               : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
     ]);
-    
+
     return innate_spells;
 }
