@@ -147,7 +147,7 @@ void advanced_func(object player)
 
 int hit_dice(object ob)
 {
-    if(ob->query_class_level("monk") > 30)
+    if(objectp(ob) && ob->query_class_level("monk") > 30)
         return 10;
     
     //if(FEATS_D->has_feat(ob, "unchained"))
