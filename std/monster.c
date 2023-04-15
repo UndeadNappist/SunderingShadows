@@ -450,17 +450,19 @@ void heart_beat()
     
     already_listened = 0;
     init_pause = 0;
-    ticker++;
+    ++ticker;
     
     //Come back and check on this timing
-     do_healing(calculate_healing());
+    do_healing(calculate_healing());
     
-    if(this_object()->query_current_attacker())
+    if(sizeof(query_attackers()))
     {
         error = catch(iterate_combat());
         ok_to_attack() && continue_attack();
         error = catch(do_kit_stuff());
     }
+    else if (query("protecting"))
+        delete("protecting");
     
     //We check again in case the combat stuff above killed the monster (ie: counterattacks)
     if(!objectp(this_object()) || !objectp(room))
@@ -472,11 +474,9 @@ void heart_beat()
             move_around();
     }
     else
-        moving++;
+        ++moving;
     
     steal && !random(50) && steal_fun();
-    if(sizeof(query_attackers()) && query("protecting"))
-        delete("protecting");
 }
 
 //Take this out after testing
