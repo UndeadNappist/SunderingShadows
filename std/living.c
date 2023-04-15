@@ -436,10 +436,8 @@ void heart_beat()
     if (!(living_ticker % 3))
     {
         //Central way to remove instant feat locks when out of combat
-        if(!query_current_attacker())
-        {
+        if(!sizeof(query_attackers()))
             remove_property("using instant feat");
-        }
         
         if (FEATS_D->usable_feat(me, "regeneration"))
         {
@@ -520,32 +518,15 @@ void heart_beat()
                 break;
             }
         }
-        
-        //Screen Reader Support. Tells screen reader users in the room, briefly, what we are attacking.
-        //attacker = query_current_attacker();
-        
-        /*
-        if(attacker && userp(me))
-        {
-            object *readers;
-            
-            readers = filter_array(all_inventory(environment(me)), (: $1->query("reader") :));
-            
-            foreach(object person in readers)
-                tell_object(person, query_cap_name() + " is fighting " + attacker->query_cap_name() + ".");
-        }
-        */
 
-        if(is_undead())
+        if (query_property("rend"))
         {
-            remove_property("rend");
-        }
-        
-        if(PLAYER_D->immunity_check(me, "rend"))
-        remove_property("rend");
+            if (is_undead())
+                remove_property("rend");
 
-        if(query_property("rend"))
-        {
+            if(PLAYER_D->immunity_check(me, "rend"))
+                remove_property("rend");
+
             tell_room(environment(me), "%^RED%^BOLD%^" + query_cap_name() + "'s wounds bleed profusely!%^RESET%^", ({ me }));
             tell_object(me, "%^RED%^BOLD%^Your wounds bleed profusely!%^RESET%^");
             cause_typed_damage(me, "torso", roll_dice(query_property("rend"), query_level() / 5 + 1), "untyped");
