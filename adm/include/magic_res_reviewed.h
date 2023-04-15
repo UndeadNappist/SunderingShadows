@@ -16,6 +16,7 @@
     "/d/retired/obj/elfshadow", \
     "/d/shadowgate/conversion/spellbert", \
     "/d/tharis/newtharis/mobs/bankgolem", \
+    "/realms/chernobog/events/eilistraee/slaad/blue", \
 })
 
 // Items
