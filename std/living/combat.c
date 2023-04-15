@@ -108,25 +108,25 @@ protected void internal_execute_attack();  // this is the renamed execute_attack
 mixed return_player_target(int flag); //should return a player target if flag is > roll_dice(1,100) - Saide
 object *query_active_protectors(object obj); // different way to do protection
 
-mapping base_attacks = ([
-                        "fighter"    : 1.00,
-                        "paladin"    : 1.00,
-                        "ranger"     : 1.00,
-                        "barbarian"  : 1.00,
-                        "psywarrior" : 0.75,
-                        "thief"      : 0.75,
-                        "druid"      : 0.75,
-                        "cleric"     : 0.75,
-                        "inquisitor" : 0.75,
-                        "monk"       : 0.75,
-                        "magus"      : 0.75,
-                        "warlock"    : 0.75,
-                        "bard"       : 0.75,
-                        "oracle"     : 0.75,
-                        "psion"      : 0.50,
-                        "mage"       : 0.50,
-                        "sorcerer"   : 0.50,
-                       ]);
+nosave mapping base_attacks = ([
+                                "fighter"    : 1.00,
+                                "paladin"    : 1.00,
+                                "ranger"     : 1.00,
+                                "barbarian"  : 1.00,
+                                "psywarrior" : 0.75,
+                                "thief"      : 0.75,
+                                "druid"      : 0.75,
+                                "cleric"     : 0.75,
+                                "inquisitor" : 0.75,
+                                "monk"       : 0.75,
+                                "magus"      : 0.75,
+                                "warlock"    : 0.75,
+                                "bard"       : 0.75,
+                                "oracle"     : 0.75,
+                                "psion"      : 0.50,
+                                "mage"       : 0.50,
+                                "sorcerer"   : 0.50,
+                            ]);
 
 //  This function is used to initialize various variables
 void init_attack()
@@ -645,14 +645,14 @@ int base_attack()
         return 0;
     
     foreach(string cls in tmp)
-    {
-        if(nullp(base_attacks[cls]))
-            continue;
-        
+    {   
         full_level = to_float(query_base_character_level());
         class_level = to_float(query_prestige_level(cls));
         
         if(!full_level || !class_level)
+            continue;
+        
+        if(!base_attacks[cls])
             continue;
     
         if(full_level < 20.00)
