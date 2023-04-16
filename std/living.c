@@ -521,9 +521,6 @@ void heart_beat()
 
         if (query_property("rend"))
         {
-            if(PLAYER_D->immunity_check(me, "rend"))
-                remove_property("rend");
-
             tell_room(environment(me), "%^RED%^BOLD%^" + query_cap_name() + "'s wounds bleed profusely!%^RESET%^", ({ me }));
             tell_object(me, "%^RED%^BOLD%^Your wounds bleed profusely!%^RESET%^");
             cause_typed_damage(me, "torso", roll_dice(query_property("rend"), query_level() / 5 + 1), "untyped");
