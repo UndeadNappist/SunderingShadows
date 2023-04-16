@@ -82,34 +82,38 @@ void init()
 void create_oozeling()
 {
     int x, mod;
-    object* to_remove = ({}), ooze;
-    if (!objectp(TO) || !objectp(ETO)) {
+    object* to_remove = ({}), ooze, room;
+
+    if (!objectp(this_object()) || !objectp(room = environment(this_object())) || !clonep(this_object()))
         return;
-    }
-    if (!pointerp(oozelings)) {
+
+    if (!pointerp(oozelings))
         oozelings = ({});
-    }
-    for (x = 0; x < sizeof(oozelings); x++) {
-        if (!objectp(oozelings[x])) {
+
+    for (x = 0; x < sizeof(oozelings); ++x)
+    {
+        if (!objectp(oozelings[x]))
+        {
             to_remove += ({ oozelings[x] });
             continue;
         }
         continue;
     }
-    if (sizeof(to_remove)) {
+
+    if (sizeof(to_remove))
         oozelings -= to_remove;
-    }
-    if (!intp(mod = TO->query("damage mod")) || mod < 1) {
+
+    if (!intp(mod = TO->query("damage mod")) || mod < 1)
         mod = 1;
-    }
-    if (sizeof(oozelings) > (3 * mod)) {
+
+    if (sizeof(oozelings) > (3 * mod))
         return;
-    }
-    tell_room(ETO, "%^BOLD%^%^GREEN%^You watch in horror as some of the ooze plops from the %^RESET%^" +
-              TO->query_short() + "%^BOLD%^%^GREEN%^....... \n\n" +
+
+    tell_room(room, "%^BOLD%^%^GREEN%^You watch in horror as some of the ooze plops from the %^RESET%^" +
+              this_object()->query_short() + "%^BOLD%^%^GREEN%^....... \n\n" +
               "and begins moving!%^RESET%^");
     ooze = new(MMPATH "oozeling");
-    ooze->move(ETO);
+    ooze->move(room);
     oozelings += ({ ooze });
     return;
 }
@@ -117,16 +121,19 @@ void create_oozeling()
 void heart_beat()
 {
     ::heart_beat();
-    if (!objectp(TO) || !objectp(ETO)) {
+
+    if (!objectp(this_object()) || !objectp(environment(this_object())))
         return;
-    }
-    if (!pointerp(oozelings)) {
+
+    if (!pointerp(oozelings))
         oozelings = ({});
-    }
-    DYN_UP_D->dynamic_update(TO);
-    if (random(10)) {
+
+    DYN_UP_D->dynamic_update(this_object());
+
+    if (random(10))
         return;
-    }
+
     create_oozeling();
+
     return;
 }
