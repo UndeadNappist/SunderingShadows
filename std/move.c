@@ -5,6 +5,7 @@
 
 #include <move.h>
 #include <std.h>
+#include <rooms.h>
 
 #define SMALL 7
 #define MEDIUM 12
@@ -167,92 +168,58 @@ void strip_temp_values()
     }
 }
 
-int clean_up(){
-    object ob, env;
-    object *inv;
-    int i;
-
-    if (no_clean)
+int clean_up()
+{
+    object env, ob, trash, *inv;
+    
+    if(no_clean)
         return 0;
-
-    ob = this_object();
-    env = environment(ob);
-
-    if (objectp(ob))
+    
+    if(!objectp(ob = this_object()))
+        return 0;
+    
+    if(userp(ob))
+        return 0;
+    
+    if(objectp(env = environment(ob)))
     {
-        if ( ob->is_player() )
-            return 0;
-
-
-
-        if (objectp(env))
+        if(env->query_no_clean())
+            return 1;
+        if(env->query_property("storage room"))
+            return 1;
+        if(env->is_bag())
+            return 1;
+        if(living(env) || userp(env))
+            return 1;
+    }
+    else
+    {
+        inv = all_inventory(ob);
+        trash = load_object("/d/shadowgate/trash");
+        
+        foreach(object thing in inv)
         {
-
-            if (env->query_property("storage room"))
-                return 1;
-
-            if (env->query_no_clean())
-                return 1;
-
-            if (env->is_bag())
-                return 1;
-
-            if (living(env) || userp(env))
-                return 1;
+            if(userp(thing))
+            {
+                thing->move(ROOM_VOID);
+                continue;
+            }
+        }
+        
+        if(objectp(trash))
+        {
+            ob->move(trash);
+            destruct(trash);
         }
         else
-        /* No environment! Get rid of it and everything in it! */
         {
-            if (i = sizeof(inv=all_inventory(TO)))
-               while (i--) {
-                 if (interactive(inv[i]))
-                   return 1;
-               }
-            if (i = sizeof(inv=all_inventory(TO)))
-                while (i--) {
-                    inv[i]->move(VOID);
-                    if(inv[i])
-                        inv[i]->remove();
-                    if (inv[i])
-                        destruct(inv[i]);
-                }
-
-            if (ob)
-                ob->remove();
-            if (ob)
-	            destruct(ob);
-            return 1;
+            ob->move(ROOM_VOID);
         }
-
-
-
-
-        i = sizeof(inv = deep_inventory(ob));
-        if (i >= 0)
-            while (i--)
-                if (interactive(inv[i]))
-                    return 1;
-
-        if (i = sizeof(inv=deep_inventory(TO)))
-            while (i--) {
-                inv[i]->move(VOID);
-                inv[i]->remove();
-                if (inv[i])
-	                destruct(inv[i]);
-            }
-
-        ob->move(VOID);
-        if (ob)
-            ob->remove();
-        if (ob)
-            destruct(ob);
-        return 1;
-    } // objectp(ob)
-    else {
-        return 1; // If it's not a valid object, just return.
+        
+        return 0;
     }
-    //  return 2;
-    // Got no clue on this.
+    
+    return 1;
 }
 
 void set_last_location(object ob)

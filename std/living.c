@@ -338,50 +338,24 @@ void heart_beat()
     object me = this_object(), attacker;
 
     if (!objectp(me))
-    {
         return;
-    }
 
     POISON_D->ProcessPoisons(me);
 
-    // No longer used
-    // new stab resets available chances once per round.
-    if (objectp(me) && sizeof(query_attackers()))
-    {
-        if (query_property("stabs_available"))
-        {
-            remove_property("stabs_available");
-        }
-        if (FEATS_D->usable_feat(this_object(), "combat reflexes"))
-        {
-            /*            i = (max(({query_guild_level("thief"),
-                                            query_class_level("thief") + query_class_level("arcane_trickster")
-                                            }))+9)/10; */
-                                            // there's a lib query for this now to get ANY thief PrC inherits, let's use that for efficiency! N, 1/3/20
-            i = (query_prestige_level("thief") + 9) / 10;
-            set_property("stabs_available", i);
-        }
-    }
     if (is_class("monk"))
-    {
         USER_D->regenerate_pool(me, (1 + random(2)), 1, "ki");
-    }
+
     if (is_class("magus"))
-    {
         USER_D->regenerate_pool(me, (1 + random(2)), 1, "arcana");
-    }
+
     if (is_class("paladin") || is_class("cleric"))
-    {
         USER_D->regenerate_pool(me, 1, 1, "grace");
-    }
+
     if (is_class("psion") || is_class("psywarrior"))
-    {
         USER_D->regenerate_pool(me, 1, 1, "focus");
-    }
+
     if (is_class("warlock"))
-    {
         USER_D->regenerate_pool(me, 1, 1, "burn");
-    } 
 
     //enhancement effects
     "/cmds/mortal/_enhance.c"->run_enhances_timer(me, "weapon");
@@ -393,9 +367,7 @@ void heart_beat()
         {
             used_stamina -= 10;
             if (used_stamina < 0)
-            {
                 used_stamina = 0;
-            }
             return;
         }
         if (!query_property("inactive"))
@@ -404,33 +376,25 @@ void heart_beat()
             if (sizeof(query_attackers()) < 1)
             {
                 if (myskill < 0)
-                {
                     myskill = 1;
-                }
+
                 used_stamina -= ((myskill / 4) + 2);
+
                 if (used_stamina < 0)
-                {
                     used_stamina = 0;
-                }
             }
             else
             {
                 used_stamina -= ((myskill / 4) + 2);
                 if (used_stamina < 0)
-                {
                     used_stamina = 0;
-                }
             }
         }
         if (query_condition() < 0)
-        {
             set_condition(query_max_stamina());
-        }
 
         if (userp(me))
-        {
             gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
-        }
     }
 
     if (!(living_ticker % 3))
@@ -444,7 +408,9 @@ void heart_beat()
             if (query_hp() < query_max_hp())
             {
                 regen_amt = roll_dice(1, query_level()) / 2 + 1;
-                if(query_property("fester")) regen_amt = regen_amt / 2;
+                if(query_property("fester"))
+                    regen_amt = regen_amt / 2;
+
                 add_hp(regen_amt);
             }
         }
@@ -453,42 +419,23 @@ void heart_beat()
             if (query_hp() < query_max_hp())
             {
                 regen_amt = query_property("fast healing") * roll_dice(1, query_level() / 2 + 1);
-                if(query_property("fester")) regen_amt = regen_amt / 2;
+
+                if(query_property("fester"))
+                    regen_amt = regen_amt / 2;
+
                 add_hp(regen_amt);
             }
         }
 
         if(is_class("metamind"))
-        {
             if(query("available focus"))
-            {
                 add_mp(1);
-            }
-        }
 
         if(FEATS_D->usable_feat(me, "psychic vampire") && !avatarp(me) && !wizardp(me) && !query("no pk"))
         {
             object targs = all_inventory(environment(me));
             targs = filter_array(targs, (: userp($1) :));
             targs -= ({ me });
-
-            /*
-            foreach(object ob in targs)
-            {
-                if(ob->query("no pk"))
-                    continue;
-
-                if(ob->query_mp() && !ob->query("no pk") && !wizardp(ob) && !avatarp(ob))
-                {
-                    
-                    if(!random(5))
-                        tell_object(ob, "%^MAGENTA%^You feel something pull on your mind.");
-                    ob->add_mp(-1);
-                    
-                }
-            }
-            */
-
             add_mp(sizeof(targs));
         }
         
@@ -533,31 +480,37 @@ void heart_beat()
             }
         }
 
-        if (is_vampire()) {
-            if (is_in_sunlight()) {
+        if (is_vampire())
+        {
+            if (is_in_sunlight())
+            {
                 int todamage = query_max_hp() / 4 + 1;
-                if (!query_property("sunlight_umbrella")) {
-                    if (query_hp() < -(query_max_hp() * 4 / 5)) {
+                if (!query_property("sunlight_umbrella"))
+                {
+                    if (query_hp() < -(query_max_hp() * 4 / 5))
+                    {
                         add_death("Sunlight");
                         die();
-                    }else {
+                    }
+                    else
+                    {
                         cause_typed_damage(me, "torso", todamage, "divine");
                         tell_object(me, "%^ORANGE%^The sun burns your putrid flesh!");
                     }
                 }
             }
-            if (!random(10)) {
-                if (is_vampire()) {
-                    if (query_bloodlust() < (5000)) {
-                        write("%^RED%^Bloodlust drives you insane.");
-                        tell_room(environment(me), "%^RED%^" + query_cap_name() + "'s eyes glow dark red.", me);
-                    }
+            if (!random(10))
+            {
+                if (query_bloodlust() < (5000))
+                {
+                    write("%^RED%^Bloodlust drives you insane.");
+                    tell_room(environment(me), "%^RED%^" + query_cap_name() + "'s eyes glow dark red.", me);
                 }
             }
         }
     }
 
-    living_ticker++;
+    ++living_ticker;
 }
 
 void init_path()
