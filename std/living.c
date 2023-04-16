@@ -521,9 +521,6 @@ void heart_beat()
 
         if (query_property("rend"))
         {
-            if (is_undead())
-                remove_property("rend");
-
             if(PLAYER_D->immunity_check(me, "rend"))
                 remove_property("rend");
 

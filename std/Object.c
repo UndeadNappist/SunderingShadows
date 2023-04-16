@@ -851,7 +851,8 @@ mixed query_property(string prop)
         if(PLAYER_D->immunity_check(me, "rend"))
             return 0;
 
-        props["rend"] = min( ({ props["rend"], me->query_character_level() / 5 + 1 }) );
+        if (me->query_character_level() / 5 + 1 < props["rend"])
+            props["rend"] = me->query_character_level() / 5 + 1;
 
         return props[prop];
     case "spell damage resistance":
