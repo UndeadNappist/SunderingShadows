@@ -833,7 +833,7 @@ void __internal_add_exp(int x)
     if (get_dual_class()) {
         ::add_general_exp(get_dual_class(), exp);
     } else {
-        cls = query_classes();
+        cls = this_object()->query_classes();
         s = sizeof(cls);
         exp = x / sizeof(cls);
 
