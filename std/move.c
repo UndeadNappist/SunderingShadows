@@ -194,17 +194,12 @@ int clean_up()
     }
     else
     {
-        inv = all_inventory(ob);
-        trash = load_object("/d/shadowgate/trash");
+        inv = deep_inventory(ob);
         
-        foreach(object thing in inv)
-        {
-            if(userp(thing))
-            {
-                thing->move(ROOM_VOID);
-                continue;
-            }
-        }
+        if(sizeof(filter_array(inv, (: userp($1) :))))
+            return 1;
+        
+        trash = load_object("/d/shadowgate/trash");
         
         if(objectp(trash))
         {
@@ -213,7 +208,10 @@ int clean_up()
         }
         else
         {
+            catch(inv->remove());
             ob->move(ROOM_VOID);
+            ob && ob->remove();
+            ob && destruct(ob);
         }
         
         return 0;
