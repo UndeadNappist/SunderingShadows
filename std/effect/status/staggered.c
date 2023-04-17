@@ -20,7 +20,7 @@ int status_effect()
         TO->remove();
         return;
     }
-    
+
     if(PLAYER_D->immmunity_check(target, "staggered"))
     {
         tell_object(target, "%^YELLOW%^You are immune to being staggered.%^RESET%^");
@@ -50,7 +50,7 @@ int dest_effect(object ob)
     if (objectp(ob)) {
         ob->set_property("effect_staggered", -1);
 
-        if (ob->query_property("effect_staggered")) {
+        if (!ob->query_property("effect_staggered")) {
             tell_object(ob, "%^RED%^You no longer feel staggered.%^RESET%^");
         }
 
