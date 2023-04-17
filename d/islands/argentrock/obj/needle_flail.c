@@ -66,7 +66,7 @@ string ids;
      	tell_object(targ,"%^ORANGE%^"+ETO->QCN+" wraps the copper "+
 		"chains of "+ETO->QP+" flail around your legs and pulls"+
 		" you off balance!");
-	tell_object(ETO,"%^ORANGE%^You the copper chains of your flail"+
+	tell_object(ETO,"%^ORANGE%^You wrap the copper chains of your flail"+
 		" around "+targ->QCN+"'s legs and pull "+targ->QO+" "+
 		"off balance!");
      	tell_room(environment(ETO),"%^ORANGE%^"+ETO->QCN+""+
