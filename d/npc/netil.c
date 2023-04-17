@@ -26,9 +26,9 @@ void create(){
    );
    set_race("human");
    set_gender("female");
+   set_hd(1,1);
    set_max_hp(50);
    set_hp(50);
-   set_hd(1,1);
    set_exp(1);
    set_stats("intelligence",25);
    set_body_type("human");
