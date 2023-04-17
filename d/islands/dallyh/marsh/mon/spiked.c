@@ -124,6 +124,9 @@ void heart_beat()
 
     if (!objectp(this_object()) || !objectp(environment(this_object())))
         return;
+    
+    if(!this_object()->query_current_attacker())
+        return;
 
     if (!pointerp(oozelings))
         oozelings = ({});

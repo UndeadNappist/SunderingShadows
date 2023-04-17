@@ -31,6 +31,10 @@ KAYLA
 
 void init() {
   ::init();
+  
+  if(!userp(this_player()))
+      return;
+  
   do_random_encounters(({"/d/deku/monster/goblin"}),90,6);
 }
 
