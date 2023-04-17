@@ -120,6 +120,9 @@ switch(i)
     set_property("no dominate",1);
     set_property("no death",1);
     set_property("full attacks",1);
+    
+    if(!clonep())
+        return;
 
     ob = new("/d/common/obj/armour/field");
        ob->move(the_monster);

@@ -82,6 +82,9 @@ void create(){
    set_property("no dominate",1);
    set_property("no death",1);   
    
+   if(!clonep())
+       return;
+   
    ob = new("/d/common/obj/armour/fullplate");
    ob->move(TO);
    ob->set_property("enchantment",5);

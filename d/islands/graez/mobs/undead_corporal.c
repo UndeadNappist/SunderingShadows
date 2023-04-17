@@ -81,6 +81,8 @@ switch(i)
     set_property("full attacks",1);
     set_func_chance(80);
 
+    if(!clonep())
+        return;
 
     ob = new("/d/common/obj/armour/bronze");
        ob->move(TO);

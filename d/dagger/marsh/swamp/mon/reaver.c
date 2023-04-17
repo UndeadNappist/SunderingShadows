@@ -48,19 +48,7 @@ void create()
 
     set_alignment(9);
     
-    if(!clonep())
-        return;
-    
-    ob = new(OPATH "greater_scythe");
-    if (random(3)) {
-        ob->set_property("monsterweapon", 1);
-    }
-    ob->move(TO);
-    call_out("wieldem", 1);
     set_property("full attacks", 1);
-    new(OPATH "robe")->move(TO);
-    command("wear robe");
-    ob->move(TO);
 
     add_money("gold", random(2000) + 400);
     set_emotes(3, ({ "%^RED%^Visions of bloodlust fill your mind!%^RESET%^",
@@ -110,6 +98,19 @@ void create()
         "sunderit"
     }));
     set_func_chance(50);
+    
+    if(!clonep())
+        return;
+    
+    ob = new(OPATH "greater_scythe");
+    if (random(3)) {
+        ob->set_property("monsterweapon", 1);
+    }
+    ob->move(TO);
+    call_out("wieldem", 1);
+    new(OPATH "robe")->move(TO);
+    command("wear robe");
+    ob->move(TO);
 }
 
 void wieldem()

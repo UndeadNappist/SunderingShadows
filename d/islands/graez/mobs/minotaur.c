@@ -63,6 +63,9 @@ void create() {
     "Minotaur%^C244%^ of Graez to Rest%^CRST%^");
   set_property("quest exp", 1000000);
   set_new_exp(25, "boss");
+  
+  if(!clonep())
+      return;
 
   new(OBJ"minoaxe.c")->move(TO);
   command("wield axe");

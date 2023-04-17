@@ -92,6 +92,9 @@ void create() {
     "overwhelming presence", 
   }));
   set_spell_chance(50);
+  
+  if(!clonep())
+      return;
 
   new(OBJ"aspbow.c")->move(nasty);
   command("wield bow");

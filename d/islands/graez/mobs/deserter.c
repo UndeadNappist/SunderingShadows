@@ -77,7 +77,9 @@ void create(){
     set_property("full attacks",1);
     set_func_chance(80);
 
-
+    if(!clonep())
+        return;
+    
     ob = new("/d/common/obj/armour/cloak_hooded");
        ob->move(this_object());
        ob->set_property("monsterweapon",1);
