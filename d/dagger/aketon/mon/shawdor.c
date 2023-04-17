@@ -65,7 +65,7 @@ void create() {
    add_money( "gold",1000 + random(1000) );
    set_funcs( ({"steal_hp"}) );
    set_func_chance(40);
-   set_stabbed_func( (: TO,"stabbed_func" :) );
+   //set_stabbed_func( (: TO,"stabbed_func" :) );
    count = 10;
    hold = 2;
 }
