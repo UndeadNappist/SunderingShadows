@@ -47,6 +47,10 @@ void create()
     set("aggressive", 50);
 
     set_alignment(9);
+    
+    if(!clonep())
+        return;
+    
     ob = new(OPATH "greater_scythe");
     if (random(3)) {
         ob->set_property("monsterweapon", 1);
