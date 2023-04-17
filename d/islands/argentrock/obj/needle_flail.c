@@ -22,7 +22,7 @@ void create(){
 }
 
 int wieldme(){
-     if((int)ETO->query_lowest_level() < 30) {
+     if((int)ETO->query_lowest_level() < 20) {
       	tell_object(ETO,"%^GREEN%^The flail refuses you!");
      	return 0;
 	}

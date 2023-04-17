@@ -68,6 +68,7 @@ int eat(string str)
     if(!objectp(ETO)) return 0;
     if(!stringp(str)) return 0;
     if(!objectp(targOb = present(str, ETO))) return 0;
+    if(!targOb->id("manna")) return 0;
     if(!objectp(environment(targOb))) return 0;
     who = environment(targOb);
     if(!living(who)) return 0;
