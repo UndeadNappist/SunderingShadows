@@ -1,8 +1,8 @@
 /*
   _black_tentacles.c
-  
+
   Functional rewrite of previous spell.
-  
+
   -- Tlaloc --
 */
 
@@ -63,8 +63,6 @@ string query_cast_string()
 
 void spell_effect()
 {
-    object stagger;
-    
     if(!objectp(caster) || !objectp(place))
     {
         dest_effect();
@@ -76,24 +74,24 @@ void spell_effect()
         dest_effect();
         return;
     }
-    
+
     targets = target_selector();
     grappled = ({  });
-    
+
     if (!sizeof(targets))
     {
         tell_object(caster, "%^RESET%^%^C241%^From just beneath the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h %^RESET%^%^C241%^at your feet, you feel the %^RESET%^%^C051%^s%^C087%^h%^C123%^i%^C159%^v%^C087%^e%^C051%^r %^RESET%^%^C241%^of the %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^as they find no target to ensnare, and simply %^RESET%^%^C240%^f%^C244%^a%^C248%^d%^C252%^e %^RESET%^%^C241%^away.%^CRST%^");
         dest_effect();
         return;
     }
-    
+
     spell_successful();
     caster->set_property("black tentacles", 1);
-    
+
     tell_room(place, "%^RESET%^%^C240%^R%^C241%^u%^C242%^b%^C241%^b%^C240%^e%^C241%^r%^C242%^y %^RESET%^%^C241%^b%^C240%^l%^C241%^a%^C242%^c%^C241%^k %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^C240%^s %^RESET%^%^C241%^writhe up out of the %^RESET%^%^C094%^e%^C130%^a%^C136%^r%^C130%^t%^C094%^h%^RESET%^%^C241%^, coiling and grasping at anything within reach!%^CRST%^");
-    
+
     stagger = load_object("/std/effect/status/staggered");
-    
+
     foreach(object ob in targets)
     {
         if(objectp(stagger) && BONUS_D->combat_maneuver(ob, caster, 4))
@@ -101,7 +99,7 @@ void spell_effect()
             tell_object(ob, "%^RESET%^%^C241%^One manages to wrap about your leg and %^RESET%^%^C240%^e%^C241%^n%^C242%^s%^C243%^n%^C242%^a%^C241%^r%^C240%^e %^RESET%^%^C241%^you!%^CRST%^");
             tell_room(place, "%^RESET%^%^C241%^One manages to wrap about " + ob->query_cap_name()+ "%^RESET%^%^C241%^'s leg and %^RESET%^%^C240%^e%^C241%^n%^C242%^s%^C243%^n%^C242%^a%^C241%^r%^C240%^e%^RESET%^%^C241%^ " + ob->query_objective() + "%^RESET%^%^C241%^!%^CRST%^", ob);
             ob->set_property("added short", ({ "%^RESET%^%^C240%^ (%^RESET%^%^C241%^e%^C242%^n%^C243%^t%^C242%^a%^C241%^n%^C242%^g%^C243%^l%^C242%^e%^C241%^d%^RESET%^%^C240%^)%^CRST%^" }));
-            stagger->apply_effect(ob, ROUND_LENGTH, caster);
+            stagger->apply_effect(ob, 1, caster);
             damage_targ(ob, "torso", sdamage, "force");
             grappled += ({ ob });
             continue;
@@ -114,7 +112,7 @@ void spell_effect()
             ob->set_tripped(1, "%^RESET%^%^C241%^You're regaining your %^RESET%^%^C049%^b%^C050%^a%^C051%^l%^C123%^a%^C051%^n%^C050%^c%^C049%^e%^RESET%^%^C241%^!%^CRST%^", 1);
             continue;
         }
-        
+
     }
     addSpellToCaster();
     duration = (clevel / 10 + 3) * ROUND_LENGTH;
@@ -147,24 +145,25 @@ void execute_attack()
         ::execute_attack();
         return;
     }
-    
+
     grappled = filter_array(grappled, (: objectp($1) :));
-    
+
     if(!sizeof(grappled))
     {
         dest_effect();
         return;
     }
-    
+
     define_base_damage(0);
-    
+
     foreach(object ob in grappled)
     {
 
-        if(objectp(stagger) && BONUS_D->combat_maneuver(ob, caster, 0))
+        if(objectp(stagger) && BONUS_D->combat_maneuver(ob, caster, 4))
         {
             tell_object(ob, "%^RESET%^%^C241%^The %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e %^RESET%^%^C241%^s%^C242%^q%^C243%^u%^C242%^e%^C241%^e%^C242%^z%^C243%^e%^C242%^s %^RESET%^%^C241%^the %^RESET%^%^C036%^l%^C037%^i%^C038%^f%^C039%^e %^RESET%^%^C241%^from you!%^CRST%^");
             tell_room(place, "%^RESET%^%^C241%^The %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C240%^e squeezes around " + ob->query_cap_name() + "!", ob);
+            stagger->apply_effect(ob, 1, caster);
             damage_targ(ob, "torso", sdamage / 5, "force");
         }
         else
@@ -175,10 +174,10 @@ void execute_attack()
             grappled -= ({ ob });
         }
     }
-    
+
     targets = target_selector() - grappled;
     targets = filter_array(targets, (: (!$1->query_tripped() && objectp($1)) :));
-    
+
     foreach(object ob in targets)
     {
         if (!do_save(ob, 0))
@@ -188,7 +187,7 @@ void execute_attack()
             ob->set_tripped(1, "%^RESET%^%^C241%^You're regaining your " + "%^RESET%^%^C049%^b%^C050%^a%^C051%^l%^C123%^a%^C051%^n%^C050%^c%^C049%^e%^RESET%^%^C241%^!%^CRST%^", 1);
         }
     }
-    
+
     if(place != environment(caster) || caster->query_unconscious())
     {
         dest_effect();
@@ -204,23 +203,21 @@ void execute_attack()
 void dest_effect()
 {
     tell_room(place, "%^RESET%^%^C241%^The %^RESET%^%^C240%^w%^C241%^r%^C242%^i%^C241%^t%^C240%^h%^C241%^i%^C242%^n%^RESET%^%^C240%^g %^RESET%^%^C240%^t%^C241%^e%^C242%^n%^C241%^t%^C240%^a%^C241%^c%^C242%^l%^C241%^e%^RESET%^%^C240%^s %^RESET%^%^C051%^s%^C087%^h%^C123%^i%^C159%^v%^C087%^e%^C051%^r " + "%^RESET%^%^C241%^and crumble into %^RESET%^%^C250%^dust%^RESET%^%^C241%^, %^RESET%^%^C240%^f%^C244%^a%^C248%^d%^C250%^i%^C252%^n%^C254%^g %^RESET%^%^C241%^before your eyes.%^RESET%^");
-    
+
     if(sizeof(grappled))
     {
         foreach(object ob in grappled)
         {
             if(!objectp(ob))
                 continue;
-            
+
             ob->remove_property_value("added short", ({ "%^RESET%^%^C240%^ (%^RESET%^%^C241%^e%^C242%^n%^C243%^t%^C242%^a%^C241%^n%^C242%^g%^C243%^l%^C242%^e%^C241%^d%^RESET%^%^C240%^)%^CRST%^" }));
         }
     }
-    
+
     objectp(caster) && caster->remove_property("black tentacles");
-    
+
     ::dest_effect();
     if(objectp(this_object()))
         this_object()->remove();
 }
-    
-    
