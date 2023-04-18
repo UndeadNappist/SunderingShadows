@@ -35,24 +35,26 @@ varargs int thaco(int level, string myclass, object ob)
         if (ob->query("new_class_type")) {
             ret = 0;
             // fighter number of attacs
-            if ((int)ob->query_property("transformed") || (int)ob->query_property("dance-of-cuts")) {
-                ret = (int)ob->query_level();
-                ret = ret - 20;
-                ret = ret * -1;
-                return ret;
-            }
-            classes = (string*)ob->query_classes();
-            if (!sizeof(classes)) {
-                return 0;
-            }
-            for (i = 0; i < sizeof(classes); i++) {
-                file = DIR_CLASSES + "/" + classes[i] + ".c";
-                if (!file_exists(file)) {
-                    continue;
-                }
-                bab = file->attack_bonus(ob);
+            //if ((int)ob->query_property("transformed") || (int)ob->query_property("dance-of-cuts")) {
+            //    ret = (int)ob->query_level();
+            //    ret = ret - 20;
+            //    ret = ret * -1;
+            //    return ret;
+            //}
+            //classes = (string*)ob->query_classes();
+            //if (!sizeof(classes)) {
+            //    return 0;
+            //}
+            
+            bab = ob->base_attack();
+            //for (i = 0; i < sizeof(classes); i++) {
+            //    file = DIR_CLASSES + "/" + classes[i] + ".c";
+            //    if (!file_exists(file)) {
+            //        continue;
+            //    }
+            //    bab = fileob->attack_bonus(ob);
                 ret += (bab < 0 ? 0 : bab);
-            }
+            //}
 
             ret = ret - 20;
             ret = ret * -1;
