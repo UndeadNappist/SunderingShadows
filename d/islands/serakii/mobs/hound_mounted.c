@@ -94,6 +94,10 @@ void create()
 		"strength of arm",
 		"sweepingblow"
     }));
+    
+    if(!clonep())
+        return;
+    
     if(!present("horse")) { call_out("do_horse",1,TO); }   
     add_money("platinum",random(500));
     ob = new("/d/common/obj/weapon/longsword");

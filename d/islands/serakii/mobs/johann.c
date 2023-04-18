@@ -48,6 +48,9 @@ set_long("Dressed in %^C246%^black clothing%^CRST%^ and %^C058%^armour%^CRST%^, 
    command("speech %^C144%^speak in an "+
    "%^C107%^assured %^C144%^voice%^CRST%^");
 
+   if(!clonep())
+       return;
+   
    ob = new(OBJ"hound_robe.c");
    ob->set_property("monsterweapon",1);
    ob->move(TO);

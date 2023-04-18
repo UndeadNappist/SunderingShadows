@@ -54,7 +54,10 @@ void create() {
    set_property("no bows",1);
    set_spoken("wizish");
    command("speech %^C060%^speak in a calm %^C066%^reassuring%^C060%^ voice%^CRST%^");
+   set_storage_room("/d/islands/serakii/storage/serakii_tool_storage");
 
+   if(!clonep())
+       return;
 
     ob = new("/d/common/obj/armour/cloak_hooded");
        ob->move(TO);
@@ -64,6 +67,4 @@ void create() {
        ob->set_property("enchantment",3);
        ob->set_property("monsterweapon",1);
        command("wear cloak");
-
-   set_storage_room("/d/islands/serakii/storage/serakii_tool_storage");
 }

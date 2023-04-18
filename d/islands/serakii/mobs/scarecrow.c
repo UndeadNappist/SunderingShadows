@@ -71,6 +71,9 @@ void create()
     
     set_func_chance(20);
     set_funcs(({"grab"}));
+    
+    if(!clonep())
+        return;
 
       ob = new(OBJ"dragonrobes");
     ob->move(TO);

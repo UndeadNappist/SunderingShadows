@@ -110,6 +110,9 @@ void create(){
 
 
    }));
+   
+   if(!clonep())
+       return;
 
 ob = new(OBJ"agraths_memory");
     ob->move(TO);

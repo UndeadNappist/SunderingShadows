@@ -83,6 +83,9 @@ void create()
     set_attacks_num(10);
     set_property("function and attack", 1);
 	
+    if(!clonep())
+        return;
+    
 	ob = new(OBJ"hound_robe.c");
     ob->move(TO);
     command("wear robe");

@@ -89,6 +89,9 @@ void make_me(){
         set_class(theclass);
        set_guild_level(theclass,30);
        set_mlevel(theclass,30);
+       
+       if(!clonep())
+           return;
 
         switch(theclass){
         case "duelist":

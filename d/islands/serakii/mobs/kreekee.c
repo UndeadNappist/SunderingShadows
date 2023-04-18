@@ -60,6 +60,9 @@ void create(){
    command("speech %^C142%^spe%^C251%^a%^C142%^"+
    "k in a p%^C251%^a%^C142%^per th%^C251%^"+
    "i%^C142%^n voi%^C251%^c%^C142%^e%^CRST%^");
+   
+   if(!clonep())
+       return;
 
     ob = new("/d/common/obj/armour/cloak_hooded");
        ob->set_short("A simple cloak");
