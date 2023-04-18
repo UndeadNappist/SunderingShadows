@@ -20,7 +20,7 @@ void create(){
         set("aggressive",25);
         set_race("ooze");
         add_limb("body","body",80,0,3);
-		new("/d/antioch/valley/obj/gem")->move(TO);
+		clonep() && new("/d/antioch/valley/obj/gem")->move(TO);
 		set_new_exp(30,"very low");
         set_max_level(35);
 		set_base_damage_type("acid");

@@ -72,6 +72,9 @@ void create()
              "right shoulder is a an embroidered %^YELLOW%^dragon%^RESET%^ " +
              "%^CYAN%^in flight, the symbol of the " +
              "%^BOLD%^Ashta'Rathai Guard%^RESET%^.");
+             
+    if(clonep())
+    {
     if (rank == "Commander" || rank == "captain") {
         new(OBJ "robe1")->move(TO);
     } else {
@@ -81,6 +84,7 @@ void create()
     new("/d/common/obj/rand/r_shoes")->move(TO);
     command("wearall");
     RANDGEAR->arm_me(TO, "edgeds", 80, 3, 75);
+    }
     set_guard_stuff();
     set_monster_feats(({ "damage resistance",
                          "improved damage resistance", "improved toughness",

@@ -69,6 +69,9 @@ void create()
              " formed after the onslaught of non-elves" +
              " in Ashta'Rathai.  They augment the normal " +
              "watch with their special abilities. ");
+             
+    if(clonep())
+    {
     if (rank == "Commander" || rank == "captain") {
         new(OBJ "tspear")->move(TO);
         command("wield spear");
@@ -82,6 +85,7 @@ void create()
     }
     new("/d/common/obj/rand/r_shoes")->move(TO);
     command("wearall");
+    }
 
     set_monster_feats(({ "damage resistance",
                          "improved damage resistance", "improved toughness",

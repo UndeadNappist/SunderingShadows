@@ -43,6 +43,14 @@ create() {
    set_overall_ac(-10);
    set_moving(1);
    set_speed(60);
+   command("message floats in.");
+   command("message out floats $D, darkness trails behind her.");
+   set_new_exp(31,"very high");
+   set_max_level(35);
+   set_base_damage_type("cold");
+   set_resistance_percent("cold",50);
+   set_resistance_percent("fire",-50);
+   set_skill("perception",35); 
    set_emotes(3,({
       "%^MAGENTA%^Dusk Maiden whispers:%^CYAN%^ Have you seen my brother?",
       "%^MAGENTA%^Dusk Maiden whispers:%^CYAN%^ So many flowers... it's alright if I pick some, isn't it?",
@@ -69,6 +77,9 @@ create() {
       "%^MAGENTA%^Dusk Maiden says:%^CYAN%^  I can't see anything...",
      }),1);
 
+    if(!clonep())
+        return;
+    
 	 new(OBJ"duskrobe")->move(TO);
 	 if(!random(2))new(OBJ"veil")->move(TO);
 	 else 	 new(OBJ"tiara")->move(TO);
@@ -77,15 +88,6 @@ create() {
 	 new(OBJ"locket")->move(TO);
 
     command("wearall");
-    command("message floats in.");
-    command("message out floats $D, darkness trails behind her.");
-    set_new_exp(31,"very high");
-    set_max_level(35);
-    set_base_damage_type("cold");
-    set_resistance_percent("cold",50);
-    set_resistance_percent("fire",-50);
-    set_skill("perception",35); 
-
 }
 int touch(object vic) {
    tell_object(vic,"%^MAGENTA%^Dusk Maiden waves her hand,"+
