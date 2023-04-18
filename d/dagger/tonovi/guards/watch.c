@@ -103,6 +103,9 @@ void create()
              "but they are determined to defend their city and uphold the laws."
              );
 
+    if(!clonep())
+        return;
+    
     if (rank == "sergeant" || rank == "lieutenant") {
         set_property("add kits", 10);
         RANDGEAR->armor_me(TO, "armornp", 20, 2, 75);

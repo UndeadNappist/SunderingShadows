@@ -62,6 +62,10 @@ void create(){
 //     restore_monster();  
 //      init_attack();  // realized it doesn't need this either with not saving *Styx* 8/16/05
 
+
+    if(!clonep())
+        return;
+
     new("/d/common/obj/armour/chain")->move(TO);
     command("wear armor");
     new("/d/common/obj/armour/coif")->move(TO);

@@ -703,7 +703,7 @@ void class_setup()
         break;
     }
 
-    set_inventory(MONSTER_LEVEL);
+    clonep() && set_inventory(MONSTER_LEVEL);
 
     return;
 }

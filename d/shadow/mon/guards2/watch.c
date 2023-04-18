@@ -68,6 +68,9 @@ void create(){
         );
 
     restore_monster();
+    
+    if(!clonep())
+        return;
 
     new("/d/common/obj/armour/chain")->move(TO);
     command("wear armor");

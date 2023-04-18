@@ -62,6 +62,10 @@ void create()
     set_func_chance(75);
     set_funcs(({"charge", "pound", "stomp", "charge", "pound", "stomp", "something_evil", "charge", "pound", "stomp", "stomp", "charge", "pound"}));
     enraged = 0;
+    
+    if(!clonep())
+        return;
+    
     ob = new(ELOB+"brutal_allocation");
     if(random(4)) ob->set_property("monsterweapon", 1);
     ob->move(TO);

@@ -101,6 +101,10 @@ void create()
     }));
     if(!present("horse")) { call_out("do_horse",1,TO); }
     add_money("platinum",random(500));
+    
+    if(!clonep())
+        return;
+    
     ob = new("/d/common/obj/armour/shield");
     ob->set_property("enchantment", 5);
     ob->move(TO);

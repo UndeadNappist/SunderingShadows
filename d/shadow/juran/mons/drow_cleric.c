@@ -56,6 +56,9 @@ void create(){
     	}),0);
 
 	num = random(10);
+    
+    if(clonep())
+    {
   	switch(random(3)){
   		case 0:
 			ob = new( CWEAP+"whip.c" );
@@ -78,6 +81,7 @@ void create(){
       /*ob = new("/d/common/obj/potion/healing");
     		ob->move(TO);
     		ob->set_uses(random(5)+10);*/
+    }
     set_property("add kits",10);
     	set_stats("dexterity", (random(8)+13));
     	set_stats("strength",(random(6)+12));
