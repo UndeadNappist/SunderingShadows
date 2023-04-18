@@ -45,6 +45,6 @@ void create(){
 	set_property("swarm",1);
 	set_property("full attacks",1);
 	set("aggressive",0);
-   	new("/d/common/obj/weapon/club_lg")->move(TO);
+   	clonep() && new("/d/common/obj/weapon/club_lg")->move(TO);
 	force_me("wield club");
 }
