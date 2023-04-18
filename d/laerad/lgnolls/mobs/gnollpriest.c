@@ -43,6 +43,8 @@ void create() {
     set_property("full attacks", 2);
     add_money("gold", random(550));
 	
+    if(clonep())
+    {
 	obj = new("/d/common/obj/armour/scale");
 	obj->set_property("enchantment",4);
 	if(random(10)) obj->set_property("monsterweapon",1);
@@ -64,6 +66,7 @@ void create() {
 	obj->move(TO);
 	command("wield morningstar");
 	command("wearall");
+    }
 	
 	set_spells(({"flame strike", "call lightning", "call lightning", "mass cause critical wounds"}));
 	set_spell_chance(20);

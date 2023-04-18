@@ -45,7 +45,10 @@ void create() {
     set_max_hp(query_hp());
     set_property("full attacks", 3);
     add_money("gold", random(250));
-	
+    
+    
+	if(clonep())
+    {
 	obj = new("/d/common/obj/potion/extra_heal");
     obj->set_uses(30);
     obj->move(TO);
@@ -64,6 +67,7 @@ void create() {
 	obj->move(TO);
 	command("wield bow");
 	command("wearall");
+    }
 	set_funcs(({"bite"}));
 	set_func_chance(30);
 	
