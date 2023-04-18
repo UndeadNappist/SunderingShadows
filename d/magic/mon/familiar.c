@@ -37,6 +37,7 @@ void create(){
     set_property("no fight", 1);
     set_property("no animate", 1);
     set_property("no random treasure", 1);
+    set_attacks_num(0);
 }
 
 void init()

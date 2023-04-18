@@ -48,7 +48,7 @@ string reader_output(object targ)
     output += "Armor Class: " + BONUS_D->effective_ac(targ) + " base + " + BONUS_D->ac_bonus(targ, targ) + " dex" + " :: ";
     //output += "Base Hit: " + BONUS_D->new_bab(1, targ) + " :: \n";
     output += "Base Hit: " + targ->base_attack() + " :: \n";
-    output += "BAB Bonus Att: " + targ->number_of_attacks() + " :: \n";
+    output += "Base Attacks: " + targ->number_of_attacks() + " :: \n";
     
     stringp(targ->query_diety()) && output += "Deity: " + targ->query_diety() + " :: ";
     sizeof(targ->query_divine_domain()) && output += "Divine Domains: " + implode(targ->query_divine_domain(), " : ") + " :: ";
@@ -136,7 +136,7 @@ mixed* genoutput(object targ)
     output += ({ ({ "Armor Class", "%^BOLD%^%^WHITE%^" + BONUS_D->effective_ac(targ) + " base + " + BONUS_D->ac_bonus(targ, targ) + " dex" }) });
     //output += ({ ({ "Base Hit", BONUS_D->new_bab(1, targ) }) });
     output += ({ ({ "Base Hit", targ->base_attack() }) });
-    output += ({ ({ "BAB Bonus Att", targ->number_of_attacks() }) });
+    output += ({ ({ "Base Attacks", targ->number_of_attacks() }) });
 
     if (stringp(targ->query_diety())) {
         output += ({ ({ "Deity", "%^BOLD%^%^MAGENTA%^" + capitalize(targ->query_diety()) }) });
