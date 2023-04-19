@@ -3,25 +3,25 @@
 
 Below is a list of the favored enemy types on the left, and the creatures included in those types on the right.
 
-    %^RED%^aberrations --------: beholder, illithid, mind flayer, aberration
-    %^ORANGE%^animals ------------: snake, serpent, warthog, jaguar, wolf, rat, tiger, reptile, dinosaur, dino, spider, deer, snake, horse, mare, stallion, animal
-    %^YELLOW%^constructs ---------: construct, golem, sandman, sandling
-    %^BLUE%^dwarves ------------: dwarf, dwarves, duergar, construct
-    %^GREEN%^dragonkin ----------: dragonkin, kobold, draconian, dragon, elven-dragon, dragonet, pseudodragon, drake, wyvern
-    %^MAGENTA%^elementals ---------: elemental, genasi, earth genasi, air genasi, water genasi, fire genasi, efreet, djinn, marid, genie
-    %^RED%^elves --------------: elf, elves, half-elf, drow, half-drow, szarkai
-    %^ORANGE%^fey ----------------: nymph, satyr, dryad, pixie, brownie, feytouched, fey
-    %^YELLOW%^giants -------------: voadkyn, firbolg, giant, titan, troll
-    %^BLUE%^goblins ------------: goblin, bugbear, hobgoblin, goblinoid
-    %^GREEN%^humans -------------: human, shade, half-elf, half-orc, half-ogre, half-drow, genasi, feytouched, aasimar, tiefling
-    %^MAGENTA%^lizardfolk ---------: lizardfolk, yuan-ti, saurian, salamander, lizardman, firenewt
-    %^RED%^magical beasts -----: owlbear, grimlock, jackalwere, wolfwere, ooze, worm, pegataur, griffon, hydra, shadow, magical beast
-    %^ORANGE%^monstrous humanoids : monstrous humanoids, beastkin, wemic, centaur, ratkin, minotaur, gnoll, kitsune, werewolf, wererat, weretiger, alaghi, monstrous humanoid
-    %^YELLOW%^ogres --------------: ogre, ogre-mage, half-ogre, ogroid
-    %^BLUE%^orcs ---------------: orc, half-orc, orog, tanarukk, orcoid
-    %^GREEN%^outsiders ----------: deva, solar, aasimar, angel, demon, devil, imp, tiefling, githyanki, githzerai, outsider
-    %^MAGENTA%^plants -------------: plants, shambler, shambling mound, tree, vine, plant
-    %^RED%^smallfolk ----------: gnome, halfling, kender, derro, pech, smallfolk
-    %^ORANGE%^undead -------------: ghost, skeleton, lich, zombie, ghast, entity, spirit, undead, wraith, wight
+    %^BOLD%^aberrations %^RED%^--------: beholder, illithid, mind flayer, aberration
+    %^BOLD%^animals %^RESET%^%^ORANGE%^------------: snake, serpent, warthog, jaguar, wolf, rat, tiger, reptile, dinosaur, dino, spider, deer, snake, horse, mare, stallion, animal
+    %^BOLD%^constructs %^YELLOW%^---------: construct, golem, sandman, sandling
+    %^BOLD%^dwarves %^BLUE%^------------: dwarf, dwarves, duergar, construct
+    %^BOLD%^dragonkin %^GREEN%^----------: dragonkin, kobold, draconian, dragon, elven-dragon, dragonet, pseudodragon, drake, wyvern
+    %^BOLD%^elementals %^MAGENTA%^---------: elemental, genasi, earth genasi, air genasi, water genasi, fire genasi, efreet, djinn, marid, genie
+    %^BOLD%^elves %^RED%^--------------: elf, elves, half-elf, drow, half-drow, szarkai
+    %^BOLD%^fey %^RESET%^%^ORANGE%^----------------: nymph, satyr, dryad, pixie, brownie, feytouched, fey
+    %^BOLD%^giants %^YELLOW%^-------------: voadkyn, firbolg, giant, titan, troll
+    %^BOLD%^goblins %^BLUE%^------------: goblin, bugbear, hobgoblin, goblinoid
+    %^BOLD%^humans %^GREEN%^-------------: human, shade, half-elf, half-orc, half-ogre, half-drow, genasi, feytouched, aasimar, tiefling
+    %^BOLD%^lizardfolk %^MAGENTA%^---------: lizardfolk, yuan-ti, saurian, salamander, lizardman, firenewt
+    %^BOLD%^magical beasts %^RED%^-----: owlbear, grimlock, jackalwere, wolfwere, ooze, worm, pegataur, griffon, hydra, shadow, magical beast
+    %^BOLD%^monstrous humanoids %^RESET%^%^ORANGE%^: monstrous humanoids, beastkin, wemic, centaur, ratkin, minotaur, gnoll, kitsune, werewolf, wererat, weretiger, alaghi, monstrous humanoid
+    %^BOLD%^ogres %^YELLOW%^--------------: ogre, ogre-mage, half-ogre, ogroid
+    %^BOLD%^orcs %^BLUE%^---------------: orc, half-orc, orog, tanarukk, orcoid
+    %^BOLD%^outsiders %^GREEN%^----------: deva, solar, aasimar, angel, demon, devil, imp, tiefling, githyanki, githzerai, outsider
+    %^BOLD%^plants %^MAGENTA%^-------------: plants, shambler, shambling mound, tree, vine, plant
+    %^BOLD%^smallfolk %^RED%^----------: gnome, halfling, kender, derro, pech, smallfolk
+    %^BOLD%^undead %^RESET%^%^ORANGE%^-------------: ghost, skeleton, lich, zombie, ghast, entity, spirit, undead, wraith, wight
 
 See also : Favored Enemy, Favored Terrain, Ranger, Bane, Inquisitor
