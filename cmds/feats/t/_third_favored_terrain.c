@@ -27,13 +27,7 @@ void create()
     feat_name("third favored terrain");
     feat_prereq("Ranger L19");
     feat_syntax("third_favored_terrain [TYPE]");
-    feat_desc("This feat allows a ranger to focus their knowledge and training\
-for operating on a third favored terrain of their choice. While within\
-their favored terrain, the ranger gains an additional +2 to stealth, perception\
-and survival skills.\
-
-You can select from the following favored terrain: \n\n" + "%^GREEN%^" + implode(valid_choices, "\n") +
-"%^RESET%^\n\n\To start selection process type <third_favored_terrain> [TYPE].");
+    feat_desc("This feat allows a ranger to focus their knowledge and training for operating on a third favored terrain of their choice. While within their favored terrain, the ranger gains an additional +2 to stealth, perception and survival skills. You can select from the following favored terrain: \n\n"+"%^GREEN%^"+implode(valid_choices, "\n")+"%^RESET%^\n\n\To start selection process type <third_favored_terrain> [TYPE].");
     allow_tripped(1);
     set_required_for(({ }));
 }
