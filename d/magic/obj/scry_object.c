@@ -91,9 +91,13 @@ void heart_beat()
         self_destruct();
         return;
     }
-         if(observer->query_unconscious()) {
-      self_destruct();
-       return;
+    if(observer->query_unconscious()) {
+        self_destruct();
+        return;
+    }
+    if(observer->query_property("inactive")) {
+        self_destruct();
+        return;
     }
     if(target->query_ghost()) {
         self_destruct();
