@@ -12,9 +12,7 @@ void create()
     set_discipline("shaper");
     set_spell_sphere("metacreatvity");
     set_syntax("cast CLASS hail of crystals");
-    set_description("This power will cause the shaper to fill the air with razor-sharp crystals, which churn and damage "
-        "most things in the area.  Due to the shaper's natural control over crytals, this power will not damage the shaper, his "
-        "party members, or any beings following him.  The power becomes longer lasting as the shaper grows stronger.");
+    set_description("This power will cause the shaper to fill the air with razor-sharp crystals, which churn and damage most things in the area.  Due to the shaper's natural control over crytals, this power will not damage the shaper, his party members, or any beings following him.  The power becomes longer lasting as the shaper grows stronger.");
     set_verbal_comp();
     set_somatic_comp();
     set_save("fort");
@@ -48,10 +46,10 @@ void execute_attack()
         return;
     }
 
-    if (objectp(me = this_object()))
+    if(!objectp(me = this_object()))
         return;
 
-    if (!objectp(place))
+    if(!objectp(place))
         return;
 
     if (!flag)
