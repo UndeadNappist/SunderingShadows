@@ -18,16 +18,16 @@ void create(){
     set_long((INH+"melistel")->query_long()+"The ancient %^BOLD%^Puente Zincharo "+
       "%^RESET%^crosses over the %^BOLD%^%^BLUE%^Sarcosta River "+
       "%^RESET%^to the north. To the east a large tower houses the "+
-      "%^RESET%^%^CYAN%^Library of the Consortium%^RESET%^.\n");
+      "%^RESET%^%^CYAN%^Library of the Consortium%^RESET%^. %^C058%^The tower is currently surrounded by stacks of bricks and lumber, and workers seem hard at work within.\n");
    set_exits(([
       "north" : ROOMS"melistele",
       "south" : ROOMS"southcross",
-      "east" : "/d/guilds/consortium/hall/library",
+      //"east" : "/d/guilds/consortium/hall/library",
    ]));
-   set_door("door","/d/guilds/consortium/hall/library","east","library key");
-   set_open("door",0);
-   set_locked("door",0);
-   "/d/guilds/consortium/hall/library"->set_open("door",0);
+   //set_door("door","/d/guilds/consortium/hall/library","east","library key");
+   //set_open("door",0);
+   //set_locked("door",0);
+   //"/d/guilds/consortium/hall/library"->set_open("door",0);
 }
 
 void reset(){
