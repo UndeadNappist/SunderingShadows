@@ -16,7 +16,7 @@ void create()
     feat_category("ArcaneArcher");
     feat_name("arcane arrows");
     feat_syntax("arcane_arrows [acid|cold|fire|sonic]");
-    feat_desc("With knowledge of the arcane caster imbues her projectiles, placing simple elemental spell onto them. When struck, such projectiles have a chance to explode with raw elemental damage. Without an argument, this feat will apply fire damage.");
+    feat_desc("With knowledge of the arcane, the caster imbues her projectiles by placing simple elemental spells onto them. When struck, such projectiles have a chance to explode with raw elemental damage. Without an argument, this feat will apply fire damage.");
     permanent(1);
 }
 
