@@ -57,6 +57,12 @@ int preSpell()
         return 0;
     }
     
+    if(!userp(target))
+    {
+        tell_object(caster, "You can only polymorph player characters.");
+        return 0;
+    }
+    
     allies = ({  });
     allies += PARTY_D->query_party_members(caster->query_party());
     
