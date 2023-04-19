@@ -3,25 +3,25 @@
 
 Below is a list of the favored enemy types on the left, and the creatures included in those types on the right.
 
-    aberrations --------: beholder, illithid, mind flayer, aberration \
-    animals ------------: snake, serpent, warthog, jaguar, wolf, rat, tiger, reptile, dinosaur, dino, spider, deer, snake, horse, mare, stallion, animal \
-    constructs ---------: construct, golem, sandman, sandling \
-    dwarves ------------: dwarf, dwarves, duergar, construct \
-    dragonkin ----------: dragonkin, kobold, draconian, dragon, elven-dragon, dragonet, pseudodragon, drake, wyvern \
-    elementals ---------: elemental, genasi, earth genasi, air genasi, water genasi, fire genasi, efreet, djinn, marid, genie \
-    elves --------------: elf, elves, half-elf, drow, half-drow, szarkai \
-    fey ----------------: nymph, satyr, dryad, pixie, brownie, feytouched, fey \
-    giants -------------: voadkyn, firbolg, giant, titan, troll \
-    goblins ------------: goblin, bugbear, hobgoblin, goblinoid \
-    humans -------------: human, shade, half-elf, half-orc, half-ogre, half-drow, genasi, feytouched, aasimar, tiefling \
-    lizardfolk ---------: lizardfolk, yuan-ti, saurian, salamander, lizardman, firenewt \
-    magical beasts -----: owlbear, grimlock, jackalwere, wolfwere, ooze, worm, pegataur, griffon, hydra, shadow, magical beast \
-    monstrous humanoids : monstrous humanoids, beastkin, wemic, centaur, ratkin, minotaur, gnoll, kitsune, werewolf, wererat, weretiger, alaghi, monstrous humanoid \
-    ogres --------------: ogre, ogre-mage, half-ogre, ogroid \
-    orcs ---------------: orc, half-orc, orog, tanarukk, orcoid \
-    outsiders ----------: deva, solar, aasimar, angel, demon, devil, imp, tiefling, githyanki, githzerai, outsider \
-    plants -------------: plants, shambler, shambling mound, tree, vine, plant \
-    smallfolk ----------: gnome, halfling, kender, derro, pech, smallfolk \
-    undead -------------: ghost, skeleton, lich, zombie, ghast, entity, spirit, undead, wraith, wight \
+    %^RED%^aberrations --------: beholder, illithid, mind flayer, aberration
+    %^ORANGE%^animals ------------: snake, serpent, warthog, jaguar, wolf, rat, tiger, reptile, dinosaur, dino, spider, deer, snake, horse, mare, stallion, animal
+    %^YELLOW%^constructs ---------: construct, golem, sandman, sandling
+    %^BLUE%^dwarves ------------: dwarf, dwarves, duergar, construct
+    %^GREEN%^dragonkin ----------: dragonkin, kobold, draconian, dragon, elven-dragon, dragonet, pseudodragon, drake, wyvern
+    %^MAGENTA%^elementals ---------: elemental, genasi, earth genasi, air genasi, water genasi, fire genasi, efreet, djinn, marid, genie
+    %^RED%^elves --------------: elf, elves, half-elf, drow, half-drow, szarkai
+    %^ORANGE%^fey ----------------: nymph, satyr, dryad, pixie, brownie, feytouched, fey
+    %^YELLOW%^giants -------------: voadkyn, firbolg, giant, titan, troll
+    %^BLUE%^goblins ------------: goblin, bugbear, hobgoblin, goblinoid
+    %^GREEN%^humans -------------: human, shade, half-elf, half-orc, half-ogre, half-drow, genasi, feytouched, aasimar, tiefling
+    %^MAGENTA%^lizardfolk ---------: lizardfolk, yuan-ti, saurian, salamander, lizardman, firenewt
+    %^RED%^magical beasts -----: owlbear, grimlock, jackalwere, wolfwere, ooze, worm, pegataur, griffon, hydra, shadow, magical beast
+    %^ORANGE%^monstrous humanoids : monstrous humanoids, beastkin, wemic, centaur, ratkin, minotaur, gnoll, kitsune, werewolf, wererat, weretiger, alaghi, monstrous humanoid
+    %^YELLOW%^ogres --------------: ogre, ogre-mage, half-ogre, ogroid
+    %^BLUE%^orcs ---------------: orc, half-orc, orog, tanarukk, orcoid
+    %^GREEN%^outsiders ----------: deva, solar, aasimar, angel, demon, devil, imp, tiefling, githyanki, githzerai, outsider
+    %^MAGENTA%^plants -------------: plants, shambler, shambling mound, tree, vine, plant
+    %^RED%^smallfolk ----------: gnome, halfling, kender, derro, pech, smallfolk
+    %^ORANGE%^undead -------------: ghost, skeleton, lich, zombie, ghast, entity, spirit, undead, wraith, wight
 
-    See also : Favored Enemy, Favored Terrain, Ranger, Bane, Inquisitor
+See also : Favored Enemy, Favored Terrain, Ranger, Bane, Inquisitor
