@@ -9,7 +9,7 @@ void create(){
 
    set_name("Consortium Library");
    set_short("Library of the Consortium");
-
+   set_property("no teleport",1); //removing access during remodel
    set_property("indoors",1);
    set_property("light",2);
    set_long(

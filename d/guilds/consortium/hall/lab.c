@@ -5,6 +5,7 @@ void create()
 {
    object ob;
    ::create();
+   set_property("no teleport",1); //removing access during remodel
    set_terrain(WOOD_BUILDING);
    set_travel(STAIRWAY);
    set_property("light",2);

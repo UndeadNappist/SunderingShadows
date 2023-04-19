@@ -5,6 +5,7 @@ inherit ROOM;
 void create() {
    object ob;
    ::create();
+   set_property("no teleport",1); //removing access during remodel
    set_light(2);
    set_property("indoors", 1);
    set_short("Main Hall");
