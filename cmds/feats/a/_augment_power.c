@@ -65,13 +65,15 @@ void execute_feat()
         return;
     }
 
-    amount = 30;
+    //amount = 30;
 
+    /*
     if(amount > caster->query_mp())
     {
         tell_object(caster, "You don't have that many power points.");
         return;
     }
+    */
 
     if(!USER_D->spend_pool(caster, 1, "focus"))
     {
@@ -81,7 +83,7 @@ void execute_feat()
 
     ::execute_feat();
 
-    caster->add_mp(-amount);
+    //caster->add_mp(-amount);
     tell_object(caster, "You use your meta psionic knowledge to augment your next power.");
     caster->set_property("augment power", 4);
     caster->add_cooldown("augment power", 60);
