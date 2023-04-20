@@ -36,9 +36,9 @@ int default_descriptions(object obj)
         return 0;
     }
 
-    obj->set_description("'s long feline body is covered in smooth fur from tip of snout to the end of " + obj->QP + " long tail.  The graceful movements of " + obj->QP + " body show " + obj->QS + " to be a dangerous predator.");
+    obj->set_description("'s long feline body is covered in smooth fur from tip of snout to the end of " + obj->QP + " long tail.  The graceful movements of " + obj->QP + " body show " + obj->QO + " to be a dangerous predator.");
 
-    obj->setDescriptivePhrase("%^BOLD%^%^BLACK%^l%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^an $R w%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^th %^RESET%^%^ORANGE%^s%^BOLD%^%^BLACK%^t%^RESET%^%^ORANGE%^r%^BOLD%^%^BLACK%^i%^RESET%^%^ORANGE%^p%^BOLD%^%^BLACK%^p%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^d %^RESET%^%^ORANGE%^f%^BOLD%^%^BLACK%^u%^RESET%^%^ORANGE%^r%^WHITE%^");
+    obj->setDescriptivePhrase("%^BOLD%^%^BLACK%^l%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^an $R w%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^th %^RESET%^%^ORANGE%^s%^BOLD%^%^BLACK%^t%^RESET%^%^ORANGE%^r%^BOLD%^%^BLACK%^i%^RESET%^%^ORANGE%^p%^BOLD%^%^BLACK%^e%^RESET%^%^ORANGE%^d %^BOLD%^%^BLACK%^f%^RESET%^%^ORANGE%^u%^BOLD%^%^BLACK%^r%^RESET%^");
 
     obj->set("speech string", "growl");
     obj->set("describe string", "angrily");
