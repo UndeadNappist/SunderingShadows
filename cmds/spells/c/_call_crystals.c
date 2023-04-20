@@ -168,7 +168,7 @@ void dest_effect()
         {
             if(!objectp(crystals[i])) { continue; }
             crystals[i]->move("/d/shadowgate/void");
-            if(objectp(crystals[i])) crystals[i]->remove();
+            if(objectp(crystals[i])) crystals[i]->die();
         }
         tell_object(caster,"%^YELLOW%^The summoned crystals vanish...%^RESET%^");
     }

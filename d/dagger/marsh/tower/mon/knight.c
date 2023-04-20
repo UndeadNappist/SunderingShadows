@@ -49,15 +49,19 @@ void create() {
         "%^BLUE%^The knight stands unwavering before you.%^RESET%^",
 	"%^RED%^The knight examines you carefully.",
         "%^MAGENTA%^Knight says: %^RESET%^Only the pentitent may pass!",
-    }),0);	
-    new( OPATH "avenger.c" )->move(TO);
-    command("wield sword in left hand");
-    new( OPATH "coif.c" )->move(TO);
-    command("wear coif");
-    new( OPATH "shield.c" )->move(TO);
-    command("wear shield");
-    new( OPATH "plate.c" )->move(TO);
-    command("wear plate");
+    }),0);
+    
+    if(clonep())
+    {
+        new( OPATH "avenger.c" )->move(TO);
+        command("wield sword in left hand");
+        new( OPATH "coif.c" )->move(TO);
+        command("wear coif");
+        new( OPATH "shield.c" )->move(TO);
+        command("wear shield");
+        new( OPATH "plate.c" )->move(TO);
+        command("wear plate");
+    }
     set_funcs(({"special","bashit"}));
 	set_monster_feats(({
 	   "shieldbash",
