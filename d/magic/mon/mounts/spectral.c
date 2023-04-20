@@ -5,18 +5,9 @@ inherit "/std/riding_animal";
 void create(){
     ::create();
     set_name("a phantom steed");
-    set_short("%^BOLD%^%^BLACK%^An ether%^RESET%^e%^BOLD%^%^BLACK%^al gray horse%^RESET%^");
-    set_id( ({"steed","horse","spectral steed","ethereal horse","gray horse","ethereal gray horse"}) );
-    set_long("%^CYAN%^Before you stands a creature that is difficult to "
-"perceive. It seems %^RESET%^gh%^BOLD%^%^BLACK%^ost%^RESET%^ly %^CYAN%^and "
-"insubstancial, forming the vague outline of a tall horse with a dull "
-"%^BOLD%^%^BLACK%^gr%^RESET%^a%^BOLD%^%^BLACK%^y %^RESET%^%^CYAN%^coat. "
-"Whispy hooves brush the ground without a sound, as if the creature were only "
-"%^MAGENTA%^i%^RED%^ma%^MAGENTA%^gi%^RED%^ne%^MAGENTA%^d%^CYAN%^, not truly "
-"present. The only clear part about the creature is its %^BLUE%^dark%^CYAN%^ "
-"eyes, which glow with an intelligence unlike that of a mere beast. This "
-"indeed must be some kind of supernatural creature, and probably not one to "
-"take lightly.%^RESET%^");
+    set_short("%^C059%^An %^C051%^e%^C045%^th%^C039%^er%^C033%^eal %^C244%^g%^C246%^ra%^C244%^y %^C059%^horse%^CRST%^");
+    set_id(({"steed", "horse", "spectral steed", "ethereal horse", "gray horse", "ethereal gray horse"}));
+    set_long("%^C024%^Before you stands a creature that is difficult to perceive. It seems %^C051%^g%^C045%^ho%^C039%^st%^C033%^ly %^C024%^and insubstancial, forming the vague outline of a tall horse with a dull %^C244%^g%^C246%^ra%^C244%^y %^C024%^coat. Whispy hooves brush the ground without a sound, as if the creature were only %^C125%^i%^C126%^ma%^C125%^gi%^C126%^ne%^C125%^d%^C024%^, not truly present. The only clear part about the creature is its %^C059%^dark%^C024%^ eyes, which glow with an intelligence unlike that of a mere beast. This indeed must be some kind of supernatural creature, and probably not one to take lightly.%^CRST%^");
     set_level(10);
     set_value(0);
     set_race("horse");
@@ -33,9 +24,10 @@ void create(){
     set_max_distance(10);
     set_enter_room("rides in on a spectral horse.");
     set_exit_room("leaves riding a spectral horse.");
-    set_vehicle_short("%^BOLD%^%^BLACK%^An ether%^RESET%^e%^BOLD%^%^BLACK%^al gray horse%^RESET%^");
+    set_vehicle_short("%^C059%^An %^C051%^e%^C045%^th%^C039%^er%^C033%^eal %^C244%^g%^C246%^ra%^C244%^y %^C059%^horse%^CRST%^");
     set_attacks_num(2);
     set_damage(2,6);
+    set_property("no_random_treasure", 1);
 }
 
 int enter(string str){
