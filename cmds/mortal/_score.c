@@ -53,6 +53,8 @@ string reader_output(object targ)
     stringp(targ->query_diety()) && output += "Deity: " + targ->query_diety() + " :: ";
     sizeof(targ->query_divine_domain()) && output += "Divine Domains: " + implode(targ->query_divine_domain(), " : ") + " :: ";
     output += "\n";
+    targ->query("druid circle") && output += ({ ({ "Druid Circle", "%^BOLD%^%^WHITE%^" + targ->query("druid circle") }) });
+
     stringp(targ->query_sphere()) && output += "Sphere: " + targ->query_sphere() + " :: ";
     targ->is_class("sorcerer") && output += "Bloodline: " + targ->query_bloodline() + " :: ";
     targ->is_class("oracle") && output += "Mystery: " + targ->query_mystery() + " :: ";

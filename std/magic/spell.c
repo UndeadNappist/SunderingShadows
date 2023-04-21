@@ -1053,7 +1053,7 @@ void wizard_interface(object user, string type, string targ)
     {
         if(caster->query_property("summon spell"))
         {
-            tell_object(caster, "You can summon undead while concentrating on a summon spell.");
+            tell_object(caster, "You cannot summon undead while concentrating on a summon spell.");
             ::remove();
             return;
         }
@@ -2035,7 +2035,7 @@ varargs void use_spell(object ob, mixed targ, int ob_level, int prof, string cla
     {
         if(caster->query_property("summon spell"))
         {
-            tell_object(caster, "You can summon undead while concentrating on a summon spell.");
+            tell_object(caster, "You cannot summon undead while concentrating on a summon spell.");
             ::remove();
             return;
         }
