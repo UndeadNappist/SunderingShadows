@@ -24,6 +24,8 @@ void create()
 	set_race("human");
 	set_body_type("humanoid");
 	set_hd(1,5);
+    set_hp(20);
+    set_hp(query_max_hp());
 	set_exp(1);
 	set_emotes(10,({
 	"The girl's frightened blue eyes look quickly to the sky.",
