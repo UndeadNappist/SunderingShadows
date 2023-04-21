@@ -20,11 +20,11 @@ void create()
 {
     ::create();
     set_spell_name("sticks into snakes");
-    //set_spell_level( ([ "cleric" : 5, "druid" : 5 ]) );
-    set_spell_level( ([ "classless" : 5 ]) );
+    set_spell_level( ([ "cleric" : 5, "druid" : 5 ]) );
+    //set_spell_level( ([ "classless" : 5 ]) );
     set_spell_sphere("alteration");
-    set_domains( ({ "animal" }) );
-    set_circle("grove");
+    //set_domains( ({ "animal" }) );
+    //set_circle("grove");
     set_syntax("cast CLASS sticks into snakes");
     set_damage_desc("creates a bunch of snakes");
     set_description("With this spell, you turn various sticks in the area into writhing, biting snakes that will attack your foe. These snakes have a chance of poisoning or tripping your enemy as they attack. These snakes will only last for a relatively short time, scaling with caster level. The snakes are lesser summons and will only take one hit before dying. The number of snakes scales with caster level as well. Some areas have no sticks and will render this spell ineffective.");
@@ -59,7 +59,7 @@ void spell_effect()
     tell_object(caster, "CASTER MESSAGE");
     tell_room(place, "ROOM MESSAGE", caster);
     
-    num = 5 + clevel / 5;
+    num = 4 + clevel / 3;
     
     for(int x = 0; x < num; x++)
     {
