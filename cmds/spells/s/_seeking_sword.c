@@ -58,13 +58,10 @@ void spell_effect(int prof){
 
 void make_sword()
 {
-    object ob, thing;
+    object ob;
 
     tell_object(caster,"%^RESET%^%^CRST%^%^C101%^A %^C247%^h%^C245%^o%^C243%^veri%^C245%^n%^C247%^g s%^C245%^w%^C243%^o%^C245%^r%^C247%^d%^RESET%^%^C101%^ manifests before you.%^CRST%^");
     tell_room(place,"%^RESET%^%^CRST%^%^C101%^A %^C247%^h%^C245%^o%^C243%^veri%^C245%^n%^C247%^g s%^C245%^w%^C243%^o%^C245%^r%^C247%^d%^RESET%^%^C101%^ manifests before "+caster->QCN+"%^RESET%^%^CRST%^%^C101%^.%^CRST%^",caster);
-    thing = new("/d/shadow/obj/weapon/broad.c");
-    thing->move("/d/magic/obj/place");
-    thing->set_property("effective_enchantment", ((int)CLEVEL / 12));
     control = new("/d/magic/obj/swordremote");
     control->set_caster(caster);
     control->move(caster);
@@ -76,8 +73,8 @@ void make_sword()
     ob->set_size(2);
     ob->set_long("%^RESET%^%^CRST%^%^C101%^The %^C096%^keen edges%^C101%^ of this %^C250%^he%^C247%^av%^C245%^y %^C243%^steel %^C245%^s%^C247%^wo%^C250%^rd%^RESET%^%^C101%^ are met by a powerful broad base attached to a sturdy hilt, its handle swathed in %^C243%^leather%^C101%^ with a decorative pommel at its top. The cross guard curves slightly at its tips and is otherwise unadorned.%^CRST%^");
     ob->set_short("%^RESET%^%^CRST%^%^C247%^a h%^C245%^ov%^C243%^e%^C243%^r%^C245%^in%^C247%^g s%^C245%^w%^C243%^o%^C245%^r%^C247%^d%^CRST%^");
-    ob->set_name(thing->query_name());
-    ob->set_id(thing->query_id());
+    ob->set_name("seeking sword");
+    ob->set_id(({"sword", "seeking sword"}));
     ob->add_id("summoned monster");
     ob->set_heart(1);
     ob->set_stats("intelligence",1);

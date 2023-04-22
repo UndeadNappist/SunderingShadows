@@ -23,9 +23,6 @@ void create()
     set_verbal_comp();
     set_somatic_comp();
     summon_spell();
-    set_components(([
-                        "mage" : ([ "mini platinum sword" : 1, ]),
-                    ]));
     set_helpful_spell(1);
 }
 
@@ -57,12 +54,10 @@ void spell_effect(int prof)
 
 void make_sword()
 {
-    object ob, thing;
+    object ob;
 
     tell_object(caster, "%^CYAN%^A sword appears floating in front of you.%^RESET%^");
     tell_room(place, "%^CYAN%^You see a sword appear in the air before " + caster->QCN + ".%^RESET%^", caster);
-    thing = new("/d/shadow/obj/weapon/broad.c");
-    thing->move("/d/magic/obj/place");
     control = new("/d/magic/obj/swordremote");
     control->set_caster(caster);
     control->move(caster);
@@ -72,10 +67,10 @@ void make_sword()
     control->set_sword(ob);
     caster->add_follower(ob);
     ob->set_size(2);
-    ob->set_long(thing->query_long());
-    ob->set_short("%^RESET%^%^RED%^A %^RED%^f%^BOLD%^%^RED%^l%^RESET%^%^RED%^a%^BOLD%^%^RED%^mi%^RESET%^%^RED%^n%^BOLD%^%^RED%^g%^RESET%^%^RED%^ sword%^RESET%^");
-    ob->set_name(thing->query_name());
-    ob->set_id(thing->query_id());
+    ob->set_long("%^RESET%^%^CRST%^%^C015%^This blade of %^C195%^f%^C253%^o%^C255%^r%^C231%^c%^C253%^e%^RESET%^%^C015%^, which %^C231%^s%^C253%^h%^C255%^i%^C231%^m%^C255%^m%^RESET%^%^C015%^ers with an almost ethereal gl%^C195%^o%^RESET%^%^C015%^w, takes the form of a broad sword. Its edges are sharp and precise, like a finely crafted weapon, and the %^RESET%^%^C231%^s%^C253%^h%^C255%^i%^C231%^m%^C255%^m%^RESET%^%^C015%^ering light dances across its surface, creating a %^RESET%^%^C231%^me%^C253%^s%^C015%^me%^C195%^r%^C231%^i%^C255%^z%^C253%^i%^C015%^ng %^RESET%^%^C255%^p%^C253%^a%^C255%^t%^C195%^t%^C255%^e%^C231%^r%^C253%^n%^C015%^.%^CRST%^%^RESET%^");
+    ob->set_short("%^RESET%^%^CRST%^%^C015%^A %^C231%^s%^C253%^h%^C255%^i%^C231%^m%^C255%^m%^C015%^ering %^C195%^s%^C231%^w%^C255%^o%^C253%^r%^C255%^d%^C015%^ of %^C195%^f%^C253%^o%^C255%^r%^C231%^c%^C253%^e%^CRST%^%^RESET%^");
+    ob->set_name("mages sword");
+    ob->set_id(({"sword", "mages sword"}));
     ob->add_id("summoned monster");
     ob->set_heart(1);
     ob->set_stats("intelligence", 1);
