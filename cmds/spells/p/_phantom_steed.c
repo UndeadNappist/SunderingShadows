@@ -28,7 +28,7 @@ void create(){
 
 string query_cast_string(){
     tell_object(caster, "%^C101%^You bring both hands forward, and then beckon them together towards yourself%^CRST%^.");
-    tell_room(place, "%^C101%^"+caster->query_cap_name()+"%^C101%^ brings both hands forward, and then beckons them together towards "+caster->query_objective()+"self%^CRST%^.");
+    tell_room(place, "%^C101%^"+caster->query_cap_name()+"%^C101%^ brings both hands forward, and then beckons them together towards "+caster->query_objective()+"self%^CRST%^.", caster);
     return "display";
 }
 
