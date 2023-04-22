@@ -41,6 +41,7 @@
     "/d/dagger/ogres/obj/sune_studded", \
     "/d/deku/armours/brobe", \
     "/d/deku/armours/fire_robe", \
+    "/d/deku/armours/plate", \
     "/d/deku/armours/priest_robe", \
     "/d/deku/armours/robe", \
     "/d/deku/fortress/obj/crimson_coif", \
