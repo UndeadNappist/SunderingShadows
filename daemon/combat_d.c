@@ -1188,7 +1188,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
 
         if(FEATS_D->active_feat(attacker, "banishing blade") && (owner = target->query_property("minion")))
         {
-            if(objectp(owner) && (owner->query_true_align() == 3 || owner->query_true_align() == 6 || owner->query_true_align() == 9))
+            if(objectp(owner) && (owner->query_true_align() == 3 || owner->query_true_align() == 6 || owner->query_true_align() == 7 || owner->query_true_align() == 8 || owner->query_true_align() == 9))
                 target && target->die();
         }
     }
