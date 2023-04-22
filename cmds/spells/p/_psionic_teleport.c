@@ -8,8 +8,7 @@ inherit "/cmds/spells/t/_teleport";
 void create() {
     ::create();
     set_spell_name("psionic teleport");
-    set_spell_level(([ "psion" : 5 ]));
-    set_discipline("nomad");
+    set_spell_level(([ "psion" : 3 ]));
     set_domains(({}));
     set_spell_sphere("psychoportation");
     set_syntax("cast CLASS psionic teleport to <location>");
