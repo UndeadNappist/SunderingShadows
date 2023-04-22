@@ -13,6 +13,7 @@
     "/d/islands/argentrock/mon/diamond", \
     "/d/islands/argentrock/mon/diamond2", \
     "/d/islands/argentrock/mon/hellhound", \
+    "/d/islands/serakii/mobs/sliver", \
     "/d/retired/obj/elfshadow", \
     "/d/shadowgate/conversion/spellbert", \
     "/d/tharis/newtharis/mobs/bankgolem", \
