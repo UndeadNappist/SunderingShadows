@@ -195,7 +195,10 @@ int clean_up()
     else
     {
         if(ob->query_no_clean())
-            return 0;
+            return 1;
+        
+        if(ob->query_property("storage room"))
+            return 1;
         
         inv = deep_inventory(ob);
         
