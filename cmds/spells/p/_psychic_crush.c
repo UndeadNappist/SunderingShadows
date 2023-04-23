@@ -8,6 +8,7 @@
 
 #include <std.h>
 #include <spell.h>
+#include <magic.h>
 #include <daemons.h>
 
 inherit SPELL;
@@ -58,9 +59,9 @@ void spell_effect()
         int duration;
         tell_room(place,"%^BOLD%^"+target->QCN+" is paralyzed by the mental assault!",target);
         tell_object(target,"%^BOLD%^You feel your body freeze as the mental assault thrashes your mind!");
-        duration = roll_dice(2,4);
+        duration = ROUND_LENGTH * roll_dice(1,4);
         if(!saved)
-            duration = 8*roll_dice(1,4);
+            duration += ROUND_LENGTH * roll_dice(1,4);
         target->set_paralyzed(duration,"%^BOLD%^You are paralyzed by the mental assault!");
     }
 
