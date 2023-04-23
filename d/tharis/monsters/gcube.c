@@ -96,6 +96,4 @@ void heart_beat(){
 
 }
 
-void clean_up() {return;}
-
 void set_paralyzed(int time, string message){ return;}

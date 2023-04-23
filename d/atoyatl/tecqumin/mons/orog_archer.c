@@ -106,8 +106,6 @@ void catch_tell(string str){
   }
 }*/
 
-int clean_up(){return 1;}
-
 void log(string str){
   object battler, *kids;
   int i;

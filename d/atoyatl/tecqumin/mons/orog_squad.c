@@ -134,7 +134,6 @@ void do_walk(){
   }
   ::do_walk();
 }
-int clean_up(){return 1;}
 
 void die(object ob){
 

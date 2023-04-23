@@ -194,6 +194,9 @@ int clean_up()
     }
     else
     {
+        if(ob->query_no_clean())
+            return 0;
+        
         inv = deep_inventory(ob);
         
         if(sizeof(filter_array(inv, (: userp($1) :))))
@@ -242,6 +245,9 @@ int query_weight()
 
 int query_no_clean()
 {
+    if(query_property("no_clean"))
+        return 1;
+    
     return no_clean;
 }
 
