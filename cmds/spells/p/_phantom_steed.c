@@ -66,7 +66,9 @@ void mount(){
     return;
 }
 
-void dest_effect(){
+void dest_effect()
+{
+    objectp(ob) && ob->remove();
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }
