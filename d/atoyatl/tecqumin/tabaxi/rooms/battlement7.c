@@ -30,12 +30,14 @@ string query_granary_dir(){
   return "down";
 }
 
+/*
 void clean_up(){
   string f;
   f = field_name;
   ::clean_up();
   field_name = f;
 }
+*/
 
 void init(){
   ::init();

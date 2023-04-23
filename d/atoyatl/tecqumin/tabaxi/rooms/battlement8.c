@@ -19,12 +19,14 @@ void create() {
   set_field(find_object_or_load(field_name));
 }
 
+/*
 void clean_up(){
   string f;
   f = field_name;
   ::clean_up();
   field_name = f;
 }
+*/
 
 string query_granary_dir(){
   return "north";

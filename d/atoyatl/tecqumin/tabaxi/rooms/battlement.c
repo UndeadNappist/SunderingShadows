@@ -63,12 +63,14 @@ void reset_field(){
   field = find_object_or_load(field_name);
 }
 
+/*
 void clean_up(){
   string f = field_name;
   ::clean_up();
   field_name = f;
   field = find_object_or_load("field_name");
 }
+*/
 
 string batt_desc(){
   string desc;

@@ -25,4 +25,6 @@ int clean_up()
 {
     if(random_monsters::clean_up())
         return room::clean_up();
+    
+    return 1;
 }

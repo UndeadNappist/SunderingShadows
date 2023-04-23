@@ -75,7 +75,8 @@ void reset(){
 	}
 }
 
-clean_up(){
+/*
+int clean_up(){
     int i;
     
     if (member_array("up", query_exits()) != -1){
@@ -90,4 +91,4 @@ clean_up(){
     destruct(this_object());
     return 1;
 }
-
+*/
