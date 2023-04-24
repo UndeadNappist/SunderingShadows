@@ -48,3 +48,5 @@ int remove_func(){
         tell_object(ETO,"%^BLACK%^%^BOLD%^You remove the greaves.%^RESET%^");
         return 1;
 }
+
+int is_metal() { return 0; }
