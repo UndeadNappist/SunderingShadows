@@ -37,9 +37,8 @@ void create(){
          "unusual pets.",
       ({"platform","large platform","center"}) : "A massive wooden "+
          "platform dominates the center of the bazaar, topped by "+
-         "elves chained with a few members of other races.  The "+
-         "slaves look frightened and confused, being taken from their "+
-         "families and sold to the eager buyers surrounding them."
+         "an assortment of slaves of various races.  They "+
+         "look frightened and confused."
     ]));
     set_exits(([
 	"north" : RPATH "bazaar2",
