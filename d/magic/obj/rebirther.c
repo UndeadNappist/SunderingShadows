@@ -60,7 +60,7 @@ void init(){
      tell_object(reborn,"%^BOLD%^%^RED%^The world seems to slow down as you see the "+
       "fatal blow coming that would end your life.  Do you step aside?%^RESET%^");
    }
-   call_out("do death", 300);
+   call_out("do_death", 300);
    tell_object(reborn,"%^BOLD%^WHITE%^y%^RED%^es or %^WHITE%^n%^RED%^o?%^RESET%^");
    input_to("pref");
 }

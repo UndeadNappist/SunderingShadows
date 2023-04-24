@@ -55,62 +55,61 @@ void spell_effect(int prof){
         define_base_damage(0);
     }
     
-    if(interactive(caster)){
-        switch(element){
-            case "acid":
-                if(spell_type == "monk"){
-                    tell_object(caster, "%^RESET%^%^CRST%^%^C065%^Raising a finger to your lips, you exhale a cloud of %^C118%^s%^C112%^ic%^C106%^k%^C118%^l%^C112%^y %^C077%^a%^C071%^c%^C070%^i%^C076%^d%^RESET%^%^C065%^.%^CRST%^");
-                    tell_room(place, "%^RESET%^%^CRST%^%^C065%^Raising a finger to "+caster->possessive()+" lips,"+YOU+"%^RESET%^%^CRST%^%^C065%^ exhales a cloud of %^C118%^s%^C112%^ic%^C106%^k%^C118%^l%^C112%^y %^C077%^a%^C071%^c%^C070%^i%^C076%^d%^RESET%^%^C065%^.%^CRST%^", caster);
-                }
-                else{
-                    tell_object(caster, "%^RESET%^%^CRST%^%^C065%^The crystal pulses with a short-lived, %^C118%^s%^C112%^ic%^C106%^k%^C118%^l%^C112%^y g%^C106%^r%^C118%^e%^C112%^en %^C106%^l%^C118%^i%^C112%^gh%^C106%^t%^RESET%^%^C065%^ that slightly burns your hands.%^CRST%^");
-                    tell_room(place, "%^RESET%^%^CRST%^%^C065%^"+YOU+"%^RESET%^%^CRST%^%^C065%^'s hands tremble violently as "+caster->query_subjective()+" grasps the %^C118%^c%^C112%^ry%^C106%^s%^C118%^t%^C112%^al%^RESET%^%^C065%^.%^CRST%^", ({caster}) );
-                }
-                break;
-            case "electricity":
-                if(spell_type == "monk"){
-                    tell_object(caster, "%^RESET%^%^CRST%^%^C100%^Raising a finger to your lips, you exhale a dark, %^C059%^s%^C243%^to%^C059%^r%^C243%^m%^C059%^y c%^C243%^lou%^C059%^d%^RESET%^%^C100%^.%^CRST%^");
-                    tell_room(place, "%^RESET%^%^CRST%^%^C100%^Raising a finger to "+caster->possessive()+" lips,"+YOU+"%^RESET%^%^CRST%^%^C100%^ exhales a dark, %^C059%^s%^C243%^to%^C059%^r%^C243%^m%^C059%^y c%^C243%^lou%^C059%^d%^RESET%^%^C100%^.%^CRST%^", ({caster}));
-                }
-                else{
-                    tell_object(caster, "%^RESET%^%^CRST%^%^C100%^The %^C228%^cr%^C231%^y%^C228%^st%^C226%^a%^C228%^l%^RESET%^%^C100%^ develops a static charge, making your hands tremble.%^CRST%^");
-                    tell_room(place, "%^RESET%^%^CRST%^%^C100%^"+YOU+"%^RESET%^%^CRST%^%^C100%^'s hands tremble violently as "+caster->query_subjective()+" grasps the %^C228%^cr%^C231%^y%^C228%^st%^C226%^a%^C228%^l%^RESET%^%^C100%^.%^CRST%^", ({caster}) );
-                }
-                break;
-            case "fire":
-                if(spell_type == "monk"){
-                    tell_object(caster, "%^RESET%^%^CRST%^%^C124%^Raising a finger to your lips, you exhale a cloud of %^C208%^r%^C214%^o%^C208%^i%^C202%^l%^C208%^i%^C214%^n%^C208%^g %^C202%^f%^C208%^l%^C214%^a%^C208%^m%^C202%^e%^C208%^s%^RESET%^%^C124%^.%^CRST%^");
-                    tell_room(place, "%^RESET%^%^CRST%^%^C124%^Raising a finger to "+caster->possessive()+" lips,"+YOU+"%^RESET%^%^CRST%^%^C124%^ exhales a cloud of %^C208%^r%^C214%^o%^C208%^i%^C202%^l%^C208%^i%^C214%^n%^C208%^g %^C202%^f%^C208%^l%^C214%^a%^C208%^m%^C202%^e%^C208%^s%^RESET%^%^C124%^.%^CRST%^", ({caster}));
-                }
-                else{
-                    tell_object(caster, "%^RESET%^%^CRST%^%^C124%^The %^C208%^c%^C214%^r%^C208%^y%^C202%^s%^C208%^t%^C214%^a%^C208%^l%^RESET%^%^C124%^ takes on a sudden heat, making your hands tremble.%^CRST%^");
-                    tell_room(place, "%^RESET%^%^CRST%^%^C124%^"+YOU+"%^RESET%^%^CRST%^%^C124%^'s hands tremble violently as "+caster->query_subjective()+" grasps the %^C208%^c%^C214%^r%^C208%^y%^C202%^s%^C208%^t%^C214%^a%^C208%^l%^RESET%^%^C124%^.%^CRST%^", ({caster}) );
-                }
-                break;
-            case "sonic":
-                if(spell_type == "monk"){
-                    tell_object(caster, "%^RESET%^%^CRST%^%^C090%^Raising a finger to your lips, you begin to intone a %^C243%^d%^C059%^ee%^C243%^p b%^C059%^as%^C243%^s %^C218%^s%^C212%^o%^C206%^u%^C212%^n%^C218%^d%^RESET%^%^C090%^.%^CRST%^");
-                    tell_room(place, "%^RESET%^%^CRST%^%^C090%^Raising a finger to "+caster->possessive()+" lips,"+YOU+"%^RESET%^%^CRST%^%^C090%^ begin to intone a %^C243%^d%^C059%^ee%^C243%^p b%^C059%^as%^C243%^s %^C218%^s%^C212%^o%^C206%^u%^C212%^n%^C218%^d%^RESET%^%^C090%^.%^CRST%^", ({caster}));
-                }
-                else{
-                    tell_object(caster, "%^RESET%^%^CRST%^%^C090%^A powerful, low-pitched droning emanates from the %^C218%^c%^C212%^r%^C206%^yst%^C212%^a%^C218%^l%^RESET%^%^C090%^, making your hands tremble.%^CRST%^");
-                    tell_room(place, "%^RESET%^%^CRST%^%^C090%^"+YOU+"%^RESET%^%^CRST%^%^C090%^'s hands tremble violently as "+caster->query_subjective()+" grasps the %^C218%^c%^C212%^r%^C206%^yst%^C212%^a%^C218%^l%^RESET%^%^C090%^.%^CRST%^", ({caster}) );
-                }
-                break;
-            default:
-                element = "cold";
-                if(spell_type == "monk"){
-                    tell_object(caster, "%^RESET%^%^CRST%^%^C039%^Raising a finger to your lips, you exhale a cloud of %^C250%^a%^C255%^rct%^C250%^i%^C255%^c fro%^C250%^s%^C255%^t%^RESET%^%^C039%^.%^CRST%^");
-                    tell_room(place, "%^RESET%^%^CRST%^%^C039%^Raising a finger to "+caster->possessive()+" lips,"+YOU+"%^RESET%^%^CRST%^%^C039%^ exhales a cloud of %^C250%^a%^C255%^rct%^C250%^i%^C255%^c fro%^C250%^s%^C255%^t%^RESET%^%^C039%^.%^CRST%^", ({caster}));
-                }
-                else{
-                    tell_object(caster, "%^RESET%^%^CRST%^%^C039%^Slowly your %^C250%^c%^C255%^rys%^C250%^t%^C255%^a%^C250%^l%^RESET%^%^C039%^ chills to an icy cold, making your hands tremble.%^CRST%^");
-                    tell_room(place, "%^RESET%^%^CRST%^%^C039%^"+YOU+"%^RESET%^%^CRST%^%^C039%^'s hands tremble violently as "+caster->query_subjective()+" grasps the %^C250%^c%^C255%^rys%^C250%^t%^C255%^a%^C250%^l%^RESET%^%^C039%^.%^CRST%^", ({caster}) );
-                }
-                break;
-        }
-        call_out("zapper",4);
+    switch(element){
+        case "acid":
+            if(spell_type == "monk"){
+                tell_object(caster, "%^RESET%^%^CRST%^%^C065%^Raising a finger to your lips, you exhale a cloud of %^C118%^s%^C112%^ic%^C106%^k%^C118%^l%^C112%^y %^C077%^a%^C071%^c%^C070%^i%^C076%^d%^RESET%^%^C065%^.%^CRST%^");
+                tell_room(place, "%^RESET%^%^CRST%^%^C065%^Raising a finger to "+caster->possessive()+" lips,"+YOU+"%^RESET%^%^CRST%^%^C065%^ exhales a cloud of %^C118%^s%^C112%^ic%^C106%^k%^C118%^l%^C112%^y %^C077%^a%^C071%^c%^C070%^i%^C076%^d%^RESET%^%^C065%^.%^CRST%^", caster);
+            }
+            else{
+                tell_object(caster, "%^RESET%^%^CRST%^%^C065%^The crystal pulses with a short-lived, %^C118%^s%^C112%^ic%^C106%^k%^C118%^l%^C112%^y g%^C106%^r%^C118%^e%^C112%^en %^C106%^l%^C118%^i%^C112%^gh%^C106%^t%^RESET%^%^C065%^ that slightly burns your hands.%^CRST%^");
+                tell_room(place, "%^RESET%^%^CRST%^%^C065%^"+YOU+"%^RESET%^%^CRST%^%^C065%^'s hands tremble violently as "+caster->query_subjective()+" grasps the %^C118%^c%^C112%^ry%^C106%^s%^C118%^t%^C112%^al%^RESET%^%^C065%^.%^CRST%^", ({caster}) );
+            }
+            break;
+        case "electricity":
+            if(spell_type == "monk"){
+                tell_object(caster, "%^RESET%^%^CRST%^%^C100%^Raising a finger to your lips, you exhale a dark, %^C059%^s%^C243%^to%^C059%^r%^C243%^m%^C059%^y c%^C243%^lou%^C059%^d%^RESET%^%^C100%^.%^CRST%^");
+                tell_room(place, "%^RESET%^%^CRST%^%^C100%^Raising a finger to "+caster->possessive()+" lips,"+YOU+"%^RESET%^%^CRST%^%^C100%^ exhales a dark, %^C059%^s%^C243%^to%^C059%^r%^C243%^m%^C059%^y c%^C243%^lou%^C059%^d%^RESET%^%^C100%^.%^CRST%^", ({caster}));
+            }
+            else{
+                tell_object(caster, "%^RESET%^%^CRST%^%^C100%^The %^C228%^cr%^C231%^y%^C228%^st%^C226%^a%^C228%^l%^RESET%^%^C100%^ develops a static charge, making your hands tremble.%^CRST%^");
+                tell_room(place, "%^RESET%^%^CRST%^%^C100%^"+YOU+"%^RESET%^%^CRST%^%^C100%^'s hands tremble violently as "+caster->query_subjective()+" grasps the %^C228%^cr%^C231%^y%^C228%^st%^C226%^a%^C228%^l%^RESET%^%^C100%^.%^CRST%^", ({caster}) );
+            }
+            break;
+        case "fire":
+            if(spell_type == "monk"){
+                tell_object(caster, "%^RESET%^%^CRST%^%^C124%^Raising a finger to your lips, you exhale a cloud of %^C208%^r%^C214%^o%^C208%^i%^C202%^l%^C208%^i%^C214%^n%^C208%^g %^C202%^f%^C208%^l%^C214%^a%^C208%^m%^C202%^e%^C208%^s%^RESET%^%^C124%^.%^CRST%^");
+                tell_room(place, "%^RESET%^%^CRST%^%^C124%^Raising a finger to "+caster->possessive()+" lips,"+YOU+"%^RESET%^%^CRST%^%^C124%^ exhales a cloud of %^C208%^r%^C214%^o%^C208%^i%^C202%^l%^C208%^i%^C214%^n%^C208%^g %^C202%^f%^C208%^l%^C214%^a%^C208%^m%^C202%^e%^C208%^s%^RESET%^%^C124%^.%^CRST%^", ({caster}));
+            }
+            else{
+                tell_object(caster, "%^RESET%^%^CRST%^%^C124%^The %^C208%^c%^C214%^r%^C208%^y%^C202%^s%^C208%^t%^C214%^a%^C208%^l%^RESET%^%^C124%^ takes on a sudden heat, making your hands tremble.%^CRST%^");
+                tell_room(place, "%^RESET%^%^CRST%^%^C124%^"+YOU+"%^RESET%^%^CRST%^%^C124%^'s hands tremble violently as "+caster->query_subjective()+" grasps the %^C208%^c%^C214%^r%^C208%^y%^C202%^s%^C208%^t%^C214%^a%^C208%^l%^RESET%^%^C124%^.%^CRST%^", ({caster}) );
+            }
+            break;
+        case "sonic":
+            if(spell_type == "monk"){
+                tell_object(caster, "%^RESET%^%^CRST%^%^C090%^Raising a finger to your lips, you begin to intone a %^C243%^d%^C059%^ee%^C243%^p b%^C059%^as%^C243%^s %^C218%^s%^C212%^o%^C206%^u%^C212%^n%^C218%^d%^RESET%^%^C090%^.%^CRST%^");
+                tell_room(place, "%^RESET%^%^CRST%^%^C090%^Raising a finger to "+caster->possessive()+" lips,"+YOU+"%^RESET%^%^CRST%^%^C090%^ begin to intone a %^C243%^d%^C059%^ee%^C243%^p b%^C059%^as%^C243%^s %^C218%^s%^C212%^o%^C206%^u%^C212%^n%^C218%^d%^RESET%^%^C090%^.%^CRST%^", ({caster}));
+            }
+            else{
+                tell_object(caster, "%^RESET%^%^CRST%^%^C090%^A powerful, low-pitched droning emanates from the %^C218%^c%^C212%^r%^C206%^yst%^C212%^a%^C218%^l%^RESET%^%^C090%^, making your hands tremble.%^CRST%^");
+                tell_room(place, "%^RESET%^%^CRST%^%^C090%^"+YOU+"%^RESET%^%^CRST%^%^C090%^'s hands tremble violently as "+caster->query_subjective()+" grasps the %^C218%^c%^C212%^r%^C206%^yst%^C212%^a%^C218%^l%^RESET%^%^C090%^.%^CRST%^", ({caster}) );
+            }
+            break;
+        default:
+            element = "cold";
+            if(spell_type == "monk"){
+                tell_object(caster, "%^RESET%^%^CRST%^%^C039%^Raising a finger to your lips, you exhale a cloud of %^C250%^a%^C255%^rct%^C250%^i%^C255%^c fro%^C250%^s%^C255%^t%^RESET%^%^C039%^.%^CRST%^");
+                tell_room(place, "%^RESET%^%^CRST%^%^C039%^Raising a finger to "+caster->possessive()+" lips,"+YOU+"%^RESET%^%^CRST%^%^C039%^ exhales a cloud of %^C250%^a%^C255%^rct%^C250%^i%^C255%^c fro%^C250%^s%^C255%^t%^RESET%^%^C039%^.%^CRST%^", ({caster}));
+            }
+            else{
+                tell_object(caster, "%^RESET%^%^CRST%^%^C039%^Slowly your %^C250%^c%^C255%^rys%^C250%^t%^C255%^a%^C250%^l%^RESET%^%^C039%^ chills to an icy cold, making your hands tremble.%^CRST%^");
+                tell_room(place, "%^RESET%^%^CRST%^%^C039%^"+YOU+"%^RESET%^%^CRST%^%^C039%^'s hands tremble violently as "+caster->query_subjective()+" grasps the %^C250%^c%^C255%^rys%^C250%^t%^C255%^a%^C250%^l%^RESET%^%^C039%^.%^CRST%^", ({caster}) );
+            }
+            break;
     }
+    
+    if(interactive(caster)) call_out("zapper", 4);
     else zapper();
 }
 
