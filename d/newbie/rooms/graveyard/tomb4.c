@@ -3,7 +3,6 @@
 inherit GRAVEYARD"tomb";
 
 void create(){
-   set_monsters(({GRAVEYARD"mon/rashan",}),({1,}));
    ::create();
    set_long("%^BOLD%^%^BLACK%^Musty tomb%^RESET%^\n%^BLUE%^This small building appears to be a tomb of sorts.  "
 "It seems to be very old, and has been untended for quite some time.  The crumbling stone%^BOLD%^%^BLACK%^ "
@@ -19,7 +18,7 @@ void create(){
 
 void reset(){
    ::reset();
-   if(!present("hulking zombie") ){
+   if(!present("hulking zombie")){
      new(GRAVEYARD"mon/rashan")->move(this_object());
    }
 }
