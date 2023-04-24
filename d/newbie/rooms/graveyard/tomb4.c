@@ -16,3 +16,10 @@ void create(){
      "north":GRAVEYARD"tomb2",
    ]));
 }
+
+void reset(){
+   ::reset();
+   if(!present("hulking zombie) ){
+     new(GRAVEYARD"mon/rashan")->move(this_object());
+   }
+}
