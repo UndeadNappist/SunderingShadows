@@ -15,7 +15,7 @@ void create(){
     set_temple("cacia");
     set_name("cacia's shrine");
     set_short("%^RESET%^%^CRST%^%^C060%^Cacia's Shrine%^CRST%^");
-    set_long("%^RESET%^%^CRST%^%^C101%^A %^C243%^stone path%^C101%^ leads to a circle of pavement that gives way to a raised %^C243%^m%^C245%^a%^C243%^r%^C245%^b%^C243%^l%^C245%^e %^C243%^pl%^C245%^at%^C243%^fo%^C245%^rm%^RESET%^%^C101%^ dominated by a %^C060%^beguiling sculpture%^RESET%^%^C101%^. Offerings are lain out at its feet or placed reverently in its upturned palms. An %^C102%^inscription%^RESET%^%^C101%^ wraps around the periphery of the dais, her charge to the faithful.\n\n%^RESET%^%^C059%^Little else flourishes here, and even the wind seems hesitant to expel its breath, the world stilled as if waiting for a ravenous predator to pass.\n%^CRST%^");
+    set_long("%^RESET%^%^CRST%^%^C101%^A %^C243%^stone path%^C101%^ leads to a circle of pavement that gives way to a raised %^C243%^m%^C245%^a%^C243%^r%^C245%^b%^C243%^l%^C245%^e %^C243%^pl%^C245%^at%^C243%^fo%^C245%^rm%^RESET%^%^C101%^ dominated by a %^C060%^beguiling sculpture%^RESET%^%^C101%^. Offerings are lain out at its feet or placed reverently in its upturned palms. An %^C102%^inscription%^RESET%^%^C101%^ wraps around the periphery of the dais, her charge to the faithful.\n\n%^RESET%^%^C059%^Little else flourishes here, and even the wind seems hesitant to expel its breath, the world stilled as if waiting for a ravenous predator to pass.\n\n%^C058%^Piles of lumber and stone ring the area, and scaffolding has already been installed as workers move about the area.\n%^CRST%^");
     set_smell("default","%^RESET%^%^CRST%^%^C156%^The scents of the plains are carried on the breeze.%^CRST%^");
     set_listen("default","%^RESET%^%^CRST%^%^C247%^The %^C244%^silence%^C247%^ is palpable.%^CRST%^");
     set_items(([
@@ -64,7 +64,7 @@ void place_long(){
             long_desc += " A %^C144%^multitude %^C101%^of offerings";
             break;
     }
-    long_desc += " are lain out at its feet or placed reverently in its upturned palms. An %^C102%^inscription%^RESET%^%^C101%^ wraps around the periphery of the dais, her charge to the faithful.\n\n%^RESET%^%^C059%^Little else flourishes here, and even the wind seems hesitant to expel its breath, the world stilled as if waiting for a ravenous predator to pass.\n%^CRST%^";
+    long_desc += " are lain out at its feet or placed reverently in its upturned palms. An %^C102%^inscription%^RESET%^%^C101%^ wraps around the periphery of the dais, her charge to the faithful.\n\n%^RESET%^%^C059%^Little else flourishes here, and even the wind seems hesitant to expel its breath, the world stilled as if waiting for a ravenous predator to pass.\n\n%^C058%^Piles of lumber and stone ring the area, and scaffolding has already been installed as workers move about the area.\n%^CRST%^";
     set_long(long_desc);
     return;
 }
