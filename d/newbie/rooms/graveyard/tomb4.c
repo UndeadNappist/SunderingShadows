@@ -19,7 +19,7 @@ void create(){
 
 void reset(){
    ::reset();
-   if(!present("hulking zombie) ){
+   if(!present("hulking zombie") ){
      new(GRAVEYARD"mon/rashan")->move(this_object());
    }
 }
