@@ -335,7 +335,7 @@ void receive_given_item(object obj){
 					add_money("gold",25000);
 					force_me("give "+query_money("gold")+" gold coins to "+TPQN);
 					TP->set_quest("Finished Grizon's Job");
-					TP->fix_exp(100000,TP);
+					TP->fix_exp(2000000,TP);
 					tell_object(TP,"You finished Grizon's job!");
 					"/cmds/avatar/_note.c"->cmd_note("add "+TPQN+" "+
 						"Finished Grizon's Job!");
