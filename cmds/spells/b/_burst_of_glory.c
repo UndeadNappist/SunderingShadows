@@ -24,7 +24,7 @@ void create()
 
 string query_cast_string()
 {
-    return "%^BOLD%^%^WHITE%^" + caster->QCN + "%^WHITE%^begins to cast a %^BOLD%^%^WHITE%^del%^RESET%^%^ORANGE%^i%^ORANGE%^c%^BOLD%^%^WHITE%^a%^RESET%^%^ORANGE%^t%^ORANGE%^e%^WHITE%^ prayer, %^BOLD%^%^WHITE%^war%^RESET%^%^ORANGE%^m %^WHITE%^lig%^ORANGE%^h%^BOLD%^%^WHITE%^t%^RESET%^%^WHITE%^ surrounds them.";
+    return "%^BOLD%^%^WHITE%^" + caster->QCN + " %^WHITE%^begins to cast a %^BOLD%^%^WHITE%^del%^RESET%^%^ORANGE%^i%^ORANGE%^c%^BOLD%^%^WHITE%^a%^RESET%^%^ORANGE%^t%^ORANGE%^e%^WHITE%^ prayer, %^BOLD%^%^WHITE%^war%^RESET%^%^ORANGE%^m %^WHITE%^lig%^ORANGE%^h%^BOLD%^%^WHITE%^t%^RESET%^%^WHITE%^ surrounds them.";
 }
 
 int spell_effect()
