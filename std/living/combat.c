@@ -42,7 +42,7 @@ string wimpydir;
 //almost every pre-existing variable has been rolled into the following mappings - Saide, January 2017
 mapping combat_vars, combat_messages, combat_counters;
 nosave mapping combat_static_vars, combat_arrays;
-nosave string *feats_known;
+nosave string *combat_feats;
 
 void send_dodge(object att);
 void add_attacker(object ob);
@@ -139,14 +139,29 @@ nosave mapping base_attacks = ([
 
 //The idea here is to get a feats snapshot each round as opposed to all the FEAT_D queries every attack
 //Most likely this will be called on combatants from battle.c or maybe just in heart_beat
-int feats_snapshot()
+void feats_snapshot()
 {
-    feats_known = FEATS_D->get_usable(this_object());
+    if(userp(this_object()))
+        combat_feats = this_object()->query_player_feats();
+    else
+        combat_feats = this_object()->query_monster_feats();
     
-    if(!arrayp(feats_known))
-        feats_known = ({  });
+    if(!arrayp(combat_feats))
+        combat_feats = ({  });       
+}
+
+int has_feat(string temp)
+{
+    if(!stringp(temp))
+        return 0;
     
-    return sizeof(feats_known);
+    if(!arrayp(combat_feats))
+        feats_snapshot();
+    
+    if(member_array(temp, combat_feats) < 0)
+        return 0;
+    
+    return 1;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

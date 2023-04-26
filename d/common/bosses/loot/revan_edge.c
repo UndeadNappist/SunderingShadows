@@ -20,11 +20,11 @@ void create(){
    "of a pommel, showing the masterful crafting in its balance. The hilt itself is "+
    "wrapped in %^RESET%^white%^RESET%^%^BOLD%^ and %^BLACK%^%^BOLD%^black%^RESET%^%^BOLD%^ "+
    "silk.%^RESET%^");
-   set_value(15000);
+   set_value(100000);
    set_lore(" %^RED%^%^BOLD%^Revan was quite possibly the most feared Solar to the forces "+
    "of darkness he hunted. To be honest though some of his own kind held an amount of fear "+
    "for the 'Furious Shard' as any sign of taint or decay could cause Revan to declare you "+
-   "apostate and destroy you. After Revan's death his katana was lost to time. It is saod "+
+   "apostate and destroy you. After Revan's death his katana was lost to time. It is said "+
    "the blade was formed from the bones of a demi-god that Revan killed."+
    " \n%^RESET%^%^ORANGE%^Father Belanos, the Weapons of Light%^RESET%^%^RESET%^");
    set_property("lore difficulty",23);
@@ -62,3 +62,36 @@ int hit_func(object targ){
     }
 }
 
+int hit_special(object targ){
+    if(!objectp(ETO)) return 0;
+    if(!objectp(EETO)) return 0;
+    if(!objectp(targ)) return 0;
+    //special chance %
+    if(random(1000) < 275)
+    {
+        switch(random(10))
+        {
+            case 0..8:
+                tell_object(ETO, "%^BLACK%^%^BOLD%^You jump into the air and take the sword "+
+				"and slam it into "+targ->QP+"%^BLACK%^%^BOLD%^'s body with all your strength!%^RESET%^");
+				tell_object(targ, "%^BLACK%^%^BOLD%^You reel for a moment as "+ETO->QCN+" %^BLACK%^%^BOLD%^slams "+
+				"the blade of their sword into you!%^RESET%^");
+				tell_room(EETO, ETOQCN+" %^BLACK%^%^BOLD%^jumps into the air and with all of their strength "+
+				"slams the blade into "+targ->QCN+"%^BLACK%^%^BOLD%^!%^RESET%^", ({targ, ETO}));
+				targ->cause_typed_damage(targ, "torso", roll_dice(6, 10) + 10,"slashing");
+			break;
+
+			case 9:
+                tell_object(ETO, "%^RED%^%^BOLD%^With a mighty %^YELLOW%^scream%^RED%^%^BOLD%^ you thrust "+
+				"the sword through "+targ->QP+"%^RED%^%^BOLD%^'s body pinning them to the ground!%^RESET%^");
+				tell_object(targ, "%^RED%^%^BOLD%^You look over in time to "+
+				"see "+ETO->QCN+" %^RED%^%^BOLD%^impale you against the ground with their sword!%^RESET%^");
+				tell_room(EETO, ETOQCN+" %^RED%^%^BOLD%^impales "+targ->QCN+" %^RED%^%^BOLD%^against "+
+				"the ground with their massive sword!%^RESET%^", ({targ, ETO}));
+				targ->cause_typed_damage(targ, "torso", roll_dice(8, 10) + 12,"piercing");
+				targ->set_tripped(2,"%^RESET%^%^ORANGE%^You are still pinned to the ground.%^RESET%^");
+			break;
+		}
+
+}
+}
