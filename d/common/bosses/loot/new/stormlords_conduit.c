@@ -85,7 +85,7 @@ int hit_func(object target)
     pname = holder->query_cap_name();
     ename = target->query_cap_name();
     
-    tell_room(environment(holder), "ROOM HIT FUNC MESSAGE");  
+    tell_room(environment(holder), "When the warhammer strikes its target, it unleashes a thunderous shockwave that tears through the air, leaving behind a trail of crackling energy that scorches the earth and leaves " + target->query_cap_name() + " reeling in agony!");  
 
     new("/cmds/spells/l/_lightning_arc")->use_spell(holder, target, 50, 100, "druid");
 }
