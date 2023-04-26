@@ -678,6 +678,29 @@ int query_stat_bonus(string stat)
     return ret = (((int)this_object()->query_stats(stat) - 10) / 2);
 }
 
+//////////////////////////////////////////////////////////////////////////////
+// Unarmed / Monk stuff
+//////////////////////////////////////////////////////////////////////////////
+
+int unarmed_enchantment()
+{   
+    if(!is_class("monk"))
+        return 0;
+    
+    if(is_class("monk"))
+    {
+        return (query_guild_level("monk") / 6) + has_feat("enchanted fists");
+    }
+    else if(has_feat("precise strikes") || query_property("shapeshifted"))
+    {
+        return query_base_character_level() / 8;
+    }
+    
+    return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 int base_attack()
 {
     int bonus, ret;
@@ -811,14 +834,9 @@ varargs int hit_bonus(object targ, int attack_num, object weapon, int touch)
     {
         bonus += weapon->query_property("enchantment");
     }
-    else if(is_class("monk"))
+    else if(is_class("monk") || query_property("shapeshifted"))
     {
-        if(has_feat("enchanted fists"))
-            bonus += COMBAT_D->unarmed_enchantment(this_object()); //Replace later when combat_d handled
-    }
-    else if(query_property("shapeshifted"))
-    {
-        bonus += COMBAT_D->unarmed_enchantment(this_object());
+        bonus += unarmed_enchantment();
     }
     
     if(query("protecting"))
