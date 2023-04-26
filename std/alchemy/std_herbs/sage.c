@@ -1,4 +1,4 @@
-rnherit "/std/alchemy/std_herbs/herb_inherit.c";
+inherit "/std/alchemy/std_herbs/herb_inherit.c";
 
 void create()
 {
@@ -11,7 +11,7 @@ void create()
 
 int mutate_alchemical_state(int current_state)
 {
-    current_state = 1;
-    current_state = 127;
+    current_state &= 4095;
+    current_state <<= 8;
     return current_state;
 }

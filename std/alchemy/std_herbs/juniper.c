@@ -11,7 +11,7 @@ void create()
 
 int mutate_alchemical_state(int current_state)
 {
-    current_state = 1;
-    current_state = 127;
+    current_state >>= 1;
+    current_state |= 127;
     return current_state;
 }

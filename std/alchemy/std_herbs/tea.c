@@ -1,4 +1,4 @@
-rnherit "/std/alchemy/std_herbs/herb_inherit.c";
+inherit "/std/alchemy/std_herbs/herb_inherit.c";
 
 void create()
 {
