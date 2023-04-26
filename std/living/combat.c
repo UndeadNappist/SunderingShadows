@@ -42,6 +42,7 @@ string wimpydir;
 //almost every pre-existing variable has been rolled into the following mappings - Saide, January 2017
 mapping combat_vars, combat_messages, combat_counters;
 nosave mapping combat_static_vars, combat_arrays;
+nosave string *feats_known;
 
 void send_dodge(object att);
 void add_attacker(object ob);
@@ -127,6 +128,28 @@ nosave mapping base_attacks = ([
                                 "mage"       : 0.50,
                                 "sorcerer"   : 0.50,
                             ]);
+                            
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// This section sets the foundation for other following code
+//
+// -- Tlaloc --
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//The idea here is to get a feats snapshot each round as opposed to all the FEAT_D queries every attack
+//Most likely this will be called on combatants from battle.c or maybe just in heart_beat
+int feats_snapshot()
+{
+    feats_known = FEATS_D->get_usable(this_object());
+    
+    if(!arrayp(feats_known))
+        feats_known = ({  });
+    
+    return sizeof(feats_known);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //  This function is used to initialize various variables
 void init_attack()
@@ -617,7 +640,6 @@ void set_combat_messages(mapping val) { if(!mapp(val)) { return; } else return c
 void set_combat_counters(mapping val) { if(!mapp(val)) { return; } else return combat_counters = val; }
 void set_combat_static_vars(mapping val) { if(!mapp(val)) { return; } else return combat_static_vars = val; }
 void set_combat_arrays(mapping val) { if(!mapp(val)) { return; } else return combat_arrays = val; }
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
