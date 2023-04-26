@@ -141,6 +141,7 @@ nosave mapping base_attacks = ([
 //Most likely this will be called on combatants from battle.c or maybe just in heart_beat
 void feats_snapshot()
 {
+    //Unfortunately, these functions are in user.c and monster.c so HAVE to call this_object() and can't rely on baseline arrays
     if(userp(this_object()))
         combat_feats = this_object()->query_player_feats();
     else
@@ -664,6 +665,19 @@ void set_combat_arrays(mapping val) { if(!mapp(val)) { return; } else return com
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+int query_stat_bonus(string stat)
+{
+    int ret;
+    
+    if (!objectp(this_object()))
+        return 0;
+    
+    if (!stringp(stat))
+        return 0;
+    
+    return ret = (((int)this_object()->query_stats(stat) - 10) / 2);
+}
+
 int base_attack()
 {
     int bonus, ret;
@@ -724,3 +738,87 @@ int number_of_attacks()
     
     return num;
 }
+
+varargs int hit_bonus(object targ, int attack_num, object weapon, int touch)
+{
+    int bonus, penalty;
+    
+    if(!objectp() || !objectp(targ))
+        return 0;
+    
+    if(this_object()->query_unconscious() || this_object()->query_bound())
+        return 0;
+    
+    bonus = 0;
+    pen = 0;
+    
+    if(sizeof(this_object()->query_wielded()) > 1)
+        penalty = 2;
+    
+    if(attack_num > 1)
+        penalty += 2 * (attack_num - 1);
+    
+    penalty = penalty > 6 ? 6 : penalty;
+    
+    bonus = base_attack();
+    bonus += this_object()->query_attack_bonus();
+    
+    if(objectp(weapon))
+    {
+        if(weapon->is_lrweapon())
+        {
+            if(!present(weapon->query_ammo(), this_object())) //Remember to add this check to process hit
+                return 0;
+            
+            if(!has_feat("point blank shot"))
+                penalty += 4;
+            
+            bonus += query_stat_bonus("dexterity");
+        }
+        else if((this_object()->query_size() >= weapon->query_size() && has_feat("weapon finesse")) || has_feat("fighter finesse"))
+        {
+            bonus += query_stat_bonus("dexterity");
+        }
+        else if(has_feat("cunning strikes"))
+        {
+            bonus += query_stat_bonus("charisma");
+        }
+        else
+        {
+            bonus += query_stat_bonus("strength");
+        }
+    }
+    else
+    {
+        if(has_feat("weapon finesse"))
+            bonus += query_stat_bonus("dexterity");
+        else if(has_feat("cunning strikes"))
+            bonus += query_stat_bonus("charisma");
+        else
+            bonus += query_stat_bonus("strength");
+    }
+    
+    //Touch attack bonuses
+    if(touch)
+        bonus += (has_feat("point blank shot") + query_property("spectral hand"));
+    
+    //Class Bonuses
+    if(this_object()->is_class("paladin") && targ->query_property("paladin smite") == this_object())
+        bonus += query_stat_bonus("charisma");
+    
+    if(objectp(weapon) && weapon != this_object())
+    {
+        bonus += weapon->query_property("enchantment");
+    }
+    else if(is_class("monk"))
+    {
+        if(has_feat("enchanted fists"))
+            bonus += COMBAT_D->unarmed_enchantment(this_object()); //Replace later when combat_d handled
+    }
+        
+    
+        
+    
+    
+    
+    
