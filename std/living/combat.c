@@ -739,18 +739,19 @@ int number_of_attacks()
     return num;
 }
 
+//Lot of combat functions in living.c currently so have to use this_object() for the time being
 varargs int hit_bonus(object targ, int attack_num, object weapon, int touch)
 {
     int bonus, penalty;
     
-    if(!objectp() || !objectp(targ))
+    if(!objectp(this_object()) || !objectp(targ))
         return 0;
     
     if(this_object()->query_unconscious() || this_object()->query_bound())
         return 0;
     
     bonus = 0;
-    pen = 0;
+    penalty = 0;
     
     if(sizeof(this_object()->query_wielded()) > 1)
         penalty = 2;
@@ -815,10 +816,17 @@ varargs int hit_bonus(object targ, int attack_num, object weapon, int touch)
         if(has_feat("enchanted fists"))
             bonus += COMBAT_D->unarmed_enchantment(this_object()); //Replace later when combat_d handled
     }
-        
+    else if(query_property("shapeshifted"))
+    {
+        bonus += COMBAT_D->unarmed_enchantment(this_object());
+    }
     
-        
+    if(query("protecting"))
+        penalty += (roll_dice(1, 6) + 1);
+    if(this_object()->query_blind() && !has_feat("blindfight"))
+        penalty += roll_dice(1, 8) + 4;
     
+    bonus -= penalty;
     
-    
-    
+    return bonus;
+}
