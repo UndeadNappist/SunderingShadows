@@ -11,7 +11,7 @@
 #include <std.h>
 #include <daemons.h>
 
-#define MAX_MANA 300
+#define MAX_MANA 500
 
 inherit ARMOUR;
 
