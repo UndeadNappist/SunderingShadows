@@ -784,7 +784,7 @@ varargs int hit_bonus(object targ, int attack_num, object weapon, int touch)
             if(!present(weapon->query_ammo(), this_object())) //Remember to add this check to process hit
                 return 0;
             
-            if(!has_feat("point blank shot"))
+            if(!has_feat("point blank shot") && environment(targ) == environment())
                 penalty += 4;
             
             bonus += query_stat_bonus("dexterity");
