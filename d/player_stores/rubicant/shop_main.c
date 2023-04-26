@@ -11,7 +11,7 @@ inherit "/std/pstore";
 
 void create() {
         ::create();
-     set_owners(({"styx", "rubicant", "tsera", "nienne", "ares", "cythera", "lujke", "kain" }));
+     set_owners(({"styx", "rubicant", "tsera", "nienne", "ares", "cythera", "lujke", "kain", "clem" }));
   set_storage(RSHOP+"sell");
   set_drop_storage(RSHOP+"repairs");
   set_drop_deposit(500);   
