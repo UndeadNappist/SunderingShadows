@@ -48,7 +48,7 @@ void init(){
     ::init();
 // added ::init() to fix/prevent bugs & changed wizardp to check true invis
 //2/23/03 *Styx*
-    if (TP->query_invis() && !TP->query_true_invis() && !TP->is_monster()) {
+    if(TP->query_invis() && !TP->query_true_invis() && !TP->is_monster()){
         tell_room(ETO, "%^C196%^The wyvern senses your movement and attacks!%^CRST%^");
         TP->set_invis();
         kill_ob(TP, 1);
@@ -57,7 +57,7 @@ void init(){
 
 void fire(object targ){
     if(!targ) return 0;
-    if (random(25) > targ->query_stats("wisdom") && (!PLAYER_D->immunity_check(targ, "fear"))) {
+    if(random(25) > targ->query_stats("wisdom") && (!PLAYER_D->immunity_check(targ, "fear"))){
         tell_room(environment(targ), "%^C100%^The %^C214%^g%^C220%^o%^C226%^ld%^C220%^e%^C214%^n w%^C220%^y%^C226%^ve%^C220%^r%^C214%^n%^C100%^ draws back its head and lets loose a tremendous scream that stuns "+targ->query_cap_name()+"%^C100%^!%^CRST%^", targ);
         tell_object(targ, "%^C100%^The %^C214%^g%^C220%^o%^C226%^ld%^C220%^e%^C214%^n w%^C220%^y%^C226%^ve%^C220%^r%^C214%^n%^C100%^ draws back its head and lets loose a tremendous scream that stuns you!%^CRST%^");
         set_property("magic", 1);
