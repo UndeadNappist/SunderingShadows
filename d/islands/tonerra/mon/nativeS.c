@@ -36,6 +36,10 @@ OLI
   set_new_exp(25,"very high");
 set_max_level(25);
   set_wielding_limbs(({"right hand","left hand"}));
+  
+  if(!clonep())
+      return;
+  
   if(!random(2)){
      new(OBJ+"spear2.c")->move(TO);
   }else{

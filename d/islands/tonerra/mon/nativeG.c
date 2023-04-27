@@ -35,17 +35,21 @@ OLI
   set_new_exp(25,"very high");
 set_max_level(25);
   set_wielding_limbs(({"right hand","left hand"}));
-  ob=new(OBJ+"spear2.c");
-if(random(4))
-{
-	ob->set_property("monsterweapon",1);
-}
+  
+  if(clonep())
+  {
+    ob=new(OBJ+"spear2.c");
+    if(random(4))
+    {
+	  ob->set_property("monsterweapon",1);
+    }
 	ob->move(TO);
-  command("wield spear in right hand");
-  new("/d/common/obj/weapon/spear_lg.c")->move(TO);
-  command("wield spear in left hand");
-  new(OBJ+"hide.c")->move(TO);
-  command("wear woven");
+    command("wield spear in right hand");
+    new("/d/common/obj/weapon/spear_lg.c")->move(TO);
+    command("wield spear in left hand");
+    new(OBJ+"hide.c")->move(TO);
+    command("wear woven");
+  }
   set_property("full attacks",1);
   set_scrambling(1);
   set_max_level(32);

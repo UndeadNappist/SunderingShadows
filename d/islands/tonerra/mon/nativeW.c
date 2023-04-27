@@ -44,6 +44,10 @@ set_max_level(25);
   set_property("swarm",1);
   set_spell_chance(99);
   set_spells(({"magic missile","lightning bolt","prismatic spray","dispel magic"}));
+  
+  if(!clonep())
+      return;
+  
   set_property("add kits",25);
       ob = new("/d/common/obj/potion/legendary_heal");
        ob->move(TO);

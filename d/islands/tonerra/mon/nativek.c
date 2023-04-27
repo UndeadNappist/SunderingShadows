@@ -49,6 +49,10 @@ set_max_level(25);
       add_search_path("/cmds/thief");
       add_search_path("/cmds/fighter");
       set_size(1);
+      
+      if(!clonep())
+          return;
+      
     new(OBJ+"gem")->move(TO);
        new(OBJ+"gem")->move(TO); 
    new(OBJ+"gem")->move(TO); 

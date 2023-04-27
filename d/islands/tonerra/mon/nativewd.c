@@ -58,6 +58,10 @@ OLI
 set_max_level(25);
    set_gender("male");
    set_race("human");
+   
+   if(!clonep())
+       return;
+   
    new(OBJ+"wstaff")->move(TO);
    command("wield staff");
   new(OBJ+"Lcloak.c")->move(TO);
