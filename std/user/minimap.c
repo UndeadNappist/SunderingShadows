@@ -25,7 +25,10 @@ string query_blocked_exit(object what, string direction)
         return "#";
     else
     {
-        if(!file_size(dest) == -1 || !objectp(room = load_object(dest)))
+        if(clonep(find_object(dest)))
+            return "*";
+        
+        if(file_size(dest) == -1 || !objectp(room = load_object(dest)))
             return "#";
     }
     
