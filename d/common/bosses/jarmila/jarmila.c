@@ -62,7 +62,7 @@ void create()
 
     set_damage(10, 20);
     set_base_damage_type("slashing");
-			    set_property("weapon resistance", 10);
+    set_property("weapon resistance", 7);
     set_mob_magic_resistance("high");
     set_property("no death", 1);
     set_property("no knockdown", 1);
@@ -92,12 +92,12 @@ void create()
       "clear",
 
    }));
-   set_func_chance(100);
+    set_func_chance(100);
 
     set_skill("perception", 50);
 
-    set_resistance_percent("radiant", 50);
-    set_resistance_percent("fire", 50);
+    set_resistance_percent("radiant", 100);
+    set_resistance_percent("fire", 100);
     set_mob_magic_resistance("high");
     set_property("cast and attack", 1);
     set_property("function and attack", 1);
