@@ -39,7 +39,7 @@ void spell_effect(int prof)
     myname = caster->QCN;
     yourname = target->QCN;
 
-    tell_object(caster, "%^BOLD%^" + sprintf("You pour psychic energy into %s's body, cleansing %s of all ailments.", yourname, target->query_possessive()));
+    tell_object(caster, "%^BOLD%^" + sprintf("You pour psychic energy into %s's body, cleansing %s of all ailments.", yourname, target->query_objective()));
     tell_object(target, "%^BOLD%^" + sprintf("%s pours psychic energy into your body, cleansing you of all ailments.", myname));
     tell_room(place, "%^BOLD%^" + sprintf("%s pours psychic energy into %s, cleansing all of %s ailments.", myname, yourname, target->query_possessive()), ({ target, caster }));
 
