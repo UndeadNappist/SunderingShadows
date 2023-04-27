@@ -34,7 +34,7 @@ void init()
     add_action("check_funds", "check");
     add_action("withdraw", "withdraw");
     add_action("look_box", "look");
-    add_action("soulbind", "soulbind");
+    //add_action("soulbind", "soulbind");
     
     call_out("warning", 2, this_player());
     //if(!present("templewardxxx",TP)) new("/d/magic/obj/templeward")->move(TP);
