@@ -35,6 +35,7 @@ void create()
     set_limbs( ({ "head" }) );
     set_property("enchantment", 7);
     set_item_bonus("intelligence", 6);
+    set_item_bonus("academics", 5);
     set_item_bonus("mental resistance percent", 50);
     set_type("clothing");
     set_heart_beat(1);
