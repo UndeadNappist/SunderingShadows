@@ -22,7 +22,7 @@ void create()
 		"a%^C160%^rmila%^CRST%^");
     set_long("%^C197%^This immense beast is almost beyond "+
 	    "all mortal %^C088%^comprehension%^C197%^ and %^C226%^power%^C197%^. "+
-	    "Its entire body is formed from %^124%^blazing divine fire%^C197%^ "+
+	    "Its entire body is formed from %^C124%^blazing divine fire%^C197%^ "+
         "and looks like a giant bird. Its %^C166%^two feet%^C197%^ are each "+
 	    "the size of %^C058%^large wagons%^C197%^ and extend to "+
 	    "%^C244%^wicked claws%^C197%^ each the size of a man. "+
@@ -274,7 +274,7 @@ void reinforce(object ob){
    num=random(4)+3;
    if(!objectp(TO)) return;
    tell_room(ETO,"%^C222%^For a moment the glow intensifies and "+
-   "creates rush into the area to defend the phoenix!%^CRST%^");
+   "creatures rush into the area to defend the phoenix!%^CRST%^");
 
                  for(i=0;i<num;i++){
                     ob=new(MOBS"foo");
