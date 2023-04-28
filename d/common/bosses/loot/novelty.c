@@ -10,7 +10,7 @@
 #include <daemons.h>
 
 //Hit interval instead of proc chance. Procs every 7 hits.
-#define HIT_INTERVAL 7
+#define HIT_INTERVAL 5
 
 inherit "/d/common/obj/weapon/warhammer.c";
 
@@ -92,7 +92,10 @@ int hit_func(object target)
     hit_count++;
     
     if(hit_count < HIT_INTERVAL)
+    {
+        target->cause_typed_damage(target, "torso", roll_dice(1, 10), "divine");
         return 0;
+    }
     
     hit_count = 0;
     
