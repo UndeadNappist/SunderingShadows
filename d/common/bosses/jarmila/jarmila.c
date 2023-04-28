@@ -96,7 +96,7 @@ void create()
 
    }));
    
-    set_spells(({ "holy aura" }));
+    set_spells(({ "holy aura", "daylight" }));
     set_func_chance(100);
 
     set_skill("perception", 50);
@@ -144,6 +144,8 @@ void init()
         object spell;
         
         if(!catch(spell = new("/cmds/spells/h/_holy_aura.c")))
+            spell->use_spell(this_object(), 0, 70, 100, "cleric");
+        if(!catch(spell = new("/cmds/spells/d/_daylight.c")))
             spell->use_spell(this_object(), 0, 70, 100, "cleric");
         
         command("radiant_aura");
