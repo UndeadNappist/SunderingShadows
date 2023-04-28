@@ -62,19 +62,21 @@ void create()
     
     set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display" }) );
     
-    set_spells( ({ "shield of law", "stone body", "angelic aspect", "archon aura" }) );
+    set_spell_chance(25);
+    
+    set_spells( ({ "shield of dawn", "stone body", "angelic aspect", "archon aura", "prayer", "seeking sword" }) );
     
     if(!clonep())
         return;
     
     obj = new("/d/magic/obj/shields/kreysneothosies");
-    obj->set_property("enchantment", 7);
+    obj->set_property("enchantment", 10);
     obj->move(this_object());
     obj->set_property("monster weapon", 1);
     force_me("wear shield");
 
     obj = new("/d/magic/obj/weapons/kreysneothosies");
-    obj->set_property("enchantment", 7);
+    obj->set_property("enchantment", 10);
     obj->move(this_object());
     obj->set_property("monster weapon", 1);
     force_me("wield weapon");
@@ -104,10 +106,11 @@ void init()
         command("enhance weapon");
         command("enhance add light fortification")
         command("enhance armor");
-        new("/cmds/spells/2/_shield_of_law.c")->use_spell(this_object(), 0, 70, 100, "cleric");
-        new("/cmds/spells/s/_stone_body.c")->use_spell(this_object(), 0, 70, 100, "cleric");
-        new("/cmds/spells/a/_angelic_aspect.c")->use_spell(this_object(), 0, 70, 100, "cleric");
-        new("/cmds/spells/a/_archon_aura.c")->use_spell(this_object(), 0, 70, 100, "cleric");
+        command("defenders_presence");
+        new("/cmds/spells/2/_shield_of_dawn.c")->use_spell(this_object(), 0, 70, 100, "paladin");
+        new("/cmds/spells/a/_angelic_aspect.c")->use_spell(this_object(), 0, 70, 100, "paladin");
+        new("/cmds/spells/a/_archon_aura.c")->use_spell(this_object(), 0, 70, 100, "paladin");
+        new("/cmds/spells/s/_seeking_sword.c")->use_spell(this_object(), 0, 70, 100, "paladin");
         buffed = 1;
     }        
 }

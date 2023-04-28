@@ -92,11 +92,11 @@ void create()
       "light",
       "reinforce",
       "holy",
-      "clear",
+//      "clear",
 
    }));
    
-    set_spells(({ "holy aura", "daylight", "celestial brilliance", "wall of fire", "fireball", "sunburst", "meteor swarm", "repel the profane", "cleansing flames" }));
+    set_spells(({ "holy aura", "daylight", "celestial brilliance", "wall of fire", "fireball", "sunburst", "meteor swarm", "repel the profane", "cleansing flames", "overwhelming presence" }));
     set_func_chance(50);
     set_spell_chance(50);
 
@@ -265,6 +265,10 @@ int dam;
 
 void reinforce(object ob){
    int i, num;
+   
+   if(sizeof(query_followers()))
+       return;
+   
    num=random(4)+3;
    if(!objectp(TO)) return;
    tell_room(ETO,"%^C222%^For a moment the glow intensifies and "+
