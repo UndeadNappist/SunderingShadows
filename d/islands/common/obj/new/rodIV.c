@@ -81,7 +81,7 @@ int wieldme()
         uses = uses + 50;
         return 0;
     }
-    if(player->query_class_level("mage") < 35 && player->query_class_level("sorcerer")){
+    if(player->query_class_level("mage") < 35 && player->query_class_level("sorcerer") < 35){
         tell_object(player, "%^C059%^You lack the proper training or innate instincts to be able to utilize such an arcane tool.%^CRST%^");
         return 0;
     }
