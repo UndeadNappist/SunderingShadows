@@ -38,7 +38,7 @@ void create()
     set_item_bonus("mental resistance percent", 50);
     set_type("clothing");
     set_heart_beat(1);
-    set_wear((:TO,"wear_fun":));
+    //set_wear((:TO,"wear_fun":));
 }
 
 void init()
@@ -81,15 +81,17 @@ int check_mana(string str)
     return 1;
 }
 
+/*
 int wear_fun()
 {
     object holder = environment(this_object());
     
-    if(holder->query("boss avatar"))
+    if(!holder->query("boss avatar"))
     {
         tell_object(holder, "The circlet rejects your touch!");
         return 0;
     }
     
     return 1;
-}   
+}  
+*/ 

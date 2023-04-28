@@ -9,7 +9,7 @@
 #include <std.h>
 #include <daemons.h>
 
-//Hit interval instead of proc chance. Procs every 3 hits.
+//Hit interval instead of proc chance. Procs every 5 hits.
 #define HIT_INTERVAL 5
 #define MAX_CHARGES 10
 #define TICKER_INTERVAL 600
@@ -118,7 +118,10 @@ int hit_func(object target)
     hit_count++;
     
     if(hit_count < HIT_INTERVAL)
+    {
+        target->cause_typed_damage(target, "torso", roll_dice(1, 10), "fire");
         return 0;
+    }
     
     pname = owner->query_cap_name();
     ename = target->query_cap_name();
@@ -132,7 +135,7 @@ int wield_func()
     if(!holder)
         holder = this_player();
     
-    if(!strlen(owner))
+    if(!strlen(owner) && userp(holder) && !archp(holder))
         owner = holder->query_true_name();
     
     if(holder->query_true_name() != owner)

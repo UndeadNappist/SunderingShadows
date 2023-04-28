@@ -6,6 +6,7 @@
 inherit "/d/common/bosses/avatar_boss.c";
 
 int fate_counter;
+int buffed, coreparty;
 
 object bork_control;
 
@@ -43,12 +44,14 @@ void create()
     set_class("fighter");
     set_class("mage");
     set_class("cleric");
+    set_class("radiant_servant");
     set_guild_level("fighter", 75);
     set_guild_level("mage", 75);
     set_guild_level("cleric", 75);
     set_mlevel("fighter", 75);
     set_mlevel("mage", 75);
     set_mlevel("cleric", 75);
+    set_mlevel("radiant_servant", 10);
     set_alignment(4);
     set("aggressive",100);
     set_property("full attacks",1);
@@ -92,6 +95,8 @@ void create()
       "clear",
 
    }));
+   
+    set_spells(({ "holy aura" }));
     set_func_chance(100);
 
     set_skill("perception", 50);
@@ -106,6 +111,44 @@ void create()
 
     fate_counter = 0;
 
+}
+
+void init()
+{
+    int psize;
+    object player, room;
+    
+    ::init();
+    
+    player = this_player();
+    player && room = environment(this_object());
+    
+    if(!player || !room)
+        return;
+    
+    if (wizardp(player) || player->query_true_invis()) {
+        return;
+    }
+    
+    psize = sizeof(filter_array(all_inventory(ETO), (: userp($1) :)));
+    psize = psize < 1 ? 1 : psize;
+    if (psize > coreparty) {
+        set_max_hp(25000 * psize);
+        set_hp(query_max_hp());
+        set_damage(16, 5 + psize);
+        coreparty = psize;
+    }
+    
+    if(!buffed)
+    {
+        object spell;
+        
+        if(!catch(spell = new("/cmds/spells/h/_holy_aura.c")))
+            spell->use_spell(this_object(), 0, 70, 100, "cleric");
+        
+        command("radiant_aura");
+        buffed = 1;
+    }
 }
 
 
@@ -193,7 +236,7 @@ int dam;
    "and "+targ->QCN+"%^C127%^ is left dazed!%^CRST%^",targ);
    tell_object(targ,"%^C127%^You are lifed up suddenly "+
    "in the claws of the phoenix and crushed!%^CRST%^");
-   targ->cause_typed_damage(targ, targ->return_target_limb(), dam,"piercing");
+   targ->cause_typed_damage(targ, targ->return_target_limb(), dam, "piercing");
    tell_object(targ,"%^C127%^The phoenix lifts you "+
    "until you're in front of its eyes which flash. "+
    "You cant turn away in time and are stunned.%^CRST%^");
