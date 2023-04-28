@@ -15,7 +15,6 @@
 inherit "/d/common/bosses/avatar_boss.c";
 
 int buffed,
-    coreparty,
     ticker;
 
 mapping checkpoints = ([

@@ -86,9 +86,9 @@ void create()
     }));
 
    set_funcs(({
-      "flare",
+//      "flare",
       "comet",
-      "fire",
+//      "fire",
       "light",
       "reinforce",
       "holy",
@@ -96,8 +96,9 @@ void create()
 
    }));
    
-    set_spells(({ "holy aura", "daylight" }));
-    set_func_chance(100);
+    set_spells(({ "holy aura", "daylight", "celestial brilliance", "wall of fire", "fireball", "sunburst", "meteor swarm", "repel the profane", "cleansing flames" }));
+    set_func_chance(50);
+    set_spell_chance(50);
 
     set_skill("perception", 50);
 
@@ -320,6 +321,10 @@ dam = roll_dice(25, 20) + 200;
 }
 }
 void clear (object targ){
+    
+   if(random(4))
+       return;
+   
    tell_room(ETO,"%^C196%^The phoenix chants an ancient holy prayer!%^CRST%^");
    new("/cmds/spells/g/_greater_dispel_magic.c")->use_spell(TO,targ,80,100,"mage");
    return;
