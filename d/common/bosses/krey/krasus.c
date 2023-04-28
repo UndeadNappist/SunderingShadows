@@ -46,7 +46,7 @@ void create()
     set("base_class", "paladin");
     set_alignment(1);
     set_damage(20, 10);
-    set_attacks_num(5);
+    set_attacks_num(10);
     
     set_stats("strength", 30);
     set_stats("constitution", 30);
@@ -61,9 +61,24 @@ void create()
     set_max_hp(125000);
     set_hp(125000);
     
-    set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite" }) );
+    set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display" }) );
     
-    set_spells( ({ "shield of law", "stone body", "angelic aspect" }) );
+    set_spells( ({ "shield of law", "stone body", "angelic aspect", "archon aura" }) );
+    
+    if(!clonep())
+        return;
+    
+    obj = new("/d/magic/obj/shields/kreysneothosies");
+    obj->set_property("enchantment", 7);
+    obj->move(this_object());
+    obj->set_property("monster weapon", 1);
+    force_me("wear shield");
+
+    obj = new("/d/magic/obj/weapons/kreysneothosies");
+    obj->set_property("enchantment", 7);
+    obj->move(this_object());
+    obj->set_property("monster weapon", 1);
+    force_me("wield weapon");
 }
 
 void init()
@@ -93,6 +108,7 @@ void init()
         new("/cmds/spells/2/_shield_of_law.c")->use_spell(this_object(), 0, 70, 100, "cleric");
         new("/cmds/spells/s/_stone_body.c")->use_spell(this_object(), 0, 70, 100, "cleric");
         new("/cmds/spells/a/_angelic_aspect.c")->use_spell(this_object(), 0, 70, 100, "cleric");
+        new("/cmds/spells/a/_archon_aura.c")->use_spell(this_object(), 0, 70, 100, "cleric");
         buffed = 1;
     }        
 }

@@ -72,7 +72,11 @@ void create()
         "shieldbash",
         "deflection",
         "shield proficiency",
-        "reflection"
+        "reflection",
+        "cornugon smash",
+        "shatter defenses",
+        "dreadful carnage",
+        "intimidating prowess",
     }));
     set_funcs(({
         "rushit",
@@ -111,6 +115,9 @@ void create()
     RANDGEAR->arm_me(TO, "tool", 30, 2, 75);
 */
 
+    if(!clonep())
+        return;
+    
     obj = new("/d/magic/obj/shields/the_faceless_one");
     obj->set_property("enchantment", 7);
     obj->move(this_object());
@@ -305,7 +312,7 @@ void shieldchargeit(object targ)
     }
     //choices = environment(this_object())->query_exits();
     
-    TO->force_me("shield charge");
+    TO->force_me("shield_charge");
 }
 
 void report()
