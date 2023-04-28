@@ -15,7 +15,8 @@
 inherit "/d/common/bosses/avatar_boss.c";
 
 int buffed,
-    ticker;
+    ticker,
+    enrage;
 
 mapping checkpoints = ([
                         "shield"  : 0;
@@ -42,7 +43,11 @@ void create()
     set_mlevel("immortal_defender", 10);
     set_class("cleric");
     set_mlevel("cleric", 75);
+    set_class("oracle");
+    set_mlevel("oracle", 75);
+    set_mystery("dragon");
     set("base_class", "paladin");
+    set("dragon_affinity", "gold");
     set_alignment(1);
     set_damage(20, 10);
     set_attacks_num(10);
@@ -60,7 +65,7 @@ void create()
     set_max_hp(125000);
     set_hp(125000);
     
-    set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display" }) );
+    set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved shieldbash", "improved rush" }) );
     
     set_spell_chance(25);
     
@@ -114,5 +119,138 @@ void init()
         buffed = 1;
     }        
 }
+
+void heart_beat()
+{
+    object attackers, room;
+    int percent;
+
+    if (!objectp(this_object()))
+    {
+        return;
+    }
+
+    ::heart_beat();
+    
+    room = environment(this_object());
+    
+    if(!room)
+        return;
+
+    attackers = this_object()->query_attackers();
+    
+    if(sizeof(attackers))
+        ticker++;
+    else
+        return;
+    
+    if(!enrage && ticker >= ENRAGE_TIMER)
+    {
+        enrage(room);
+    }
+    else if(enrage)
+    {   
+        if((query_hp() < query_max_hp()))
+            add_hp(1000);
+    }
+    
+    percent = (query_hp() * 100) / query_max_hp();
+    
+    switch(percent)
+    {
+        case 90..100:
+        if(sizeof(attackers))
+            shield(room);
+        break;
+        
+        case 70..89:
+        spear(room);
+        break;
+        
+        case 40..69:
+        barrage(room);
+        break;
+        
+        case 20..39:
+        dragon(room);
+        break;
+            
+        default:
+        waves(room);
+        break;
+    }
+}
+
+object pick_random_target(string type)
+{
+    object* attackers;
+    if (!objectp(TO)) {
+        return 0;
+    }
+
+    attackers = this_object()->query_attackers();
+    
+    if(type == "user")
+        attackers = filter_array(attackers, (: userp($1) :));
+
+    if (!sizeof(attackers)) {
+        return 0;
+    }
+    return attackers[random(sizeof(attackers))];
+}
+
+//SHIELD PHASE
+void shield(object room)
+{
+    object target;
+    
+    if(!objectp(room))
+        return;
+    
+    if(!checkpoints["shield"])
+    {
+        tell_room(room, "MESSAGE START SHIELD PHASE");
+        set_spell_chance(0);
+        checkpoints["shield"] = 1;
+    }
+    
+    target = pick_random_target("user");
+    
+    if(!objectp(target))
+        return;
+    
+    switch(random(4))
+    {
+        case 0:
+        command("smite " + target->query_name());
+        break;
+        case 1:
+        command("shieldbash " + target->query_name());
+        break;
+        case 2:
+        command("rush " target->query_name());
+        break;
+        case 3:
+        command("shield_charge");
+        break;
+    }
+}
+
+void spear(object room)
+{
+    if(!objectp(room))
+        return;
+    
+    if(!checkpoints["spear"])
+    {
+        tell_room(room, "MESSAGE START SPEAR PHASE");
+        set_spell_chance(0);
+        set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved rush" }) );
+        
+        checkpoints["spear"] = 1;
+    }
+    
+    
+    
     
 
