@@ -69,18 +69,24 @@ void create()
 
 int wieldme()
 {
-    if (member_array("%^BOLD%^%^RED%^Defeated the great red wyrm Klauth!%^RESET%^", ETO->query_mini_quests()) == -1) {
-        tell_object(ETO, "%^BOLD%^%^RED%^You have not earned the right to make use of this item and it lashes out at you!");
-        tell_room(EETO, "%^BOLD%^%^RED%^" + ETO->QCN + " suddenly gets a look of horror and recoils in pain!%^RESET%^ ", ({ ETO }));
-        ETO->do_damage("head", 50);
-        ETO->add_attacker(TO);
-        ETO->continue_attack();
-        ETO->remove_attacker(TO);
+    object player = environment(this_object());
+    
+    if(member_array("%^BOLD%^%^RED%^Defeated the great red wyrm Klauth!%^RESET%^", player->query_mini_quests()) == -1){
+        tell_object(player, "%^BOLD%^%^RED%^You have not earned the right to make use of this item and it lashes out at you!");
+        tell_room(environment(player), "%^BOLD%^%^RED%^" + player->QCN + " suddenly gets a look of horror and recoils in pain!%^RESET%^ ", ({ player }));
+        player->do_damage("head", 50);
+        player->add_attacker(TO);
+        player->continue_attack();
+        player->remove_attacker(TO);
         uses = uses + 50;
         return 0;
     }
-    if (!ETO->query_property("silent_wield")) {
-        tell_object(ETO, "%^BOLD%^%^RED%^You grip the rod firmly and a strange sense of power overcomes you.");
+    if(player->query_class_level("mage") < 35 && player->query_class_level("sorcerer")){
+        tell_object(player, "%^C059%^You lack the proper training or innate instincts to be able to utilize such an arcane tool.%^CRST%^");
+        return 0;
+    }
+    if(!player->query_property("silent_wield")){
+        tell_object(player, "%^BOLD%^%^RED%^You grip the rod firmly and a strange sense of power overcomes you.");
         return 1;
     }
 }
