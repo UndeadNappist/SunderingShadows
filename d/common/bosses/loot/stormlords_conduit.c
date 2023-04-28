@@ -60,7 +60,7 @@ void init()
     if(!owner)
     {          
         owner = holder->query_true_name();
-        tell_object(holder, "OWNER ATTUNE MESSAGE");
+        tell_object(holder, "You feel your soul bind to the hammer, charging you with incredible energy!");
     }
 }
 
@@ -102,7 +102,7 @@ int wield_func()
     
     holder = environment(this_object());
     
-    if(holder->query_true_name() != owner)
+    if(holder->query_true_align() == 1 || holder->query_true_align() == 4 || holder->query_true_align() == 7 || holder->query_true_name() != owner)
     {
         tell_object(holder, "%^C226%^You feel an intense shock as the hammer denies your unworthy touch!%^CRST%^");
         holder->cause_typed_damage(holder, "torso", roll_dice(6, 10) + 10, "electricity");
