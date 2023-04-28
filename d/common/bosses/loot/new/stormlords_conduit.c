@@ -22,7 +22,7 @@ void create()
     
     set_name("hammer");
     set_id( ({ "hammer", "warhammer", "lord's hammer", "stormlord's hammer", "conduit", "stormlords conduit", "lords hammer", "stormlords hammer" }) );
-    set_short("");
+    set_short("Stormlord's Conduit");
     set_obvious_short("SHORT DESC");
     set_long("This is a fearsome one-handed warhammer, crafted from obsidian and pumice and adorned with shards of lightning glass. The handle is wrapped in driftwood and bound with sinew, giving the wielder a secure grip even in the midst of a tempest. The head of the hammer is etched with symbols of Khyron, and crackles with energy when held by a follower of the god. When wielded in battle, the hammer unleashes the full fury of the storm, sending lightning bolts crashing into enemies and summoning howling winds to batter them. It is a weapon of chaos and destruction, imbued with the raw power of Khyron himself.");
     set_lore("Legend has it that the Stormlord's Conduit was forged during a massive storm that ravaged the coast, where a band of devout followers of Khyron sought to harness the raw power of the tempest to create a weapon worthy of their god. They sacrificed many offerings to Khyron, including lightning glass, driftwood, obsidian, pumice, and the scales of a leviathan, and imbued the warhammer with the elemental energy of the storm. The smith who forged it is said to have been struck by lightning during the process, but instead of killing him, the bolt seemed to infuse him with a divine energy that allowed him to complete the weapon.");

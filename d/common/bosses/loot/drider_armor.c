@@ -17,7 +17,8 @@ void create()
     set_property("no curse", 1);
     set_property("enchantment", 7);
     set_item_bonus("wisdom", 6);
-    set_item_bonus("bonus_spell_slots",2);
+    set_item_bonus("bonus_spell_slots", 3);
+    set_item_bonus("spell resistance", 2);
 	set_flag_required("boss avatar");
     set_wear((: TO, "wear_func" :));
     set_remove((: TO, "remove_func" :));
@@ -49,7 +50,7 @@ int query_size()
 }
 
 int strikeme(int damage, object what, object who){
-    if(random(1000) < 50){
+    if(!random(3)){
         tell_room(environment(query_worn()),"%^C231%^As a blow lands on "+ETOQCN+"%^C231%^'s armor you see it react and spew thick web at "+who->QCN+"%^C231%^!%^CRST%^",({ETO,who}));
         tell_object(ETO,"%^C231%^You see the arms rear up and spew thick webbing and "+who->QCN+"%^C059%^ is covered in web!%^CRST%^");
         tell_object(who,"%^C231%^You are covered in a thick web from "+ETOQCN+"%^C059%^'s armor!");
