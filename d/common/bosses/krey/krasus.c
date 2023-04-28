@@ -238,17 +238,42 @@ void shield(object room)
 
 void spear(object room)
 {
+    object target;
+    
     if(!objectp(room))
         return;
     
     if(!checkpoints["spear"])
     {
         tell_room(room, "MESSAGE START SPEAR PHASE");
+        //Need to summon new weapons here
         set_spell_chance(0);
-        set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved rush" }) );
-        
+        set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved rush", "sweepingblow", "strength of arm", "light weapon", "impale" }) );
+        command("dragon_aspect");
+        command("powerattack max");
         checkpoints["spear"] = 1;
     }
+    
+    target = pick_random_target("user");
+    
+    switch(random(4))
+    {
+        case 0:
+        command("sweepingblow");
+        break;
+        case 1:
+        command("impale " + target->query_name());
+        break;
+        case 2:
+        command("smite " + target->query_name());
+        break;
+        case 3:
+        command("rush " + target->query_name());
+        break;
+    }
+}
+    
+    
     
     
     
