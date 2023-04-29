@@ -263,7 +263,7 @@ int query_parrying(object att)
     objectp(att) && eweapons = att->query_wielded();
     
     //can't parry if both weapons ranged
-    if(sizeof(eweapons) && eweapons[0]->is_lrweapon() && !FEATS_D->usable_feat(this_object(), "deflect arrows") && !FEATS_D->usable_feat(this_object(), "canny defense"))
+    if(sizeof(eweapons) && eweapons[0]->is_lrweapon() && !has_feat("deflect arrows") && !has_feat("canny defense"))
     {
         if(sizeof(eweapons) == 1)
             return 0;
@@ -274,26 +274,26 @@ int query_parrying(object att)
     
     if (sizeof(weapons) && !weapons[0]->is_lrweapon()) {
             
-        if (FEATS_D->usable_feat(this_object(), "parry")) {
+        if (has_feat("parry")) {
             return 1;
         }
-        if (FEATS_D->usable_feat(this_object(), "opportunistic parry")) {
+        if (has_feat("opportunistic parry")) {
             if (validate_combat_stance("one hander")) {
                 return 1;
             }
         }
-        if (FEATS_D->usable_feat(this_object(), "unassailable parry")) {
+        if (has_feat("unassailable parry")) {
             if (validate_combat_stance("dual wield") && !weapons[1]->is_lrweapon()) {
                 return 1;
             }
         }
-        if (FEATS_D->usable_feat(this_object(), "blade block")) { // this should not allow parrying with bows!
+        if (has_feat("blade block")) { // this should not allow parrying with bows!
             if (validate_combat_stance("two hander")) {
                 return 1;
             }
         }
     }
-    if (FEATS_D->usable_feat(this_object(), "unarmed parry")) {
+    if (has_feat("unarmed parry")) {
         if (!sizeof(weapons)) {
             return 1;
         }
@@ -314,7 +314,7 @@ int query_scrambling()
     if (query_tripped() || query_in_vehicle() || (!is_ok_armour("thief"))) {
         return 0;
     }
-    if (FEATS_D->usable_feat(this_object(), "scramble")) {
+    if (has_feat("scramble")) {
         return 1;
     }
     return scrambling;
@@ -403,7 +403,7 @@ void heart_beat()
         if(!sizeof(query_attackers()))
             remove_property("using instant feat");
         
-        if (FEATS_D->usable_feat(me, "regeneration"))
+        if (has_feat("regeneration"))
         {
             if (query_hp() < query_max_hp())
             {
@@ -431,7 +431,7 @@ void heart_beat()
             if(query("available focus"))
                 add_mp(1);
 
-        if(FEATS_D->usable_feat(me, "psychic vampire") && !avatarp(me) && !wizardp(me) && !query("no pk"))
+        if(has_feat("psychic vampire") && !avatarp(me) && !wizardp(me) && !query("no pk"))
         {
             object targs = all_inventory(environment(me));
             targs = filter_array(targs, (: userp($1) :));
@@ -668,7 +668,7 @@ nomask protected int cmd_hook(string cmd)
     }
 
     if (strsrch(file, "/cmds/feats/") == 0) {
-        if (!FEATS_D->usable_feat(this_object(), file->query_feat_name())) {
+        if (!has_feat(file->query_feat_name())) {
             return 0;
         }
     }
@@ -985,7 +985,7 @@ int calculate_healing()
 
     if (!(query_property("sustenance") ||
           query_property("inactive") ||
-          FEATS_D->usable_feat(me, "timeless body") ||
+          has_feat("timeless body") ||
           is_undead() ||
           query_race() == "soulforged"
           ))
@@ -1580,7 +1580,7 @@ int query_stats(string stat)
             res += 2;
     }
 
-    if(stat == "charisma" && FEATS_D->usable_feat(this_object(), "spiritual body"))
+    if(stat == "charisma" && has_feat("spiritual body"))
         res += 2;
 
     res += EQ_D->gear_bonus(this_object(), stat);
@@ -1777,7 +1777,7 @@ int can_fly()
         return 1;
     if(query_bloodline() == "draconic" && query_class_level("sorcerer") > 30)
         return 1;
-    if(FEATS_D->usable_feat(this_object(), "air totem"))
+    if(has_feat("air totem"))
         return 1;
     if(query_property("flying"))
         return 1;
@@ -2297,18 +2297,13 @@ int query_saving_bonus(string throw)
 
     attacker = query_current_attacker();
 
-    if(FEATS_D->usable_feat(this_object(), "seen it before") && attacker)
+    if(has_feat("seen it before") && attacker)
     {
         if(is_favored_enemy(attacker))
             x += 6;
     }
 
-    /*
-    if(FEATS_D->usable_feat(this_object(), "resist undead") && attacker && attacker->is_undead() && (throw == "fortitude" || throw == "will"))
-        x += 4;
-    */
-
-    if(FEATS_D->usable_feat(this_object(), "canny defense") && throw == "reflex")
+    if(has_feat("canny defense") && throw == "reflex")
         x += 4;
 
     return x;
