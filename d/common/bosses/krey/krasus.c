@@ -252,6 +252,7 @@ void spear(object room)
         
         if(objectp(weapon = new("/d/common/bosses/loot/regalith")))
         {
+            tell_room(room, "A GREAT GOLDEN SPEAR APPEARS IN KRASUS'S HANDS");
             command("shieldwall min");
             command("unwield weapon");
             command("remove shield");
@@ -311,6 +312,27 @@ void barrage()
         }
         
         ob && ob->cause_typed_damage(ob, "torso", roll_dice(10, 10) + 200, "piercing");
+    }
+    
+    target = pick_random_target("user");
+    
+    if(!objectp(target))
+        return;
+
+    switch(random(4))
+    {
+        case 0:
+        command("sweepingblow");
+        break;
+        case 1:
+        command("impale " + target->query_name());
+        break;
+        case 2:
+        command("smite " + target->query_name());
+        break;
+        case 3:
+        command("rush " + target->query_name());
+        break;
     }
 }
     
