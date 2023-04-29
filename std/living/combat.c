@@ -15,11 +15,6 @@
 
 #define TEMP_HIT_BONUS "/realms/ares/temporary_hit.c"  // remove this when done
 
-                    // this is the amount, per swing, that attack bonus is penalized with each subsequent attack of the main hand weapon in a round
-#define BAB_SCALE 0 // I tried 5 to begin with, but it seemed like a bit too much.  We will have to play with this number until it seems right -Ares
-                    // removing this for the moment, as it makes pkill a bit skewed at the moment.  We've got the ability to plug it back in whenever
-                    // we figure out how we want to do it for sure.
-
 #define MAX_MELEE_WC        20
 #define MAX_ATTACK_BONUS    5
 #define DEATH_EXP_MOD 1
@@ -358,7 +353,7 @@ int ok_to_kill(object targ) { return COMBAT_D->ok_to_kill(TO, targ); }
 int light_armor_filter(object ob) { return COMBAT_D->light_armor_filter(ob); }
 void ok_to_wield() { return COMBAT_D->ok_to_wield(TO); }
 void add_attacker(object ob) { return COMBAT_D->add_attacker(TO, ob); }
-int reaction_adj() { return BONUS_D->query_stat_bonus(TO, "dexterity"); }
+int reaction_adj() { return query_stat_bonus("dexterity"); }
 void thaco_messages(int thaco) { return COMBAT_D->thaco_message(TO, thaco); }
 void remove_attacker(object attack)
 {
@@ -591,13 +586,13 @@ int is_vulnerable_to(object source)
     if(environment(this_object()) != environment(source))
         return 0;
 
-    if(this_object()->query_property("quarry") == source && FEATS_D->is_active(this_object(), "wild hunter"))
+    if(this_object()->query_property("quarry") == source && has_feat("wild hunter"))
         return 0;
 
     if(this_object()->query_paralyzed() || this_object()->query_bound())
         return 1;
 
-    if(this_object()->query_blind() && !FEATS_D->usable_feat(this_object(), "blindfight") && !this_object()->true_seeing())
+    if(this_object()->query_blind() && !has_feat("blindfight") && !this_object()->true_seeing())
         return 1;
 
     attacker = this_object()->query_current_attacker();
@@ -605,8 +600,10 @@ int is_vulnerable_to(object source)
     if(attacker && attacker != source)
         return 1;
 
-    if(attacker && attacker == source && FEATS_D->usable_feat(attacker, "shatter defenses")){
-        if(this_object()->query_property("effect_frightened") || this_object()->query_property("effect_panicked") || this_object()->query_property("effect_shaken")) return 1;
+    if(attacker && attacker == source && has_feat("shatter defenses"))
+    {
+        if(this_object()->query_property("effect_frightened") || this_object()->query_property("effect_panicked") || this_object()->query_property("effect_shaken"))
+            return 1;
     }
 
     return 0;
@@ -622,11 +619,11 @@ int calculate_dc(int level, mixed stats, int mod) {
 
     if (arrayp(stats)) {
         foreach(int stat in stats) {
-            int temp_stat_bonus = BONUS_D->query_stat_bonus(me, stat);
+            int temp_stat_bonus = query_stat_bonus(stat);
             if(temp_stat_bonus > stat_bonus) stat_bonus = temp_stat_bonus;
         }
     }
-    else if (stringp(stats)) stat_bonus = BONUS_D->query_stat_bonus(me, stats);
+    else if (stringp(stats)) stat_bonus = query_stat_bonus(stats);
 
     base = 20; //mirroring the base in feat.c
     dc_level = min( ({ dc_level, 60 }) );
@@ -678,6 +675,9 @@ int query_stat_bonus(string stat)
         {
             foreach(object ob in torso)
             {
+                if(!ob->is_armor())
+                    continue;
+                
                 armor_bon = ob->query_max_dex_bonus();
                 max = max > armor_bon ? armor_bon : max;
             }

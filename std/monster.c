@@ -541,54 +541,58 @@ void die(object killer)
         }
     }
     
-    //Can make monsters with no corpse
-    if(!this_object()->query_property("no corpse"))
-    {
-        if(objectp(corpse = make_corpse()))
-            corpse->move(environment(this_object()));
-    }
-    
-    my_stuff = all_inventory(this_object());
-    
-    foreach(object ob in my_stuff)
-    {
-        if(!objectp(ob))
-            continue;
-     
-        if(ob->query_property("monsterweapon") || !ob->query_short())
+    //If any of the killers are users, drop loot
+    if(sizeof(killers))
+    {    
+        //Can make monsters with no corpse
+        if(!this_object()->query_property("no corpse"))
         {
-            destruct(ob);
-            continue;
+            if(objectp(corpse = make_corpse()))
+                corpse->move(environment(this_object()));
         }
-        
-        if(objectp(corpse))
-            ob->move(corpse);
-        else
-        {
-            catch(ob->remove());
-            objectp(ob) && destruct(ob);
-        }
-    }
     
-    if(objectp(corpse) && has_value())
-    {
-        money = new("/std/obj/coins");
-        curr = query_currencies();
-        
-        foreach(string str in curr)
+        my_stuff = all_inventory(this_object());
+    
+        foreach(object ob in my_stuff)
         {
-            if(!query_money(str))
+            if(!objectp(ob))
                 continue;
-            
-            money->add_money(str, query_money(str));
-            add_money(str, -query_money(str));
+     
+            if(ob->query_property("monsterweapon") || !ob->query_short())
+            {
+                destruct(ob);
+                continue;
+            }
+        
+            if(objectp(corpse))
+                ob->move(corpse);
+            else
+            {
+                catch(ob->remove());
+                objectp(ob) && destruct(ob);
+            }
         }
     
-        money->has_value() && money->move(corpse);
-    }
+        if(objectp(corpse) && has_value())
+        {
+            money = new("/std/obj/coins");
+            curr = query_currencies();
+        
+            foreach(string str in curr)
+            {
+                if(!query_money(str))
+                    continue;
+            
+                money->add_money(str, query_money(str));
+                add_money(str, -query_money(str));
+            }
     
-    if(this_object()->query_property("death effects"))
-        catch(load_object("/daemon/death_effects_d")->get_death_effect(this_object()));
+            money->has_value() && money->move(corpse);
+        }
+    
+        if(this_object()->query_property("death effects"))
+            catch(load_object("/daemon/death_effects_d")->get_death_effect(this_object()));
+    }
     
     set_heart_beat(heart_beat_on = 0);
     
