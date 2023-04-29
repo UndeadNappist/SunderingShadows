@@ -1938,6 +1938,8 @@ void add_damage_bonus(int a)
     dbonus += a;
 }
 
+
+//Move this stuff to combat.c
 int query_attack_bonus()
 {
     int enc, bonus;
@@ -1955,19 +1957,19 @@ int query_attack_bonus()
     if (query_invis()) {
         ret += 2;
     }
-    if (FEATS_D->usable_feat(this_object(), "weapon training")) {
+    if (has_feat("weapon training")) {
         ret += query_prestige_level("fighter") / 10 + 1;
     }
 
-    if (FEATS_D->usable_feat(this_object(), "weapon focus")) {
+    if (has_feat("weapon focus")) {
         ret += 1;
     }
 
-    if (FEATS_D->usable_feat(this_object(), "greater weapon focus")) {
+    if (has_feat("greater weapon focus")) {
         ret += 1;
     }
 
-    if (FEATS_D->usable_feat(this_object(), "epic weapon focus")) {
+    if (has_feat("epic weapon focus")) {
         ret += 1;
     }
 
@@ -1977,7 +1979,7 @@ int query_attack_bonus()
     attacker = query_current_attacker();
 
     //Added by Tlaloc to handle favored enemies for Rangers
-    if (FEATS_D->usable_feat(this_object(), "favored enemy") && attacker)
+    if(is_class("ranger") && has_feat("favored enemy") && attacker)
     {
 
         if(is_favored_enemy(attacker))
@@ -1985,21 +1987,21 @@ int query_attack_bonus()
             ret += 2;
 
             //Favored enemy improves with additional feats
-            FEATS_D->usable_feat(this_object(), "second favored enemy") && ret += 2;
-            FEATS_D->usable_feat(this_object(), "third favored enemy") && ret += 2;
+            has_feat("second favored enemy") && ret += 2;
+            has_feat("third favored enemy") && ret += 2;
         }
 
         //Are we fighting our quarry?
         if(query_property("quarry") == attacker)
         {
-            FEATS_D->usable_feat(this_object(), "quarry") && ret += 2;
-            FEATS_D->usable_feat(this_object(), "improved quarry") && ret += 2;
+            has_feat("quarry") && ret += 2;
+            has_feat("improved quarry") && ret += 2;
         }
     }
     
     if(is_class("druid"))
     {
-        if(FEATS_D->has_feat(this_object(), "guardian of nature"))
+        if(has_feat("guardian of nature"))
         {
             if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "city"))
                 ret += 2;
@@ -2040,19 +2042,19 @@ int query_attack_bonus()
             ret += 1;
     }
    
-    if(attacker && attacker->is_vulnerable_to(this_object()))
-    {
-        if(FEATS_D->usable_feat(this_object(), "prime strike"))
-        {
-            ret += 1;
-            
-            if(FEATS_D->usable_feat(this_object(), "inevitable steel"))
-                ret += 2;
-        }
-    }
-    
     if(is_class("warlock"))
     {
+        if(attacker && attacker->is_vulnerable_to(this_object()))
+        {
+            if(has_feat("prime strike"))
+            {
+                ret += 1;
+            
+                if(has_feat("inevitable steel"))
+                    ret += 2;
+            }
+        }
+    
         if(query_property("eldritch strikes") && sizeof(weap))
         {
             object strikes;
@@ -2072,7 +2074,7 @@ int query_attack_bonus()
     }            
 
     //Inquisitor Bane
-    if(query_property("bane weapon") && sizeof(weap) && attacker)
+    if(is_class("inquisitor") && query_property("bane weapon") && sizeof(weap) && attacker)
     {
         int valid;
         string *ids = attacker->query_id();
@@ -2094,13 +2096,13 @@ int query_attack_bonus()
     //Paladin capstone
     //ret += query_property("hand of the gods");
 
-    if (FEATS_D->usable_feat(this_object(), "true strikes") &&
+    if (has_feat("true strikes") &&
         validate_combat_stance("one hander")) {
         ret += 3;
     }
     
     //Crimson Templar
-    if(FEATS_D->usable_feat(this_object(), "fiendish studies") && attacker)
+    if(has_feat("fiendish studies") && attacker)
     {
         string *ids = attacker->query_id();
         int valid;
@@ -2118,7 +2120,7 @@ int query_attack_bonus()
         }
     }
 
-    if(FEATS_D->usable_feat(this_object(), "smite the lifeless") && attacker && attacker->is_undead())
+    if(has_feat("smite the lifeless") && attacker && attacker->is_undead())
         ret += 2;
     
     if(query_race() == "nightwing" && total_light(environment(this_object())) > -1)
@@ -2137,19 +2139,19 @@ int query_damage_bonus()
     bonus = dbonus;
     ret = bonus;// + enc;
     ret += EQ_D->gear_bonus(this_object(), "damage bonus");
-    if (FEATS_D->usable_feat(this_object(), "weapon training")) {
+    if (has_feat("weapon training")) {
         ret += query_prestige_level("fighter") / 10 + 1;
     }
 
-    if (FEATS_D->usable_feat(this_object(), "weapon specialization")) {
+    if (has_feat("weapon specialization")) {
         ret += 2;
     }
 
-    if (FEATS_D->usable_feat(this_object(), "greater weapon specialization")) {
+    if (has_feat("greater weapon specialization")) {
         ret += 2;
     }
 
-    if (FEATS_D->usable_feat(this_object(), "epic weapon specialization")) {
+    if (has_feat("epic weapon specialization")) {
         ret += 2;
     }
 
@@ -2159,7 +2161,7 @@ int query_damage_bonus()
     attacker = query_current_attacker();
 
     //Added by Tlaloc to handle favored enemies for Rangers
-    if (FEATS_D->usable_feat(this_object(), "favored enemy"))
+    if(is_class("ranger") && has_feat("favored enemy"))
     {
 
         if(is_favored_enemy(attacker))
@@ -2167,21 +2169,21 @@ int query_damage_bonus()
             ret += 2;
 
             //Favored enemy improves with additional feats
-            FEATS_D->usable_feat(this_object(), "second favored enemy") && ret += 2;
-            FEATS_D->usable_feat(this_object(), "third favored enemy") && ret += 2;
+            has_feat("second favored enemy") && ret += 2;
+            has_feat("third favored enemy") && ret += 2;
         }
       
         //Are we fighting our quarry?
         if(query_property("quarry") == attacker)
         {
-            FEATS_D->usable_feat(this_object(), "quarry") && ret += 2;
-            FEATS_D->usable_feat(this_object(), "improved quarry") && ret += 2;
+            has_feat("quarry") && ret += 2;
+            has_feat("improved quarry") && ret += 2;
         }
     }
     
     if(is_class("druid"))
     {
-        if(FEATS_D->has_feat(this_object(), "guardian of nature"))
+        if(has_feat("guardian of nature"))
         {
             if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "city"))
                 ret += 2;
@@ -2191,7 +2193,7 @@ int query_damage_bonus()
     if(FEATS_D->is_active(this_object(), "rending blows"))
         ret -= 5;
 
-    if(FEATS_D->usable_feat(this_object(), "smite the lifeless") && attacker && attacker->is_undead())
+    if(has_feat("smite the lifeless") && attacker && attacker->is_undead())
         ret += 2;
 
     weap = query_wielded();
@@ -2216,7 +2218,7 @@ int query_damage_bonus()
     }
     
     //Crimson Templar
-    if(FEATS_D->usable_feat(this_object(), "fiendish studies") && attacker)
+    if(has_feat("fiendish studies") && attacker)
     {
         string *ids = attacker->query_id();
         int valid;
