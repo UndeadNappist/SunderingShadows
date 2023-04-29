@@ -88,7 +88,7 @@ int hit_func(object target)
     ename = target->query_cap_name();
     
     tell_room(environment(holder), "As Regalith strikes your opponent, the barbs tear through flesh and bone with ease, while the golden dragon's power surges forth to smite your foes.");
-    target->cause_typed_damage(target, "torso", roll_dice(6, 10) + 10, "fire");
+    target->cause_typed_damage(target, "torso", roll_dice(6, 10) + 10, "piercing");
 
     //REND SPECIAL
     

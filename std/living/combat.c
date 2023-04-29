@@ -657,7 +657,8 @@ void set_combat_arrays(mapping val) { if(!mapp(val)) { return; } else return com
 
 int query_stat_bonus(string stat)
 {
-    int ret;
+    int ret, max, armor_bon;
+    object *torso;
     
     if (!objectp(this_object()))
         return 0;
@@ -665,6 +666,26 @@ int query_stat_bonus(string stat)
     if (!stringp(stat))
         return 0;
     
+    ret = (this_object()->query_stats(stat) - 10) / 2;
+    
+    if(stat == "dexterity")
+    {
+        torso = this_object()->query_armor("torso");
+        
+        if(!sizeof(torso) || has_feat("armor training"))
+            max = 10;
+        else
+        {
+            foreach(object ob in torso)
+            {
+                armor_bon = ob->query_max_dex_bonus();
+                max = max > armor_bon ? armor_bon : max;
+            }
+        }
+        
+        ret = ret > max ? max : ret;
+    }
+            
     return ret = (((int)this_object()->query_stats(stat) - 10) / 2);
 }
 
@@ -838,3 +859,45 @@ varargs int hit_bonus(object targ, int attack_num, object weapon, int touch)
     
     return bonus;
 }
+
+/*
+varargs ac_bonus(object attacker)
+{
+    int bonus, dexb;
+
+    if (!objectp(attacker))
+        return 0;
+
+    dexb = query_stat_bonus("dexterity");
+    
+    //Nature oracle feature
+    if(who->query_mystery() == "nature")
+    {
+        if(who->query_class_level("oracle") > 20)
+            dexb = query_stat_bonus(who, "charisma");
+    }
+    if(who->query_mystery() == "lunar")
+    {
+        if(who->query_class_level("oracle") >= 10)
+            dexb = query_stat_bonus(who, "charisma");
+    }
+
+    if (who->query_temporary_blinded() || who->query_blind()) {
+        if (!FEATS_D->usable_feat(who, "blindfight")) {
+            dexb = 0;
+        }
+    }
+    if (who->query_unconscious() || who->query_prone() || who->query_paralyzed() || who->query_asleep() &&
+        !FEATS_D->usable_feat(who, "dodge")) {
+        dexb = 0;
+    }
+    if (attacker->query_invis() && attacker != who) {
+        if (!who->detecting_invis()) {
+            dexb = 0;
+        }
+    }
+
+    MyBonus += dexb;
+    return MyBonus;
+}
+*/

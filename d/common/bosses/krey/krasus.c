@@ -252,7 +252,7 @@ void spear(object room)
         
         if(objectp(weapon = new("/d/common/bosses/loot/regalith")))
         {
-            tell_room(room, "A GREAT GOLDEN SPEAR APPEARS IN KRASUS'S HANDS");
+            tell_room(room, "A GREAT GOLDEN SPEAR APPEARS IN KRASUS'S HANDS, AND MIGHTY CLAWS APPEAR ON HIS HANDS");
             command("shieldwall min");
             command("unwield weapon");
             command("remove shield");
@@ -260,7 +260,6 @@ void spear(object room)
             weapon->set_property("monster weapon", 1);
             set_spell_chance(0);
             set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved rush", "sweepingblow", "strength of arm", "light weapon", "impale" }) );
-            command("dragon_aspect");
             command("powerattack max");
         }
         
@@ -335,8 +334,50 @@ void barrage()
         break;
     }
 }
+
+void dragon()
+{
+    if(!objectp(room))
+        return;
     
+    if(!checkpoints["dragon"])
+    {
+        tell_room(room, "MESSAGE START DRAGON PHASE");
+        command("unwield weapon");
+        set_race("dragonkin");
+        set_short("DRAGONKIN SHORT DESC");
+        set_long("DRAGONKIN LONG DESC");
+        set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess" }) );
+        set_spells( ({ "obsidian flow", "overwhelming presence", "fear", "powerword kill", "earthquake", "bolt of force" }) );
+        set_spell_chance(50);
+        command("dragon_aspect");
+        checkpoints["dragon"] = 1;
+    }
     
+    switch(random(2))
+    {
+        case 0:
+        command("smite " + target->query_name());
+        break;
+        case 1:
+        command("rush " + target->query_name());
+        break;
+    }
+}
+
+void waves()
+{
+    if(!objectp(room))
+        return;
     
-    
+    if(!checkpoints["waves"])
+    {
+        tell_room(room, "MESSAGE START WAVES PHASE");
+        set_race("dragon");
+        set_short("DRAGON SHORT DESC");
+        set_long("DRAGON LONG DESC");
+        set_spell_chance(100);
+        checkpoints["waves"] = 1;
+    }
+}   
 
