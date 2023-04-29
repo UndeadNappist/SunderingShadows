@@ -1268,7 +1268,7 @@ void new_body()
         }
         newmax = PWPOINTS[mylvl];
 
-        if(FEATS_D->has_feat(this_object(), "eternal warrior"))
+        if(has_feat("eternal warrior"))
             newmax += 50;
 
         this_player()->set_max_mp(newmax);
@@ -1850,7 +1850,7 @@ void heart_beat()
     }
     if (query_parrying() && (!sizeof(query_wielded())))
     {
-        if(!FEATS_D->usable_feat(me, "unarmed parry"))
+        if(!has_feat("unarmed parry"))
         {
             write("You no longer have a weapon wielded, so you let down your defenses.");
             set_parrying(0);
@@ -1912,12 +1912,12 @@ void heart_beat()
     if(objectp(me))
     {
 
-        if((FEATS_D->usable_feat(me,"mighty resilience") || FEATS_D->usable_feat(me,"remember the future")) &&
+        if((has_feat("mighty resilience") || has_feat("remember the future")) &&
            !query_property("stab_resilience"))
         {
             set_property("stab_resilience",(query_level()+9)/10);
         }
-        if(FEATS_D->usable_feat(me,"undead graft") &&
+        if(has_feat("undead graft") &&
            !query_property("stab_resilience"))
         {
             set_property("stab_resilience",(query_level()+9)/20);
@@ -2111,7 +2111,7 @@ nomask void die()
         return;
     }
 
-    if (FEATS_D->usable_feat(this_object(), "unyielding rage") && query_property("raged") && (int)query("rage death avoided") < time()) {
+    if (has_feat("unyielding rage") && query_property("raged") && (int)query("rage death avoided") < time()) {
         tell_object(this_object(), "%^BOLD%^%^RED%^With the last blow you feel the darkness beginning to flow inwards from the edge of your vision...Suddenly you're on your knees in a pool of your own %^RESET%^%^RED%^blood %^BOLD%^%^RED%^with your extremities going numb.");
         tell_room(environment(this_object()), "%^BOLD%^%^RED%^" + this_object()->query_cap_name() + " falls to the ground in a bloody mess.", this_object());
         tell_object(this_object(), "%^BOLD%^No...no...this cannot be happening...there are so many more enemies left to kill and blood to be spilt...GET UP AND FIGHT!");
@@ -4802,7 +4802,7 @@ int light_blind_remote(int actionbonus, object whichroom, int distance) {
   if(query_property("darkvision"))
       return 0;
 
-  if(FEATS_D->has_feat(this_object(), "devils sight"))
+  if(has_feat("devils sight"))
       return 0;
 
   if (geteuid(whichroom) == "Shadowgate") {
@@ -5514,17 +5514,17 @@ int age_mod(string stat) {
     {
         case "child": return CHILD[i]; break;
         case "middle":
-            if((FEATS_D->usable_feat(this_object(), "timeless body") || query_property("rewind age")) &&
+            if((has_feat("timeless body") || query_property("rewind age")) &&
                MIDDLE[i] < 1)
                 return 0;
             return MIDDLE[i]; break;
         case "old":
-            if((FEATS_D->usable_feat(this_object(), "timeless body") || query_property("rewind age")) &&
+            if((has_feat("timeless body") || query_property("rewind age")) &&
                OLD[i] < 1)
                 return 0;
             return OLD[i]; break;
         case "venerable":
-            if((FEATS_D->usable_feat(this_object(), "timeless body") || query_property("rewind age")) &&
+            if((has_feat("timeless body") || query_property("rewind age")) &&
                VENERABLE[i] < 1)
                 return 0;
             return VENERABLE[i]; break;
@@ -5618,7 +5618,7 @@ int test_passive_perception()
     if (!player || !room)
         return;
 
-    if (FEATS_D->usable_feat(player, "spot"))
+    if (has_feat("spot"))
         perception = (int)player->query_skill("perception");
     else
         perception = (int)player->query_skill("perception") * 3 / 4;
@@ -5639,7 +5639,7 @@ int test_passive_perception()
         stealth = (int)targ->query_skill("stealth");
         stealth += (int)targ->query_property("chameleoned");
         spellcraft = (int)targ->query_skill("spellcraft");
-        if (FEATS_D->usable_feat(player, "spot")) {
+        if (has_feat("spot")) {
             if (ishidden == 1 && ismagic == 0) {
                 if (perception > stealth) {
                     numnotvisible++;
@@ -5800,7 +5800,7 @@ int is_favored_terrain(object room)
         return 0;
     }
 
-    if (FEATS_D->usable_feat(this_object(), "scour the depths") && USER_D->is_valid_terrain(type, "caves")) {
+    if (has_feat("scour the depths") && USER_D->is_valid_terrain(type, "caves")) {
         return 1;
     }
 

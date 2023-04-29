@@ -63,7 +63,7 @@ int hit_func(object target)
     switch(random(3))
     {
         case 0: //Trip
-        tell_object(holder, "%^C124%^As the wicked hook of Wrecking Devil catches the legs of your foe, they stumble and fall, their fate sealed by the malevolent power of Mephasm.%^CRST%^");
+        tell_object(holder, "%^C124%^As the %^C238%^w%^C239%^i%^C240%^c%^C241%^k%^C242%^e%^C243%^d %^C242%^h%^C241%^o%^C240%^o%^C239%^k %^C124%^of %^C184%^W%^C178%^r%^C172%^e%^C173%^c%^C167%^k%^C131%^i%^C095%^n%^C131%^g %^C167%^D%^C173%^e%^C172%^v%^C178%^i%^C184%^l %^C124%^catches the %^C221%^l%^C222%^e%^C223%^g%^C224%^s %^C124%^of your foe, they stumble and %^C255%^f%^C254%^a%^C253%^l%^C252%^l%^C124%^, their fate sealed by the %^C062%^m%^C061%^a%^C060%^l%^C059%^e%^C240%^vo%^C059%^l%^C060%^e%^C061%^n%^C062%^t %^C124%^power of %^C190%^M%^C184%^e%^C178%^p%^C172%^h%^C178%^a%^C184%^s%^C190%^m%^C124%^.%^RESET%^");
         tell_room(room, "%^C124%^The wicked hook of the hammer catches " + target->query_cap_name() + "'s legs and " + target->query_objective() + " stumbles and falls!%^CRST%^", holder);
         if(BONUS_D->combat_maneuver(target, holder, my_dex_bonus))
             target->set_tripped(roll_dice(1, 4));
@@ -72,7 +72,7 @@ int hit_func(object target)
         if(!sundered && BONUS_D->combat_maneuver(target, holder, my_dex_bonus))
         {
             target->add_ac_bonus(-10);
-            tell_object(holder, "%^C124%^The spiked head of Wrecking Devil tears through your foe's armor with ease, leaving them vulnerable to your deadly strikes.%^CRST%^");
+            tell_object(holder, "%^C124%^The spiked head of %^C184%^W%^C178%^r%^C172%^e%^C173%^c%^C167%^k%^C131%^i%^C095%^n%^C131%^g %^C167%^D%^C173%^e%^C172%^v%^C178%^i%^C184%^l %^C124%^tears through your foe's %^C245%^a%^C246%^r%^C247%^m%^C248%^o%^C249%^r %^C124%^with ease, leaving them vulnerable to your %^C088%^d%^C124%^e%^C160%^a%^C196%^d%^C009%^l%^C197%^y %^C198%^s%^C197%^t%^C009%^r%^C196%^i%^C160%^k%^C124%^e%^C088%^s%^C124%^!%^RESET%^");
             tell_room(room, "%^C124%^The spiked head of the hammer tears through " + target->query_cap_name() + "'s armor with ease!%^CRST%^", holder);
             sundered = 1;
             call_out("remove_sunder", 30, target);
