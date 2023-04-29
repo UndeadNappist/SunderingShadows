@@ -30,7 +30,7 @@ void create()
     set_property("lore difficulty", 40);
     set_property("id difficulty", 40);
     set_ac(0);
-    set_value(10000);
+    set_value(100000);
     set_flag_required("boss avatar");
     set_limbs( ({ "head" }) );
     set_property("enchantment", 7);
