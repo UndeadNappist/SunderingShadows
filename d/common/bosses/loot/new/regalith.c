@@ -21,7 +21,7 @@ void create()
     ::create();
     
     set_name("spear");
-    set_id( ({ "hammer", "warhammer", "lord's hammer", "stormlord's hammer", "conduit", "stormlords conduit", "lords hammer", "stormlords hammer" }) );
+    set_id( ({ "spear", "large spear", "dragon spear", "regalith spear", }) );
     set_short("");
     set_obvious_short("");
     set_long("");
