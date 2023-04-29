@@ -17,6 +17,8 @@ inherit "/d/common/bosses/avatar_boss.c";
 int buffed,
     ticker,
     enrage;
+    
+object room;
 
 mapping checkpoints = ([
                         "shield"  : 0;
@@ -89,7 +91,7 @@ void create()
 
 void init()
 {
-    object player, room;
+    object player;
     
     ::init();
     
@@ -236,21 +238,31 @@ void shield(object room)
     }
 }
 
+//SPEAR PHASE
 void spear(object room)
 {
-    object target;
+    object target, weapon;
     
     if(!objectp(room))
         return;
     
     if(!checkpoints["spear"])
     {
-        tell_room(room, "MESSAGE START SPEAR PHASE");
-        //Need to summon new weapons here
-        set_spell_chance(0);
-        set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved rush", "sweepingblow", "strength of arm", "light weapon", "impale" }) );
-        command("dragon_aspect");
-        command("powerattack max");
+        tell_room(room, "YOU FACE THE INDOMITABLE MIGHT OF THE GREAT GOLDEN DRAGON EMPEROR HIMSELF!");
+        
+        if(objectp(weapon = new("/d/common/bosses/loot/regalith")))
+        {
+            command("shieldwall min");
+            command("unwield weapon");
+            command("remove shield");
+            weapon->move(this_object());
+            weapon->set_property("monster weapon", 1);
+            set_spell_chance(0);
+            set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved rush", "sweepingblow", "strength of arm", "light weapon", "impale" }) );
+            command("dragon_aspect");
+            command("powerattack max");
+        }
+        
         checkpoints["spear"] = 1;
     }
     
@@ -272,8 +284,35 @@ void spear(object room)
         break;
     }
 }
+
+//BARRAGE PHASE
+void barrage()
+{
+    object *targets;
     
+    if(!checkpoints["barrage"])
+    {
+        tell_room(room, "MESSAGE START BARRAGE PHASE");
+        set_spell_chance(0);
+        checkpoints["barrage"] = 1;
+    }
+
+    if(!sizeof(targets = this_object()->query_attackers()))
+        return;
     
+    tell_room(room, "BARRAGE MESSAGE");
+    
+    foreach(object ob in targets)
+    {
+        if(!SAVING_THROW_D->fort_save(ob, 85))
+        {
+            ob->set_property("rend", 2);
+            tell_object(ob, "BLEEDING MESSAGE");
+        }
+        
+        ob && ob->cause_typed_damage(ob, "torso", roll_dice(10, 10) + 200, "piercing");
+    }
+}
     
     
     
