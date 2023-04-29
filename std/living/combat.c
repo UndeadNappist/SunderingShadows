@@ -860,44 +860,45 @@ varargs int hit_bonus(object targ, int attack_num, object weapon, int touch)
     return bonus;
 }
 
-/*
 varargs ac_bonus(object attacker)
 {
-    int bonus, dexb;
+    int bonus;
 
-    if (!objectp(attacker))
-        return 0;
-
-    dexb = query_stat_bonus("dexterity");
+    bonus = query_stat_bonus("dexterity");
     
-    //Nature oracle feature
-    if(who->query_mystery() == "nature")
+    if(is_class("oracle"))
     {
-        if(who->query_class_level("oracle") > 20)
-            dexb = query_stat_bonus(who, "charisma");
-    }
-    if(who->query_mystery() == "lunar")
-    {
-        if(who->query_class_level("oracle") >= 10)
-            dexb = query_stat_bonus(who, "charisma");
-    }
-
-    if (who->query_temporary_blinded() || who->query_blind()) {
-        if (!FEATS_D->usable_feat(who, "blindfight")) {
-            dexb = 0;
+        //Nature oracle feature
+        if(query_mystery() == "nature")
+        {
+            if(query_class_level("oracle") > 20)
+                bonus = query_stat_bonus("charisma");
         }
-    }
-    if (who->query_unconscious() || who->query_prone() || who->query_paralyzed() || who->query_asleep() &&
-        !FEATS_D->usable_feat(who, "dodge")) {
-        dexb = 0;
-    }
-    if (attacker->query_invis() && attacker != who) {
-        if (!who->detecting_invis()) {
-            dexb = 0;
+        else if(query_mystery() == "lunar")
+        {
+            if(query_class_level("oracle") >= 10)
+                bonus = query_stat_bonus("charisma");
         }
     }
 
-    MyBonus += dexb;
-    return MyBonus;
+    if(this_object()->query_temporary_blinded() || this_object()->query_blind())
+    {
+        if(!has_feat("blindfight"))
+            bonus = 0;
+    }
+    if(this_object()->query_unconscious() || this_object()->query_prone() || this_object()->query_paralyzed() || this_object()->query_asleep())
+    {
+        if(!has_feat("dodge"))
+            bonus = 0;
+    }
+    
+    if(attacker && objectp(attacker) && attacker->query_invis() && attacker != this_object())
+    {
+        if(!detecting_invis())
+            bonus = 0;
+    }
+    
+    bonus = bonus > 10 ? 10 : bonus;
+    
+    return bonus;
 }
-*/
