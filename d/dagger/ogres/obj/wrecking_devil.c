@@ -85,6 +85,8 @@ int hit_func(object target)
         }
         break;
     }
+    
+    return roll_dice(1, 4);
 }   
 
 int wield_func()
