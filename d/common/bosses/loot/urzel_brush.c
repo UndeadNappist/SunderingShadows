@@ -31,7 +31,7 @@ create() {
    "harder to find time to be lazy. In the end he enchanted a set of his brushes so that he "+
    "could hire bums to paint his grand works for him while he sailed or drank%^RESET%^ ");
    set_property("lore difficulty",25);
-   set_value(10000);
+   set_value(100000);
    set_property("enchantment",7);
    set_flag_required("boss avatar");
    set_wc(0,0);

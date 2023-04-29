@@ -48,7 +48,7 @@ void create()
         set_property("enchantment",7);
 	
 //other stuff
-    set_value(4500);
+    set_value(100000);
 }
 
 int wieldme(){
