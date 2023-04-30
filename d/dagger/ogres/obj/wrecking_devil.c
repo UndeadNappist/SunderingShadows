@@ -102,11 +102,11 @@ int wield_func()
     
     if(holder->query_true_align() != 1 && holder->query_true_align() != 2 && holder->query_true_align() != 3)
     {
-        tell_object(holder, "Only those who uphold law and order may wield this weapon!");
+        tell_object(holder, "%^C124%^Only those who %^C209%^u%^C215%^p%^C221%^h%^C227%^ol%^C221%^d l%^C215%^a%^C209%^w %^C124%^and %^C083%^o%^C084%^r%^C085%^d%^C084%^e%^C085%^r %^C124%^may wield this %^C245%^w%^C246%^e%^C247%^a%^C248%^p%^C249%^o%^C250%^n%^C124%^!%^RESET%^");
         return 0;
     }
     
-    tell_object(holder, "%^C124%^As you take hold of Wrecking Devil, you can feel the malevolent power of Mephasm coursing through the hammer, eager to be unleashed upon your enemies.%^CRST%^");
+    tell_object(holder, "%^C124%^As you release your grip on %^C184%^W%^C178%^r%^C172%^e%^C173%^c%^C167%^k%^C131%^i%^C095%^n%^C131%^g %^C167%^D%^C173%^e%^C172%^v%^C178%^i%^C184%^l%^C124%^, the %^C062%^m%^C061%^a%^C060%^l%^C059%^e%^C240%^vo%^C059%^l%^C060%^e%^C061%^n%^C062%^t %^C124%^energy of %^C190%^M%^C184%^e%^C178%^p%^C172%^h%^C178%^a%^C184%^s%^C190%^m %^C124%^fades away, leaving you feeling %^C250%^e%^C251%^m%^C252%^p%^C253%^t%^C254%^y %^C124%^and bereft of its %^C155%^p%^C149%^o%^C143%^w%^C137%^e%^C131%^r%^C124%^.%^RESET%^");
     
     return 1;
 }
