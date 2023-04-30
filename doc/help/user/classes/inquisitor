@@ -24,13 +24,13 @@ Inquisitors tend to move from place to place, chasing down enemies and researchi
 
 Inquisitors are spontaneous casters that use %^ORANGE%^<master>%^RESET%^ command to learn new spells from the inquisitor spell list. See %^ORANGE%^<spells inquisitor (by level)>%^RESET%^. They can %^ORANGE%^<cast>%^RESET%^ any mastered spell by expending a spell slot, which is prepared with the %^ORANGE%^<prepare>%^RESET%^ command. To see how many spell slots you can prepare, use %^ORANGE%^<recall inquisitor spells>%^RESET%^. They base their casting abilities on the wisdom stat.
 
+As a hybrid class with spell casting abilities, inquisitors would benefit from a combination of martial and magic feats. They will need the perfect caster feat to avoid harming their allies and summoned creatures with area-affecting spells.
+
 Inquisitors also gain the following cantrips (type 'recall cantrip spells'):
 Create Water, Detect Magic, Detect Poison, Guidance, Resistance, Light, Mending, Disrupt Undead, Acid Splash
 
 They can cast in any armor they can wear, but not while wielding anything.
 
 Inquisitors use Wisdom as opposed to Charisma for their Influence skill.
-
-As a hybrid class with spell casting abilities, inquisitors would benefit from a combination of martial and magic feats. They will need the perfect caster feat to avoid harming their allies and summoned creatures with area-affecting spells.
 
 %^RESET%^%^CYAN%^See also: %^RESET%^ newbie guide, feats, perfect caster, stats, skills, spells, cast, buff, prepare, master, prestige classes, new caster, recall
