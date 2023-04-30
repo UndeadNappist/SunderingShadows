@@ -147,8 +147,8 @@ void execute_attack()
 
             if(!do_save(ob, 0)) //unlike oppression, overcomes fear immunity
             {
-                tell_object(ob, "");
-                tell_room(place, "", ob);
+                tell_object(ob, "APPLY FEAR TO PERSON");
+                tell_room(place, "APPLY FEAR TO PERSON ROOM MESSAGE", ob);
                 "/std/effect/status/shaken"->apply_effect(ob, 1, caster);
             }
             else
