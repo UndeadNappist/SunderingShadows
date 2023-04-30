@@ -54,6 +54,9 @@ set_long("%^C248%^Dressed in the %^C243%^"+
    set_property("no bows",1);
    set_spoken("wizish");
    command("speech %^C060%^speak in a %^C044%^soft %^C060%^voice%^CRST%^");
+   
+   if(!clonep())
+       return;
 
    ob = new(OBJ"legion_cassock.c");
    ob->set_property("monsterweapon",1);

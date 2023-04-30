@@ -27,12 +27,7 @@ void create()
     feat_name("favored enemy");
     feat_prereq("Ranger L1");
     feat_syntax("favored_enemy [TYPE]");
-    feat_desc("This feat allows a ranger to focus their knowledge and training\
-fighting an enemy type of their choice. The ranger will recieve a +2 bonus to\
-attack and damage rolls while fighting their favored enemy.\
-A ranger also adds this bonus when studying his favored enemy and doesn't need training in academics.\
-You can select from the following favored enemies: \n\n" + "%^GREEN%^" + implode(valid_choices, "\n") +
-"\n\n\To start selection process type <favored_enemy>.\n\nSee also: help favored types");
+    feat_desc("This feat allows a ranger to focus their knowledge and training fighting an enemy type of their choice. The ranger will receive a +2 bonus to attack and damage rolls while fighting their favored enemy. A ranger also adds this bonus when studying his favored enemy and doesn't need training in academics. You can select from the following favored enemies: \n\n"+"%^GREEN%^"+implode(valid_choices, "\n")+"%^RESET%^\n\n\To start selection process type <favored_enemy>.\n\nSee also: help favored types");
     allow_tripped(1);
     set_required_for(({ "second favored enemy" }));
 }

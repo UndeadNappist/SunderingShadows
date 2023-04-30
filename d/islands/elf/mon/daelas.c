@@ -85,7 +85,9 @@ void create()
     set_skill("perception",50); 
     set_skill("stealth",50); 
 
-
+    if(!clonep())
+        return;
+    
     ob = new("/d/magic/scroll");
     switch (random(4)) {
     case 0:

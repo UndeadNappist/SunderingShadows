@@ -123,7 +123,7 @@ void dest_effect() {
         mass->remove();
     if (objectp(target) && objectp(web))
         if (present(target,web)) {
-            tell_object(target,"%^BOLD%^%^CYAN%^You lurge forward into time once more!%^RESET%^");
+            tell_object(target,"%^BOLD%^%^CYAN%^You lurch forward into time once more!%^RESET%^");
             tell_room(place,"%^BOLD%^%^CYAN%^The %^RESET%^s%^BOLD%^i%^RESET%^l"
                "%^BOLD%^v%^RESET%^e%^BOLD%^r%^RESET%^y %^BOLD%^%^CYAN%^haze dissipates "
                "as "+target->QCN+" suddenly appears!%^RESET%^",target );

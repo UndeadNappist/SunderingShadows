@@ -18,6 +18,7 @@ void create() {
 "who will defend the shaper until they are dispelled or have used up their energy (effectively 'dying').");
     set_verbal_comp();
     set_somatic_comp();
+    summon_spell();
     set_helpful_spell(1);
 }
 
@@ -62,14 +63,17 @@ void spell_effect(int prof)
         ob->set_property("spell",TO);
         ob->set_property("spell_creature",TO);
         ob->set_property("minion", caster);
-        ob->setup_crystal(caster);
+        //ob->setup_crystal(caster);
+        ob->set_owner(caster);
+        ob->setup_minion(clevel, spell_level, "standard");
+        ob->set_attacks_num(0);
 
-        ob->set_max_hp((query_spell_level(spell_type)*2+clevel)*20+20);
-        ob->set_hp(ob->query_max_hp());
+        //ob->set_max_hp((query_spell_level(spell_type)*2+clevel)*20+20);
+        //ob->set_hp(ob->query_max_hp());
 
         ob->move(place);
-        caster->add_protector(ob);
-        caster->add_follower(ob);
+        //caster->add_protector(ob);
+        //caster->add_follower(ob);
 
         if(!objectp(ob)) { continue; }
         if(!objectp(place)) { continue; }
@@ -164,7 +168,7 @@ void dest_effect()
         {
             if(!objectp(crystals[i])) { continue; }
             crystals[i]->move("/d/shadowgate/void");
-            if(objectp(crystals[i])) crystals[i]->remove();
+            if(objectp(crystals[i])) crystals[i]->die();
         }
         tell_object(caster,"%^YELLOW%^The summoned crystals vanish...%^RESET%^");
     }

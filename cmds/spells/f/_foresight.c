@@ -11,7 +11,7 @@ int duration;
 void create() {
     ::create();
     set_spell_name("foresight");
-    set_spell_level(([ "mage" : 7,"oracle":7, "cleric":9, "magus" : 6 ]));
+    set_spell_level(([ "mage" : 7,"oracle":7, "cleric":9, "magus" : 6, "druid" : 9 ]));
     set_domains("knowledge");
     set_spell_sphere("divination");
     set_discipline("seer");

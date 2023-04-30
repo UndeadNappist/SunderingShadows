@@ -26,12 +26,15 @@ public mixed call_lpc_file(string file)
     object ob    = 0;
     error        = 0;
     
-    if(error = (mixed)catch(ob = load_object(file)) || error = (mixed)catch(call_other(ob, "eval")))
+    if(error = (mixed)catch(ob = load_object(file)))
         return error;
+    
+    //if(error = catch(result = (mixed)call_other(ob, "eval")))
+    //    return error;
     
     ut1          = perf_counter_ns();
     cost1        = eval_cost();
-    result       = (mixed)call_other(ob, "eval");
+    result       = (error = catch(result = (mixed)call_other(ob, "eval"))) ? error : result;
     ut2          = perf_counter_ns();
     cost2        = eval_cost();    
     cost         = cost1 - cost2;

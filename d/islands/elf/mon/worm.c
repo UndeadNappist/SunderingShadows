@@ -40,7 +40,7 @@ create() {
    set_overall_ac(-18);
    set_moving(1);
    set_speed(60);
-   new("/d/antioch/valley/obj/gem")->move(TO);
+   clonep() && new("/d/antioch/valley/obj/gem")->move(TO);
    set_new_exp(30,"normal");
    set_max_level(36);
    set_base_damage_type("bludgeoning");

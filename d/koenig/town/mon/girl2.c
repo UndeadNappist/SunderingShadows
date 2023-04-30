@@ -127,12 +127,12 @@ void catch_say(string msg){
       force_me("say %^RESET%^%^CYAN%^Thank you adventurer, but before you go, "+
          "let me tell you my story so you might know what you are "+
          "up against.");
-      tell_room(ETO,"BOLD%^%^WHITE%^The spirit sighs, a breath of wind through the cemetery.");
+      tell_room(ETO,"%^BOLD%^%^WHITE%^The spirit sighs, a breath of wind through the cemetery.");
       force_me("say %^RESET%^%^CYAN%^I was a small child of 10 when the gentleman "+
          "set his henchman to find him a tender and juicy morsel.  "+
          "I was stolen that night from my very bed and prepared "+
          "for him that same night.");
-      tell_room(ETO,"BOLD%^%^WHITE%^The spirit scowls.%^RESET%^");
+      tell_room(ETO,"%^BOLD%^%^WHITE%^The spirit scowls.%^RESET%^");
       force_me("say %^RESET%^%^CYAN%^Many have fallen victim to this evil being, "+
          "and it must be stopped! I could not pass on to rest "+
          "in peace knowing that my little brother could one day "+
@@ -144,7 +144,7 @@ void catch_say(string msg){
          "line. At all costs, he must not die!");
       force_me("say %^RESET%^%^CYAN%^If my brother is lucky, he will be saved "+
          "for dessert...");
-      tell_room(ETO,"BOLD%^%^WHITE%^The spirit shudders.");
+      tell_room(ETO,"%^BOLD%^%^WHITE%^The spirit shudders.");
       force_me("say %^RESET%^%^CYAN%^The gentleman loves to eat his desserts "+
          "while they still live, and they come after he has "+
          "gained his fill of what's been cooked and prepared.");

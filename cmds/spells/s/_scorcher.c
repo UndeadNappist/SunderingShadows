@@ -16,6 +16,7 @@ void create() {
     set_spell_name("scorcher");
     set_spell_level(([ "mage" : 2, "magus" : 2, "cleric" : 2, "druid": 2 ]));
     set_domains("fire");
+    set_circle("wildfire");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS scorcher on TARGET");
     set_damage_desc("fire or versatile arcanist");
@@ -58,6 +59,11 @@ void spell_effect(int prof) {
     else ownparty = ({ caster });
 
     element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
     // force-type to fire if anything outside the normal five-element subset. Since the non-interactive doesn't have a switch to fix this, it's necessary.
     if(element != "acid" && element != "cold" && element != "electricity" && element != "sonic") element = "fire";
 

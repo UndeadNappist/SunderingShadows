@@ -54,7 +54,7 @@ void create(){
         "weapon focus",
         "greater weapon focus",
         "epic weapon focus", }));
-    set_powerlevel(5);
+    set_powerlevel(1);
     handicap = 0;
 }
 

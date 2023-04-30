@@ -44,18 +44,21 @@ void create()
 
     set_alignment(9);
     
-    ob = new(ELOB"shroud_of_darkness");
-    if(random(6)) { ob->set_property("monsterweapon",1); }
-    ob->move(TO);
-    command("wear robe");
-    ob = new(ELOB+"the_reaping");
-    ob->move(TO);
-    ob->set_property("monsterweapon", 1);
-    command("wield sickle");
-    ob = new(ELOB+"the_reaping");
-    ob->move(TO);
-    ob->set_property("monsterweapon", 1);
-    command("wield sickle");
+    if(clonep())
+    {
+        ob = new(ELOB"shroud_of_darkness");
+        if(random(6)) { ob->set_property("monsterweapon",1); }
+        ob->move(TO);
+        command("wear robe");
+        ob = new(ELOB+"the_reaping");
+        ob->move(TO);
+        ob->set_property("monsterweapon", 1);
+        command("wield sickle");
+        ob = new(ELOB+"the_reaping");
+        ob->move(TO);
+        ob->set_property("monsterweapon", 1);
+        command("wield sickle");
+    }
     
     set_property("full attacks",1);
 

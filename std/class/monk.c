@@ -147,8 +147,11 @@ void advanced_func(object player)
 
 int hit_dice(object ob)
 {
-    if(FEATS_D->has_feat(ob, "unchained"))
+    if(objectp(ob) && ob->query_class_level("monk") > 30)
         return 10;
+    
+    //if(FEATS_D->has_feat(ob, "unchained"))
+    //    return 10;
     
     return 8;
 }                             // hit dice rolled for hitpoints each level
@@ -211,7 +214,8 @@ int number_of_attacks(object player)
     if (!objectp(player)) {
         return 0;
     }
-    num = "/daemon/bonus_d.c"->attack_bonus("monk", player->query_class_level("monk"), player);
+    //num = "/daemon/bonus_d.c"->attack_bonus("monk", player->query_class_level("monk"), player);
+    num = attack_bonus(player);
     num = num / 7;
     return num;
 }

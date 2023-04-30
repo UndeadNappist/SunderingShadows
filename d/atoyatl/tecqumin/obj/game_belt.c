@@ -19,7 +19,7 @@ This broad belt is designed to offer padding and support to the waist, rather th
 LUJKE
         );
         set_weight(3);
-   set_value(150000);
+   set_value(10000);
         set_lore(
 @AVATAR
 The Tecqumin people are known to have played some form of game which involved teams of players wearing belts of this design. The belt offered protection from impacts of the heavy stone ball that was used, as well as guarding against the strains involved in playing the game.
@@ -32,7 +32,6 @@ AVATAR
         set_size(-1);
         TO->set_property("enchantment",6);
         set_wear((:TO,"wear_func":));
-        set_overallStatus(320);
        set_property("quest required", "%^GREEN%^Sealed the %^BLUE%^U%^MAGENTA%^nf"
     +"%^BLUE%^e%^MAGENTA%^tt%^BLUE%^e%^MAGENTA%^r%^BLUE%^e%^MAGENTA%^d"
     +" %^GREEN%^back into the %^BLUE%^v%^BOLD%^%^BLACK%^o%^RESET%^i%^BLUE%^d");

@@ -63,7 +63,7 @@ void create() {
     add_money("gold",random(5000)+1000);
     new( OPATH "ring.c" )->move(TO);
     CYCLE = 0;
-   new("/d/shadow/obj/clothing/silkgloves")->move(TO);
+    clonep() && new("/d/shadow/obj/clothing/silkgloves")->move(TO);
     command("wear gloves");
     set_emotes(1,({
         "%^BLUE%^Vampyre grins to you evilly!%^RESET%^",

@@ -70,16 +70,20 @@ set_monster_feats(({
     "damage resistance",
     "blade block",
       })); 
+set_funcs(({"sweep"}));
+set_func_chance(75);
+set_missChance(25);
 set_property("water breather", 1);
 set_property("function and attack",1);
+
+if(!clonep())
+    return;
+
 new(OBJ"weed_cloak")->move(TO);
 new(OBJ"weed_belt")->move(TO);
 new(OBJ"ank")->move(TO);
 force_me("wield anchor");
 force_me("wearall");
-set_funcs(({"sweep"}));
-set_func_chance(75);
-set_missChance(25);
 }
 
 void init(){

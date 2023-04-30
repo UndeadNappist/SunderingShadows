@@ -121,11 +121,12 @@ int animal_command(string str)
 
 void heart_beat()
 {
-
-    object *attackers,
-           room;
+    object *attackers, room;
            
     ::heart_beat();
+
+    if (!objectp(this_object()))
+        return;
     
     room = environment(this_object());
     

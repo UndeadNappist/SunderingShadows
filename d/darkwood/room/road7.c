@@ -20,8 +20,8 @@ void create() {
     set_property("night light",2);
     set_name("Magistrate's Southern Road");
     set_short("%^MAGENTA%^%^BOLD%^Rhapsody Clearing%^RESET%^");
-    //set_long("%^BOLD%^%^GREEN%^Rha%^CYAN%^p%^GREEN%^sody %^CYAN%^C%^MAGENTA%^lear%^CYAN%^i%^MAGENTA%^ng%^RESET%^\n%^GREEN%^You are now on the edge of the forest. From what you can tell, it is rather difficult to see in the forest as it is filled with a mixture of coniferous and %^BOLD%^%^GREEN%^d%^CYAN%^e%^GREEN%^ciduous%^RESET%^%^GREEN%^ trees that seem to form a perfect canopy. This canopy is very effective at blocking out sunlight. On the east is a large wooden building. Just north of the building is a shady, grassy area set with tethering posts. There is a %^BOLD%^%^MAGENTA%^si%^MAGENTA%^g%^MAGENTA%^n%^RESET%^%^GREEN%^ for you to read planted in the ground.");
-    set_long("%^BOLD%^%^GREEN%^Rha%^CYAN%^p%^GREEN%^sody %^CYAN%^C%^MAGENTA%^lear%^CYAN%^i%^MAGENTA%^ng%^RESET%^\n%^GREEN%^You are now on the edge of the forest. From what you can tell, it is rather difficult to see in the forest as it is filled with a mixture of coniferous and %^BOLD%^%^GREEN%^d%^CYAN%^e%^GREEN%^ciduous%^RESET%^%^GREEN%^ trees that seem to form a perfect canopy. This canopy is very effective at blocking out sunlight. %^ORANGE%^A ruin of wood and stone lays to the east, and the occasional caw of a crow sounds out as it picks at bone and flesh trapped beneath the rubble. %^GREEN%^Just north of the ruins is a shady, grassy area set with tethering posts. There is a %^BOLD%^%^MAGENTA%^si%^MAGENTA%^g%^MAGENTA%^n%^RESET%^%^GREEN%^ for you to read planted in the ground.");
+    set_long("%^BOLD%^%^GREEN%^Rha%^CYAN%^p%^GREEN%^sody %^CYAN%^C%^MAGENTA%^lear%^CYAN%^i%^MAGENTA%^ng%^RESET%^\n%^GREEN%^You are now on the edge of the forest. From what you can tell, it is rather difficult to see in the forest as it is filled with a mixture of coniferous and %^BOLD%^%^GREEN%^d%^CYAN%^e%^GREEN%^ciduous%^RESET%^%^GREEN%^ trees that seem to form a perfect canopy. This canopy is very effective at blocking out sunlight. On the east is a large wooden building. Just north of the building is a shady, grassy area set with tethering posts. There is a %^BOLD%^%^MAGENTA%^si%^MAGENTA%^g%^MAGENTA%^n%^RESET%^%^GREEN%^ for you to read planted in the ground.");
+    //set_long("%^BOLD%^%^GREEN%^Rha%^CYAN%^p%^GREEN%^sody %^CYAN%^C%^MAGENTA%^lear%^CYAN%^i%^MAGENTA%^ng%^RESET%^\n%^GREEN%^You are now on the edge of the forest. From what you can tell, it is rather difficult to see in the forest as it is filled with a mixture of coniferous and %^BOLD%^%^GREEN%^d%^CYAN%^e%^GREEN%^ciduous%^RESET%^%^GREEN%^ trees that seem to form a perfect canopy. This canopy is very effective at blocking out sunlight. %^ORANGE%^A ruin of wood and stone lays to the east, and the occasional caw of a crow sounds out as it picks at bone and flesh trapped beneath the rubble. %^GREEN%^Just north of the ruins is a shady, grassy area set with tethering posts. There is a %^BOLD%^%^MAGENTA%^si%^MAGENTA%^g%^MAGENTA%^n%^RESET%^%^GREEN%^ for you to read planted in the ground.");
     set_exits(
               (["north" : "/d/darkwood/room/road6",
                 "south" : "/d/darkwood/room/road8",
@@ -41,8 +41,9 @@ void create() {
     obj->set_max_posts(15);
     obj->set_location("/d/darkwood/room/road7.c");
 
-    /*set_door("door","/d/darkwood/room/rhapsody","inn","rhapsody key");
+    set_door("door","/d/darkwood/room/rhapsody","inn","rhapsody key");
     set_smell("default","The heavy scent of pine mingles with the delicious aroma of something cooking.");
-    set_listen("default","Occasional bursts of laughter and song pierce the silence.");*/
+    set_listen("default","Occasional bursts of laughter and song pierce the silence.");
 
 }
+

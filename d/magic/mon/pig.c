@@ -1,5 +1,5 @@
 #include <std.h>
-inherit WEAPONLESS;
+inherit MINION;
 
 // LoKi - Edited so pigs wander off
 

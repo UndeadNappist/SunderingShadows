@@ -85,7 +85,8 @@ void create()
     ob->move(TO);
     command("wield axe");
 
-    set_hp(6000);
+    set_max_hp(6000);
+    set_hp(this_object()->query_max_hp());
 
     set_new_exp(32, "boss");
     set_funcs(({"my_spell_attack"}));

@@ -22,7 +22,7 @@ void create()
 string query_cast_string()
 {
 	tell_object(caster,"%^BOLD%^%^BLACK%^You can feel heat raising of the ground as you chant.");
-	tell_room(place,"%^BOLD%^%^BLACK%^You feel heat raising of the ground as"+caster->QS+" chants.",caster);
+	tell_room(place,"%^BOLD%^%^BLACK%^You feel heat raising of the ground as "+caster->QS+" chants.",caster);
 	return "display";
 }
 

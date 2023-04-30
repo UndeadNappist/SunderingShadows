@@ -31,7 +31,7 @@ spell_effect(int prof)
     int rnd;
 
     set_helpful_spell(1);
-    if(!target->query_property("negative energy affinity"))
+    if(!target->query_property("negative energy affinity") && !target->query_property("heart of darkness"))
     {
         tell_room(place,"%^BOLD%^%^BLACK%^Nothing happens.");
         dest_effect();

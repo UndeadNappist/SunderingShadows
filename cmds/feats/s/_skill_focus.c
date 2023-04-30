@@ -32,7 +32,7 @@ int cmd_skill_focus(string args)
 {
     if(this_player()->query("skill_focus"))
     {
-        tell_object(this_player(), "You already have chosen a skill to focus on.");
+        tell_object(this_player(), "%^CRST%^You already have chosen %^C255%^"+this_player()->query("skill_focus")+"%^CRST%^ to focus on.");
         dest_effect();
         return 1;
     }

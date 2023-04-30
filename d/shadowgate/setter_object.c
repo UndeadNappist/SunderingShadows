@@ -308,6 +308,12 @@ display_common()
 reset_common(string str)
 {
     int i, rstpos;
+
+    if (!stringp(str))
+    {
+        write("%^BOLD%^%^RED%^Please select something to reset.");
+        return 1;
+    }
     
     str = replace_string(str, " ", "_");
     str = lower_case(str);
@@ -525,7 +531,7 @@ display_stats()
 
     write("%^RESET%^--==%^BOLD%^< %^GREEN%^You must now assign your %^CYAN%^character stats %^WHITE%^>%^RESET%^==--\n");
 
-    if (char_sheet["stat_mod"]) {
+    if (!undefinedp(char_sheet["stat_mod"])) {
         race_stats[STATS[char_sheet["stat_mod"]]] += 2;
     }
 

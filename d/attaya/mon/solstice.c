@@ -100,25 +100,51 @@ void create() {
       set_resistance("positive energy",-20);
 }
 
-void init(){
+void init()
+{
+    object player = this_player();
     string mrace;
-    if(!objectp(TO)) { return; }
-    if(!objectp(TP)) { return; }
-    mrace = TP->query_race();
+
    ::init();
-   if(wizardp(TP)) return;
-   if(TP->query_true_invis()) return;
-   if(mrace == "undead"){
-	  command("say %^RED%^Hail, brother.%^RESET%^");
-	  return;
-   }
-   command("say %^RED%^Ancient spirits of the Kinnesaruda...guide "+
-      "my hand in vengeance against this invader!%^RESET%^");
-   command("say %^RED%^ Death to all who oppose us!%^RESET%^");
-   command("stab "+TPQN);
-   if(!random(4)){
-      if(objectp(TO) && objectp(TP)) { TO->force_me("crit "+TPQN); }
-   }
+
+    if (!objectp(this_object()))
+       return;
+
+    if (!objectp(player))
+       return;
+
+    if(wizardp(player))
+       return;
+
+    mrace = player->query_race();
+
+    if(player->query_true_invis())
+       return;
+
+    if(mrace == "undead")
+    {
+        command("say %^RED%^Hail, brother.%^RESET%^");
+        return;
+    }
+    
+    call_out("react_to_player", 1, this_player());
+}
+
+void react_to_player(object ob)
+{
+    string target_name;
+
+    if(!objectp(ob) || environment(ob) != environment(this_object()))
+        return;
+
+    target_name = ob->query_name();
+
+    command("say %^RED%^Ancient spirits of the Kinnesaruda...guide my hand in vengeance against this invader!%^RESET%^");
+    command("say %^RED%^ Death to all who oppose us!%^RESET%^");
+    command("stab " + target_name);
+
+    if(!random(4) && objectp(this_object()))
+        force_me("crit " + target_name);
 }
 
 void die(object ob){
@@ -129,8 +155,9 @@ void die(object ob){
       ob3 = new(OBJ"screamer");
       ob3->move(ETO);
    }
-   TO->move("/d/shadowgate/void");
-   TO->remove();
+   //TO->move("/d/shadowgate/void");
+   //TO->remove();
+   ::die();
 }
 
 void fire(object targ){
@@ -173,7 +200,8 @@ void kdit(object targ){
    TO->force_me("knockdown "+targ->query_name());
 }
 
-void heart_beat() {
+void heart_beat()
+{
    int i,max;
    object ob;
    object here,*inv;
@@ -198,5 +226,3 @@ void heart_beat() {
    return;
    }
 }
-
-int test_heart(){ return 1;}

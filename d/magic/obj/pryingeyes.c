@@ -78,7 +78,9 @@ int die()
     return 1;
 }
 
-void heart_beat(){
+void heart_beat()
+{
+    ::heart_beat();
     if(!objectp(caster))
         self_destruct();
     if(!objectp(follower))

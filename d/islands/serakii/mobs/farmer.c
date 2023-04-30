@@ -89,6 +89,9 @@ set_nogo(({ROAD"4"}));
        "push_em",
 	}));
     set_func_chance(35);   
+    
+    if(!clonep())
+        return;
 	
 	switch(random(2)){
 	

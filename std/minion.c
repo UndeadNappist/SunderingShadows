@@ -11,48 +11,113 @@
 inherit WEAPONLESS;
 
 object owner;
+string minion_type;
 int follow;
 
 object set_owner(object ob) { owner = ob; return owner;  }
 int    set_follow(int x)    { follow = x; return follow; }
-int    is_minion()          { return 1;                  }
+int    is_minion()          { return 1;                 }
 
 void create()
 {
     ::create();
     
     set_name("minion");
-    set_id( ({ "minion" }) );
+    set_id( ({ "minion", "summoned monster" }) );
     set_short("A generic minion");
     set_hd(1, 1);
     set_hp(10);
-    set_exp(1);
+    set_exp(0);
     set_size(2);
     set_damage(1, 1);
     set_gender("neuter");
+    follow = 1;
+    
+    set_monster_feats( ({ "perfect caster" }) );
 }
 
 void heart_beat()
 {
-    object room;
+    object me = this_object(), my_environment, owners_environment;
     
     ::heart_beat();
     
-    if(!objectp(owner))
+    if (!objectp(owner))
         return;
-    
-    room = environment(this_object());
-    
-    if(!objectp(room))
-        return;
-    
-    if(follow && room != environment(owner))
-    {
-        this_object()->move(environment(owner));
-        owner->add_follower(this_object());
-    }
-}
 
+    if (!objectp(owners_environment = environment(owner)))
+        return;
+
+    if (!objectp(me))
+        return;
+
+    if (!objectp(my_environment = environment(me)))
+        return;
+
+    if (follow && my_environment != owners_environment)
+    {
+        me->move(owners_environment);
+        owner->add_follower(me);
+        owner->add_protector(me);
+    }
+    
+    if(minion_type == "greater" && query_hp() < query_max_hp())
+        add_hp(query_max_hp() / 100);
+}       
+
+int setup_minion(int clevel, spell_level, string type)
+{
+    if(!clevel || !spell_level)
+        return 0;
+    
+    if(!strlen(type))
+        return 0;
+    
+    set_new_exp(1, "low");
+    set("aggressive", 1);
+    remove_property("swarm");
+    set_level(clevel);
+    set_mlevel("fighter", clevel);
+    set_guild_level("fighter", clevel);
+    minion_type = type;
+    
+    switch(type)
+    {
+        case "lesser":
+        set_hd(clevel / 2 + 1, spell_level);
+        set_max_hp(1 + clevel / 3);
+        break;
+        case "standard":
+        set_hd(clevel, spell_level);
+        set_overall_ac(-clevel);
+        set_max_hp(clevel * 10 + 30);
+        set_resistance_percent("negative energy", 100);
+        set_resistance_percent("positive_energy", 100);
+        break;
+        case "greater":
+        set_hd(clevel, spell_level);
+        set_max_hp(50 + clevel * (20 + spell_level));
+        set_static_bab(clevel);
+        set_property("effective enchantment", clevel / 7 + 1);
+        set_attacks_num(clevel / 13 + 1);
+        set_attack_bonus(1 + clevel / 10);
+        set_damage_bonus(1 + clevel / 10);
+        set_overall_ac(-clevel);
+        break;
+    }
+    
+    set_hp(query_max_hp());
+    
+    if(objectp(owner))
+    {
+        owner->add_follower(this_object());
+        owner->add_protector(this_object());
+        set_property("minion", owner);
+        set_follow(1);
+    }
+    
+    return 1;
+}
 /*
 The idea of this system is to, first of all, have a player command that handles minions
 

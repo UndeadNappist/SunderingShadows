@@ -27,40 +27,42 @@ void create()
 
 string query_cast_string()
 {
-    return "%^CYAN" + sprintf("%s concentrates on %s psionic powers.", caster->QCN, caster->query_possessive());
+    tell_object(caster, "%^C037%^You concentrate %^C025%^intently%^C037%^, focusing your %^C099%^p%^C105%^s%^C111%^ion%^C105%^i%^C099%^c p%^C105%^o%^C111%^we%^C105%^r%^C099%^s%^C037%^.%^CRST%^");
+    tell_room(place, "%^C037%^"+caster->query_cap_name()+"%^C037%^ concentrates %^C025%^intently%^C037%^, focusing "+caster->query_possessive()+" %^C099%^p%^C105%^s%^C111%^ion%^C105%^i%^C099%^c p%^C105%^o%^C111%^we%^C105%^r%^C099%^s%^C037%^.%^CRST%^");
+    return "display";
 }
 
 void spell_effect(int prof)
 {
-    object *victims;
+    object me = this_object(), *victims;
     string myname, yourname;
 
     myname = caster->QCN;
 
-    tell_object(caster, "%^CYAN%^You place your fingers to the side of your head and bring forth a blast of psychic energy!%^RESET%^");
-    tell_room(place, "%^CYAN%^" + sprintf("%s places %s fingers to the side of %s head and concentrates!", myname, caster->query_possessive(), caster->query_possessive()) + "%^RESET%^", ({ caster }));
+    tell_object(caster, "%^C043%^You place your fingers to the side of your head and bring forth a %^C099%^b%^C105%^l%^C111%^a%^C105%^s%^C099%^t %^C093%^of %^C099%^p%^C105%^s%^C111%^ych%^C105%^i%^C099%^c e%^C105%^n%^C111%^er%^C105%^g%^C099%^y%^C043%^!%^CRST%^");
+    tell_room(place, "%^C043%^"+caster->query_cap_name()+"%^C043%^ places "+caster->query_possessive()+" fingers to the side of "+caster->query_possessive()+" head and brings forth a %^C099%^b%^C105%^l%^C111%^a%^C105%^s%^C099%^t %^C093%^of %^C099%^p%^C105%^s%^C111%^ych%^C105%^i%^C099%^c e%^C105%^n%^C111%^er%^C105%^g%^C099%^y%^C043%^!%^CRST%^", caster);
 
     victims = target_selector();
 
     if(!sizeof(victims))
     {
-        tell_object(caster, "You release a wave of psionic energy, but nothing else happens...");
-        this_object()->remove();
+        tell_object(caster, "%^C059%^You release a wave of psionic energy, but nothing else happens...%^CRST%^");
+        dest_effect();
         return;
     }
 
-    tell_object(caster, "%^CYAN%^You release a blast of psychic energy into the area!");
-    tell_room(place, caster->QCN + " releases a blast of psychic energy into the area!", ({ caster }));
+    tell_object(caster, "%^C049%^%^You release a blast of psychic energy into the area!%^CRST%^");
+    tell_room(place, "%^C049%^"+caster->query_cap_name()+"%^C049%^ releases a blast of psychic energy into the area!%^CRST%^", caster);
 
     foreach(object ob in victims)
     {
         if(do_save(ob, 0))
-            tell_object(ob, "You manage to shrug off the psionic blast.");
+            tell_object(ob, "%^C031%^You manage to shrug off the psionic blast.%^CRST%^");
         else
         {
-            tell_object(ob, "%^BOLD%^The psionic energy slams into you, leaving you stunned!");
-            tell_object(caster, "%^BOLD%^The psionic energy slams into " + ob->QCN + ", leaving them stunned!");
-            ob->set_paralyzed(roll_dice(2,4) * 8, "%^BOLD%^You are stunned by the psychic blast!");
+            tell_object(ob, "%^C255%^The psionic energy slams into you, leaving you stunned!%^CRST%^");
+            tell_object(caster, "%^C255%^The psionic energy slams into "+ob->query_cap_name()+"%^C255%^, leaving them stunned!%^CRST%^");
+            ob->set_paralyzed(roll_dice(2, 4) * 8, "%^C255%^You are stunned by the psychic blast!%^CRST%^");
         }
         spell_kill(ob,caster);
     }
@@ -68,3 +70,4 @@ void spell_effect(int prof)
     spell_successful();
     dest_effect();
 }
+

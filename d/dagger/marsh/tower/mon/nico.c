@@ -85,8 +85,12 @@ void create() {
 	"Nicodemus grumbles something to himself and laughs.",
         "%^MAGENTA%^Nicodemus says: %^RESET%^Vecna gave me his rod to guard until he returns...I shall not fail him.",
     }),0);
-     new( OPATH "rod.c" )->move(TO);
-     new( OPATH "castershoes.c" )->move(TO);
+    
+    if(clonep())
+    {
+        new( OPATH "rod.c" )->move(TO);
+        new( OPATH "castershoes.c" )->move(TO);
+    }
     command("wield rod in left hand");
     set_funcs(({"special"}));
     set_func_chance(40);

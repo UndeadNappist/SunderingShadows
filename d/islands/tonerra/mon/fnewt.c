@@ -149,6 +149,10 @@ OLI
    set_func_chance(30);
     add_id("newt");
     set_stats("strength",25);
+    
+    if(!clonep())
+        return;
+    
     if(!random(20)) {
       ob = new("/d/common/obj/brewing/herb_special_inherit");
       ob->set_herb_name("eye of newt");

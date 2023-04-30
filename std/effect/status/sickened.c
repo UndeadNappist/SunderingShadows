@@ -16,7 +16,7 @@ int status_effect()
 {
     int i;
 
-    if (target->query_property("effect_sickened") > 4) {
+    if (target->query_property("effect_sickened")) {
         TO->remove();
         return;
     }

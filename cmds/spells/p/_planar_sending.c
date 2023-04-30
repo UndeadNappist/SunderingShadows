@@ -41,12 +41,21 @@ int preSpell(){
    return 1;
 }
 
-void spell_effect(int prof) {
+void spell_effect(int prof)
+{
     string targ;
     string destfile;
     mapping remrooms;
 
-    if (sscanf(arg,"%s to %s",targ, destination)!=2)
+    if (!stringp(arg))
+    {
+        tell_object(caster, "This spell requires arguments!");
+
+        dest_effect();
+        return;
+    }
+
+    if (sscanf(arg, "%s to %s", targ, destination)!=2)
     {
         tell_object(caster,"You must provide both target and destination!");
         dest_effect();

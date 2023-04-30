@@ -50,7 +50,8 @@ void die(object ob){
 }
 
 void heart_beat(){
-	if(!objectp(caster)) { self_destruct(); return; }
+   ::heart_beat();
+   if(!objectp(caster)) { self_destruct(); return; }
    if(!objectp(follower)) { self_destruct(); return; }
    if(ETO != environment(follower))
       move(environment(follower));

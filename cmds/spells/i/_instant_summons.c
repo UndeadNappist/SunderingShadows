@@ -70,7 +70,17 @@ void spell_effect(int prof) {
     tell_object(caster, "You don't have a gem that is worth enough!");
     dest_effect();
   }
+
+  if (!stringp(arg))
+  {
+      tell_object(caster, "This spell requires arguments!");
+
+      dest_effect();
+      return;
+  }
+
   sscanf(arg, "%s, with password %s",item_name, password);
+
   if (item_name ==0||password==0){
     tell_object(caster, "Try: %^YELLOW%^cast instant"
                        +" summons on <item>, with password <password>");
@@ -113,8 +123,10 @@ void spell_effect(int prof) {
   dest_effect();
 }
 
-void dest_effect() {
+void dest_effect()
+{
     ::dest_effect();
-    if(objectp(TO)) TO->remove();
 
+    if(objectp(TO))
+        remove();
 }

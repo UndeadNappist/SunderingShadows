@@ -16,7 +16,8 @@ void create()
     set_level(1);
     set_class("fighter");
     set_mlevel("fighter", 1);
-    set_hp(10000000);
+    set_max_hp(10000000);
+    set_hp(query_max_hp());
     set_exp(1);
     set_overall_ac(9);
     set_property("no dominate", 1);

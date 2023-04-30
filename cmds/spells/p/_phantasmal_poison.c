@@ -27,17 +27,25 @@ void spell_effect()
 
     poisonf = PDIR+POISONS[random(sizeof(POISONS))];
 
-    targ = present(arg,caster);
+    if (!stringp(arg))
+    {
+        tell_object(caster, "This spell requires arguments!");
+
+        remove();
+        return;
+    }
+
+    targ = present(arg, caster);
     if(!objectp(targ))
     {
         tell_object(caster, "Cant find "+arg+" in your inventory!");
-        TO->remove();
+        remove();
         return;
     }
     if(!targ->is_weapon())
     {
         tell_object(caster, "That is not a weapon!");
-        TO->remove();
+        remove();
         return;
     }
     if(objectp(targ))
@@ -49,7 +57,7 @@ void spell_effect()
         if(!objectp(poisono))
         {
             tell_object(caster, "Poisoning failed because of reasons!");
-            TO->remove();
+            remove();
             return;
         }
         wpn = targ;

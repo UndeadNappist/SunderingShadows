@@ -55,12 +55,12 @@ void spell_effect(int prof)
     {
         tell_room(place,"%^C191%^" + your_name + " is struck by a broad beam of radiant energy from the sky!%^CRST%^", ({ target }));
         tell_object(target,"%^C191%^You are struck by a broad beam of radiant energy from the sky!%^CRST%^");
-        target->cause_typed_damage(target, target_limb, sdamage, "radiant");
+        damage_targ(target, target_limb, sdamage, "radiant");
         
         if(target && objectp(target) && !do_save(target))
         {
             target->set_temporary_blinded(1);
-            target->cause_typed_damage(target, target_limb, sdamage / 10, "fire");
+            damage_targ(target, target_limb, sdamage / 10, "fire");
         }
     }
     else

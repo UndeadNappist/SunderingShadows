@@ -22,6 +22,7 @@ To command weapon use %^ORANGE%^<command weapon to %^ORANGE%^%^ULINE%^ACTION%^RE
 To force lost weapon to follow use %^ORANGE%^<command weapon to follow>%^RESET%^");
     set_verbal_comp();
     set_somatic_comp();
+    summon_spell();
     set_helpful_spell(1);
 }
 
@@ -48,8 +49,8 @@ void summon_servant() {
     string deity = caster->query_diety();
     string normalizedDeity;
     normalizedDeity = replace_string(deity," ","_");
-    if(deity == "godless")
-        normalizedDeity = "kismet";
+    if (deity == "godless" || deity == "velik" || deity == "ebolek" || deity == "eucalia" || deity == "cacia" || deity == "mephasm")
+        normalizedDeity = "generic";
 
     tell_object(caster,"%^CYAN%^%^BOLD%^As you complete the spell a weapon forms out of thin air in front of you.%^RESET%^");
     tell_room(place,"%^CYAN%^%^BOLD%^As "+caster->QCN+" completes the spell a weapon forms out of thin air.%^RESET%^",caster);
@@ -60,6 +61,8 @@ void summon_servant() {
     ob->set_long(("/d/magic/obj/weapons/"+normalizedDeity)->query_long());
     ob->set_id(ob->query_id()+("/d/magic/obj/weapons/"+normalizedDeity)->query_id());
     ob->setup_servant(caster,clevel);
+    ob->set_owner(caster);
+    ob->setup_minion(clevel, spell_level, "greater");
 
     control = new("/d/magic/obj/holder");
     control->set_caster(caster);
@@ -68,7 +71,7 @@ void summon_servant() {
     control->set_property("spelled", ({TO}) );
     control->set_elemental(ob);
 
-    caster->add_follower(ob);
+    //caster->add_follower(ob);
 
     ob->move(environment(caster));
 

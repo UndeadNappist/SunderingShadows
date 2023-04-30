@@ -416,6 +416,7 @@ int clear_domains(string str)
     TP->delete("domains_cleared");
     TP->set("domains_cleared", time());
     TP->InitInnate();
+    this_player()->force_me("feats fix");
     tell_object(TP, "%^BOLD%^%^WHITE%^You sense you have forgotten your domains and can select new ones.");
     return 1;
 }
@@ -541,6 +542,8 @@ int select_domain(string str)
                 TP->set_divine_domain(({ selection }));
                 tell_object(TP, "You have chosen to select the " + selection + " domain.\n");
                 TP->set("domains_changed", 1);
+                this_player()->force_me("feats fix");
+                this_player()->InitInnate();
                 return 1;
             }
             if (sizeof(player_domains) < 2) {
@@ -554,6 +557,8 @@ int select_domain(string str)
                     return 1;
                 }
                 TP->set_divine_domain(({ player_domains[0], selection }));
+                this_player()->force_me("feats fix");
+                this_player()->InitInnate();
                 tell_object(TP, "You have chosen to select the " + selection + " domain.");
                 tell_object(TP, "Your now have the following domains: " + player_domains[0] + " and " + selection + "\n");
                 return 1;
@@ -570,6 +575,7 @@ int select_domain(string str)
                 }
                 TP->set_divine_domain(({ player_domains[0], player_domains[1], selection }));
                 TP->InitInnate();
+                this_player()->force_me("feats fix");
                 tell_object(TP, "You have chosen to select the " + selection + " domain.");
                 tell_object(TP, "Your now have the following domains: " + player_domains[0] + ", " + player_domains[1] + " and " + selection + "\n");
                 return 1;

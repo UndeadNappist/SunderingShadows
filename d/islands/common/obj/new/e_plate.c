@@ -43,6 +43,7 @@ void create()
       
     set_property("quest required","%^BOLD%^%^RED%^Defeated the great red wyrm Klauth!%^RESET%^");
     set_property("level required",35);
+    set_heart_beat(1);
 }
 
 

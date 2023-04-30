@@ -89,7 +89,7 @@ int shape_attack(object tp, object targ)
 {
     object etp;
     string *specials=({});
-    int i,chance,dice;
+    int i,chance,dice,dc_result;
 
     etp = environment(tp);
 
@@ -119,7 +119,8 @@ int shape_attack(object tp, object targ)
         tell_object(tp,"%^RESET%^%^RED%^You dig your teeth into "+targ->QCN+"'s shoulder and drag "+targ->QO+" to the ground!");
         tell_object(targ,"%^RESET%^%^RED%^"+tp->QCN+" digs "+tp->QP+" teeth into your shoulder and drags you to the ground!");
         tell_room(etp,"%^RESET%^%^RED%^"+tp->QCN+" digs "+tp->QP+" teeth into "+targ->QCN+"'s shoulder and drags "+targ->QO+" to the ground!",({tp,targ}));
-        if(!targ->fort_save(chance)) { targ->set_tripped(1,"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
+        dc_result = tp->calculate_dc(tp->query_level(), FEATS_D->usable_feat(tp, "weapon finesse") ? "dexterity" : "strength");
+        if(!targ->fort_save(dc_result)) { targ->set_tripped(1,"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
         break;
 
     case "high damage":

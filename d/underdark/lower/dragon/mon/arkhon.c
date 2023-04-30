@@ -293,7 +293,7 @@ void die(object ob){
    tell_room(ETO,"%^ORANGE%^As the last living breath escapes him, Arkhon's spells begin to fall apart.  A transmuted "
 "stone wall congeals back into %^RED%^mud %^ORANGE%^and oozes to the ground, revealing a passageway to %^CYAN%^escape"
 "%^ORANGE%^ into a small side cavern!%^RESET%^");
-   if(sizeof(ppl) && rath) {
+   if(sizeof(ppl)) {
      for(i = 0;i<sizeof(ppl);i++) {
        if(!i) printme = (string)ppl[i]->query_name();
        else printme += ", "+(string)ppl[i]->query_name();

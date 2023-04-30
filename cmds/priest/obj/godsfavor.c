@@ -32,28 +32,43 @@ int clean_up(){
 }
 
 
-void dest_effect(){
-    destruct(TO);
-}
+int dest_effect()
+{
+    if (!objectp(this_object()))
+        return 0;
 
+    destruct(this_object());
 
-void remove(){
-    if(objectp(PO)){
-        if(!avatarp(PO) && (strsrch(base_name(PO),"_gods") == -1)) { return; }
-    }
-    destruct(TO);
-}
-
-
-int save_me(string file){
     return 1;
 }
 
 
-int now(string str){
+int remove()
+{
+    object function_caller = previous_object();
+
+    if(objectp(function_caller))
+        if(!avatarp(function_caller) && (strsrch(base_name(function_caller),"_gods") == -1))
+            return 0;
+
+    destruct(this_object());
+
+    return 1;
+}
+
+
+int save_me(string file)
+{
+    return 1;
+}
+
+
+int now(string str)
+{
     string where, temple, diety, playername;
     int mypower,startpower,endpower,bonus;
     object player, room;
+
     player = this_player();
     playername = player->query_cap_name();
     room = environment(player);

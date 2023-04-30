@@ -13,15 +13,7 @@ void create()
     feat_name("undead cohort");
     feat_prereq("Pale Lord L4");
     feat_syntax("undead_cohort to summon or dismiss the bone golem");
-    feat_desc("The second phase of transformation is infusion of negative energy. To achieve that Pale Lord drains all own blood and replaces it with delicately woven spells that substitute its function. The blood itself is sacrificed in the ritual to summon power needed to sustain such spells. This step of transformation gives the Pale Lord innate understanding of the undeath. They gain ability to cast vampiric touch, animate dead, exhume corpses, create undead, create greater undead spells as innate powers. Using this feat actively will summon a bone golem to your side. This feat does not work alongside animal companion, arcane bond, or similar feats.
-    
-The Bone Golem can also be customized through several commands, which will allow you to change its description:
-
-  'golem short [DESCRIPTION]' - Changes the short description of the golem.
-  'golem long  [DESCRIPTION]' - Changes the long description of the golem.
-
-  To have the bonded steed follow you, use 'golem follow'.  
-  To command the bone golem, use %^ORANGE%^<golem command %^ULINE%^ACTION%^RESET%^ORANGE%^>.%^RESET%^");
+    feat_desc("The second phase of transformation is the infusion of negative energy. To achieve this, the Pale Lord drains all of their own blood and replaces it with delicately woven spells that substitute its function. The blood itself is sacrificed in the ritual to summon the power needed to sustain such spells. This step of transformation gives the Pale Lord an innate understanding of undeath. They gain the ability to cast vampiric touch, animate dead, exhume corpses, create undead, and create greater undead spells as innate powers. Using this feat actively will summon a bone golem to their side. This feat does not work alongside animal companion, arcane bond, or similar feats.\n\nThe Bone Golem can be customized through several commands, which will allow you to change its description:\n\n  %^ORANGE%^<golem short %^ULINE%^DESCRIPTION%^RESET%^%^ORANGE%^> \t%^RESET%^Changes the short description of the golem.\n  %^ORANGE%^<golem long %^ULINE%^DESCRIPTION%^RESET%^%^ORANGE%^> \t%^RESET%^Changes the long description of the golem.\n  %^ORANGE%^<golem follow> \t\t%^RESET%^Commands the golem to follow you.\n  %^ORANGE%^<golem command %^ULINE%^ACTION%^RESET%^%^ORANGE%^> \t%^RESET%^Commands a golem to perform an action.%^RESET%^");
     //permanent(1);
 }
 

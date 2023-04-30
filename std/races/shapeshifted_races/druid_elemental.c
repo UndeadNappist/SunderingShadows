@@ -107,7 +107,7 @@ int arm_attack(object tp, object targ)
 {
     object etp,*attackers,att;
     string *specials=({}),*active_specials=({}),myrace;
-    int i,j,chance,dice;
+    int i,j,chance,dice,dc_result;
 
     etp = environment(tp);
 
@@ -157,6 +157,7 @@ int arm_attack(object tp, object targ)
         if(!objectp(tp) || !objectp(targ)) { return 0; }
 
         if(tp->query_casting()) return 0; // it was allowing multicasting! Oops.
+        dc_result = tp->calculate_dc(chance, FEATS_D->usable_feat(tp, "weapon finesse") ? "dexterity" : "strength");
 
         switch(active_specials[i]) {
 
@@ -173,7 +174,7 @@ int arm_attack(object tp, object targ)
                 {
                     if(!objectp(att = attackers[j])) { continue; }
 
-                    if(!att->reflex_save(chance))
+                    if(!att->reflex_save(dc_result))
                     {
                         tell_object(att,"%^GREEN%^The earth shakes and knocks you off of your feet!");
                         tell_room(etp,"%^GREEN%^The earth shakes and knocks "+att->QCN+" off of "+att->QP+" feet!",({att}));

@@ -3,7 +3,7 @@ kill, which can become obscene with the PT XP bonus and
 cycling shifters - Octothorpe 1/6/12*/
 
 #include <std.h>
-inherit WEAPONLESS;
+inherit MINION;
 
 #define COLORS ({"%^BOLD%^%^BLUE%^blue","%^BOLD%^%^GREEN%^green","%^BOLD%^%^RED%^red","%^BOLD%^%^MAGENTA%^pink","%^YELLOW%^yellow","%^BOLD%^%^WHITE%^white","%^BOLD%^%^CYAN%^sky blue"})
 
@@ -58,10 +58,10 @@ void setup_crystal(object caster)
     num = (int)caster->query_guild_level("psion");
     if(!num) { num = (int)caster->query_lowest_level(); }
 
-    set_level(num/2);
-    set_hd(num/2,6);
-    set_max_hp(roll_dice(3,num/2) + 50);
-    set_hp(query_max_hp());
+    //set_level(num/2);
+    //set_hd(num/2,6);
+    //set_max_hp(roll_dice(3,num/2) + 50);
+    //set_hp(query_max_hp());
     set_attacks_num(0);//changing to 0 was 1 -Ares
     set_overall_ac(10-num);
     set_damage(1,6);

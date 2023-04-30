@@ -135,6 +135,10 @@ int detect_fun(string str){
 //    tell_object(TP, "No store room found\n");
     return 0;
   }
+
+  if (!stringp(str))
+    return 0;
+
   ped_obj = STORE->query_head_obj();
   sscanf(str, "%s on %s", action, obj);
   if (!objectp(ped_obj)){

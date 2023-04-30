@@ -21,7 +21,8 @@ void create()
     set_size(3);
     set_alignment(5);
     set_hd(8, 16);
-    set_hp(80);
+    set_max_hp(80);
+    set_hp(query_max_hp());
     set_exp(1500);
     set_overall_ac(3);
     set("aggressive", 19);

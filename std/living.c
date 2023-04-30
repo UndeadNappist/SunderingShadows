@@ -42,6 +42,8 @@ string school_of_opposition;
 string sorc_bloodline;
 string oracle_mystery;
 string psion_discipline;
+//string druid_circle;
+string paladin_oath;
 string inquisition;
 //by Circe, for psions 7/16/05
 string* divine_domain = ({}); // For cleric domains -Ares 4/7/07
@@ -79,15 +81,15 @@ void create()
 varargs int query_id_no(string id_name)
 {
     int i, limit;
-    if (!objectp(ETO)) {
+    if (!objectp(environment(this_object()))) {
         return 0;
     }
     if (!stringp(id_name)) {
         id_name = query_race();
     }
-    limit = sizeof(all_living(ETO));
+    limit = sizeof(all_living(environment(this_object())));
     for (i = 1; i < limit; i++) {
-        if (present(id_name + " " + i) == TO) {
+        if (present(id_name + " " + i) == this_object()) {
             return i;
         }
     }
@@ -129,10 +131,10 @@ varargs void set_nwp(string name, int level, int seed)
 
 string query_race()
 {
-    if (!objectp(TO)) {
+    if (!objectp(this_object())) {
         return "";
     }
-    if (!avatarp(TO)) {
+    if (!avatarp(this_object())) {
         return query("race");
     }
     if ((query("race") == "with") && query("race_mask")) {
@@ -145,11 +147,11 @@ string query_visual_race()
 {
     object shape;
 
-    if (objectp(shape = TO->query_property("shapeshifted"))) {
+    if (objectp(shape = query_property("shapeshifted"))) {
         return shape->query_shape_race();
     }
 
-    if (objectp(shape = TO->query_property("altered"))) {
+    if (objectp(shape = query_property("altered"))) {
         return shape->query_shape_race();
     }
 
@@ -158,7 +160,7 @@ string query_visual_race()
 
 void set_race(string str)
 {
-    this_object()->set("race", str);
+    set("race", str);
     add_id(str);
 }
 
@@ -174,12 +176,12 @@ string query_message_in()
     mapping message_map;
     string profile;
 
-    if (!interactive(TO)) {
+    if (!interactive(this_object())) {
         return 0;
     }
 
-    profile = (string)TO->query("relationship_profile");
-    message_map = (mapping)TO->query("message_map");
+    profile = (string)query("relationship_profile");
+    message_map = (mapping)query("message_map");
 
     if (!profile) {
         return 0;
@@ -199,12 +201,12 @@ string query_message_out()
     mapping message_map;
     string profile;
 
-    if (!interactive(TO)) {
+    if (!interactive(this_object())) {
         return 0;
     }
 
-    profile = (string)TO->query("relationship_profile");
-    message_map = (mapping)TO->query("message_map");
+    profile = (string)query("relationship_profile");
+    message_map = (mapping)query("message_map");
 
     if (!profile) {
         return 0;
@@ -227,7 +229,7 @@ int query_num_attacks()
     if (!interactive(this_object())) {
         return num_attacks;
     } else {
-        lev = this_object()->query_level();
+        lev = query_level();
         if (lev < 8) {
             return 1;
         }
@@ -256,12 +258,12 @@ void set_parrying(int i)
 int query_parrying(object att)
 {
     object* weapons, *eweapons;
-    weapons = TO->query_wielded();
+    weapons = query_wielded();
     
     objectp(att) && eweapons = att->query_wielded();
     
     //can't parry if both weapons ranged
-    if(sizeof(eweapons) && eweapons[0]->is_lrweapon() && !FEATS_D->usable_feat(this_object(), "deflect arrows") && !FEATS_D->usable_feat(this_object(), "canny defense"))
+    if(sizeof(eweapons) && eweapons[0]->is_lrweapon() && !has_feat("deflect arrows") && !has_feat("canny defense"))
     {
         if(sizeof(eweapons) == 1)
             return 0;
@@ -272,26 +274,26 @@ int query_parrying(object att)
     
     if (sizeof(weapons) && !weapons[0]->is_lrweapon()) {
             
-        if (FEATS_D->usable_feat(TO, "parry")) {
+        if (has_feat("parry")) {
             return 1;
         }
-        if (FEATS_D->usable_feat(TO, "opportunistic parry")) {
-            if (TO->validate_combat_stance("one hander")) {
+        if (has_feat("opportunistic parry")) {
+            if (validate_combat_stance("one hander")) {
                 return 1;
             }
         }
-        if (FEATS_D->usable_feat(TO, "unassailable parry")) {
-            if (TO->validate_combat_stance("dual wield") && !weapons[1]->is_lrweapon()) {
+        if (has_feat("unassailable parry")) {
+            if (validate_combat_stance("dual wield") && !weapons[1]->is_lrweapon()) {
                 return 1;
             }
         }
-        if (FEATS_D->usable_feat(TO, "blade block")) { // this should not allow parrying with bows!
-            if (TO->validate_combat_stance("two hander")) {
+        if (has_feat("blade block")) { // this should not allow parrying with bows!
+            if (validate_combat_stance("two hander")) {
                 return 1;
             }
         }
     }
-    if (FEATS_D->usable_feat(TO, "unarmed parry")) {
+    if (has_feat("unarmed parry")) {
         if (!sizeof(weapons)) {
             return 1;
         }
@@ -309,10 +311,10 @@ void set_scrambling(int i)
 
 int query_scrambling()
 {
-    if (TO->query_tripped() || TO->query_in_vehicle() || (!TO->is_ok_armour("thief"))) {
+    if (query_tripped() || query_in_vehicle() || (!is_ok_armour("thief"))) {
         return 0;
     }
-    if (FEATS_D->usable_feat(TO, "scramble")) {
+    if (has_feat("scramble")) {
         return 1;
     }
     return scrambling;
@@ -336,50 +338,24 @@ void heart_beat()
     object me = this_object(), attacker;
 
     if (!objectp(me))
-    {
         return;
-    }
 
     POISON_D->ProcessPoisons(me);
 
-    // No longer used
-    // new stab resets available chances once per round.
-    if (objectp(me) && sizeof(me->query_attackers()))
-    {
-        if (me->query_property("stabs_available")) 
-        {
-            me->remove_property("stabs_available");
-        }
-        if (FEATS_D->usable_feat(TO, "combat reflexes"))
-        {
-            /*            i = (max(({TO->query_guild_level("thief"),
-                                            TO->query_class_level("thief") + TO->query_class_level("arcane_trickster")
-                                            }))+9)/10; */
-                                            // there's a lib query for this now to get ANY thief PrC inherits, let's use that for efficiency! N, 1/3/20
-            i = (me->query_prestige_level("thief") + 9) / 10;
-            me->set_property("stabs_available", i);
-        }
-    }
-    if (me->is_class("monk"))
-    {
+    if (is_class("monk"))
         USER_D->regenerate_pool(me, (1 + random(2)), 1, "ki");
-    }
-    if (me->is_class("magus"))
-    {
+
+    if (is_class("magus"))
         USER_D->regenerate_pool(me, (1 + random(2)), 1, "arcana");
-    }
-    if (me->is_class("paladin") || me->is_class("cleric"))
-    {
+
+    if (is_class("paladin") || is_class("cleric"))
         USER_D->regenerate_pool(me, 1, 1, "grace");
-    }
-    if (me->is_class("psion") || me->is_class("psywarrior"))
-    {
+
+    if (is_class("psion") || is_class("psywarrior"))
         USER_D->regenerate_pool(me, 1, 1, "focus");
-    }
-    if (me->is_class("warlock"))
-    {
+
+    if (is_class("warlock"))
         USER_D->regenerate_pool(me, 1, 1, "burn");
-    } 
 
     //enhancement effects
     "/cmds/mortal/_enhance.c"->run_enhances_timer(me, "weapon");
@@ -391,9 +367,7 @@ void heart_beat()
         {
             used_stamina -= 10;
             if (used_stamina < 0)
-            {
                 used_stamina = 0;
-            }
             return;
         }
         if (!query_property("inactive"))
@@ -402,49 +376,41 @@ void heart_beat()
             if (sizeof(query_attackers()) < 1)
             {
                 if (myskill < 0)
-                {
                     myskill = 1;
-                }
+
                 used_stamina -= ((myskill / 4) + 2);
+
                 if (used_stamina < 0)
-                {
                     used_stamina = 0;
-                }
             }
             else
             {
                 used_stamina -= ((myskill / 4) + 2);
                 if (used_stamina < 0)
-                {
                     used_stamina = 0;
-                }
             }
         }
         if (query_condition() < 0)
-        {
             set_condition(query_max_stamina());
-        }
 
         if (userp(me))
-        {
-            me->gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
-        }
+            gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
     }
 
     if (!(living_ticker % 3))
     {
         //Central way to remove instant feat locks when out of combat
-        if(!me->query_current_attacker())
-        {
-            me->remove_property("using instant feat");
-        }
+        if(!sizeof(query_attackers()))
+            remove_property("using instant feat");
         
-        if (FEATS_D->usable_feat(me, "regeneration"))
+        if (has_feat("regeneration"))
         {
             if (query_hp() < query_max_hp())
             {
-                regen_amt = roll_dice(1, me->query_level()) / 2 + 1;
-                if(me->query_property("fester")) regen_amt = regen_amt / 2;
+                regen_amt = roll_dice(1, query_level()) / 2 + 1;
+                if(query_property("fester"))
+                    regen_amt = regen_amt / 2;
+
                 add_hp(regen_amt);
             }
         }
@@ -452,53 +418,34 @@ void heart_beat()
         {
             if (query_hp() < query_max_hp())
             {
-                regen_amt = query_property("fast healing") * roll_dice(1, me->query_level() / 2 + 1);
-                if(me->query_property("fester")) regen_amt = regen_amt / 2;
+                regen_amt = query_property("fast healing") * roll_dice(1, query_level() / 2 + 1);
+
+                if(query_property("fester"))
+                    regen_amt = regen_amt / 2;
+
                 add_hp(regen_amt);
             }
         }
 
-        if(me->is_class("metamind"))
-        {
-            if(me->query("available focus"))
-            {
+        if(is_class("metamind"))
+            if(query("available focus"))
                 add_mp(1);
-            }
-        }
 
-        if(FEATS_D->usable_feat(me, "psychic vampire") && !avatarp(me) && !wizardp(me) && !me->query("no pk"))
+        if(has_feat("psychic vampire") && !avatarp(me) && !wizardp(me) && !query("no pk"))
         {
             object targs = all_inventory(environment(me));
             targs = filter_array(targs, (: userp($1) :));
             targs -= ({ me });
-
-            /*
-            foreach(object ob in targs)
-            {
-                if(ob->query("no pk"))
-                    continue;
-
-                if(ob->query_mp() && !ob->query("no pk") && !wizardp(ob) && !avatarp(ob))
-                {
-                    
-                    if(!random(5))
-                        tell_object(ob, "%^MAGENTA%^You feel something pull on your mind.");
-                    ob->add_mp(-1);
-                    
-                }
-            }
-            */
-
             add_mp(sizeof(targs));
         }
         
-        if(me->is_shade() &&
+        if(is_shade() &&
         !random(25) &&
         !avatarp(me) &&
         !wizardp(me) &&
-        !me->query_hidden() &&
-        !me->query_property("altered") &&
-        !me->query_invis())
+        !query_hidden() &&
+        !query_property("altered") &&
+        !query_invis())
         {
             object room = environment(me);
             
@@ -506,81 +453,64 @@ void heart_beat()
             {
                 case 0..1:
                 tell_object(me, "%^BLACK%^BOLD%^Whisps of darkness coalesce from the shadows around you.%^RESET%^");
-                tell_room(room, "%^BOLD%^BLACK%^Whisps of darkness coalesce from the shadows around " + me->query_cap_name(), me);
+                tell_room(room, "%^BOLD%^BLACK%^Whisps of darkness coalesce from the shadows around " + query_cap_name(), me);
                 break;
                 case -5..-1:
                 tell_object(me, "%^BOLD%^BLACK%^You feel your body meld with the darkness around you.");
-                tell_room(room, "%^BOLD%^BLACK%^" + me->query_cap_name() + "'s body seems to meld with the darkness around " + me->query_objective() + ".", me);
+                tell_room(room, "%^BOLD%^BLACK%^" + query_cap_name() + "'s body seems to meld with the darkness around " + query_objective() + ".", me);
                 break;
                 case -10..-6:
                 tell_object(me, "%^BOLD%^BLACK%^You are engulfed in a miasma of shadowy energy.");
-                tell_room(room, "%^BOLD%^BLACK%^" + me->query_cap_name() + " is engulfed in a miasma of shadowy energy.", me);
+                tell_room(room, "%^BOLD%^BLACK%^" + query_cap_name() + " is engulfed in a miasma of shadowy energy.", me);
                 break;
             }
         }
-        
-        //Screen Reader Support. Tells screen reader users in the room, briefly, what we are attacking.
-        //attacker = me->query_current_attacker();
-        
-        /*
-        if(attacker && userp(me))
-        {
-            object *readers;
-            
-            readers = filter_array(all_inventory(environment(me)), (: $1->query("reader") :));
-            
-            foreach(object person in readers)
-                tell_object(person, me->QCN + " is fighting " + attacker->QCN + ".");
-        }
-        */
 
-        if(me->is_undead())
+        if (query_property("rend"))
         {
-            me->remove_property("rend");
-        }
-        
-        if(PLAYER_D->immunity_check(me, "rend"))
-        me->remove_property("rend");
-
-        if(me->query_property("rend"))
-        {
-            tell_room(environment(me), "%^RED%^BOLD%^" + me->QCN + "'s wounds bleed profusely!%^RESET%^", ({ me }));
+            tell_room(environment(me), "%^RED%^BOLD%^" + query_cap_name() + "'s wounds bleed profusely!%^RESET%^", ({ me }));
             tell_object(me, "%^RED%^BOLD%^Your wounds bleed profusely!%^RESET%^");
-            me->cause_typed_damage(me, "torso", roll_dice(query_property("rend"), me->query_level() / 5 + 1), "untyped");
-            me->set_property("rend", -1);
-            if(me->query_property("rend") <= 0)
+            cause_typed_damage(me, "torso", roll_dice(query_property("rend"), query_level() / 5 + 1), "untyped");
+            set_property("rend", -1);
+            if(query_property("rend") <= 0)
             {
-                tell_room(environment(me), "%^WHITE%^BOLD%^" + me->QCN + "'s wounds stop bleeding.%^RESET%^", ({ me }));
+                tell_room(environment(me), "%^WHITE%^BOLD%^" + query_cap_name() + "'s wounds stop bleeding.%^RESET%^", ({ me }));
                 tell_object(me, "%^WHITE%^BOLD%^Your wounds stop bleeding.%^RESET%^");
-                me->remove_property("rend");
+                remove_property("rend");
             }
         }
 
-        if (is_vampire()) {
-            if (me->is_in_sunlight()) {
+        if (is_vampire())
+        {
+            if (is_in_sunlight())
+            {
                 int todamage = query_max_hp() / 4 + 1;
-                if (!query_property("sunlight_umbrella")) {
-                    if (me->query_hp() < -(me->query_max_hp() * 4 / 5)) {
-                        me->add_death("Sunlight");
-                        me->die();
-                    }else {
-                        me->cause_typed_damage(me, "torso", todamage, "divine");
+                if (!query_property("sunlight_umbrella"))
+                {
+                    if (query_hp() < -(query_max_hp() * 4 / 5))
+                    {
+                        add_death("Sunlight");
+                        die();
+                    }
+                    else
+                    {
+                        cause_typed_damage(me, "torso", todamage, "divine");
                         tell_object(me, "%^ORANGE%^The sun burns your putrid flesh!");
                     }
                 }
             }
-            if (!random(10)) {
-                if (me->is_vampire()) {
-                    if (query_bloodlust() < (5000)) {
-                        write("%^RED%^Bloodlust drives you insane.");
-                        tell_room(environment(me), "%^RED%^" + me->QCN + "'s eyes glow dark red.", me);
-                    }
+            if (!random(10))
+            {
+                if (query_bloodlust() < (5000))
+                {
+                    write("%^RED%^Bloodlust drives you insane.");
+                    tell_room(environment(me), "%^RED%^" + query_cap_name() + "'s eyes glow dark red.", me);
                 }
             }
         }
     }
 
-    living_ticker++;
+    ++living_ticker;
 }
 
 void init_path()
@@ -609,7 +539,7 @@ void init_path()
     if (ambassadorp(this_object()) || wizardp(this_object())) {
         search_path += ({ DIR_AMBASSADOR_CMDS, DIR_SYSTEM_CMDS });
     }
-    if (avatarp(TO) || wizardp(TO)) {
+    if (avatarp(this_object()) || wizardp(this_object())) {
         search_path += ({ "/cmds/avatar" });
     }
     if (wizardp(this_object())) {
@@ -634,7 +564,7 @@ int move(mixed dest)
     int hold;
     object myCastedSpell;
 
-    if (!objectp(TO)) {
+    if (!objectp(this_object())) {
         return MOVE_OK;
     }
 
@@ -642,7 +572,7 @@ int move(mixed dest)
         if (draggee->query_ghost()) {
             draggee = 0;
         } else {
-            if (environment(draggee) != environment(TO)) {
+            if (environment(draggee) != environment(this_object())) {
                 draggee = 0;
             }
         }
@@ -650,7 +580,7 @@ int move(mixed dest)
 
     hold = ::move(dest);
 
-    if (!objectp(TO)) {
+    if (!objectp(this_object())) {
         return MOVE_OK;
     }
 
@@ -666,22 +596,22 @@ int move(mixed dest)
             }
         }
 
-        if (!objectp(TO)) {
+        if (!objectp(this_object())) {
             return MOVE_OK;
         }
 
-        if (objectp(myCastedSpell = TO->query_property("spell_casting"))) {
+        if (objectp(myCastedSpell = query_property("spell_casting"))) {
             if (myCastedSpell->query_has_been_cast()) {
                 myCastedSpell->dest_effect();
             } else {
                 myCastedSpell->before_cast_dest_effect();
             }
-            TO->remove_property("spell_casting");
-            if (TO->query_casting()) {
-                TO->set_casting(0);
+            remove_property("spell_casting");
+            if (query_casting()) {
+                set_casting(0);
             }
             // TELL PLAYER
-            tell_object(TO, "Your movement causes your casting to fail!");
+            tell_object(this_object(), "Your movement causes your casting to fail!");
         }
     }
     return hold;
@@ -694,7 +624,7 @@ object query_in_vehicle()
 
 void set_in_vehicle(object ob)
 {
-    TO->set_scrambling(0);
+    set_scrambling(0);
     in_vehicle = ob;
 }
 
@@ -708,20 +638,20 @@ nomask protected int cmd_hook(string cmd)
     string file, verb;
     object shapeshift_restricted_commands;
     if ((verb = query_verb()) != "quit" && (verb = query_verb()) != "second_wind" && (verb = query_verb()) != "stillness_of_mind" && query_paralyzed()) {
-        TP->send_paralyzed_message("info", TO);
+        this_player()->send_paralyzed_message("info", this_object());
         //message("my_action", sprintf("%s", (string)this_player()->query_paralyze_message()),
         return 1;
     }
 
-    if(this_object()->query_property("shapeshifted"))
+    if(query_property("shapeshifted"))
     {
         if (objectp(shapeshift_restricted_commands = find_object_or_load("/std/races/shapeshifted_races/restricted_commands"))) {
-            if (!shapeshift_restricted_commands->allow_shifted_command(TO, verb, cmd)) {
-                if (!TO->query("no_commands_allowed")) {
+            if (!shapeshift_restricted_commands->allow_shifted_command(this_object(), verb, cmd)) {
+                if (!query("no_commands_allowed")) {
                     if (cmd) {
-                        tell_object(TO, "You can't " + verb + " " + cmd + " while shapeshifted.");
+                        tell_object(this_object(), "You can't " + verb + " " + cmd + " while shapeshifted.");
                     }else {
-                        tell_object(TO, "You can't " + verb + " while shapeshifted.");
+                        tell_object(this_object(), "You can't " + verb + " while shapeshifted.");
                     }
                 }
                 return 1;
@@ -738,26 +668,26 @@ nomask protected int cmd_hook(string cmd)
     }
 
     if (strsrch(file, "/cmds/feats/") == 0) {
-        if (!FEATS_D->usable_feat(TO, file->query_feat_name())) {
+        if (!has_feat(file->query_feat_name())) {
             return 0;
         }
     }
 
-    if (TO->query_ghost() && !avatarp(TO)) {
-        if (objectp(ETO)) {
-            if (base_name(ETO) == DEATH_ROOM) {
+    if (this_object()->query_ghost() && !avatarp(this_object())) {
+        if (objectp(environment(this_object()))) {
+            if (base_name(environment(this_object())) == DEATH_ROOM) {
                 return (int)call_other(file, "cmd_" + verb, cmd);
             }else {
                 if (verb != "look" && verb != "tell" && verb != "reply" && verb != "pray") {
-                    tell_object(TO, "You wail miserably.\n");
-                    tell_room(ETO, "A ghost wails miserably.\n", TO);
+                    tell_object(this_object(), "You wail miserably.\n");
+                    tell_room(environment(this_object()), "A ghost wails miserably.\n", this_object());
                     return 1;
                 }
             }
         }else {
             if (verb != "look" && verb != "tell" && verb != "reply" && verb != "pray") {
-                tell_object(TO, "You wail miserably.\n");
-                tell_room(ETO, "A ghost wails miserably.\n", TO);
+                tell_object(this_object(), "You wail miserably.\n");
+                tell_room(environment(this_object()), "A ghost wails miserably.\n", this_object());
                 return 1;
             }
         }
@@ -822,10 +752,37 @@ string query_inquisition()
 {
     return inquisition;
 }
+/*
+string set_druid_circle(string str)
+{
+    druid_circle = str;
+    
+    return druid_circle;
+}
+
+string query_druid_circle()
+{
+    return druid_circle;
+}
+*/
+
+set_paladin_oath(string str)
+{
+    paladin_oath = str;
+    
+    return paladin_oath;
+}
+
+string query_paladin_oath()
+{
+    return paladin_oath;
+}
 
 void set_acquired_template(string str)
 {
     acquired_template = str;
+
+    recalculate_max_hp_from_stats();
 }
 
 string query_acquired_template(string str)
@@ -918,7 +875,7 @@ int force_me(string cmd)
 {
     string tmp;
     int res;
-    if (!objectp(TO)) {
+    if (!objectp(this_object())) {
         return 0;                 // added by *Styx* 11/4/02 for mobs bugging
     }
     if (objectp(previous_object())) {
@@ -955,14 +912,14 @@ int calculate_healing()
 {
     object me = this_object();
     string msg;
-    if (query_intox() && !(me->query_property("inactive")))
+    if (query_intox() && !(query_property("inactive")))
     {
         healing["intox"]--;
-        if (me->is_undead())
+        if (is_undead())
         {
             healing["intox"] = 0;
         }
-        if (me->query_race() == "soulforged")
+        if (query_race() == "soulforged")
         {
             healing["intox"] = 0;
         }
@@ -983,7 +940,7 @@ int calculate_healing()
             if (!random(5))
             {
                 write("You begin to be sick and vomit from your excessive drinking.");
-                tell_room(environment(me), TPQCN + " begins to be sick and vomit from the drinking.", me);
+                tell_room(environment(me), this_player()->query_cap_name() + " begins to be sick and vomit from the drinking.", me);
                 do_damage("torso", roll_dice(1, 4));
                 set_tripped(1, "The alcohol is revolting against you.");
                 healing["intox"] -= roll_dice(4, 5);
@@ -991,9 +948,9 @@ int calculate_healing()
             else if (!random(4))
             {
                 write("You feel a wave of nausea that suddenly brings a blanket of darkness.");
-                tell_room(environment(me), me->query_cap_name() + " suddenly gets a blank look on " + query_possessive() + " face.", me);
+                tell_room(environment(me), query_cap_name() + " suddenly gets a blank look on " + query_possessive() + " face.", me);
                 write("You pass out cold into your drink.");
-                tell_room(environment(me), me->query_cap_name() + " passes out cold, face first into " + query_possessive() + " drink.", me);
+                tell_room(environment(me), query_cap_name() + " passes out cold, face first into " + query_possessive() + " drink.", me);
                 set_unconscious((healing["intox"] - HEALING_FORMULA) / 70 + 1, "You have passed out cold, you're sleeping off part of your drinking binge.");
                 if (query_unconscious() > 8)
                 {
@@ -1016,7 +973,7 @@ int calculate_healing()
                 if (userp(me))
                 {
                     tell_object(me, "You " + msg + (msg == "look" ? " drunk." : "."));
-                    tell_room(environment(me), "" + TPQCN + " " + msg + "s" + (msg == "look" ? " drunk." : "."), me);
+                    tell_room(environment(me), "" + this_player()->query_cap_name() + " " + msg + "s" + (msg == "look" ? " drunk." : "."), me);
                 }
                 else {
                     write("You " + msg + (msg == "look" ? " drunk." : "."));
@@ -1026,11 +983,11 @@ int calculate_healing()
         }
     }
 
-    if (!(me->query_property("sustenance") ||
-          me->query_property("inactive") ||
-          FEATS_D->usable_feat(me, "timeless body") ||
-          me->is_undead() ||
-          me->query_race() == "soulforged"
+    if (!(query_property("sustenance") ||
+          query_property("inactive") ||
+          has_feat("timeless body") ||
+          is_undead() ||
+          query_race() == "soulforged"
           ))
     {
         healing["stuffed"]--;
@@ -1047,9 +1004,9 @@ int calculate_healing()
 
     if (query_bloodlust())
     {
-        if (me->is_vampire())
+        if (is_vampire())
         {
-            if (!me->query_property("inactive"))
+            if (!query_property("inactive"))
             {
                 healing["bloodlust"] -= random(2) + 1;
                 if (healing["bloodlust"] < 0) {
@@ -1058,7 +1015,7 @@ int calculate_healing()
 
                 if (userp(me))
                 {
-                    me->gmcp_update_character("survival", ([ "bloodlust": "" + healing["bloodlust"] ]));
+                    gmcp_update_character("survival", ([ "bloodlust": "" + healing["bloodlust"] ]));
                 }
             }
         }
@@ -1071,7 +1028,7 @@ int calculate_healing()
 
     if (userp(me))
     {
-        me->gmcp_update_character("survival", ([ "intox": "" + healing["intox"], "hunger": "" + healing["stuffed"], "thirst": "" + healing["quenched"] ]));
+        gmcp_update_character("survival", ([ "intox": "" + healing["intox"], "hunger": "" + healing["stuffed"], "thirst": "" + healing["quenched"] ]));
     }
 
     return query_intox() + query_stuffed() + query_quenched();
@@ -1093,7 +1050,7 @@ void add_poisoning(int x)
     if (x < 1) {
         return;
     }
-    POISON_D->ApplyPoison(TO, "any", previous_object());
+    POISON_D->ApplyPoison(this_object(), "any", previous_object());
 }
 
 void setPoisoner(object person)
@@ -1110,28 +1067,29 @@ object queryPoisoner()
 
 void set_stats(string str, int x)
 {
-    if (x > 55 && str != "exceptional_strength") {
+    if (x > 55 && str != "exceptional_strength")
         x = 55;
-    }
+
     stats[str] = x;
-    if (str == "strength") {
+    if (str == "strength")
         set_max_internal_encumbrance(MAX_ENCUMBRANCE[x]);
-    }
+
+    recalculate_max_hp_from_stats();
 }
 
 void set_hidden(int xxx)
 {
     if (!xxx && query_hidden()) {
         ::set_hidden(xxx);
-        if (wizardp(TO)) {
-            tell_object(TO, "You step out of the shadows.\n");
+        if (wizardp(this_object())) {
+            tell_object(this_object(), "You step out of the shadows.\n");
         }
-        tell_room(environment(TO), query_mvis(), TO);
+        tell_room(environment(this_object()), query_mvis(), this_object());
     } else if (xxx && !query_hidden()) {
-        tell_room(environment(TO), query_minvis() + "", TO);
+        tell_room(environment(this_object()), query_minvis() + "", this_object());
         ::set_hidden(xxx);
-        if (wizardp(TO)) {
-            tell_object(TO, "You fade into the shadows.\n");
+        if (wizardp(this_object())) {
+            tell_object(this_object(), "You fade into the shadows.\n");
         }
     }
 }
@@ -1140,38 +1098,38 @@ void set_magic_hidden(int xxx)
 {
     if (!xxx && query_magic_hidden()) {
         ::set_magic_hidden(xxx);
-        if (wizardp(TO)) {
-            tell_object(TO, "You step out of the shadows.\n");
+        if (wizardp(this_object())) {
+            tell_object(this_object(), "You step out of the shadows.\n");
         }
-        tell_room(environment(TO), query_mvis(), TO);
+        tell_room(environment(this_object()), query_mvis(), this_object());
     } else if (xxx && !query_magic_hidden()) {
-        if (wizardp(TO)) {
-            tell_object(TO, "You fade into the shadows.\n");
+        if (wizardp(this_object())) {
+            tell_object(this_object(), "You fade into the shadows.\n");
         }
-        tell_room(environment(TO), query_minvis() + "", TO);
+        tell_room(environment(this_object()), query_minvis() + "", this_object());
         ::set_magic_hidden(xxx);
     }
 }
 
 void set_invis()
 {
-    if (!objectp(TO)) {
+    if (!objectp(this_object())) {
         return;
     }
-    if (avatarp(TO)) {
+    if (avatarp(this_object())) {
         if (query_invis()) {
             invis = 0;
             ::set_hidden(0);
             ::set_magic_hidden(0);
-            if (wizardp(TO)) {
-                tell_object(TO, "You step out of the shadows.\n");
+            if (wizardp(this_object())) {
+                tell_object(this_object(), "You step out of the shadows.\n");
             }
-            tell_room(environment(TO), query_mvis(), TO);
+            tell_room(environment(this_object()), query_mvis(), this_object());
         } else {
-            if (wizardp(TO)) {
-                tell_object(TO, "You fade into the shadows.\n");
+            if (wizardp(this_object())) {
+                tell_object(this_object(), "You fade into the shadows.\n");
             }
-            tell_room(environment(TO), query_minvis() + "", TO);
+            tell_room(environment(this_object()), query_minvis() + "", this_object());
             invis = 1;
         }
         return;
@@ -1261,7 +1219,7 @@ int add_intox(int x)
 
     if (userp(me))
     {
-        me->gmcp_update_character("survival", ([ "intox": "" + healing["intox"] ]));
+        gmcp_update_character("survival", ([ "intox": "" + healing["intox"] ]));
     }
 
     return 1;
@@ -1293,7 +1251,7 @@ int add_stuffed(int x)
 
     if (userp(me))
     {
-        me->gmcp_update_character("survival", ([ "hunger": "" + healing["stuffed"] ]));
+        gmcp_update_character("survival", ([ "hunger": "" + healing["stuffed"] ]));
     }
 
     return 1;
@@ -1313,7 +1271,7 @@ int set_quenched(int x)
 
     if (userp(me))
     {
-        me->gmcp_update_character("survival", ([ "thirst": "" + healing["quenched"] ]));
+        gmcp_update_character("survival", ([ "thirst": "" + healing["quenched"] ]));
     }
 
     return 1;
@@ -1346,7 +1304,7 @@ int add_quenched(int x)
 
     if (userp(me))
     {
-        me->gmcp_update_character("survival", ([ "thirst": "" + healing["quenched"] ]));
+        gmcp_update_character("survival", ([ "thirst": "" + healing["quenched"] ]));
     }
 
     return 1;
@@ -1356,7 +1314,7 @@ int add_bloodlust(int x)
 {
     object me = this_object();
 
-    if (!me->is_vampire())
+    if (!is_vampire())
     {
         return 1;
     }
@@ -1374,7 +1332,7 @@ int add_bloodlust(int x)
 
     if (userp(me))
     {
-        me->gmcp_update_character("survival", ([ "bloodlust": "" + healing["bloodlust"] ]));
+        gmcp_update_character("survival", ([ "bloodlust": "" + healing["bloodlust"] ]));
     }
 
     return 1;
@@ -1382,20 +1340,21 @@ int add_bloodlust(int x)
 
 void add_stat_bonus(string stat, int amount)
 {
-    if (!stat_bonus) {
+    if (!stat_bonus)
         stat_bonus = ([]);
-    }
-    if (stat_bonus[stat]) {
+
+    if (stat_bonus[stat])
         stat_bonus[stat] += amount;
-    } else {
+    else
         stat_bonus[stat] = amount;
-    }
-    if (!stat_bonus[stat]) {
+
+    if (!stat_bonus[stat])
         map_delete(stat_bonus, stat);
-    }
-    if (interactive(TO) && stat == "strength") {
-        TO->do_encumbrance();
-    }
+
+    if (interactive(this_object()) && stat == "strength")
+        do_encumbrance();
+
+    this_object()->recalculate_max_hp_from_stats();
 }
 
 // added to be able to pull description for corpses or anything needing it without all the added stuff below  *Styx*  2/15/03
@@ -1415,9 +1374,9 @@ string query_long(string unused)
         return "An ethereal presence.\n";
     }
 
-    if (objectp(shape = TO->query_property("shapeshifted"))) {
+    if (objectp(shape = query_property("shapeshifted"))) {
         the_race = (string)shape->query_shape_race();
-    } else if (objectp(shape = TO->query_property("altered"))) {
+    } else if (objectp(shape = query_property("altered"))) {
         the_race = (string)shape->query_shape_race();
     }
     if (!the_race) {
@@ -1430,14 +1389,14 @@ string query_long(string unused)
         pre += "%^CYAN%^" + ::query_long("junk") + "%^RESET%^\n";
     }
 
-    if (TO->query_disguised() || (avatarp(TO) && TO->query_disguised())) {
+    if (this_object()->query_disguised() || (avatarp(this_object()) && this_object()->query_disguised())) {
         if (description) {
-            pre += "%^GREEN%^" + capitalize(TO->query_vis_name()) + " " + description + "%^RESET%^\n";
+            pre += "%^GREEN%^" + capitalize(query_vis_name()) + " " + description + "%^RESET%^\n";
         }
     }else {
         if (description) {
-            if (userp(TO)) {
-                pre += "%^GREEN%^" + capitalize(TO->getNameAsSeen(TP)) + " " + description + "%^RESET%^\n";
+            if (userp(this_object())) {
+                pre += "%^GREEN%^" + capitalize(getNameAsSeen(this_player())) + " " + description + "%^RESET%^\n";
             }else {
                 pre += "%^GREEN%^" + capitalize(query_name()) + " " + description + "%^RESET%^\n";
             }
@@ -1447,24 +1406,25 @@ string query_long(string unused)
     
     sub = "They";
     /*
-    if (userp(TO)) {
-        height = TO->query_player_height();
+    if (userp(this_object())) {
+        height = query_player_height();
         if (objectp(shape)) {
             height = (int)shape->query_shape_height();
         }
-        weight = TO->query_player_weight();
+        weight = query_player_weight();
         if (objectp(shape)) {
             weight = (int)shape->query_shape_weight();
         }
-        if (TO->query_size_bonus()) {
-            height = to_int(height * pow(2, TO->query_size_bonus()));
-            weight = to_int(weight * pow(pow(2, TO->query_size_bonus()), 2));
+        if (query_size_bonus()) {
+            height = to_int(height * pow(2, query_size_bonus()));
+            weight = to_int(weight * pow(pow(2, query_size_bonus()), 2));
         }
         reg += "%^BOLD%^" + sub + " are approximately " + height + " inches (" + height / 12 + "ft " + height % 12 + "in) tall and " + weight + " pounds.%^RESET%^\n";
     }
     */
 
-    x = ((player_data["general"]["hp"] * 100) / max((player_data["general"]["max_hp"]), 1));
+    x = ((player_data["general"]["hp"] * 100) / max( ({ player_data["general"]["max_hp"], 1 }) ));
+    //x = ((player_data["general"]["hp"] * 100) / (player_data["general"]["max_hp"]) + 1);
     if (x > 90) {
         reg += "%^YELLOW%^" + sub + " are in top shape.%^RESET%^\n";
     } else if (x > 75) {
@@ -1483,7 +1443,7 @@ string query_long(string unused)
     stuff = "";
     extra = "";
     
-    if(!this_object()->query_property("hidden inventory"))
+    if(!query_property("hidden inventory"))
         stuff = describe_item_contents(({}));
     
     if (stuff == "") {
@@ -1514,10 +1474,10 @@ string query_desc(string unused)
     }
     reg = "";
 
-    if (objectp(shape = TO->query_property("shapeshifted"))) {
+    if (objectp(shape = query_property("shapeshifted"))) {
         the_race = (string)shape->query_shape_race();
     }
-    if (objectp(shape = TO->query_property("altered"))) {
+    if (objectp(shape = query_property("altered"))) {
         the_race = (string)shape->query_shape_race();
     }
     if (!the_race) {
@@ -1528,14 +1488,14 @@ string query_desc(string unused)
     if (::query_long("junk")) {
         pre += "%^CYAN%^" + ::query_long("junk") + "%^RESET%^\n";
     }
-    if (avatarp(TO) && TO->query_disguised()) {
+    if (avatarp(this_object()) && this_object()->query_disguised()) {
         if (description) {
-            pre += "%^GREEN%^" + capitalize(TO->query_vis_name()) + " " + description + "%^RESET%^\n";
+            pre += "%^GREEN%^" + capitalize(query_vis_name()) + " " + description + "%^RESET%^\n";
         }
     } else {
         if (description) {
-            if (userp(TO)) {
-                pre += "%^GREEN%^" + capitalize(TO->getNameAsSeen(TP)) + " " + description + "\n";
+            if (userp(this_object())) {
+                pre += "%^GREEN%^" + capitalize(getNameAsSeen(this_player())) + " " + description + "\n";
             } else {
                 pre += "%^GREEN%^" + capitalize(query_name()) + " " + description + "\n";
             }
@@ -1544,12 +1504,12 @@ string query_desc(string unused)
     sub = capitalize(query_subjective());
     
     /*
-    if (userp(TO)) {
-        height = TO->query_player_height();
+    if (userp(this_object())) {
+        height = query_player_height();
         if (objectp(shape)) {
             height = (int)shape->query_shape_height();
         }
-        weight = TO->query_player_weight();
+        weight = query_player_weight();
         if (objectp(shape)) {
             weight = (int)shape->query_shape_weight();
         }
@@ -1586,7 +1546,7 @@ int query_stats(string stat)
         x = 0;
     }
 
-    z = (int)POISON_D->query_poison_effect(TO, stat);
+    z = (int)POISON_D->query_poison_effect(this_object(), stat);
     if (!intp(z)) {
         z = 0;
     }
@@ -1599,33 +1559,33 @@ int query_stats(string stat)
     }
     //return stats[stat] + x;
     res = x + y + z;
-    res = WORLD_EVENTS_D->monster_modification_event(res, stat, TO);
-    if (TO->is_vampire()) {
+    res = WORLD_EVENTS_D->monster_modification_event(res, stat, this_object());
+    if (is_vampire()) {
         if (stat == "strength" ||
             stat == "charisma") {
-            int blst = (20000 - (int)TO->query_bloodlust()) / 2000 - 1;
+            int blst = (20000 - (int)query_bloodlust()) / 2000 - 1;
             res -= blst < 0 ? 0 : blst;
         }
     }
 
-    if(TO->is_class("cleric"))
+    if(is_class("cleric"))
     {
-        if(stat == "strength" && member_array("strength", TO->query_divine_domain()) >= 0)
+        if(stat == "strength" && member_array("strength", query_divine_domain()) >= 0)
             res += 2;
     }
     
-    if(this_object()->query_class_level("oracle") >= 10)
+    if(query_class_level("oracle") >= 10)
     {
-        if(stat == "strength" && this_object()->query_mystery() == "dragon")
+        if(stat == "strength" && query_mystery() == "dragon")
             res += 2;
     }
 
-    if(stat == "charisma" && FEATS_D->usable_feat(TO, "spiritual body"))
+    if(stat == "charisma" && has_feat("spiritual body"))
         res += 2;
 
-    res += EQ_D->gear_bonus(TO, stat);
+    res += EQ_D->gear_bonus(this_object(), stat);
 
-    if (res > 29 && userp(TO)) {
+    if (res > 29 && userp(this_object())) {
         return 30;
     }
     if (res > 39) {
@@ -1679,7 +1639,7 @@ int query_free_exp()
     int used;
     int i;
     for (i = 0; i < sizeof(query_classes()); i++) {
-        used += ADVANCE_D->get_real_exp(query_class_level(query_classes()[i]), query_classes()[i], TO);
+        used += ADVANCE_D->get_real_exp(query_class_level(query_classes()[i]), query_classes()[i], this_object());
     }
     return query_exp() - used;
 }
@@ -1734,7 +1694,7 @@ int query_quenched()
 
 int query_bloodlust()
 {
-    if (!TO->is_vampire()) {
+    if (!is_vampire()) {
         return 0;
     }
     if (healing) {
@@ -1799,23 +1759,63 @@ string query_al_title()
     }
 }
 
+int can_fly()
+{
+    object file;
+    string* flyraces =    ({ "deva", "faery", "nightwing", "imp", "strix", "dragonkin" });
+    string* flysubraces = ({ "fey'ri", "rock gnome", "trixie", "sildruath", "avian"});
+    string* flyprofiles = ({ "druid_bird_999", "druid_dragon_999", "mage_red_dragon_999", "mage_demon_999", "vampire_bat_999", "vampire_vampire_999", "vampire_varghulf_999", "mage_pixie_999" });
+
+    if (!objectp(this_object()))
+        return 0;
+
+    if(is_deva())
+        return 1;   
+    if(query_bloodline() == "celestial" && query_class_level("sorcerer") > 30)
+        return 1;
+    if(query_bloodline() == "infernal" && query_class_level("sorcerer") > 30)
+        return 1;
+    if(query_bloodline() == "draconic" && query_class_level("sorcerer") > 30)
+        return 1;
+    if(has_feat("air totem"))
+        return 1;
+    if(query_property("flying"))
+        return 1;
+    if (!catch(file = load_object("/std/races/" + query("race"))) && objectp(file))
+        if (file->is_flying())
+            return 1;
+        
+    return member_array(query_visual_race(), flyraces) >= 0 || member_array(query("subrace"), flysubraces) >= 0 || member_array(query("relationship_profile"), flyprofiles) >= 0;
+}
+    
 int query_sight_bonus()
 {
     string temp;
     object file;
     int temp_bonus = 0;
     
-    temp = this_object()->query_acquired_template();
+    temp = query_acquired_template();
     
     if(temp)
     {
         file = find_object("/std/acquired_template/" + temp + ".c");
         
         if(objectp(file))
-            temp_bonus = file->sight_bonus();
-    }          
+            temp_bonus = (file->sight_bonus());
+    }
     
-    return (EQ_D->gear_bonus(TO, "sight bonus") + sight_bonus + temp_bonus);
+    if(strlen(temp = query("race")) && temp != "unborn")
+    {   
+        if(file_size("/std/races/" + temp + ".c") > 0 && objectp(file = load_object("/std/races/" + temp + ".c")))
+            temp_bonus += file->sight_bonus(query("subrace"));
+    }
+
+    if(member_array("cavern", query_divine_domain()) >= 0 ||
+       member_array("moon", query_divine_domain()) >= 0 ||
+       member_array("darkness", query_divine_domain()) >= 0)
+       temp_bonus += 2;
+              
+    return (EQ_D->gear_bonus(this_object(), "sight bonus") + sight_bonus + temp_bonus);
 }
 
 int query_age()
@@ -1864,9 +1864,9 @@ int remove()
     }
 
     if (objectp(previous_object()))
-        log_file("living/remove", this_object()->query_name() + " removed " + file_name(previous_object()) + ".\n");
+        log_file("living/remove", query_name() + " removed " + file_name(previous_object()) + ".\n");
     else
-        log_file("living/remove", this_object()->query_name() + " removed " + file_name(this_object()) + ".\n");
+        log_file("living/remove", query_name() + " removed " + file_name(this_object()) + ".\n");
 
     ::remove();
 
@@ -1880,9 +1880,9 @@ void adjust_biorhythms()
 
 //    What the F*CK is this???   - Kai
 //    temps = to_float(player_age/1000);
-//    freq = to_float( (int)this_object()->query_stats("wisdom"));
+//    freq = to_float( (int)query_stats("wisdom"));
 //    spiritual = to_int( 5.0 * sin(freq*temps) );
-//    freq = to_float( (int)this_object()->query_stats("strength") );
+//    freq = to_float( (int)query_stats("strength") );
 //    physical = to_int( 5.0 * sin(freq*temps) );
 }
 
@@ -1938,6 +1938,8 @@ void add_damage_bonus(int a)
     dbonus += a;
 }
 
+
+//Move this stuff to combat.c
 int query_attack_bonus()
 {
     int enc, bonus;
@@ -1945,70 +1947,70 @@ int query_attack_bonus()
     object* weap;
     object attacker;
 
-    weap = TO->query_wielded();
+    weap = query_wielded();
     for (x = 0; x < sizeof(weap); x++) {
         enc += weap[x]->query("enchantment");
     }
     bonus = abonus;
     ret = bonus + enc;
-    ret += EQ_D->gear_bonus(TO, "attack bonus");
-    if (TO->query_invis()) {
+    ret += EQ_D->gear_bonus(this_object(), "attack bonus");
+    if (query_invis()) {
         ret += 2;
     }
-    if (FEATS_D->usable_feat(TO, "weapon training")) {
-        ret += TO->query_prestige_level("fighter") / 10 + 1;
+    if (has_feat("weapon training")) {
+        ret += query_prestige_level("fighter") / 10 + 1;
     }
 
-    if (FEATS_D->usable_feat(TO, "weapon focus")) {
+    if (has_feat("weapon focus")) {
         ret += 1;
     }
 
-    if (FEATS_D->usable_feat(TO, "greater weapon focus")) {
+    if (has_feat("greater weapon focus")) {
         ret += 1;
     }
 
-    if (FEATS_D->usable_feat(TO, "epic weapon focus")) {
+    if (has_feat("epic weapon focus")) {
         ret += 1;
     }
 
-    if(this_object()->is_class("psywarrior") && this_object()->query("available focus"))
+    if(is_class("psywarrior") && query("available focus"))
         ret += 1;
 
-    attacker = TO->query_current_attacker();
+    attacker = query_current_attacker();
 
     //Added by Tlaloc to handle favored enemies for Rangers
-    if (FEATS_D->usable_feat(TO, "favored enemy") && attacker)
+    if(is_class("ranger") && has_feat("favored enemy") && attacker)
     {
 
-        if(TO->is_favored_enemy(attacker))
+        if(is_favored_enemy(attacker))
         {
             ret += 2;
 
             //Favored enemy improves with additional feats
-            FEATS_D->usable_feat(TO, "second favored enemy") && ret += 2;
-            FEATS_D->usable_feat(TO, "third favored enemy") && ret += 2;
+            has_feat("second favored enemy") && ret += 2;
+            has_feat("third favored enemy") && ret += 2;
         }
 
         //Are we fighting our quarry?
-        if(TO->query_property("quarry") == attacker)
+        if(query_property("quarry") == attacker)
         {
-            FEATS_D->usable_feat(TO, "quarry") && ret += 2;
-            FEATS_D->usable_feat(TO, "improved quarry") && ret += 2;
+            has_feat("quarry") && ret += 2;
+            has_feat("improved quarry") && ret += 2;
         }
     }
     
-    if(this_object()->is_class("druid"))
+    if(is_class("druid"))
     {
-        if(FEATS_D->has_feat(this_object(), "guardian of nature"))
+        if(has_feat("guardian of nature"))
         {
             if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "city"))
                 ret += 2;
         }
     }
     
-    if(attacker && this_object()->query_race() == "dwarf")
+    if(attacker && query_race() == "dwarf")
     {
-        if(this_object()->query("subrace") != "gray dwarf")
+        if(query("subrace") != "gray dwarf")
         {
             if(USER_D->is_valid_enemy(attacker->query_race(), "orcs") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
                 ret += 1;
@@ -2020,44 +2022,44 @@ int query_attack_bonus()
         }
     }
     
-    if(attacker && this_object()->query_race() == "gnome")
+    if(attacker && query_race() == "gnome")
     {
-        if(this_object()->query("subrace") == "forest gnome" || this_object()->query_race() == "rock gnome")
+        if(query("subrace") == "forest gnome" || query_race() == "rock gnome")
         {
             if(USER_D->is_valid_enemy(attacker->query_race(), "lizardfolk") || USER_D->is_valid_enemy(attacker->query_race(), "goblins"))
                 ret += 1;
         }
-        else if(this_object()->query("subrace") == "deep gnome")
+        else if(query("subrace") == "deep gnome")
         {
             if(USER_D->is_valid_enemy(attacker->query_race(), "dwarves") || USER_D->is_valid_enemy(attacker->query_race(), "lizardfolk"))
                 ret += 1;
         }        
     }
     
-    if(attacker && this_object()->query_race() == "strix")
+    if(attacker && query_race() == "strix")
     {
         if(USER_D->is_valid_enemy(attacker->query_race(), "humans"))
             ret += 1;
     }
    
-    if(attacker && attacker->is_vulnerable_to(this_object()))
+    if(is_class("warlock"))
     {
-        if(FEATS_D->usable_feat(this_object(), "prime strike"))
+        if(attacker && attacker->is_vulnerable_to(this_object()))
         {
-            ret += 1;
+            if(has_feat("prime strike"))
+            {
+                ret += 1;
             
-            if(FEATS_D->usable_feat(this_object(), "inevitable steel"))
-                ret += 2;
+                if(has_feat("inevitable steel"))
+                    ret += 2;
+            }
         }
-    }
     
-    if(this_object()->is_class("warlock"))
-    {
-        if(this_object()->query_property("eldritch strikes") && sizeof(weap))
+        if(query_property("eldritch strikes") && sizeof(weap))
         {
             object strikes;
         
-            strikes = this_object()->query_property("eldritch strikes");
+            strikes = query_property("eldritch strikes");
         
             if(objectp(strikes))
             {
@@ -2068,15 +2070,15 @@ int query_attack_bonus()
             }
         }
         
-        ret += this_object()->query("available burn");
+        ret += query("available burn");
     }            
 
     //Inquisitor Bane
-    if(this_object()->query_property("bane weapon") && sizeof(weap) && attacker)
+    if(is_class("inquisitor") && query_property("bane weapon") && sizeof(weap) && attacker)
     {
         int valid;
         string *ids = attacker->query_id();
-        mixed *bane = this_object()->query_property("bane weapon");
+        mixed *bane = query_property("bane weapon");
 
         if(sizeof(bane) == 2 && weap[0] == bane[0])
         {
@@ -2092,15 +2094,15 @@ int query_attack_bonus()
     }
     
     //Paladin capstone
-    //ret += this_object()->query_property("hand of the gods");
+    //ret += query_property("hand of the gods");
 
-    if (FEATS_D->usable_feat(TO, "true strikes") &&
-        TO->validate_combat_stance("one hander")) {
+    if (has_feat("true strikes") &&
+        validate_combat_stance("one hander")) {
         ret += 3;
     }
     
     //Crimson Templar
-    if(FEATS_D->usable_feat(this_object(), "fiendish studies") && attacker)
+    if(has_feat("fiendish studies") && attacker)
     {
         string *ids = attacker->query_id();
         int valid;
@@ -2118,10 +2120,10 @@ int query_attack_bonus()
         }
     }
 
-    if(FEATS_D->usable_feat(TO, "smite the lifeless") && attacker && attacker->is_undead())
+    if(has_feat("smite the lifeless") && attacker && attacker->is_undead())
         ret += 2;
     
-    if(this_object()->query_race() == "nightwing" && total_light(environment(this_object())) > -1)
+    if(query_race() == "nightwing" && total_light(environment(this_object())) > -1)
         ret -= 4;
 
     return ret;
@@ -2136,52 +2138,52 @@ int query_damage_bonus()
 
     bonus = dbonus;
     ret = bonus;// + enc;
-    ret += EQ_D->gear_bonus(TO, "damage bonus");
-    if (FEATS_D->usable_feat(TO, "weapon training")) {
-        ret += TO->query_prestige_level("fighter") / 10 + 1;
+    ret += EQ_D->gear_bonus(this_object(), "damage bonus");
+    if (has_feat("weapon training")) {
+        ret += query_prestige_level("fighter") / 10 + 1;
     }
 
-    if (FEATS_D->usable_feat(TO, "weapon specialization")) {
+    if (has_feat("weapon specialization")) {
         ret += 2;
     }
 
-    if (FEATS_D->usable_feat(TO, "greater weapon specialization")) {
+    if (has_feat("greater weapon specialization")) {
         ret += 2;
     }
 
-    if (FEATS_D->usable_feat(TO, "epic weapon specialization")) {
+    if (has_feat("epic weapon specialization")) {
         ret += 2;
     }
 
-    if(this_object()->is_class("psywarrior") && this_object()->query("available focus"))
+    if(is_class("psywarrior") && query("available focus"))
         ret += 1;
 
-    attacker = TO->query_current_attacker();
+    attacker = query_current_attacker();
 
     //Added by Tlaloc to handle favored enemies for Rangers
-    if (FEATS_D->usable_feat(TO, "favored enemy"))
+    if(is_class("ranger") && has_feat("favored enemy"))
     {
 
-        if(TO->is_favored_enemy(attacker))
+        if(is_favored_enemy(attacker))
         {
             ret += 2;
 
             //Favored enemy improves with additional feats
-            FEATS_D->usable_feat(TO, "second favored enemy") && ret += 2;
-            FEATS_D->usable_feat(TO, "third favored enemy") && ret += 2;
+            has_feat("second favored enemy") && ret += 2;
+            has_feat("third favored enemy") && ret += 2;
         }
       
         //Are we fighting our quarry?
-        if(TO->query_property("quarry") == attacker)
+        if(query_property("quarry") == attacker)
         {
-            FEATS_D->usable_feat(TO, "quarry") && ret += 2;
-            FEATS_D->usable_feat(TO, "improved quarry") && ret += 2;
+            has_feat("quarry") && ret += 2;
+            has_feat("improved quarry") && ret += 2;
         }
     }
     
-    if(this_object()->is_class("druid"))
+    if(is_class("druid"))
     {
-        if(FEATS_D->has_feat(this_object(), "guardian of nature"))
+        if(has_feat("guardian of nature"))
         {
             if(!USER_D->is_valid_terrain(environment(this_object())->query_terrain(), "city"))
                 ret += 2;
@@ -2191,16 +2193,16 @@ int query_damage_bonus()
     if(FEATS_D->is_active(this_object(), "rending blows"))
         ret -= 5;
 
-    if(FEATS_D->usable_feat(TO, "smite the lifeless") && attacker && attacker->is_undead())
+    if(has_feat("smite the lifeless") && attacker && attacker->is_undead())
         ret += 2;
 
-    weap = this_object()->query_wielded();
+    weap = query_wielded();
 
-    if(this_object()->query_property("bane weapon") && sizeof(weap) && attacker)
+    if(query_property("bane weapon") && sizeof(weap) && attacker)
     {
         int valid;
         string *ids = attacker->query_id();
-        mixed *bane = this_object()->query_property("bane weapon");
+        mixed *bane = query_property("bane weapon");
 
         if(sizeof(bane) == 2 && weap[0] == bane[0])
         {
@@ -2216,7 +2218,7 @@ int query_damage_bonus()
     }
     
     //Crimson Templar
-    if(FEATS_D->usable_feat(this_object(), "fiendish studies") && attacker)
+    if(has_feat("fiendish studies") && attacker)
     {
         string *ids = attacker->query_id();
         int valid;
@@ -2235,16 +2237,16 @@ int query_damage_bonus()
     }
 
     //Plant domain gets +2 to unarmed fighting damage
-    if (!sizeof(weap) || weap[0] == this_object() || this_object()->query_property("shapeshifted"))
+    if (!sizeof(weap) || weap[0] == this_object() || query_property("shapeshifted"))
     {
-        if(this_object()->query_class_level("cleric"))
+        if(query_class_level("cleric"))
         {
-            if(member_array("plant", this_object()->query_divine_domain()) >= 0)
+            if(member_array("plant", query_divine_domain()) >= 0)
                 ret += 2;
         }
     }
     
-    if(this_object()->query_race() == "nightwing" && total_light(environment(this_object())) > -1)
+    if(query_race() == "nightwing" && total_light(environment(this_object())) > -1)
         ret -= 4;
 
     return ret;
@@ -2288,25 +2290,20 @@ int query_saving_bonus(string throw)
         init_saving_bonus();
     }
     if (member_array(throw, SAVING_THROW) != -1) {
-        return save_bonus[throw] + EQ_D->gear_bonus(TO, throw);
+        return save_bonus[throw] + EQ_D->gear_bonus(this_object(), throw);
     }
 
-    x = EQ_D->gear_bonus(TO, throw);
+    x = EQ_D->gear_bonus(this_object(), throw);
 
-    attacker = TO->query_current_attacker();
+    attacker = query_current_attacker();
 
-    if(FEATS_D->usable_feat(TO, "seen it before") && attacker)
+    if(has_feat("seen it before") && attacker)
     {
-        if(TO->is_favored_enemy(attacker))
+        if(is_favored_enemy(attacker))
             x += 6;
     }
 
-    /*
-    if(FEATS_D->usable_feat(TO, "resist undead") && attacker && attacker->is_undead() && (throw == "fortitude" || throw == "will"))
-        x += 4;
-    */
-
-    if(FEATS_D->usable_feat(TO, "canny defense") && throw == "reflex")
+    if(has_feat("canny defense") && throw == "reflex")
         x += 4;
 
     return x;
@@ -2347,7 +2344,7 @@ void set_draggee(object drag)
 
 int detecting_invis()
 {
-    return detecting_invis || true_seeing || ETO->query_property("no invis") || avatarp(TO);
+    return detecting_invis || true_seeing || environment(this_object())->query_property("no invis") || avatarp(this_object());
 }
 
 void set_detecting_invis(int xx)
@@ -2357,10 +2354,10 @@ void set_detecting_invis(int xx)
 
 int true_seeing()
 {
-    if(!objectp(TO) || !objectp(ETO))
+    if(!objectp(this_object()) || !objectp(environment(this_object())))
         return 0;
     
-    return true_seeing || ETO->query_property("no invis") || avatarp(TO);
+    return true_seeing || environment(this_object())->query_property("no invis") || avatarp(this_object());
 }
 
 void set_true_seeing(int xx)
@@ -2371,14 +2368,14 @@ void set_true_seeing(int xx)
 int query_max_internal_encumbrance()
 {
     int res, encumbrance, extra;
-    if (!objectp(TO)) {
+    if (!objectp(this_object())) {
         return 0;
     }
-    res = TO->query_stats("strength");
+    res = query_stats("strength");
     if (res < 0) {
         res = 0;
     }
-    extra = TO->query_property("extra encumbrance");
+    extra = query_property("extra encumbrance");
     encumbrance = MAX_ENCUMBRANCE[res];
     return encumbrance + extra;
 }
@@ -2392,7 +2389,7 @@ void increment_stamina(int x)
 {
     object me = this_object();
 
-    if (me->is_undead())
+    if (is_undead())
     {
         return;
     }
@@ -2403,13 +2400,13 @@ void increment_stamina(int x)
     }
     if (query_condition() < 0)
     {
-        send_paralyzed_message("info", TO);
+        send_paralyzed_message("info", this_object());
         used_stamina = query_max_stamina();
     }
 
     if (userp(me))
     {
-        me->gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
+        gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
     }
 }
 
@@ -2429,7 +2426,7 @@ void use_stamina(int x)
 
     if (userp(me))
     {
-        me->gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
+        gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
     }
 }
 
@@ -2468,7 +2465,7 @@ void reset_condition()
 
     if (userp(me))
     {
-        me->gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
+        gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
     }
 }
 
@@ -2480,7 +2477,7 @@ void set_condition(int x)
 
     if (userp(me))
     {
-        me->gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));   
+        gmcp_update_character("vitals", ([ "stamina": "" + (query_max_stamina() - used_stamina), "max_stamina": "" + query_max_stamina() ]));
     }
 }
 
@@ -2542,7 +2539,7 @@ int query_true_invis()
 
 int set_true_invis()
 {
-    if (!avatarp(TO)) {
+    if (!avatarp(this_object())) {
         set_invis();
         return 0;
     }else {
@@ -2649,7 +2646,7 @@ void post_exit_func()
 
 string query_tripped_message()
 {
-    if (query_max_internal_encumbrance() < query_internal_encumbrance() && !TO->query_ghost()) {
+    if (query_max_internal_encumbrance() < query_internal_encumbrance() && !this_object()->query_ghost()) {
         return "%^RED%^You are over encumbered and cannot move!%^RESET%^";
     }
     return ::query_tripped_message();
@@ -2658,7 +2655,7 @@ string query_tripped_message()
 int query_tripped()
 {
     int i = ::query_tripped();
-    return i || (query_max_internal_encumbrance() < query_internal_encumbrance() && !TO->query_ghost());
+    return i || (query_max_internal_encumbrance() < query_internal_encumbrance() && !this_object()->query_ghost());
 }
 
 void set_all_stats(int* all_stats)
@@ -2686,9 +2683,9 @@ int query_prestige_level(string the_class)
     object class_ob;
     int i, class_level;
 
-    classes = TO->query_classes();
+    classes = query_classes();
     if (sizeof(classes == 1)) {
-        return TO->query_class_level(the_class);
+        return query_class_level(the_class);
     }
     for (i = 0; i < sizeof(classes); i++) {
         class_ob = find_object_or_load(DIR_CLASSES + "/" + classes[i] + ".c");
@@ -2698,14 +2695,14 @@ int query_prestige_level(string the_class)
         if (!class_ob->is_prestige_class()) {
             continue;
         }
-        base = class_ob->query_base_classes(TO);
+        base = class_ob->query_base_classes(this_object());
         if (member_array(the_class, base) == -1) {
             continue;
         }
-        class_level = class_ob->caster_level_calcs(TO, the_class);
+        class_level = class_ob->caster_level_calcs(this_object(), the_class);
     }
     if (!class_level) {
-        return TO->query_class_level(the_class);
+        return query_class_level(the_class);
     }
     return class_level;
 }
@@ -2726,7 +2723,7 @@ int is_undead()
             query_property("undead") ||
             query_race() == "undead" ||
             query_race() == "nightwing" ||
-            member_array("undead", this_object()->query_id()) != -1 ||
+            member_array("undead", query_id()) != -1 ||
             query_acquired_template() == "undead" ||
             query_acquired_template() == "mortuum" ||
             query_acquired_template() == "vampire");
@@ -2744,9 +2741,9 @@ int is_in_sunlight()
 {
     if(EVENTS_D->query_time_of_day()!="day")
         return 0;
-    if(ETO->query_property("indoors"))
+    if(environment(this_object())->query_property("indoors"))
         return 0;
-    if(WEATHER_D->query_clouds(TO)>3)
+    if(WEATHER_D->query_clouds(this_object())>3)
         return 0;
     if(ASTRONOMY_D->query_eclipse())
         return 0;
@@ -2787,10 +2784,10 @@ int is_deva()
 
 int is_feared()
 {
-    if(TO->query_property("effect_cowering") ||
-       TO->query_property("effect_frightened") ||
-       TO->query_property("effect_panicked") ||
-       TO->query_property("effect_shaken"))
+    if(query_property("effect_cowering") ||
+       query_property("effect_frightened") ||
+       query_property("effect_panicked") ||
+       query_property("effect_shaken"))
         return 1;
 
     return 0;
@@ -2800,29 +2797,40 @@ void reset_all_status_effects()
 {
     object* myFeats;
     int x;
-    POISON_D->ClearAllPoisons(TO);
-    TO->set_bound(0, 0);
-    TO->set_blind(0);
-    TO->set_blindfolded(0);
-    TO->set_temporary_blinded(0);
-    TO->set_tripped(0, 0);
-    TO->set_unconscious(0, 0);
-    TO->set_gagged(0, 0);
-    TO->set_asleep(0, 0);
-    TO->remove_paralyzed();
-    TO->remove_all_disable();
-    myFeats = (object*)TO->query_property("active_feats");
-    if (pointerp(myFeats)) {
-        for (x = 0; x < sizeof(myFeats); x++) {
-            if (objectp(myFeats[x])) {
+
+    if (!objectp(this_object()))
+        return;
+
+    POISON_D->ClearAllPoisons(this_object());
+
+    set_bound(0, 0);
+    set_blind(0);
+    set_blindfolded(0);
+    set_temporary_blinded(0);
+    set_tripped(0, 0);
+    set_unconscious(0, 0);
+    set_gagged(0, 0);
+    set_asleep(0, 0);
+    remove_paralyzed();
+    this_object()->remove_all_disable();
+
+    myFeats = (object*)query_property("active_feats");
+
+    if (pointerp(myFeats))
+    {
+        for (x = 0; x < sizeof(myFeats); ++x)
+        {
+            if (objectp(myFeats[x]))
                 myFeats[x]->dest_effect();
-            }
+
             continue;
         }
     }
-    if (TO->query_invis()) {
-        TO->set_magic_hidden(0);
-        TO->set_invis();
+
+    if (query_invis())
+    {
+        set_magic_hidden(0);
+        set_invis();
     }
 }
 

@@ -55,7 +55,7 @@ set_monster_feats(({
       })); 
 set_property("water breather", 1);
 
-new(OBJ"dress")->move(TO);
+clonep() && new(OBJ"dress")->move(TO);
 
 force_me("wearall");
 

@@ -16,7 +16,7 @@ void create()
     ::create();
     set_name("corrupted mounted infantry");
     set_id(({"mounted infantry", "infantry", "hound", "mounted",
-	"corrupted mounted infantry"}));
+	"corrupted mounted infantry", "hound soldier"}));
     
     set_short("%^C070%^co%^C065%^r%^C070%^rup%^C065%^"+
 	"t%^C070%^ed m%^C058%^o%^C070%^un%^C058%^t%^C070%^ed i%^C243%^"+
@@ -94,6 +94,10 @@ void create()
 		"strength of arm",
 		"sweepingblow"
     }));
+    
+    if(!clonep())
+        return;
+    
     if(!present("horse")) { call_out("do_horse",1,TO); }   
     add_money("platinum",random(500));
     ob = new("/d/common/obj/weapon/longsword");

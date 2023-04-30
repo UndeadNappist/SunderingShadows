@@ -27,7 +27,7 @@ void create()
     set_lore("%^C066%^A truly dark and forbidding ring filled with %^C072%^forbidding power%^C066%^. The origin of this ring is unknown, but its dark nature seems to suggest it was wrought in the %^C060%^Plane of Shadows%^C066%^. The ring itself lends its power to spontaneous casters of the weave, allowing them to cast %^C078%^fear%^C066%^, %^C078%^ray of exhaustion%^C066%^, %^C078%^waves of fatigue%^C066%^, %^C078%^ray of enfeeblement%^C066%^, and %^C078%^cause fear%^C066%^ as if they were mastered. Using this ring will consume the appropriate prepared spell slot.%^CRST%^");
     set_property("lore difficulty", 40);
     set_property("id difficulty", 40);
-    set_value(10000);
+    set_value(100000);
     set_flag_required("boss avatar");
     set_wear((:this_object(),"wear_fun":));
     set_remove( (: this_object(),"remove_fun" :) );

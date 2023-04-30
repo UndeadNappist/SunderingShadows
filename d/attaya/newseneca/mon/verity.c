@@ -66,10 +66,18 @@ void summon_hedgehog()
 
 void reset()
 {
+   object my_location;
+
    ::reset();
 
-   if(!present("clover", environment(this_object())))
-      call_out("summon_hedgehog",1);
+   if (!objectp(this_object()))
+      return;
+
+   if (!objectp(my_location = environment(this_object())))
+      return;
+
+   if(!present("clover", my_location))
+      call_out("summon_hedgehog", 1);
 }
 
 void catch_say(string msg)

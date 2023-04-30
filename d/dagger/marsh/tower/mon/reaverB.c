@@ -55,6 +55,10 @@ void create()
     set_stats("intelligence", 24);
     set_stats("charisma", -10);
     set("aggressive", 50);
+    
+    if(!clonep())
+        return;
+    
     if (!random(9)) { //changing drop to be 1 in 10 since you can no longer solo Vecna
         new("/d/dagger/marsh/tower/obj/mistkey")->move(TO);
     }

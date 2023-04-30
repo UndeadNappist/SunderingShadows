@@ -45,11 +45,6 @@ void create(){
     set_property("disease immunity", 1);
     set_property("poison immunity", 1);
     set_spell_chance(75);
-    set_spells(({
-        "mass fester",
-        "acid fog",
-        "acid orb",
-        "contagion", }));
     set_emotes(20, ({ 
         "%^RESET%^%^CRST%^%^C118%^St%^C112%^er%^C106%^cus%^C144%^ shudders, the wave of shifting %^C143%^f%^C137%^i%^C131%^l%^C143%^t%^C137%^h %^C144%^cascading across his %^C106%^bl%^C112%^o%^C106%^ate%^C112%^d %^C144%^form.%^CRST%^",
         "%^RESET%^%^CRST%^%^C144%^Clouds of %^C244%^f%^C248%^l%^C244%^i%^C250%^e%^C246%^s %^C144%^swarm about %^C118%^St%^C112%^er%^C106%^cus%^C144%^, mirrored on his body by thousands of wriggling %^C255%^ma%^C252%^g%^C255%^go%^C252%^t%^C255%^s %^C144%^feasting on rot.%^CRST%^", }), 0);
@@ -59,10 +54,11 @@ void create(){
         "greater spell penetration",
         "spell power",
         "perfect caster", }));
-    set_powerlevel(5);
+    set_powerlevel(1);
     set_resistance_percent("acid", 125);
     set_property("swarm", 1);
     handicap = 0;
+    set("elementalist", "acid");
 }
 
 void set_powerlevel(int pwrlvl){
@@ -80,6 +76,40 @@ void set_powerlevel(int pwrlvl){
     set_max_hp(powerlevel * powerlevel * 400);
     set_hp(query_max_hp());
     set_new_exp((powerlevel * 10), "high");
+    
+    switch(powerlevel){
+        case 1..2:
+            set_spells(({
+                "burning hands",
+                "acid arrow",
+                "contagion",
+                }));
+                break;
+        case 3:
+            set_spells(({
+                "mass fester",
+                "chill touch",
+                "acid arrow",
+                "contagion",
+                }));
+                break;
+        case 4:
+            set_spells(({
+                "mass fester",
+                "chill touch",
+                "fireball",
+                "contagion",
+                }));
+                break;
+        case 5:
+            set_spells(({
+                "mass fester",
+                "acid fog",
+                "fireball",
+                "contagion",
+                }));
+                break;
+    }
     return;
 }
 

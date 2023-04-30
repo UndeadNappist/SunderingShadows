@@ -1,7 +1,7 @@
 #include <std.h>
 #include <daemons.h>
 
-string* VALID_SETTINGS = ({ "brief", "brief_combat", "hints", "logon_notify", "persist", "simpleinv", "expgain", "hardcore", "levelcheck", "no_reward", "taxperc", "columns", "vcolumns", "scrlines", "scrwidth", "term", "reader", "gmcp", "minimap" });
+string* VALID_SETTINGS = ({ "brief", "brief_combat", "hints", "logon_notify", "simpleinv", "expgain", "hardcore", "levelcheck", "no_reward", "taxperc", "columns", "vcolumns", "scrlines", "scrwidth", "term", "reader", "gmcp", "minimap" });
 
 object tp;
 
@@ -260,29 +260,29 @@ string get_brief()
     }
 }
 
-int set_persist(string val)
-{
-    string* valid_values = ({ "on", "off" });
-    if (member_array(val, valid_values) == -1) {
-        write("%^BOLD%^%^RED%^Invalid value, valid values are:%^RESET%^ " + implode(valid_values, ", "));
-        return 0;
-    }
-    if (val == "on") {
-        this_player()->set("persist_login", 1);
-    }
-    if (val == "off") {
-        this_player()->delete("persist_login");
-    }
-    return 1;
-}
+// int set_persist(string val)
+// {
+//     string* valid_values = ({ "on", "off" });
+//     if (member_array(val, valid_values) == -1) {
+//         write("%^BOLD%^%^RED%^Invalid value, valid values are:%^RESET%^ " + implode(valid_values, ", "));
+//         return 0;
+//     }
+//     if (val == "on") {
+//         this_player()->set("persist_login", 1);
+//     }
+//     if (val == "off") {
+//         this_player()->delete("persist_login");
+//     }
+//     return 1;
+// }
 
-int get_persist(string val)
-{
-    if(this_player()->query("persist_login"))
-        return "on";
-    else
-        return "off";
-}
+// int get_persist(string val)
+// {
+//     if(this_player()->query("persist_login"))
+//         return "on";
+//     else
+//         return "off";
+// }
 
 int set_reader(string val)
 {
@@ -577,7 +577,6 @@ You can manipulate numerous mud settings:
 %^CYAN%^hints %^GREEN%^on|off%^RESET%^\n  This will turn on or off display of periodic hints. %^ULINE%^Default value is on.%^RESET%^\n
 %^CYAN%^minimap %^GREEN%^on|off%^RESET%^\n This turns on or off the minimap above the room description. %^ULINE%^Default value is off.%^RESET%^\n
 %^CYAN%^logon_notify %^GREEN%^on|off%^RESET%^\n  This will turn on or off display of people joining the game. %^ULINE%^Default value is on.%^RESET%^\n
-%^CYAN%^persist %^GREEN%^on|off%^RESET%^\n  Turning persistent login will allow you not to idle out upon reaching a timeout. %^ULINE%^Default value is off.%^RESET%^\n
 %^CYAN%^simpleinv %^GREEN%^on|off%^RESET%^\n  This will turn on or off displaying equipped inventory items in %^ORANGE%^<inventory>%^RESET%^ command. When it is toggled off, you can see equipped inventory in %^ORANGE%^<eq>%^RESET%^. %^ULINE%^Default value is off.%^RESET%^\n
 %^ULINE%^%^CYAN%^Experience points and tax:%^RESET%^
 

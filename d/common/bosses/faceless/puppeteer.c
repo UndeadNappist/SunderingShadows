@@ -87,6 +87,7 @@ void create()
     set_property("no steal", 1);
     set_property("no dominate", 1);
     set_property("no hold", 1);
+    set_property("no paralyze", 1);
     set_property("confusion_immunity");
     set_property("hidden inventory", 1);
     set_property("cast and attack", 1);
@@ -139,6 +140,7 @@ void create()
                   "overwhelming presence", }));
                   
     set_spell_chance(0);
+    set_resistance_percent("void", 100);
     add_money("platinum", 100000 + random(20000));
     set_property("no paralyze", 1);
     set_acquired_template("shade");
@@ -174,15 +176,6 @@ void init()
     
     if (wizardp(player) || player->query_true_invis()) {
         return;
-    }
-
-    psize = sizeof(filter_array(all_living(ETO), (: userp($1) :)));
-    psize = psize < 1 ? 1 : psize;
-    if (psize > coreparty) {
-        set_max_hp(25000 * psize);
-        set_hp(query_max_hp());
-        set_damage(16, 5 + psize);
-        coreparty = psize;
     }
     
     if(!buffed)
@@ -411,6 +404,7 @@ void madness(object room)
     {
         tell_object(target, "%^CYAN%^%^BOLD%^You cough and struggle and are able to shake off the madness!%^RESET%^");
         tell_room(room, "%^CYAN%^BOLD%^" + target->query_cap_name() + " coughs and struggles and is able to shake off the madness!.%^RESET%^", target);
+        target->cause_typed_damage(target, "head", roll_dice(10, 10) + madness, "mental");
     }
     else
     {
@@ -561,6 +555,7 @@ int tendril(object ob)
 void shadow_spikes()
 {
     object room, *attackers;
+    int dam;
     
     room = environment(this_object());
     
@@ -574,12 +569,18 @@ void shadow_spikes()
     
     tell_room(room, "%^C245%^S%^C184%^h%^C185%^a%^C187%^d%^C185%^o%^C184%^w%^C245%^y s%^C184%^p%^C185%^i%^C186%^k%^C245%^es launch themselves from all directions, threatening to %^C166%^skewer%^C245%^ you all!%^CRST%^");
     
+    dam = roll_dice(50 + madness, 10);
+    
     foreach(object ob in attackers)
-    {
+    {   
         if(!SAVING_THROW_D->reflex_save(ob, 80 + madness))
         {
             tell_room(room, "%^BOLD%^RED%^A spike impales " + ob->query_cap_name() + "!%^RESET%^");
-            ob->cause_typed_damage(ob, "torso", roll_dice(50 + madness, 10), "void");
+            ob->cause_typed_damage(ob, "torso", dam, "void");
+        }
+        else
+        {
+            ob->cause_typed_damage(ob, "torso", dam / 2, "piercing");
         }
     }
 }

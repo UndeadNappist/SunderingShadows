@@ -46,7 +46,9 @@ set_target(object ob){
 void die(object ob){
 }
 
-void heart_beat(){
+void heart_beat()
+{
+    ::heart_beat();
    if(!objectp(caster)) return;
    if(!objectp(follower)) return;
    if(ETO != environment(follower))

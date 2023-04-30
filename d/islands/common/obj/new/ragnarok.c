@@ -54,7 +54,7 @@ void create()
         " banished the demon from the prime material plane and took the sword as trophy.");
 
     set_weight(6);
-    set_value(1000000);
+    set_value(250000);
 
     set_property("no curse",1);
     set_property("no alter", 1);

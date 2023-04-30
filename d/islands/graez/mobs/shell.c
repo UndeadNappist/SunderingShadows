@@ -38,6 +38,9 @@ void heart_beat()
     if (!objectp(TO)) {
         return;
     }
+    if(!clonep())
+        return;
+    
 // am I in combat?
     if (sizeof(TO->query_attackers())) {
         return;

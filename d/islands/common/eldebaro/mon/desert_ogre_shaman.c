@@ -63,6 +63,10 @@ void create()
     set_spells(({"earthquake", "flame strike", "call lightning"}));
 
     set_monster_feats(({"perfect caster", "spell power", "spell focus"}));
+    
+    if(!clonep())
+        return;
+    
     ob = new(ELOB+"shroud_of_light"); 
     ob->set_size(3);
     ob->move(TO);

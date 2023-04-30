@@ -22,7 +22,7 @@ void create()
     ::create();
     set_spell_name("clairvoyance");
     //On way fewer spell lists in SRD...
-    set_spell_level(([ "mage" : 2, "bard" : 3, "assassin" : 4, "inquisitor" : 3, "warlock" : 1, "magus" : 3 ]));
+    set_spell_level(([ "mage" : 2, "bard" : 3, "assassin" : 4, "inquisitor" : 3, "warlock" : 1, "magus" : 3, "druid" : 4 ]));
     set_spell_sphere("divination");
     set_syntax("cast CLASS clairvoyance on TARGET");
     set_description("With this spell, the caster will attempt to see the target and their immediate surroundings. If the target has a scry blocker active, an opposed roll will be made. If the caster fails the roll, the spell will immediately fail. If they succeed, they will see the target and the room they are in. Anyone else in the area of the target, with sufficient scry protection, can avoid detection on a successful opposed roll against this spell.");
@@ -58,11 +58,11 @@ string query_cast_string()
         tell_object(caster,"%^BOLD%^Closing your eyes, you press your fingers"+
             " to your temple, and focus your energies.");
         tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+" closes "+caster->QP+" eyes"+
-            ", pressing "+caster->QP+" fingers to "+caster->QS+" temples.");
+            ", pressing "+caster->QP+" fingers to "+caster->QS+" temples.", caster);
         return "display";
     }
     tell_object(caster,"%^BOLD%^Seeking inner calm, you open your mind to the world around you and the target you seek.");
-    tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+" closes "+caster->QP+" eyes and takes on an expression of calm.");
+    tell_room(place,"%^BOLD%^%^WHITE%^"+caster->QCN+" closes "+caster->QP+" eyes and takes on an expression of calm.", caster);
     return "display";
 }
 

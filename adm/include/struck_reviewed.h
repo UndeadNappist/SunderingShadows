@@ -41,6 +41,7 @@
     "/d/dagger/ogres/obj/sune_studded", \
     "/d/deku/armours/brobe", \
     "/d/deku/armours/fire_robe", \
+    "/d/deku/armours/plate", \
     "/d/deku/armours/priest_robe", \
     "/d/deku/armours/robe", \
     "/d/deku/fortress/obj/crimson_coif", \
@@ -143,6 +144,7 @@
     "/d/underdark/mines/obj/dragonmask", \
     "/d/underdark/mines/obj/gnorobe", \
     "/d/underdark/ud_ruins/obj/fomorian_leather", \
+    "/realms/chernobog/player_rewards/balur_hat", \
     "/realms/kismet/obj/rewards/k_balurhat", \
     "/realms/kismet/obj/rewards/moontiara", \
     "/realms/kismet/obj/rewards/r_orchid", \

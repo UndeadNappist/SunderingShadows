@@ -90,13 +90,13 @@ int set_base_class(object obj, string choice)
         tell_object(obj, "%^BOLD%^%^RED%^You can't choose this class.%^RESET%^ ");
         return 0;
     }
-    
+
     if(obj->query_true_align() != 1 && obj->query_true_align() != 4 && obj->query_true_align() != 7)
     {
         tell_object(obj, "You need to be of a good alignment.");
         return 0;
     }
-    
+
     /*
     if(obj->query_mystery() != "life" && member_array("renewal", obj->query_divine_domain()) < 0)
     {
@@ -238,10 +238,10 @@ int caster_level_calcs(object player, string the_class)
 
     //level = player->query_class_level(base);
     level = player->query_class_level(the_class);
-    
+
     if(base == the_class)
         level += player->query_class_level("radiant_servant");
-    
+
     return level;
 }
 
@@ -252,22 +252,22 @@ mapping class_featmap(string myspec) {
 mapping query_innate_spells(object player)
 {
     mapping innate_spells = ([  ]);
-    
+
     if(FEATS_D->usable_feat(player, "holy purpose"))
     {
-        innate_spells = ([ 
-                      
+        innate_spells = ([
+
             "celestial brilliance"      : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
-            "spray of shooting stars"   : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), 
+            "spray of shooting stars"   : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
             "gale of life"              : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
             "eye of the sun"            : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
             "repel the profane"         : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
             "cleansing flames"          : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
             "heal"                      : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
-            "mass heal"                 : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),             
+            "mass heal"                 : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
         ]);
     }
-    
+
     return innate_spells;
 }
 
@@ -299,7 +299,7 @@ void advanced_func(object player)
 
 int hit_dice(object ob)
 {
-    return base_class_ob(ob)->hit_dice();
+    return base_class_ob(ob)->hit_dice(ob);
 }                               // hit dice rolled for hitpoints each level
 
 int default_hitpoints(object ob)

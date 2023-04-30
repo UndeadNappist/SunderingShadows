@@ -77,6 +77,10 @@ void create()
 	}));
     set_func_chance(35);
     set_nogo(({ELROOMSD+"51",ELROOMSD+"102",ELROOMSD+"178",ELROOMSD+"107"}));
+    
+    if(!clonep())
+        return;
+    
     ob = new("/d/common/obj/armour/studded");
     ob->move(TO);
     ob->set_property("enchantment",1);

@@ -27,9 +27,46 @@ void create(){
         ({"flowers", "window boxes"}) : "%^RESET%^%^CRST%^%^C146%^Little bursts of %^C127%^c%^C126%^o%^C125%^l%^C124%^o%^C196%^r%^RESET%^%^C146%^ and %^C040%^l%^C046%^i%^C082%^f%^C076%^e%^RESET%^%^C146%^ poke up from small %^C101%^wooden window boxes%^C146%^, while a few %^C125%^pots%^C146%^ tucked along porches or in small %^C070%^ga%^C076%^rde%^C070%^ns%^RESET%^%^C146%^ lining the path add a touch of %^C141%^whimsy%^C146%^ to the rows of derelict homes.%^CRST%^",
         "trees" : "%^RESET%^%^RESET%^%^C065%^Despite the %^C059%^harshness%^C065%^ of the %^C243%^r%^C245%^o%^C243%^ck%^C245%^y t%^C243%^err%^C245%^ai%^C243%^n%^RESET%^%^C065%^ and the tinge of %^C195%^salt%^C065%^ in the air, these %^C064%^trees%^C065%^ manage to, while not exactly thrive, survive. A small testament to the %^C060%^resilience%^RESET%^%^C065%^ of the isle and its people.%^CRST%^",
         ]));
+    set_heart_beat(1);
 }
 
-void reset(){
-    if(!present("ambiance device")) new(MON"ambiance_residential")->move(this_object());
+void heart_beat(){
+    object room;
+    
+    ::heart_beat();
+    
+    room = this_object();
+    if(!objectp(room)) return;
+    
+    if(random(100) < 4){
+        switch(random(8)){
+            case 0 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C245%^A %^C243%^h%^C244%^e%^C245%^a%^C246%^rt-%^C243%^wr%^C244%^en%^C245%^ch%^C246%^ing %^C243%^w%^C244%^a%^C245%^i%^C246%^l%^C245%^ from the %^C248%^cliffs%^C245%^ overhead %^C059%^e%^C243%^c%^C245%^ho%^C243%^e%^C059%^s%^RESET%^%^C245%^ through the quiet streets.%^CRST%^");
+                break;
+            case 1 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C138%^A %^C244%^slinky black cat%^C138%^ slips between some boards, vanishing into one of the dilapidated homes%^C138%^.%^CRST%^");
+                break;
+            case 2 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C138%^Some grubby kids run past, chasing each other with %^C101%^sticks%^C138%^ and %^C101%^stones%^C138%^.%^CRST%^");
+                break;
+            case 3 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C058%^A %^C059%^rat%^C058%^ scurries across the road.%^CRST%^");
+                break;
+            case 4 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C253%^A long, %^C249%^l%^C247%^o%^C245%^w %^C243%^wail%^RESET%^%^C253%^ is carried on the r%^C250%^i%^C248%^s%^C253%^ing wi%^C250%^n%^C253%^d%^RESET%^%^C253%^.%^CRST%^");
+                break;
+            case 5 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C139%^A litany of %^C244%^curses%^C139%^ that would make a sailor blush spills out from a nearby house.%^CRST%^");
+                break;
+            case 6 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C138%^Neighbors shout out from window to window, discussing the day's events.%^CRST%^");
+                break;
+            case 7 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C102%^Eyes peer out at you from an upper floor window before the curtain is quickly pulled shut.%^CRST%^");
+                break;
+            default :
+                tell_room(room, "Something broke here, tell Chernobog");
+        }
+    }
 }
 

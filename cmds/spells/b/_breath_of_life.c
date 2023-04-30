@@ -6,7 +6,7 @@ inherit SPELL;
 create() {
     ::create();
     set_spell_name("breath of life");
-    set_spell_level(([ "cleric" : 5,"oracle":5, "druid": 5 ]));
+    set_spell_level(([ "cleric" : 5,"oracle":5 ]));
     set_mystery("life");
     set_domains("renewal");
     set_spell_sphere("conjuration_summoning");
@@ -41,7 +41,8 @@ string what_alignment(int align)
     return alignment;
 }
 
-spell_effect(int prof) {
+spell_effect(int prof)
+{
     string what, theirname;
     object corpse, targ;
 
@@ -49,8 +50,9 @@ spell_effect(int prof) {
 
     if(!objectp(target))
     {
-        if(targ = find_object(arg))
+        if(targ = find_object("" + arg))
             target = targ;
+
         else if(stringp(arg))
         {
             theirname = caster->realName(lower_case(arg));

@@ -17,8 +17,9 @@ string element;
 void create(){
     ::create();
     set_spell_name("burning hands");
-    set_spell_level(([ "mage" : 1, "monk" : 3, "magus" : 1 ]));
+    set_spell_level(([ "mage" : 1, "monk" : 3, "magus" : 1, "druid" : 1 ]));
     set_spell_sphere("alteration");
+    set_circle("wildfire");
     set_monk_way("way of the elements");
     set_syntax("cast CLASS burning hands [on TARGET]");
     set_description("This spell begins by the caster fanning out his hands while chanting the spell. Flames will flare out and do a small amount of damage to the target and those near him.");
@@ -28,10 +29,11 @@ void create(){
     set_save("reflex");
     versatile();
     splash_spell(1);
+    set_immunities(({"fire"}));
 }
 
 string query_cast_string(){
-   return "%^RESET%^%^CRST%^%^C178%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C178%^ fans out "+caster->query_possessive()+" hands and begins to chant.%^CRST%^";
+    return "%^RESET%^%^CRST%^%^C178%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C178%^ fans out "+caster->query_possessive()+" hands and begins to chant.%^CRST%^";
 }
 
 void spell_effect(int prof){
@@ -53,6 +55,14 @@ void spell_effect(int prof){
         dest_effect();
         return;
     }
+    
+    element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
+    
     if(spell_type == "monk") MAGIC_D->elemental_opportunist(caster, target);
     targets = target_selector();
 
@@ -73,7 +83,6 @@ void spell_effect(int prof){
     
     targetname = target->query_cap_name();
     castername = caster->query_cap_name();
-    element = (string)caster->query("elementalist");
     switch(element){
         case "acid":
             tell_object(target, "%^RESET%^%^CRST%^%^C064%^"+castername+"%^RESET%^%^CRST%^%^C064%^ aims a %^C046%^spray %^RESET%^%^C064%^of %^C190%^corrosive %^C077%^a%^C071%^c%^C070%^i%^C076%^d %^RESET%^%^C064%^at you!%^CRST%^");

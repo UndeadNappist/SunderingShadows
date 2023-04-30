@@ -1,7 +1,7 @@
 #include <magic.h>
 #include "summoned_monster.h"
 
-inherit WEAPONLESS;
+inherit MINION;
 
 object cast;
 

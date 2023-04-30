@@ -53,6 +53,7 @@ void spell_effect()
 
     caster->set_property("spelled", ({ this_object() }) );
     caster->set_property("rewind age", 1);
+    target->recalculate_max_hp_from_stats();
     addSpellToCaster();
 
     spell_duration = 180 + (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 2;
@@ -67,6 +68,7 @@ void dest_effect()
         target->remove_property("spelled", ({ this_object() }) );
         tell_object(target, "%^CYAN%^You feel your age reversal disappearing.%^RESET%^");
         target->remove_property("rewind age");
+        target->recalculate_max_hp_from_stats();
     }
     ::dest_effect();
     if(objectp(this_object()))

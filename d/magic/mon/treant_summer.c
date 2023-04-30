@@ -4,7 +4,7 @@
 
 #include <std.h>
 
-inherit WEAPONLESS;
+inherit MINION;
 
 void set_mylevel(int x);
 void set_mylong();

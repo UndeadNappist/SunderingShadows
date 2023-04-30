@@ -15,7 +15,7 @@ void create()
 
 If used without an argument this feat will pick up a random attacker.
 ");
-    set_save("reflex");
+    //set_save("reflex");
 }
 
 int allow_shifted()

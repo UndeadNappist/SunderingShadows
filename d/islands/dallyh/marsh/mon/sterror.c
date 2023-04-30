@@ -43,14 +43,6 @@ void create()
     set_stats("wisdom", 22);
     set_stats("constitution", 30);
     set_stats("charisma", 15);
-    ob = new(MOPATH"barbed");
-    if(random(20)) ob->set_property("monsterweapon", 1);
-    ob->move(TO);
-    command("wield dagger");
-    ob = new(MOPATH"barbed");
-    if(random(20)) ob->set_property("monsterweapon", 1);
-    ob->move(TO);
-    command("wield dagger");
     set_stats("intelligence", 15);
     set_monster_feats(({
       "ambidexterity",
@@ -75,6 +67,18 @@ void create()
     set_moving(1);
     set_speed(55);
     set_new_exp(45, "high");
+
+    if (!clonep(this_object()))
+        return;
+
+    ob = new(MOPATH"barbed");
+    if(random(20)) ob->set_property("monsterweapon", 1);
+    ob->move(TO);
+    command("wield dagger");
+    ob = new(MOPATH"barbed");
+    if(random(20)) ob->set_property("monsterweapon", 1);
+    ob->move(TO);
+    command("wield dagger");
 }
 
 void heart_beat()

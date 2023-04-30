@@ -73,7 +73,8 @@ void room_check()
     return;
 }
 
-void execute_attack(){
+void execute_attack()
+{
     object *attackers,room;
     int i;
 
@@ -84,12 +85,12 @@ void execute_attack(){
         return;
     }
 
-    room      = environment(caster);
-    if(!objectp(caster) || !objectp(room))
+    if(!objectp(caster) || objectp(room = environment(caster)))
     {
         dest_effect();
         return;
     }
+
     attackers = filter_array(caster->query_attackers(),(:objectp($1):));
     attackers = filter_array(attackers,(:$1->is_living():));
     attackers = filter_array(attackers,

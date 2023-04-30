@@ -21,6 +21,7 @@ void create(){
     set_syntax("cast CLASS crushing hand");
     set_description("This spell will call forth a crushing hand to help defend the caster as well as lend its strength to the battles the caster may face.  While the hand is under the caster's control, he may <command hand to [action]> or <dismiss> the crushing hand if it is no longer needed.");
     set_verbal_comp();
+    summon_spell();
     set_somatic_comp();
     set_helpful_spell(1);
 }
@@ -99,9 +100,11 @@ int hd,hp,strength;
    device->set_property("spell",TO);
    device->set_property("spelled",({TO}));
    elem->set_stats("strength",strength);
-   elem->set_hd(hd,8);
-   elem->set_max_hp(hp);
-   elem->set_hp(hp);
+   //elem->set_hd(hd,8);
+   //elem->set_max_hp(hp);
+   //elem->set_hp(hp);
+   elem->set_owner(caster);
+   elem->setup_minion(clevel, spell_level, "greater");
    elem->move(place);
 }
 

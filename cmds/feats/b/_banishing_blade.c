@@ -46,7 +46,7 @@ int cmd_banishing_blade(string str)
 
 void execute_feat()
 {
-    if (FEATS_D->is_active(caster, "banishing blade "))
+    if (FEATS_D->is_active(caster, "banishing blade"))
     {
         tell_object(caster, "%^RESET%^%^C039%^You r%^C045%^e%^C051%^l%^C087%^e%^C123%^a%^C159%^s%^RESET%^%^C195%^e the %^RESET%^%^C033%^b%^C039%^a%^C045%^n%^C051%^i%^C087%^s%^C051%^h%^C045%^i%^C039%^n%^RESET%^%^C033%^g p%^RESET%^%^C039%^o%^C045%^w%^C039%^e%^RESET%^%^C033%^r %^RESET%^%^C039%^from your weapons.%^CRST%^");
         dest_effect();

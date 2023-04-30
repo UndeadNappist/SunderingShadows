@@ -23,9 +23,37 @@ void create(){
         "view" : "%^CRST%^%^RESET%^%^C038%^The vast sea spreads out before you to the east beyond the bay, light twinkling along its surface like %^C255%^d%^C253%^i%^C250%^a%^C255%^mo%^C250%^n%^C253%^d%^C255%^s%^RESET%^%^C038%^. In the other direction, a %^C020%^waterfall%^C038%^ plunges down from the %^C255%^majestic white cliffs%^C038%^, broken into several streams by outcroppings, the %^C250%^mist%^C038%^ refracted into a myriad of %^C160%^t%^C166%^i%^C184%^n%^C118%^y %^C051%^ra%^C153%^in%^C135%^bo%^C063%^ws%^RESET%^%^C038%^. The view is truly %^C189%^awe inspiring%^C038%^.%^CRST%^",
         "sea" : "%^RESET%^%^CRST%^%^C044%^Light ripples over the surface of the %^C038%^azure water%^C044%^ like diamonds, %^C051%^luring%^C044%^ you into its bountiful depths. The %^C250%^breeze%^C044%^ is constant, bringing with it the scents of the sea, and it whispers the %^C051%^promises%^C044%^ of adventures abound and treasures not yet plundered. The vastness of the sea is humbling to some... and something to be conquered by others.%^CRST%^",
         ]));
+    set_heart_beat(1);
 }
 
-void reset(){
-    if(!present("ambiance device")) new(MON"ambiance_path")->move(this_object());
+void heart_beat(){
+    object room;
+    
+    ::heart_beat();
+    
+    room = this_object();
+    if(!objectp(room)) return;
+    
+    if(random(100) < 4){
+        switch(random(5)){
+            case 0 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C245%^A %^C243%^h%^C244%^e%^C245%^a%^C246%^rt-%^C243%^wr%^C244%^en%^C245%^ch%^C246%^ing %^C243%^w%^C244%^a%^C245%^i%^C246%^l%^C245%^ from the %^C248%^cliffs%^C245%^ overhead %^C059%^e%^C243%^c%^C245%^ho%^C243%^e%^C059%^s%^RESET%^%^C245%^ through the quiet path.%^CRST%^");
+                break;
+            case 1 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C041%^Birds chirp from deeper in the %^C040%^lush forest%^C076%^.%^CRST%^");
+                break;
+            case 2 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C101%^Waves crash along the %^C102%^rocky precipice%^C101%^ below.%^CRST%^");
+                break;
+            case 3 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C041%^Branches snap and crack as something darts among the %^C040%^foliage%^C076%^.%^CRST%^");
+                break;
+            case 4 : 
+                tell_room(room, "%^RESET%^%^CRST%^%^C255%^A long, %^C250%^l%^C248%^o%^C247%^w %^C245%^w%^C243%^a%^C245%^i%^C247%^l%^RESET%^%^C255%^ is carried on the rising wind.%^CRST%^");
+                break;
+            default :
+                tell_room(room, "Something broke here, tell Chernobog");
+        }
+    }
 }
 

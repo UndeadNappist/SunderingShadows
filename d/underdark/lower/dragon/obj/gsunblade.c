@@ -378,22 +378,3 @@ string * bound_to() {
    if(sizeof(owners)) return owners;
    return 0;
 }
-
-void heart_beat()
-{
-    if(!objectp(ETO)) { return; }
-    if(interactive(ETO) && present("greater sunblade 2",ETO)) {
-        tell_object(ETO,"%^YELLOW%^The two swords tremble when brought "
-            "together.  In a flash, they merge together into a single "
-            "blade!");
-        TO->remove();
-    }
-    if(interactive(ETO) && present("ragnarok",ETO)) {
-        tell_room(EETO,"%^BOLD%^%^RED%^A shriek goes up in the air as "
-		"the two conflicting blades are brought together.  A massive "
-		"concussion pulses forth, splintering both weapons into "
-		"fragments!");
-        present("ragnarok",ETO)->remove();
-        TO->remove();
-    }
-}

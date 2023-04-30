@@ -48,6 +48,8 @@ switch(i)
    set_new_exp(25,"normal");
    set_alignment(1);
 
+   if(!clonep())
+       return;
 
     ob = new("/d/common/obj/armour/chain");
        ob->move(TO);

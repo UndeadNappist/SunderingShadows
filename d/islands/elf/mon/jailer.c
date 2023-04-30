@@ -37,7 +37,14 @@ void create(){
     set_stats("charisma",12);
     set_property("swarm",1);
     set_property("no bows", 1);  
-    set_property("no dominate", 1);  
+    set_property("no dominate", 1);
+	force_me("speak elven");
+	set_new_exp(30,"normal");
+    set_max_level(35);
+    
+    if(!clonep())
+        return;
+    
     new(OBJ"key")->move(TO);
     force_me("wear key");
     new("/d/common/obj/armour/coif")->move(TO);
@@ -55,9 +62,6 @@ void create(){
             RANDGEAR->arm_me(TO, "blunts", 30, 2, 75);
             break;
     }
-	force_me("speak elven");
-	set_new_exp(30,"normal");
-    set_max_level(35);
 }
 
 void reset() {

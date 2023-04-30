@@ -12,8 +12,8 @@ void create()
     set_spell_sphere("necromancy");
     set_heritage("gloom");
     set_syntax("cast CLASS pull of the grave on TARGET");
-    set_damage_desc("Death or negative energy and shaken");
-    set_description("You condemn your target to the cold, unrelenting oblivion of the grave. Shards of necrotic steel swirl around them, forming a dark and forbidding coffin from whence few will ever return. On a failed combat death save, the target will obey the call and die instantly. On a successful save, the target is shaken by their close brush with death and take normalized negative energy damage as they wallow in their blackened steel tomb.");
+    set_damage_desc("Death or negative energy and negative levels");
+    set_description("You condemn your target to the cold, unrelenting oblivion of the grave. Shards of necrotic steel swirl around them, forming a dark and forbidding coffin from whence few will ever return. On a failed combat death save, the target will obey the call and die instantly. On a successful save, the target gets 1d4 negative levels due to their close brush with death and take normalized negative energy damage as they wallow in their blackened steel tomb.");
     set_verbal_comp();
     set_save("fort");
     set_somatic_comp();
@@ -49,7 +49,8 @@ void spell_effect()
         
         dur = 6 * (clevel / 10 + roll_dice(1, 4));        
         //target->set_paralyzed(dur, "You are weighed down by the pull of the grave");
-        "/std/effect/status/shaken"->apply_effect(target, dur, caster);
+        //"/std/effect/status/shaken"->apply_effect(target, dur, caster);
+        "/std/effect/status/negative_level"->apply_effect(target, roll_dice(1, 20), roll_dice(1, 4));
     }
     else
     {

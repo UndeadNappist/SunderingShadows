@@ -21,7 +21,7 @@ void create(){
 LUJKE
         );
         set_weight(3);
-   set_value(150000);
+   set_value(10000);
         set_lore(
 @LUJKE
 Stories of the legendary %^CYAN%^Tecqumin%^RESET%^ hero %^ORANGE%^Tlatlcupra %^RESET%^tell of him towering over the armies of his enemies, and stretching past the tops of %^GREEN%^trees%^RESET%^ to find his way within the deep %^BOLD%^%^GREEN%^j%^RESET%^%^GREEN%^u%^BOLD%^ng%^RESET%^%^GREEN%^l%^BOLD%^e%^RESET%^. What is less commonly known is that the giant of %^CYAN%^Tecqumin%^RESET%^ national myths was actually the owner of a belt blessed by the %^BOLD%^%^GREEN%^j%^RESET%^%^GREEN%^u%^BOLD%^ng%^RESET%^%^GREEN%^l%^BOLD%^e%^RESET%^ %^RESET%^%^GREEN%^spirit %^BOLD%^Q%^RESET%^%^GREEN%^ua%^BOLD%^l%^RESET%^%^GREEN%^i%^RESET%^ that, while not quite making him the giant of legend, did at least increase his size well above that of other men, as well as conferring other bonuses.  
@@ -35,7 +35,6 @@ LUJKE
         TO->set_property("enchantment",6);
         set_wear((:TO,"wear_func":));
         set_remove((:TO, "remove_func":));
-        set_overallStatus(320);
         set_item_bonus("damage", 4);
         set_item_bonus("dexterity", -2);
         set_item_bonus("constitution", 2);

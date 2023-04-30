@@ -5,7 +5,7 @@ void create() {
     ::create();
     set_author("ares");
     set_spell_name("greater mass heal");
-    set_spell_level(([ "cleric" : 9,"druid" : 9 ]));
+    set_spell_level(([ "cleric" : 9 ]));
     set_affixed_spell_level(7);
     set_domains(({ "renewal" }));
     set_mystery(({}));

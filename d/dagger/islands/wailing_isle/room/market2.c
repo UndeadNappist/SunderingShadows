@@ -16,6 +16,4 @@ void create(){
 void reset(){
     ::reset();
     if(!present("merchant")) new(MON "random_vendor")->move(this_object());
-    if(!present("ambiance device")) new(MON"ambiance_market")->move(this_object());
 }
-

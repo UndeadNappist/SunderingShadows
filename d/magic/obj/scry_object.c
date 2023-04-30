@@ -83,15 +83,21 @@ object query_control(){
 void die(object ob){
 }
 
-void heart_beat(){
+void heart_beat()
+{
+    ::heart_beat();
     if(!ready) return;
     if(!objectp(observer) || !objectp(target)) {
         self_destruct();
         return;
     }
-         if(observer->query_unconscious()) {
-      self_destruct();
-       return;
+    if(observer->query_unconscious()) {
+        self_destruct();
+        return;
+    }
+    if(observer->query_property("inactive")) {
+        self_destruct();
+        return;
     }
     if(target->query_ghost()) {
         self_destruct();

@@ -15,4 +15,10 @@ void set_quest_points(int x) { quest_points = x; }
 
 int query_quest_points() { return quest_points; }
 
-void clean_up() { return; }
+//void clean_up() { return; }
+
+void create()
+{
+    ::create();
+    set_property("no_clean", 1);
+}

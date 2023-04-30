@@ -15,27 +15,27 @@ int cmd_bind(string str)
     }
 
     if (!str)
-        tell_object(binder, "Bind who?\n");
+        return notify_fail("Bind who?\n");
 
-    bindee = present(str, environment);
+    bindee = (present(str, environment));
 
     if (!objectp(bindee))
-        tell_object(binder, "That is not here.\n");
+        return notify_fail("That is not here.\n");
 
     if (!binder->ok_to_kill(bindee))
-        tell_object(binder, "Supernatural forces prevent you from doing that.\n");
+        return notify_fail("Supernatural forces prevent you from doing that.\n");
 
     if (!userp(bindee) && !bindee->is_townsman())
-        tell_object(binder, "Binding can only be done in RP situations.\n");
+        return notify_fail("Binding can only be done in RP situations.\n");
 
     if (sizeof(binder->query_attackers()))
-        tell_object(binder, "You're too busy right now.\n");
+        return notify_fail("You're too busy right now.\n");
 
-    if (!rope = present("rope", binder))
+    if (!objectp(rope = (present("rope", binder))))
     {
         if (!binder = present("rope", environment))
         {
-            tell_object(binder, "You need rope to bind someone.\n");
+            return notify_fail("You need rope to bind someone.\n");
         }
     }
 

@@ -10,7 +10,7 @@ void create()
     set_property("no tripped", 1);
     set_property("no death", 1);
     set_property("full attacks", 1);
-    if(!random(20))
+    if(clonep() && !random(20))
     {
         ob = new(ELOB+"manna");
         ob->move(TO);

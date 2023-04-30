@@ -11,7 +11,7 @@ void create(){
    	set_short("%^RESET%^%^GREEN%^Flail of %^BOLD%^N%^RESET%^%^GREEN%^e%^BOLD%^e%^RESET%^%^GREEN%^d%^BOLD%^l%^RESET%^%^GREEN%^e%^BOLD%^s%^RESET%^");
    	set_obvious_short("%^RESET%^%^GREEN%^An aged copper flail%^RESET%^");
 	set_id(({"flail","flail of needles","copper flail","pine flail"}));
-   	set_long("%^GREEN%^The handle of this flail is made of a light colored %^YELLOW%^pine%^RESET%^%^GREEN%^ wood that is very sturdy. Delicately carved into the handle is a myraid of trees, creating the image of a grand forest. Three thick chains of %^ORANGE%^copper%^GREEN%^ links are attached to the pine handle.  The weathered copper in many places takes on a %^BOLD%^%^WHITE%^silvery %^GREEN%^green %^RESET%^%^GREEN%^color.  At the end of each copper chain is a weighted orb of pine.  The three pine orbs have been polished with oils, brining out the light tone of the wood.  Imbedded into each orb are a multitude of %^BOLD%^pine needles%^RESET%^%^GREEN%^.%^RESET%^");
+   	set_long("%^GREEN%^The handle of this flail is made of a light colored %^YELLOW%^pine%^RESET%^%^GREEN%^ wood that is very sturdy. Delicately carved into the handle is a myriad of trees, creating the image of a grand forest. Three thick chains of %^ORANGE%^copper%^GREEN%^ links are attached to the pine handle.  The weathered copper in many places takes on a %^BOLD%^%^WHITE%^silvery %^GREEN%^green %^RESET%^%^GREEN%^color.  At the end of each copper chain is a weighted orb of pine.  The three pine orbs have been polished with oils, bringing out the light tone of the wood.  Embedded into each orb are a multitude of %^BOLD%^pine needles%^RESET%^%^GREEN%^.%^RESET%^");
 	set_lore("The Flail of Needles seems to come from the clerics that worshipped a forgotten nature deity back when the Darkwood Forest used to stretch all the way up to Old Antioch, and when what is Laerad now use to be attached to the main continent.  The Needles of the Forest, as the clerics called themselves, wandered the Darkwood Forest to explore the hidden beauty.  While within the forest, the Needles came often under attack from the forces of the Lords of Fury, more deities whose names have been lost to the times.  Fighting to protect their beloved forest, the Needles found a way to use nature against their foes, thus the Flail of Needles was born.  Though the clerics named their own order, they clearly assumed that none would ever forget the deities' names, for those have gone unrecorded.");
 	set_property("lore",13); 
 	set_value(2000);
@@ -22,7 +22,7 @@ void create(){
 }
 
 int wieldme(){
-     if((int)ETO->query_lowest_level() < 30) {
+     if((int)ETO->query_lowest_level() < 20) {
       	tell_object(ETO,"%^GREEN%^The flail refuses you!");
      	return 0;
 	}
@@ -66,7 +66,7 @@ string ids;
      	tell_object(targ,"%^ORANGE%^"+ETO->QCN+" wraps the copper "+
 		"chains of "+ETO->QP+" flail around your legs and pulls"+
 		" you off balance!");
-	tell_object(ETO,"%^ORANGE%^You the copper chains of your flail"+
+	tell_object(ETO,"%^ORANGE%^You wrap the copper chains of your flail"+
 		" around "+targ->QCN+"'s legs and pull "+targ->QO+" "+
 		"off balance!");
      	tell_room(environment(ETO),"%^ORANGE%^"+ETO->QCN+""+

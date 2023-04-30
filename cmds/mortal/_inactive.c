@@ -9,30 +9,28 @@
 
 inherit DAEMON;
 
-int cmd_inactive() {
-   if(TP && TP->query_forced()) return 1;
-	tell_object(TP, wrap("You go inactive.\nPress RETURN to become active again.\n"));
-	TP->set_property("inactive", 1);
-	tell_room(environment(TP), TPQCN+" goes inactive.\n",
-	({ TP }) );
-        input_to("reactivate",1,time());
-	return 1;
+int cmd_inactive(){
+    object player = this_player();
+    if(player && player->query_forced()) return 1;
+    tell_object(player, wrap("You go inactive.\nPress RETURN to become active again.\n"));
+    player->set_property("inactive", 1);
+    tell_room(environment(player), ""+player->query_cap_name()+" goes inactive.\n", player );
+    input_to("reactivate", 1, time());
+    return 1;
 }
 
-int reactivate(string str,int when){
-        TP->remove_property("inactive");
-        tell_object(TP, "You become active.");
-        if((time()-when) <= 60)
-           tell_object(TP,"You have been inactive for "+(time()-when)+" seconds.");
-        else
-           tell_object(TP,"You have been inactive for "+((time()-when)/60)+" minutes.");
-        tell_room(environment(TP), TPQCN+" becomes active.\n", ({TP}) );
-	return 1;
-   return 1;
+int reactivate(string str, int when){
+    object player = this_player();
+    player->remove_property("inactive");
+    tell_object(player, "You become active.");
+    if((time()-when) <= 60) tell_object(player, "You have been inactive for "+(time()-when)+" seconds.");
+    else tell_object(player, "You have been inactive for "+((time()-when)/60)+" minutes.");
+    tell_room(environment(player), ""+player->query_cap_name()+" becomes active.\n", player );
+    return 1;
 }
 
-void help() {
-	write(
+void help(){
+    write(
 "
 %^CYAN%^NAME%^RESET%^
 
@@ -51,6 +49,7 @@ Your inactive status will appear on the who list as well will be appended to you
 quit, who, pkilling, rules
 
 "
-	);
-	return 1;
+    );
+    return 1;
 }
+

@@ -35,24 +35,26 @@ varargs int thaco(int level, string myclass, object ob)
         if (ob->query("new_class_type")) {
             ret = 0;
             // fighter number of attacs
-            if ((int)ob->query_property("transformed") || (int)ob->query_property("dance-of-cuts")) {
-                ret = (int)ob->query_level();
-                ret = ret - 20;
-                ret = ret * -1;
-                return ret;
-            }
-            classes = (string*)ob->query_classes();
-            if (!sizeof(classes)) {
-                return 0;
-            }
-            for (i = 0; i < sizeof(classes); i++) {
-                file = DIR_CLASSES + "/" + classes[i] + ".c";
-                if (!file_exists(file)) {
-                    continue;
-                }
-                bab = file->attack_bonus(ob);
+            //if ((int)ob->query_property("transformed") || (int)ob->query_property("dance-of-cuts")) {
+            //    ret = (int)ob->query_level();
+            //    ret = ret - 20;
+            //    ret = ret * -1;
+            //    return ret;
+            //}
+            //classes = (string*)ob->query_classes();
+            //if (!sizeof(classes)) {
+            //    return 0;
+            //}
+            
+            bab = ob->base_attack();
+            //for (i = 0; i < sizeof(classes); i++) {
+            //    file = DIR_CLASSES + "/" + classes[i] + ".c";
+            //    if (!file_exists(file)) {
+            //        continue;
+            //    }
+            //    bab = fileob->attack_bonus(ob);
                 ret += (bab < 0 ? 0 : bab);
-            }
+            //}
 
             ret = ret - 20;
             ret = ret * -1;
@@ -321,22 +323,31 @@ varargs ac_bonus(object who, object attacker)
 
 varargs int hit_bonus(object who, object targ, int attack_num, object current, int touch)
 {
-    int th, to_hit, tmp;
-    int i, j, min, hold, mysize, fired, bab_scale, pen;
-    string* classes;
-    object ammo;
+    //int th, to_hit, tmp;
+    //int i, j, min, hold, mysize, fired, bab_scale, pen;
+    //string* classes;
+    //object ammo;
 
-    th = 0;
+    //th = 0;
 
     if (!objectp(who)) {
         return 0;
     }
+    
+    return who->hit_bonus(targ, attack_num, current, touch);
+}
+
+    /*
+    
     if (who->query_unconscious() || who->query_bound()) {
         return 0;
     }
     if (!objectp(targ)) {
         return 0;
     }
+    
+    
+    
     //in 3ed you get base attack bonus for your first attack and then
     //-5 for every subsequent attack which is actually included
     //in the bab tables so attack 1 is full bonus, attack 2
@@ -467,6 +478,7 @@ varargs int hit_bonus(object who, object targ, int attack_num, object current, i
     }
     return to_hit;
 }
+*/
 
 //flag = 1 for a touch attack - Saide
 varargs int process_hit(object who, object targ, int attack_num, mixed current, object DebugOb, int flag, int mod)

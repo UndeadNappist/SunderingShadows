@@ -22,6 +22,7 @@ void create()
     set_description("This spell will animate any foliage, roots, or plants in an area for the purpose of protecting the caster. The animated plants will take on the essence of plants from all different aspects of the wild. The plants will have the same characteristics as those ordinarily found in the wilds, but will be of much smaller scale.");
     set_verbal_comp();
     set_somatic_comp();
+    summon_spell();
     set_helpful_spell(1);
 }
 
@@ -34,11 +35,13 @@ int preSpell()
         return 0;
     }
 
+    /*
     if(present("plant 4",place))
     {
         tell_object(caster,"There are already too many animated plants here. You can't create any more.");
         return 0;
     }
+    */
 
     return 1;
 }
@@ -61,7 +64,7 @@ spell_effect(int prof)
         return;
     }
 
-    num = 8;
+    num = 10 + clevel / 5;
 
     for(i=0;i<num;i++)
     {
@@ -72,11 +75,13 @@ spell_effect(int prof)
 
         plant->set("aggressive",1);
         plant->remove_property("swarm");
-        plant->set_mlevel("fighter",clevel);
-        plant->set_guild_level("fighter",clevel);
+        plant->set_owner(caster);
+        plant->setup_minion(clevel, spell_level, "lesser");
+        //plant->set_mlevel("fighter",clevel);
+        //plant->set_guild_level("fighter",clevel);
         plant->set_attacks_num(0);
-        plant->set_max_hp(clevel*8+30);
-        plant->set_hp(plant->query_max_hp());//kinda silly to be badly injured on summon
+        //plant->set_max_hp(clevel*8+30);
+        //plant->set_hp(plant->query_max_hp());//kinda silly to be badly injured on summon
         plant->set_property("spelled",({TO}));
         plant->set_property("spell_creature",TO);
         plant->set_property("spell",TO);
@@ -88,8 +93,8 @@ spell_effect(int prof)
         plant->set_new_exp(1,"low");
         plant->set_property("minion", caster);
         plant->move(environment(caster));
-        caster->add_follower(plant);
-        caster->add_protector(plant);
+        //caster->add_follower(plant);
+        //caster->add_protector(plant);
 
         tell_room(place,"%^BOLD%^%^GREEN%^A bit of foliage near "+caster->QCN+" comes to life and transforms into a miniature "+plant->QCN+"!",caster);
         tell_object(caster,"%^BOLD%^%^GREEN%^A bit of foliage near you comes to life and transforms into a miniature "+plant->QCN+"!");

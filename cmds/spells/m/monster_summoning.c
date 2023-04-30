@@ -18,6 +18,7 @@ void create() {
 "monsters will vanish.");
     set_verbal_comp();
     set_somatic_comp();
+    summon_spell();
     set_components(([
       "mage" : ([ "tiny bag" : 1, "small candle" : 1, ]),
     ]));
@@ -75,6 +76,8 @@ spell_effect(int prof) {
         caster->add_protector(mon);
         mon->move(place);
         caster->add_follower(mon);
+        mon->set_owner(caster);
+        mon->setup_minion(clevel, spell_level, "standard");
         tell_room(place,mon->query_short()+" appears near "+caster->QCN+".", caster);
         tell_object(caster, mon->query_short()+" appears near you.");
         if (foes != ({}) && target != caster) {

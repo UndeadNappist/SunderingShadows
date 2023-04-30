@@ -40,7 +40,10 @@ void create() {
    set_property("no bows",1);
    set_spoken("wizish");
    command("speech speak thick tsvarnen accent");
+   set_storage_room("/d/npc/storage/deku_metal_storage");
 
+   if(!clonep())
+       return;
 
     ob = new("/d/common/obj/armour/cloak_hooded");
        ob->move(TO);
@@ -49,6 +52,4 @@ void create() {
        ob->set_property("enchantment",3);
        ob->se_property("monsterweapon",1);
        command("wear cloak");
-
-   set_storage_room("/d/npc/storage/deku_metal_storage");
 }

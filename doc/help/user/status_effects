@@ -79,7 +79,7 @@ A creature gets 1d(lvl/2) health points of regeneration per round as part of its
 Creatures with rend take 1d(1+lvl/5) untyped damage for each stack of rend each round, based on the level of the creature being rent. Undead creatures are immune to rend. Each round, one stack of rend falls off the target.
 
 %^CYAN%^Sickened%^RESET%^
-All core skills, attack bonuses, damage bonuses, and saves are reduced by lvl/12+1. The effect is cumulative but usually won't last for long.
+All core skills, attack bonuses, damage bonuses, and saves are reduced by lvl/12+1.
 
 %^CYAN%^Sleeping%^RESET%^
 A sleeping creature functions as if under paralysis, but any attack will %^ORANGE%^<wake>%^RESET%^ them and stop the effect. Sleeping creatures lose their dexterity bonus to armor class.

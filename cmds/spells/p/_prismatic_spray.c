@@ -31,8 +31,8 @@ void create()
 
 void spell_effect(int prof)
 {
-    object *attackers,*targs=({}),tmp;
-    int i,hits;
+    object *attackers, *targs = ({}), tmp;
+    int i, hits;
 
     theProf = prof;
 
@@ -41,12 +41,14 @@ void spell_effect(int prof)
         dest_effect();
         return;
     }
+
     if (!present(target, environment(caster)))
     {
         tell_object(caster,"Your target is no longer here.");
         dest_effect();
         return;
     }
+
     if(!caster->ok_to_kill(target))
     {
         dest_effect();
@@ -55,40 +57,47 @@ void spell_effect(int prof)
 
     tell_object(caster,"%^BOLD%^YELLOW%^You chant a few words and point your hand at "+target->QCN+".");
     tell_object(target,"%^BOLD%^YELLOW%^"+caster->QCN+" chants a words and points "+caster->QP+" hand at you!");
-    tell_room(place,"%^BOLD%^YELLOW%^"+caster->QCN+" chants a few words and points "+caster->QP+" hand at "+target->QCN+"!",({target,caster}));
+    tell_room(place, "%^BOLD%^YELLOW%^"+caster->QCN+" chants a few words and points "+caster->QP+" hand at "+target->QCN+"!",({target,caster}));
+
     spell_kill(target, caster);
 
     hits = clevel / 11;
 
-    if(caster->query_mystery() == "heavens" && caster->query_class_level("oracle") > 30)
+    if (caster->query_mystery() == "heavens" && caster->query_class_level("oracle") > 30)
         heavens = BONUS_D->query_stat_bonus(caster, "charisma") / 2;
     
     hits += heavens;
 
     attackers = target_selector();
-    attackers = distinct_array(attackers);
-    attackers -= ({ target });
 
-
-    if(sizeof(attackers))
+    if(arrayp(attackers) && sizeof(attackers))
     {
-        for(i=0;i<sizeof(attackers);i++)
+        attackers = distinct_array(attackers);
+        attackers -= ({ target });
+
+        for (i = 0; i < sizeof(attackers); ++i)
         {
-            if(!objectp(attackers[i])) continue;
-            if(sizeof(targs) < hits) targs += ({ attackers[i] });
+            if(!objectp(attackers[i]))
+                continue;
+
+            if(sizeof(targs) < hits)
+                targs += ({ attackers[i] });
         }
     }
 
     targs += ({ target });
 
-    for(i=0;i<sizeof(targs);i++)
+    for (i = 0; i < sizeof(targs); ++i)
     {
-        if(!objectp(targs[i])) { continue; }
+        if (!objectp(targs[i]))
+            continue;
+
         tell_object(caster,"%^BOLD%^A rainbow of colors flash from your hand striking "+targs[i]->QCN+"!");
         tell_object(targs[i],"%^BOLD%^A rainbow of colors flash from "+caster->QCN+"'s hand striking you!");
         tell_room(place,"%^BOLD%^A rainbow of colors flash from "+caster->QCN+"'s hand striking "+targs[i]->QCN+"!",({caster,targs[i]}));
 
-        if(targs[i]->query_level() < caster->query_level() - 10) targs[i]->set_temporary_blinded(2);
+        if (targs[i]->query_level() < caster->query_level() - 10)
+            targs[i]->set_temporary_blinded(2);
 
         flash(targs[i],0);
     }
@@ -100,9 +109,13 @@ void spell_effect(int prof)
 
 void flash(object targ, int iteration)
 {
-    if(!iteration) { roll = roll_dice(1,8); }
-    else { roll = roll_dice(1,7); } // the '8' reroll should only opt from the normal rays, but run it twice.
-    if(!present(targ,place)) return;
+    if (!iteration)
+        roll = roll_dice(1, 8);
+    else
+        roll = roll_dice(1, 7); // the '8' reroll should only opt from the normal rays, but run it twice.
+
+    if (!present(targ, place))
+        return;
 
     switch (roll)
     {
@@ -115,18 +128,23 @@ void flash(object targ, int iteration)
     case(7): ray7(targ);    break;
     case(8): flash(targ,1); break;
     }
-    if(iteration == 1) { flash(targ,2); } // run it a second time - two rays for the lucky roll of 8!
+
+    if (iteration == 1)
+        flash(targ, 2); // run it a second time - two rays for the lucky roll of 8!
 }
 
 
 void ray1(object targ)
 {
-    if(!objectp(targ)) return;
+    if (!objectp(targ))
+        return;
 
     set_save("reflex");
-    if(do_save(targ, heavens))
+    if (do_save(targ, heavens))
     {
-        if(evade_splash(targ)) return;
+        if(evade_splash(targ))
+            return;
+
         tell_object(targ,"%^BOLD%^%^RED%^A blinding red light grazes you!");
         tell_room(place,"%^BOLD%^%^RED%^A blinding red light grazes "+targ->QCN+"!",targ);
         damage_targ(targ, targ->return_target_limb(), sdamage/2,"fire");
@@ -141,12 +159,15 @@ void ray1(object targ)
 
 void ray2(object targ)
 {
-    if(!objectp(targ)) return;
+    if (!objectp(targ))
+        return;
 
     set_save("reflex");
     if(do_save(targ, heavens))
     {
-        if(evade_splash(targ)) return;
+        if(evade_splash(targ))
+            return;
+
         tell_object(targ,"%^BOLD%^A blinding orange light grazes you!");
         tell_room(place,"%^BOLD%^A blinding orange light grazes "+targ->QCN+"!",targ);
         damage_targ(targ, targ->return_target_limb(), sdamage/2,"acid");
@@ -161,13 +182,16 @@ void ray2(object targ)
 
 void ray3(object targ)
 {
-    if(!objectp(targ)) return;
+    if(!objectp(targ))
+        return;
 
     set_save("reflex");
 
     if(do_save(targ, heavens))
     {
-        if(evade_splash(targ)) return;
+        if (evade_splash(targ))
+            return;
+
         tell_object(targ,"%^BOLD%^%^YELLOW%^A blinding yellow light grazes you!");
         tell_room(place,"%^BOLD%^%^YELLOW%^A blinding yellow light grazes "+targ->QCN+"!",targ);
         damage_targ(targ, targ->return_target_limb(), sdamage/2,"electricity");
@@ -183,24 +207,28 @@ void ray3(object targ)
 //changed this ray to half dmg, blue is already instakill with a save so they don't need two!
 void ray4(object targ)
 {
-    if (!objectp(targ)) {
+    if (!objectp(targ))
         return;
-    }
+
     tell_object(targ, "%^BOLD%^%^GREEN%^A blinding green light burns into you!");
     tell_room(place, "%^BOLD%^%^GREEN%^A blinding green light burns into " + targ->QCN + "!", targ);
     set_save("fort");
 
-    if (!do_save(targ, heavens)) {
+    if (!do_save(targ, heavens))
+    {
         // Disadvantage should be the same as in FOD.
-        if (combat_death_save(targ, heavens - 6)) {
+        if (combat_death_save(targ, heavens - 6))
+        {
             tell_object(caster, "" + targ->QCN + " seems to struggle for a minute but recovers quickly.");
             tell_object(targ, "You struggle for a minute but recover quickly.");
             tell_room(place, "" + targ->QCN + " struggles for a minute but recovers quickly.", ({ targ, caster }));
             return;
         }
+
         POISON_D->ApplyPoison(targ, "deathblade", caster, "injury");
         return;
     }
+
     POISON_D->ApplyPoison(targ, "black adder venom", caster, "injury");
 }
 
@@ -210,12 +238,14 @@ void ray5(object targ)
     int i;
     object corpse,*inv;
 
-    if(!objectp(targ)) return;
+    if(!objectp(targ))
+        return;
+
     tell_object(targ,"%^BOLD%^%^BLUE%^A blinding blue light burns into you!");
     tell_room(place,"%^BOLD%^%^BLUE%^A blinding blue light burns into "+targ->QCN+"!",targ);
 
     set_save("fort");
-    if(!do_save(targ, heavens))
+    if (!do_save(targ, heavens))
     {
         if (targ->query_property("no death") || userp(caster))
         {
@@ -228,24 +258,23 @@ void ray5(object targ)
         tell_object(targ,"You feel very cold as your body starts to turn to stone.");
         tell_room(place,""+targ->QCN+" slowly stops moving as "+targ->QP+" body starts to turn to stone.",targ);
 
-        if(userp(caster)) //let this KO in PK, rather than instakill
-        {
+        if (userp(caster)) //let this KO in PK, rather than instakill
             damage_targ(targ, targ->return_target_limb(), ((int)targ->query_hp() +50),"untyped");
-        }
         else
-        {
             damage_targ(targ, targ->return_target_limb(), ((int)targ->query_max_hp()*5),"untyped");
-        }
 
-        corpse = present("corpse",place);
-        if (!present("corpse",place)) return;
+        corpse = present("corpse", place);
 
+        if (!present("corpse", place))
+            return;
         else
         {
             inv = all_inventory(corpse);
-            for(i=0;i<sizeof(inv);i++)
+            for (i = 0; i < sizeof(inv); ++i)
             {
-                if(!objectp(inv[i])) continue;
+                if(!objectp(inv[i]))
+                    continue;
+
                 inv[i]->move(place);
             }
             corpse->remove();
@@ -262,12 +291,14 @@ void ray5(object targ)
 
 void ray6(object targ)
 {
-    if(!objectp(targ)) return;
+    if (!objectp(targ))
+        return;
+
     tell_object(targ,"%^BOLD%^%^CYAN%^A blinding indigo light burns into you!");
     tell_room(place,"%^BOLD%^%^CYAN%^A blinding indigo light burns into "+targ->QCN+"!",targ);
 
     set_save("will");
-    if(!do_save(targ, heavens))
+    if (!do_save(targ, heavens))
     {
         targ->set_paralyzed(ROUND_LENGTH * roll_dice(1,4),"You are still shaking after being hit by the flash of light!");
         return;
@@ -280,7 +311,9 @@ void ray6(object targ)
 
 void ray7(object targ)
 {
-    if(!objectp(targ)) { return; }
+    if(!objectp(targ))
+        return;
+
     tell_object(targ,"%^BOLD%^%^MAGENTA%^A blinding violet light burns into you!");
     tell_room(place,"%^BOLD%^%^MAGENTA%^A blinding violet light burns into "+targ->QCN+"!",targ);
 
@@ -291,20 +324,21 @@ void ray7(object targ)
     }
 
     set_save("will");
-    if(!do_save(targ, heavens))
+    if (!do_save(targ, heavens))
     {
-        call_out("move_me",1,targ);
+        call_out("move_me", 1, targ);
         return;
     }
 
-    tell_object(targ,"You concentrate and fight off the ray's effects.");
-    tell_room(place,""+targ->QCN+" concentrates for a moment and shakes off the ray's effects.",targ);
+    tell_object(targ, "You concentrate and fight off the ray's effects.");
+    tell_room(place, ""+targ->QCN+" concentrates for a moment and shakes off the ray's effects.", targ);
 }
 
 
 void move_me(object targ)
 {
-    if(!objectp(targ)) return;
+    if(!objectp(targ))
+        return;
 
     if(targ == caster)
     {
@@ -345,5 +379,7 @@ void move_me(object targ)
 void dest_effect()
 {
     ::dest_effect();
-    if(objectp(TO)) TO->remove();
+
+    if(objectp(TO))
+        TO->remove();
 }

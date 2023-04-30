@@ -245,7 +245,8 @@ string write_prompt()
             prompt = replace_string(prompt, "$P",
                                     "0");
         }
-
+        prompt = replace_string(prompt, "$_UP", "" + this_player()->query_property("raised"));
+        prompt = replace_string(prompt, "$_MP", "" + MAX_RAISE);
         prompt = replace_string(prompt, "$EL", strlen(this_player()->query("elementalist")) ? this_player()->query("elementalist") : "none");
         prompt = replace_string(prompt, "$D", path );
         prompt = replace_string(prompt, "$h",

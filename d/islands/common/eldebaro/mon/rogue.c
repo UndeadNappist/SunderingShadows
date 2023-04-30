@@ -57,6 +57,10 @@ void create()
     TO->add_money("copper",random(25000)+5000);
     remove_property("swarm");
     toggle_steal();
+    
+    if(!clonep())
+        return;
+    
     new(ELOB+"instructions")->move(TO);
     ob = new(ELOB+"coif_of_silence");
     if(random(6)) ob->set_property("monsterweapon", 1);

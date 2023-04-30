@@ -14,7 +14,8 @@ void create()
 {
    ::create();
     set_spell_name("holy orb");
-    set_spell_level(([ "cleric" : 6 ]));
+    set_spell_level(([ "cleric" : 6, "oracle" : 6 ]));
+    set_domains("good");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS holy orb");
     set_description("The orb is a spell normally prepared by a priest who expects to encounter enemies whose alignment "

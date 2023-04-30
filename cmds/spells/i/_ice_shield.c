@@ -13,7 +13,8 @@ void create() {
     ::create();
     set_author("ares");
     set_spell_name("ice shield");
-    set_spell_level(([ "cleric" : 4 ]));
+    set_spell_level(([ "cleric" : 4, "druid" : 4 ]));
+    set_circle("winter");
     set_spell_sphere("invocation_evocation");
     set_damage_desc("cold, 2 AC");
     set_bonus_type("deflection");

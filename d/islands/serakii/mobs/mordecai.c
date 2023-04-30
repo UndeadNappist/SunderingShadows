@@ -42,6 +42,9 @@ void create(){
    set_spoken("wizish");
    command("speech %^C242%^speak in an %^C160%^arrogant %^C242%^voice%^CRST%^");
 
+    if(!clonep())
+        return;
+    
     ob = new("/d/common/obj/armour/robe");
        ob->set_short("%^C255%^A white satin robe%^CRST%^");
        ob->move(TO);

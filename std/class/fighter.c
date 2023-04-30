@@ -74,7 +74,8 @@ int number_of_attacks(object player)
 {
     int num;
     if(!objectp(player)) { return 0; }
-    num = "/daemon/bonus_d.c"->attack_bonus("fighter",player->query_class_level("fighter"),player);
+    //num = "/daemon/bonus_d.c"->attack_bonus("fighter",player->query_class_level("fighter"),player);
+    num = attack_bonus(player);
     num = num / 7;
     return num;
 }

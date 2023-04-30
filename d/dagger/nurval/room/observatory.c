@@ -32,8 +32,13 @@ int soulwell_trav()
 
 void reset()
 {
+    object here;
+
     ::reset();
 
-    if(!present("reaver", TP))
-        new("/realms/kismet/mon/ashraplot/d_priest")->move(TO);
+    if (!objectp(here))
+        return;
+
+    if(!present("reaver", here))
+        new("/realms/kismet/mon/ashraplot/d_priest")->move(here);
 }

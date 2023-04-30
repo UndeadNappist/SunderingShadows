@@ -1,6 +1,6 @@
 // planar_ally.c
 #include <std.h>
-inherit WEAPONLESS;
+inherit MINION;
 
 void do_create(int setlevel);
 void do_customize(string setdeity);

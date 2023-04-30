@@ -87,7 +87,27 @@ void create(){
    set_property("no dominate",1);
    set_property("no death",1);
 
+   set_emotes(3, ({
+"%^C241%^Commander Ashton%^C073%^ flips "+
+"through %^C143%^maps %^C073%^in front of him.%^CRST%^\n",
+"%^C065%^A %^C245%^messenger %^C065%^runs in, "+
+"handing %^C240%^Ashton %^C065%^new "+
+"%^C143%^reports %^C065%^from the field.%^CRST%^\n",
+"%^C060%^Ashton speaks in a %^C246%^terse%^C060%^ "+
+"%^C124%^commanding%^C060%^ tone%^CRST%^ Bring "+
+"me the death knight's axe! Only when its "+
+"destroyed can we have rest.%^RESET%^\n",
+}), 0);
 
+   if(!clonep())
+       return;
+   
+   ::rally(); //free rally for commander
+   recruited = 0;
+
+   broadcast_area("/d/islands/graez/rooms/", "\n%^C186%^Graez's defenders "+
+   "rally as %^C220%^Commander Ashton%^C186%^ takes the %^C247%^field%^C186%^!%^CRST%^\n");
+   
    ob = new("/d/common/obj/armour/fullplate");
    ob->move(TO);
    ob->set_property("enchantment",5);
@@ -102,23 +122,6 @@ void create(){
    command("speech %^C060%^speak in a "+
    "%^C246%^terse%^C060%^ %^C124%^commanding%^C060%^ "+
    "tone");
-   set_emotes(3, ({
-"%^C241%^Commander Ashton%^C073%^ flips "+
-"through %^C143%^maps %^C073%^in front of him.%^CRST%^\n",
-"%^C065%^A %^C245%^messenger %^C065%^runs in, "+
-"handing %^C240%^Ashton %^C065%^new "+
-"%^C143%^reports %^C065%^from the field.%^CRST%^\n",
-"%^C060%^Ashton speaks in a %^C246%^terse%^C060%^ "+
-"%^C124%^commanding%^C060%^ tone%^CRST%^ Bring "+
-"me the death knight's axe! Only when its "+
-"destroyed can we have rest.%^RESET%^\n",
-}), 0);
-
-   ::rally(); //free rally for commander
-   recruited = 0;
-
-   broadcast_area("/d/islands/graez/rooms/", "\n%^C186%^Graez's defenders "+
-   "rally as %^C220%^Commander Ashton%^C186%^ takes the %^C247%^field%^C186%^!%^CRST%^\n");
 
 }
 

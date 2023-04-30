@@ -52,9 +52,9 @@ void spell_effect(int prof)
     tell_object(target, "%^C248%^" + caster->query_cap_name() + " finishes a prayer and crushes you with unrelenting force!%^CRST%^");
     
     if(do_save(target, 0))
-        target->cause_typed_damage(target, "torso", sdamage / 2, "untyped");
+        damage_targ(target, "torso", sdamage / 2, "untyped");
     else
-        target->cause_typed_damage(target, "torso", sdamage, "untyped");
+        damage_targ(target, "torso", sdamage, "untyped");
         
     target->set_property("implosion", 1);
     
@@ -69,13 +69,15 @@ void keep_crushing(int dur)
         return;
     }
     
+    spell_kill(caster, target);
+    define_base_damage(0);
     tell_object(target, "%^C248%^The crushing force squeezes you mercilessly!%^CRST%^");
     tell_room(place, "%^C248%^The crushing force squeezes " + target->query_cap_name() + " mercilessly!%^CRST%^", target);
     
     if(do_save(target, 0))
-        target->cause_typed_damage(target, "torso", sdamage / 6, "untyped");
+        damage_targ(target, "torso", sdamage / 8, "untyped");
     else
-        target->cause_typed_damage(target, "torso", sdamage / 3, "untyped");
+        damage_targ(target, "torso", sdamage / 5, "untyped");
     
     dur--;
     if(dur <= 0)

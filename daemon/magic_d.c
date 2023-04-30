@@ -332,6 +332,7 @@ void build_index()
                         spelltable["discipline"] = str2->query_discipline();
                         spelltable["heritage"] = str2->query_heritage();
                         spelltable["feats"] = str2->query_feats_required();
+                        sizeof(str2->query_circle()) && spelltable["circle"] = str2->query_circle();
                         if(sizeof(str2->query_domains()))
                         {                          
                             spelltable["divine_domain"] = str2->query_domains();
@@ -383,6 +384,7 @@ mapping index_castable_spells(object player, string myclass)
     string playerdisc = player->query_discipline();
     string warlockheritage = player->query("warlock heritage");
     string playerway = player->query("monk way");
+    string circle = player->query("druid circle");
     string classfile;
 
     // Pseudoclass for classes that use other classes spell lists, such as sorcerers.
@@ -434,7 +436,14 @@ mapping index_castable_spells(object player, string myclass)
                 continue;
         }
         
-        if(pclass == "cleric" || pclass == "druid")
+        if(pclass == "druid")
+        {
+            domain = spellIndex[spellfile]["circle"];
+            if(domain && domain != "me" && member_array(circle, domain) < 0)
+                continue;
+        }
+        
+        if(pclass == "cleric")
         {   
             int success = 0;
             int exclude = 0;
@@ -448,12 +457,14 @@ mapping index_castable_spells(object player, string myclass)
                     if(member_array(str, player->query_divine_domain()) >= 0)
                         success++;
                     
+                    /*
                     if(pclass == "druid")
                     {
                         //Druids have sun domain built in
                         if(str == "sun")
                             success++;
                     }
+                    */
                 }
                 
                 if(!success)

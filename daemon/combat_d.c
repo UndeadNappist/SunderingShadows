@@ -113,13 +113,13 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
     }
     if(FEATS_D->usable_feat(victim, "inconstant position"))
         MissChance += 10;
-    
+
     if(FEATS_D->usable_feat(victim, "sharp shooting"))
         MissChance += 20;
 
     if(FEATS_D->usable_feat(victim, "eternal warrior") && victim->query("available focus") == 2)
         MissChance += 10;
-    
+
     if(victim->query_property("shadow walk"))
         MissChance += 10;
 
@@ -150,7 +150,7 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
     //Ranger with wild hunter active sees through quarry's concealment
     if(attacker->query_property("quarry") == victim && FEATS_D->is_active(attacker, "wild hunter"))
         MissChance = 0;
-    
+
     if(FEATS_D->has_feat(attacker, "sharp shooting"))
         MissChance -= 20;
 
@@ -217,7 +217,7 @@ varargs int extra_hit_calcs(object attacker, object victim, object weapon, strin
                 }
             }
             if (FEATS_D->usable_feat(victim, "counter") || (attacker->validate_combat_stance("one hander") && FEATS_D->usable_feat(attacker, "elaborate parry"))) {
-                if (random(4)) {
+                if (!random(4)) {
                     counter_attack(victim);
                 }
             }
@@ -614,7 +614,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
                              reduction += 5;
                     }
                 }
-                
+
                 if(targ->is_class("warlock"))
                 {
                     if(eldritch_shield = targ->query_property("eldritch shield"))
@@ -623,7 +623,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
                         {
                             reduction += eldritch_shield;
                             eldritch_shield -= damage;
-                            
+
                             if(eldritch_shield <= 0)
                             {
                                 tell_object(targ, "%^MAGENTA%^You feel the eldritch shield fade away.%^RESET%^");
@@ -692,7 +692,7 @@ varargs int typed_damage_modification(object attacker, object targ, string limb,
         }
     }
     */
-    
+
     if(damage > 0 && FEATS_D->usable_feat(targ, "way of the learned pupil"))
         USER_D->regenerate_pool(targ, 2 + targ->query_class_level("monk") / 15, 0, "ki");
 
@@ -726,7 +726,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             target->set_temporary_blinded(1, "Your vision is clouded!");
         }
         if (FEATS_D->usable_feat(attacker, "spell critical")) {
-            tell_object(attacker, "%^CYAN%^You unleash wave of %^YELLOW%^w%^MAGENTA%^i%^WHITE%^l%^RED%^d %^GREEN%^m%^BLUE%^a%^WHITE%^g%^ORANGE%^i%^RED%^c%^RESET%^%^CYAN%^ at " + ename + "!%^RESET%^");
+            tell_object(attacker, "%^CYAN%^You unleash a wave of %^YELLOW%^w%^MAGENTA%^i%^WHITE%^l%^RED%^d %^GREEN%^m%^BLUE%^a%^WHITE%^g%^ORANGE%^i%^RED%^c%^RESET%^%^CYAN%^ at " + ename + "!%^RESET%^");
             tell_object(target, "%^CYAN%^" + pname + " unleashes a wave of %^YELLOW%^w%^MAGENTA%^i%^WHITE%^l%^RED%^d %^GREEN%^m%^BLUE%^a%^WHITE%^g%^ORANGE%^i%^RED%^c%^RESET%^%^CYAN%^ to burn through you!%^RESET%^");
             tell_room(environment(attacker), "%^CYAN%^" + pname + " unleashes a wave of %^YELLOW%^w%^MAGENTA%^i%^WHITE%^l%^RED%^d %^GREEN%^m%^BLUE%^a%^WHITE%^g%^ORANGE%^i%^RED%^c%^RESET%^%^CYAN%^ at " + ename + "!%^RESET%^", ({ target, attacker }));
             target->cause_typed_damage(target, target->return_target_limb(), 10 + roll_dice(1 + attacker->query_character_level() / 15, 8), "untyped");
@@ -746,8 +746,8 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
         {
             if(attacker->query_class_level("oracle") >= 31)
             {
-                tell_object(attacker, "%^MAGENTA%^BOLD%^Your weapon strikes with magical force!%^RESET%^");
-                tell_object(target, "MAGENTA%^BOLD%^" + pname + "'s weapon strikes you with magical force!%^RESET%^");
+                tell_object(attacker, "%^MAGENTA%^%^BOLD%^Your weapon strikes with magical force!%^RESET%^");
+                tell_object(target, "%^MAGENTA%^%^BOLD%^" + pname + "%^MAGENTA%^%^BOLD%^'s weapon strikes you with magical force!%^RESET%^");
                 target->cause_typed_damage(target, target->return_target_limb(), 10 + roll_dice(1 + attacker->query_class_level("oracle") / 15, 8), "force");
             }
         }
@@ -877,7 +877,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
         alignments = ({ "alignment 147", "alignment 369", "alignment 123", "alignment 789" });
         enemy_alignments = ({ "369", "147", "789", "123" });
         align_text = ({ "%^C220%^h%^C226%^ol%^C220%^y w%^C226%^rat%^C220%^h", "%^C124%^u%^C160%^n%^C196%^ho%^C160%^l%^C124%^y %^C160%^f%^C196%^u%^C160%^r%^C124%^y", "%^C214%^r%^C220%^i%^C226%^ghteo%^C220%^u%^C214%^s j%^C220%^u%^C226%^sti%^C220%^c%^C214%^e", "%^C089%^re%^C090%^be%^C091%^ll%^C090%^io%^C089%^us m%^C090%^i%^C091%^g%^C090%^h%^C089%^t" });
-        a_colors = ({ "%^C255%^", "%^C259%^", "%^C021%^", "%^C124%^" });
+        a_colors = ({ "%^C255%^", "%^C059%^", "%^C021%^", "%^C124%^" });
 
         target_align = (string)target->query_true_align();
         effective_level = attacker->query_prestige_level("magus");
@@ -909,20 +909,20 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             }
         }
     }
-    
+
     //Warlock eldritch strikes stuff
     if(attacker->is_class("warlock") && weapon)
     {
         string type, blasttype, wepname, my_name, your_name, my_poss, your_poss, damage_type;
         int glvl, strike_damage, ranged;
         object here, secondary, strikes;
-        
+
         strikes = attacker->query_property("eldritch strikes");
-        
+
         if(weapon == strikes)
         {
             glvl = attacker->query_guild_level("warlock");
-            
+
             if(!random(9 - glvl / 7))
             {
                 strike_damage = (weapon->query_wc() + 2) * (1 + glvl / 10);
@@ -934,9 +934,9 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                 your_poss = target->query_possessive();
                 here = environment(attacker);
                 ranged = weapon->is_lrweapon();
-                
+
                 weapon->set_property("magic", 1);
-                
+
                 switch(blasttype)
                 {
                     case "lifedrinker":
@@ -955,7 +955,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                     damage_type = "negative energy";
                     attacker->add_hp(10 + roll_dice(glvl / 4, 4));
                     break;
-                    
+
                     case "brimstone":
                     if(ranged)
                     {
@@ -964,7 +964,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                         tell_room(here,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as "+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^'s " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ fires into "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^, catching "+target->query_objective()+" alight!%^RESET%^",({ attacker, target}));
                     }
                     else
-                    {                        
+                    {
                         tell_object(attacker,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as your " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ slashes "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^, catching "+target->query_objective()+" alight!%^RESET%^");
                         tell_object(target,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as "+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^'s " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ slashes you, and you catch alight!%^RESET%^");
                         tell_room(here,"%^RESET%^%^RED%^F%^BOLD%^%^RED%^l%^YELLOW%^a%^BOLD%^%^WHITE%^m%^BOLD%^%^RED%^e%^RESET%^%^RED%^s %^RESET%^%^MAGENTA%^blaze up as "+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^'s " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ slashes "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^, catching "+target->query_objective()+" alight!%^RESET%^",({ attacker, target}));
@@ -980,7 +980,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                         }
                     }
                     break;
-                    
+
                     case "glacial":
                     if(ranged)
                     {
@@ -1003,9 +1003,9 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                             secondary->move(target);
                             secondary->activate(1 + glvl / 5, glvl / 2);
                         }
-                    }        
+                    }
                     break;
-                    
+
                     case "vitriolic":
                     if(ranged)
                     {
@@ -1014,7 +1014,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                         tell_room(here,"%^RESET%^%^MAGENTA%^"+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^'s " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ seems to melt away as it fires into "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^, leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon "+your_poss+" skin that continues to burn!%^RESET%^",({ attacker, target }));
                     }
                     else
-                    {                        
+                    {
                         tell_object(attacker,"%^RESET%^%^MAGENTA%^Your " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ seems to melt away as it makes contact with "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^, leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon "+your_poss+" skin that continues to burn! An instant later the " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ reforms, gleaming across the back of your hand!%^RESET%^");
                         tell_object(target,"%^RESET%^%^MAGENTA%^"+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^'s " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ seems to melt away as it makes contact with you, leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon your skin that continues to burn! An instant later the " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ reforms, gleaming across the back of "+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^'s hand!%^RESET%^");
                         tell_room(here,"%^RESET%^%^MAGENTA%^"+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^'s " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ seems to melt away as it makes contact with "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^, leaving a patch of c%^GREEN%^au%^MAGENTA%^st%^CYAN%^i%^MAGENTA%^c liquid upon "+your_poss+" skin that continues to burn! An instant later the " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ reforms, gleaming across the back of "+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^'s hand!%^RESET%^",({ attacker, target }));
@@ -1028,16 +1028,16 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                             secondary->move(target);
                             secondary->activate(1 + glvl / 5, glvl / 2);
                         }
-                    } 
+                    }
                     break;
-                    
+
                     case "beshadowed":
                     if(ranged)
                     {
                         tell_object(attacker,"%^RESET%^%^MAGENTA%^A precisely directed hint of %^RESET%^pow%^BOLD%^%^BLACK%^e%^RESET%^r %^MAGENTA%^leaves the " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ as you fire it into "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^, and "+target->query_subjective()+" blinks sightlessly!%^RESET%^");
                         tell_object(target,"%^RESET%^%^MAGENTA%^"+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^ fires "+my_poss+" " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^, and a %^RESET%^ha%^BOLD%^%^BLACK%^z%^RESET%^e %^MAGENTA%^of darkness briefly blurs your vision!%^RESET%^");
                         tell_room(here,"%^RESET%^%^MAGENTA%^"+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^ fires "+my_poss+" " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ into "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^, and "+target->query_subjective()+" blinks sightlessly!%^RESET%^",({ attacker, target }));
-                    }                    
+                    }
                     else
                     {
                         tell_object(attacker,"%^RESET%^%^MAGENTA%^A precisely directed hint of %^RESET%^pow%^BOLD%^%^BLACK%^e%^RESET%^r %^MAGENTA%^leaves the " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ as you plunge it into "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^, and "+target->query_subjective()+" blinks sightlessly!%^RESET%^");
@@ -1047,15 +1047,15 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                     damage_type = "void";
                     target->set_temporary_blinded(1);
                     break;
-                    
-                    case "binding":                         
+
+                    case "binding":
                     tell_object(attacker,"%^RESET%^%^MAGENTA%^You take a step back and unleash a j%^BOLD%^%^CYAN%^a%^RESET%^%^MAGENTA%^rr%^GREEN%^i%^BOLD%^%^GREEN%^n%^RESET%^%^MAGENTA%^g blast at "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^, knocking "+target->query_objective()+" from "+your_poss+" feet!%^RESET%^");
                     tell_object(target,"%^RESET%^%^MAGENTA%^"+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^ takes a step back and unleashes a j%^BOLD%^%^CYAN%^a%^RESET%^%^MAGENTA%^rr%^GREEN%^i%^BOLD%^%^GREEN%^n%^RESET%^%^MAGENTA%^g blast that knocks you from your feet!%^RESET%^");
                     tell_room(here,"%^RESET%^%^MAGENTA%^"+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^ takes a step back and unleashes a j%^BOLD%^%^CYAN%^a%^RESET%^%^MAGENTA%^rr%^GREEN%^i%^BOLD%^%^GREEN%^n%^RESET%^%^MAGENTA%^g blast at "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^, knocking "+target->query_objective()+" from "+your_poss+" feet!%^RESET%^%^RESET%^",({ attacker, target }));
                     damage_type = "force";
                     target->set_tripped(1,"%^BOLD%^%^CYAN%^You're still trying to get back on your feet!%^RESET%^");
                     break;
-                    
+
                     case "utterdark":
                     tell_object(attacker,"%^RESET%^%^MAGENTA%^Your " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ carves into "+your_name+"%^CRST%^%^RESET%^%^MAGENTA%^ and you unleash a blast of %^BOLD%^%^BLACK%^r%^RESET%^a%^BOLD%^%^BLACK%^w po%^RESET%^we%^BOLD%^%^BLACK%^r%^RESET%^%^MAGENTA%^, shattering "+your_poss+" strength!%^RESET%^");
                     tell_object(target,"%^RESET%^%^MAGENTA%^"+my_name+"%^CRST%^%^RESET%^%^MAGENTA%^'s " + wepname + "%^CRST%^%^RESET%^%^MAGENTA%^ carves into you and "+attacker->query_subjective()+" unleashes a blast of %^BOLD%^%^BLACK%^r%^RESET%^a%^BOLD%^%^BLACK%^w po%^RESET%^we%^BOLD%^%^BLACK%^r%^RESET%^%^MAGENTA%^, shattering your strength!%^RESET%^");
@@ -1069,17 +1069,17 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                             secondary->move(target);
                             secondary->activate(1 + glvl / 5, glvl / 2);
                         }
-                    } 
+                    }
                     break;
                 }
-                
+
                 objectp(target) && target->cause_typed_damage(target, target->return_target_limb(), roll_dice(1 + glvl / 10, 6), damage_type);
                 weapon->set_property("magic", -1);
             }
         }
     }
-    //END Warlock Section                  
-                
+    //END Warlock Section
+
     //Inquisitor Bane Stuff
     if(attacker->query_guild_level("inquisitor") && weapon)
     {
@@ -1136,19 +1136,19 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
         }
     }
     //END BANE SECTION
-    
+
     //AGENT OF CHAOS
     if(attacker->query_acquired_template() == "chaotic")
     {
         int glvl, bonus;
         object eff;
-        
+
         glvl = attacker->query_base_character_level();
-        
+
         if(!random(15 - glvl / 7))
         {
             bonus = max( ({ BONUS_D->query_stat_bonus(attacker, "wisdom"), BONUS_D->query_stat_bonus(attacker, "intelligence"), BONUS_D->query_stat_bonus(attacker, "charisma") }) );
-        
+
             if(!target->fort_save(attacker->query_base_character_level() + bonus))
             {
                 switch(roll_dice(1, 6))
@@ -1158,7 +1158,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                     break;
                     case 2:
                     eff = "/std/effect/status/dazzled.c";
-                    break; 
+                    break;
                     case 3:
                     eff = "/std/effect/status/fatigued.c";
                     break;
@@ -1172,7 +1172,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
                     eff = "/std/effect/status/sickened.c";
                     break;
                 }
-                
+
                 if(objectp(target) && objectp(eff))
                     if(!catch(eff->apply_effect(target, 1)))
                         tell_object(attacker, "%^C165%^Your attack causes a w%^C171%^a%^C177%^r%^C183%^p%^C177%^w%^C171%^a%^C165%^ve effect!%^CRST%^");
@@ -1180,15 +1180,15 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
         }
     }
     //END AGENT OF CHAOS
-    
+
     //CRIMSON TEMPLAR
     if(attacker->is_class("crimson templar") && sizeof(attacker->query_wielded()))
     {
         object owner;
-        
-        if(FEATS_D->active_feat(attacker, "banishing blade") && (owner = target->query_property("minion")))
+
+        if(FEATS_D->is_active(attacker, "banishing blade") && (owner = target->query_property("minion")))
         {
-            if(objectp(owner) && (owner->query_true_align() == 3 || owner->query_true_align() == 6 || owner->query_true_align() == 9))
+            if(objectp(owner) && (owner->query_true_align() == 3 || owner->query_true_align() == 6 || owner->query_true_align() == 7 || owner->query_true_align() == 8 || owner->query_true_align() == 9))
                 target && target->die();
         }
     }
@@ -1196,17 +1196,17 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
 
     if(!attacker || !target)
         return;
-    
+
     if(FEATS_D->has_feat(attacker, "cornugon smash"))
     {
         object eff;
-        
+
         if(attacker->query_property("power_attack") && BONUS_D->intimidate_check(target, attacker, 0) && !catch(eff = load_object("/std/effect/status/shaken")))
         {
             eff->apply_effect(target, 1);
         }
     }
-    
+
     //ADDITIONAL STEALTH DAMAGE
     if(target && attacker->query_property("additional stealth damage"))
     {
@@ -1216,7 +1216,7 @@ void check_extra_abilities(object attacker, object target, object weapon, int cr
             target && target->cause_typed_damage(target, target->return_target_limb(), bon, attacker->query_property("additional stealth damage"));
         }
     }
-    
+
     if(!target || !attacker)
         return;
 
@@ -1332,7 +1332,7 @@ int crit_damage(object attacker, object targ, object weapon, int size, int damag
         if (attacker->is_class("monk"))
         {
             mult += (int)"/std/class/monk.c"->critical_multiplier(attacker);
-            
+
             if(objectp(targ) && FEATS_D->usable_feat(attacker, "way of the merciful soul") && USER_D->spend_ki(attacker, 3))
             {
                 if(targ->query_hp_percent() < 25 && !targ->query_property("no death") && !targ->fort_save(attacker->query_guild_level("monk")))
@@ -1351,7 +1351,7 @@ int crit_damage(object attacker, object targ, object weapon, int size, int damag
                 }
             }
         }
-    }   
+    }
 
     mult -= 1;
     //Odin's note that we already dealt normal damage and need to reduce multiplier by one
@@ -1379,7 +1379,7 @@ int crit_damage(object attacker, object targ, object weapon, int size, int damag
         }
     }
 
-    return crit_dam + damage;
+    return crit_dam;
 }
 
 int unarmed_enchantment(object who)
@@ -1402,6 +1402,7 @@ int unarmed_enchantment(object who)
 varargs void calculate_damage(object attacker, object targ, object weapon, string target_thing, int critical_hit)
 {
     int attacker_size, damage, mod;
+    int critical_damage;
     int res, eff_ench, ench;
     int i, j, mysize, sneak;
     int speed, enchantment, fired = 0, cant_shot=0, bonus_hit_damage = 0;// added for new stamina formula -Ares
@@ -1489,6 +1490,9 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         damage += COMBAT_D->unarmed_enchantment(attacker);
     }
 
+    if(critical_hit)
+        bonus_hit_damage += crit_damage(attacker, targ, weapon, attacker_size, damage, cant_shot);
+
     damage = damage_done(attacker, weapon, damage, fired);
 
     if (!objectp(targ) || !objectp(attacker)) {
@@ -1499,10 +1503,6 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         weapon->reaction_to_hit(targ, damage);
     }
 
-    if (critical_hit) {
-        damage = crit_damage(attacker, targ, weapon, attacker_size, damage, cant_shot);
-    }
-    
     if(targ && targ->query_property("warlocks curse") == attacker)
     {
         int wlvl = attacker->query_prestige_level("warlock");
@@ -1512,7 +1512,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         else
             damage += roll_dice(wlvl, 6);
     }
-    
+
     if(!random(4) && targ && !targ->query_property("warlocks curse") && FEATS_D->has_feat(attacker, "malevolent strike"))
         targ->set_property("warlocks curse", attacker);
 
@@ -1556,7 +1556,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         if(attacker->is_class("thief") || attacker->is_class("peerless_archer") || attacker->is_class("crimson_templar"))
         {
             float red, total_red;
-            
+
             //Sneak attack dice section
             sneak = attacker->query_prestige_level("thief") / 2;
             //Arcane trickster sneak attack progression
@@ -1588,7 +1588,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
             if(FEATS_D->usable_feat(targ, "danger sense") && targ->query_level() + 4 > attacker->query_level())
                 red += 0.50;
                 //sneak /= 2;
-            
+
             //Hexblades gain slight resistance to sneak attacks
             if(targ->is_class("hexblade"))
                 red += 0.25;
@@ -1603,7 +1603,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
                     red = 1.00;
                     //sneak = 0;
             }
-            
+
             if(red >= 1.00)
             {
                 sneak = 0;
@@ -1672,7 +1672,7 @@ varargs void calculate_damage(object attacker, object targ, object weapon, strin
         if(FEATS_D->is_active(attacker, "rending blows"))
             targ->set_property("rend", 1);
     }
-    
+
     if(sneak && damage && attacker->query_class_level("crimson_templar") >= 4)
     {
         targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(attacker->query_class_level("crimson_templar") / 3, 6), "divine");
@@ -1707,6 +1707,7 @@ int damage_done(object attacker, object weap, int damage, int isranged)
 {
     object* wielded;
     int prof;
+    string type;
 
     if (!objectp(attacker)) {
         return damage;
@@ -1717,68 +1718,60 @@ int damage_done(object attacker, object weap, int damage, int isranged)
     if (!objectp(weap)) {
         return damage;
     }
-    if (!weap->query_prof_type()) {
+    if(!weap->query_prof_type())
         return damage;
-    }
-    switch (weap->query_weapon_prof()) {
-    case "simple":  if (FEATS_D->usable_feat(attacker, "simple weapon proficiency")) {
-            prof = 100;
-    }
-        break;
 
-    case "martial": if (FEATS_D->usable_feat(attacker, "martial weapon proficiency")) {
-            prof = 100;
-    }
-        break;
+    type = weap->query_weapon_prof();
 
-    case "exotic":  if (FEATS_D->usable_feat(attacker, "exotic weapon proficiency")) {
-            prof = 100;
-    }
-        break;
-
-    default: prof = 30; break;
-    }
-
-    if (avatarp(attacker)) {
+    if(avatarp(attacker))
         prof = 100;
-    }
+    else if(FEATS_D->usable_feat(attacker, type + " weapon proficiency"))
+        prof = 100;
+    else
+        prof = 30;
 
-    if(FEATS_D->usable_feat(attacker, "advanced training"))
-        prof = to_int(prof * 1.10);
+    if(attacker->is_class("fighter") && FEATS_D->usable_feat(attacker, "advanced training"))
+        prof += 10;
 
-    if (pointerp(wielded = (object*)attacker->query_wielded()) && !attacker->query_property("shapeshifted")) {
-        if (isranged) {
-            if (FEATS_D->usable_feat(attacker, "deadeye")) {
-                prof = to_int(prof * 1.30);
-            }
-        }else if (attacker->validate_combat_stance("two hander")) {
-            if (FEATS_D->usable_feat(attacker, "strength of arm")) {
-                prof = to_int(prof * 1.30);
-            }
-        }else if (attacker->validate_combat_stance("weapon and shield")) {
-            if (FEATS_D->usable_feat(attacker, "counter") && (int)attacker->query_shieldMiss()) {
-                prof = to_int(prof * 1.30);
-            }
-        }else if (attacker->validate_combat_stance("one hander")) {
-            if (FEATS_D->usable_feat(attacker, "opportunity strikes")) {
-                prof = to_int(prof * 1.30);
-            }
-            if (FEATS_D->usable_feat(attacker, "artful precision")) {
-                prof = to_int(prof * 1.20);
-            }
+    if (pointerp(wielded = (object*)attacker->query_wielded()) && !attacker->query_property("shapeshifted"))
+    {
+        if (isranged)
+        {
+            if (FEATS_D->usable_feat(attacker, "deadeye"))
+                prof += 30;
+        }
+        else if (attacker->validate_combat_stance("two hander"))
+        {
+            if (FEATS_D->usable_feat(attacker, "strength of arm"))
+                prof += 30;
+        }
+        else if (attacker->validate_combat_stance("weapon and shield"))
+        {
+            if (FEATS_D->usable_feat(attacker, "counter") && (int)attacker->query_shieldMiss())
+                prof += 30;
+        }
+        else if (attacker->validate_combat_stance("one hander"))
+        {
+            if (FEATS_D->usable_feat(attacker, "opportunity strikes"))
+                prof += 30;
+            if (FEATS_D->usable_feat(attacker, "artful precision"))
+                prof += 20;
         }
     }
 
-    if (prof == 0) {
+    if (prof == 0)
         return 0;
-    }
-    if (prof < 0) {
+
+    if (prof < 0)
+    {
         damage = absolute_value((damage * prof) / 100 + 1);
         attacker->cause_typed_damage(attacker, "torso", damage, weap->query_damage_type());
         tell_object(attacker, "You hurt yourself with your weapon because of your inexperience.");
         tell_room(environment(attacker), attacker->query_cap_name() + " hurts " + attacker->query_objective() + "self with " + attacker->query_possessive() + " weapon.", attacker);
         return 0;
-    }else {
+    }
+    else
+    {
         damage = (damage * prof) / 100;
         if(counter_damage)
         {
@@ -2080,18 +2073,18 @@ void send_messages(object attacker, int magic, object weapon, string what, int x
         others = "%^BOLD%^%^RED%^(Critical) %^RESET%^" + others;
         attacker->reset_critical();
     }
-    
+
     if(victim->query_property("warlocks curse") == attacker && x > 0)
     {
         me = me + "%^RESET%^%^CRST%^%^C059%^[%^C143%^c%^C149%^u%^C155%^r%^C149%^s%^C143%^e%^C059%^]%^CRST%^";
         you = you + "%^RESET%^%^CRST%^%^C059%^[%^C143%^c%^C149%^u%^C155%^r%^C149%^s%^C143%^e%^C059%^]%^CRST%^";
         others = others + "%^RESET%^%^CRST%^%^C059%^[%^C143%^c%^C149%^u%^C155%^r%^C149%^s%^C143%^e%^C059%^]%^CRST%^";
-    }   
+    }
 
     if(sneak && x > 0)
     {
         crimson = attacker->query_class_level("crimson_templar");
-        
+
         if(crimson >= 4)
         {
             me = me + "%^C160%^[%^C172%^s%^C178%^n%^C184%^e%^C178%^a%^C172%^k%^C160%^]%^CRST%^";
@@ -2328,7 +2321,7 @@ void miss(object attacker, int magic, object target, string type, string target_
     a_name = attacker->query_cap_name();
     a_poss = attacker->query_possessive();
     t_name = target->query_cap_name();
-    
+
     if(!random(2) && target && target->query_property("warlocks curse") == attacker && FEATS_D->has_feat(attacker, "darkblade jinx"))
     {
         wlvl = attacker->query_prestige_level("warlock");
@@ -2352,7 +2345,7 @@ void miss(object attacker, int magic, object target, string type, string target_
             !treader && tell_object(target, "" + a_name + " missed you.");
             tell_room(room, "" + a_name + " misses " + t_name + "", ({ target, attacker }) + readers);
         }
-        
+
         return;
     }
 
@@ -2360,7 +2353,7 @@ void miss(object attacker, int magic, object target, string type, string target_
         tell_object(attacker, "%^YELLOW%^You miss.%^RESET%^");
 
     tell_room(room, "" + a_name + " misses " + a_poss + " target.", ({ attacker }) + readers);
-    
+
     return;
 }
 
@@ -3743,7 +3736,7 @@ void internal_execute_attack(object who)
     who_name = who->query_cap_name();
     who_poss = who->query_possessive();
     who_obj = who->query_objective();
-    
+
     if(eval_cost() < 100000)
         return;
 
@@ -4273,10 +4266,10 @@ void continue_attack(object who)
         return;
     }
     attackers = who->query_attackers();
-    
+
     if(sizeof(attackers) && objectp(attackers[0]))
         killedBy = objectp(attackers[0]->query_property("minion")) ? attackers[0]->query_property("minion") : attackers[0];
-    
+
     who->check_death();
     if (who->query_dead()) {
         who->adjust_combat_mapps("static vars", "dead", 0);
@@ -4461,14 +4454,14 @@ varargs int check_death(object who, object pot)
                     return 1;
                 }
                 killedBy = attackers[0];
-                
+
                 //If minions kill, make the minion's owner the killer instead.
                 if(objectp(killedBy->query_property("minion")))
                     killedBy = killedBy->query_property("minion");
-                
+
                 who->set("killedBy", killedBy);
                 who->adjust_combat_mapps("static vars", "dead", 1);
-                
+
                 // dreadful carnage check
                 if(FEATS_D->has_feat(killedBy, "dreadful carnage")){
                     newattackers = killedBy->query_attackers();
@@ -4539,7 +4532,7 @@ varargs int check_death(object who, object pot)
                 }
                 if (!objectp(killedBy) && attackers[0]->query_property("spell") && objectp(attackers[0]->query_property("spell"))) {
                     killedBy = attackers[0]->query_property("spell")->query_caster();
-                }               
+                }
                 if (!objectp(killedBy)) {
                     killedBy = attackers[0];
                     who->set("killedBy", killedBy);

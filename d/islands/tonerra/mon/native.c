@@ -36,15 +36,19 @@ OLI
   set_new_exp(query_hd(),"normal");
   set_max_level(25);
   set_wielding_limbs(({"right hand","left hand"}));
-  ob=new(OBJ+"spear1.c");
-if(random(4))
-{
-	ob->set_property("monsterweapon",1);
-}
-	ob->move(TO);
-command("wield spear in right hand");
-  new("/d/common/obj/weapon/spear_sm.c")->move(TO);
-  command("wield spear in left hand");
+ 
+  if(clonep())
+  {
+        ob=new(OBJ+"spear1.c");
+        if(random(4))
+        {
+	        ob->set_property("monsterweapon",1);
+        }
+	    ob->move(TO);
+        command("wield spear in right hand");
+        new("/d/common/obj/weapon/spear_sm.c")->move(TO);
+        command("wield spear in left hand");
+  }
   set_property("full attacks",1);
   set_scrambling(1);
   set_property("swarm",1);

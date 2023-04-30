@@ -231,6 +231,10 @@ void auto_reveal(object ob){
 int touch_blocks(string str){
   string what, which, result, * quests;
   int num, rows, columns;
+
+  if (!stringp(str))
+    return notify_fail("Do you want to %^ORANGE%^touch%^RESET%^ one of the blocks?");
+
   num = sscanf(str, "%s %s", what, which);
   if (num <2){
     what = str;

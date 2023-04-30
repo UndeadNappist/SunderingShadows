@@ -45,7 +45,7 @@ BRUENOR
     set_alignment(9);
     set_funcs(({"stun"}));
     set_func_chance(30);
-    set_stabbed_func((:TO,"stab":));
+    // set_stabbed_func((:TO,"stab":));
     set_skill("small blades", 200);
     new(OBJ+"emdagger.c")->move(TO);
 command("wield dagger");

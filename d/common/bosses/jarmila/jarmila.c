@@ -6,6 +6,7 @@
 inherit "/d/common/bosses/avatar_boss.c";
 
 int fate_counter;
+int buffed, coreparty;
 
 object bork_control;
 
@@ -21,7 +22,7 @@ void create()
 		"a%^C160%^rmila%^CRST%^");
     set_long("%^C197%^This immense beast is almost beyond "+
 	    "all mortal %^C088%^comprehension%^C197%^ and %^C226%^power%^C197%^. "+
-	    "Its entire body is formed from %^124%^blazing divine fire%^C197%^ "+
+	    "Its entire body is formed from %^C124%^blazing divine fire%^C197%^ "+
         "and looks like a giant bird. Its %^C166%^two feet%^C197%^ are each "+
 	    "the size of %^C058%^large wagons%^C197%^ and extend to "+
 	    "%^C244%^wicked claws%^C197%^ each the size of a man. "+
@@ -43,25 +44,28 @@ void create()
     set_class("fighter");
     set_class("mage");
     set_class("cleric");
+    set_class("radiant_servant");
     set_guild_level("fighter", 75);
     set_guild_level("mage", 75);
     set_guild_level("cleric", 75);
     set_mlevel("fighter", 75);
     set_mlevel("mage", 75);
     set_mlevel("cleric", 75);
+    set_mlevel("radiant_servant", 10);
     set_alignment(4);
     set("aggressive",100);
     set_property("full attacks",1);
     set_true_seeing(1);
 
     set_hd(75, 10);
-    set_hp(125000);
+    set_max_hp(100000);
+    set_hp(this_object()->query_max_hp());
     set_new_exp(75, "boss");
     set_overall_ac(-75);
 
     set_damage(10, 20);
     set_base_damage_type("slashing");
-			    set_property("weapon resistance", 10);
+    set_property("weapon resistance", 7);
     set_mob_magic_resistance("high");
     set_property("no death", 1);
     set_property("no knockdown", 1);
@@ -82,21 +86,24 @@ void create()
     }));
 
    set_funcs(({
-      "flare",
+//      "flare",
       "comet",
-      "fire",
+//      "fire",
       "light",
       "reinforce",
       "holy",
-      "clear",
+//      "clear",
 
    }));
-   set_func_chance(100);
+   
+    set_spells(({ "holy aura", "daylight", "celestial brilliance", "wall of fire", "fireball", "sunburst", "meteor swarm", "repel the profane", "cleansing flames", "overwhelming presence" }));
+    set_func_chance(50);
+    set_spell_chance(50);
 
     set_skill("perception", 50);
 
-    set_resistance_percent("radiant", 50);
-    set_resistance_percent("fire", 50);
+    set_resistance_percent("radiant", 100);
+    set_resistance_percent("fire", 100);
     set_mob_magic_resistance("high");
     set_property("cast and attack", 1);
     set_property("function and attack", 1);
@@ -105,6 +112,37 @@ void create()
 
     fate_counter = 0;
 
+}
+
+void init()
+{
+    int psize;
+    object player, room;
+    
+    ::init();
+    
+    player = this_player();
+    player && room = environment(this_object());
+    
+    if(!player || !room)
+        return;
+    
+    if (wizardp(player) || player->query_true_invis()) {
+        return;
+    }
+    
+    if(!buffed)
+    {
+        object spell;
+        
+        if(!catch(spell = new("/cmds/spells/h/_holy_aura.c")))
+            spell->use_spell(this_object(), 0, 70, 100, "cleric");
+        if(!catch(spell = new("/cmds/spells/d/_daylight.c")))
+            spell->use_spell(this_object(), 0, 70, 100, "cleric");
+        
+        command("radiant_aura");
+        buffed = 1;
+    }
 }
 
 
@@ -192,7 +230,7 @@ int dam;
    "and "+targ->QCN+"%^C127%^ is left dazed!%^CRST%^",targ);
    tell_object(targ,"%^C127%^You are lifed up suddenly "+
    "in the claws of the phoenix and crushed!%^CRST%^");
-   targ->cause_typed_damage(targ, targ->return_target_limb(), dam,"piercing");
+   targ->cause_typed_damage(targ, targ->return_target_limb(), dam, "piercing");
    tell_object(targ,"%^C127%^The phoenix lifts you "+
    "until you're in front of its eyes which flash. "+
    "You cant turn away in time and are stunned.%^CRST%^");
@@ -227,10 +265,14 @@ int dam;
 
 void reinforce(object ob){
    int i, num;
+   
+   if(sizeof(query_followers()))
+       return;
+   
    num=random(4)+3;
    if(!objectp(TO)) return;
    tell_room(ETO,"%^C222%^For a moment the glow intensifies and "+
-   "creates rush into the area to defend the phoenix!%^CRST%^");
+   "creatures rush into the area to defend the phoenix!%^CRST%^");
 
                  for(i=0;i<num;i++){
                     ob=new(MOBS"foo");
@@ -283,6 +325,10 @@ dam = roll_dice(25, 20) + 200;
 }
 }
 void clear (object targ){
+    
+   if(random(4))
+       return;
+   
    tell_room(ETO,"%^C196%^The phoenix chants an ancient holy prayer!%^CRST%^");
    new("/cmds/spells/g/_greater_dispel_magic.c")->use_spell(TO,targ,80,100,"mage");
    return;

@@ -12,6 +12,7 @@ void create(){
 
 void heart_beat()
 {
+   ::heart_beat();
    if(!objectp(TO)) { return; }
 }
 

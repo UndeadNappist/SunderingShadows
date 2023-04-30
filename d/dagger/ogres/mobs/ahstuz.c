@@ -67,6 +67,9 @@ void create() {
     set_alignment(9);
     add_money("gold", random(2500));
     add_money("silver", random(2500));
+    
+    if(!clonep())
+        return;
 
 //random gear drop
     
@@ -89,7 +92,11 @@ void create() {
     
     ob = new(OBJ"stormshatter");
     ob->move(TO);
-    if(random(4)) ob->set_property("monsterweapon",1);  
+    if(random(4)) ob->set_property("monsterweapon",1); 
+    
+    ob = new(OBJ"wrecking_devil");
+    ob->move(TO);
+    if(random(4)) ob->set_property("monsterweapon",1); 
 
     set_emotes(2, ({
 	"%^RED%^Ahstuz raises his arms to the air and roars at the top of his lungs!%^RESET%^",

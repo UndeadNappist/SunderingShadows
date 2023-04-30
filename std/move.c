@@ -5,6 +5,7 @@
 
 #include <move.h>
 #include <std.h>
+#include <rooms.h>
 
 #define SMALL 7
 #define MEDIUM 12
@@ -47,14 +48,17 @@ int move(mixed dest)
     object me, environment, ob, prev;
     string str, msg;
 
-    if ((!(me = this_object())) || !objectp(me))
+    if (!objectp(me = this_object()))
         return MOVE_DESTRUCTED;
 
     environment = environment(me);
 
     if (stringp(dest))
     {
+        // if(!objectp(ob = find_object(dest)))
+        //    return MOVE_NOT_ALLOWED;
         ob = find_object_or_load(dest);
+
         if(!objectp(ob))
         {
             if(objectp(me))
@@ -116,7 +120,8 @@ int remove(){
     object *inv;
     int i;
 
-    if (!objectp(this_object())) return 1;
+    if (!this_object() || !objectp(this_object())) return 0;
+    
     env = environment(this_object());
     if (env) {
         env->add_encumbrance(-1*query_weight());
@@ -138,7 +143,9 @@ int remove(){
     //This is to catch any lingering (temporary) added shorts
     strip_temp_values();
     
-    destruct(this_object());
+    if(catch(destruct(this_object())))
+        return 0;
+    
     return 1;
 }
 
@@ -161,92 +168,62 @@ void strip_temp_values()
     }
 }
 
-int clean_up(){
-    object ob, env;
-    object *inv;
-    int i;
-
-    if (no_clean)
+int clean_up()
+{
+    object env, ob, trash, *inv;
+    
+    if(no_clean)
         return 0;
-
-    ob = this_object();
-    env = environment(ob);
-
-    if (objectp(ob))
+    
+    if(!objectp(ob = this_object()))
+        return 0;
+    
+    if(userp(ob))
+        return 0;
+    
+    if(objectp(env = environment(ob)))
     {
-        if ( ob->is_player() )
-            return 0;
-
-
-
-        if (objectp(env))
+        if(env->query_no_clean())
+            return 1;
+        if(env->query_property("storage room"))
+            return 1;
+        if(env->is_bag())
+            return 1;
+        if(living(env) || userp(env))
+            return 1;
+    }
+    else
+    {
+        if(ob->query_no_clean())
+            return 1;
+        
+        if(ob->query_property("storage room"))
+            return 1;
+        
+        inv = deep_inventory(ob);
+        
+        if(sizeof(filter_array(inv, (: userp($1) :))))
+            return 1;
+        
+        trash = load_object("/d/shadowgate/trash");
+        
+        if(objectp(trash))
         {
-
-            if (env->query_property("storage room"))
-                return 1;
-
-            if (env->query_no_clean())
-                return 1;
-
-            if (env->is_bag())
-                return 1;
-
-            if (living(env) || userp(env))
-                return 1;
+            ob->move(trash);
+            destruct(trash);
         }
         else
-        /* No environment! Get rid of it and everything in it! */
         {
-            if (i = sizeof(inv=all_inventory(TO)))
-               while (i--) {
-                 if (interactive(inv[i]))
-                   return 1;
-               }
-            if (i = sizeof(inv=all_inventory(TO)))
-                while (i--) {
-                    inv[i]->move(VOID);
-                    if(inv[i])
-                        inv[i]->remove();
-                    if (inv[i])
-                        destruct(inv[i]);
-                }
-
-            if (ob)
-                ob->remove();
-            if (ob)
-	            destruct(ob);
-            return 1;
+            catch(inv->remove());
+            ob->move(ROOM_VOID);
+            ob && ob->remove();
+            ob && destruct(ob);
         }
-
-
-
-
-        i = sizeof(inv = deep_inventory(ob));
-        if (i >= 0)
-            while (i--)
-                if (interactive(inv[i]))
-                    return 1;
-
-        if (i = sizeof(inv=deep_inventory(TO)))
-            while (i--) {
-                inv[i]->move(VOID);
-                inv[i]->remove();
-                if (inv[i])
-	                destruct(inv[i]);
-            }
-
-        ob->move(VOID);
-        if (ob)
-            ob->remove();
-        if (ob)
-            destruct(ob);
-        return 1;
-    } // objectp(ob)
-    else {
-        return 1; // If it's not a valid object, just return.
+        
+        return 0;
     }
-    //  return 2;
-    // Got no clue on this.
+    
+    return 1;
 }
 
 void set_last_location(object ob)
@@ -271,6 +248,9 @@ int query_weight()
 
 int query_no_clean()
 {
+    if(query_property("no_clean"))
+        return 1;
+    
     return no_clean;
 }
 

@@ -61,7 +61,8 @@ void create()
     set_level(65);
     set_class("psion");
     set_mlevel("psion", 65);
-    set_hp(34000);
+    set_max_hp(34000);
+    set_hp(this_object()->query_max_hp());
     tentacle_hps = ({ 1000, 1000, 1000, 1000, 1000, 1000, 1000 });
     seized = ([]);
     spirits_absorbed = 0;

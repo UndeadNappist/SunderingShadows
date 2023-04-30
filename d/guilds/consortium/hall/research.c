@@ -4,6 +4,7 @@ inherit ROOM;
 
 void create(){
     ::create();
+    set_property("no teleport",1); //removing access during remodel
     set_short("Research Room");
     set_long(
       "Here in this room, many new spells are thought up and researched.  A myriad of books adorn shelved along the walls and a full laboratory set offsets to the right of the room.  Tables full of beakers and test-tubes sit to the left.  Many great minds have used this equipment and written these books, so take care of them."

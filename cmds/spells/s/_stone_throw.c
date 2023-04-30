@@ -7,8 +7,7 @@ void create()
 {
     ::create();
     set_spell_name("stone throw");
-    set_spell_level(([ "oracle" : 1, "mage" : 1, "druid" : 1 ]));
-    set_mystery("stone");
+    set_spell_level(([ "mage" : 1, "druid" : 1 ]));
     set_spell_sphere("alteration");
     set_syntax("cast CLASS stone throw on TARGET");
     set_damage_desc("bludgeoning");

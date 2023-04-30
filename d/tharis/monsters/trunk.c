@@ -113,5 +113,3 @@ void struggle(string who)
         	call_out("struggle",10,who);
     	}
 }
-
-void clean_up(){ return 1;}

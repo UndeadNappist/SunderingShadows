@@ -14,7 +14,7 @@
 
 inherit "/d/common/obj/weapon/dagger.c";
 
-object owner;
+string owner;
 int hit_count;
 
 string color(string str)
@@ -74,7 +74,7 @@ void init()
             return;
         }      
                
-        owner = holder;
+        owner = holder->query_name();
         tell_object(holder, color("As you lift the glowing dagger, you feel it connect with the goodness in your soul."));
     }
 }
@@ -83,33 +83,40 @@ int hit_func(object target)
 {
     int dam;
     string ename, pname;
+    object holder;
     
     if(!owner || !target)
+        return 0;
+    
+    if(!objectp(holder = environment(this_object())))
         return 0;
     
     hit_count++;
     
     if(hit_count < HIT_INTERVAL)
+    {
+        target->cause_typed_damage(target, "torso", roll_dice(1, 10), "divine");
         return 0;
+    }
     
-    pname = owner->query_cap_name();
+    pname = holder->query_cap_name();
     ename = target->query_cap_name();
     
     //This blade adds a sneak attack
     //If opponent not vulnerabe, it does a consolation special
-    if(!target->is_vulnerable_to(owner))
+    if(!target->is_vulnerable_to(holder))
     {
         if(random(3))
             return 0;
         
-        tell_object(owner, color("Your blade flashes with divine purpose!"));
+        tell_object(holder, color("Your blade flashes with divine purpose!"));
         target->cause_typed_damage(target, target->return_target_limb(), roll_dice(6, 10) + 10, "divine");
         return 0;
     }
     
     hit_count = 0;
     
-    dam = roll_dice(owner->query_character_level() / 2, 6);
+    dam = roll_dice(holder->query_character_level() / 2, 6);
     
     if(FEATS_D->usable_feat(target, "mighty resilience"))
         dam = 0;
@@ -125,10 +132,10 @@ int hit_func(object target)
         dam /= 2;
 
     //Barbarians/Thieves with danger sense gain resistance to sneak attacks
-    if(FEATS_D->usable_feat(target, "danger sense") && target->query_level() + 4 > owner->query_level())
+    if(FEATS_D->usable_feat(target, "danger sense") && target->query_level() + 4 > holder->query_level())
         dam /= 2;
 
-    if(owner->query_blind() || owner->light_blind())
+    if(holder->query_blind() || holder->light_blind())
     {
         if(FEATS_D->usable_feat(owner, "blindfight"))
             dam /= 2;
@@ -138,9 +145,9 @@ int hit_func(object target)
     
     if(dam)
     {
-        tell_object(owner, "%^WHITE%^%^BOLD%^You hit " + ename + ".%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
+        tell_object(holder, "%^WHITE%^%^BOLD%^You hit " + ename + ".%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
         tell_object(target, "%^WHITE%^%^BOLD%^" + pname + " hits you.%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
-        tell_room(envirnonment(owner), "%^WHITE%^%^BOLD%^" + pname + " hits " + ename + ".%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
+        tell_room(environment(holder), "%^WHITE%^%^BOLD%^" + pname + " hits " + ename + ".%^YELLOW%^[%^CYAN%^Sneak%^YELLOW%^]%^RESET%^");
         target->cause_typed_damage(target, target->return_target_limb(), dam, "divine");
     }
     
@@ -149,19 +156,29 @@ int hit_func(object target)
 
 int wield_func()
 {
-    if(environment(this_object()) != owner || !owner->query("boss avatar"))
+    object holder;
+    
+    if(!objectp(holder = environment()))
+        return 0;
+    
+    if(holder->query_name() != owner || !holder->query("boss avatar"))
     {
-        tell_object(environment(this_object()), "The holy shard rejects your touch!");
+        tell_object(holder, "The holy shard rejects your touch!");
         return 0;
     }
     
-    tell_object(owner, color("You feel the holy warmth of the shard seep into your skin!"));
-    tell_room(environment(owner), color(owner->query_cap_name() + "'s dagger glows with divine energy!"), owner);
+    tell_object(holder, color("You feel the holy warmth of the shard seep into your skin!"));
+    tell_room(environment(owner), color(owner->query_cap_name() + "'s dagger glows with divine energy!"), holder);
     return 1;
 }
 
 int unwield_func()
 {
-    owner && tell_object(owner, "%^CYAN%^You feel the warmth of the shard disappate as you release it.");
+    object holder;
+    
+    if(!objectp(holder = environment()))
+        return 0;
+    
+    tell_object(holder, "%^CYAN%^You feel the warmth of the shard disappate as you release it.");
     return 1;
 } 

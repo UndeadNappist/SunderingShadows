@@ -29,7 +29,7 @@ set_body_type("human");
   add_search_path("/cmds/fighter");
   set_property("full attacks",1);
   set_hd(30);
-  set_stabbed_func((:TO,"stabbed":));
+  //set_stabbed_func((:TO,"stabbed":));
   set_stats("strength",25);
   set_alignment(3);
   set_max_hp(300);

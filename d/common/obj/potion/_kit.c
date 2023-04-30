@@ -344,11 +344,14 @@ int query_value(){
   return uses * 20;
 }
 
-int clean_up() {
+/* This is stopping clean up of kits
+int clean_up()
+{
   if (!objectp(TO)) return 1;
-  if (file_name(TO) != base_name(TO)) return ::clean_up();
-  return 0;
+  if (clonep()) return ::clean_up();
+  return 1;
 }
+*/
 
 int isMagic(){
    int magicpotion;

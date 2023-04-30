@@ -60,6 +60,13 @@ void create() {
    set_spoken("wizish"); 
    command("speech speak in a gruff voice");
 
+   set_property("no_random_treasure",1);
+   set_items_allowed("tobacco");
+   set_storage_room(STORAGE"erdrick_storage");
+   
+   if(!clonep())
+       return;
+   
    ob = new("/d/common/obj/armour/banded");
    ob->move(TO); 
    ob->set_short("%^C059%^dent%^C060%^e%^C059%^d and sca%^C060%^rr%^C059%^ed banded%^CRST%^"); 
@@ -67,9 +74,5 @@ void create() {
    ob->set_property("enchantment",3); 
    ob->set_property("monsterweapon",1); 
    command("wear banded"); 
-
-   set_property("no_random_treasure",1);
-   set_items_allowed("tobacco");
-   set_storage_room(STORAGE"erdrick_storage");
 
 }

@@ -27,13 +27,15 @@ void create(){
    set_race("human");
    set_gender("female");
    set_hd(1,1);
+   set_max_hp(50);
+   set_hp(50);
    set_exp(1);
    set_stats("intelligence",25);
    set_body_type("human");
    set_overall_ac(9);
    set_price(100);
    set_speed(50);
-  set_speed(80);
+   set_speed(80);
    set_nogo( ({ SCITY+"westgate", SCITY+"cguild/cleric/cleric1", SCITY+"southgate",
 	SCITY+"entrance", SCITY+"eastgate", "/d/shadow/room/main/northgate" }) );
 

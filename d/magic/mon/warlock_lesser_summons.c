@@ -1,6 +1,6 @@
 #include <std.h>
 #include "summoned_monster.h"
-inherit MONSTER;
+inherit MINION;
 
 void set_mytype(string heritage);
 string myheritage;

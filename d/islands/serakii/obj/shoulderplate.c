@@ -40,6 +40,7 @@ void create(){
     set_item_bonus("strength",4); 
     set_wear((:TO, "extra_wear":));
     set_remove("%^RESET%^%^ORANGE%^You unlatch the shoulderplates and slip them off.");
+    set_property("repairtype",({ "armorsmith" }));
 }
 int extra_wear() {
     if((int)ETO->query_lowest_level() < 30) {

@@ -1,5 +1,5 @@
 //
-// _destall.c
+// _objpurge.c
 //
 // Finds all instances of file_name given and destructs them.
 //
@@ -17,6 +17,9 @@ int cmd_objpurge(string str)
 {
     object *obs;
     string obshort;
+    
+    if(!archp(previous_object()))
+        return 0;
     
     obs = objects( (: base_name($1) == $(str) :) );
     map_array(obs, (: envs[$1] = environment($1) :));

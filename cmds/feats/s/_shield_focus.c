@@ -10,7 +10,7 @@ void create()
     feat_type("permanent");
     feat_category("WeaponAndShield");
     feat_name("shield focus");
-    feat_desc("This feat represents skill at deflecting blows with a shield. This feat adds +1 AC and an additional +1 AC per 10 character levels, for a max of +6 AC at max level.");
+    feat_desc("This feat represents skill at deflecting blows with a shield. This feat adds +1 AC and an additional +1 AC per 10 character levels, for a max of +6 AC at max level. Please note that bucklers do not count as shields for the purpose of this feat.");
     permanent(1);
     set_target_required(0);
     set_required_for(({}));

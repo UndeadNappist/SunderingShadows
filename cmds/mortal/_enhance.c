@@ -104,7 +104,7 @@ int cmd_enhance(string str)
                         player->set_property("weapon enhancements", 1);
                     }
                 }
-                else tell_object(player, "%^RESET%^%^CRST%^%^C059%^Cannot apply %^196%^"+enhancement_name+"%^C059%^ to your weapon, it requires %^C196%^"+cost+" %^C059%^enhancement points.%^CRST%^");
+                else tell_object(player, "%^RESET%^%^CRST%^%^C059%^Cannot apply %^C196%^"+enhancement_name+"%^C059%^ to your weapon, it requires %^C196%^"+cost+" %^C059%^enhancement points.%^CRST%^");
             }
         }
         

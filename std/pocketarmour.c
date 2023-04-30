@@ -107,56 +107,77 @@ ETO->set_ac((int)ETO->query_base_ac() - (int)TO->query_ac());
  return diff;
 }
 
-void unwear() {
-  function f;
-  string catchbug;
-  int answer;
-  mapping itembonuses;
+void unwear()
+{
+    function f;
+    string catchbug;
+    int answer;
+    mapping itembonuses;
+    object previous_wearer;
 
-  if(!objectp(wornBy)) {       return;   }
-  if(!objectp(TO)) return;
-  if (sizeof(wornBy->query_attackers()) > 0 && (!this_object()->query_property("combat_remove")) && (member_array(query_type(),({ "ring","shield","thiefshield","body shield"})) == -1) ){
-      message("my_action", "You can not remove that during combat.",wornBy);
-      return;
-  }
+    if(!objectp(wornBy))
+        return;
+
+    if(!objectp(this_object()))
+        return;
+
+    if (sizeof(wornBy->query_attackers()) > 0 && (!this_object()->query_property("combat_remove")) && (member_array(query_type(),({ "ring","shield","thiefshield","body shield"})) == -1) )
+    {
+        message("my_action", "You can not remove that during combat.",wornBy);
+        return;
+    }
 /*   adding objectp check above too
 *    taking this check for shutdown out now that I think we have the bugs with TP
 *    in unwear handled and it keeps generating bug reports & other problems *Styx*  10/14/05
 *  if(!"/adm/daemon/shutdown_d"->shuttingDown() && interactive(ETO))
 */
-  if(query_property("funwear")) {
-      f = (:call_other,TO,unwear:);
-          if(!"/adm/daemon/shutdown_d"->shuttingDown() && (query_verb() != "quit") && interactive(ETO)) {
-                  if(!(*f)()) return 1;
-          } else {
-                  catchbug=catch(answer=(*f)());
-                  if (catchbug) write(catchbug);
-                  if (!answer) return 1;
-          }
-  }
-  if(!(int)ETO->query_property("silent_equip"))
-      if(stringp(unwear) && !query_property("funwear")) {
-          message("my_action", unwear, wornBy);
-          if(query_broken() != "" && !random(3))
-              message("my_action", "You notice your "+::query_short()+" is"+query_broken()+".",wornBy);
-      }
-      else message("my_action", "You remove your "+query_short()+".",
-                   wornBy);
+    if(query_property("funwear"))
+    {
+        f = (:call_other,TO,unwear:);
+        if(!"/adm/daemon/shutdown_d"->shuttingDown() && (query_verb() != "quit") && interactive(ETO))
+        {
+            if(!(*f)())
+                return 1;
+            else
+            {
+                catchbug=catch(answer=(*f)());
+                if (catchbug)
+                    write(catchbug);
 
-  if(itembonuses = TO->query_item_bonuses()) run_item_bonuses("remove",wornBy,itembonuses);
+                if (!answer)
+                    return 1;
+            }
+        }
+    }
 
-   wornBy->remove_armour_from_limb(this_object(),
-     actualLimbs);
-   if(objectp(environment(wornBy)))
-   {
-       string short_desc = query_obvious_short() ? query_obvious_short() : query_short();
-       message("other_action", (string)wornBy->query_cap_name()+
-       " removes "+(string)wornBy->query_possessive()
-       +" "+short_desc+".", environment(wornBy),
-       ({ wornBy }));
-   }
-   wornBy = 0;
-   actualLimbs = allocate(1);
+    if(!(int)ETO->query_property("silent_equip"))
+    {
+        if(stringp(unwear) && !query_property("funwear"))
+        {
+            message("my_action", unwear, wornBy);
+            if(query_broken() != "" && !random(3))
+                message("my_action", "You notice your "+::query_short()+" is"+query_broken()+".",wornBy);
+        }
+        else message("my_action", "You remove your "+query_short()+".", wornBy);
+    }
+
+    if(itembonuses = TO->query_item_bonuses())
+        run_item_bonuses("remove", wornBy, itembonuses);
+
+    wornBy->remove_armour_from_limb(this_object(), actualLimbs);
+
+    if(objectp(environment(wornBy)))
+    {
+        string short_desc = query_obvious_short() ? query_obvious_short() : query_short();
+        message("other_action", (string)wornBy->query_cap_name() +" removes " + (string)wornBy->query_possessive() + " "+short_desc+".", environment(wornBy), ({ wornBy }));
+    }
+
+    previous_wearer = wornBy;
+    wornBy = 0;
+    actualLimbs = allocate(1);
+
+    previous_wearer->recalculate_max_hp_from_stats(1);
+    previous_wearer->recalculate_max_hp_from_feats();
 }
 
 void unequip() {
@@ -246,10 +267,16 @@ int query_size() {
   else return ::query_size();
 }
 
-void set_worn(object who) {
- wornBy = who;
- cursed = who->query_name();
- if(TO->query_property("player enchanted")) CHECK_D->validate(TO);
+void set_worn(object who)
+{
+    wornBy = who;
+    cursed = who->query_name();
+
+    if(this_object()->query_property("player enchanted"))
+        CHECK_D->validate(this_object());
+
+    who->recalculate_max_hp_from_stats(1);
+    who->recalculate_max_hp_from_feats();
 }
 
 object query_worn() { return wornBy; }

@@ -29,6 +29,8 @@ void create()
    set_race("seagull");
    set_body_type("fowl");
    set_hd(1,5);
+   set_max_hp(20);
+   set_hp(query_max_hp());
    set_exp(1);
    set_emotes(10,({
       "%^C111%^Wind %^C247%^whips %^C111%^through the %^C094%^empty %^C111%^streets.%^CRST%^\n",

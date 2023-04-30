@@ -13,9 +13,7 @@ void create(){
     set_spell_level(([ "mage" : 8 ]));
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS clone");
-    set_description("This spell makes an inert duplicate of the caster from flesh. If the caster is slain, their soul immediately transfers " +
-"to the clone.  In all respects, the clone is identical to the original, possessing all of the personality traits, memories and " +
-"physical appearance. The exhaustive nature of this spell ensures that it can only be used sparingly. ");
+    set_description("This spell makes an inert duplicate of the caster from flesh. If the caster is slain, their soul immediately transfers to the clone.  In all respects, the clone is identical to the original, possessing all of the personality traits, memories and physical appearance. The exhaustive nature of this spell ensures that it can only be used sparingly. If a decision to return isn't made within 5 minutes, death occurs as normal.");
     set_verbal_comp();
     set_property("magic",1);
     set_peace_needed(1);

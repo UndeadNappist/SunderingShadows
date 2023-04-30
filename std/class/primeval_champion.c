@@ -104,7 +104,7 @@ string new_save_type() { return BASE_CLASS->new_save_type(); }
 // unsure on this one, will have to investigate
 void advanced_func(object player) { return BASE_CLASS->advance_func(player); }
 
-int hit_dice() { return BASE_CLASS->hit_dice(); }  // hit dice rolled for hitpoints each level
+int hit_dice(object ob) { return BASE_CLASS->hit_dice(ob); }  // hit dice rolled for hitpoints each level
 
 int default_hitpoints() { return BASE_CLASS->default_hitpoints(); } // hitpoints per level above level 20
 

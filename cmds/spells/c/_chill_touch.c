@@ -14,17 +14,19 @@ string target_limb, element;
 create(){
     ::create();
     set_spell_name("chill touch");
-    set_spell_level(([ "mage" : 1, "magus" : 1 ]));
+    set_spell_level(([ "mage" : 1, "magus" : 1, "druid" : 1 ]));
     set_spell_sphere("necromancy");
+    set_circle("winter");
     set_syntax("cast CLASS chill touch on TARGET");
     set_description("By casting this spell, your hand will flare up with a blue aura. You can touch your enemy with that hand and, if the target doesn't make his save and avoid your touch, you will inflict a small amount of damage. Furthermore, the target will be slightly weakened until a certain length of time runs out.");
     set_verbal_comp();
     set_somatic_comp();
     versatile();
     set_target_required(1);
+    set_immunities(({"cold"}));
 }
 
-string query_cast_string(){ 
+string query_cast_string(){
     return "%^RESET%^%^CRST%^%^C059%^"+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C059%^ utters a morose chant.%^CRST%^";
 }
 
@@ -37,6 +39,13 @@ spell_effect(int prof){
         dest_effect();
         return;
     }
+    
+    element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
 
     target_limb = target->return_target_limb();
     bonus = 0;
@@ -47,8 +56,6 @@ spell_effect(int prof){
         dest_effect();
         return;
     }
-
-    element = (string)caster->query("elementalist");
 
     switch(element){
         case "acid":

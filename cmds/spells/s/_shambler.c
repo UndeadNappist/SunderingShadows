@@ -21,6 +21,7 @@ This is a greater summons, and cannot be used simultaneously with other greater 
 To remove shambler use %^ORANGE%^<dismiss shambler>%^RESET%^
 To command shambler use %^ORANGE%^<command shambler to %^ORANGE%^%^ULINE%^ACTION%^RESET%^%^ORANGE%^>%^RESET%^
 To force lost shambler to follow use %^ORANGE%^<command shambler to follow>%^RESET%^");
+    summon_spell();
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
@@ -62,6 +63,8 @@ void summon_servant()
 
     caster->add_follower(ob);
 
+    ob->set_owner(caster);
+    ob->setup_minion(clevel, spell_level, "greater");
     ob->move(environment(caster));
 
     ob->set_property("spell", TO);

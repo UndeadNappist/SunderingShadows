@@ -309,7 +309,7 @@ If argument is provided, filters players by races.
 
  %^BOLD%^%^RED%^Gr%^RESET%^ - %^BOLD%^%^RED%^gr%^RESET%^ace - flag in front of the line means the character can't engage in player kill interractions due to recent login. They must wait ten minutes before engaging in any player kill.
 
- %^BOLD%^%^CYAN%^N%^RESET%^ - %^BOLD%^%^CYAN%^n%^RESET%^ewbie - This player is in offestry or creation area. They may adventure with other new players, but can't engage in pk at all, levelcheck will always fail on them, threathen won't work.
+ %^BOLD%^%^CYAN%^N%^RESET%^ - %^BOLD%^%^CYAN%^n%^RESET%^ewbie - This player is in offestry or creation area. They may adventure with other new players, but can't engage in pk at all, levelcheck will always fail on them, threaten won't work.
 
 %^CYAN%^OTHER FLAGS%^RESET%^
 

@@ -39,16 +39,19 @@ void create() {
     set_hp(query_max_hp());
     set_size(2);
 
-    new("/d/dagger/marsh/tower/obj/speedboots.c")->move(TO);
-    new("/d/dagger/marsh/tower/obj/dagger_sarfice.c")->move(TO);
-    new("/d/dagger/marsh/tower/obj/psicirclet.c")->move(TO);
+    if(clonep())
+    {
+        new("/d/dagger/marsh/tower/obj/speedboots.c")->move(TO);
+        new("/d/dagger/marsh/tower/obj/dagger_sarfice.c")->move(TO);
+        new("/d/dagger/marsh/tower/obj/psicirclet.c")->move(TO);
 
-    if (!random(5)) {
-        new("/d/common/obj/misc/tools/portable_crystal_ball.c")->move(TO);
+        if (!random(5)) {
+            new("/d/common/obj/misc/tools/portable_crystal_ball.c")->move(TO);
+        }
+
+        new(VHAND)->move(TO);
+        TO->force_me("attach hand");
     }
-
-    new(VHAND)->move(TO);
-    TO->force_me("attach hand");
     force_me("wearall");
     set_funcs( ({"special", "use_hand", "cast_spells","cast_spells","cast_spells","use_hand"}) );
     set_property("add kits",75);

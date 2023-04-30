@@ -41,6 +41,10 @@ void create()
     "Celisse says: This place is small but better than tharis.",
     "Celisse smiles and says: Can I offer you some herbs?"
 }),0);
+  
+  if(!clonep())
+      return;
+
   pap = new("/d/common/obj/misc/paper");
   pap->move(TO);
   pap->set("language","elven");

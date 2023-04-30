@@ -21,7 +21,7 @@ void create()
     set_shape_bonus("cold resistance percent", 33);
     set_shape_bonus("void resistance percent", 33);
     set_shape_bonus("radiant resistance percent", -33);
-    set_shape_bonus("silver resistance percent", -33);   
+    set_shape_bonus("silver resistance percent", -33);
     set_shape_bonus("sight bonus", 5);
     set_shape_bonus("damage bonus", 3);
     set_shape_bonus("attack bonus", 3);
@@ -99,23 +99,23 @@ int shape_attack(object tp, object targ)
 {
     object room;
     string t_name, my_name;
-    int dice;
-    
+    int dice, dc_result;
+
     if(!objectp(tp) || !objectp(targ))
         return 0;
-    
+
     if(random(3))
         return 0;
-    
+
     room = environment(tp);
-    
+
     if(room != environment(targ))
         return 0;
-    
+
     t_name = targ->query_cap_name();
     my_name = tp->query_cap_name();
     dice = 1 + tp->query_level() / 5;
-    
+
     switch(random(10))
     {
         case 0..3:
@@ -126,15 +126,16 @@ int shape_attack(object tp, object targ)
         tp->execute_attack();
         set_new_damage_type("piercing");
         break;
-        
+
         case 4..7:
         tell_object(tp, "You spew a miasma of blinding darkness into " + t_name + "'s eyes!");
         tell_object(targ, my_name + " spews a miasma of blinding darkness into your eyes!");
         tell_room(room, my_name + " spews a miasma of blinding darkness into " + t_name + "'s eyes!", ({ tp, targ }));
-        if(!targ->reflex_save(10 + tp->query_level() / 2))
+        dc_result = tp->calculate_dc(tp->query_level(), FEATS_D->usable_feat(tp, "weapon finesse") ? "dexterity" : "strength");
+        if(!targ->reflex_save(dc_result))
             targ->set_temporary_blinded(1);
         break;
-        
+
         default:
         tell_object(tp, "You shear into " + t_name + " with a blur of shadowy claws!");
         tell_object(targ, my_name + " shears into you with a blur of shadowy claws!");
@@ -142,6 +143,6 @@ int shape_attack(object tp, object targ)
         targ->cause_typed_damage(targ, targ->return_target_limb(), roll_dice(dice, 6), "void");
         break;
     }
-    
+
     return roll_dice(2, dice);
 }

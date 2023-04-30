@@ -1,7 +1,7 @@
 /*
   brilliance.c
   
-  Staff weapon dropped by the Nightwalker Boss.
+  Staff of Fire adapted to the mud.
   
   -- Tlaloc --
 */
@@ -33,11 +33,11 @@ void create()
     
     set_name("brilliance");
     set_id( ({ "brilliance", "staff", "flame staff", "fire staff" }) );
-    set_short("brilliance, the flames of inspiration");
-    set_obvious_short(color("a brilliant staff"));
-    set_long("");
-    set_lore("");
-    set_value(100000);
+    set_short("%^C209%^B%^C215%^r%^C221%^i%^C227%^l%^C221%^l%^C215%^i%^C209%^ance, the F%^C215%^l%^C221%^a%^C227%^m%^C221%^e%^C209%^s of I%^C215%^n%^C221%^s%^C227%^p%^C221%^i%^C215%^r%^C209%^ation%^CRST%^");
+    set_obvious_short("%^C209%^a %^C215%^brilliant%^C209%^ %^C221%^flaming%^C209%^ staff%^CRST%^");
+    set_long("%^C209%^This is a tall and ornate staff, crafted from polished oak wood and adorned with intricate carvings of roaring flames and glittering gemstones. At its head is a %^C221%^blazing crystal orb%^C209%^, which glows with a %^C231%^brilliant white light%^C209%^ that seems to radiate %^C215%^warmth%^C209%^ and %^C215%^vitality%^C209%^.%^CRST%^");
+    set_lore("%^C227%^The legend of Brilliance, the Flames of Inspiration, tells of a powerful wizard who once sought to harness the power of flames in order to channel them into his creative works. He spent years studying the nature of fire, delving into the deepest secrets of its elemental nature, until he finally crafted a staff of blackened ironwood that was able to channel the raw, primal energy of flame. With this staff in hand, the wizard was able to bring forth works of art and innovation that were unparalleled in their power and beauty. But as time went on, the wizard became consumed by his own passion, and his works grew increasingly dangerous and destructive, fueled by the uncontrollable power of the staff. In the end, the wizard vanished into the flames of his own creation, leaving behind only the staff that had driven him to such heights of madness. It is said that the staff still holds within it the raw, untamed power of flame, and that only the most daring and creative of wielders can hope to master it without being consumed by their own ambition. It is said that one can %^C203%^<scorcher>%^C227%^, %^C203%^<fireball>%^C227%^ or %^C203%^<firestorm>%^C227%^, or even %^C203%^<firewall>%^C227%^ in times of need. Each of these spells within the staff will consume charges equal to its spell level. The wielder of this staff can check its %^C203%^<charges>%^C227%^ at will.%^CRST%^");
+    set_value(10000);
     set_property("no_curse", 1);
     set_property("no steal", 1);
     set_property("lore difficulty", 40);
@@ -65,6 +65,8 @@ void init()
     add_action("fireball_func", "fireball");
     add_action("storm_func", "firestorm");
     add_action("wall_func", "firewall");
+    add_action("scorch_func", "scorcher");
+    add_action("show_charges", "charges");
     
     hit_count = 0;
 }
@@ -135,7 +137,8 @@ int wield_func()
     
     if(holder->query_true_name() != owner)
     {
-        tell_object(holder, "STAFF REJECTS YOU!");
+        tell_object(holder, "%^C203%^Unworthy hands grasp at the Flames of Inspiration, but they burn with a fury that you cannot contain. Beware the consequences of your audacity!%^CRST%^");
+        holder->cause_typed_damage(holder, "torso", 200, "fire");
         return 0;
     }
     
@@ -145,16 +148,22 @@ int wield_func()
     if(holder->query_stats(stat_to_buff) < holder->query_stats("wisdom"))
         stat_to_buff = "wisdom";
     
+    if(holder->query_stats(stat_to_buff) < 24)
+    {
+        tell_object(holder, "%^C203%^The Flames of Inspiration will not suffer a weak or unworthy hand. You are not yet ready to harness its true power!%^CRST%^");
+        holder->cause_typed_damage(holder, "torso", 200, "fire");
+        return 0;
+    }
+    
     set_item_bonus(stat_to_buff, 6);
     
-    tell_object(holder, "STAFF ACCEPTS YOU!");
-    tell_room(environment(holder), color("STAFF ACCEPTS ROOM MESS"), holder);
+    tell_object(holder, "%^C221%^Your mind sparks with inspiration as you wield Brilliance, the Flames of Inspiration, and you feel a fiery energy coursing through your body, empowering you to create and innovate with unparalleled vision and clarity.%^CRST%^");
     return 1;
 }
 
 int unwield_func()
 {
-    owner && tell_object(owner, "STAFF UNWIELD");
+    owner && tell_object(owner, "%^C203%^As you release your grip on Brilliance, the Flames of Inspiration, you feel the fiery energy that had suffused your body recede, leaving you feeling drained and uninspired, but with a lingering sense of potential and possibility.%^CRST%^");
     return 1;
 }
 
@@ -177,7 +186,7 @@ int scorch_func(string str)
     if(!consume_charges(2))
         return notify_fail(sprintf("The staff only has %d %s.", charges, charges > 1 ? "charges" : "charge"));
     
-    objectp(spell) && spell->use_spell(this_player(), 0, this_player()->query_level(), 100, "mage");
+    objectp(spell) && spell->use_spell(this_player(), str, this_player()->query_level(), 100, "mage");
     
     return 1;
 }
@@ -201,7 +210,7 @@ int fireball_func(string str)
     if(!consume_charges(3))
         return notify_fail(sprintf("The staff only has %d %s.", charges, charges > 1 ? "charges" : "charge"));
     
-    objectp(spell) && spell->use_spell(this_player(), 0, this_player()->query_level(), 100, "mage");
+    objectp(spell) && spell->use_spell(this_player(), str, this_player()->query_level(), 100, "mage");
     
     return 1;
 }
@@ -223,9 +232,9 @@ int wall_func(string str)
     }
     
     if(!consume_charges(4))
-        return notify_fail(sprintf("The ring only has %d %s.", charges, charges > 1 ? "charges" : "charge"));
+        return notify_fail(sprintf("The staff only has %d %s.", charges, charges > 1 ? "charges" : "charge"));
     
-    objectp(spell) && spell->use_spell(this_player(), 0, this_player()->query_level(), 100, "mage");
+    objectp(spell) && spell->use_spell(this_player(), str, this_player()->query_level(), 100, "mage");
     
     return 1;
 }
@@ -249,7 +258,13 @@ int storm_func(string str)
     if(!consume_charges(7))
         return notify_fail(sprintf("The staff only has %d %s.", charges, charges > 1 ? "charges" : "charge"));
     
-    objectp(spell) && spell->use_spell(this_player(), 0, this_player()->query_level(), 100, "cleric");
+    objectp(spell) && spell->use_spell(this_player(), str, this_player()->query_level(), 100, "cleric");
     
+    return 1;
+}
+
+int show_charges()
+{
+    printf("You can tell the staff currently has %d out of %d charges available.\n", charges, MAX_CHARGES);
     return 1;
 }

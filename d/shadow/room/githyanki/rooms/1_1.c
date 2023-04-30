@@ -21,7 +21,7 @@ void create(){
 
 int jump(){
         
-    tell_object(TP,"%^RED%^you step up to the edge and jump!%^RESET%^");
+    tell_object(TP,"%^RED%^You step up to the edge and jump!%^RESET%^");
         tell_room(ETP,"%^RESET%^%^RED%^Are they crazy? "+TPQCN+"%^RESET%^%^RED%^"+
 " walks over to the crack and jumps out of the fortress%^RESET%^",TP);
         TP->move_player("/d/shadow/virtual/desert/18,45.desert.c");

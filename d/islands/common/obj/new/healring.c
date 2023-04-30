@@ -57,20 +57,35 @@ int wearme(string str)
 
 void heart_beat()
 {
-    if(!objectp(ETO)) { return; }
+    object wearer;
+    int time;
 
-    if(uses > 0) { used_time = time(); }
+    if (!objectp(this_object()))
+        return;
 
-    if(WAIT_TIME < (time() - used_time))    { uses = 3; }
-    if(WAIT_TIME2 > (time() - used_time2))  { return; }
-    if(!TO->query_worn()) { return; }
+    if(!objectp(wearer = environment(this_object())))
+        return;
 
-    if(ETO->query_hp_percent() < 34 && !ETO->query_unconscious() && !ETO->query_bound() && uses > 0)
+    time = time();
+
+    if (uses > 0)
+        used_time = time;
+
+    if (WAIT_TIME < (time - used_time))
+        uses = 3;
+
+    if (WAIT_TIME2 > (time - used_time2))
+        return;
+
+    if (!this_object()->query_worn())
+        return;
+
+    if ((wearer->query_hp() * 100 / wearer->query_max_hp()) < 34 && !wearer->query_unconscious() && !wearer->query_bound() && uses > 0)
     {
-        tell_object(ETO,"%^BOLD%^%^WHITE%^The ring feels your pain and heals you completely!%^RESET%^");
-        ETO->add_hp(ETO->query_max_hp());
-        used_time2 = time();
-        uses--;
+        tell_object(wearer, "%^BOLD%^%^WHITE%^The ring feels your pain and heals you completely!%^RESET%^");
+        wearer->add_hp(wearer->query_max_hp());
+        used_time2 = time;
+        --uses;
         return 1;
     }
 }

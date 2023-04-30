@@ -18,6 +18,7 @@ void create() {
     set_spell_name("frost orb");
     set_spell_level(([ "mage" : 3, "cleric" : 3, "druid": 3 ]));
     set_domains("cold");
+    set_circle("winter");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS frost orb on TARGET");
     set_description("This spell allows a mage to tap into the Para-Elemental Plane of Ice and borrow some of its energy "

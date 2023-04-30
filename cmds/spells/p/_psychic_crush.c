@@ -8,6 +8,7 @@
 
 #include <std.h>
 #include <spell.h>
+#include <magic.h>
 #include <daemons.h>
 
 inherit SPELL;
@@ -20,7 +21,7 @@ create()
     set_spell_sphere("telepathy");
     set_syntax("cast CLASS psychic crush on TARGET");
     set_damage_desc("mental damage and tripped, paralyzed, or death");
-    set_description("Your psychic will abruptly and brutally crushes the mental essence of the target. This power will stagger, paralyze or kill the target. Whether they make their saves or not, the target will take massive mental damage.");
+    set_description("Your psychic will abruptly and brutally crush the mind of the target, attempting to completely unhinge their psyche. The target makes a will save. If they fail the save, they are tripped for 1d4 rounds. If their level is more than 4 less than your clevel, they are additionally paralyzed for 2d4 rounds. If that difference is greater than 9, the target must have death protection or immediately die. Finally, the target takes normalized mental damage. Those that pass the save will not be tripped, will have the paralyze duration reduced, and will take half mental damage.");
     set_verbal_comp();
     mental_spell();
     set_somatic_comp();
@@ -32,7 +33,6 @@ string query_cast_string()
 {
     return "%^BOLD%^CYAN%^" + sprintf("%s concentrates on %s psionic powers", caster->QCN, caster->query_possessive());
 }
-
 
 void spell_effect()
 {
@@ -59,9 +59,9 @@ void spell_effect()
         int duration;
         tell_room(place,"%^BOLD%^"+target->QCN+" is paralyzed by the mental assault!",target);
         tell_object(target,"%^BOLD%^You feel your body freeze as the mental assault thrashes your mind!");
-        duration = roll_dice(2,4);
+        duration = ROUND_LENGTH * roll_dice(1,4);
         if(!saved)
-            duration = 8*roll_dice(1,4);
+            duration += ROUND_LENGTH * roll_dice(1,4);
         target->set_paralyzed(duration,"%^BOLD%^You are paralyzed by the mental assault!");
     }
 

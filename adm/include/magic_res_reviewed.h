@@ -6,18 +6,22 @@
 
 // Living objects (mobs)
 #define MAGIC_RES_MOBS ({ \
+    "/cmds/avatar/generic_guard", \
     "/d/antioch/antioch2/mons/sebastian", \
     "/d/antioch/valley/mons/dragonet", \
     "/d/attaya/tunnels/mons/book", \
     "/d/islands/argentrock/mon/diamond", \
     "/d/islands/argentrock/mon/diamond2", \
     "/d/islands/argentrock/mon/hellhound", \
+    "/d/islands/serakii/mobs/sliver", \
     "/d/retired/obj/elfshadow", \
     "/d/shadowgate/conversion/spellbert", \
     "/d/tharis/newtharis/mobs/bankgolem", \
+    "/realms/chernobog/events/eilistraee/slaad/blue", \
 })
 
 // Items
 #define MAGIC_RES_ITEMS ({ \
     "/d/azha/obj/gmr_ring", \
+    "/d/islands/elf/obj/mr_ring", \
 })

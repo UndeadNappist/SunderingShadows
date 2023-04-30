@@ -80,6 +80,9 @@ void create()
     set_skill("athletics", 20); 
     set_attacks_num(10);
     set_property("function and attack", 1);
+    
+    if(!clonep())
+        return;
 	
 	ob = new(OBJ"legion_cassock.c");
     ob->move(TO);

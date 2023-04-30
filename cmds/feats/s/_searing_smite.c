@@ -8,7 +8,7 @@ void create() {
     feat_category("Presence");
     feat_name("searing smite");
     feat_prereq("Paladin L31");
-    feat_desc("With this feat, the paladin's smite is empowered with greater divine energy, tearing at the target's very essence for the duration of the smite. This causes smite to do additional divine damage each round while present on the target. This damage is based off of the base smite damage, so it will be more potent against those of an opposing alignment to the paladin.");
+    feat_desc("With this feat, the paladin's smite is empowered with greater divine energy, tearing at the target's very essence for the duration of the smite. This causes smite to do additional divine damage each round while present on the target. This damage is based off of the base smite damage, and will only work against those of an opposing alignment to the paladin.");
     permanent(1);
     set_required_for(({}));
 }

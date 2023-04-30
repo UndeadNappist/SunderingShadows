@@ -30,13 +30,13 @@ void create(){
     set_property("indoors",1);
     set_property("light",2);
     set_property("no sticks",1);
-    //set_short("Rhapsody Inn, a small cozy inn");
-    set_short("%^C160%^The ruins of a small inn%^CRST%^");
-    //set_long("%^BOLD%^Rhapsody Inn, a small cozy inn\n This small, yet cozy inn has been painstakingly built of %^RESET%^grey %^BOLD%^stones harvested from the Saakrune Sea and the legendary %^RESET%^%^ORANGE%^timber %^BOLD%^%^WHITE%^of the Tharis Forest. Although obviously a newly rebuilt structure, it has the look and feel of the old, maintaining the feeling of being an establishment that has been here as long as memory serves. Ornately carved %^RESET%^%^ORANGE%^wooden %^BOLD%^%^WHITE%^moldings line high vaulted ceilings, which offer even the largest of individuals a comfortable place to rest and relax. The inn boasts a fully stocked %^CYAN%^bar%^WHITE%^ and a small %^RESET%^%^ORANGE%^wooden %^BOLD%^%^CYAN%^stage%^WHITE%^ lined with %^RED%^r%^RESET%^%^RED%^e%^BOLD%^d %^WHITE%^velvet curtains, upon which one may find a softly crooning songstress, a master storyteller, or even a poet reciting his work. A %^CYAN%^hammock%^WHITE%^ has been set up in the northwestern corner of the room, it looks very comfortable. A %^RED%^blazing %^BOLD%^%^WHITE%^fireplace is found not far from it, heating up the room. A lovely %^CYAN%^painting%^WHITE%^ and a %^ORANGE%^banjolele%^WHITE%^ is hung over the fireplace. A throw rug has been laid out in front of the fireplace. Tables dot the room, providing a spot to congregate among friends. One table in particular stands out, it is still stained with %^RESET%^%^RED%^blood %^BOLD%^%^WHITE%^and bears %^BOLD%^%^BLACK%^burn %^WHITE%^marks, and has an assassin's dagger deeply embedded in the center of the table. There are two %^RED%^menu%^WHITE%^ parchments nailed to the wall by the bar.%^RESET%^\n");
-    set_long("%^C160%^The ruins of a small inn\n%^C058%^Where once stood a cozy inn, now is mere rubble. %^C124%^Blood %^C058%^and %^C126%^vi%^C125%^s%^C126%^cer%^C125%^a %^C058%^color the destruction, a beacon to local %^C059%^scavengers %^C058%^as the rats and carrion birds pick at the scattered chunks of flesh. The furnishings have been dashed apart by some immense force, little more than broken kindling at this point. A crooked stack of bricks off to the side is all that remains of a once-grand fireplace.%^CRST%^\n");
-	//set_smell("default","The fresh aroma of the food and drink waft in from the kitchen.");
-    //set_listen("default","You hear the joking banter of the crowd and an occasional fun loving tune.");
-    /*set_items(([
+    set_short("Rhapsody Inn, a small cozy inn");
+    //set_short("%^C160%^The ruins of a small inn%^CRST%^");
+    set_long("%^BOLD%^Rhapsody Inn, a small cozy inn\n This small, yet cozy inn has been painstakingly built of %^RESET%^grey %^BOLD%^stones harvested from the Saakrune Sea and the legendary %^RESET%^%^ORANGE%^timber %^BOLD%^%^WHITE%^of the Tharis Forest. Although obviously a newly rebuilt structure, it has the look and feel of the old, maintaining the feeling of being an establishment that has been here as long as memory serves. Ornately carved %^RESET%^%^ORANGE%^wooden %^BOLD%^%^WHITE%^moldings line high vaulted ceilings, which offer even the largest of individuals a comfortable place to rest and relax. The inn boasts a fully stocked %^CYAN%^bar%^WHITE%^ and a small %^RESET%^%^ORANGE%^wooden %^BOLD%^%^CYAN%^stage%^WHITE%^ lined with %^RED%^r%^RESET%^%^RED%^e%^BOLD%^d %^WHITE%^velvet curtains, upon which one may find a softly crooning songstress, a master storyteller, or even a poet reciting his work. A %^CYAN%^hammock%^WHITE%^ has been set up in the northwestern corner of the room, it looks very comfortable. A %^RED%^blazing %^BOLD%^%^WHITE%^fireplace is found not far from it, heating up the room. A lovely %^CYAN%^painting%^WHITE%^ and a %^ORANGE%^banjolele%^WHITE%^ is hung over the fireplace. A throw rug has been laid out in front of the fireplace. Tables dot the room, providing a spot to congregate among friends. One table in particular stands out, it is still stained with %^RESET%^%^RED%^blood %^BOLD%^%^WHITE%^and bears %^BOLD%^%^BLACK%^burn %^WHITE%^marks, and has an assassin's dagger deeply embedded in the center of the table. There are two %^RED%^menu%^WHITE%^ parchments nailed to the wall by the bar.%^RESET%^\n");
+    //set_long("%^C160%^The ruins of a small inn\n%^C058%^Where once stood a cozy inn, now is mere rubble. %^C124%^Blood %^C058%^and %^C126%^vi%^C125%^s%^C126%^cer%^C125%^a %^C058%^color the destruction, a beacon to local %^C059%^scavengers %^C058%^as the rats and carrion birds pick at the scattered chunks of flesh. The furnishings have been dashed apart by some immense force, little more than broken kindling at this point. A crooked stack of bricks off to the side is all that remains of a once-grand fireplace.%^CRST%^\n");
+	set_smell("default","The fresh aroma of the food and drink waft in from the kitchen.");
+    set_listen("default","You hear the joking banter of the crowd and an occasional fun loving tune.");
+    set_items(([
         "menu" : "There are two different menus, the drinks menu and the food menu, choose which one to read.",
         "stage" : "%^BOLD%^Crafted from %^RESET%^%^ORANGE%^timber %^BOLD%^%^WHITE%^of the Tharis Forest, the stage provides a small area for friends and acquaintances to perform. You may even be lucky enough to glimpse the owners, recounting tales of their adventures. Thick, %^RED%^r%^RESET%^%^RED%^e%^BOLD%^d %^BOLD%^%^WHITE%^velvet curtains line the stage and allow privacy between performances. Mounted at the front of the stage, a gleaming %^RESET%^s%^BOLD%^i%^RESET%^lv%^BOLD%^e%^RESET%^r %^CYAN%^plaque%^RESET%^ garners attention%^RESET%^.",
         ({"painting","lovely painting","remembrance painting"}) : "%^BOLD%^A wave of sadness washes over you as you look at this painting.\n\n A handsome man stands here, flowing %^RESET%^%^ORANGE%^brown %^BOLD%^%^WHITE%^hair whips in the wind, piercing %^BLUE%^blue %^WHITE%^eyes gaze into yours. Clad in cloak and robes, he is quite a sight to see. He clings tightly to a book, superbly bound and covered, probably containing some sort of arcane magic that he used. Next to him stands a pretty elven girl, sparkling %^RESET%^gr%^BOLD%^e%^RESET%^y %^BOLD%^eyes look out at you curiously as she clings to the man. Clad in similar robes and a cloak. Her raven hair spills over the edge of her robes and flows down her back. An eerie m%^YELLOW%^oo%^WHITE%^nlight seems to bathe this lovely couple, and you think you can almost see a beautiful woman in the background, casting the light on this ill-fated pair.%^RESET%^\n\n The painting is entitled: Taaveti and Kindra, together forever.\n Painted by: Vashna Tal'Razzan.",
@@ -55,19 +55,19 @@ void create(){
         ({"fire place","fireplace"}):"%^BOLD%^A large %^RED%^red %^BOLD%^ %^WHITE%^brick fireplace is blazing on the northern wall, keeping the room nice and toasty.",
         "hammock" : "%^BOLD%^On the northwestern wall is a large comfortable hammock. It is near the fireplace, so whoever is in it will be kept nice and warm.",
         ({"rug","throw rug"}):"%^BOLD%^A throw rug has been laid out in front of the fireplace. It is made of wool and appears to have been hand woven. It has been imported from a distant land, and the image woven into it is that of what is called a Rune Blade. The weapon is special, and hard to make, carefully tuned to the owner of the sword. Those who wield such blades are called Sword Singers, for their weapon is a part of them and they sing as they fight, weaving their magic through song. They are likened to bards in many cases, for their songs are beautiful and from the soul, ever changing, always different, like their owners.",
-    ]));*/
+    ]));
 
     set_exits( (["out":"/d/darkwood/room/road7",
-        //"south" : "/d/darkwood/room/backroom"
+        "south" : "/d/darkwood/room/backroom"
         ]));
-    /*set_door("door","/d/darkwood/room/road7","out","rhapsody key");
+    set_door("door","/d/darkwood/room/road7","out","rhapsody key");
     set_open("door",0);
     set_locked("door",0);
     "/d/darkwood/room/road7"->set_open("door",0);
     "/d/darkwood/room/road7"->set_locked("door",0);
     set_door("wooden door","/d/darkwood/room/backroom.c","south","rhapsody key");
     "/d/darkwood/room/backroom"->set_open("wooden door",0);
-    "/d/darkwood/room/backroom"->set_locked("wooden door",0);*/
+    "/d/darkwood/room/backroom"->set_locked("wooden door",0);
 
     set_menu( ({"raging tempo","treble clef","languishing lyre","rhapsody",
         "elven steak","pheasant","story stew","sparkling melody","spinach salad",
@@ -178,8 +178,8 @@ void create(){
 
 void reset(){
    ::reset();
-   //if(!present("dionysus")) new("/d/npc/dionysus")->move(TO);
-   //if(!present("alinbar")) new("/d/npc/alinbar")->move(TO);
+   if(!present("dionysus")) new("/d/npc/dionysus")->move(TO);
+   if(!present("alinbar")) new("/d/npc/alinbar")->move(TO);
 }
 
 string *menu_items;
@@ -190,7 +190,7 @@ string currency = "gold";
 
 void init() {
    ::init();
-   //add_action("buy", "buy");
+   add_action("buy", "buy");
    add_action("key","retrieve");
    add_action("read","read");
    add_action("exit_stage","exit");

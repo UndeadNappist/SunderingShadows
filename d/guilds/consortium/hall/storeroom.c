@@ -4,7 +4,7 @@ inherit VAULT;
 
 void create(){
    ::create();
-
+   set_property("no teleport",1); //removing access during remodel
    set_property("indoors",1);
    set_property("light",2);
    set_short("Library of the Consortium");

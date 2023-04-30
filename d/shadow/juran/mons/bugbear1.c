@@ -42,14 +42,18 @@ create() {
     	add_money("gold",random(40));
     	add_money("silver",random(100));
     	add_money("copper",random(500));
-  	ob = new( CWEAP+"spear_lg.c" );
-		ob->set_property("monsterweapon", 1);
-		ob->move(TO);
+        
+        if(clonep())
+        {
+  	        ob = new( CWEAP+"spear_lg.c" );
+		    ob->set_property("monsterweapon", 1);
+		    ob->move(TO);
     		command("wield spear");
-	ob = new(CARM+"banded.c");
+	        ob = new(CARM+"banded.c");
     		ob->set_property("monsterweapon", 1);
     		ob->move(TO);
     		command("wear banded");
+        }
         command("speak goblin");
     	command("speech grunt");
    	set_property("full attacks",1);

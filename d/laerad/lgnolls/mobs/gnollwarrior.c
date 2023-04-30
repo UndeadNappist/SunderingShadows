@@ -44,6 +44,9 @@ void create() {
     set_max_hp(query_hp());
     set_property("full attacks", 3);
     add_money("gold", random(250));
+    
+    if(clonep())
+    {
 	
 	obj = new("/d/common/obj/armour/fullplate");
 	obj->set_property("enchantment",2);
@@ -64,6 +67,7 @@ void create() {
             break;
 	  }
 	command("wearall");
+    }
 	
 	set_funcs(({"bite"}));
 	set_func_chance(15);

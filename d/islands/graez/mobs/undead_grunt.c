@@ -53,7 +53,9 @@ switch(i)
    set_new_exp(25,"normal");
    set_alignment(9);
 
-
+    if(!clonep())
+        return;
+    
     ob = new("/d/common/obj/armour/chain");
        ob->move(TO);
        ob->set_property("enchantment",3);

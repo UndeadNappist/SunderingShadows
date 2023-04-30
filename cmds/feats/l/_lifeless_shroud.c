@@ -118,7 +118,7 @@ void execute_attack()
     }
 
     allies = ob_party(caster) + (caster->query_followers() - attackers) + ({ caster });
-    allies = filter_array(allies, (: $1->query_property("negative energy affinity") :));
+    allies = filter_array(allies, (: $1->query_property("negative energy affinity") || $1->query_property("heart of darkness") :));
     allies = distinct_array(allies);
 
     for (i = 0; i < sizeof(allies); i++) {
@@ -181,7 +181,7 @@ void negative_effects(object obj)
     if (!objectp(obj)) {
         return;
     }
-    
+
     bonusdc = max( ({ BONUS_D->query_stat_bonus(caster, "intelligence"), BONUS_D->query_stat_bonus(caster, "charisma"), BONUS_D->query_stat_bonus(caster, "wisdom") }) );
 
     // damage, blind, fatigue, sickened
@@ -196,20 +196,16 @@ void negative_effects(object obj)
         break;
 
     case 4..15:
-        damage = roll_dice(clevel, 5);
-        set_save("fort");
-        if (do_save(obj, bonusdc)) {
-            damage = damage / 2;
-        }
-
-        if (obj->query_property("negative energy affinity")) {
-            tell_object(obj, cm("Energies emanating from " + caster->QCN + " wither your putrid flesh!"));
-            obj->cause_typed_damage(obj, obj->return_target_limb(), damage, "positive energy");
-        }else {
+        if (!obj->query_property("negative energy affinity") && !obj->query_property("heart of darkness")) {
+            damage = roll_dice(clevel, 5);
+            set_save("fort");
+            if (do_save(obj, bonusdc)) {
+                damage = damage / 2;
+            }
             tell_object(obj, cm("The cold ebbing from " + caster->QCN + " chills your very existence!"));
             obj->cause_typed_damage(obj, obj->return_target_limb(), damage, "negative energy");
+            tell_object(caster, cm("You sense lifeless currents you control harming " + obj->QCN + "!"));
         }
-        tell_object(caster, cm("You sense lifeless currents you control harming " + obj->QCN + "!"));
 
         break;
 

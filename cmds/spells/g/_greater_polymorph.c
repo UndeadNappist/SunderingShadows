@@ -57,6 +57,12 @@ int preSpell()
         return 0;
     }
     
+    if(!userp(target))
+    {
+        tell_object(caster, "You can only polymorph player characters.");
+        return 0;
+    }
+    
     allies = ({  });
     allies += PARTY_D->query_party_members(caster->query_party());
     
@@ -134,23 +140,25 @@ void spell_effect(int prof)
 
 void dest_effect()
 {
-    object shape;
-    if (objectp(target)) {
-        if (objectp(shape = target->query_property("shapeshifted"))) {
+    object shape, me = this_object();
+
+    if (objectp(target))
+    {
+        if (objectp(shape = target->query_property("shapeshifted")))
             shape->reverse_shape(target);
+
+        if(objectp(caster))
+        {
+            if(caster != target && objectp(target))
+                tell_object(caster, "You feel your polymorph magic slip away from " + target->query_cap_name() + ".");
         }
     }
     
     if(objectp(caster))
-    {
-        if(caster != target)
-            tell_object(caster, "You feel your polymorph magic slip away from " + target->query_cap_name() + ".");
-        
         caster->remove_property("greater polymorph");
-    }
     
     ::dest_effect();
-    if (objectp(TO)) {
-        TO->remove();
-    }
+
+    if (objectp(me))
+        me>remove();
 }

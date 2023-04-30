@@ -14,7 +14,7 @@ void create()
     feat_name("maximize spell");
     feat_prereq("31 levels in any single spellcaster class");
     feat_syntax("maximize_spell");
-    feat_desc("This Meta Magic feat will cause your next spell to behave as if its die rolls had the maximum result. This does not apply to spell DC or saving throw rolls. This feat is not available to psionic classes. This feat has a long cooldown");
+    feat_desc("This Meta Magic feat will cause your next spell to roll its damage dice with advantage (roll twice, take the highest result). This does not apply to spell DC or saving throw rolls. This feat is not available to psionic classes. This feat has a cooldown");
     set_required_for(({ }));
 }
 
@@ -81,7 +81,7 @@ void execute_feat()
 
     tell_object(caster, "You use your meta magic knowledge to maximize your next spell.");
     caster->set_property("maximize spell", 1);
-    caster->add_cooldown("maximize spell", 600);
+    caster->add_cooldown("maximize spell", 180);
 
     return;
 }

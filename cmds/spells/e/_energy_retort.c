@@ -76,6 +76,12 @@ void execute_attack(){
     object *attackers;
     int i;
 
+    if (!objectp(caster))
+    {
+        dest_effect();
+        return;
+    }
+
     if(!flag)
     {
         flag = 1;
@@ -83,7 +89,7 @@ void execute_attack(){
         return;
     }
 
-    place      = environment(caster);
+    place = environment(caster);
     if(!objectp(caster) || !objectp(place))
     {
         dest_effect();

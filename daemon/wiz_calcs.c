@@ -124,11 +124,19 @@ int *query_max_spell_array(int wizard_level, string caster_class, int stat) {
     return spells_allowed;
 }
 
-int query_spell_limit(int spell_level, int wizard_level, string caster_class, int stat) {
+int query_spell_limit(int spell_level, int wizard_level, string caster_class, int stat)
+{
     int *x;
     int total;
-    if(!spell_level) { return 0; }
+
+    if(!spell_level || spell_level < 1)
+        return 0;
+
     x = query_max_spell_array(wizard_level, caster_class, stat);
+
+    if (sizeof(x) < spell_level)
+        return 0;
+
     total = x[spell_level - 1];
     
     if(caster_class == "mage" && wizard_level > 30 && spell_level == 10)

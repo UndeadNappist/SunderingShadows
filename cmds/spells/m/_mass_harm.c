@@ -60,7 +60,7 @@ void spell_effect(int prof)
         member_array(target, party_members) != -1 ||
         member_array(target, followers) != -1) {
         targets = filter_array(distinct_array(party_members + (followers - attackers)) + ({ caster }),
-                               (: !!$1->query_property("negative energy affinity") :));
+            (: !!$1->query_property("negative energy affinity") || !!$1->query_property("heart of darkness") :));
         set_helpful_spell(1);
     }else if (member_array(target, attackers) != -1) {
         set_helpful_spell(0);
@@ -111,7 +111,7 @@ void spell_effect(int prof)
 
             if(!help_or_harm && wound > 0 && spell_type == "oracle")
             {
-        
+
                 if(caster->query_mystery() == "lunar" && caster->query_class_level("oracle") >= 31)
                 {
                     set_save("will");
@@ -123,7 +123,7 @@ void spell_effect(int prof)
                     }
                     set_save();
                 }
-            }   
+            }
 
             if (query_spell_name() == "mass harm") {
                 if (member_array(targets[i], caster->query_attackers()) == -1) {

@@ -69,6 +69,10 @@ void create()
     set_property("no tripped", 1);
     set_property("no trip", 1);
     set_property("no death", 1);
+    
+    if(!clonep())
+        return;
+    
     ob = new(ELOB+"ebon_reflector");
     ob->move(TO);
     command("wear shield");

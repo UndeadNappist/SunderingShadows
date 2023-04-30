@@ -81,7 +81,9 @@ switch(i)
     set_property("full attacks",1);
     set_func_chance(80);
 
-
+    if(!clonep())
+        return;
+    
     ob = new("/d/common/obj/armour/field");
        ob->move(TO);
        ob->set_property("enchantment",4);

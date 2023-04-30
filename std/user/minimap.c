@@ -19,16 +19,16 @@ string query_blocked_exit(object what, string direction)
     if(what->query_blocked(direction))
         return "O";
     
-    dest = what->query_exit(direction);
+    dest = (string)what->query_exit(direction);
     
     if(!dest)
         return "#";
-    else
-    {
-        catch(room = load_object(dest));
-        if(!objectp(room))
-            return "#";
-    }
+    
+    if(clonep(find_object(dest)))
+        return "*";
+
+    if(file_size(dest) != -1 || !objectp(room = load_object(dest)))
+        return "#";
     
     return "*";
 }

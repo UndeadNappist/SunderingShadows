@@ -26,5 +26,8 @@ void init()
 
 int clean_up()
 {
-    if(random_monsters::clean_up()) vault::clean_up();
+    if(random_monsters::clean_up()) 
+        return vault::clean_up();
+    
+    return 1;
 }

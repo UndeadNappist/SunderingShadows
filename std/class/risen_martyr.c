@@ -148,13 +148,13 @@ int prerequisites(object player)
         write("fail level");
         return 0;
     }
-    
+
     if(player->query_race() != "deva" && !player->is_deva())
     {
         write("fail race");
         return 0;
     }
-    
+
     return 1;
 }
 
@@ -178,10 +178,10 @@ int caster_level_calcs(object player, string the_class)
 
     //level = player->query_class_level(base);
     level = player->query_class_level(the_class);
-    
+
     if(base == the_class)
         level += player->query_class_level("risen_martyr");
-    
+
     return level;
 }
 
@@ -192,9 +192,9 @@ mapping class_featmap(string myspec) {
 mapping query_innate_spells(object player)
 {
     mapping innate_spells;
-    
-    innate_spells = ([ 
-                      
+
+    innate_spells = ([
+
         "bless"                     : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
         "protection from alignment" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
         "daylight"                  : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
@@ -202,9 +202,9 @@ mapping query_innate_spells(object player)
         "shield other"              : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
         "holy aura"                 : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
         "celestial brilliance"      : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]),
-                    
+
     ]);
-    
+
     return innate_spells;
 }
 
@@ -219,7 +219,7 @@ string new_save_type(object ob) { return base_class_ob(ob)->new_save_type(); }
 // unsure on this one, will have to investigate
 void advanced_func(object player) { return base_class_ob(player)->advance_func(player); }
 
-int hit_dice(object ob) { return base_class_ob(ob)->hit_dice(); }  // hit dice rolled for hitpoints each level
+int hit_dice(object ob) { return base_class_ob(ob)->hit_dice(ob); }  // hit dice rolled for hitpoints each level
 
 int default_hitpoints(object ob) { return base_class_ob(ob)->default_hitpoints(); } // hitpoints per level above level 20
 

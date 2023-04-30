@@ -156,7 +156,7 @@ int add_kill(string str)
 
 string query_monster(int x)
 {
-    if(x < 0)
+    if(!intp(x) || x < 0)
         return "unknown";
     
     if (x <= sizeof(monsters)) {
@@ -615,6 +615,7 @@ int sizeof_monsters()
     return sizeof(monsters4);
 }
 
+/*
 int opposed_alignment(object me, object you)
 {
     string *opposed;
@@ -640,6 +641,7 @@ int opposed_alignment(object me, object you)
     
     return 0;
 }
+*/
     
 
 int check_aura(object target, string type)
@@ -842,6 +844,9 @@ int immunity_check(object obj, string type)
             if(obj->query_class_level("oracle") > 30)
                 return 1;
         }
+        
+        if(member_array("glory", obj->query_divine_domain()) >= 0)
+            return 1;
 
         switch (myrace) {
 

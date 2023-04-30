@@ -25,6 +25,7 @@ void create()
                     "forth from each of the planes of earth, air, fire, and water.");
     set_verbal_comp();
     set_target_required(1);
+    summon_spell();
     set_helpful_spell(1);
 }
 
@@ -181,6 +182,10 @@ void create_elemental()
 
     caster->add_protector(elemental);
     caster->add_follower(elemental);
+    
+    elemental->set_owner(caster);
+    elemental->setup_minion(clevel, spell_level, "greater");
+    
     elemental->force_me("protect " + caster->query_name()); // purely for looks, it's already protecting
     elemental->force_me("protect " + caster->query_name());
     elemental->force_me("protect " + caster->query_name());

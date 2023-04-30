@@ -1,7 +1,7 @@
 //new elemental guardian passive creatures summoned with the elemental
 //opportunist feat randomly - Saide, December 2016
 #include <std.h>
-inherit WEAPONLESS;
+inherit MINION;
 
 #define VALID_ELE_TYPES ({"fire", "cold", "electricity", "acid"})
 

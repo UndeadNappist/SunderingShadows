@@ -623,11 +623,12 @@ int take_treasure(string str)
     if (present("keystone", TP)) {
         tell_object(TP, "As you take the treasure, the keystone vanishes from your grasp");
         present("keystone", TP)->remove();
-        if (!present("keystone", TP)) {
-            tell_object(TP, "The %^BOLD%^%^CYAN%^sp%^WHITE%^i%^CYAN%^r%^RESET%^i%^BOLD%^%^CYAN%^ts%^RESET%^ of the
-%^CYAN%^Tecqumin anc%^RESET%^e%^CYAN%^st%^RESET%^o%^CYAN%^rs%^RESET%^ usher you out of the treasury");
-            TP->move_player(ROOMS + "processional");
-        }
+// This is kicking people out before they can pick the item up off the ground. There is already other code to eject players that linger too long. -- Yves
+//         if (!present("keystone", TP)) {
+//             tell_object(TP, "The %^BOLD%^%^CYAN%^sp%^WHITE%^i%^CYAN%^r%^RESET%^i%^BOLD%^%^CYAN%^ts%^RESET%^ of the
+// %^CYAN%^Tecqumin anc%^RESET%^e%^CYAN%^st%^RESET%^o%^CYAN%^rs%^RESET%^ usher you out of the treasury");
+//             TP->move_player(ROOMS + "processional");
+//         }
     }
     if (EVENT_RECORDS_D->completed_event(TP->query_name(), "claimed a first Tecqumin treasure") > 0) {
         EVENT_RECORDS_D->record_event(TP->query_name(), "claimed a second Tecqumin treasure", time());
@@ -651,12 +652,12 @@ void eject()
                             + " among their %^BOLD%^%^YELLOW%^tr%^RESET%^%^ORANGE%^ea"
                             + "%^BOLD%^%^YELLOW%^s%^WHITE%^u%^YELLOW%^r%^RESET%^%^ORANGE%^"
                             + "e%^BOLD%^s%^RESET%^ has expired");
-                critters[i]->move(ROOMS + "processional1");
+                critters[i]->move(ROOMS + "processional");
                 critters[i]->force_me("look");
             }
         }
     }
-    room = find_object_or_load(ROOMS + "processional1");
+    room = find_object_or_load(ROOMS + "processional");
     if (objectp(room)) {
         room->remove_exit("east");
     }

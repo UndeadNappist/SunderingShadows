@@ -53,6 +53,8 @@ void create(){
             add_search_path("/cmds/fighter");
             set_stats("strength",25);
             set_parrying(1);
+            if(clonep())
+            {
             switch(random(6)){
                 case 0..3:
           					obj=new(OBJ+"pearl_longsword.c");
@@ -82,6 +84,7 @@ void create(){
             obj->move(TO);
             command("wield sword");
             force_me("wearall");
+            }
         break;
         case 1:
             set_class("thief");
@@ -98,6 +101,8 @@ void create(){
             set_stats("dexterity",18);
             set_stats("constitution",17);
             set_scrambling(1);
+            if(clonep())
+            {
             switch(random(6)){
                 case 0..3:
                     obj=new(OBJ+"serpent_lblade.c");
@@ -134,6 +139,7 @@ void create(){
             command("wield sword");
             command("wield sword 2");
             command("wearall");
+            }
         break;
         case 2:
             set_class("cleric");
@@ -154,6 +160,8 @@ void create(){
                 "dispel magic",
                 "thorn spray"
             }) );
+            if(clonep())
+            {
             obj=new(OBJ+"diamond_star.c");
             if(random(4)){
                 obj->set_property("monsterweapon",1);
@@ -178,6 +186,7 @@ void create(){
             obj->move(TO);
             force_me("wearall");
             command("wield star");
+            }
         break;
         case 3:
             set_class("mage");
@@ -202,6 +211,8 @@ void create(){
                 "greater shout",
                 "dispel magic"
             }) );
+            if(clonep())
+            {
             obj=new("/d/common/obj/rand/mage_robes.c");
             obj->set_property("enchantment",3);
             if(random(5)){
@@ -238,6 +249,7 @@ void create(){
                 obj->move(TO);
             command("wield fan");
             command("wearall");
+            }
         break;
         case 4:
             set_class("ranger");
@@ -246,6 +258,8 @@ void create(){
             add_search_path("/cmds/ranger");
             set_stats("strength",17);
             set_stats("dexterity",18);
+            if(clonep())
+            {
             switch(random(6)){
                 case 0..3:
                     obj=new(OBJ+"leaf_tblade.c");
@@ -268,6 +282,9 @@ void create(){
                     obj->move(TO);
                 break;
             }
+            }
+            if(clonep())
+            {
             obj=new(OBJ+"phoenix_leather.c");
             if(random(3)){
                 obj->set_property("monsterweapon",1);
@@ -282,6 +299,7 @@ void create(){
             command("wield sword");
             command("wield sword 2");
             command("wearall");
+            }
         break;
         default:
             set_class("mage");
@@ -311,6 +329,9 @@ void create(){
                 "greater shout",
                 "dispel magic"
             }) );
+            
+            if(clonep())
+            {
             obj=new(OBJ+"phoenix_leather.c");
             if(random(4)){
                 obj->set_property("monsterweapon",1);
@@ -341,6 +362,7 @@ void create(){
             obj = new("/d/magic/scroll");
             obj->set_av_spell(6-random(1));
             obj->move(TO);
+            }
         break;
     }
     // obj = new("/d/common/obj/potion/healing");
@@ -406,6 +428,8 @@ void init(){
     living = all_living(ETO);
     living -= ({ TO });
     if(!sizeof(living)) return;
+    if(!userp(this_player()))
+        return;
     prej = new(OBJ+"prejudice_d");
     for (i =0;i<sizeof(living);i++) {
         if(!objectp(living[i])) continue;

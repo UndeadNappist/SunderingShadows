@@ -19,7 +19,7 @@
 inherit CONTAINER;
 
 mixed* deaths;
-mapping player_data, magic, severed, healing;
+mapping player_data, magic, severed, healing, max_hp_components;
 nosave mapping body;
 nosave mapping resistances;
 nosave mapping MyAcArmour;
@@ -64,8 +64,8 @@ void init_limb_data()
     fake_limbs = ({});
     wielded_objects = ([]);
     severed = ([]);
-    if (!healing || healing == ([])) {
-        healing = ([]);
+    if (!healing || !mapp(healing) || healing == ([])) {
+        healing = ([ "stuffed": 1000, "quenched": 1000, "intox": 0, "bloodlust": 0 ]);
     }
     if (!magic) {
         magic = ([ "points" : 0, "max points" : 0 ]);
@@ -106,30 +106,38 @@ int query_sp()
 void set_max_hp(int hp)
 {
     player_data["general"]["max_hp"] = hp;
+
+    recalculate_max_hp();
 }
 
 void set_max_hp_bonus(int hp)
 {
     max_hp_bonus = hp;
+
+    recalculate_max_hp();
 }
 
 int add_max_hp_bonus(int hp)
 {
     max_hp_bonus += hp;
 
-    if (max_hp_bonus >= (query_max_hp_base()) / 3) {
+    if (max_hp_bonus >= (query_max_hp_base()) / 3)
+    {
         max_hp_bonus = query_max_hp_base() / 3;
+
+        recalculate_max_hp();
+
         return 0;
     }
+
+    recalculate_max_hp();
+
     return 1;
 }
 
 int query_max_hp_bonus()
 {
-    int my_max_hp_bonus;
-    my_max_hp_bonus = max_hp_bonus;
-	
-    return (my_max_hp_bonus + EQ_D->gear_bonus(TO, "max hp bonus"));
+    return (max_hp_bonus + EQ_D->gear_bonus(this_object(), "max hp bonus"));
 }
 
 void set_diety(string str)
@@ -635,96 +643,119 @@ int query_true_max_hp()
 
 int query_max_hp_base()
 {
-    int num, mypsi;
-    string file, myrace, subrace;
+    return player_data["general"]["max_hp"] + max_hp_components["feats"] + max_hp_components["stats"];
+}
 
-    if (!objectp(TO)) {
-        return 0;
-    }
-    if (!userp(TO)) {
-        num = player_data["general"]["max_hp"];
-        num = WORLD_EVENTS_D->monster_modification_event(num, "health", TO);
-        num = num < 1 ? 1 : num;
-        return num;
-    }
+void recalculate_max_hp_from_soulburn(int dont_recalculate_total)
+{
+    if (!mapp(max_hp_components))
+        max_hp_components = ([ "stats": 0, "feats": 0, "soulburn": 0, "interactions": 0 ]);
 
-    if (TO->is_undead()) {
-        num = "/daemon/bonus_d.c"->query_con_bonus((int)TO->query_stats("charisma"));
-    }
-    else if(FEATS_D->has_feat(this_object(), "natures gift"))
-    {
-        num = BONUS_D->query_con_bonus(this_object()->query_stats("wisdom"));
-    }
-    else {
-        num = "/daemon/bonus_d.c"->query_con_bonus((int)TO->query_stats("constitution"));
-    }
+    max_hp_components["soulburn"] = -(this_object()->query("available burn") * query_max_hp_base() / 20);
 
-    num = num * (int)TO->query_highest_level();
+    if (!dont_recalculate_total)
+        recalculate_max_hp();
+}
 
-    if (FEATS_D->usable_feat(TO, "toughness")) {
-        num += ((int)TO->query_level()) / 2;
-    }
+void recalculate_max_hp_from_interactions(int dont_recalculate_total)
+{
+    int num;
 
-    if (FEATS_D->usable_feat(TO, "improved toughness")) {
-        num += TO->query_level();
-    }
+    if (!mapp(max_hp_components))
+        max_hp_components = ([ "stats": 0, "feats": 0, "soulburn": 0, "interactions": 0 ]);
 
-    if (FEATS_D->usable_feat(TO, "epic toughness")) {
-        num += TO->query_level();
-    }
-    
     if(this_object()->is_animal())
     {
         object rider = this_object()->query_current_rider();
-            
+
         if(objectp(rider) && FEATS_D->has_feat(rider, "bred for war"))
-                num += (rider->query_level() * 2);
+                num = (rider->query_level() * 2);
     }
 
-    //Represents the Unholy Fortitude Feat for Agent of the Grave
-    if(FEATS_D->usable_feat(this_object(), "negative energy conduit"))
-    {
+    max_hp_components["interactions"] = num;
+
+    if (!dont_recalculate_total)
+        recalculate_max_hp();
+}
+
+void recalculate_max_hp_from_stats(int dont_recalculate_total)
+{
+    int num;
+
+    if (!mapp(max_hp_components))
+        max_hp_components = ([ "stats": 0, "feats": 0, "soulburn": 0, "interactions": 0 ]);
+
+    if (this_object()->is_undead())
+        num = "/daemon/bonus_d.c"->query_con_bonus((int)this_object()->query_stats("charisma"));
+    else if(FEATS_D->has_feat(this_object(), "natures gift"))
+        num = BONUS_D->query_con_bonus(this_object()->query_stats("wisdom"));
+    else
+        num = "/daemon/bonus_d.c"->query_con_bonus((int)this_object()->query_stats("constitution"));
+
+    num *= (int)this_object()->query_highest_level();
+
+    max_hp_components["stats"] = num;
+
+    if (!dont_recalculate_total)
+        recalculate_max_hp();
+}
+
+void recalculate_max_hp_from_feats(int dont_recalculate_total)
+{
+    int num;
+
+    if (!mapp(max_hp_components))
+        max_hp_components = ([ "stats": 0, "feats": 0, "soulburn": 0, "interactions": 0 ]);
+
+    if (FEATS_D->usable_feat(this_object(), "toughness"))
+        num += ((int)this_object()->query_level()) / 2;
+
+    if (FEATS_D->usable_feat(this_object(), "improved toughness"))
+        num += this_object()->query_level();
+
+    if (FEATS_D->usable_feat(this_object(), "epic toughness"))
+        num += this_object()->query_level();
+
+    if (FEATS_D->usable_feat(this_object(), "negative energy conduit"))
         num += this_object()->query_prestige_level(this_object()->query("base_class"));
-    }
 
-    if (FEATS_D->usable_feat(TO, "psionic body")) {
-        mypsi = 0;
-        mypsi += FEATS_D->calculate_psionic_feats(TO);
-        if (mypsi < 1) {
-            mypsi = 1;
-        }
-        mypsi = mypsi * 5;
-        if (FEATS_D->usable_feat(TO, "battle psyche")) {
-            mypsi = mypsi * 3;
-        }
+    if (FEATS_D->usable_feat(TO, "psionic body"))
+    {
+        int mypsi = FEATS_D->calculate_psionic_feats(this_object()) * 5;
+
+        if (FEATS_D->usable_feat(this_object(), "battle psyche"))
+            mypsi *= 3;
+
         num += mypsi;
     }
-    
-    //Warlock Soul Burn mechanic
-    //More burn lowers max HP but gives other bonuses
-    if(this_object()->is_class("warlock"))
-    {
-        int temp;
-        
-        temp = (player_data["general"]["max_hp"] * 5) / 100;
-        num -= (this_object()->query("available burn") * temp);
-    }
 
-    myrace = (string)TO->query_race();
-    subrace = (string)TO->query("subrace");
+    max_hp_components["feats"] = num;
 
-    if (intp(USER_D->get_scaled_level(TO))) {
-        num += sum_array(TO->query("hp_array"), (int)TO->query_base_character_level());
-        num = WORLD_EVENTS_D->monster_modification_event(num, "health", TO);
-        return num;
-    }
-    num += player_data["general"]["max_hp"];
-    return num;
+    if (!dont_recalculate_total)
+        recalculate_max_hp();
+}
+
+void init_max_hp()
+{
+    max_hp_components = ([ "stats": 0, "feats": 0, "soulburn": 0, "interactions": 0 ]);
+    recalculate_max_hp_from_stats(1);
+    recalculate_max_hp_from_feats();
+}
+
+void recalculate_max_hp()
+{
+    if (!mapp(max_hp_components))
+        max_hp_components = ([ "stats": 0, "feats": 0, "soulburn": 0, "interactions": 0 ]);
+
+    if (!userp(this_object()))
+        player_data["general"]["functional_max_hp"] = WORLD_EVENTS_D->monster_modification_event(player_data["general"]["max_hp"], "health", this_object()) + max_hp_components["interactions"] + 1;
+
+    player_data["general"]["functional_max_hp"] = player_data["general"]["max_hp"] + max_hp_components["feats"] + max_hp_components["stats"] + max_hp_components["soulburn"] + query_max_hp_bonus() + 1;
 }
 
 int query_max_hp()
 {
-    return query_max_hp_base() + query_max_hp_bonus() + 1;
+    return player_data["general"]["functional_max_hp"];
 }
 
 int query_hp()
@@ -878,7 +909,7 @@ int query_resistance(string res)
             break;
 
             case "cold":
-            if(member_array("cold", domains) >= 0)
+            if(member_array("cold", domains) >= 0 || member_array("water", domains) >= 0)
                 myres += TO->query_class_level("cleric");
             break;
 
@@ -974,6 +1005,13 @@ int query_resistance_percent(string res, object source)
         if (res == "cold") {
             mod += 50;
         }
+        if(this_object()->query_acquired_template() == "mortuum")
+        {
+            if(res == "fire")
+                mod -= 25;
+            if(res == "bludgeoning")
+                mod -= 25;
+        }           
         if (TO->is_vampire()) {
             if (res == "electricity") {
                 mod += 50;
@@ -1189,7 +1227,7 @@ int query_resistance_percent(string res, object source)
     
     //Psion mental mastery capstone
     if(this_object()->is_class("psion") && this_object()->query("available focus") == 2 && res == "mental")
-        mod = 100;
+        mod += 100;
 
     //Mage is invulnerable for duration of prismatic sphere
     if(TO->query_property("prismatic sphere"))
@@ -1232,17 +1270,23 @@ int cause_typed_damage(object targ, string limb, int damage, string type)
 {
     object attacker;
     int amt;
-    if (!objectp(attacker = targ->query_property("beingDamagedBy"))) {
+    
+    if(!objectp(targ))
+        return 0;
+
+    if (!objectp(attacker = targ->query_property("beingDamagedBy")))
+    {
         attacker = previous_object();
-        if(attacker->is_feat() && objectp(attacker->query_caster())) {
+
+        if (!objectp(attacker))
+            return 0;
+
+        if(attacker->is_feat() && objectp(attacker->query_caster()))
             attacker = attacker->query_caster();
-        }
     }
 
     if(damage <= 0)
-    {
         log_file("reports/negative_damage", "Negative or zero damage value passed : " + base_name(previous_object()) + "\n");
-    }
 
     damage = (int)COMBAT_D->typed_damage_modification(attacker, targ, limb, damage, type);
     return targ->cause_damage_to(targ, limb, damage);
@@ -1336,11 +1380,12 @@ int do_damage(string limb, int damage)
 
     // added to stop doing damage in pkills when a player is at -100% health.  Should prevent
     // MOST accidental pkills -Ares 4/12/06
-    if (query_hp() < (-1 * query_max_hp()))
+    if (query_hp() <= (-1 * query_max_hp()))
     {
         if (damage > 0) {
             damage = 0;
-        }                              // stuck this here so they'll heal if they're knocked out below -100% -Ares
+            set_hp(-query_max_hp());
+        }
     }
     if (!objectp(attacker = me->query_property("beingDamagedBy")))
     {
@@ -1565,83 +1610,94 @@ void ApplyObjectBonuses(object ob, object targ, string which, string type)
     string bonus_name, bonus_extra, * items = ({}), * bskills;
     mixed prop;
     int cur_bonus = 0, x, i, num = 0;
-    if (!objectp(ob)) {
+
+    if (!objectp(ob))
         return;
-    }
-    if (!objectp(targ)) {
+
+    if (!objectp(targ))
         return;
-    }
-    if (type == "wield" && !ob->is_weapon()) {
+
+    if (type == "wield" && !ob->is_weapon())
         return;
-    }
-    if (type == "wear" && !ob->is_armor()) {
+
+    if (type == "wear" && !ob->is_armor())
         return;
-    }
-    if ((type == "move" && ob->is_weapon()) || (type == "move" && ob->is_armor())) {
+
+    if ((type == "move" && ob->is_weapon()) || (type == "move" && ob->is_armor()))
         return;
-    }
-    if ((type == "move" && !ob->is_weapon()) || (type == "move" && !ob->is_armor())) {
-        if (!ob->query_property("inanimate_bonus")) {
+
+    if ((type == "move" && !ob->is_weapon()) || (type == "move" && !ob->is_armor()))
+        if (!ob->query_property("inanimate_bonus"))
             return;
-        }
-    }
-    if (targ->query_property("no bonuses")) {
+
+    if (targ->query_property("no bonuses"))
         return;
-    }
-    if (!stringp(which)) {
+
+    if (!stringp(which))
         return;
-    }
-    if (!stringp(type)) {
+
+    if (!stringp(type))
         return;
-    }
-    for (x = 0; x < sizeof(VALID_BONUSES); x++) {
+
+    for (x = 0; x < sizeof(VALID_BONUSES); ++x)
+    {
         bonus_name = VALID_BONUSES[x];
-        if (!ob->BonusCheck(bonus_name)) {
+        if (!ob->BonusCheck(bonus_name))
             continue;
-        }
+
         prop = ob->query_property(bonus_name);
-        if (!prop) {
+
+        if (!prop)
             continue;
-        }
-        if (bonus_name == "skill bonus") {
-            if (!mapp(prop)) {
+
+        if (bonus_name == "skill bonus")
+        {
+            if (!mapp(prop))
                 continue;
-            }
+
             bskills = keys(prop);
-            for (i = 0; i < sizeof(bskills); i++) {
+            for (i = 0; i < sizeof(bskills); ++i)
+            {
                 bonus_extra = bskills[i];
-                if (!stringp(bonus_extra)) {
+
+                if (!stringp(bonus_extra))
                     continue;
-                }
+
                 cur_bonus = prop[bskills[i]];
-                if (!intp(cur_bonus)) {
+                if (!intp(cur_bonus))
                     continue;
-                }
-                if (which == "remove") {
+
+                if (which == "remove")
                     cur_bonus = 0 - cur_bonus;
-                }
+
                 targ->add_skill_bonus(bonus_extra, cur_bonus);
                 continue;
             }
             continue;
-        }else {
+        }
+        else
             cur_bonus = to_int(prop);
-        }
-        if (!intp(cur_bonus)) {
+
+        if (!intp(cur_bonus))
             continue;
-        }
-        if (which == "remove") {
+
+        if (which == "remove")
             cur_bonus = 0 - cur_bonus;
-        }
-        if (bonus_name == "attack bonus") {
+
+        if (bonus_name == "attack bonus")
+        {
             targ->add_attack_bonus(cur_bonus);
             continue;
         }
-        if (bonus_name == "damage bonus") {
+
+        if (bonus_name == "damage bonus")
+        {
             targ->add_damage_bonus(cur_bonus);
             continue;
         }
-        if (bonus_name == "sight bonus") {
+
+        if (bonus_name == "sight bonus")
+        {
             targ->add_sight_bonus(cur_bonus);
             continue;
         }
@@ -1654,13 +1710,15 @@ void ApplyObjectBonuses(object ob, object targ, string which, string type)
             targ->add_skill_bonus(bonus_extra, cur_bonus);
             continue;
            }*/
-        if (bonus_name == "ac bonus") {
-            if (which == "remove") {
+        if (bonus_name == "ac bonus")
+        {
+            if (which == "remove")
                 cur_bonus = 0;
-            }
+
             targ->set_ac_bonus(cur_bonus);
             continue;
         }
+
         if (bonus_name == "magic resistance" || bonus_name == "magic" ||
             bonus_name == "empowered" || bonus_name == "spell penetration" ||
             strsrch(bonus_name, "bonus_spell_slots") != -1) {
@@ -1668,7 +1726,10 @@ void ApplyObjectBonuses(object ob, object targ, string which, string type)
             continue;
         }
     }
-    return;
+
+
+    recalculate_max_hp_from_stats(1);
+    recalculate_max_hp_from_feats();
 }
 
 //END OF BONUS APPLYING FUNCTION
@@ -2040,6 +2101,10 @@ string equip_armour_to_limb(object arm, string* limb)
     check_armor_active_feats(TO, type, (string)limb[0], "equip");
 
     ac -= (int)arm->query_ac();
+
+    recalculate_max_hp_from_stats(1);
+    recalculate_max_hp_from_feats();
+
     return 0;
 }
 
@@ -2049,35 +2114,40 @@ int remove_armour_from_limb(object arm, string* limb)
     string type;
 
     type = (string)arm->query_type();
-    for (i = 0; i < sizeof(limb); i++) {
-        if (!body) {
+
+    for (i = 0; i < sizeof(limb); ++i)
+    {
+        if (!body)
             continue;
-        }
-        if (!body[limb[i]]) {
+
+        if (!body[limb[i]])
             continue;
-        }
-        if (member_array(type, body[limb[i]]["armour"]) != -1) {
+
+        if (member_array(type, body[limb[i]]["armour"]) != -1)
             body[limb[i]]["armour"] -= ({ type });
-        }
+
         body[limb[i]]["armour_ob"] -= ({ arm });
     }
 
-    if (type == "shield") {
-        if (TO->validate_combat_stance("weapon and shield")) {
+    if (type == "shield")
+    {
+        if (TO->validate_combat_stance("weapon and shield"))
             TO->set_combat_stance("one hander");
-        }else {
+        else
             TO->set_combat_stance("unarmed");
-        }
     }
+
     check_armor_active_feats(TO, type, (string)limb[0], "remove");
 
     ac += (int)arm->query_ac();
-    if (ac > 10) {
+
+    if (ac > 10)
         ac = 10;
-    }
-    if (TO->is_player()) {
+
+    // This is where our max HP is implicitly updated.
+    if (TO->is_player())
         ApplyObjectBonuses(arm, TO, "remove", "wear");
-    }
+
     return 1;
 }
 

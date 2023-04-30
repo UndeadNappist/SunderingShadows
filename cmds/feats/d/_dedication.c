@@ -23,27 +23,7 @@ void create()
     feat_name("dedication");
     feat_prereq("Paladin L13");
     feat_syntax("dedication [DEDICATION]");
-    feat_desc("This feat allows the paladin to choose her dedication.
-
-A Paladin's dedication grants additional healing power to her Lay On Hands.
-When Lay on Hands is used, it will cleanse the status effect associated with
-the chosen Dedication.
-
-%^BOLD%^You can select from the following dedications:
- Fatigued
- Exhausted
- Confused
- Dazzled
- Sickened
- Panicked
- Shaken
- Blinded
- Poisoned
-
-This dedication will not be applied when Lay on Hands is used offensively.
-You can change your dedication once every three days, so choose carefully!
-
-To start selection process type <dedication>.");
+    feat_desc("This feat allows the paladin to choose her dedication. A Paladin's dedication grants additional healing power to her Lay On Hands. When Lay on Hands is used, it will cleanse the status effect associated with the chosen Dedication.\n\nYou can select from the following dedications:\n\n\tBlinded\n\tConfused\n\tDazzled\n\tExhausted\n\tFatigued\n\tPanicked\n\tPoisoned\n\tShaken\n\tSickened\n\nThis dedication will not be applied when Lay on Hands is used offensively. You can change your dedication once every three days, so choose carefully!\n\nTo start selection process type <dedication>.");
     allow_tripped(1);
 }
 

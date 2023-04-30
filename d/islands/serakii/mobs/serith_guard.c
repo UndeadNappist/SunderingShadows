@@ -75,6 +75,9 @@ void create()
     set_exp(1);
     set_long("Dressed in a matching set of %^C074%^arandur banded%^CRST%^ and draped in a %^C244%^fine gray robe%^CRST%^, this %^C248%^guardsman%^CRST%^ stands out, %^C079%^parade ready%^CRST%^. The armor %^C044%^gleams%^CRST%^ with a %^C041%^green light %^CRST%^as the guard moves and the contrast of that to the %^C245%^fine wool robe%^CRST%^ catches your eye. They wear a matching %^C042%^coif%^CRST%^ that covers their head but leaves a %^C221%^friendly%^CRST%^, assured face to look out on the city. On one arm they wear a %^C095%^shield%^CRST%^ and they rest a %^C241%^cold iron sword%^CRST%^ casually on their shoulder. The shield bears the insignia of %^C252%^three towers%^CRST%^ behind an %^C244%^anchor%^CRST%^. This guardsman is ready to defend their home, the %^C109%^Port of Serith%^CRST%^ from any threats.");
 
+    if(!clonep())
+        return;
+    
 //equipment
             ob = new("/d/common/obj/weapon/longsword");
             ob->set_property("enchantment",3);
@@ -181,8 +184,7 @@ void doHeight()
     feet = height / 12;
     halves = "";
     if (height % 12) {
-        halves = (height % 12 < 4) ? "" : ((height % 12 < 9) ? " and a
-half" : "");
+        halves = (height % 12 < 4) ? "" : ((height % 12 < 9) ? " and a half" : "");
         if (height % 12 > 8) {
             height++;
         }
@@ -200,7 +202,7 @@ init()
 
 {
     ::init();
-  ob=(present("hound",ETO));
+  ob=(present("hound soldier",ETO));
   if(ob){ call_out("kill_hound",1,ob); } 
 }
 

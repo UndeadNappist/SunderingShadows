@@ -14,8 +14,7 @@ void create()
       object guider, ob;
       ::create();
   	set_name("Ghost psywarrior");
-  	set_id(({"ghost","tecqumin","psywarrior","tecqumin psywarrior","monster",
-               "tecqumin ghost psywarrior","ghost psywarrior",}));
+  	set_id(({"ghost", "tecqumin", "psywarrior", "tecqumin psywarrior", "monster", "tecqumin ghost psywarrior", "ghost psywarrior", "undead"}));
   	set_short("%^RESET%^%^ORANGE%^Tecqumin %^BOLD%^%^WHITE%^gh"
                +"%^RESET%^o%^BOLD%^%^WHITE%^st %^RESET%^"
                +"%^BOLD%^%^BLUE%^%^psywarrior");

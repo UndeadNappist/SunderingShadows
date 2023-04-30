@@ -10,7 +10,7 @@ void create()
     ::create();
     set_name("giant cockroach");
     set_short("%^RESET%^%^ORANGE%^A slimy giant cockroach%^BOLD%^%^RED%^");
-    set_id(({ "cockroach", "roach", "giant roach", "giant cockroach", "slimy roach", "slimy giant cockroach", "slimy cockroach", "insect" }));
+    set_id(({ "cockroach", "roach", "giant roach", "giant cockroach", "slimy roach", "slimy giant cockroach", "slimy cockroach", "insect", "ekibi_insect" }));
     set_long("%^RESET%^%^ORANGE%^This disgusting cockroach is over " +
              "six feet long and covered in slimy, stinking oils.  Its " +
              "carapace is a glossy brown tinged with black.  Six spindly, " +

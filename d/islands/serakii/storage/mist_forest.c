@@ -72,7 +72,7 @@ void peer_fun(string str){
     damroll = roll_dice(5, 10) + 10;
     this_player()->add_hp(-damroll);
     my_vision = my_visions[random(sizeof(my_visions))];
-    player_name = this_player()->query_name();
+    player_name = this_player()->query_cap_name();
     tell_object(this_player(), "%^C088%^You feel a sharp pain in your head and suddenly your "+
         "vision is filled with a vivid image of a " + my_vision + "%^C088%^! The pain hits "+
         "the back of your head as the vision swims, and then it is gone again.\n%^CRST%^");

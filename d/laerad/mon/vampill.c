@@ -70,7 +70,7 @@ void create()
     }
     set_moving(1);
     set_speed(15);
-    set_stabbed_func((: TO, "stabbed" :));
+    //set_stabbed_func((: TO, "stabbed" :));
 }
 
 void stabbed()
@@ -210,6 +210,8 @@ void burrow1(object targ)
 
     if (!objectp(my_environment = environment(me)))
         return;
+    
+    if(!objectp(targ)) return;
 
     if (!present(targ, my_environment))
         return 1;

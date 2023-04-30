@@ -132,4 +132,4 @@ void struggle(string who){
 
 }
 
-void clean_up(){ return 1;}
+//void clean_up(){ return 1;}

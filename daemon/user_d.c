@@ -212,14 +212,9 @@ int spend_pool(object ob, int amount, string pool_type)
     {
         tell_object(ob, "%^BOLD%^You lose your psionic focus.%^RESET%^");
     }
-    /*
-    if(pool_type == "planar_power" && avail < 1)
-    {
-        tell_object(ob, "%^BOLD%^You spend your planar power.%^RESET%^");
-    }
-    */
 
     ob->set("available " + pool_type, avail);
+    (pool_type == "burn") && ob->recalculate_max_hp_from_soulburn();
 
     ob->gmcp_update_character("resources", ([pool_type + "_pool": "" + avail, pool_type + "_pool_max": "" + (int)ob->query("maximum " + pool_type)]));
 
@@ -287,6 +282,8 @@ varargs void regenerate_pool(object ob, int amount, int pass, string pool_type)
         avail = 0;
     
     ob->set("available " + pool_type, avail);
+    (pool_type == "burn") && ob->recalculate_max_hp_from_soulburn();
+    
     if (pass) {
         switch (pool_type) {
         case "arcana":
@@ -417,6 +414,7 @@ void init_pool(object ob, string pool_type)
         {
             ob->delete("available " + pool_type);
             ob->delete("maximum " + pool_type);
+            ob->recalculate_max_hp_from_soulburn();
             return;
         }
         else

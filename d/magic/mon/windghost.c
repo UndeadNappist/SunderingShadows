@@ -2,7 +2,7 @@
 
 #include <std.h>
 
-inherit WEAPONLESS;
+inherit MINION;
 
 void create(){
    int num;

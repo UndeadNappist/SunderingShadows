@@ -80,8 +80,8 @@ void dest_effect()
        {
           target->add_sight_bonus(3);
        }
+       target->remove_property("mylight");
     }
-    target->remove_property("mylight");
     ::dest_effect();
     if(objectp(TO)) TO->remove();
 }

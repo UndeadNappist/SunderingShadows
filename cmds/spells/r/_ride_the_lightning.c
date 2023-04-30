@@ -12,7 +12,7 @@ void create()
 {
     ::create();
     set_spell_name("ride the lightning");
-    set_spell_level(([ "mage" : 9, "cleric" : 9, "druid" : 9 ]));
+    set_spell_level(([ "mage" : 9, "cleric" : 9 ]));
     set_domains("storms");
     set_spell_sphere("invocation_evocation");
     set_syntax("cast CLASS ride the lightning on TARGET");
@@ -45,8 +45,12 @@ spell_effect(int prof)
         return;
     }
     target_limb = target->return_target_limb();
-
     element = (string)caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
     switch (element) {
     case "acid":
         if (interactive(caster)) {

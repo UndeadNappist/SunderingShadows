@@ -51,6 +51,7 @@ void spell_effect()
         
         switch(ob->query_true_align())
         {
+            case 0:
             case 1:
             case 3:
             case 7:
@@ -86,10 +87,10 @@ void spell_effect()
             case 5:
             case 6:
             case 7:
-            set_affixed_level(5);
+            set_affixed_spell_level(5);
             break;
             default:
-            set_affixed_level(3);
+            set_affixed_spell_level(3);
             break;
         }
         

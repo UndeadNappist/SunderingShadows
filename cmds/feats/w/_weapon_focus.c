@@ -11,6 +11,7 @@ void create()
     feat_name("weapon focus");
     feat_prereq("None");
     feat_desc("You gain a +1 bonus on all attack rolls you make.");
+    set_required_for( ({ "weapon specialization", "greater weapon focus" }) );
     permanent(1);
 }
 

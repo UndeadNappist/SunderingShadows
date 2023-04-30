@@ -48,11 +48,13 @@ void room_check()
     return;
 }
 
-void execute_attack(){
-    object *foes=({}),targ;
+void execute_attack()
+{
+    object *foes=({}), targ;
     int i;
 
-    if (!flag) {
+    if (!flag)
+    {
         flag = 1;
         ::execute_attack();
         return;
@@ -60,23 +62,26 @@ void execute_attack(){
 
     place = ENV(caster);
 
-    if (!objectp(caster) || !objectp(place) || counter < 0) {
+    if (!objectp(caster) || !objectp(place) || counter < 0)
+    {
         dest_effect();
         return;
     }
 
     foes = caster->query_attackers();
 
-    if (sizeof(foes)) {
+    if (arrayp(foes) && sizeof(foes))
+    {
         define_base_damage(0);         //reroll each turn
         tell_room(place, "%^BOLD%^%^RED%^Flames around " + caster->QCN + " burn " + caster->QP + " enemies!", ({ caster, target }));
         tell_object(caster, "%^BOLD%^%^RED%^Flames burn your enemies!");
 
         define_base_damage(0);
-        for (i = 0; i < sizeof(foes); i++) {
-            if (SAVING_D->saving_throw(foes[i], "spell", 0)) {
+        for (i = 0; i < sizeof(foes); ++i)
+        {
+            if (!objectp(foes[i]) || SAVING_D->saving_throw(foes[i], "spell", 0))
                 continue;
-            }
+
             tell_object(foes[i], "%^RED%^Y%^BOLD%^o%^RESET%^%^RED%^u a%^BOLD%^%^BLACK%^r%^RESET%^%^RED%^e b%^BOLD%^u%^RESET%^%^RED%^r%^BOLD%^%^BLACK%^n%^RESET%^%^RED%^e%^BOLD%^d %^RESET%^%^RED%^by t%^BOLD%^h%^RESET%^%^RED%^e fl%^BOLD%^a%^ORANGE%^m%^RED%^e%^RESET%^%^RED%^s as %^BOLD%^%^BLACK%^y%^RESET%^%^RED%^ou s%^BOLD%^%^BLACK%^t%^RESET%^%^RED%^ri%^BOLD%^%^BLACK%^k%^RESET%^%^RED%^e %^WHITE%^" + caster->QCN + "!");
             //damage_targ(foes[i], foes[i]->return_target_limb(), sdamage, "fire");
             foes[i]->cause_typed_damage(foes[i], foes[i]->return_target_limb(), sdamage, "fire");

@@ -34,7 +34,7 @@ void create() {
    set_value(1000);
    set_property("enchantment",7);
    set_item_bonus("athletics",6);
-   set_item_bonus("poison resistance",35);
+   set_item_bonus("acid resistance",35);
    set_flag_required("boss avatar");    
    set_struck((:TO,"strikeme":));
    set_wear( (: TO,"limited_wear" :) );

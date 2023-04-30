@@ -32,6 +32,10 @@ void create()
     set_stats("charisma",3);
     set_stats("dexterity",8);
     set_stats("constitution",7);
+    
+    if(!clonep())
+        return;
+    
     new("/d/common/obj/weapon/shortsword")->move(TO);
     command("wield sword");
     if(!random(8)) 

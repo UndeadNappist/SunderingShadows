@@ -280,7 +280,7 @@ void heart_beat() {
 	if (!objectp(TO)) return;
 	if (!objectp(ETO)) return;
     	if(obj = present("corpse",ETO)){
-    		command("emote tears a hug hunk of meat off of the "+
+    		command("emote tears a huge hunk of meat off of the "+
     			"corpse and starts eating greedily.");
      		obj->remove();
      		command("get coins");

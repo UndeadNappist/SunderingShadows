@@ -50,7 +50,7 @@ void spell_effect()
     spell_successful();
 
     tell_object(caster, "%^GREEN%^You close your eyes and attune yourself to the skies above.%^RESET%^");
-    tell_room(place, "%^GREEN%^" + sprintf("%s closes %s eyes and seems to meditate.",caster->query_name(),caster->query_possessive()) + "%^RESET%^", caster);
+    tell_room(place, "%^GREEN%^" + sprintf("%s closes %s eyes and seems to meditate.",caster->query_cap_name(),caster->query_possessive()) + "%^RESET%^", caster);
 
     bonus = 4;
     caster->add_skill_bonus("perception", bonus);

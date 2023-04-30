@@ -155,15 +155,6 @@ void init()
        member_array("nightmare", player->query_id()) < 0)
          this_object()->kill_ob(player);
     */
-
-    psize = sizeof(filter_array(all_inventory(ETO), (: userp($1) :)));
-    psize = psize < 1 ? 1 : psize;
-    if (psize > coreparty) {
-        set_max_hp(25000 * psize);
-        set_hp(query_max_hp());
-        set_damage(16, 5 + psize);
-        coreparty = psize;
-    }
     
     if(!buffed)
     {

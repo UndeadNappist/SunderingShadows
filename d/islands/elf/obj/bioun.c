@@ -9,8 +9,8 @@ inherit OBJECT;
 void create(){
    ::create();
         set_name("black stone");
-        set_id(({ "stone", " black stone", " black ioun", " ioun", " ioun stone",
-" black ioun stone", " small stone", " small black stone" }));
+        set_id(({ "stone", "black stone", "black ioun", "ioun", "ioun stone",
+"black ioun stone", "small stone", "small black stone" }));
         set_short("Black Ioun Stone");
         set_obvious_short("small stone");
        set_long(

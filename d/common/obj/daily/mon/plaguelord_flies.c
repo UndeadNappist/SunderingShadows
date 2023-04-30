@@ -23,7 +23,7 @@ void create(){
     set_func_chance(50);
     set_funcs(({ "buzz_fun" }));
     set_property("no_random_treasure", 1);
-    set_powerlevel(5);
+    set_powerlevel(1);
     set_resistance_percent("acid", 100);
     set_property("aggressive", 1);
     set_property("swarm", 1);

@@ -31,7 +31,7 @@ void create(){
     set_damage(2,7);
     set_property("no stab", 1);
     set_hit_funcs( (["tail":(:TO, "tail_hit":)]) );
-    set_stabbed_func( (:TO, "stabbed":) );
+    //set_stabbed_func( (:TO, "stabbed":) );
     set_moving(1);
     set_speed(18);
 }

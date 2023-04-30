@@ -14,12 +14,7 @@ void create()
     set_spell_sphere("necromancy");
     set_syntax("cast CLASS animus blast");
     set_damage_desc("AOE cold damage and raises undead");
-    set_description("This power enables a master of necromancy to unleash a blast of pure negative energy. The power of the blast is such that it can also sap the life energy of those nearby, as well as its main target. In addition, the  blast of negative energy can re-awaken corpses within the vicinity, raising them as the servants of the caster. This spell has no effect upon existing undead creatures. Many faiths and cultures condemn this spell and similar powers as it serves the caster's selfish, often evil, motives. Frequent users of the spell are known to be inherently evil.
-
-To remove undead use %^ORANGE%^<dismiss undead>%^RESET%^
-To command undead use %^ORANGE%^<command undead to %^ORANGE%^%^ULINE%^ACTION%^RESET%^%^ORANGE%^>%^RESET%^
-To force lost undead to follow use %^ORANGE%^<command undead to follow>%^RESET%^
-To check your undead pool size use %^ORANGE%^<poolsize>%^RESET%^");
+    set_description("This power enables a master of necromancy to unleash a blast of pure negative energy. The power of the blast is such that it can also sap the life energy of those nearby, as well as its main target. In addition, the  blast of negative energy can re-awaken corpses within the vicinity, raising them as the servants of the caster. This spell has no effect upon existing undead creatures. Many faiths and cultures condemn this spell and similar powers as it serves the caster's selfish, often evil, motives. Frequent users of the spell are known to be inherently evil."+extra_help());
     set_verbal_comp();
     set_somatic_comp();
     set_save("reflex");
@@ -28,6 +23,9 @@ To check your undead pool size use %^ORANGE%^<poolsize>%^RESET%^");
     //set_components(([ "mage" : ([ "drop of blood" : 1, "bit of bone" : 1, ]), ]));
 }
 
+string extra_help(){
+    return "\n\nEach undead minion uses two pool slots out of a maximum pool size of twenty, and this resource is shared between all undead creation spells.\n%^ORANGE%^<dismiss undead>%^RESET%^ destroys your current undead retinue%^RESET%^\n%^ORANGE%^<command undead to %^ORANGE%^%^ULINE%^ACTION%^RESET%^%^ORANGE%^>%^RESET%^ will command undead to perform an action%^RESET%^\n%^ORANGE%^<command undead to follow>%^RESET%^ forces lost undead to follow you%^RESET%^\n%^ORANGE%^<command undead to halt>%^RESET%^ forces the undead to stay in place\n%^ORANGE%^<poolsize>%^RESET%^ lists how many undead minions you have under your control%^RESET%^";
+}
 
 string query_cast_string()
 {

@@ -69,14 +69,16 @@ int remove_it(){
 	tell_room(EETO,"%^ORANGE%^The air smell of %^CYAN%^ozone %^ORANGE%^as "+ETP->QCN+" removes the horseshoes%^WHITE%^",ETO);
 return 1;}
 
-int thunderstomp(string str){
+int thunderstomp(string str)
+{
    
    string targ;
    object ob;
    if(!str){
-      tell_object(ETO,"%^ORANGE%^You stomp your %^BOLD%^%^BLACK%^hoof %^RESET%^%^ORANGE%^into the ground "+
+      tell_object(this_player(),"%^ORANGE%^You stomp your %^BOLD%^%^BLACK%^hoof %^RESET%^%^ORANGE%^into the ground "+
 	  "causing %^BOLD%^b%^WHITE%^o%^ORANGE%^lts of l%^WHITE%^i%^ORANGE%^gh%^WHITE%^t%^ORANGE%^n%^WHITE%^i%^ORANGE%^ng "+
 	  "%^RESET%^%^ORANGE%^to raise up around you!%^WHITE%^");
+      tell_room(environment(this_player()),"%^ORANGE%^" + this_player()->query_cap_name() + " stomps " + this_player()->query_possessive() + " %^BOLD%^%^BLACK%^hoof %^RESET%^%^ORANGE%^into the ground causing %^BOLD%^b%^WHITE%^o%^ORANGE%^lts of l%^WHITE%^i%^ORANGE%^gh%^WHITE%^t%^ORANGE%^n%^WHITE%^i%^ORANGE%^ng %^RESET%^%^ORANGE%^to raise up around " + this_player()->query_objective() + "!%^WHITE%^", this_player());
       return 1;
    }    
    if(sscanf(str,"%s",targ) == 1){

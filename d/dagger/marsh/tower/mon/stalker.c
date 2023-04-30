@@ -37,10 +37,14 @@ void create() {
     add_search_path( "cmds/thief" );
     set("aggressive","aggfunc");
     set_invis();  
-    new( OPATH "sdagger.c")->move(this_object());
-    command("wield dagger in right hand");
-    new( OPATH "sdagger.c")->move(this_object());
-    command("wield dagger in left hand"); 
+    
+    if(clonep())
+    {
+        new( OPATH "sdagger.c")->move(this_object());
+        command("wield dagger in right hand");
+        new( OPATH "sdagger.c")->move(this_object());
+        command("wield dagger in left hand"); 
+    }
     add_money("gold",random(1000));
     set_emotes(1,({
         "%^BLUE%^A shadow leaps from the wall and runs out of the room!%^RESET%^",

@@ -71,6 +71,9 @@ void create()
     set_property("full attacks",1);
     is_shooting = 0;
 
+    if(!clonep())
+        return;
+    
     obj = new(OBJ"bow");
     obj->move(TO);
 
@@ -85,8 +88,6 @@ void create()
     force_me("speak elven");
     new(OBJ"gloves")->move(TO);
     force_me("wearall");
- 
-    increase_skill("long bow", 200);
 }
 
 

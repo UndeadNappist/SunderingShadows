@@ -50,24 +50,25 @@ advance_disease()
 
 void heart_beat()
 {
-    if (!objectp(TO)) {
-        return;
-    }
+    object my_environment, hosts_environment;
 
-    if (!next_step) {
+    if (!objectp(this_object()))
         return;
-    }
 
-    if (!ETO->is_living()) {
-        TO->remove();
-    }
-    if (ETO->query_age() > next_step) {
+    if (!objectp(my_environment = environment(this_object())))
+        return;
+
+    if (!next_step)
+        return;
+
+    if (!my_environment->is_living())
+        remove();
+
+    if (my_environment->query_age() > next_step)
         advance_disease();
-    }
 
-    if (!random(240)) {
-        tell_object(ETO,"\n%^BOLD%^%^BLUE%^Your skin aches and begs to be scratched.%^RESET%^");
-    }
+    if (!random(240))
+        tell_object(my_environment, "\n%^BOLD%^%^BLUE%^Your skin aches and begs to be scratched.%^RESET%^");
 
     return;
 }

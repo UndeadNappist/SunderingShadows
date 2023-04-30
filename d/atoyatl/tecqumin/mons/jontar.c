@@ -342,7 +342,7 @@ void die(object ob) {
   int i, tmp_size, count;
   ectoplasm = new (OBJ + "ectoplasm");
   ectoplasm->set_spirit_name(TO->query_name());
-  ectoplasm->move(tmp);
+  ectoplasm->move(environment(this_object()));
   attackers = query_attackers();
   count = sizeof(attackers);
   if (count > 0){

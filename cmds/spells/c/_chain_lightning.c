@@ -33,6 +33,7 @@ void create()
 string query_cast_string()
 {
     element = (string)caster->query("elementalist");
+    
     switch(element)
     {
     case "acid":
@@ -52,7 +53,6 @@ string query_cast_string()
         tell_room(place,"%^CYAN%^The clink of a %^BOLD%^%^WHITE%^p%^CYAN%^i%^WHITE%^n drop %^RESET%^%^CYAN%^rings out as "+caster->QCN+" swipes a bit of cloth across a %^WHITE%^g%^BOLD%^l%^RESET%^a%^BOLD%^s%^RESET%^s r%^BOLD%^o%^RESET%^d%^CYAN%^, drawing out a r%^BOLD%^%^GREEN%^es%^CYAN%^onat%^GREEN%^in%^RESET%^%^CYAN%^g %^GREEN%^c%^BOLD%^h%^CYAN%^i%^GREEN%^m%^RESET%^%^GREEN%^e%^CYAN%^...",caster);
         break;
     default:
-        element = "electricity";
         tell_object(caster,"%^YELLOW%^You start to rub the fur to your cystal rod, to charge it. You then touch the pin with the rod and begin the spell!");
         tell_room(place,"%^YELLOW%^"+caster->QCN+" rubs a crystal rod with a cloth. "+caster->QS+" then touches it to a silvery pin and begins to chant!",caster);
         break;
@@ -84,10 +84,13 @@ void spell_effect(int prof)
 
     number = clevel;
     
-    if(!stringp(element))
-        element = caster->query("elementalist");
-    if(!stringp(element))
-        element = "electricity";
+    element = caster->query("elementalist");
+    if(element){
+        set_immunities(({ element }));
+        define_clevel();
+        define_base_damage(0);
+    }
+    if(!stringp(element)) element = "electricity";
 
     hits = ({});
     inven = ({});

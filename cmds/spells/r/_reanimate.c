@@ -8,6 +8,7 @@ int num_mon;
 void fail();
 
 #define UNDEADDIR "/d/magic/mon/create_undead/"
+#define MAX_POOL 10
 
 void create()
 {
@@ -19,6 +20,7 @@ void create()
     set_syntax("cast CLASS reanimate");
     set_description("Animating dead is a pathetic craft for the weak. A true necromancer's art is to change what was into something more potent and powerful that can serve his fell desires and schemes. This spell uses a fallen corpse to make an undead creature from rotting flesh. Such a creature is more potent than lesser skeletons and zombies, and will serve the warlock until discorporated. This spell, without a doubt, is evil." + ("/cmds/spells/a/_animate_dead"->extra_help()));
     evil_spell(1);
+    set_property("undead spell", 1);
     set_helpful_spell(1);
     set_arg_needed();
 }
@@ -39,7 +41,7 @@ void spell_effect(int prof)
     object controller, undead, corpse, * corpses = ({}), * undeadl;
     int lvl;
 
-    if ((int)caster->query_property("raised") > 4) {
+    if ((int)caster->query_property("raised") >= MAX_POOL) {
         tell_object(caster, "%^BOLD%^%^BLACK%^You can't raise any more undead.%^RESET%^");
         TO->remove();
         return;
@@ -89,6 +91,9 @@ void spell_effect(int prof)
     undead->control(caster);
     caster->add_follower(undead);
     controller->add_monster(undead);
+    
+    undead->set_owner(caster);
+    undead->setup_minion(clevel, spell_level, "greater");
 
     caster->set_property("raised", 1);
 

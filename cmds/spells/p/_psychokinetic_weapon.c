@@ -22,6 +22,7 @@ void create() {
        "can be commanded and will automatically follow the manifester and attack "
        "her enemies. If the sword becomes lost somehow, simply go into the room "
        "with it and <command sword to follow>.");
+    summon_spell();
     set_verbal_comp();
     set_somatic_comp();
 }
@@ -37,13 +38,14 @@ int preSpell()
 }
 
 void spell_effect(int prof){
-	if(!objectp(environment(caster))){
-		dest_effect();
-		return;
-	}
-	place = environment(caster);
-	make_sword();
+    if(!objectp(environment(caster))){
+	dest_effect();
+	return;
+    }
+    place = environment(caster);
+    make_sword();
     spell_successful();
+    addSpellToCaster();
 }
 
 void make_sword(){

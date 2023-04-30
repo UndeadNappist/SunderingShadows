@@ -53,6 +53,10 @@ void create()
     TO->add_money("gold", random(100) + 5);
     TO->add_money("silver", random(300) + 15);
     TO->add_money("copper", random(2500) + 50);
+    
+    if(!clonep())
+        return;
+    
     switch (random(2)) {
     case 0:  new(OPATH "gknife")->move(TO);
         command("wield knife");
@@ -82,7 +86,7 @@ void heart_beat()
     }
     here = ETO;
     
-    if(!here || !objectp(here))
+    if(!here || !objectp(here) || clonep(here))
         return;
     
 /***********************************

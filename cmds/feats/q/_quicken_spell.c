@@ -14,7 +14,7 @@ void create()
     feat_name("quicken spell");
     feat_prereq("31 levels in any single spellcaster class");
     feat_syntax("quicken_spell");
-    feat_desc("This Meta Magic feat will cause your next spell to cast immediately, without the usual casting delay. This feat is not available to psionic classes. This feat has a long cooldown.");
+    feat_desc("This Meta Magic feat will cause your next spell to cast immediately, without the usual casting delay. Quickened spells only do 1/3 standard spell damage. This feat is not available to psionic classes. This feat has a cooldown.");
     set_required_for(({ }));
 }
 
@@ -81,7 +81,7 @@ void execute_feat()
 
     tell_object(caster, "You use your meta magic knowledge to quicken your next spell.");
     caster->set_property("quicken spell", 1);
-    caster->add_cooldown("quicken spell", 600);
+    caster->add_cooldown("quicken spell", 180);
 
     return;
 }

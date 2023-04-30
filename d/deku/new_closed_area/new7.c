@@ -36,6 +36,10 @@ KAYLA
 
 int go_west() {
   int n;
+  
+  if(!userp(this_player()))
+      return 1;
+  
   n = random(10);
   if ( n > 8) {
     if(!present("kobold")) {

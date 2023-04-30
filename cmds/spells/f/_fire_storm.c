@@ -19,7 +19,6 @@ void create()
     set_spell_sphere("invocation_evocation");
     set_monk_way("way of the elements");
     set_syntax("cast CLASS fire storm");
-    set_circle("wildfire");
     set_damage_desc("AOE fire damage");
     set_description("When the fire storm spell is cast, the whole area is shot through with sheets of roaring flame. Any target in the area of effect takes damage every round while the spell is in effect, but it does not damage the caster. This spell does not work in conjunction with the monsoon priest spell.");
     set_verbal_comp();

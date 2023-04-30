@@ -18,7 +18,7 @@ void create()
     set_spell_sphere("invocation_evocation");
     set_heritage("infernal");
     set_syntax("cast CLASS hellfire");
-    set_damage_desc("untyped damage persistent AOE");
+    set_damage_desc("untyped damage persistent AOE, trip on failed save");
     set_description("This invocation unleashes a storm of hellfire, raining down the wrath of infernal energies upon the "
 "warlock's foes.  The invocation will last several rounds depending upon the level of the warlock, and the warlock must "
 "remain present for the storm to continue.  All those attacking the warlock are subject to the effects of the hellfire"

@@ -91,6 +91,9 @@ void create()
     add_money("gold", 400 + random(601));
     set_new_exp(lev,"normal");
     set_monster_feats(({"perfect caster", "spell power", "spell focus"}));
+    
+    if(!clonep())
+        return;
 
     ob = new("/d/common/obj/armour/robe");
     ob->move(TO);

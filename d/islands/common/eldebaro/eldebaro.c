@@ -38,6 +38,9 @@ void init()
     ::init();
 
     if(!objectp(TP) || TP->query_true_invis()) { return; }
+    
+    if(!userp(this_player()))
+        return;
 
     do_random_encounters(({ "/d/islands/common/mon/lostsoul.c", 
                             "/d/islands/common/mon/scorpion.c", 

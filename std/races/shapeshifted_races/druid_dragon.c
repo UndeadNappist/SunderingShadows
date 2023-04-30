@@ -15,7 +15,7 @@ int breath_count,
     sweep_count,
     death_count;
 
-//Prototyping    
+//Prototyping
 void breath_attack(object player, object target, int clevel);
 void swipe_attack(object player, object target, int clevel);
 void sweep_attack(object player, object target, int clevel);
@@ -27,11 +27,11 @@ void create()
     ::create();
 
     set_attack_limbs( ({ "maw","right claw","left claw","tail" }) );
-    set_new_damage_type("piercing");    
+    set_new_damage_type("piercing");
     set_limbs( ({ "maw","head","torso","right claw", "left claw", "right arm","right arm","left leg","left rear claw","right leg","right rear claw","tail","right wing","left wing" }) );
     set_attack_functions(([ "maw" : (:TO,"bite_attack":), "right claw" : (:TO,"claw_attack":), "left claw" : (:TO,"claw_attack":), "tail" : (:TO,"tail_attack":) ]));
     set_ac_bonus(-20); // ac bonus is different from the other bonuses because of the way ac is calculated with different body types -Ares
-    set_base_attack_num(4); 
+    set_base_attack_num(4);
     set_castable(0);
     set_can_talk(0);
     set_shape_race("dragon");
@@ -104,122 +104,176 @@ int change_outof_message(object obj)
     tell_room(environment(obj),"%^RESET%^%^BOLD%^"+obj->QCN+"'s muscles slacken and "+obj->QS+" gets a far-away look in "+obj->QP+" eyes.",obj);
     tell_room(environment(obj),"%^RESET%^%^BLUE%^"+obj->QCN+"'s body begins to change shape, shrinking and quickly loosing scales!",obj);
     tell_room(environment(obj),"%^RESET%^%^GREEN%^Where "+obj->QCN+" once stood, now stands a "+obj->query_race()+"!",obj);
-    
+
     return 1;
 }
 
-int can_cast() 
-{ 
+int init_shape(object obj,string mysubrace)
+{
+    string *subraces;
+    int lvl;
+
+    if(!objectp(obj)) { return 0; } //
+    if(obj->query_property("shapeshifted") || obj->query_property("altered")) { return 0; } // can't shapeshift twice
+    obj->set_property("shapeshifted",shape = new(base_name(TO)+".c")); // makes a new shape and sets the shapeshifted property to it, this is where all the work is done, very important
+    shape->set_owner(obj); //
+    hp_percent = to_float( (to_float((int)obj->query_hp() - (int)obj->query_extra_hp())) / (to_float((int)obj->query_max_hp())));
+
+    if(objectp(obj) && obj->query_druid_circle() == "claw")
+    {
+        lvl = obj->query_prestige_level("druid");
+        shape->set_shape_bonus("attack bonus", 5 + (lvl / 10));
+        shape->set_shape_bonus("damage bonus", 5 + (lvl / 10));
+    }
+
+    shape->apply_bonuses(shape->query_owner());
+    obj->set_hp( to_int(  hp_percent * to_float((int)obj->query_max_hp())) );
+    shape->set_old_attack_limbs((string*)obj->query_attack_limbs()); //
+    obj->set_attack_limbs(shape->query_attack_limbs()); //
+    obj->set_hit_funcs(shape->query_attack_functions()); //
+    obj->set_fake_limbs(shape->query_limbs()); //
+    shape->set_previous_language((string)obj->query_spoken()); //
+    obj->add_lang_overload(shape->query_shape_language(),100); //
+    if(!FEATS_D->usable_feat(obj,"wild speech"))
+    {
+        obj->set_spoken(shape->query_shape_language()); //
+    }
+    shape->set_old_damage_type(obj->query_base_damage_type()); //
+    shape->change_into_message(obj); //
+    shape->set_base_profile((string)obj->query("relationship_profile")); //
+    shape->set_shape_race(mysubrace); // NEW
+    obj->set("relationship_profile",shape->query_shape_profile()); //
+    obj->add_id(shape->query_shape_race()); //
+    subraces = (string *)shape->query_subraces();
+    if(sizeof(subraces)) {
+      if(member_array(subraces[0],(string *)obj->query_id()) == -1) obj->add_id(subraces[0]);
+    }
+
+    if(objectp(to_object(DESC_D)))
+    {
+        desc = new(DESC_D); //
+        if(!desc->restore_profile_settings(obj,shape->query_shape_profile())) //
+        {
+            shape->default_descriptions(obj); //
+            desc->initialize_profile(obj); //
+        }
+    }
+
+    return 1;
+}
+
+int can_cast()
+{
     if(!objectp(query_owner())) { return 0; }
     if(FEATS_D->usable_feat(query_owner(),"wild spellcraft")) { return 1; }
-    return can_cast_spells; 
+    return can_cast_spells;
 }
 
 int bite_attack(object player, object target)
 {
     object room;
-           
+
     int dice,
         level;
-    
+
     if(!player || !target)
         return 0;
-       
+
     level = player->query_guild_level("druid");
-    
+
     level += FEATS_D->usable_feat(TP,"savage instincts i") * 2;
     level += FEATS_D->usable_feat(TP,"savage instincts ii") * 2;
     level += FEATS_D->usable_feat(TP,"savage instincts iii") * 2;
-    
+
     if(FEATS_D->usable_feat(player,"perfect predator") && !random(3))
     {
         level += 2;
         player->add_hp(10 + roll_dice(level, 4));
     }
-    
+
     set_new_damage_type("piercing");
-    
+
     breath_count++;
     death_count++;
-    
+
     if(breath_count >= BREATH_COUNT)
         breath_attack(player, target, level * 2);
     if(death_count >= DEATH_COUNT)
         death_attack(player, target, level);
-        
+
     if(random(3))
         return roll_dice(1, 6);
-    
-    return roll_dice(1 + (level / 3), 6);   
+
+    return roll_dice(1 + (level / 3), 6);
 }
 
 int claw_attack(object player, object target)
 {
     object room;
-           
+
     int dice,
         level;
-    
+
     if(!player || !target)
         return 0;
-   
+
     level = player->query_guild_level("druid");
-    
+
     level += FEATS_D->usable_feat(TP,"savage instincts i") * 2;
     level += FEATS_D->usable_feat(TP,"savage instincts ii") * 2;
     level += FEATS_D->usable_feat(TP,"savage instincts iii") * 2;
-    
+
     if(FEATS_D->usable_feat(player,"perfect predator") && !random(3))
     {
         level += 2;
         player->add_hp(10 + roll_dice(level, 4));
     }
-    
+
     set_new_damage_type("piercing");
-    
+
     swipe_count++;
-    
+
     if(swipe_count >= SWIPE_COUNT)
         swipe_attack(player, target, level);
-    
+
     if(random(3))
         return roll_dice(1, 4);
-    
+
     return roll_dice(1 + (level / 3), 6);
 }
 
 int tail_attack(object player, object target)
 {
     object room;
-           
+
     int dice,
         level;
-    
+
     if(!player || !target)
         return 0;
-   
+
     level = player->query_guild_level("druid");
-    
+
     level += FEATS_D->usable_feat(TP,"savage instincts i") * 2;
     level += FEATS_D->usable_feat(TP,"savage instincts ii") * 2;
     level += FEATS_D->usable_feat(TP,"savage instincts iii") * 2;
-    
+
     if(FEATS_D->usable_feat(player,"perfect predator") && !random(3))
     {
         level += 2;
         player->add_hp(10 + roll_dice(level, 4));
     }
-    
+
     set_new_damage_type("bludgeoning");
-    
+
     sweep_count++;
-    
+
     if(sweep_count >= SWEEP_COUNT)
         sweep_attack(player, target, level);
 
     if(random(3))
         return roll_dice(1, 6);
-    
+
     return roll_dice(1 + (level / 3), 6);
 }
 
@@ -227,19 +281,19 @@ void breath_attack(object player, object target, int clevel)
 {
     object room,
            *attackers;
-           
-    int dam;
-    
+
+    int dam, dc_result;
+
     if(!player || !target)
         return;
-    
+
     room = environment(player);
-    
+
     if(room != environment(target))
         return;
-    
+
     breath_count = 0;
-    
+
     if(player->query_property("negative energy affinity"))
     {
         tell_object(player,"%^CYAN%^BOLD%^You inhale a deep breath of air, feeling the ball of ice deep inside of you!");
@@ -254,16 +308,17 @@ void breath_attack(object player, object target, int clevel)
         tell_object(player,"%^RED%^You open your mouth and unleash the fury of dragon fire on your foes!");
         tell_room(room,"%^RED%^"+player->QCN+"'s mouth opens and a withering torrent of fire pours forth!",player);
     }
-    
+
     attackers = player->query_attackers();
     attackers = shuffle(attackers);
-    attackers = sizeof(attackers) > 8 ? attackers[0..7] : attackers; 
-    
-    dam = roll_dice(clevel, 10);  
-    
+    attackers = sizeof(attackers) > 8 ? attackers[0..7] : attackers;
+
+    dam = roll_dice(clevel, 10);
+    dc_result = player->calculate_dc(player->query_guild_level("druid"), FEATS_D->usable_feat(player, "weapon finesse") ? "dexterity" : "strength");
+
     foreach(object ob in attackers)
     {
-        if(ob->reflex_save(clevel))
+        if(ob->reflex_save(dc_result))
         {
             tell_object(player,"%^MAGENTA%^"+ob->QCN+" is able to dive away at the last instant, avoiding most of the breath!");
             tell_object(ob,"%^MAGENTA%^You dive away at the last instant, avoiding most of the breath!");
@@ -297,20 +352,21 @@ void death_attack(object player, object target, int clevel)
 {
     object room,
            head;
-           
-    int dam;
-    
+
+    int dam, dc_result;
+
     if(!player || !target)
         return;
-    
+
     room = environment(player);
-    
+
     if(room != environment(target))
         return;
-    
+
     death_count = 0;
-    
-    if(!target->query_property("no death") && !target->fort_save(clevel) && target->query_level() < ( player->query_level() + 10 ))
+    dc_result = player->calculate_dc(player->query_guild_level("druid"), FEATS_D->usable_feat(player, "weapon finesse") ? "dexterity" : "strength");
+
+    if(!target->query_property("no death") && !target->fort_save(dc_result) && target->query_level() < ( player->query_level() + 10 ))
     {
         head = new("/std/obj/body_part.c");
         head->set_limb(target->query("short"),"head");
@@ -325,7 +381,7 @@ void death_attack(object player, object target, int clevel)
         tell_object(target,"%^RESET%^%^BOLD%^You realize in horror as "+player->QCN+" begins to wrench "+player->QP+" neck back, that there's nothing you can do!");
         tell_object(target,"%^RESET%^%^BOLD%^%^RED%^You feel incredible agony in your neck as your spine breaks, and then the world fades into blackness, your life snuffed out!");
         tell_room(room,"%^RESET%^%^BOLD%^You can hear the sound of popping tendons and cracking bones as "+player->QCN+" draws "+player->QP+" powerful neck back, %^RED%^pulling "+target->QCN+"'s "
-        "head off of "+target->QP+" shoulders!%^RESET%^",({ player, target }));                                   
+        "head off of "+target->QP+" shoulders!%^RESET%^",({ player, target }));
         tell_object(player,"%^RESET%^%^BOLD%^%^GREEN%^You toss "+target->QCN+"'s lifeless body aside and crunch the head one final time before spitting it onto the ground!");
         tell_room(room,"%^RESET%^%^BOLD%^%^GREEN%^"+player->QCN+" tosses "+target->QCN+"'s lifeless body aside and crunches "+target->QP+" head before spitting it out on the ground!",({ player, target }));
         target->cause_typed_damage(target,target->return_target_limb(),target->query_max_hp()+400,"untyped");
@@ -336,7 +392,7 @@ void death_attack(object player, object target, int clevel)
         tell_object(player,"%^BLUE%^You snap your powerful jaws down at "+target->QCN+"'s head, but "+target->QS+" dodges aside at the last instant, you hit "+target->QP+" shoulder instead!");
         tell_object(target,"%^BLUE%^"+player->QCN+" snaps "+player->QP+" powerful jaws down at your head but you dodge aside at the last instant and "+player->QS+" hits your shoulder instead!");
         tell_room(room,"%^BLUE%^"+player->QCN+" snaps "+player->QP+" powerful jaws down at "+target->QCN+"'s head, but "+target->QS+" dodges aside at the last instant and "+player->QS+" hits "+target->QP+" shoulder instead!",({ player, target }));
-        target->cause_typed_damage(target,target->return_target_limb(),roll_dice(clevel,10),get_new_damage_type());                    
+        target->cause_typed_damage(target,target->return_target_limb(),roll_dice(clevel,10),get_new_damage_type());
     }
 }
 
@@ -344,31 +400,32 @@ void swipe_attack(object player, object target, int clevel)
 {
     object room,
            *attackers;
-           
-    int dam;
-    
+
+    int dam, dc_result;
+
     if(!player || !target)
         return;
-    
+
     room = environment(player);
-    
+
     if(room != environment(target))
         return;
-    
+
     swipe_count = 0;
-        
+
     tell_object(player,"%^BOLD%^%^GREEN%^You rake your large claw across, swiping a large arc at your enemies!");
     tell_room(room,"%^BOLD%^%^GREEN%^"+player->QCN+" rakes "+player->QP+" large claw in a wide arc, striking at "+player->QP+" enemies!",player);
 
     attackers = player->query_attackers();
     attackers = shuffle(attackers);
     attackers = sizeof(attackers) > 8 ? attackers[0..7] : attackers;
-    
+
     dam = roll_dice(clevel, 6);
-    
+    dc_result = player->calculate_dc(player->query_guild_level("druid"), FEATS_D->usable_feat(player, "weapon finesse") ? "dexterity" : "strength");
+
     foreach(object ob in attackers)
     {
-        if(ob->reflex_save(clevel))
+        if(ob->reflex_save(dc_result))
             tell_object(ob,"%^ORANGE%^"+player->QCN+"'s claw narrowly misses you!");
         else
         {
@@ -382,31 +439,32 @@ void sweep_attack(object player, object target, int clevel)
 {
     object room,
            *attackers;
-           
-    int dam;
-    
+
+    int dam, dc_result;
+
     if(!player || !target)
         return;
-    
+
     room = environment(player);
-    
+
     if(room != environment(target))
         return;
-    
+
     sweep_count = 0;
-        
+
     tell_object(player,"%^ORANGE%^You whip your tail around, trying to sweep the feet from under your enemies!");
     tell_room(room,"%^ORANGE%^"+player->QCN+" whips "+player->QP+" tail around, trying to sweep the feet from under "+player->QP+" enemies!",player);
 
     attackers = player->query_attackers();
     attackers = shuffle(attackers);
     attackers = sizeof(attackers) > 8 ? attackers[0..7] : attackers;
-    
+
     dam = roll_dice(clevel, 8);
-    
+    dc_result = player->calculate_dc(player->query_guild_level("druid"), FEATS_D->usable_feat(player, "weapon finesse") ? "dexterity" : "strength");
+
     foreach(object ob in attackers)
     {
-        if(ob->reflex_save(clevel))
+        if(ob->reflex_save(dc_result))
         {
             tell_object(player,"%^ORANGE%^Your tail barely misses "+ob->QCN+" on the way by!");
             tell_object(ob,"%^ORANGE%^"+player->QCN+"'s tail barely misses you on the way by!");
@@ -422,7 +480,3 @@ void sweep_attack(object player, object target, int clevel)
         }
     }
 }
-    
-    
-    
-    

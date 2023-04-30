@@ -84,7 +84,8 @@ void create()
     set_alignment(9);
 
     set_hd(MULT, 10);
-    set_hp(MULT * 2000);
+    set_max_hp(MULT * 2000);
+    set_hp(this_object()->query_max_hp());
     set_new_exp(MULT, "boss");
     set_overall_ac(-55); //up from 35
 

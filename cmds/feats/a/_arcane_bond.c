@@ -101,20 +101,22 @@ int cmd_arcane_bond(string str)
 void execute_feat()
 {
     object ob;
-    
-    int class_level,
-        comp_hd,
-        comp_ac;
+    int class_level, comp_hd, comp_ac;
     
     ::execute_feat();
-    
+
+    if (!objectp(caster))
+    {
+        dest_effect();
+        return;
+    }
+
     if(caster->query_property("using instant feat"))
     {
         tell_object(caster,"You are already in the middle of using a feat!");
         dest_effect();
         return;
     }
-
     
     if(sizeof(caster->query_attackers()))
     {
@@ -127,9 +129,9 @@ void execute_feat()
     
     if(objectp(companion))
     {
-        companion && tell_object(caster, "You dismiss your familiar.");
+        tell_object(caster, "You dismiss your familiar.");
         caster->remove_property("familiar");
-        companion && companion->remove();               
+        companion->remove();
         return;
     }
     
@@ -152,7 +154,7 @@ void execute_feat()
     companion->set_race(arg);
     companion->set_name(arg);
     companion->set_id( ({ arg, "familiar", caster->query_name() + "'s familiar" }) );
-    companion->set_short(sprintf("%s's faithful %s familiar.",capitalize(caster->query_name()),arg));
+    companion->set_short(sprintf("%s's faithful %s familiar.", caster->query_cap_name(), arg));
     companion->set_level(class_level);
     companion->set_hd(comp_hd, 14);
     companion->set_attacks_num(2 + class_level / 8);

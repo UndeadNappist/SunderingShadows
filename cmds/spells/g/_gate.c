@@ -46,17 +46,35 @@ string query_cast_string()
 int preSpell()
 {
     string destination;
-    if(arg == "summoning" && (caster->query_property("has_elemental") || caster->query_property("mages_sword")))
+
+    if (!stringp(arg))
     {
-        tell_object(caster,"You already have a powerful summoned creature under your control.");
+        tell_object(caster, "This spell needs arguments!");
+
         return 0;
     }
-    if (sscanf(arg,"%s | %s",purpose,destination) != 2 && arg != "summoning")
+
+    //if(arg == "summoning" && (caster->query_property("has_elemental") || caster->query_property("mages_sword")))
+    if(arg == "summoning")
+    {
+        summon_spell();
+        
+        if(caster->query_property("summon spell") || caster->query_property("raised"))
+        {
+            tell_object(caster, "You are already concentrating on a similar spell.");
+            return 0;
+        }
+        //tell_object(caster,"You already have a powerful summoned creature under your control.");
+        //return 0;
+    }
+
+    if (sscanf(arg, "%s | %s", purpose,destination) != 2 && arg != "summoning")
     {
         tell_object(caster, "Syntax: cast mage gate on summoning OR \n\t"+
         "cast mage gate on travel | location");
         return 0;
     }
+
     return 1;
 }
 
@@ -158,6 +176,8 @@ void do_summons_2()
     beastie->setup_beastie(caster,beastalign);
     beastie->set_caster(caster);
     beastie->set_mylevel(clevel);
+    beastie->set_owner(caster);
+    beastie->setup_minion(clevel, spell_level, "greater");
 
     addSpellToCaster();
 }

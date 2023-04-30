@@ -104,7 +104,8 @@ int number_of_attacks(object player)
 {
     int num;
     if(!objectp(player)) { return 0; }
-    num = "/daemon/bonus_d.c"->attack_bonus("cleric",player->query_class_level("cleric"),player);
+    //num = "/daemon/bonus_d.c"->attack_bonus("cleric",player->query_class_level("cleric"),player);
+    num = attack_bonus(player);
     num = num / 7;
     return num;
 }
@@ -131,49 +132,52 @@ mapping query_class_spells()
 mapping query_innate_spells(object player)
 {
     mapping innate_spells = ([  ]);
+    string *domains;
     
     if(!player)
         return innate_spells;
     
-    if(member_array("cold", player->query_divine_domain()) >= 0)
+    domains = player->query_divine_domain();
+    
+    if(member_array("cold", domains) >= 0 || member_array("water", domains) >= 0)
         innate_spells += ([ "ice bolt" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("fire", player->query_divine_domain()) >= 0)
+    if(member_array("fire", domains) >= 0)
         innate_spells += ([ "fire bolt" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("air", player->query_divine_domain()) >= 0)
+    if(member_array("air", domains) >= 0)
         innate_spells += ([ "lightning blast" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("earth", player->query_divine_domain()) >= 0)
+    if(member_array("earth", domains) >= 0)
         innate_spells += ([ "acid dart" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("darkness", player->query_divine_domain()) >= 0)
+    if(member_array("darkness", domains) >= 0)
         innate_spells += ([ "touch of darkness" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("moon", player->query_divine_domain()) >= 0)
+    if(member_array("moon", domains) >= 0)
         innate_spells += ([ "moonfire" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("plant", player->query_divine_domain()) >= 0)
+    if(member_array("plant", domains) >= 0)
         innate_spells += ([ "bramble armor" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("undeath", player->query_divine_domain()) >= 0)
+    if(member_array("undeath", domains) >= 0)
         innate_spells += ([ "bleeding touch" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("madness", player->query_divine_domain()) >= 0)
+    if(member_array("madness", domains) >= 0)
         innate_spells += ([ "touch of madness" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("magic", player->query_divine_domain()) >= 0)
+    if(member_array("magic", domains) >= 0)
         innate_spells += ([ "dispelling touch" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("charm", player->query_divine_domain()) >= 0)
+    if(member_array("charm", domains) >= 0)
         innate_spells += ([ "dazing touch" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("illusion", player->query_divine_domain()) >= 0)
+    if(member_array("illusion", domains) >= 0)
         innate_spells += ([ "mirror image" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("knowledge", player->query_divine_domain()) >= 0)
+    if(member_array("knowledge", domains) >= 0)
         innate_spells += ([ "identify" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("chaos", player->query_divine_domain()) >= 0)
+    if(member_array("chaos", domains) >= 0)
         innate_spells += ([ "touch of chaos" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("suffering", player->query_divine_domain()) >= 0)
+    if(member_array("suffering", domains) >= 0)
         innate_spells += ([ "ray of enfeeblement" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("law", player->query_divine_domain()) >= 0)
+    if(member_array("law", domains) >= 0)
         innate_spells += ([ "touch of law" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("sun", player->query_divine_domain()) >= 0)
+    if(member_array("sun", domains) >= 0)
         innate_spells += ([ "blinding flash" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("void", player->query_divine_domain()) >= 0)
+    if(member_array("void", domains) >= 0)
         innate_spells += ([ "void bolt" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("nightmare", player->query_divine_domain()) >= 0)
+    if(member_array("nightmare", domains) >= 0)
         innate_spells += ([ "nightmare" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
-    if(member_array("storms", player->query_divine_domain()) >= 0)
+    if(member_array("storms", domains) >= 0)
     {
         innate_spells += ([ "gale aura" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);
         innate_spells += ([ "call lightning" : ([ "type" : "spell", "daily uses" : -1, "level required" : 0 ]), ]);

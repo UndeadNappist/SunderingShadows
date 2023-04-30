@@ -795,7 +795,7 @@ varargs mixed is_object_poisoned(object myOb, object vic, string myAct, int flag
     if(!objectp(myOb)) return;
     if(!objectp(vic)) return;
     if(!stringp(myAct)) return;
-    if(!intp(flag)) return;
+    if(nullp(flag)) return;
     if(!myOb->is_room())
     {
         if(!intp(doses = myOb->query("PoisonDoses")) ||

@@ -94,6 +94,10 @@ void create()
 		"sweepingblow"
     }));
     add_money("gold",random(5000));
+    
+    if(!clonep())
+        return;
+    
     ob = new(OBJ"bloodwood_axe");
     if(random(6)) ob->set_property("monsterweapon", 1);
     ob->move(TO);

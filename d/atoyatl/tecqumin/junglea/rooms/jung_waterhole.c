@@ -90,7 +90,7 @@ int drink(string str){
   }
   tell_object(TP, "You scoop %^BOLD%^%^BLUE%^water%^RESET%^ from the watering hole and"
     +" drink deeply.");
-  tell_room(TO, TPQCN + "scoops %^BOLD%^%^BLUE%^water%^RESET%^ from the watering hole and"
+  tell_room(TO, TPQCN + " scoops %^BOLD%^%^BLUE%^water%^RESET%^ from the watering hole and"
 
     +" drinks deeply. What an animal.", TP);
 }

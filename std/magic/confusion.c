@@ -54,6 +54,10 @@ void enrage_effect(object caster, object targ){
     targs = all_living(room);
     filter_array(targs, "is_non_immortal", FILTERS_D);
     targs -= ({targ});
+
+    if (!sizeof(targs))
+        return;
+
     i = random(sizeof(targs));
     chosen = targs[i];
 

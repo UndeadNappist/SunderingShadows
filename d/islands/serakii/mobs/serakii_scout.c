@@ -69,6 +69,8 @@ void create()
     set_detecting_invis(random(2));
     set_exp(1);
     set_long(" Dressed in a %^C058%^heavy cloak%^CRST%^ and %^C244%^cowled robe%^CRST%^, this scout looks comfortable and confident as they stand before you. They are dressed in %^C095%^light armor%^CRST%^, with a series of small sheaths strapped across their belt and bandoleers. Their skin, where visible their skin has been marked with some %^C094%^smudge %^CRST%^and %^C241%^dark khol%^CRST%^ to obscure them even more. They are geared for either %^C022%^wilderness %^CRST%^or %^C059%^city%^CRST%^, and by how they move.\n");
+    
+    if(!clonep());
 
 //equipment
             ob = new("/d/common/obj/weapon/dagger");

@@ -44,6 +44,7 @@
 #define NPC "/std/npc"
 #define GUARDSMAN "/std/guardsman.c"
 #define SHAPESHIFT "/std/shapeshift.c"
+#define MINION "/std/minion.c"
 
 // DEPRECATED SHORT FORMS OF FUNCTIONS
 #define TP this_player()
@@ -142,3 +143,4 @@
 #define SIZEDTYPES ({"chain","clothing","leather","armour"})
 #define MULTIPLE_WEAR ({"clothing","jewelry", "sheath"})
 #define PK_DAMAGE_PERCENTAGE 100
+#define MAX_RAISE 20

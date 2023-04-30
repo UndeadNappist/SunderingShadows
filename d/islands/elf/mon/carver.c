@@ -50,6 +50,7 @@ int carve(){
    ob->set_short("block of moonstone");
 
    ob->set_weight(0);
+   ob->move(this_player());
    ob->move(TO);
    ob->set_long("%^BOLD%^This is a small statue of %^RESET%^%^CYAN%^moonstone%^BOLD%^%^WHITE%^, carved in the"+
    " likeness of a particular "+TP->query_race()+".");

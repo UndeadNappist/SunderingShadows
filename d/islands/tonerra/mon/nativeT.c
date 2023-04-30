@@ -41,6 +41,10 @@ OLI
   set_new_exp(25,"very high");
 set_max_level(25);
   set_wielding_limbs(({"right hand","left hand"}));
+  
+  if(!clonep())
+      return;
+  
   ob=new(OBJ+"dagger1.c");
 if(random(4))
 {

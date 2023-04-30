@@ -19,6 +19,7 @@ void create(){
     set_verbal_comp();
     set_somatic_comp();
 	set_helpful_spell(1);
+    summon_spell();
     set_arg_needed(1);
     set_feats_required(([ "inquisitor" : "chains of justice"]));
 }
@@ -42,16 +43,20 @@ void spell_effect(){
     string hounds;
     int i;
     
+    spell_successful();
+    
     for(i = 0; i < 4; i++){
         hound = new("/d/magic/mon/inq_hound");
         hound->set_property("spelled", ({ this_object() }) );
         hound->set_property("spell_creature", this_object());
         hound->set_property("spell", this_object());
         hound->set_property("minion", caster);
-        hound->set_max_hp(clevel * 10 + 30);
-        hound->set_hp(hound->query_max_hp());
-        hound->set_overall_ac(-clevel);
+        //hound->set_max_hp(clevel * 10 + 30);
+        //hound->set_hp(hound->query_max_hp());
+        //hound->set_overall_ac(-clevel);
         hound->set_exp(0);
+        hound->set_owner(caster);
+        hound->setup_minion(clevel, spell_level, "standard");
         hound->add_id(caster->query_name()+"_hound");
         hound->set_resistance_percent("negative energy", 100);
         hound->set_resistance_percent("positive energy", 100);
@@ -70,8 +75,8 @@ void spell_effect(){
         }
         
         hound->move(place);
-        caster->add_follower(hound);
-        caster->add_protector(hound);
+        //caster->add_follower(hound);
+        //caster->add_protector(hound);
     }
     tell_room(place, "%^RESET%^%^CRST%^%^C144%^Four large "+hounds+" %^RESET%^%^C144%^step into being, flanking "+caster->query_cap_name()+"%^RESET%^%^CRST%^%^C144%^.");
     
@@ -79,10 +84,33 @@ void spell_effect(){
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH * 3;
     set_end_time();
     call_out("dest_effect", spell_duration);
+    call_out("check", ROUND_LENGTH);
+}
+
+void check()
+{
+    if(!objectp(caster))
+    {
+        dest_effect();
+        return;
+    }
+    
+    pointerp(mons) && mons = filter_array(mons, (: objectp($1) :));
+    
+    if(!sizeof(mons))
+    {
+        dest_effect();
+        return;
+    }
+    
+    call_out("check", ROUND_LENGTH);
 }
 
 void dest_effect(){
     int i;
+    
+    remove_call_out("check");
+    
     for(i=0; i<sizeof(mons); i++){
         if(objectp(mons[i])){
             if(objectp(caster)) caster->remove_protector(mons[i]);

@@ -2,7 +2,7 @@
 
 #include "summoned_monster.h"
 
-inherit MONSTER;
+inherit MINION;
 object cast;
 
 void create(){

@@ -46,7 +46,7 @@ OLI
    command("wield axe");
    new("/d/tharis/obj/vaxe")->move(TO);
    command("wield axe");
-   set_stabbed_func((:TO,"stabbed":));
+   //set_stabbed_func((:TO,"stabbed":));
 }
 
 void stabbed(){

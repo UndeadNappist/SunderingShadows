@@ -28,7 +28,7 @@ TABOR
    set_body_type("human");
    set_exp(10);
    set_property("no bow",1);
-   set_stabbed_func( (: TO,"stab_func" :) );
+   //set_stabbed_func( (: TO,"stab_func" :) );
    add_dbs(({"teller"}));
    add_random_act_dbs(({"tellerrandom"}));
    remove_std_db();

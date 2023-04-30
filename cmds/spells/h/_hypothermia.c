@@ -22,6 +22,7 @@ void create(){
     set_spell_level(([ "cleric" : 7, "druid":7 ]));
     set_spell_sphere("invocation_evocation");
     set_domains("cold");
+    set_circle("winter");
     set_syntax("cast CLASS hypothermia on TARGET");
     set_description("This spell creates a freezing ray of bitter cold.  The ray will seek to drain the heat from the "
 "target as the cold moves through his body.  Because it is a ray, there is a chance the target can dodge some of the "

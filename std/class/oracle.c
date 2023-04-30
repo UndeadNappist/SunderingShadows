@@ -45,7 +45,6 @@ mapping class_featmap(string myspec, object player) {
                  1: ({ "light armor proficiency", "medium armor proficiency", "heavy armor proficiency", "simple weapon proficiency", "martial weapon proficiency", "shield proficiency", "spell focus" }),
                  5 : ({ "indomitable" }),
                  10: ({ "force of personality" }),
-                 15: ({ "leadership" }),
                  21: ({ "weapon focus", "weapon specialization" }),
                ]);
     }
@@ -56,7 +55,7 @@ mapping class_featmap(string myspec, object player) {
                  1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus", "dragon affinity", "dragon aspect" }),
                  5 : ({ "indomitable" }),
                  10: ({ "force of personality" }),
-                 15: ({ "leadership", "blindfight" }),
+                 15: ({ "blindfight" }),
                ]);
     }
     
@@ -66,7 +65,6 @@ mapping class_featmap(string myspec, object player) {
                  1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus" }),
                  5 : ({ "indomitable", "raise the dead" }),
                  10: ({ "force of personality" }),
-                 15: ({ "leadership" }),
                ]);
     }
     
@@ -76,7 +74,6 @@ mapping class_featmap(string myspec, object player) {
                  1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus", "blindfight" }),
                  5 : ({ "indomitable" }),
                  10: ({ "force of personality" }),
-                 15: ({ "leadership" }),
                  31: ({ "death ward" }),
                ]);
     }
@@ -87,7 +84,6 @@ mapping class_featmap(string myspec, object player) {
                  1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus" }),
                  5 : ({ "indomitable" }),
                  10: ({ "force of personality" }),
-                 15: ({ "leadership" }),
                  31: ({ "primal scar" }),
                ]);
     }
@@ -97,7 +93,6 @@ mapping class_featmap(string myspec, object player) {
                  1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus", "claw and tooth" }),
                  5 : ({ "indomitable", "primal companion" }),
                  10: ({ "force of personality" }),
-                 15: ({ "leadership" }),
                ]);
     }
     
@@ -105,7 +100,6 @@ mapping class_featmap(string myspec, object player) {
         1: ({ "light armor proficiency", "medium armor proficiency", "simple weapon proficiency", "shield proficiency", "spell focus" }),
         5 : ({ "indomitable" }),
         10: ({ "force of personality" }),
-        15: ({ "leadership" }),
     ]);
 }
 
@@ -253,7 +247,8 @@ int number_of_attacks(object player)
 {
     int num;
     if(!objectp(player)) { return 0; }
-    num = "/daemon/bonus_d.c"->attack_bonus("oracle",player->query_class_level("oracle"),player);
+    //num = "/daemon/bonus_d.c"->attack_bonus("oracle",player->query_class_level("oracle"),player);
+    num = attack_bonus(player);
     num = num / 7;
     return num;
 }

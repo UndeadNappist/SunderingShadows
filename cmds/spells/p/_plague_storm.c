@@ -15,6 +15,7 @@ void create()
     set_spell_name("plague storm");
     set_spell_level(([ "cleric" : 6, "mage" : 7, "druid" : 6, ]));
     set_spell_sphere("necromancy");
+    set_circle("pestilence");
     set_domains("plague");
     set_syntax("cast CLASS plague storm");
     set_description("This spell works exactly like contagion, but is an aoe.");

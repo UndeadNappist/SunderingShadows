@@ -160,7 +160,10 @@ int hit_func(object target)
     hit_count++;
             
     if(hit_count < HIT_INTERVAL)
+    {
+        target->cause_typed_damage(target, "torso", roll_dice(1, 10), "cold");
         return 0;
+    }
     
     pname = holder->query_cap_name();
     ename = target->query_cap_name();

@@ -1,4 +1,4 @@
-inherit WEAPONLESS;
+inherit MINION;
 
 #include "summoned_monster.h"
 

@@ -74,7 +74,7 @@ void execute_feat()
     }
 
     //caster->set_property("using instant feat", 1);
-    caster->add_cooldown("reclaim soul", DELAY);
+    caster->add_cooldown("reclaim soul", DELAY - (FEATS_D->has_feat(caster, "resilient soul") * 6));
 
     tell_object(caster, "%^C066%^You give up some of your power to mend your soul burn.%^CRST%^");
     tell_object(caster, "%^C072%^You feel a little bit more whole.%^CRST%^");

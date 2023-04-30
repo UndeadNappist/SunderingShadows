@@ -15,10 +15,11 @@ void create() {
     set_spell_sphere("illusion");
     set_syntax("cast CLASS phantom guardians on <centaurs|bats|soldiers>");
     set_description("This spell creates casting level relative guardians who will guard the caster blindly.  You have the "
-"choice of 3 types: 2 centaurs, 4 soldiers or 8 bats. These guardians will not be effected by area effect spells.");
+"choice of 3 types: one greater summon centaur, four standard summon soldiers or 5 + clevel / 5 lesser summon bats. These guardians will not be effected by area effect spells.");
     set_verbal_comp();
     set_somatic_comp();
     set_arg_needed();
+    summon_spell();
     set_helpful_spell(1);
 }
 
@@ -36,7 +37,7 @@ int preSpell() {
 
 void spell_effect(int prof) {
     object ob;
-    int i;
+    int i, num;
     tell_room(place,"%^GREEN%^"+caster->QCN+" chants loudly and throws the emeralds into the air.",caster);
     tell_object(caster,"%^GREEN%^You chant loudly and throw the emeralds into the air.");
     tell_room(place,"%^B_GREEN%^The emeralds start to glow and shape themselves.%^RESET%^");
@@ -45,57 +46,37 @@ void spell_effect(int prof) {
 
     switch (arg) {
     case "centaurs":
-        if ((prof/50) > 0) {
-            tell_room(place,"%^B_GREEN%^The emeralds shape into "+(prof/50)+" glowing translucent centaurs.");
-            ob = new("/d/magic/mon/pcentaur");
-            ob->move(place);
-            caster->add_protector(ob);
-            //ob->force_me("protect "+caster->query_name());
-            //ob->force_me("protect "+caster->query_name());
-            ob->set_damage_bonus(clevel/8);
-            ob->set_attack_bonus(clevel/3);
-            ob->set_max_hp((query_spell_level(spell_type)*2+clevel)*12+20);
-            ob->set_hp(ob->query_max_hp());
-            ob->set_attacks_num(3);
-            ob->set_exp(0);
-            caster->add_follower(ob);
-            ob->set_property("spelled", ({TO}) );
-            ob->set_property("spell_creature", TO);
-            ob->set_property("spell", TO);
-            ob->set_property("minion", caster);
-            ob->add_id("summoned monster");
-            ob->add_id(caster->query_name()+"phantommonster");
-            mons += ({ob});
-        }
-        if ((prof/50) >1) {
-            ob = new("/d/magic/mon/pcentaur");
-            ob->move(place);
-            caster->add_protector(ob);
-            //ob->force_me("protect "+caster->query_name());
-            //ob->force_me("protect "+caster->query_name());
-            ob->set_damage_bonus(clevel/8);
-            ob->set_attack_bonus(clevel/3);
-            ob->set_attacks_num(3);
-            ob->set_exp(0);
-            caster->add_follower(ob);
-            ob->set_property("spelled", ({TO}) );
-            ob->set_property("spell_creature", TO);
-            ob->set_property("spell", TO);
-            ob->set_property("minion", caster);
-            ob->add_id("summoned monster");
-            ob->add_id(caster->query_name()+"phantommonster");
-            mons += ({ob});
-        } else {
-
-            tell_room(place,"%^B_GREEN%^The emeralds shape into nothing.");
-        }
+        tell_room(place,"%^B_GREEN%^The emeralds shape into a glowing translucent centaur.");
+        ob = new("/d/magic/mon/pcentaur");
+        ob->move(place);
+        ob->set_owner(caster);
+        ob->setup_minion(clevel, spell_level, "greater");
+        //caster->add_protector(ob);
+        //ob->force_me("protect "+caster->query_name());
+        //ob->force_me("protect "+caster->query_name());
+        //ob->set_damage_bonus(clevel/8);
+        //ob->set_attack_bonus(clevel/3);
+        //ob->set_max_hp((query_spell_level(spell_type)*2+clevel)*12+20);
+        //ob->set_hp(ob->query_max_hp());
+        //ob->set_attacks_num(3);
+        //ob->set_exp(0);
+        //caster->add_follower(ob);
+        ob->set_property("spelled", ({TO}) );
+        ob->set_property("spell_creature", TO);
+        ob->set_property("spell", TO);
+        //ob->set_property("minion", caster);
+        //ob->add_id("summoned monster");
+        ob->add_id(caster->query_name()+"phantommonster");
+        mons += ({ob});
         break;
     case "bats":
-
-        tell_room(place,"%^B_GREEN%^The emeralds shape into "+prof/12+" glowing translucent bats.");
-        for (i=0;i<prof/12;i++) {
+        num = 5 + clevel / 5;
+        tell_room(place,"%^B_GREEN%^The emeralds shape into "+num+" glowing translucent bats.");
+        for (i=0;i<num;i++) {
 
             ob = new("/d/magic/mon/pbat");
+            ob->set_owner(caster);
+            ob->setup_minion(clevel, spell_level, "lesser");
             ob->move(place);
             caster->add_protector(ob);
             //ob->force_me("protect "+caster->query_name());
@@ -104,39 +85,41 @@ void spell_effect(int prof) {
             ob->set_property("spell_creature", TO);
             ob->set_property("spell", TO);
             ob->set_property("minion", caster);
-            ob->set_damage_bonus(clevel/5);
-            ob->set_attack_bonus(clevel/5);
-            ob->set_max_hp((query_spell_level(spell_type)*2+clevel)*10+20);
-            ob->set_hp(ob->query_max_hp());
+            //ob->set_damage_bonus(clevel/5);
+            //ob->set_attack_bonus(clevel/5);
+            //ob->set_max_hp((query_spell_level(spell_type)*2+clevel)*10+20);
+            //ob->set_hp(ob->query_max_hp());
             ob->set_attacks_num(1);
             ob->set_exp(0);
-            ob->add_id("summoned monster");
+            //ob->add_id("summoned monster");
             ob->add_id(caster->query_name()+"phantommonster");
             caster->add_follower(ob);
             mons += ({ob});
         }
         break;
     default:
-
+        num = 4;
         tell_room(place,"%^B_GREEN%^The emeralds shape into "+prof/25+" glowing translucent soldiers.");
-        for (i=0;i<prof/25;i++) {
+        for (i=0;i<num;i++) {
 
             ob = new("/d/magic/mon/psoldier");
+            ob->set_owner(caster);
+            ob->setup_minion(clevel, spell_level, "standard");
             ob->move(place);
-            caster->add_protector(ob);
+            //caster->add_protector(ob);
             //ob->force_me("protect "+caster->query_name());
             //ob->force_me("protect "+caster->query_name());
             ob->set_property("spelled", ({TO}) );
             ob->set_property("spell_creature", TO);
             ob->set_property("spell", TO);
             ob->set_property("minion", caster);
-            ob->set_damage_bonus(clevel/4);
-            ob->set_attack_bonus(clevel/4);
-            ob->set_max_hp((query_spell_level(spell_type)*2+clevel)*12+20);
-            ob->set_hp(ob->query_max_hp());
+            //ob->set_damage_bonus(clevel/4);
+            //ob->set_attack_bonus(clevel/4);
+            //ob->set_max_hp((query_spell_level(spell_type)*2+clevel)*12+20);
+            //ob->set_hp(ob->query_max_hp());
             ob->set_attacks_num(2);
-            ob->set_exp(0);
-            ob->add_id("summoned monster");
+            //ob->set_exp(0);
+            //ob->add_id("summoned monster");
             ob->add_id(caster->query_name()+"phantommonster");
             mons += ({ob});
             caster->add_follower(ob);
@@ -147,6 +130,26 @@ void spell_effect(int prof) {
     spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH;
     set_end_time();
     call_out("dest_effect",spell_duration);
+    call_out("check", ROUND_LENGTH);
+}
+
+void check()
+{
+    if(!objectp(caster))
+    {
+        dest_effect();
+        return;
+    }
+    
+    mons = filter_array(mons, (: objectp($1) :));
+    
+    if(!sizeof(mons))
+    {
+        dest_effect();
+        return;
+    }
+    
+    call_out("check", ROUND_LENGTH);
 }
 
 void dest_effect() {

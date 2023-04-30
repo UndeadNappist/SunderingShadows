@@ -8,10 +8,7 @@ void create() {
     feat_category("WildernessLore");
     feat_name("rangers endurance");
     feat_prereq("Ranger L3");
-    feat_desc("A ranger is the master of survival through a myriad of terrains,
-and often finds themselves on a hunt for days and weeks at a time. This gives
-them an enhanced level of endurance. This feat grants +10 to the endurance skill
-as a permanent effect.");
+    feat_desc("A ranger is the master of survival through a myriad of terrains, and often finds themselves on a hunt for days and weeks at a time. This gives them an enhanced level of endurance. This feat grants +10 to the endurance skill as a permanent effect.");
     permanent(1);
     set_required_for(({}));
 }

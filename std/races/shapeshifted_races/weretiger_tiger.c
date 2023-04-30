@@ -36,9 +36,9 @@ int default_descriptions(object obj)
         return 0;
     }
 
-    obj->set_description("'s long feline body is covered in smooth fur from tip of snout to the end of " + obj->QP + " long tail.  The graceful movements of " + obj->QP + " body show " + obj->QS + " to be a dangerous predator.");
+    obj->set_description("'s long feline body is covered in smooth fur from tip of snout to the end of " + obj->QP + " long tail.  The graceful movements of " + obj->QP + " body show " + obj->QO + " to be a dangerous predator.");
 
-    obj->setDescriptivePhrase("%^BOLD%^%^BLACK%^l%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^an $R w%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^th %^RESET%^%^ORANGE%^s%^BOLD%^%^BLACK%^t%^RESET%^%^ORANGE%^r%^BOLD%^%^BLACK%^i%^RESET%^%^ORANGE%^p%^BOLD%^%^BLACK%^p%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^d %^RESET%^%^ORANGE%^f%^BOLD%^%^BLACK%^u%^RESET%^%^ORANGE%^r%^WHITE%^");
+    obj->setDescriptivePhrase("%^BOLD%^%^BLACK%^l%^RESET%^%^ORANGE%^e%^BOLD%^%^BLACK%^an $R w%^RESET%^%^ORANGE%^i%^BOLD%^%^BLACK%^th %^RESET%^%^ORANGE%^s%^BOLD%^%^BLACK%^t%^RESET%^%^ORANGE%^r%^BOLD%^%^BLACK%^i%^RESET%^%^ORANGE%^p%^BOLD%^%^BLACK%^e%^RESET%^%^ORANGE%^d %^BOLD%^%^BLACK%^f%^RESET%^%^ORANGE%^u%^BOLD%^%^BLACK%^r%^RESET%^");
 
     obj->set("speech string", "growl");
     obj->set("describe string", "angrily");
@@ -96,7 +96,7 @@ int shape_attack(object tp, object targ)
 {
     object etp, * attackers;
     string* specials = ({});
-    int i, chance, dice;
+    int i, chance, dice, dc_result;
     string RND_COLORS = ({ "%^ORANGE%^", "%^BOLD%^%^BLACK%^", "%^RED%^" });
     string clr = RND_COLORS[random(sizeof(RND_COLORS))];
 
@@ -117,6 +117,7 @@ int shape_attack(object tp, object targ)
         return roll_dice(2, dice);
     }
 
+    dc_result = tp->calculate_dc(tp->query_level(), FEATS_D->usable_feat(tp, "weapon finesse") ? "dexterity" : "strength");
     specials = ({ "blind",
                   "heal",
                   "trip",
@@ -130,7 +131,7 @@ int shape_attack(object tp, object targ)
         tell_object(tp, "%^RESET%^" + clr + "You leap up and savagely tear at " + targ->QCN + "'s eyes, narrowly missing!");
         tell_object(targ, "%^RESET%^" + clr + tp->QCN + " leaps up and tears at your face, nearly ripping your eyes out!");
         tell_room(etp, "%^RESET%^" + clr + tp->QCN + " leaps up and tears at " + targ->QCN + "'s face, nearly ripping out " + targ->QP + " eyes!", ({ tp, targ }));
-        if (!targ->reflex_save(chance)) {
+        if (!targ->reflex_save(dc_result)) {
             targ->set_temporary_blinded(dice / 2);
         }
         break;
@@ -147,7 +148,7 @@ int shape_attack(object tp, object targ)
         tell_object(tp, "%^RESET%^" + clr + "You dig your fangs into " + targ->QCN + "'s shoulder and drag " + targ->QO + " to the ground!");
         tell_object(targ, "%^RESET%^" + clr + tp->QCN + " digs " + tp->QP + " fangs into your shoulder and drags you to the ground!");
         tell_room(etp, "%^RESET%^" + clr + tp->QCN + " digs " + tp->QP + " teeth into " + targ->QCN + "'s shoulder and drags " + targ->QO + " to the ground!", ({ tp, targ }));
-        if (!targ->fort_save(chance)) {
+        if (!targ->fort_save(dc_result)) {
             targ->set_tripped(roll_dice(1, 2), "%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!");
         }
         break;

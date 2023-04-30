@@ -41,7 +41,8 @@ OLI
    }));
    set_hd(35,8);
    set_wielding_limbs(({"right hand","left hand"}));
-   set_hp(350);
+   set_max_hp(350);
+   set_hp(query_max_hp());
    set_race("human");
    set_body_type("human");
    set_class("mage");
@@ -57,6 +58,10 @@ OLI
 set_max_level(25);
    set_gender("male");
    set_race("human");
+   
+   if(!clonep())
+       return;
+   
    new(OBJ+"wstaff")->move(TO);
    command("wield staff");
   new(OBJ+"Lcloak.c")->move(TO);

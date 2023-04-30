@@ -3,7 +3,7 @@
 
 #include <std.h>
 
-inherit MONSTER;
+inherit MINION;
 
 int create(){
     ::create();

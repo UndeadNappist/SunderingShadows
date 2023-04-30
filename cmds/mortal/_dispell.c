@@ -19,7 +19,7 @@ int cmd_dispell(string str)
     if (pointerp(spells)) {
         spells = filter_array(spells, (: objectp($1) :));
     } else {
-        message("info", "%^BOLD%^%^WHITE%^You have nothing listed as effecting you.", TP);
+        message("info", "%^BOLD%^%^WHITE%^You have nothing listed as affecting you.", TP);
         return 1;
     }
 
@@ -59,7 +59,7 @@ int cmd_dispell(string str)
         object spell;
         foreach(spell in spells) {
             if (objectp(spell)) {
-                write("%^BOLD%^%^CYAN%^You dispell " + spell->query_spell_display());
+                write("%^BOLD%^%^CYAN%^You dispel " + spell->query_spell_display());
                 spell->dest_effect();
             }
         }
@@ -116,7 +116,7 @@ int cmd_dispell(string str)
 
                 if (spell->query_spell_name() == sname ||
                     tname = targ) {
-                    write("%^BOLD%^%^CYAN%^You dispell " + spell->query_spell_display());
+                    write("%^BOLD%^%^CYAN%^You dispel " + spell->query_spell_display());
                     spell->dest_effect();
                     if (!allflag) {
                         break;
@@ -149,15 +149,15 @@ dispell all | %^ORANGE%^%^ULINE%^SPELL_NAME%^RESET%^ on %^ORANGE%^%^ULINE%^TARGE
 
 %^CYAN%^DESCRIPTION%^RESET%^
 
-Without an argument, this command will list all spells you have casted and that are currently active. The list will update as spells go up and down. It won't list, however, spells someone casted on you.
+Without an argument, this command will list all spells you have cast and that are currently active. The list will update as spells are added or removed. It won't list, however, spells someone else has cast on you.
 
-Provide %^ORANGE%^%^ULINE%^NUM%^RESET%^ as an argument and spell on that list under that %^ORANGE%^%^ULINE%^NUM%^RESET%^ will be dispelled. Note that list numbering will be renewed after that.
+Provide %^ORANGE%^%^ULINE%^NUM%^RESET%^ as an argument and the corresponding spell on that list under that %^ORANGE%^%^ULINE%^NUM%^RESET%^ will be dispelled. Note that list numbering will be renewed after that.
 
-Provide %^ORANGE%^%^ULINE%^SPELL%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^ and you will cancel effects of first spell with that name.
+Provide %^ORANGE%^%^ULINE%^SPELL%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^ and you will cancel the effects of first spell with that name.
 
-Provide keyword all and you will dispell all spells. If you follow keyword 'all' by %^ORANGE%^%^ULINE%^SPELL%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^, you will dispell all spells with that %^ORANGE%^%^ULINE%^SPELL%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^
+Provide keyword 'all' and you will dispel all spells. If you follow keyword 'all' by %^ORANGE%^%^ULINE%^SPELL%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^, you will dispel all spells with that %^ORANGE%^%^ULINE%^SPELL%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^
 
-Provide keyword all or %^ORANGE%^%^ULINE%^SPELL%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^ followed by %^ORANGE%^%^ULINE%^TARGET%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^ and you will dispell all effects caused by %^ORANGE%^%^ULINE%^SPELL%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^ on said %^ORANGE%^%^ULINE%^TARGET%^RESET%^. %^ORANGE%^%^ULINE%^TARGET%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^ can use any of target's valid ids.
+Provide the keyword 'all' or %^ORANGE%^%^ULINE%^SPELL%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^ followed by %^ORANGE%^%^ULINE%^TARGET%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^ and you will dispel all effects caused by %^ORANGE%^%^ULINE%^SPELL%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^ on that %^ORANGE%^%^ULINE%^TARGET%^RESET%^. %^ORANGE%^%^ULINE%^TARGET%^RESET%^ %^ORANGE%^%^ULINE%^NAME%^RESET%^ can use any of target's valid ids.
 
 %^CYAN%^SEE ALSO%^RESET%^
 

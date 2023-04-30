@@ -60,6 +60,7 @@ void init(){
      tell_object(reborn,"%^BOLD%^%^RED%^The world seems to slow down as you see the "+
       "fatal blow coming that would end your life.  Do you step aside?%^RESET%^");
    }
+   call_out("do_death", 300);
    tell_object(reborn,"%^BOLD%^WHITE%^y%^RED%^es or %^WHITE%^n%^RED%^o?%^RESET%^");
    input_to("pref");
 }
@@ -106,6 +107,7 @@ void do_rebirth()
     object reborn, myob;
     if(!objectp(TO)) return;
     if(!objectp(ETO)) return;
+    remove_call_out("do death");
     reborn = ETO;
     if((int)reborn->query_class_level(reborn->query_class()) > 1 && !wizardp(reborn) && (int)"/daemon/config_d.c"->check_config("death") == 0)
     {

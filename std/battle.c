@@ -284,16 +284,19 @@ void heart_beat()
 
             if (combatants[i]->query_property("effect_staggered")) {
                 num = 1;
-            } else if (sizeof(classes)) {
-                for (x = 0; x < sizeof(classes); x++) {
-                    file = DIR_CLASSES + "/" + classes[x] + ".c";
-                    if (!file_exists(file)) {
-                        num = 0; continue;
-                    }
-                    if ((int)file->number_of_attacks(combatants[i]) > num) {
-                        num = (int)file->number_of_attacks(combatants[i]);
-                    }
-                }
+            } 
+            //else if (sizeof(classes)) {
+            else
+            {
+                //for (x = 0; x < sizeof(classes); x++) {
+                    //file = DIR_CLASSES + "/" + classes[x] + ".c";
+                    //if (!file_exists(file)) {
+                    //    num = 0; continue;
+                    //}
+                    num = combatants[i]->number_of_attacks();
+                    //if ((int)file->number_of_attacks(combatants[i]) > num) {
+                    //    num = (int)file->number_of_attacks(combatants[i]);
+                //    }
             }
 
             fighter_attacks = num;

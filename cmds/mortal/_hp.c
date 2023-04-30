@@ -19,9 +19,12 @@ mixed * genoutput(object targ)
     if(targ->is_class("cleric") || targ->is_class("paladin"))
         output+=({({"Grace Points","%^RESET%^%^"+targ->query("available grace")+"%^BOLD%^%^GREEN%^/%^WHITE%^"+targ->query("maximum grace")})});
     
+    if(targ->query_property("raised"))
+        output += ({ ({ "Undead Pool", "%^RESET%^" + targ->query_property("raised") + "%^BOLD%^%^GREEN%^/%^WHITE%^" + MAX_RAISE }) });
+    
     output+=({({"Carrying","%^RESET%^%^"+targ->query_internal_encumbrance()+"%^BOLD%^%^GREEN%^/%^WHITE%^"+targ->query_max_internal_encumbrance()})});
     
-    if(!(targ->is_undead() || FEATS_D->usable_feat(targ,"timeless body"))){
+    if(!(targ->is_undead() || FEATS_D->usable_feat(targ,"timeless body")) && max != 0){
         cur = targ->query_stuffed();
         perc = cur*100/max;
         output+=({({"Hunger","%^BOLD%^"+perc+"% ("+hunger2str(perc)+"%^WHITE%^%^BOLD%^)"})});

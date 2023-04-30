@@ -10,8 +10,9 @@ void create()
     set_spell_name("creeping doom");
     set_spell_level(([ "oracle" : 7, "druid" : 7 ]));
     set_mystery("nature");
+    set_circle("pestilence");
     set_spell_sphere("conjuration_summoning");
-    set_syntax("cast CLASS creeping doom on TARGET");
+    set_syntax("cast CLASS creeping doom [on TARGET]");
     set_damage_desc("Piercing damage over several rounds. Successful save per round reduces damage by half.");
     set_description("This spell will call a swarm of biting and stinging centipedes to torment the target for several rounds. Each round, a fortitude save will reduce the damage by half.");
     set_save("fortitude");
@@ -56,9 +57,9 @@ void spell_effect(int prof)
     tell_object(target, color("A mass of creeping centipedes erupt from the ground, crawling up your legs and biting you viciously!"));
     
     if(do_save(target, 0))
-        target->cause_typed_damage(target, "torso", sdamage / 2, "piercing");
+        damage_targ(target, "torso", sdamage / 2, "piercing");
     else
-        target->cause_typed_damage(target, "torso", sdamage, "piercing");
+        damage_targ(target, "torso", sdamage, "piercing");
     
     target->set_property("creeping doom", 1);
     
@@ -77,9 +78,9 @@ void keep_biting(int dur)
     tell_room(place, "%^GREEN%^BOLD%^The centipedes bite viciously into " + target->query_cap_name() + "'s flesh!", target);
     
     if(do_save(target, 0))
-        target->cause_typed_damage(target, "torso", sdamage / 8, "piercing");
+        damage_targ(target, "torso", sdamage / 8, "piercing");
     else
-        target->cause_typed_damage(target, "torso", sdamage / 4, "piercing");
+        damage_targ(target, "torso", sdamage / 4, "piercing");
     
     dur--;
     if(dur <= 0)

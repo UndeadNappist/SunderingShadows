@@ -2,6 +2,22 @@
  * @file
  * @brief This is base inherit for all monsters
  */
+ 
+ /*
+   Reference of notable functions:
+   
+   set_monster_feats(array feats)                             - adds feats to the monster
+   start_walking(string filename)                             - begins the mob walking to destination filename using pathfinder daemon
+   query_walking()                                            - am I walking?
+   set_charmed(int x)                                         - sets whether the mob is charmd (1), normal (0), or offended (-1)
+   set_interaction_normal(string* action, string* func_name)  - these change add_actions based on offended, normal, charmed
+   set_interaction_charmed(string* action, string* func_name)
+   set_interaction_offended(string* action, string* func_name)
+   set_spells(array spells)                                   - creates a list of spells the monster can cast
+   get_random_spell()                                         - gives you a random spell from the monster's spell list 
+   set_spell_chance(int percent)                              - percentage chance on any round that mob casts a spell   
+   
+*/
 
 #define PATHFINDER "/daemon/pathfinder_d.c"  // added by Lujke, September 2005
 #define LIGHT_MAX_RANGE 5
@@ -14,67 +30,57 @@
 #include <rooms.h>
 #include <security.h>
 
-
 inherit "/std/weaponless_users.c"; // consolidating all weaponless combat into one spot -Ares
+       
+nosave mapping emotes,
+        spells,
+        thief_skill,
+        charmed_int,
+        offend_int,
+        norm_int;
 
-int set_heart_beat(int flag); // For slowing down monster's heart beats to sync (sorta) with combat. - g
-object tmp;
-nosave int heart_beat_on;
-//swarm is added here - was previously in combat.c but didn't actually do anything - Saide
-int level, round, numround, swarm;
-string charmed_by;
-int hit_dice, hit_dice_bonus, stage;
-nosave int speed;
-nosave int moving;
-string* nogolist;   // * for the addition to move_around()
-int no_moving;
-mapping emotes;
-mapping spells;
-mapping thief_skill;
-string stabbed;
-int steal;
-string body_type; private nosave mixed __Die;
-int charmed;
-mapping charmed_int, offend_int, norm_int;
-nosave int is_npc;
+nosave int speed,      //Movement speed
+           steal,
+           no_catch_tell,
+           charmed,
+           func_chance,
+           max_level,
+           level,
+           is_walking,
+           will_open,
+           will_avoid_traps,
+           static_bab,
+           hit_dice,
+           hit_dice_bonus,
+           stage,
+           useMonsterFlag,
+           is_npc,
+           npc,
+           ticker,
+           already_listened,
+           init_pause,
+           swarm,
+           heart_beat_on,
+           no_moving,  //I guess this is a movement override
+           moving;     //Are we moving?
+           
+nosave string destination,
+              body_type,
+              *monster_feats,
+              *path,
+              *funcs,
+              *nogolist;
+              
 nosave object master_wiz;
-int no_catch_tell;
-// going to give them a 1 heart_beat delay between being able to recieve messages, to try to
-// prevent two mobs talking and spamming the mud into submission -Ares
-nosave int already_listened;
-nosave int init_pause; // delay of 1 heart_beat after calls to ::init() to stop recursion error spam
-string* funcs;
-int func_chance;
-int max_level;
-string* path;        //  These variables added by Lujke, September 2005
-string destination;  //  to support the code for mobs to be able to walk to named
-int is_walking;      //  destinations
-int will_open;       // addition by Ares for checks in move_around & pathfinder
-int will_avoid_traps;
-int BONUS_ADDED;     // global flag to make sure the to hit bonus doesn't get added more than
-                     // once.  -Ares
-nosave string* monster_feats; // added so monsters can have feats, use set_monster_feats(string *feats)
 
-int static_bab;      // going to try giving them a static bab that's uneffected by stats to try and help balance vs player armor class
-
-int query_static_bab();
-
-int test_heart();
-void set_spell_chance(int x);
+//Prototyping
 void set_body_type(string x);
-void set_spells(string* arr);
-string return_chat();
-string return_achat();
 void set_exp(int x);
 void set_level(int x);
 int query_level();
-string getParsableName();
 void move_around();
-void set_nogo(string* list);    // * these added for use in move_around
-string* query_nogo();
 void set_emotes(int x, string* arr, int att);
 int do_exp(int dice, int bonus);
-object find_steal_target();
 int query_thief_skill(string skill);
 void steal_fun();
 void set_interaction_normal(string* action, string* func_name);
@@ -82,10 +88,8 @@ void set_interaction_charmed(string* action, string* func_name);
 void set_interaction_offended(string* action, string* func_name);
 int check_action(string str);
 int npc_mon(int npc, object wizard);
-int query_is_npc();
 int force_NPC(string command);
 void disable_catch_tell(int def_tell);
-void __TEST_INIT();
 void start_walking(string dest);  // These functions added by Lujke, September 2005
 void stop_walking();                // to support the code for monsters
 void reach_destination();         // to be able to find their way to a
@@ -95,28 +99,61 @@ void will_open_doors(int num); // Will make wandering mobs open unlocked doors i
 void avoid_traps(int num); // Will make wandering mobs avoid walking into exits that are trapped -Ares 09/18/05
 void do_kit_stuff();
 void die(object ob);
-
 int query_exp_needed(int level);
 void set_new_exp(int level, string perc); // new lib level exp function, see function definition for more details -Ares
 void set_mob_magic_resistance(string perc);
 
-int is_monster()
+//Variable manipulation functions
+int set_use_monster_flag(int x) {  return (useMonsterFlag = x);                   }
+int set_static_bab(int bab)     {  return (static_bab = bab);                     }
+int run()                       {  return (is_walking = 3);                       }
+int hurry()                     {  return (is_walking = 2);                       }  
+int set_no_moving()             {  return (no_moving = 1);                        }
+int set_moving(int x)           {  return (moving = x);                           }
+int set_speed(int x)            {  return (speed = x);                            }
+
+int query_static_bab()          {  return static_bab;                             }
+int is_monster()                {  return 1;                                      }
+int query_is_npc()              {  return is_npc;                                 }
+int query_no_moving()           {  return no_moving;                              }
+int query_moving()              {  return moving;                                 }
+int query_speed()               {  return speed;                                  }
+
+string *set_nogo(string *list)  {  return (nogolist = list);                      }
+
+string query_sphere()           {  return "monster sphere";                       }
+string query_vis_cap_name()     {  return query_cap_name();                       }
+string getNameAsSeen(object ob) {  return this_object()->query_name();            }
+string getParsableName()        {  return capitalize(this_object()->query_name());}
+string *query_nogo()            {  return (pointerp(nogolist) ? nogolist : ({})); }
+
+//Monster Spell Funcs
+int set_spell_chance(int x)
 {
-    return 1;
+    if(!mapp(spells))
+        spells = ([  ]);
+
+    return (spells["chance"] = x);
 }
 
-string query_sphere()
-{
-    return "monster sphere";
+string *set_spells(string* arr)
+{ 
+    if(!mapp(spells))
+        spells = ([  ]);
+    
+    return (spells["commands"] = arr);
 }
 
-void set_languages(string* stuff)
-{
-}
+int query_spell_chance() { return  mapp(spells) ? spells["chance"] : 0; }
+string* query_spells() { return mapp(spells) ? spells["commands"] : 0; }
+//End Monster Spell Funcs
 
-int useMonsterFlag;
-
-
+//Some kind of masking here?
+void set_languages(string* stuff) {  }
+string *query_mini_quests() { return ({  }); }
+string *query_quests() { return ({  }); }
+string *query_temporary_feats() { return ({  }); }
+                                             
 void create()
 {
     ::create();
@@ -125,6 +162,7 @@ void create()
     init_limb_data();
     init_stats();
     init_skills(0);
+    this_object()->init_max_hp();
     init_living();
     set_heart_beat(heart_beat_on = 1);
     speed = 0;
@@ -147,12 +185,8 @@ void create()
     if (objectp(TO)) {
         catch("/daemon/quests"->isMon(TO));
     }
+    ticker = 0;
 }
-
-/*int query_max_internal_encumbrance() //This is overriding living.c which is why we're having bugs with secret chest/outsider encumbrance.  Commenting it out to see if it reverts to living.c property.
-   {
-    return 100 + (level * 10);
-   }*/
 
 void reset()
 {
@@ -165,35 +199,6 @@ void reset()
     }
     ::reset();
 }
-
-void set_stabbed_func(mixed val)
-{
-    if (functionp(val) && geteuid(this_object()) != geteuid(val)) {
-        return 0;
-    }
-    if (functionp(val)) {
-        set_property("fstabbed", 1);
-        stabbed = (*val)(1);
-    } else {
-        stabbed = val;
-    }
-}
-
-//added by Saide, December 1st, 2016. Apparently some
-//game mobs are using set_mlevel(int lvl) -
-//hopefully this fixes them.
-/*varargs void set_mlevel(string str, int lev)
-   {
-    string *cls;
-    if(!stringp(str))
-    {
-        if(intp(str)) lev = to_int(str);
-        cls = (string *)TO->query_classes();
-        if(sizeof(cls)) str = cls[0];
-        else str = "fighter";
-    }
-    return ::set_mlevel(str, lev);
-   }*/
 
 void set_monster_feats(string* feats)
 {
@@ -234,86 +239,106 @@ string* query_monster_feats()
     return monster_feats;
 }
 
-void init()
+private void check_heart_beat()
 {
-    mixed tmp;
-    int i;
-    string* temp = ({});
+    if(!query_heart_beat(this_object()))
+    {
+        calculate_healing();
+        set_heart_beat(heart_beat_on = 1);
+    }
+    call_out("check_heart_beat", 18);
+}
 
-    if (!objectp(TO)) {
-        return;
-    }
-    if (!objectp(ETO)) {
-        return;
-    }
-    if (base_name(ETO) == ROOM_VOID) {
-        return;
-    }                                               // they don't need to call init() when they're in the void.
-    //moved call to ::init down here to see if it helps with
-    //the new() errors - Saide - June 2016
-    ::init();
-    if (!objectp(TO)) {
-        return;
-    }
-    if (!objectp(TP)) {
-        return;
-    }
-    if (TP->query_true_invis()) {
-        return;
-    }
-    if (TP->query_ghost()) {
-        return;
-    }
-    if (TP->query_property("draggee")) {
-        return;
-    }
+int set_heart_beat(int flag)
+{
+    return efun::set_heart_beat((__COMBAT_SPEED__)*flag);
 
+    return efun::set_heart_beat(flag);
+}
 
-    if (!heart_beat_on || !query_heart_beat(TO)) {
-        if (objectp(TO)) {
-            set_heart_beat(heart_beat_on = 1);
-        }
-    }
+int query_heart_status()
+{
+    return heart_beat_on;
+}
 
-    if (TP->is_player()) {
-        if (tmp = query("aggressive")) {
-            if (intp(tmp) && tmp > (int)TP->query_stats("charisma")) {
-                if (TP->query_invis()) {
-                    if (!query_property("invis attack")) {
-                        return;
-                    }
+void check_encounter(object player)
+{
+    object *dudes;
+    object env = environment(this_object());
+    string *temp = ({  });
+    mixed aggro;
+    
+    if(!env) return;
+    if(!objectp(player)) return;
+    
+    if(!find_call_out("check_heart_beat"))
+        check_heart_beat();
+    
+    if(userp(player))
+    {
+        if(aggro = query("aggressive"))
+        {
+            if(!player->query_invis() || query_property("invis attack"))
+            {
+                if(intp(aggro) && aggro > (int)player->query_stats("charisma"))
+                {
+                    kill_ob(player);
+                    kill_msg(player);
                 }
-                kill_ob(this_player(), 0);
-                call_out("kill_msg", 1, this_player());
-            }else {
-                if (!init_pause) {
-                    if (stringp(tmp)) {
-                        call_other(this_object(), tmp);
-                    }
-                    init_pause = 1;
+                else
+                {
+                    if(stringp(aggro) && function_exists(aggro, this_object()))
+                        call_other(this_object(), aggro);
                 }
             }
         }
     }
-
-    if (norm_int) {
+                    
+    if (norm_int)
+    {
         temp += keys(norm_int);
-        if (charmed_int) {
+        if (charmed_int)
             temp += keys(charmed_int);
-        }
-        if (offend_int) {
+        if (offend_int)
             temp += keys(offend_int);
-        }
         temp = distinct_array(temp);
-        for (i = 0; i < sizeof(temp); i++) {
+        
+        for (int i = 0; i < sizeof(temp); i++)
             add_action("check_action", temp[i], 1);
-        }
     }
+}   
+
+//Looking at this. Init function needs to have a delay to prevent insane recursion situations.
+void init()
+{   
+    if(!objectp(this_object())) return;
+    if(!environment()) return;
+    if(base_name(environment()) == ROOM_VOID) return;
+    if(!objectp(this_player())) return;
+    if(this_player()->query_true_invis()) return;
+    if(this_player()->query_ghost()) return;
+    if(this_player()->query_property("draggee")) return;
+    
+    if(!userp(this_player()))
+    {
+        if(init_pause)
+            return;
+        else
+            init_pause = 1;
+    }
+    
+    if(eval_cost() < 50000)
+        return;
+    
+    ::init();
+
+    check_encounter(this_player());
 }
 
 void kill_msg(object tp)
 {
-    tell_object(tp, "%^RED%^%^BOLD%^" + capitalize(this_object()->query_name()) + " attacks you!%^RESET%^");
+    //tell_object(tp, "%^RED%^%^BOLD%^" + capitalize(this_object()->query_name()) + " attacks you!%^RESET%^");
+    message("monster", "%^RED%^%^BOLD%^" + capitalize(this_object()->query_name()) + " attacks you!%^RESET%^", environment(tp), tp); 
 }
 
 object make_corpse()
@@ -406,112 +431,55 @@ void do_kit_stuff()
     return;
 }
 
+//Will be a call out to check this and keep it going.
+//Will be a check in init in case call_out stops.
 void heart_beat()
 {
-    string pre;
-    object ob3, ob2;
-
+    object room;
+    mixed error;
+    
+    if(!objectp(this_object()))
+        return;
+    
+    room = environment(this_object());
+    
+    if(!objectp(room))
+        return;
+    
     ::heart_beat();
-
-    if (!objectp(TO)) {
+    
+    already_listened = 0;
+    init_pause = 0;
+    ++ticker;
+    
+    //Come back and check on this timing
+    do_healing(calculate_healing());
+    
+    if(sizeof(query_attackers()))
+    {
+        error = catch(iterate_combat());
+        ok_to_attack() && continue_attack();
+        error = catch(do_kit_stuff());
+    }
+    else if (query("protecting"))
+        delete("protecting");
+    
+    //We check again in case the combat stuff above killed the monster (ie: counterattacks)
+    if(!objectp(this_object()) || !objectp(room))
         return;
-    }
-    if (!objectp(ETO)) {
-        return;
-    }
-
-    if (already_listened) {
-        already_listened = 0;
-    }
-    if (init_pause) {
-        init_pause = 0;
-    }
-
-    player_age += 2;
-    ok_to_heal++;
-    if (player_age > ok_to_heal) {
-        do_healing(calculate_healing());
-    }else {
-        calculate_healing();
-    }
-    iterate_combat();
-    if (ok_to_attack()) {
-        continue_attack();
-    }
-    if (!stage) {
-        if (1) {
-            if (!objectp(TO)) {
-                return;
-            }
-            ob2 = new("/std/Object");
-
-            if (this_object()->query_poisoning()) {
-                ob2->set_name("Poison");
-                do_damage("torso", query_poisoning());
-                message("environment", "You are getting weaker from Poison!", TO);
-                if (objectp(ob3 = queryPoisoner())) {
-                    add_attacker(ob3);
-                }else {
-                    add_attacker(ob2);
-                }
-                continue_attack();
-                remove_attacker(ob2);
-                remove_attacker(ob3);
-            }
-            ob2->remove();
-        }
-        stage = 60;
-    }
-    stage--;
-    if (!objectp(TO)) {
-        return;
-    }
-    if (speed && moving >= speed) {
-        if (!is_walking) {
+    
+    if(speed && moving >= speed)
+    {
+        if(!is_walking)
             move_around();
-        }
-    }else {
-        moving++;
     }
-    if (!query_current_attacker()) {
-        pre = "";
-    }else {
-        pre = "attack ";
-    }
-    if (!emotes) {
-        emotes = ([]);
-    }
-    if (emotes[pre + "chance"] > random(100)) {
-        if (this_object()) {
-            message("environment", emotes[pre + "msg"][random(sizeof(emotes[pre + "msg"]))],
-                    environment(this_object()), ({ this_object() }));
-        }
-    }
-// Checking to see how much damage this does... I really need HB to keep going
-    if (!test_heart()) {
-        set_heart_beat(heart_beat_on = 0);
-    }
-    if (steal && random(100) < 2) {
-        steal_fun();
-    }
-    if (!sizeof(query_attackers()) && query("protecting")) {
-        set("protecting", 0);
-    }
-    // Changed by Lujke June 2017, to support code for mobs to walk, fast walk or sprint to a set destination //
-
-/*
-   switch(is_walking){
-    case 3:
-      call_out ("do_walk", 2);
-    case 2: //deliberately falling through
-      call_out ("do_walk", 1);
-    case 1: //deliberately falling through
-      do_walk();
-   }
- */
-    do_kit_stuff();
+    else
+        ++moving;
+    
+    steal && !random(50) && steal_fun();
 }
 
+//Take this out after testing
 object* ob_party(object ob)
 {
     object* party;
@@ -528,118 +496,119 @@ object* ob_party(object ob)
     return party;
 }
 
-void die(object ob)
+//General clean up of function and removal of unused code. -- Tlaloc -- 2022
+//Actual XP giving is done in combat_d in check_death().
+void die(object killer)
 {
-    object money_ob;
-    object* contents, * party = ({}), * live;
-    int i, tmp_size, quest_exp;
-    string* currs, quest_str;
-
-    if (!objectp(TO)) {
-        return;
-    }
-    if (!objectp(ETO)) {
-        return;
-    }
-
-    if (!query_property("new_exp_set")) {
-        set_new_exp(TO->query_highest_level(), "normal");
-    }
-
-    if (functionp(__Die)) {
-        if (!((int)((*__Die)(ob)))) {
-            return;
-        }
-    }else if (stringp(__Die)) {
-        tell_room(ETO, __Die, TO);
-    }else {
-        tell_room(ETO, "%^RED%^" + TO->QCN + " drops dead before you.%^RESET%^", TO);
-        if (ETO->query_property("arena")) {
-            destall(TO);
-            return;
-        }
-    }
-
-    if (query_property("add quest")) {
-        quest_str = query_property("add quest");
-        quest_exp = query_property("quest exp");
-        if (!quest_exp) {
-            quest_exp = query_level() * 1000;
-        }
-
-        live = all_living(ETO);
-        live = filter_array(live, "is_non_immortal_player", FILTERS_D);
-        if (sizeof(live)) {
-            for (i = 0; i < sizeof(live); i++) {
-                if (!objectp(live[i])) {
-                    continue;
-                }
-                party += ob_party(live[i]);
-            }
-        }
-        party = distinct_array(party);
-        if (sizeof(party)) {
-            for (i = 0; i < sizeof(party); i++) {
-                if (!objectp(party[i])) {
-                    continue;
-                }
-                // usually they won't get added if they're not in the room, unless they are a ghost or died in the room where the monster died, or they're in a room in /d/magic/room
-                if (environment(party[i]) != ETO) {
-                    if ((!party[i]->query_ghost()) && // if they're dead, we'll assume they died here.  Might not always be true, but should be fairly often
-                        (party[i]->query_death_place() != ETO) && // if they died to the monster but already prayed, their death place should be this monster's environment
-                        (strsrch(base_name(environment(party[i])), "/d/magic/room/") == -1)) {
-                        continue;
-                    }                                                                                     // if they are in /d/magic/room/, it might be inside of a web, ie the one cast by Vecna, so go ahead and add
-                }
-
-                if (member_array(quest_str, party[i]->query_mini_quests()) != -1) {
-                    continue;
-                }
-                party[i]->set_mini_quest(quest_str, quest_exp, quest_str);
-            }
-        }
-    }
-
-    tmp = make_corpse();
-    tmp->move(ETO);
-    tmp_size = sizeof(currs = query_currencies());
-
-    if (tmp_size && has_value()) {
-        money_ob = new("/std/obj/coins");
-        for (i = 0; i < tmp_size; i++) {
-            money_ob->add_money(currs[i], query_money(currs[i]));
-            add_money(currs[i], -query_money(currs[i]));
-        }
-        money_ob->move(tmp);
-    }
-
-    contents = all_inventory(this_object());
-    for (i = 0; i < sizeof(contents); i++) {
-        if (!objectp(contents[i])) {
-            continue;
-        }
-        if (contents[i]->query_property("monsterweapon") || !contents[i]->query_short() || !objectp(tmp)) {
-            contents[i]->remove();
-            continue;
-        }else {
-            contents[i]->move(tmp);
-        }
-    }
-
-    if (TO->query_property("riding")) {
-        if (TO->query_owner() && objectp(TO->query_owner())) {
-            (TO->query_owner())->remove_pet(TO);
-        }
-    }
-
-    if (TO->query_property("death effects")) {
-        "/daemon/death_effects_d"->get_death_effect(TO);
-    }
-    TO->move(ROOM_VOID);
-    remove();
+    object *killers, *my_stuff;
+    object room, corpse, money;
+    string quest_str, quest_exp;
+    string *curr;
     
+    if(!objectp(this_object()))
+        return;
+    
+    room = environment(this_object());
+    
+    if(!objectp(room))
+        return;
+    
+    if(!query_property("new_exp_set"))
+        set_new_exp(this_object()->query_highest_level(), "normal");
+    
+    message("death", "%^RED%^" + this_object()->query_cap_name() + " drops dead before you.%^RESET%^", room, this_object());
+    
+    if(room->query_property("arena"))
+    {
+        destall(this_object());
+        return;
+    }
+    
+    killers = all_living(room);
+    killers = filter_array(killers, (: userp($1) :));
+    quest_str = query_property("add quest");
+    quest_exp = query_property("quest exp");
+    quest_str && !quest_exp && quest_exp = query_level() * 1000;
+    
+    foreach(object ob in killers)
+    {
+        if(strlen(quest_str))
+        {
+            if(member_array(quest_str, ob->query_mini_quests()) >= 0)
+                continue;
+            else
+                ob->set_mini_quest(quest_str, quest_exp, quest_str);
+        }
+    }
+    
+    //If any of the killers are users, drop loot
+    if(sizeof(killers))
+    {    
+        //Can make monsters with no corpse
+        if(!this_object()->query_property("no corpse"))
+        {
+            if(objectp(corpse = make_corpse()))
+                corpse->move(environment(this_object()));
+        }
+    
+        my_stuff = all_inventory(this_object());
+    
+        foreach(object ob in my_stuff)
+        {
+            if(!objectp(ob))
+                continue;
+     
+            if(ob->query_property("monsterweapon") || !ob->query_short())
+            {
+                destruct(ob);
+                continue;
+            }
+        
+            if(objectp(corpse))
+                ob->move(corpse);
+            else
+            {
+                catch(ob->remove());
+                objectp(ob) && destruct(ob);
+            }
+        }
+    
+        if(objectp(corpse) && has_value())
+        {
+            money = new("/std/obj/coins");
+            curr = query_currencies();
+        
+            foreach(string str in curr)
+            {
+                if(!query_money(str))
+                    continue;
+            
+                money->add_money(str, query_money(str));
+                add_money(str, -query_money(str));
+            }
+    
+            money->has_value() && money->move(corpse);
+        }
+    
+        if(this_object()->query_property("death effects"))
+            catch(load_object("/daemon/death_effects_d")->get_death_effect(this_object()));
+    }
+    
+    set_heart_beat(heart_beat_on = 0);
+    
+    if(catch(this_object()->remove()) || (objectp(this_object()) && !this_object()->remove()))
+        this_object()->move(ROOM_VOID);
+    
+    objectp(this_object()) && destruct(this_object());
+    
+    //Yes an additional check for very persistent buggy monsters
     if(objectp(this_object()))
-        destruct(this_object());
+    {
+        this_object()->move("/d/shadowgate/trash");
+        destruct(load_object("/d/shadowgate/trash")); //put it inside a box and crush it
+    }       
+   
+    return;
 }
 
 int query_npc()
@@ -786,7 +755,6 @@ void move_around()
             return;
         }
         if (member_array(exitfile, query_nogo()) == -1) { // *if it's not in the array, go ahead
-//      (ETO->query_exit(exit))->init();  // *was-but we already have filename now, so this saves querying the exit again
             seteuid(UID_ROOT);
             if (objectp(find_object_or_load(exitfile))) {
                 exitfile->init();
@@ -797,49 +765,6 @@ void move_around()
         }
     }
     moving = 0;
-}
-
-void set_nogo(string* list)
-{
-    nogolist = list;
-}                                                 // *added support for move_around
-
-void set_no_moving()
-{
-    no_moving = 1;
-}
-
-string* query_nogo()
-{
-    if (!pointerp(nogolist)) {
-        nogolist = ({ });                       // *make sure we have an array
-    }
-    return nogolist;
-}
-
-int query_no_moving()
-{
-    return no_moving;
-}
-
-void set_moving(int i)
-{
-    moving = i;
-}
-
-int query_moving()
-{
-    return moving;
-}
-
-void set_speed(int i)
-{
-    speed = i;
-}
-
-int query_speed()
-{
-    return speed;
 }
 
 string query_title()
@@ -854,21 +779,11 @@ void __SHINIT()
     init_limb_data();
     init_stats();
     init_skills(0);
+    this_object()->init_max_hp();
     init_living();
     set_heart_beat(heart_beat_on = 1);
     speed = 0;
     set_gender("neuter");
-}
-
-int roll_dice(int num, int sides)
-{
-    int x, cnt;
-
-    cnt = 0;
-    for (x = 0; x < num; x++) {
-        cnt += random(sides) + 1;
-    }
-    return cnt;
 }
 
 void set_hd(int dice, int bonus)
@@ -958,10 +873,6 @@ void set_level(int x)
     if (!query_static_bab()) {
         static_bab = (int)TO->query_level();
     }
-    // Added to give the mobs a bonus to push them back up to the THACO they had before the change
-    // -Ares 8/22/06
-    // And we don't need it since the thaco has been changed back
-    //if(!BONUS_ADDED) { BONUS_ADDED = 1; if(x > 20) { TO->add_attack_bonus((x - 20)/2); } }
 }
 
 int query_level()
@@ -1067,38 +978,6 @@ string get_random_func()
     return funcs[random(sizeof(funcs))];
 }
 
-void set_spell_chance(int x)
-{
-    if (!spells) {
-        spells = ([]);
-    }
-    spells["chance"] = x;
-}
-
-void set_spells(string* arr)
-{
-    if (!spells) {
-        spells = ([]);
-    }
-    spells["commands"] = arr;
-}
-
-int query_spell_chance()
-{
-    if (spells) {
-        return spells["chance"];
-    }
-    return 0;
-}
-
-string* query_spells()
-{
-    if (spells) {
-        return spells["commands"];
-    }
-    return 0;
-}
-
 string get_random_spell()
 {
     if (!spells) {
@@ -1133,82 +1012,41 @@ void set_alignment(int x)
     player_data["general"]["alignment"] = x;
 }
 
-int test_heart()
-{
-    object env;
-    object* inv;
-    int i;
-
-    if (!objectp(this_object())) {
-        return 0;
-    }
-    if (!objectp(environment(this_object()))) {
-        return 0;
-    }
-    if ((query_mp() < query_max_mp()) || (query_hp() < query_max_hp()) || query_poisoning()) {
-        return 1;
-    }
-    if (!(env = environment(this_object()))) {
-        return 1;
-    }
-    if (query_current_attacker() || speed) {
-        return 1;
-    }
-    i = sizeof(inv = all_inventory(env));
-    while (i--) {
-        if (interactive(inv[i]) || inv[i]->query("aggressive")) {
-            return 1;
-        }
-    }
-    return 0;
-}
-
-int query_heart_status()
-{
-    return heart_beat_on;
-}
-
 void receive_message(string cl, string msg)
 {
     string str1, str2;
-    if (!already_listened) {
-        if (is_npc == 1) {
-            if (!objectp(master_wiz)) {
-                is_npc = 0;
-                return;
-            }
-            if (interactive(master_wiz)) {
-                tell_object(master_wiz, "%%% " + msg + "\n");
-            }
-        }
-        if (!no_catch_tell) {
-            this_object()->catch_tell(msg);
-        }
-        if (cl == "say" && TP != TO) {
-// so this was going into a freak-out loop with people's speech catching instead of just the 'say'. Let's fix! N, 8/15.
-//            TO->catch_say(msg);
-            sscanf(msg, "%s:%s", str1, str2);
-            TO->catch_say(str2);
-        }
-    }
-}
-
-void set(string str, mixed val)
-{
-    ::set(str, val);
-}
-
-void set_die(mixed val)
-{
-    if (functionp(val) && geteuid(this_object()) != geteuid(val[0])) {
+    
+    if(this_player() == this_object())
         return;
+    
+    if(!userp(this_player()))
+        return;
+    
+    if(already_listened)
+        return;
+    
+    already_listened = 1;
+    
+    if(is_npc)
+    {
+        if(userp(master_wiz))
+            tell_object(master_wiz, "%%% " + msg + "\n");
+        else
+        {
+            npc = 0;
+            return;
+        }
     }
-    __Die = val;
-}
-
-mixed query_die()
-{
-    return __Die;
+    
+    if(!no_catch_tell)
+        this_object()->catch_tell(msg);
+    
+    if(cl == "say")
+    {
+        if(sscanf(msg, "%s:%s", str1, str2) != 2)
+            sscanf(msg, "%s :%s", str1, str2);
+        this_object()->catch_say(str2);
+    }
 }
 
 //thief monsters
@@ -1392,11 +1230,6 @@ int npc_mon(int npc, object wizard)
     return 1;
 }
 
-int query_is_npc()
-{
-    return is_npc;
-}
-
 int force_NPC(string command)
 {
     return this_object()->force_me(command);
@@ -1405,35 +1238,6 @@ int force_NPC(string command)
 void disable_catch_tell(int def_tell)
 {
     no_catch_tell = def_tell;
-}
-
-int do_stab_func()
-{
-    if (!objectp(TO)) {
-        return 0;
-    }
-    if (!stringp(stabbed)) {
-        return 0;
-    }
-    if (!query_property("fstabbed")) {
-        message("combat", stabbed, environment(TO));
-        return 0;
-    }
-    return call_other(TO, stabbed);
-}
-
-int has_stab_func()
-{
-    if (!objectp(TO)) {
-        return 0;
-    }
-    if (!stringp(stabbed)) {
-        return 0;
-    }
-    if (!query_property("fstabbed")) {
-        return 0;
-    }
-    return 1;
 }
 
 void set_max_level(int lvl)
@@ -1477,23 +1281,6 @@ string query_short()
         descr = descr + " [" + query_property("posed") + "]";
     }
     return descr;
-}
-
-string query_vis_cap_name()
-{
-    return query_cap_name();
-}
-
-// More quick functions to make monsters act as players of a sort, I guess...
-// Garrett 02/02/02
-string getNameAsSeen(object ob)
-{
-    return TO->query_name();
-}
-
-string getParsableName()
-{
-    return capitalize(TO->query_name());
 }
 
 void saveMonster(string path)
@@ -1699,14 +1486,6 @@ void avoid_traps(int num)
     return;
 }
 
-int set_heart_beat(int flag)
-{
-    return efun::set_heart_beat((__COMBAT_SPEED__)*flag);
-
-    return efun::set_heart_beat(flag);
-    //// if monsters start fucking up the world over, take the first line out.
-}
-
 int query_exp_needed(int level)
 {
     int exp;
@@ -1862,98 +1641,6 @@ void set_mob_magic_resistance(string perc)
     TO->set_property("magic resistance", modifier);
 }
 
-void set_use_monster_flag(int f)
-{
-    useMonsterFlag = f;
-}
-
-// Stuff from weaponless_monsters.c
-
-int is_weaponless()
-{
-    return ::is_weaponless();
-}
-
-void set_hit_funcs(mapping stuff)
-{
-    ::set_hit_funcs(stuff);
-}
-
-void set_damage(int num, int dice)
-{
-    ::set_damage(num, dice);
-}
-
-void set_attacks_num(int number)
-{
-    ::set_attacks_num(number);
-}
-
-int query_attacks_num()
-{
-    return ::query_attacks_num();
-}
-
-void set_attack_limbs(string* limbs)
-{
-    ::set_attack_limbs(limbs);
-}
-
-string* query_attack_limbs()
-{
-    return ::query_attack_limbs();
-}
-
-int query_num_natural_attacks()
-{
-    return ::query_num_natural_attacks();
-}
-
-int query_unarmed_damage()
-{
-    return ::query_unarmed_damage();
-}
-
-int get_hand_damage(string limb1, int damage, object attacked)
-{
-    return ::get_hand_damage(limb1, damage, attacked);
-}
-
-void set_static_bab(int bab)
-{
-    static_bab = bab;
-}
-
-int query_static_bab()
-{
-    return static_bab;
-}
-
-string* query_mini_quests()
-{
-    return ({});
-}
-
-string* query_quests()
-{
-    return ({});
-}
-
-void hurry()
-{
-    is_walking = 2;
-}
-
-void run()
-{
-    is_walking = 3;
-}
-
-string* query_temporary_feats()
-{
-    return ({});
-}
-
 int move(mixed dest)
 {
     if (!objectp(TO)) {
@@ -2067,4 +1754,3 @@ int light_blind(int actionbonus)
 
     return light_blind_remote(actionbonus, room, 0);
 }
-

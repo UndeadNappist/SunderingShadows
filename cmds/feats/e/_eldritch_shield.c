@@ -86,6 +86,7 @@ void execute_feat()
     caster->set_property("using instant feat", 1);
     caster->set_property("eldritch shield", amount);
     caster->set("available burn", 0);
+    caster->recalculate_max_hp_from_soulburn();
 
     tell_object(caster, "%^C244%^Without a word, you reach out to your %^C093%^p%^C099%^a%^C105%^t%^C111%^r%^C105%^o%^C093%^n%^C244%^ and demand protection for your dedication.%^CRST%^");
     tell_object(caster, "%^C244%^Your demands are answered and a %^C093%^d%^C099%^a%^C105%^r%^C093%^k s%^C099%^h%^C105%^i%^C099%^e%^C093%^ld%^C244%^ protects you from harm.%^CRST%^");

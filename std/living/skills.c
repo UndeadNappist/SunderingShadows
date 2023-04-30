@@ -618,14 +618,16 @@ void set_posed(string str)
 
 varargs void set_mlevel(string str, int lev)
 {
-    if (member_array(str, classes) == -1) {
+    if (member_array(str, classes) == -1)
         return;
-    }
-    if (!mlevels || mlevels == ([])) {
+
+    if (!mlevels || mlevels == ([]))
         mlevels = ([str:lev]);
-    }else {
+    else
         mlevels[str] = lev;
-    }
+
+    recalculate_max_hp_from_stats(1);
+    recalculate_max_hp_from_feats();
 }
 
 mapping query_levels()
@@ -798,6 +800,9 @@ void __internal_add_exp(int x)
 {
     int exp, i, s;
     string* cls;
+    
+    if(this_object()->query_property("inactive"))
+        return;
 
     if (TO->query("new_class_type")) {
         ::add_exp(x);
@@ -828,7 +833,7 @@ void __internal_add_exp(int x)
     if (get_dual_class()) {
         ::add_general_exp(get_dual_class(), exp);
     } else {
-        cls = query_classes();
+        cls = this_object()->query_classes();
         s = sizeof(cls);
         exp = x / sizeof(cls);
 
@@ -1472,6 +1477,7 @@ void add_exp(int exp)
     if (!userp(TO)) {
         return;
     }
+    
     if (exp < 1) {
         return __internal_add_exp(exp);
     }
@@ -1503,6 +1509,7 @@ void party_exp(int exp, object tmp)
     if (USER_D->no_exp(TO)) {
         return;
     }
+    
     if (exp > 0) {
         exp = max( ({ 1, (exp * XP_PERCENT) / 100 }) );
         exp = WORLD_EVENTS_D->check_exp_events(exp, TO);
@@ -1781,3 +1788,25 @@ string* query_ki_spells()
 }
 
 //End Monk Functions
+
+//Centralized skill checks - Tlaloc -
+int skill_check(string what_skill, int passed_dc, int opposed)
+{
+    int DC, roll;
+    
+    if(!passed_dc) return 0;
+    if(!what_skill || !stringp(what_skill)) return 0;
+    if(member_array(what_skill, keys(skills))) return 0;
+    
+    //Add any mods to passed_dc here
+    //
+    //
+    DC = passed_dc;
+    opposed && DC += 10; //If it's an opposed check, it's d20 vs 10
+    roll = roll_dice(1, 20);
+    roll += skills[what_skill];
+    
+    if(roll >= DC) return 1;
+    
+    return 0;
+}

@@ -15,11 +15,6 @@
 
 #define TEMP_HIT_BONUS "/realms/ares/temporary_hit.c"  // remove this when done
 
-                    // this is the amount, per swing, that attack bonus is penalized with each subsequent attack of the main hand weapon in a round
-#define BAB_SCALE 0 // I tried 5 to begin with, but it seemed like a bit too much.  We will have to play with this number until it seems right -Ares
-                    // removing this for the moment, as it makes pkill a bit skewed at the moment.  We've got the ability to plug it back in whenever
-                    // we figure out how we want to do it for sure.
-
 #define MAX_MELEE_WC        20
 #define MAX_ATTACK_BONUS    5
 #define DEATH_EXP_MOD 1
@@ -107,6 +102,67 @@ int get_block_chance(object obj);
 protected void internal_execute_attack();  // this is the renamed execute_attack, putting in recursion testing to prevent errors -Ares
 mixed return_player_target(int flag); //should return a player target if flag is > roll_dice(1,100) - Saide
 object *query_active_protectors(object obj); // different way to do protection
+
+nosave mapping base_attacks = ([
+                                "fighter"    : 1.00,
+                                "paladin"    : 1.00,
+                                "ranger"     : 1.00,
+                                "barbarian"  : 1.00,
+                                "psywarrior" : 0.75,
+                                "thief"      : 0.75,
+                                "druid"      : 0.75,
+                                "cleric"     : 0.75,
+                                "inquisitor" : 0.75,
+                                "monk"       : 0.75,
+                                "magus"      : 0.75,
+                                "warlock"    : 0.75,
+                                "bard"       : 0.75,
+                                "oracle"     : 0.75,
+                                "psion"      : 0.50,
+                                "mage"       : 0.50,
+                                "sorcerer"   : 0.50,
+                            ]);
+                            
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// This section sets the foundation for other following code
+//
+// -- Tlaloc --
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+int has_feat(string temp)
+{
+    string *tmp;
+    
+    if(!stringp(temp))
+        return 0;
+   
+    if(userp(this_object()))
+    {
+        tmp = this_object()->query_player_feats();
+        
+        if(!arrayp(tmp))
+            return 0;
+        
+        if(member_array(temp, tmp) >= 0)
+            return 1;
+    }
+    else
+    {
+        tmp = this_object()->query_monster_feats();
+        
+        if(!arrayp(tmp))
+            return 0;
+        
+        if(member_array(temp, tmp) >= 0)
+            return 1;
+    }
+    
+    return 0;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //  This function is used to initialize various variables
 void init_attack()
@@ -233,7 +289,7 @@ void execute_attack()
         adjust_combat_mapps("static vars", "attack count", 1, 1);
     }
     return;
-}   
+}
 
 // this shouldn't get called by anything besides execute_attack.
 protected void internal_execute_attack() { return COMBAT_D->internal_execute_attack(TO); }
@@ -281,8 +337,24 @@ void send_messages(int magic, object current, string what, int x, object attacke
 object *query_hunted() { return query_combat_mapps("arrays", "hunters"); }
 object *query_attackers()
 {
-    if(!sizeof(query_combat_mapps("arrays", "attackers"))) COMBAT_D->clean_attacker_flags(TO);
-    return query_combat_mapps("arrays", "attackers");
+    object *tmp;
+
+    if(!objectp(this_object()))
+        return ({  });
+
+    if(!arrayp(tmp = combat_arrays["attackers"]))
+        tmp = ({  });
+
+    if(!sizeof(tmp))
+        COMBAT_D->clean_attacker_flags(this_object());
+
+    tmp = filter_array(tmp, (: objectp($1) :));
+
+    return tmp;
+
+    //if(!sizeof(query_combat_mapps("arrays", "attackers"))) COMBAT_D->clean_attacker_flags(TO);
+    //return pointerp(combat_arrays["attackers"]) ? filter_array(combat_arrays["attackers"], (: objectp($1) :)) : ({  });
+    //return pointerp(query_combat_mapps("arrays", "attackers")) ? filter_array(query_combat_mapps("arrays", "attackers"), (: objectp($1) :)) : ({  });
 }
 int sight_adjustment() { return COMBAT_D->sight_adjustment(TO); }
 void miss(int magic, object target, string type, string target_thing)
@@ -293,7 +365,7 @@ int ok_to_kill(object targ) { return COMBAT_D->ok_to_kill(TO, targ); }
 int light_armor_filter(object ob) { return COMBAT_D->light_armor_filter(ob); }
 void ok_to_wield() { return COMBAT_D->ok_to_wield(TO); }
 void add_attacker(object ob) { return COMBAT_D->add_attacker(TO, ob); }
-int reaction_adj() { return BONUS_D->query_stat_bonus(TO, "dexterity"); }
+int reaction_adj() { return query_stat_bonus("dexterity"); }
 void thaco_messages(int thaco) { return COMBAT_D->thaco_message(TO, thaco); }
 void remove_attacker(object attack)
 {
@@ -344,7 +416,7 @@ int query_temporary_blinded()
 {
     if(this_object()->true_seeing())
         return 0;
-    
+
     return query_combat_mapps("static_vars", "blinded");
 }
 int query_blindfolded() { return query_combat_mapps("vars", "blindfolded"); }
@@ -519,34 +591,58 @@ mixed query_combat_mapps(string type, string which)
 int is_vulnerable_to(object source)
 {
     object attacker;
-    
+
     if(!source)
         return 0;
-    
+
     if(environment(this_object()) != environment(source))
         return 0;
-    
-    if(this_object()->query_property("quarry") == source && FEATS_D->is_active(this_object(), "wild hunter"))
+
+    if(this_object()->query_property("quarry") == source && has_feat("wild hunter"))
         return 0;
-    
+
     if(this_object()->query_paralyzed() || this_object()->query_bound())
         return 1;
-    
-    if(this_object()->query_blind() && !FEATS_D->usable_feat(this_object(), "blindfight") && !this_object()->true_seeing())
+
+    if(this_object()->query_blind() && !has_feat("blindfight") && !this_object()->true_seeing())
         return 1;
-    
+
     attacker = this_object()->query_current_attacker();
-    
+
     if(attacker && attacker != source)
         return 1;
-    
-    if(attacker && attacker == source && FEATS_D->usable_feat(attacker, "shatter defenses")){
-        if(this_object()->query_property("effect_frightened") || this_object()->query_property("effect_panicked") || this_object()->query_property("effect_shaken")) return 1;
+
+    if(attacker && attacker == source && has_feat("shatter defenses"))
+    {
+        if(this_object()->query_property("effect_frightened") || this_object()->query_property("effect_panicked") || this_object()->query_property("effect_shaken"))
+            return 1;
     }
-    
+
     return 0;
-}    
-    
+}
+
+// return a DC with a base value modified by level and stat bonus
+int calculate_dc(int level, mixed stats, int mod) {
+    int base, dc_level = 0, stat_bonus = 0;
+    object me = this_object();
+
+    if(!intp(level) || !level || level == 0) dc_level = me->query_highest_level();
+    else dc_level = level;
+
+    if (arrayp(stats)) {
+        foreach(int stat in stats) {
+            int temp_stat_bonus = query_stat_bonus(stat);
+            if(temp_stat_bonus > stat_bonus) stat_bonus = temp_stat_bonus;
+        }
+    }
+    else if (stringp(stats)) stat_bonus = query_stat_bonus(stats);
+
+    base = 20; //mirroring the base in feat.c
+    dc_level = min( ({ dc_level, 60 }) );
+    stat_bonus = min( ({ stat_bonus, 10 }) );
+
+    return base + dc_level + stat_bonus + mod;
+}
 
 mapping query_combat_vars() { return combat_vars; }
 mapping query_combat_messages() { return combat_messages; }
@@ -559,3 +655,262 @@ void set_combat_messages(mapping val) { if(!mapp(val)) { return; } else return c
 void set_combat_counters(mapping val) { if(!mapp(val)) { return; } else return combat_counters = val; }
 void set_combat_static_vars(mapping val) { if(!mapp(val)) { return; } else return combat_static_vars = val; }
 void set_combat_arrays(mapping val) { if(!mapp(val)) { return; } else return combat_arrays = val; }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// This section is migrated from bonus_d.c for purposes of optimization.
+//
+// -- Tlaloc --
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+int query_stat_bonus(string stat)
+{
+    int ret, max, armor_bon;
+    object *torso;
+    
+    if (!objectp(this_object()))
+        return 0;
+    
+    if (!stringp(stat))
+        return 0;
+    
+    ret = (this_object()->query_stats(stat) - 10) / 2;
+    
+    if(stat == "dexterity")
+    {
+        torso = this_object()->query_armor("torso");
+        
+        if(!sizeof(torso) || has_feat("armor training"))
+            max = 10;
+        else
+        {
+            foreach(object ob in torso)
+            {
+                if(!ob->is_armor())
+                    continue;
+                
+                armor_bon = ob->query_max_dex_bonus();
+                max = max > armor_bon ? armor_bon : max;
+            }
+        }
+        
+        ret = ret > max ? max : ret;
+    }
+            
+    return ret = (((int)this_object()->query_stats(stat) - 10) / 2);
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Unarmed / Monk stuff
+//////////////////////////////////////////////////////////////////////////////
+
+int unarmed_enchantment()
+{   
+    if(!is_class("monk"))
+        return 0;
+    
+    if(is_class("monk"))
+    {
+        return (query_guild_level("monk") / 6) + has_feat("enchanted fists");
+    }
+    else if(has_feat("precise strikes") || query_property("shapeshifted"))
+    {
+        return query_base_character_level() / 8;
+    }
+    
+    return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+int base_attack()
+{
+    int bonus, ret;
+    float penalty, full_level, class_level, diff;
+    string *tmp;
+    
+    if(!objectp(this_object()))
+        return 0;
+    
+    if(query_property("transformed") || query_property("dance-of-cuts"))
+        return query_base_character_level();
+    
+    tmp = this_object()->query_classes();
+    
+    if(!arrayp(tmp) || !sizeof(tmp))
+        return 0;
+    
+    foreach(string cls in tmp)
+    {   
+        full_level = to_float(query_base_character_level());
+        class_level = to_float(query_prestige_level(cls));
+        
+        if(!full_level || !class_level)
+            continue;
+        
+        if(!base_attacks[cls])
+            continue;
+    
+        if(full_level < 20.00)
+        {
+            bonus = to_int(class_level * base_attacks[cls]);
+        }
+        else
+        {
+            diff = (1.00 - base_attacks[cls]) / 0.05;
+            
+            penalty = diff * (class_level / full_level);
+            bonus = to_int(class_level - penalty);
+        }
+        
+        ret += bonus < 0 ? 0 : bonus;
+        
+        if(!userp(this_object()))
+            return ret;
+    }
+    
+    return ret;
+}
+
+int number_of_attacks()
+{
+    int num;
+    
+    if(!objectp(this_object()))
+        return 0;
+    
+    num = base_attack() / 7;
+    
+    return num;
+}
+
+//Lot of combat functions in living.c currently so have to use this_object() for the time being
+varargs int hit_bonus(object targ, int attack_num, object weapon, int touch)
+{
+    int bonus, penalty;
+    
+    if(!objectp(this_object()) || !objectp(targ))
+        return 0;
+    
+    if(this_object()->query_unconscious() || this_object()->query_bound())
+        return 0;
+    
+    bonus = 0;
+    penalty = 0;
+    
+    if(sizeof(this_object()->query_wielded()) > 1)
+        penalty = 2;
+    
+    if(attack_num > 1)
+        penalty += 2 * (attack_num - 1);
+    
+    penalty = penalty > 6 ? 6 : penalty;
+    
+    bonus = base_attack();
+    bonus += this_object()->query_attack_bonus();
+    
+    if(objectp(weapon))
+    {
+        if(weapon->is_lrweapon())
+        {
+            if(!present(weapon->query_ammo(), this_object())) //Remember to add this check to process hit
+                return 0;
+            
+            if(!has_feat("point blank shot") && environment(targ) == environment())
+                penalty += 4;
+            
+            bonus += query_stat_bonus("dexterity");
+        }
+        else if((this_object()->query_size() >= weapon->query_size() && has_feat("weapon finesse")) || has_feat("fighter finesse"))
+        {
+            bonus += query_stat_bonus("dexterity");
+        }
+        else if(is_class("warlock") && has_feat("cunning strikes"))
+        {
+            bonus += query_stat_bonus("charisma");
+        }
+        else
+        {
+            bonus += query_stat_bonus("strength");
+        }
+    }
+    else
+    {
+        if(has_feat("weapon finesse"))
+            bonus += query_stat_bonus("dexterity");
+        else if(has_feat("cunning strikes"))
+            bonus += query_stat_bonus("charisma");
+        else
+            bonus += query_stat_bonus("strength");
+    }
+    
+    //Touch attack bonuses
+    if(touch)
+        bonus += (has_feat("point blank shot") + query_property("spectral hand"));
+    
+    //Class Bonuses
+    if(this_object()->is_class("paladin") && targ->query_property("paladin smite") == this_object())
+        bonus += query_stat_bonus("charisma");
+    
+    if(objectp(weapon) && weapon != this_object())
+    {
+        bonus += weapon->query_property("enchantment");
+    }
+    else if(is_class("monk") || query_property("shapeshifted"))
+    {
+        bonus += unarmed_enchantment();
+    }
+    
+    if(query("protecting"))
+        penalty += (roll_dice(1, 6) + 1);
+    if(this_object()->query_blind() && !has_feat("blindfight"))
+        penalty += roll_dice(1, 8) + 4;
+    
+    bonus -= penalty;
+    
+    return bonus;
+}
+
+varargs ac_bonus(object attacker)
+{
+    int bonus;
+
+    bonus = query_stat_bonus("dexterity");
+    
+    if(is_class("oracle"))
+    {
+        //Nature oracle feature
+        if(query_mystery() == "nature")
+        {
+            if(query_class_level("oracle") > 20)
+                bonus = query_stat_bonus("charisma");
+        }
+        else if(query_mystery() == "lunar")
+        {
+            if(query_class_level("oracle") >= 10)
+                bonus = query_stat_bonus("charisma");
+        }
+    }
+
+    if(this_object()->query_temporary_blinded() || this_object()->query_blind())
+    {
+        if(!has_feat("blindfight"))
+            bonus = 0;
+    }
+    if(this_object()->query_unconscious() || this_object()->query_prone() || this_object()->query_paralyzed() || this_object()->query_asleep())
+    {
+        if(!has_feat("dodge"))
+            bonus = 0;
+    }
+    
+    if(attacker && objectp(attacker) && attacker->query_invis() && attacker != this_object())
+    {
+        if(!detecting_invis())
+            bonus = 0;
+    }
+    
+    bonus = bonus > 10 ? 10 : bonus;
+    
+    return bonus;
+}

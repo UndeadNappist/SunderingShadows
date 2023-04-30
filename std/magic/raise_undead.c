@@ -10,7 +10,7 @@ void raise_ghosts(int clevel, int limit, object caster, object controller)
         nummon = (int)caster->query_property("raised");
     else
         nummon = 0;
-    if (nummon >= 10)
+    if (nummon >= MAX_RAISE)
         return 0;
 
     temp=({});
@@ -36,6 +36,8 @@ void raise_ghosts(int clevel, int limit, object caster, object controller)
     i = 0;
     foreach(target in targs)
     {
+        if(nummon >= MAX_RAISE)
+            continue;
         if (i>limit)
             break;
         if(nummon>clevel)
@@ -71,7 +73,7 @@ void raise_ghosts(int clevel, int limit, object caster, object controller)
         nummon += lvl;
         if(objectp(caster) && objectp(undead) && objectp(controller))
         {
-            undead->set_property("raised",1);
+            undead->set_property("raised", 2);
             undead->set_property("raised " + undead_to_raise(), 1);
             undead->set_property("minion",caster);
             undead->move(environment(caster));
@@ -87,7 +89,7 @@ void raise_ghosts(int clevel, int limit, object caster, object controller)
             undead->set_property("spell_creature", TO);
             undead->set_property("keep exp",1);
             undead->set_exp((int)undead->query_hd()*50);
-            caster->set_property("raised", lvl/6);
+            caster->set_property("raised", 2);
             undead->set_property("raised " + undead_to_raise(), lvl / 6);
             controller->add_monster(undead);
         }

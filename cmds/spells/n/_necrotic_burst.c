@@ -50,7 +50,8 @@ void spell_effect(int prof)
        member_array(target,followers) != -1)
     {
         targets = filter_array(distinct_array(party_members+(followers-attackers))+({caster}),
-                               (:!!$1->query_property("negative energy affinity"):));
+            (: !!$1->query_property("negative energy affinity") || !!$1->query_property("heart of darkness") :));
+        set_helpful_spell(1);
     }
     else if(member_array(target,attackers) != -1)
     {

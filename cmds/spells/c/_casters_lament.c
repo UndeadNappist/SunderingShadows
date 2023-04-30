@@ -48,6 +48,7 @@ void spell_effect(int prof) {
       caster->add_saving_bonus("all",lower);
       //caster->set_property("protection from spells", 1);
       addSpellToCaster();
+      spell_successful();
       spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH;
       set_end_time();
       call_out("dest_effect",spell_duration);

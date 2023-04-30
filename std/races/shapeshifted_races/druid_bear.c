@@ -90,6 +90,61 @@ int change_outof_message(object obj)
     return 1;
 }
 
+int init_shape(object obj,string mysubrace)
+{
+    string *subraces;
+    int lvl;
+
+    if(!objectp(obj)) { return 0; } //
+    if(obj->query_property("shapeshifted") || obj->query_property("altered")) { return 0; } // can't shapeshift twice
+    obj->set_property("shapeshifted",shape = new(base_name(TO)+".c")); // makes a new shape and sets the shapeshifted property to it, this is where all the work is done, very important
+    shape->set_owner(obj); //
+    hp_percent = to_float( (to_float((int)obj->query_hp() - (int)obj->query_extra_hp())) / (to_float((int)obj->query_max_hp())));
+
+    if(objectp(obj) && obj->query_druid_circle() == "claw")
+    {
+        lvl = obj->query_prestige_level("druid");
+        shape->set_shape_bonus("attack bonus", 1 + (lvl / 10));
+        shape->set_shape_bonus("damage bonus", 1 + (lvl / 10));
+        shape->set_ac_bonus(-(20 + lvl / 15));
+    }
+
+    shape->apply_bonuses(shape->query_owner());
+    obj->set_hp( to_int(  hp_percent * to_float((int)obj->query_max_hp())) );
+    shape->set_old_attack_limbs((string*)obj->query_attack_limbs()); //
+    obj->set_attack_limbs(shape->query_attack_limbs()); //
+    obj->set_hit_funcs(shape->query_attack_functions()); //
+    obj->set_fake_limbs(shape->query_limbs()); //
+    shape->set_previous_language((string)obj->query_spoken()); //
+    obj->add_lang_overload(shape->query_shape_language(),100); //
+    if(!FEATS_D->usable_feat(obj,"wild speech"))
+    {
+        obj->set_spoken(shape->query_shape_language()); //
+    }
+    shape->set_old_damage_type(obj->query_base_damage_type()); //
+    shape->change_into_message(obj); //
+    shape->set_base_profile((string)obj->query("relationship_profile")); //
+    shape->set_shape_race(mysubrace); // NEW
+    obj->set("relationship_profile",shape->query_shape_profile()); //
+    obj->add_id(shape->query_shape_race()); //
+    subraces = (string *)shape->query_subraces();
+    if(sizeof(subraces)) {
+      if(member_array(subraces[0],(string *)obj->query_id()) == -1) obj->add_id(subraces[0]);
+    }
+
+    if(objectp(to_object(DESC_D)))
+    {
+        desc = new(DESC_D); //
+        if(!desc->restore_profile_settings(obj,shape->query_shape_profile())) //
+        {
+            shape->default_descriptions(obj); //
+            desc->initialize_profile(obj); //
+        }
+    }
+
+    return 1;
+}
+
 int can_cast()
 {
     if(!objectp(query_owner())) { return 0; }
@@ -101,7 +156,7 @@ int bite_attack(object tp, object targ) // bear bite attack significantly more l
 {
     object etp,*attackers;
     string *specials=({}),*active_specials=({}),my_limb;
-    int i,chance,dice;
+    int i,chance,dice,dc_result;
 
     etp = environment(tp);
 
@@ -155,6 +210,7 @@ int bite_attack(object tp, object targ) // bear bite attack significantly more l
     {
         if(!objectp(tp) || !objectp(targ)) { return 0; }
 
+        dc_result = tp->calculate_dc(chance, FEATS_D->usable_feat(tp, "weapon finesse") ? "dexterity" : "strength");
         switch(active_specials[i])
         {
 
@@ -174,7 +230,7 @@ int bite_attack(object tp, object targ) // bear bite attack significantly more l
             tell_object(targ,"%^YELLOW%^"+tp->QCN+" bites into your "+my_limb+" and yanks you off of your feet!");
             tell_room(etp,"%^YELLOW%^"+tp->QCN+" bites into "+targ->QCN+"'s "+my_limb+" and yanks "+targ->QO+" off of "+targ->QP+" feet!",({tp,targ}));
 
-            if(!targ->reflex_save(chance+5)) { targ->set_tripped(roll_dice(1,dice/2),"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
+            if(!targ->reflex_save(dc_result)) { targ->set_tripped(roll_dice(1,dice/2),"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
             break;
 
         case "high damage":
@@ -205,7 +261,7 @@ int claw_attack(object tp, object targ)
 {
     object etp,*attackers;
     string *specials=({}),*active_specials=({}),my_limb;
-    int i,chance,dice;
+    int i,chance,dice,dc_result;
 
     etp = environment(tp);
 
@@ -253,6 +309,7 @@ int claw_attack(object tp, object targ)
     {
         if(!objectp(tp) || !objectp(targ)) { return 0; }
 
+        dc_result = tp->calculate_dc(chance, FEATS_D->usable_feat(tp, "weapon finesse") ? "dexterity" : "strength");
         switch(active_specials[i])
         {
 
@@ -262,7 +319,7 @@ int claw_attack(object tp, object targ)
             tell_object(targ,"%^BLUE%^"+tp->QCN+" knocks your feet out from under you with a swipe of "+tp->QP+" mighty paw!");
             tell_room(etp,"%^BLUE%^"+tp->QCN+" knocks "+targ->QCN+"'s feet out from under "+targ->QO+" with a swipe of "+tp->QP+" mighty paw!",({tp,targ}));
 
-            if(!targ->reflex_save(chance+5)) { targ->set_tripped(roll_dice(1,dice/2),"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
+            if(!targ->reflex_save(dc_result)) { targ->set_tripped(roll_dice(1,dice/2),"%^RESET%^%^YELLOW%^You are struggling to get your feet back under you!"); }
             break;
 
         case "high damage":

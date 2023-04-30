@@ -102,6 +102,9 @@ void create()
              "The citizens may lack the battle experience of the mercenaries "
              "but they are determined to defend their city and uphold the laws."
              );
+             
+    if(!clonep())
+        return;
 
     if (rank == "sergeant" || rank == "lieutenant") {
         set_property("add kits", 10);

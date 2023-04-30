@@ -19,7 +19,8 @@ MELNMARN
     );
     set_smell("default","You smell the odor of cooking food.");
     set_listen("default","You hear the sounds of plates clanging.");
-
+    
+    set_property("no_clean", 1);
 
     set_items(
       (["inn" : "The Deamon Inn, home of good Shadow cuisine.",
@@ -29,5 +30,3 @@ MELNMARN
       (["out" : "/d/shadow/room/forest/road1",
     ]) );
 }
-
-int clean_up(){return 1;}

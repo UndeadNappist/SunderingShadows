@@ -53,22 +53,30 @@ void spell_effect(int prof)
     attackers = target_selector();
     followers = caster->query_followers();
 
-    if (!objectp(target)) {
+    if (!objectp(target))
         target = caster;
-    }
 
-    if (target == caster ||
-        member_array(target, party_members) != -1 ||
-        member_array(target, followers) != -1) {
-        targets = filter_array(distinct_array(party_members + (followers - attackers) + ({ caster })),
-                               (: !$1->query_property("negative energy affinity") :));
+    if (!arrayp(party_members))
+        party_members = ({});
+
+    if (!arrayp(attackers))
+        attackers = ({});
+
+    if (!arrayp(followers))
+        followers = ({});
+
+    if (target == caster || member_array(target, party_members) != -1 || member_array(target, followers) != -1)
+    {
+        targets = filter_array(distinct_array(party_members + (followers - attackers) + ({ caster })), (: !$1->query_property("negative energy affinity") :));
         set_helpful_spell(1);
-    }else if (member_array(target, attackers) != -1) {
+    }
+    else if (member_array(target, attackers) != -1)
+    {
         set_helpful_spell(0);
         targets = filter_array(attackers, (: $1->query_property("negative energy affinity") :));
-    }else {
-        targets = all_living(place);
     }
+    else
+        targets = all_living(place);
 
     targets = distinct_array(targets);
 
@@ -77,7 +85,8 @@ void spell_effect(int prof)
               " energy as " + caster->QS + " shouts out the final words " +
               "of the prayer.", caster);
 
-    if (sizeof(targets)) {
+    if (sizeof(targets))
+    {
         int healamnt = calculate_healing();
         
         if(spell_type == "oracle")
@@ -89,27 +98,30 @@ void spell_effect(int prof)
                 healamnt += caster->query_class_level("oracle") / 2;
         }
     
-        for (i = 0; i < sizeof(targets); i++) {
-            if (!objectp(targets[i])) {
+        for (i = 0; i < sizeof(targets); ++i)
+        {
+            if (!objectp(targets[i]))
                 continue;
-            }
-            if (!present(targets[i], place)) {
+
+            if (!present(targets[i], place))
                 continue;
-            }
-            if (targets[i]->query_property("negative energy affinity")) {
-                if (targets[i] == caster) {
+
+            if (targets[i]->query_property("negative energy affinity"))
+            {
+                if (targets[i] == caster)
+                {
                     continue;
                     tell_object(targets[i], "You shouldn't do that to yourself.");
                 }
                 set_helpful_spell(0);
-            }else {
-                set_helpful_spell(1);
             }
+            else
+                set_helpful_spell(1);
 
-            if (targets[i] == caster) {
-                tell_object(targets[i], "%^BOLD%^%^CYAN%^A brilliant " +
-                            "wave moves through you, carrying with it the essence of life.");
-            }else {
+            if (targets[i] == caster)
+                tell_object(targets[i], "%^BOLD%^%^CYAN%^A brilliant wave moves through you, carrying with it the essence of life.");
+            else
+            {
                 tell_room(place, "%^BOLD%^%^CYAN%^A brilliant wave moves through" +
                           " " + targets[i]->QCN + " carrying with it the essence of " +
                           "life, as " + caster->QCN + " voice rings out.", ({ targets[i], caster }));
@@ -118,12 +130,13 @@ void spell_effect(int prof)
                 tell_object(targets[i], "%^BOLD%^%^CYAN%^A brilliant " +
                             "wave moves through you, carrying with it the essence of life.");
             }
+
             damage_targ(targets[i], targets[i]->return_target_limb(), healamnt, "positive energy");
 
-            if (query_spell_name() == "mass heal" || query_spell_name() == "greater mass heal") {
-                if (member_array(targets[i], caster->query_attackers()) == -1) {
+            if (query_spell_name() == "mass heal" || query_spell_name() == "greater mass heal")
+            {
+                if (member_array(targets[i], caster->query_attackers()) == -1)
                     "/std/magic/cleanse"->cleanse(targets[i]);
-                }
             }
         }
     }
@@ -140,8 +153,9 @@ int calculate_healing(object targ)
 
 void dest_effect()
 {
+    object me = this_object();
+
     ::dest_effect();
-    if (objectp(TO)) {
-        TO->remove();
-    }
+    if (objectp(me))
+        me->remove();
 }

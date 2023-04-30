@@ -2,6 +2,8 @@
 #include <magic.h>
 #include <rooms.h>
 
+#define TYPES ({ "animals", "insects", "elementals", "modrons" })
+
 inherit SPELL;
 
 object* monsters = ({});
@@ -11,9 +13,10 @@ create(){
     ::create();
     set_spell_name("monster summoning i");
     set_spell_level(([ "mage" : 1, "bard" : 1, "cleric" : 1, "paladin" : 1 ]));
-    set_syntax("cast CLASS monster summoning i (on TYPE)");
+    set_syntax("cast CLASS monster summoning i [on TYPE]");
     set_spell_sphere("conjuration_summoning");
-    set_description("This spell will summon creatures from other planes to protect the caster, becoming aggressive to anyone attempting to harm the caster. They will return to their home plane when either exhausted or the spell duration is completed. Approaches to the use of this spell vary, as some users put out a call for aid while others coerce these creatures into servitude.\n\nThe spell will default to animals, but you can specify elementals or insects as well.");
+    set_description("This spell will summon creatures from other planes to protect the caster, becoming aggressive to anyone attempting to harm the caster. They will return to their home plane when either exhausted or the spell duration is completed. Approaches to the use of this spell vary, as some users put out a call for aid while others coerce these creatures into servitude.\n\nThe spell will default to animals, but you can specify between these types: animals, elementals, insects, or modrons. Sorcerers of the abyssal bloodline can also specify demons, and will summon them by default.");
+    summon_spell();
     set_verbal_comp();
     set_somatic_comp();
     set_helpful_spell(1);
@@ -84,10 +87,10 @@ int spell_effect(int prof){
 void skin_fun(object monster){
     string mon_name;
     
-    if(caster->is_class("sorcerer") && (caster->query_bloodline() == "abyssal")){
-        monster->set_short("%^BOLD%^%^BLACK%^Dark w%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^ng%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^d d%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^m%^RESET%^%^MAGENTA%^o%^BOLD%^%^BLACK%^n%^RESET%^");
-        monster->set_long("%^BOLD%^%^BLACK%^Flapping in the air, this horrifying demon is a %^CYAN%^chilling %^BLACK%^sight to behold. Its eyes are glowing %^RESET%^%^MAGENTA%^v%^BOLD%^i%^RESET%^%^MAGENTA%^ol%^BOLD%^e%^RESET%^%^MAGENTA%^t %^BOLD%^o%^RESET%^%^MAGENTA%^rbs %^BOLD%^%^BLACK%^and its lupine snout is wrinkled in a perpetual snarl, revealing rows of %^RESET%^%^RED%^jagged %^WHITE%^teeth%^BOLD%^%^BLACK%^. Pitch black skin shot through with v%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^ins of %^RESET%^%^MAGENTA%^v%^BOLD%^i%^RESET%^%^MAGENTA%^ol%^BOLD%^e%^RESET%^%^MAGENTA%^t %^BOLD%^%^BLACK%^is stretched over a lean muscular body. Large m%^RESET%^%^MAGENTA%^e%^BOLD%^%^BLACK%^mbr%^RESET%^%^MAGENTA%^a%^BOLD%^%^BLACK%^no%^RESET%^%^MAGENTA%^u%^BOLD%^%^BLACK%^s w%^RESET%^%^MAGENTA%^i%^BOLD%^%^BLACK%^ngs hold it aloft while wicked claws tip its fingers and toes which it rends at the air with, its hunger for %^RED%^v%^RESET%^%^RED%^i%^BOLD%^ol%^RESET%^%^RED%^e%^BOLD%^nc%^RESET%^%^RED%^e %^BOLD%^%^BLACK%^palpable. %^RESET%^");
-        message("info", "%^BLACK%^BOLD%^Reality rips and an abyssal creature claws its way through to protect "+caster->query_cap_name()+"!%^RESET%^", place, caster);
+    if(caster->is_class("sorcerer") && (caster->query_bloodline() == "abyssal") && (!arg || arg == "demons")){
+        monster->set_short("%^C243%^d%^C090%^a%^C059%^r%^C243%^k w%^C059%^i%^C090%^n%^C096%^g%^C059%^e%^C243%^d %^C090%^d%^C059%^e%^C096%^m%^C090%^o%^C243%^n%^CRST%^");
+        monster->set_long("%^C059%^Flapping in the air, this horrifying demon is a %^C033%^c%^C039%^h%^C045%^illi%^C039%^n%^C033%^g %^C059%^sight to behold. Its eyes are glowing %^C089%^v%^C090%^i%^C091%^ol%^C090%^e%^C089%^t %^C090%^o%^C091%^r%^C090%^b%^C089%^s %^C059%^and its lupine snout is wrinkled in a perpetual snarl, revealing rows of %^C124%^j%^C125%^a%^C124%^g%^C125%^g%^C124%^e%^C125%^d %^C255%^teeth%^C059%^. Pitch black skin shot through with %^C096%^v%^C091%^e%^C096%^i%^C091%^n%^C096%^s %^C059%^of %^C089%^v%^C090%^i%^C091%^ol%^C090%^e%^C089%^t %^C059%^is stretched over a lean muscular body. Large %^C245%^m%^C243%^e%^C245%^mbr%^C243%^a%^C245%^no%^C243%^u%^C245%^s w%^C243%^i%^C245%^ng%^C243%^s %^C059%^hold it aloft while wicked claws tip its fingers and toes which it rends at the air with, its hunger for %^C160%^v%^C124%^i%^C160%^ol%^C124%^e%^C160%^nc%^C124%^e %^C059%^palpable.%^CRST%^");
+        message("info", "%^C059%^Reality rips and an abyssal creature claws its way through to protect "+caster->query_cap_name()+"%^C059%^!%^CRST%^", place, caster);
         message("info", "%^BLACK%^BOLD%^Reality rips and an abyssal creature claws its way through to protect you!%^RESET%^", caster);
         monster->set_name("demon");
         monster->set_race("demon");
@@ -99,37 +102,37 @@ void skin_fun(object monster){
     if(caster->is_class("cleric") && member_array("creation", caster->query_divine_domain()) >= 0) monster->set_property("spell damage resistance", 10);
     
     if(!arg) arg = "animals";
-    if(arg != "animals" && arg != "elementals" && arg != "insects") arg = "animals";
+    if(member_array(arg, TYPES) < 0) arg = "animals";
     switch(arg){
         case "animals" : // bobcat, badger, warthog, hawk, wolf, viper
             switch(random(6)){
                 case 0 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C222%^ta%^C228%^wn%^C222%^y %^C101%^b%^C144%^o%^C101%^bc%^C144%^a%^C101%^t%^CRST%^");
+                    monster->set_short("%^C222%^ta%^C228%^wn%^C222%^y %^C101%^b%^C144%^o%^C101%^bc%^C144%^a%^C101%^t%^CRST%^");
                     monster->set_race("bobcat");
                     monster->set_body_type("quadruped");
                     break;
                 case 1 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C058%^co%^C059%^u%^C255%^r%^C059%^s%^C058%^e-fu%^C100%^r%^C058%^r%^C100%^ed %^C059%^b%^C255%^a%^C059%^d%^C058%^g%^C100%^e%^C058%^r%^CRST%^");
+                    monster->set_short("%^C058%^co%^C059%^u%^C255%^r%^C059%^s%^C058%^e-fu%^C100%^r%^C058%^r%^C100%^ed %^C059%^b%^C255%^a%^C059%^d%^C058%^g%^C100%^e%^C058%^r%^CRST%^");
                     monster->set_race("badger");
                     monster->set_body_type("quadruped");
                     break;
                 case 2 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C101%^st%^C102%^ock%^C101%^y w%^C102%^a%^C101%^rt%^C102%^ho%^C101%^g%^CRST%^");
+                    monster->set_short("%^C101%^st%^C102%^ock%^C101%^y w%^C102%^a%^C101%^rt%^C102%^ho%^C101%^g%^CRST%^");
                     monster->set_race("warthog");
                     monster->set_body_type("quadruped");
                     break;
                 case 3 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C220%^g%^C226%^o%^C220%^l%^C101%^d%^C058%^en %^C220%^h%^C101%^a%^C058%^wk%^CRST%^");
+                    monster->set_short("%^C220%^g%^C226%^o%^C220%^l%^C101%^d%^C058%^en %^C220%^h%^C101%^a%^C058%^wk%^CRST%^");
                     monster->set_race("hawk");
                     monster->set_body_type("fowl");
                     break;
                 case 4 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C130%^ru%^C202%^d%^C130%^d%^C202%^y %^C130%^wo%^C202%^l%^C130%^f%^CRST%^");
+                    monster->set_short("%^C130%^ru%^C202%^d%^C130%^d%^C202%^y %^C130%^wo%^C202%^l%^C130%^f%^CRST%^");
                     monster->set_race("wolf");
                     monster->set_body_type("quadruped");
                     break;
                 default :
-                    monster->set_short("%^RESET%^%^CRST%^%^C040%^e%^C046%^m%^C040%^e%^C046%^r%^C226%^a%^C046%^l%^C040%^d %^C046%^v%^C226%^i%^C046%^pe%^C040%^r%^CRST%^");
+                    monster->set_short("%^C040%^e%^C046%^m%^C040%^e%^C046%^r%^C226%^a%^C046%^l%^C040%^d %^C046%^v%^C226%^i%^C046%^pe%^C040%^r%^CRST%^");
                     monster->set_race("viper");
                     monster->set_body_type("snake");
             }
@@ -139,76 +142,92 @@ void skin_fun(object monster){
         case "elementals" : // mephits - dust, ice, magma, mud, smoke, steam
             switch(random(6)){
                 case 0 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C101%^d%^C144%^u%^C255%^s%^C252%^t %^C101%^m%^C252%^e%^C144%^p%^C255%^h%^C144%^i%^C101%^t%^CRST%^");
-                    monster->set_race("mephit");
+                    monster->set_short("%^C101%^d%^C144%^u%^C255%^s%^C252%^t %^C101%^m%^C252%^e%^C144%^p%^C255%^h%^C144%^i%^C101%^t%^CRST%^");
                     break;
                 case 1 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C252%^i%^C255%^c%^C045%^e %^C252%^m%^C051%^e%^C255%^p%^C252%^h%^C255%^i%^C045%^t%^CRST%^");
-                    monster->set_race("mephit");
+                    monster->set_short("%^C252%^i%^C255%^c%^C045%^e %^C252%^m%^C051%^e%^C255%^p%^C252%^h%^C255%^i%^C045%^t%^CRST%^");
                     break;
                 case 2 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C202%^m%^C196%^a%^C202%^g%^C208%^m%^C202%^a m%^C196%^e%^C202%^p%^C208%^h%^C202%^i%^C196%^t%^CRST%^");
-                    monster->set_race("mephit");
+                    monster->set_short("%^C202%^m%^C196%^a%^C202%^g%^C208%^m%^C202%^a m%^C196%^e%^C202%^p%^C208%^h%^C202%^i%^C196%^t%^CRST%^");
                     break;
                 case 3 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C100%^m%^C058%^u%^C100%^d m%^C101%^e%^C100%^ph%^C058%^i%^C100%^t%^CRST%^");
-                    monster->set_race("mephit");
+                    monster->set_short("%^C100%^m%^C058%^u%^C100%^d m%^C101%^e%^C100%^ph%^C058%^i%^C100%^t%^CRST%^");
                     break;
                 case 4 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C243%^s%^C245%^m%^C247%^o%^C245%^k%^C243%^e %^C245%^m%^C247%^e%^C245%^p%^C243%^h%^C245%^i%^C247%^t%^CRST%^");
-                    monster->set_race("mephit");
+                    monster->set_short("%^C243%^s%^C245%^m%^C247%^o%^C245%^k%^C243%^e %^C245%^m%^C247%^e%^C245%^p%^C243%^h%^C245%^i%^C247%^t%^CRST%^");
                     break;
                 default :
-                    monster->set_short("%^RESET%^%^CRST%^%^C249%^s%^C251%^t%^C253%^e%^C255%^a%^C253%^m %^C251%^m%^C253%^e%^C255%^p%^C253%^h%^C251%^i%^C249%^t%^CRST%^");
-                    monster->set_race("mephit");
+                    monster->set_short("%^C249%^s%^C251%^t%^C253%^e%^C255%^a%^C253%^m %^C251%^m%^C253%^e%^C255%^p%^C253%^h%^C251%^i%^C249%^t%^CRST%^");
+                    
             }
+            monster->set_race("elemental");
             monster->set_body_type("humanoid");
-            monster->set_name("elemental");
+            monster->set_name("mephit");
             monster->add_id("elemental");
             break;
         case "insects" : // giant versions - ant, wasp, centipede, spider, scorpion, mosquito
             switch(random(6)){
                 case 0 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C088%^a%^C124%^n%^C088%^t%^CRST%^");
+                    monster->set_short("%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C088%^a%^C124%^n%^C088%^t%^CRST%^");
                     monster->set_race("ant");
                     monster->set_body_type("insectoid");
                     break;
                 case 1 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C226%^h%^C220%^o%^C226%^r%^C220%^n%^C226%^e%^C220%^t%^CRST%^");
+                    monster->set_short("%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C226%^h%^C220%^o%^C226%^r%^C220%^n%^C226%^e%^C220%^t%^CRST%^");
                     monster->set_race("hornet");
                     monster->set_body_type("insectoid-winged");
                     break;
                 case 2 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C101%^c%^C144%^en%^C101%^ti%^C144%^p%^C101%^e%^C144%^d%^C101%^e%^CRST%^");
+                    monster->set_short("%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C101%^c%^C144%^en%^C101%^ti%^C144%^p%^C101%^e%^C144%^d%^C101%^e%^CRST%^");
                     monster->set_race("centipede");
                     monster->set_body_type("insectoid");
                     break;
                 case 3 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C058%^s%^C100%^p%^C058%^id%^C100%^e%^C058%^r%^CRST%^");
+                    monster->set_short("%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C058%^s%^C100%^p%^C058%^id%^C100%^e%^C058%^r%^CRST%^");
                     monster->set_race("spider");
                     monster->set_body_type("arachnid");
                     break;
                 case 4 :
-                    monster->set_short("%^RESET%^%^CRST%^%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C059%^s%^C243%^c%^C244%^o%^C245%^rp%^C244%^i%^C243%^o%^C059%^n%^CRST%^");
+                    monster->set_short("%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C059%^s%^C243%^c%^C244%^o%^C245%^rp%^C244%^i%^C243%^o%^C059%^n%^CRST%^");
                     monster->set_race("scorpion");
                     monster->set_body_type("arachnid");
                     break;
                 default :
-                    monster->set_short("%^RESET%^%^CRST%^%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C243%^m%^C059%^o%^C245%^s%^C255%^q%^C252%^u%^C255%^i%^C252%^t%^C255%^o%^CRST%^");
+                    monster->set_short("%^C100%^g%^C101%^i%^C102%^a%^C101%^n%^C100%^t %^C243%^m%^C059%^o%^C245%^s%^C255%^q%^C252%^u%^C255%^i%^C252%^t%^C255%^o%^CRST%^");
                     monster->set_race("mosquito");
                     monster->set_body_type("insectoid-winged");
             }
             monster->set_name("insect");
             monster->add_id("insect");
             break;
+        case "modrons" : // modrons - monodrone, duodrone, tridrone
+            switch(random(6)){
+                case 0..2 :
+                    monster->set_short("%^C142%^s%^C143%^p%^C144%^h%^C145%^e%^C146%^r%^C145%^i%^C144%^c%^C143%^a%^C142%^l %^C184%^m%^C178%^o%^C184%^n%^C178%^o%^C172%^d%^C184%^r%^C178%^o%^C172%^ne%^CRST%^");
+                    monster->set_name("monodrone");
+                    monster->add_id("monodrone");
+                    break;
+                case 3..4 :
+                    monster->set_short("%^C136%^b%^C130%^o%^C136%^x%^C130%^y %^C184%^d%^C178%^u%^C178%^o%^C172%^d%^C184%^r%^C178%^o%^C172%^ne%^CRST%^");
+                    monster->set_name("duodrone");
+                    monster->add_id("duodrone");
+                    break;
+                default :
+                    monster->set_short("%^C226%^p%^C220%^y%^C214%^r%^C226%^a%^C220%^m%^C214%^i%^C226%^d%^C220%^a%^C214%^l %^C184%^t%^C178%^r%^C178%^i%^C172%^d%^C184%^r%^C178%^o%^C172%^ne%^CRST%^");
+                    monster->set_name("tridrone");
+                    monster->add_id("tridrone");
+            }
+            monster->set_race("modron");
+            monster->set_body_type("humanoid");
+            break;
         default :
             message("info", "Something broke! Please inform Chernobog.", place);
     }
     mon_name = monster->query_short();
-    monster->set_long("%^RESET%^%^CRST%^%^C030%^This is a "+mon_name+"%^RESET%^%^CRST%^%^C030%^ and fairly typical of its breed. However, it seems to be surrounded in a faintly %^C027%^s%^C033%^him%^C039%^m%^C027%^e%^C033%^rin%^C039%^g %^C027%^a%^C033%^u%^C039%^r%^C033%^a%^RESET%^%^C030%^.%^CRST%^");
+    monster->set_long("%^C030%^This is a "+mon_name+"%^C030%^ and fairly typical of its breed. However, it seems to be surrounded in a faintly %^C027%^s%^C033%^him%^C039%^m%^C027%^e%^C033%^rin%^C039%^g %^C027%^a%^C033%^u%^C039%^r%^C033%^a%^C030%^.%^CRST%^");
     
-    message("info", "%^CYAN%^Reality rips and a "+mon_name+"%^RESET%^%^CRST%^%^CYAN%^ appears, moving to protect " + caster->QCN + "%^RESET%^%^CRST%^%^CYAN%^!%^RESET%^", place, caster);
-    message("info", "%^CYAN%^Reality rips and a "+mon_name+"%^RESET%^%^CRST%^%^CYAN%^ appears, moving to protect you!%^RESET%^", caster);
+    message("info", "%^C030%^Reality rips and a "+mon_name+"%^C030%^ appears, moving to protect " + caster->query_cap_name() + "%^C030%^!%^CRST%^", place, caster);
+    message("info", "%^C030%^Reality rips and a "+mon_name+"%^C030%^ appears, moving to protect you!%^CRST%^", caster);
     return;
 }
 
@@ -226,7 +245,7 @@ void check(){
     for(i = 0; i < sizeof(monsters); i++){
         if(!objectp(monster = monsters[i])) continue;
         if(!present(monster, place)){
-            message("info", "%^RESET%^%^CRST%^%^CYAN%^A " + monster->query_short() + "%^RESET%^%^CRST%^%^CYAN%^ fades away, vanishing from sight.%^RESET%^", environment(monster));
+            message("info", "%^C030%^A "+monster->query_short()+"%^C030%^ fades away, vanishing from sight.%^CRST%^", environment(monster));
             monster->move("/d/shadowgate/void");
             monster->remove();
             continue;
@@ -251,7 +270,7 @@ void dest_effect(){
 
     if(objectp(caster)){
         removeSpellFromCaster();
-        message("info", "%^YELLOW%^The summoned creatures vanish!%^RESET%^", caster);
+        message("info", "%^C226%^The summoned creatures vanish!%^CRST%^", caster);
     }
 
     if(sizeof(monsters)){

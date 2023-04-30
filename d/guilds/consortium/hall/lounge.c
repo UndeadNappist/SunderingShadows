@@ -4,6 +4,7 @@ inherit ROOM;
 
 void create(){
     ::create();
+    set_property("no teleport",1); //removing access during remodel
     set_property("indoors", 1);
     set_light(2);
     set_short("The Lounge");

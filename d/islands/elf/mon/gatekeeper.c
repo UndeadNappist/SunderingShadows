@@ -29,7 +29,7 @@ void create() {
    set_overall_ac(-2);
    enable_commands();
    set_class("fighter");
-   new(OBJ"gatekey")->move(TO);
+   clonep() && new(OBJ"gatekey")->move(TO);
    force_me("wearall");
    set_new_exp(30,"very low");
    set_max_level(35);

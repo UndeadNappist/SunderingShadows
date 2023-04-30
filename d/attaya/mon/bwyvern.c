@@ -1,15 +1,13 @@
 #include <std.h>
 inherit WEAPONLESS;
 
-create (){
+create(){
     ::create ();
     set_name("wyvern");
     set_property("no rush",1);
     set_id( ({"black wyvern", "wyvern"}) );
-    set_short("Shadowy black wyvern");
-    set_long(
-      "The wyvern is a large dragon-like creature that has been specially bred by the Kinnesaruda as guardians.  Lacking the intelligence of most dragons, and bred with an animalistic desire to hunt and kill, only the undead are safe from these menaces. The black wyvern is perhaps the most deadly of wyverns."
-    );
+    set_short("%^C243%^s%^C245%^h%^C247%^a%^C243%^d%^C245%^o%^C247%^w%^C243%^y %^C059%^black %^C100%^wyvern%^CRST%^");
+    set_long("%^C100%^The wyvern is a large dragon-like creature that has been specially bred by the Kinnesaruda as guardians.  Lacking the intelligence of most dragons, and bred with an animalistic desire to hunt and kill, only the undead are safe from these menaces.\n\n%^C059%^The black wyvern is perhaps the most deadly of wyverns.%^CRST%^");
     set_gender("male");
     set_race("wyvern");
     set_body_type("dragon");
@@ -27,7 +25,8 @@ create (){
     set_class("fighter");
     set("aggressive", 26);
     set_alignment(4);
-    set_hp(300);
+    set_max_hp(300);
+    set_hp(query_max_hp());
     set_exp(8500);
     set_funcs( ({"fire"}) );
     set_func_chance(50);
@@ -37,28 +36,27 @@ create (){
     add_money("gold", 20 + random(340));
 }
 
-void init() {
+void init(){
     ::init();  
 // added ::init() to fix/prevent bugs & changed wizardp to check true invis 2/23/03 *Styx*
     if(TP->query_invis() && !TP->query_true_invis() && !TP->is_monster()){
-	tell_room(ETO,"%^RED%^The wyvern senses your movement and attacks!");
-	TP->set_invis();
-	kill_ob(TP,1);
+        tell_room(ETO,"%^C196%^The wyvern senses your movement and attacks!%^CRST%^");
+        TP->set_invis();
+        kill_ob(TP,1);
     }
 }
 
-void fire(object targ) {
+void fire(object targ){
     if(!targ) return 0;
-    if(random(25) > targ->query_stats("charisma")) {
-	tell_room(environment(targ), "%^BOLD%^%^BLACK%^The black wyvern shrieks and shadowy wisps stab into "+targ->query_cap_name()+" like daggers!",targ);
-	tell_object(targ, "%^BOLD%^%^BLACK%^The black wyvern shrieks and shadowy wisps stab into you like daggers!");
-	targ->do_damage("torso", random(30)+15);
-	return 1;
-
-    } else {
-
-	tell_object(targ, "%^BOLD%^%^BLACK%^The black wyvern shrieks violently at you, but nothing happens!");
-	tell_room(environment(targ), "%^BLUE%^The black wyvern shrieks violently at "+targ->query_cap_name()+" but nothing happens",targ);
-
+    if(random(25) > targ->query_stats("charisma")){
+        tell_room(environment(targ), "%^C100%^%^The %^C243%^b%^C245%^l%^C247%^a%^C243%^c%^C245%^k %^C247%^w%^C243%^y%^C245%^v%^C247%^e%^C243%^r%^C245%^n%^C100%^ shrieks and %^C243%^s%^C245%^h%^C247%^a%^C243%^d%^C245%^o%^C247%^w%^C243%^y %^C245%^w%^C247%^i%^C243%^s%^C245%^p%^C247%^s%^C100%^ stab into "+targ->query_cap_name()+"%^C100%^ like daggers!%^CRST%^", targ);
+        tell_object(targ, "%^BOLD%^%^BLACK%^The %^C243%^b%^C245%^l%^C247%^a%^C243%^c%^C245%^k %^C247%^w%^C243%^y%^C245%^v%^C247%^e%^C243%^r%^C245%^n%^C100%^ shrieks and %^C243%^s%^C245%^h%^C247%^a%^C243%^d%^C245%^o%^C247%^w%^C243%^y %^C245%^w%^C247%^i%^C243%^s%^C245%^p%^C247%^s%^C100%^ stab into you like daggers!");
+        targ->cause_typed_damage(targ, "torso", random(30) + 15, "void");
+        return 1;
+    }
+    else{
+        tell_object(targ, "%^C100%^%^The %^C243%^b%^C245%^l%^C247%^a%^C243%^c%^C245%^k %^C247%^w%^C243%^y%^C245%^v%^C247%^e%^C243%^r%^C245%^n%^C100%^ shrieks violently at you, but nothing happens!%^CRST%^");
+        tell_room(environment(targ), "%^C100%^The %^C243%^b%^C245%^l%^C247%^a%^C243%^c%^C245%^k %^C247%^w%^C243%^y%^C245%^v%^C247%^e%^C243%^r%^C245%^n%^C100%^ shrieks violently at "+targ->query_cap_name()+"%^C100%^ but nothing happens!%^CRST%^", targ);
     }
 }
+

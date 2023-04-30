@@ -8,11 +8,7 @@ void create() {
     feat_category("WildernessLore");
     feat_name("seen it before");
     feat_prereq("Ranger L21");
-    feat_desc("\
-A ranger taking this feat has reached the pinnacle in understanding in\
-how to fight their favored enemy. At this point, nothing that this\
-enemy does can even surprises the ranger. This feat adds the ranger's\
-favored enemy bonus to all saving throws when fighting their favored enemy.");
+    feat_desc("A ranger taking this feat has reached the pinnacle in understanding in how to fight their favored enemy. At this point, nothing that this enemy does can even surprises the ranger. This feat adds the ranger's favored enemy bonus to all saving throws when fighting their favored enemy.");
     permanent(1);
     set_required_for(({}));
 }

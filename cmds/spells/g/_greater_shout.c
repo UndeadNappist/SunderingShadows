@@ -30,25 +30,37 @@ string query_cast_string() {
     return "%^BOLD%^%^CYAN%^"+caster->QCN+" chants a rhythmic phrase and then take a deep breath.";
 }
 
-void spell_effect(int prof) {
+void spell_effect(int prof)
+{
     int num;
     string target_limb;
     object * foes;
 
     foes = target_selector();
     foes += ({target});
-    foes =  distinct_array(foes);
+    foes = distinct_array(foes);
 
     spell_successful();
 
-    foreach(target in foes) {
-        if (environment(caster) != environment(target)) {
+    if (!arrayp(foes))
+    {
+        dest_effect();
+        return;
+    }
+
+    foreach(target in foes)
+    {
+        if (!objectp(target) || environment(caster) != environment(target))
+        {
             tell_object(caster,"Your target has left your range.\n");
             dest_effect();
             return;
         }
+
         target_limb = target->return_target_limb();
-        if (interactive(caster)) {
+
+        if (interactive(caster))
+        {
             tell_object(caster,"%^BOLD%^%^CYAN%^Your voice is magically amplified as you shout at "+
                         ""+target->QCN+".");
             tell_object(target,"%^CYAN%^%^BOLD%^"+caster->QCN+"'s voice is magically"+
@@ -58,7 +70,9 @@ void spell_effect(int prof) {
             tell_room(place,"%^CYAN%^%^BOLD%^"+caster->QCN+"'s voice"+
                       " is magically amplified as "+caster->QS+" shouts at"+
                       " "+target->QCN+"!",({ caster, target}) );
-        } else {
+        }
+        else
+        {
             tell_object(target,"%^CYAN%^%^BOLD%^"+caster->QCN+"'s voice"+
                         " is magically amplified as "+caster->QS+" shouts at you!"+
                         "\n%^CYAN%^The force of the sonic attack sends your ears "+
@@ -67,7 +81,9 @@ void spell_effect(int prof) {
                       "magically amplified as "+caster->QS+" shouts at "+
                       ""+target->QCN+"!", target);
         }
-        if (!do_save(target)) {
+
+        if (!do_save(target))
+        {
             tell_object(target, "%^MAGENTA%^%^BOLD%^You are blasted with" +
                         " the sonic force of " + caster->QCN + "'s shout.");
             tell_room(environment(caster), "%^MAGENTA%^%^BOLD%^" + target->QCN + " is " +
@@ -75,7 +91,9 @@ void spell_effect(int prof) {
                       "shout.", ({ target }));
             damage_targ(target, target_limb, sdamage, "sonic");
             target->set_paralyzed(roll_dice(1, 2) * 4, "%^BOLD%^%^MAGENTA%^Your ears are ringing!");
-        } else {
+        }
+        else
+        {
             tell_object(target, "%^BOLD%^%^MAGENTA%^You are blasted by the sonic" +
                         " waves of " + caster->QCN + "'s shout.");
             tell_room(environment(caster), "%^BOLD%^%^MAGENTA%^" + target->QCN + " is" +

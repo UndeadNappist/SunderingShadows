@@ -34,85 +34,111 @@ for you."
    set_mob_magic_resistance("average");
 }
 
-void init(){
+void init()
+{
    ::init();
-   add_action("enchant_me","enchant");
+   add_action("enchant_me", "enchant");
 }
 
-int enchant_me(string str){
-   object ob, comp;
-   int enc,num,num2;
-   string getter, room,junk,hold1,hold2,place;
+int enchant_me(string str)
+{
+    object me, my_environment, player, ob, comp;
+    int enc,num,num2;
+    string getter, room,junk,hold1,hold2,place;
 
-   if(!str) return notify_fail("Enchant what?\n");
-   if(!(ob = present(str,TP))) return notify_fail("You don't have a "+str+".\n");
-   if(!ob->is_weapon()) {
-      force_me("say I will only enchant weapons for outsiders.");
-      return 1;
-   }
+    if (!objectp(me = this_object()))
+        return 0;
+
+    if (!objectp(my_environment = environment(me)))
+        return 0;
+
+    if (!objectp(player = this_player()))
+        return 0;
+
+    if (!str)
+        return notify_fail("Enchant what?\n");
+
+    if (!(ob = present(str, player)))
+        return notify_fail("You don't have a "+str+".\n");
+
+    if(!ob->is_weapon())
+    {
+        force_me("say I will only enchant weapons for outsiders.");
+        return 1;
+    }
+
+    if(ob->query_property("enchantment"))
+        enc = ob->query_property("enchantment");
+    else
+        enc = 0;
+
+    if(enc < 0)
+    {
+        me->force_me("say I cannot enchant a cursed item!");
+        return 1;
+    }
+
+    if(enc > 10)
+    {
+        me->force_me("say I cannot enchant this item further!");
+        return 1;
+    }
+    // for now, cost a ton of money
+    if(ob->query_wielded())
+    {
+        command("say Please unwield the weapon first.");
+        return 1;
+    }
+
+    if(!comp = present("specialcomp", player))
+    {
+        command("say You lack the special components I need.");
+        getter = "daemon/room_d"->query_new_dest(SHOP);
 
 
-   if(ob->is_weapon()){
-       if(ob->query_property("enchantment"))
-           enc = ob->query_property("enchantment");
-       else enc = 0;
-       if(enc < 0){
-           TO->force_me("say I cannot enchant a cursed item!");
-           return 1;
-       }
-       if(enc > 10){
-           TO->force_me("say I cannot enchant this item further!");
-           return 1;
-       }
-       // for now, cost a ton of money
-       if(ob->query_wielded()){
-           command("say Please unwield the weapon first.");
-           return 1;
-       }
-       if(!comp = present("specialcomp",TP)){
-           command("say You lack the special components I need.");
-           getter = "daemon/room_d"->query_new_dest(SHOP);
+        if(stringp(getter))
+        {
+            //sscanf(getter,"%s&%s",room,junk);
+            //sscanf(room,"/d/%s/%s/%s",place,hold1,hold2);
 
+            num = strsrch(getter,"&");
+            room = getter[0..(num - 1)];
+            place = replace_string(room,"/d/","");
+            num2 = strsrch(place,"/");
+            place = place[0..(num2 - 1)];
 
-           if(stringp(getter)){
-               //sscanf(getter,"%s&%s",room,junk);
-               //sscanf(room,"/d/%s/%s/%s",place,hold1,hold2);
+            command("whisper "+player->query_name()+" The shop selling the component is in the "+place+" area.");
+            command("whisper "+player->query_name()+" rumors say something about "+room->query_short());
+            return 1;
+        }
 
-               num = strsrch(getter,"&");
-               room = getter[0..(num - 1)];
-               place = replace_string(room,"/d/","");
-               num2 = strsrch(place,"/");
-               place = place[0..(num2 - 1)];
+        return 1;
+    }
 
-               command("whisper "+TPQN+" The shop selling the component is in the "+place+" area.");
-               command("whisper "+TPQN+" rumors say something about "+room->query_short());
-               return 1;
-           }
-           return 1;
-       }
+    if(!player->query_funds("gold", 50000 * enc))
+    {
+        me->force_me("say It will cost you "+(50000 * enc)+" gold to have that enchanted.");
+        return 1;
+    }
 
-       if(!TP->query_funds("gold",50000*enc)){
-           TO->force_me("say It will cost you "+(50000 * enc)+" gold to have that enchanted.");
-           return 1;
-       }
-       else{
-           comp->remove();
-           if (ob->query_property("player enchanted")) {
-               force_me("say Very well, you won't be able to change its magic after that yourself, though.");
-               ob->remove_property("player enchanted");
-           }
+    comp->remove();
 
-           TP->use_funds("gold",50000*enc);
-           tell_room(ETO,"Innara looks over "+TPQCN+"'s "+ob->query_name()+" and speaks some strange magical words.\n",TP);
-           tell_object(TP,"Innara looks over your "+ob->query_name()+" and speaks some strange magical words.\n");
-           enc +=1;
-           ob->set_property("enchantment",1);
-           if((int)ob->query_property("enchantment") == enc) { // AKA if it didn't curse it!
-               ob->set_property("manual enchantment",1);
-           }
-           else ob->set_property("manual enchantment",-1);
-       }
-   }
-   else
-       return notify_fail("You cannot have that enchanted.\n");
+    if (ob->query_property("player enchanted"))
+    {
+        force_me("say Very well, you won't be able to change its magic after that yourself, though.");
+        ob->remove_property("player enchanted");
+    }
+
+    player->use_funds("gold", 50000 * enc);
+    tell_room(my_environment, "Innara looks over "+player->query_cap_name()+"'s "+ob->query_name()+" and speaks some strange magical words.\n", player);
+    tell_object(player, "Innara looks over your "+ob->query_name()+" and speaks some strange magical words.\n");
+    enc +=1;
+    ob->set_property("enchantment", 1);
+
+    if((int)ob->query_property("enchantment") == enc) // AKA if it didn't curse it!
+        ob->set_property("manual enchantment", 1);
+    else
+        ob->set_property("manual enchantment", -1);
+
+    return 1;
 }

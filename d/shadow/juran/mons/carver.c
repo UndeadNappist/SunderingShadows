@@ -16,6 +16,8 @@ set_long("This old orc appears rather broken and harmless. He is missing several
    	set_body_type("humanoid");
   	set_size(2);
    	set_hd(1,1);
+    set_max_hp(20);
+    set_hp(query_max_hp());
    	set_exp(1000);
 }
 void init(){

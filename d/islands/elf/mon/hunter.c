@@ -57,6 +57,11 @@ void create ()
     set("aggressive", 0);
     set_overall_ac(-5);
     add_money("platinum",random(100));
+    set_new_exp(30,"normal");
+    set_max_level(35);
+    
+    if(!clonep())
+        return;
     
     "/d/common/daemon/randgear_d"->arm_me(TO,"edgedm",70,4); 
     new("/d/common/obj/rand/cloak")->move(TO);
@@ -73,8 +78,6 @@ void create ()
     obj->move(pouch);
 
     command("wearall");
-    set_new_exp(30,"normal");
-    set_max_level(35);
 }
 
 

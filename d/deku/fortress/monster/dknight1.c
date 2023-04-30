@@ -21,7 +21,7 @@ void create() {
            " armor he uses. An overwhelming aura of evil radiates from this man.\n");
   set_level(18);
   set_body_type("human");
-  set_class("antipaladin");
+  set_class("paladin");
   set_alignment(3);
   set_size(2);
   set_hd(18,5);
@@ -65,17 +65,17 @@ I removed the shirt as it no longer stacks with plate.
   set_property("no death",1);
 }
 
-void point(object targ) {
-   if(!"/daemon/saving_throw_d.c"->fort_save(targ,-15)){
-    tell_room(environment(targ), "The death knight chills "+
-        targ->query_cap_name()+" with his fingers.", targ);
-    tell_object(targ, "The death knight chills you with his "+
-        "fingers.");
-     set_property("magic",1);
-     targ->cause_typed_damage(targ, "torso", 10000, "cold");
-     remove_property("magic");
-  return 1;
-   }
+void point(object targ){
+    tell_room(environment(targ), "The death knight chills "+targ->query_cap_name()+" with his fingers.", targ);
+    tell_object(targ, "The death knight chills you with his fingers.");
+    
+    if(!"/daemon/saving_throw_d.c"->fort_save(targ,-15) && !targ->query_property("no death")){
+        set_property("magic",1);
+        targ->cause_typed_damage(targ, "torso", 10000, "cold");
+        remove_property("magic");
+    }
+    else targ->cause_typed_damage(targ, "torso", roll(3, 10), "cold");
+    return 1;
 }
 
 void rush(){

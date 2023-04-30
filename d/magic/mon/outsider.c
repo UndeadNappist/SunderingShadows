@@ -1,5 +1,5 @@
 #include "summoned_monster.h"
-inherit WEAPONLESS;
+inherit MINION;
 
 object cast;
 int mylevel, myalign, iselemental;
@@ -407,7 +407,10 @@ int remove()
 {
     reset_all_status_effects();
     save_outsider();
-    all_inventory(TO)->remove();
+
+    if (objectp(this_object()))
+        all_inventory(this_object())->remove();
+
     ::remove();
 }
 
@@ -443,13 +446,14 @@ void heart_beat()
 
 void save_outsider()
 {
+    if (!objectp(this_object()))
+        return;
+
+    if (!objectp(environment(this_object())))
+        return;
+
     seteuid(getuid());
-    if (!objectp(TO)) {
-        return;
-    }
-    if (!objectp(ETO)) {
-        return;
-    }
+
     mkdir("/d/save/summons/" + castname);
     strlen(fname) && mkdir(fname);
     "/daemon/yuck_d"->save_inventory(this_object(), fname);

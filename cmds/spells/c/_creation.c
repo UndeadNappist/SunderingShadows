@@ -20,6 +20,7 @@ void create() {
 "are rather manifestations of the psion's own protective impulse.  The warriors will stand before the psion, mindlessly "
 "protecting him in the event of attacks.");
     set_verbal_comp();
+    summon_spell();
     set_somatic_comp();
     set_helpful_spell(1);
 }
@@ -100,29 +101,47 @@ void spell_effect(int prof) {
 
 void check()
 {
-    if(sizeof(mons))
-    {
-        foreach(object mon in mons)
-        {
-            if(mon && environment(mon) != environment(caster))
-            {
-                tell_room(environment(mon), "The psionic fighter seems to evaporate!");
-                mon->move("/d/shadowgate/void");
-                mon->remove();
-                continue;
-            }
-            
-            objectp(mon) && caster->add_protector(mon);
-            objectp(mon) && caster->add_follower(mon);
-        }
-    }
-    else
+    object casters_environment, guardians_environment;
+
+    if (!objectp(caster))
     {
         tell_object(caster, "Your psionic fighters vanish!");
         dest_effect();
         return;
     }
-    
+
+    if (!objectp(casters_environment = environment(caster)))
+    {
+        tell_object(caster, "Your psionic fighters vanish!");
+        dest_effect();
+        return;
+    }
+
+    if(!sizeof(mons))
+    {
+        tell_object(caster, "Your psionic fighters vanish!");
+        dest_effect();
+        return;
+    }
+
+    foreach(object mon in mons)
+    {
+        if (!objectp(mon))
+            continue;
+
+        if (!objectp(guardians_environment = environment(mon)))
+
+        if (guardians_environment != casters_environment)
+        {
+            tell_room(guardians_environment, "The psionic fighter seems to evaporate!");
+            mon->remove();
+            continue;
+        }
+
+        caster->add_protector(mon);
+        caster->add_follower(mon);
+    }
+
     call_out("check", 5);
 }
     

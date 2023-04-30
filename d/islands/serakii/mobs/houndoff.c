@@ -10,7 +10,7 @@ void make_me();
 void create(){
    ::create();
    set_name("hound officer");
-   set_id(({"hound","hound officer","officer","hound militia"}));
+   set_id(({"hound","hound officer","officer","hound militia", "hound soldier"}));
    set_short("officer");
 set_long("%^C246%^Dressed in "+
 "%^C251%^dark clothing and "+
@@ -89,6 +89,9 @@ void make_me(){
         set_class(theclass);
        set_guild_level(theclass,30);
        set_mlevel(theclass,30);
+       
+       if(!clonep())
+           return;
 
         switch(theclass){
         case "duelist":

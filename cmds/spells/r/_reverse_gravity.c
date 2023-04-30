@@ -10,7 +10,8 @@ object *newfoes;
 void create() {
     ::create();
     set_spell_name("reverse gravity");
-    set_spell_level(([ "mage" : 7, "druid" : 8 ]));
+    set_spell_level(([ "mage" : 7, "druid" : 8, "cleric" : 7 ]));
+    set_domains("void");
     set_spell_sphere("alteration");
     set_syntax("cast CLASS reverse gravity");
     set_damage_desc("untyped");

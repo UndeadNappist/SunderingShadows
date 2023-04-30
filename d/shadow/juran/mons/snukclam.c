@@ -25,7 +25,7 @@ void create() {
    	set_size(2);
    	set_hp(100);
    	set_max_hp(100);
-   	set_stabbed_func( (: TO,"stab_func" :) );
+   	//set_stabbed_func( (: TO,"stab_func" :) );
    	set_exp(1000);
    	remove_std_db();
      	set_spoken("wizish");

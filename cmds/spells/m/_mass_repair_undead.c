@@ -63,7 +63,7 @@ void spell_effect(int prof)
        member_array(target,followers) != -1)
     {
         targets = filter_array(distinct_array(party_members+(followers-attackers))+({caster}),
-                               (:!!$1->query_property("negative energy affinity"):));
+            (: !!$1->query_property("negative energy affinity") || !!$1->query_property("heart of darkness") :));
     }
     else
     {
@@ -86,7 +86,7 @@ void spell_effect(int prof)
                 continue;
             if(!present(targets[i], place))
                 continue;
-            if(!target->query_property("negative energy affinity"))
+            if(!targets[i]->query_property("negative energy affinity") && !targets[i]->query_property("heart of darkness"))
                 continue;
 
             if(targets[i] == caster)

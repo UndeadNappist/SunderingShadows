@@ -5,8 +5,7 @@ inherit "/d/common/obj/weapon/flail.c";
 void create(){
 	::create();
    	set_name("chessman's flail");
-   	set_id(({"flail","chessman's flail","ebony flail","+
-		""ivory flail"}));
+   	set_id(({"flail","chessman's flail","ebony flail","ivory flail"}));
    	set_obvious_short("%^RESET%^An%^BOLD%^ %^BLACK%^ebony"+
 		"%^RESET%^ and %^BOLD%^ivory%^RESET%^ flail%^RESET%^");
    	set_short("%^BOLD%^%^WHITE%^C%^BLACK%^h%^WHITE%^e"+

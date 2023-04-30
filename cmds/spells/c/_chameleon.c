@@ -62,7 +62,7 @@ void dest_effect() {
     if(objectp(caster)){
        tell_object(caster,"%^GREEN%^The ectoplasmic sheen loses its "+
           "power, revealing you to the world.");
-       tell_room(environment(caster),"GREEN%^With a slight shimmer, "+
+       tell_room(environment(caster),"%^GREEN%^With a slight shimmer, "+
           ""+caster->QCN+" is revealed to view.",caster);
     }
     if(objectp(invisob)) invisob->show_me();

@@ -11,9 +11,7 @@ void create()
     feat_name("death touch");
     feat_syntax("death_touch [TARGET]");
     feat_prereq("Pale Lord L7");
-    feat_desc("A final step for Pale Lord is to construct a conduit, a point he can release the power of the death itself. To do so he cuts off own hand, treats it with mummifying solutions, then lays a network of fell spells over it and attaches it back. Such hand can release negative energy on demand, ripping the souls of living and healing the undead.
-
-If used without an argument this feat will pick up a random attacker.");
+    feat_desc("A final step for a Pale Lord is to construct a conduit, a point they can channel the power of the death itself. To do so, they cut off their own hand, treating it with mummifying solutions before laying a network of fell spells over it and reattaching it. Such a hand can release negative energy on demand, tearing the souls of the living asunder and healing the undead.\n\nIf used without an argument this feat will pick up a random attacker.");
     set_save("will");
 }
 

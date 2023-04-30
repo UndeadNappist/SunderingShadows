@@ -50,6 +50,5 @@ int dismiss(string str){
 	tell_room(environment(caster),"%^BOLD%^"+caster->query_cap_name()+" dismisses the outsider!",caster);
 	if(objectp(caster)) { caster->remove_property("has_elemental"); }
 	tell_object(caster,"%^BOLD%^You dismiss the outsider!\n");
-	call_out("timed",1);
-	return 1;
+    return ::remove();
 }

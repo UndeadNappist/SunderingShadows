@@ -10,7 +10,7 @@ void create()
     ::create();
     set_name("cave cricket");
     set_short("A chirping cave cricket");
-    set_id(({ "cricket", "cave cricket", "chirping cricket", "chirping cave cricket", "insect" }));
+    set_id(({ "cricket", "cave cricket", "chirping cricket", "chirping cave cricket", "insect", "ekibi_insect" }));
     set_long("This cricket dwarfs its normal-sized cousins, standing " +
              "a full three and a half feet tall.  Its body is a dusky " +
              "black-brown that shimmers damply when light hits it.  " +

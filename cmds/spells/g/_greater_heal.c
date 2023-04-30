@@ -7,7 +7,7 @@ create()
     ::create();
     set_author("pator");
     set_spell_name("greater heal");
-    set_spell_level(([ "cleric" : 7, "druid" : 7 ]));
+    set_spell_level(([ "cleric" : 7 ]));
     set_affixed_spell_level(7);
     set_domains(({ "renewal" }));
     set_mystery(({}));

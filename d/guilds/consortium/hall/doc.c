@@ -6,7 +6,7 @@ void create(){
    ::create();
 
    set_name("documentation area");
-
+   set_property("no teleport",1); //removing access during remodel
    set_property("indoors",1);
    set_property("light",2);
 

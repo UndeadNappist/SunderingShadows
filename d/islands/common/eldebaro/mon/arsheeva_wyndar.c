@@ -77,7 +77,8 @@ void create()
     set_mob_magic_resistance("average");
     set_property("weapon resistance", 4);
 
-    set_hp(20000);
+    set_max_hp(20000);
+    set_hp(this_object()->query_max_hp());
 	
     set_new_exp(60, "boss");
     set_funcs(({"quivering_palm"}));

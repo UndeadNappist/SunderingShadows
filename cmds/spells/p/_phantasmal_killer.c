@@ -11,11 +11,12 @@ void create(){
     ::create();
     set_author("nienne");
     set_spell_name("phantasmal killer");
-    set_spell_level(([ "mage" : 4, "magus" : 4, "warlock" : 4 ]));
+    set_spell_level(([ "mage" : 4, "magus" : 4, "warlock" : 4, "cleric" : 4 ]));
+    set_domains("void");
     set_spell_sphere("illusion");
     set_spell_domain("illusion");
     set_syntax("cast CLASS phantasmal killer on TARGET");
-    set_description("This spell is cast upon a target and creates a figment of that target's imagination by drawing upon his deepest fears. Onlookers will see simply a vaguely humanoid shape at first, while the creature will soon take on the form of whatever frightens the target most. The creature's strength depends partly upon drawing on the target's fears and partly upon the caster's strength. Once the killer is unleashed, it becomes a force unto itself, protecting the caster but otherwise attacking at will.");
+    set_description("This spell is cast upon a target and creates a figment of that target's imagination by drawing upon his deepest fears. Onlookers will see simply a vaguely humanoid shape at first, while the creature will soon take on the form of whatever frightens the target most. The creature's strength depends partly upon drawing on the target's fears and partly upon the caster's strength. Once the killer is unleashed, it becomes a force unto itself, protecting the caster but otherwise attacking at will. The killer will only remain until the target is dies or the caster or target leave the room.");
     mental_spell();
     set_verbal_comp();
     set_somatic_comp();
@@ -91,12 +92,33 @@ void spell_effect(int prof){
    ob->add_id(caster->query_name()+"monster");
    caster->set_property("phantasmal_killer",ob);
    spell_kill(target,caster);
-   spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH;
-   set_end_time();
-   call_out("dest_effect",spell_duration);
+   //spell_duration = (clevel + roll_dice(1, 20)) * ROUND_LENGTH;
+   //set_end_time();
+   //call_out("dest_effect",spell_duration);
+   call_out("check", ROUND_LENGTH);
 }
 
-void dest_effect() {
+void check()
+{
+    if(!objectp(caster) || !objectp(target))
+    {
+        dest_effect();
+        return;
+    }
+    
+    if(place != environment(target) || place != environment(caster))
+    {
+        dest_effect();
+        return;
+    }
+    
+    call_out("check", ROUND_LENGTH);
+}
+
+void dest_effect()
+{
+    remove_call_out("check");
+    
     if(objectp(ob)){
       if(objectp(caster)) { caster->remove_protector(ob); }
       ob->die();

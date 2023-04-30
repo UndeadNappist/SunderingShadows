@@ -85,6 +85,7 @@ OLI
         "VOID": "/d/shadowgate/void.c",
         "FREEZER": "/d/shadowgate/freezer.c",
         "dummy" : "/d/dagger/dummyroom.c", // added by Chernobog
+        "assassins" : "/d/shadow/city/room/assassinhall",
     ]) );
 }
 
