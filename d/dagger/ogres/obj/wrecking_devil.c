@@ -79,8 +79,8 @@ int hit_func(object target)
         }
         else
         {
-            tell_object(holder, "%^C124%^The twisted energy of Wrecking Devil crackles through your foe's body as the hammer connects.%^CRST%^");
-            tell_room(room, "%^C124%^Twisted energy crackles from the hammer as it connects!%^CRST%^", holder);
+            tell_object(holder, "%^C124%^The %^C155%^t%^C149%^w%^C143%^i%^C137%^s%^C131%^t%^C125%^e%^C124%^d %^C125%^e%^C131%^n%^C137%^e%^C143%^r%^C149%^g%^C155%^y %^C124%^of %^C184%^W%^C178%^r%^C172%^e%^C173%^c%^C167%^k%^C131%^i%^C095%^n%^C131%^g %^C167%^D%^C173%^e%^C172%^v%^C178%^i%^C184%^l %^C124%^crackles through your %^C250%^f%^C249%^o%^C248%^e%^C247%^'%^C246%^s %^C124%^body as the %^C190%^h%^C184%^a%^C178%^m%^C172%^m%^C166%^e%^C167%^r %^C124%^connects.%^RESET%^", holder);
+            tell_room(room, "%^C155%^T%^C149%^w%^C143%^i%^C137%^s%^C131%^t%^C125%^e%^C124%^d %^C125%^e%^C131%^n%^C137%^e%^C143%^r%^C149%^g%^C155%^y %^C124%^crackles from the %^C190%^h%^C184%^a%^C178%^m%^C172%^m%^C166%^e%^C167%^r %^C124%^as it %^C245%^c%^C246%^o%^C247%^n%^C248%^n%^C249%^e%^C250%^c%^C251%^t%^C252%^s%^C124%^!%^RESET%^", holder);
             target->cause_typed_damage(target, "torso", roll_dice(1, 6) + 5, "bludgeoning");
         }
         break;
@@ -96,7 +96,7 @@ int wield_func()
     
     if(holder->query_base_character_level() < MIN_LEVEL)
     {
-        tell_object(holder, "You aren't experience enough to handle this weapon!");
+        tell_object(holder, "%^C124%^You %^C196%^a%^C160%^r%^C124%^en%^C196%^'%^C160%^t %^C027%^e%^C033%^x%^C039%^p%^C045%^e%^C051%^r%^C087%^i%^C051%^e%^C045%^n%^C039%^c%^C033%^e%^C027%^d %^C124%^enough to handle this %^C245%^w%^C246%^e%^C247%^a%^C248%^p%^C249%^o%^C250%^n%^C124%^!%^RESET%^");
         return 0;
     }
     
