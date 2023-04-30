@@ -14,7 +14,7 @@ inherit "/d/common/obj/weapon/gnome_hooked_hammer.c";
 #define MIN_LEVEL     20
 #define HIT_INTERVAL   4
 
-int sundered, hit_count, amount
+int sundered, hit_count, amount;
 object holder;
 
 void remove_sunder(object ob)
