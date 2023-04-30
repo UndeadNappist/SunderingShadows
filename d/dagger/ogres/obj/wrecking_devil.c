@@ -3,6 +3,8 @@
   
   Magical gnome hooked hammer.
   
+  Credit goes to Cecile for the descriptions.
+  
   -- Tlaloc --
 */
 
