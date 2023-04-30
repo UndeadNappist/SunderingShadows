@@ -133,17 +133,29 @@ nosave mapping base_attacks = ([
 
 int has_feat(string temp)
 {
+    string *tmp;
+    
     if(!stringp(temp))
         return 0;
    
     if(userp(this_object()))
     {
-        if(member_array(temp, this_object()->query_player_feats()) >= 0)
+        tmp = this_object()->query_player_feats();
+        
+        if(!arrayp(tmp))
+            return 0;
+        
+        if(member_array(temp, tmp) >= 0)
             return 1;
     }
     else
     {
-        if(member_array(temp, this_object()->query_monster_feats()) >= 0)
+        tmp = this_object()->query_monster_feats();
+        
+        if(!arrayp(tmp))
+            return 0;
+        
+        if(member_array(temp, tmp) >= 0)
             return 1;
     }
     
