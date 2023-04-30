@@ -14,6 +14,8 @@ Clerics are as diverse a class as the pantheon of the realm, united only in thei
 
 Wisdom is of the utmost importance to clerics as it determines their spell casting ability. It is also recommended that they have a decent constitution. Most are moderately capable in melee combat, but not so much as a trained warrior.
 
+As a hybrid class with spell casting abilities, clerics could benefit from a combination of martial and magic feats. They will need the perfect caster feat to avoid harming their allies and summoned creatures with area-affecting spells.
+
 Clerics prepare individual spells from the cleric spell list, using the %^ORANGE%^<prepare>%^RESET%^ command. See %^ORANGE%^<spells cleric (by level)>%^RESET%^. Use the %^ORANGE%^<cast>%^RESET%^ command to cast a prepared spell. To see which spells you have prepared, use %^ORANGE%^<recall cleric spells>%^RESET%^.
 
 Clerics of good and neutral alignments may also spontaneously cast any prepared spell as a healing spell of the same level. Neutral and evil clerics may do likewise, but they will cast such spells spontaneously as damaging equivalents instead. To learn how to do it refer to %^ORANGE%^<help cast>%^RESET%^.
@@ -25,4 +27,4 @@ Create Water, Detect Magic, Detect Poison, Guidance, Resistance, Light, Mending,
 
 Clerics are versatile, they can choose both melee and spellcasting paths. They are also able to <channel> positive or negative energy from a Grace pool. Clerics can cast in any armor, but not while wielding anything. 
 
-%^RESET%^%^CYAN%^See also: %^RESET%^ feats, stats, skills, spells, cast, buff, prepare, domains, deities, prestige classes, new caster, channel, grace
+%^RESET%^%^CYAN%^See also: %^RESET%^ newbie guide, feats, perfect caster, stats, skills, spells, cast, buff, prepare, domains, deities, prestige classes, new caster, channel, grace

@@ -19,6 +19,6 @@ Sorcerers get bonus spells from bloodlines. To see available bloodlines use %^OR
 Sorcerers receive the following cantrips (type 'recall cantrip spells'):
 %^CYAN%^Acid Splash, Daze, Detect Magic, Dancing Lights, Disrupt Undead, Ray of Frost, Resistance%^RESET%^
 
-Sorcerers cannot wield weapons while casting. They cannot use armor while casting, unless they have the applicable feats.
+Sorcerers cannot wield weapons while casting. They cannot use armor while casting, unless they have the applicable feats. They will need the perfect caster feat to avoid harming their allies and summoned creatures with area-affecting spells.
 
-%^RESET%^%^CYAN%^See also: %^RESET%^ bloodlines, feats, stats, skills, spells, cast, buff, prepare, master, prestige classes, new caster
+%^RESET%^%^CYAN%^See also: %^RESET%^ bloodlines, newbie guide, feats, perfect caster, stats, skills, spells, cast, buff, prepare, master, prestige classes, new caster

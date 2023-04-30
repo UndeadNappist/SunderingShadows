@@ -48,9 +48,9 @@ Monk feats, abilities, and spells require ki. Most monks receive 1 ki point per 
 
 The %^ORANGE%^<ki>%^RESET%^ command is a command showing the abilities imparted to you by your dedication, your total and available ki, and how long until you passively regenerate more.
 
-In addition to their special abilities, monks can cast a small number of spells by expending ki points. To see which spells you can cast, see the help file for your chosen way. To cast your spells, use the %^ORANGE%^<cast>%^RESET%^ command.
+In addition to their special abilities, monks can cast a small number of spells by expending ki points. To see which spells you can cast, see the help file for your chosen way. To cast your spells, use the %^ORANGE%^<cast>%^RESET%^ command. A monk will need the perfect caster feat to avoid harming their allies and summoned creatures with area-affecting spells.
 
 The efficacy of monk abilities and spells use wisdom as their casting stat.
 
-%^RESET%^%^CYAN%^See also: %^RESET%^ feats, stats, skills, spells, cast, buff, prepare, ki, way of the fist, way of the shadow, way of the elements, ki, prestige classes, new caster
+%^RESET%^%^CYAN%^See also: %^RESET%^ newbie guide, feats, perfect caster, stats, skills, spells, cast, buff, prepare, ki, way of the fist, way of the shadow, way of the elements, ki, prestige classes, new caster
 

@@ -24,7 +24,7 @@ Oracles get bonus spells from mysteries. To see the available mysteries use %^OR
 Oracles also receive the following cantrips (type 'recall cantrip spells'):
 Create Water, Detect Magic, Detect Poison, Guidance, Resistance, Light, Mending
 
-Oracles can cast in any armor, but they must take the appropriate feats first. They cannot cast while wielding a weapon.
+Oracles can cast in any armor, but they must take the appropriate feats first. They cannot cast while wielding a weapon. They will need the perfect caster feat to avoid harming their allies and summoned creatures with area-affecting spells.
 
-%^RESET%^%^CYAN%^See also: %^RESET%^ mysteries, feats, stats, skills, spells, cast, buff, prepare, domains, deities, prestige classes, new caster
+%^RESET%^%^CYAN%^See also: %^RESET%^ mysteries, newbie guide, feats, perfect caster, stats, skills, spells, cast, buff, prepare, domains, deities, prestige classes, new caster
 
