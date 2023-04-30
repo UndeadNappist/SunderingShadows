@@ -1005,6 +1005,13 @@ int query_resistance_percent(string res, object source)
         if (res == "cold") {
             mod += 50;
         }
+        if(this_object()->query_acquired_template() == "mortuum")
+        {
+            if(res == "fire")
+                mod -= 25;
+            if(res == "bludgeoning")
+                mod -= 25;
+        }           
         if (TO->is_vampire()) {
             if (res == "electricity") {
                 mod += 50;
