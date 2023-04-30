@@ -19,12 +19,12 @@ Also known as psychic warriors, psyblades, or psyknights, psywarriors are able t
 
 Psywarriors have a cleric's basic combat ability alongside six levels of psionic powers, making them formidable foes. They learn their power with the %^ORANGE%^<master>%^RESET%^ command. Psywarriors %^ORANGE%^<cast>%^RESET%^ spells by expending power points they prepared using the %^ORANGE%^<prepare>%^RESET%^ command. To list available power points, use the %^ORANGE%^<recall psywarrior spells>%^RESET%^ command.
 
-Psywarriors learn to cast in any armor while wielding any weapon.
+Psywarriors learn to cast in any armor while wielding any weapon. They will need the perfect caster feat to avoid harming their allies and summoned creatures with area-affecting spells.
 
 Psywarriors tend to rely more on their knowledge of melee combat, but they use powers to complement their weapons and to control the battle. Their spell-casting abilities depend on their intelligence score.
 
-Psywarriors use intelligence, rather than wisdom, for their will saving throws.
+Psywarriors use intelligence, rather than wisdom, for their will saving throws. 
 
 Psywarriors use Psionic Focus as a resource. While focused, they gain +1 to attack and damage rolls.
 
-%^RESET%^%^CYAN%^See also: %^RESET%^feats, stats, skills, spells, cast, buff, prepare, master, prestige classes, new caster, focus
+%^RESET%^%^CYAN%^See also: %^RESET%^newbie guide, feats, perfect caster, stats, skills, spells, cast, buff, prepare, master, prestige classes, new caster, focus
