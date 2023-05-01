@@ -76,7 +76,7 @@ void create()
     
     set_spell_chance(25);
     
-    set_spells( ({ "shield of dawn", "angelic aspect", "archon aura", "prayer", "seeking sword", "true seeing" }) );
+    set_spells( ({ "blade barrier", "angelic aspect", "archon aura", "prayer", "seeking sword", "true seeing" }) );
     
     if(!clonep())
         return;
@@ -121,7 +121,7 @@ void init()
         command("enhance add light fortification");
         command("enhance armor");
         command("defenders_presence");
-        new("/cmds/spells/s/_shield_of_dawn.c")->use_spell(this_object(), 0, 70, 100, "paladin");
+        new("/cmds/spells/b/_blade_barrier.c")->use_spell(this_object(), 0, 70, 100, "oracle");
         new("/cmds/spells/a/_angelic_aspect.c")->use_spell(this_object(), 0, 70, 100, "paladin");
         new("/cmds/spells/a/_archon_aura.c")->use_spell(this_object(), 0, 70, 100, "paladin");
         new("/cmds/spells/s/_seeking_sword.c")->use_spell(this_object(), 0, 70, 100, "paladin");
@@ -271,7 +271,7 @@ void spear(object room)
     {
         tell_room(room, "YOU FACE THE INDOMITABLE MIGHT OF THE GREAT GOLDEN DRAGON EMPEROR HIMSELF!");
         
-        if(objectp(weapon = new("/d/common/bosses/loot/regalith")))
+        if(objectp(weapon = new("/d/common/bosses/loot/new/regalith")))
         {
             tell_room(room, "A GREAT GOLDEN SPEAR APPEARS IN KRASUS'S HANDS, AND MIGHTY CLAWS APPEAR ON HIS HANDS");
             command("shieldwall min");
@@ -363,7 +363,7 @@ void dragon()
         set_short("DRAGONKIN SHORT DESC");
         set_long("DRAGONKIN LONG DESC");
         set_spells( ({ "bolt of force", "overwhelming presence", "dictum", "slow", "holy smite", "crushing hand" }) );
-        set_monster_feats( ({ "perfect caster", "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess" }) );
+        set_monster_feats( ({ "perfect caster", "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dragon affinity", "dragon aspect" }) );
         set_spells( ({ "obsidian flow", "overwhelming presence", "fear", "powerword kill", "earthquake", "bolt of force" }) );
         set_spell_chance(50);
         command("dragon_aspect");
@@ -388,6 +388,7 @@ void dragon()
             {
                 healer->move(environment());
                 this_object()->add_protector(healer);
+                this_object()->add_follower(healer);
             }
         }
     }

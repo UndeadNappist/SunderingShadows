@@ -59,7 +59,7 @@ void init()
     if(!owner)
     {          
         owner = holder->query_true_name();
-        tell_object(holder, "You feel the power and wisdom of the Golden Dragon Emperor flow through you as you take hold of Regalith, ready to conquer any foe."");
+        tell_object(holder, "You feel the power and wisdom of the Golden Dragon Emperor flow through you as you take hold of Regalith, ready to conquer any foe.");
     }
 }
 
