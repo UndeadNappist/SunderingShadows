@@ -466,7 +466,7 @@ void wing_flap()
 
 void ground_slam()
 {
-    object *attackers;
+    object *attackers, stagger;
     
     attackers = query_attackers();
     
@@ -475,16 +475,19 @@ void ground_slam()
     
     tell_room(room, "KRASUS LIFTS INTO THE AIR ON MIGHTY WINGS AND SLAMS DOWN ONTO THE GROUND!");
     
+    if(!objectp(stagger = load_object("/std/effect/status/staggered")))
+        return;
+    
     foreach(object ob in attackers)
     {
-        if(!SAVING_THROW_D->reflex_save(ob, 85))
+        if(!SAVING_THROW_D->fort_save(ob, 85))
         {
             tell_object(ob, "YOURE SLAMMED BY THE EARTH!");
             tell_room(room, ob->query_cap_name() + " IS SLAMMED BY THE EARTH!", ob);
-            ob->cause_typed_damage(ob, "torso", roll_dice(10, 10) + 100, "bludgeoning");
-            ob->set_tripped(6);
+            stagger->apply_effect(ob, roll_dice(1, 4));
         }
         
+        ob->cause_typed_damage(ob, "torso", roll_dice(10, 10) + 100, "bludgeoning");      
     }
 }
 
