@@ -1,7 +1,7 @@
 /*
   krasus.c
   
-  Great golden dragon. Avatar boss of Krey.
+  Great golden dragon. Champion boss of Krey.
   
   -- Tlaloc --
 */
@@ -154,9 +154,7 @@ void heart_beat()
 
     ::heart_beat();
     
-    room = environment(this_object());
-    
-    if(!room)
+    if(!objectp(room = environment(this_object())))
         return;
 
     attackers = this_object()->query_attackers();
@@ -231,7 +229,7 @@ void shield(object room)
     
     if(!checkpoints["shield"])
     {
-        tell_room(room, "MESSAGE START SHIELD PHASE");
+        tell_room(room, "MESSAGE START SHIELD PHASE (gold)");
         set_spells( ({ "earthquake", "prayer", "seeking sword", "overwhelming presence", "earth reaver" }) );
         set_spell_chance(10);
         checkpoints["shield"] = 1;
@@ -269,18 +267,18 @@ void spear(object room)
     
     if(!checkpoints["spear"])
     {
-        tell_room(room, "YOU FACE THE INDOMITABLE MIGHT OF THE GREAT GOLDEN DRAGON EMPEROR HIMSELF!");
+        tell_room(room, "YOU FACE THE INDOMITABLE MIGHT OF THE GREAT GOLDEN DRAGON EMPEROR HIMSELF! (gold)");
         
         if(objectp(weapon = new("/d/common/bosses/loot/new/regalith")))
         {
-            tell_room(room, "A GREAT GOLDEN SPEAR APPEARS IN KRASUS'S HANDS, AND MIGHTY CLAWS APPEAR ON HIS HANDS");
+            tell_room(room, "A GREAT GOLDEN SPEAR APPEARS IN KRASUS'S HANDS, AND MIGHTY CLAWS APPEAR ON HIS HANDS (black/gold/red)");
             command("shieldwall min");
             command("unwield weapon");
             command("remove shield");
             weapon->move(this_object());
             weapon->set_property("monster weapon", 1);
             set_spell_chance(15);
-            set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved rush", "sweepingblow", "strength of arm", "light weapon", "impale", "perfect caster" }) );
+            set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved rush", "sweepingblow", "strength of arm", "light weapon", "impale", "perfect caster", "smite" }) );
             command("powerattack max");
         }
         
@@ -313,7 +311,7 @@ void barrage()
     
     if(!checkpoints["barrage"])
     {
-        tell_room(room, "MESSAGE START BARRAGE PHASE");
+        tell_room(room, "MESSAGE START BARRAGE PHASE (black/red)");
         set_spells( ({ "bolt of force", "prayer", "overwhelming presence", "dictum", "slow" }) );
         set_spell_chance(50);
         checkpoints["barrage"] = 1;
@@ -356,12 +354,13 @@ void dragon()
     
     if(!checkpoints["dragon"])
     {
-        tell_room(room, "MESSAGE START DRAGONKIN PHASE");
+        tell_room(room, "MESSAGE START DRAGONKIN PHASE (gold)");
         command("unwield weapon");
         set_race("dragonkin");
         set_body_type("humanoid");
         set_short("DRAGONKIN SHORT DESC");
         set_long("DRAGONKIN LONG DESC");
+        set_property("flying", 1);
         set_spells( ({ "bolt of force", "overwhelming presence", "dictum", "slow", "holy smite", "crushing hand" }) );
         set_monster_feats( ({ "perfect caster", "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dragon affinity", "dragon aspect" }) );
         set_spells( ({ "obsidian flow", "overwhelming presence", "fear", "powerword kill", "earthquake", "bolt of force" }) );
@@ -370,17 +369,17 @@ void dragon()
         checkpoints["dragon"] = 1;
     }
 
-    if(num_healer = present("krey_healer", room))
+    if(healer = present("krey_healer", room))
     {
         if((this_object()->query_hp() * 100) / this_object()->query_max_hp() < 100)
         {
-            tell_room(room, "KRASUS GETTING HEALED MESSAGE");
-            add_hp(100 * num_healer);
+            tell_room(room, "KRASUS GETTING HEALED MESSAGE (green?)");
+            add_hp(100);
         }
     }
     else if(!random(10))
     {
-        tell_room(room, "KRASUS CALLS FOR HEALERS MESSAGE");
+        tell_room(room, "KRASUS CALLS FOR HEALERS MESSAGE (white or gold)");
         
         for(int x = 0; x < HEALER_WAVE; x++)
         {
@@ -393,13 +392,16 @@ void dragon()
         }
     }
     
-    switch(random(2))
+    switch(random(3))
     {
         case 0:
         command("smite " + target->query_name());
         break;
         case 1:
         command("rush " + target->query_name());
+        break;
+        case 2:
+        ground_slam();
         break;
     }
 }
@@ -416,6 +418,7 @@ void waves()
         set_body_type("dragon");
         set_short("DRAGON SHORT DESC");
         set_long("DRAGON LONG DESC");
+        set_property("flying", 1);
         set_spells( ({ "bolt of force", "overwhelming presence", "dictum", "clashing rocks", "crushing hand", "fire storm", "globe of invulnerability" }) );
         set_spell_chance(100);
         new("/cmds/spells/g/_globe_of_invulnerability.c")->use_spell(this_object(), 0, 70, 100, "cleric");
@@ -455,6 +458,30 @@ void wing_flap()
             tell_object(ob, "YOURE THROWN ON YOUR ASS");
             tell_room(room, ob->query_cap_name() + " IS THROWN ON " + ob->query_possessive() + " ASS!", ob);
             ob->cause_typed_damage(ob, "torso", roll_dice(10, 10) + 100, "force");
+            ob->set_tripped(6);
+        }
+        
+    }
+}
+
+void ground_slam()
+{
+    object *attackers;
+    
+    attackers = query_attackers();
+    
+    if(!sizeof(attackers))
+        return;
+    
+    tell_room(room, "KRASUS LIFTS INTO THE AIR ON MIGHTY WINGS AND SLAMS DOWN ONTO THE GROUND!");
+    
+    foreach(object ob in attackers)
+    {
+        if(!SAVING_THROW_D->reflex_save(ob, 85))
+        {
+            tell_object(ob, "YOURE SLAMMED BY THE EARTH!");
+            tell_room(room, ob->query_cap_name() + " IS SLAMMED BY THE EARTH!", ob);
+            ob->cause_typed_damage(ob, "torso", roll_dice(10, 10) + 100, "bludgeoning");
             ob->set_tripped(6);
         }
         
