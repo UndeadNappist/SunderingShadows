@@ -914,3 +914,36 @@ varargs ac_bonus(object attacker)
     
     return bonus;
 }
+
+//flag is 1 for touch attack
+varargs int process_hit(object target, int attack_num, mixed weapon, int flag, int mod)
+{
+    int attack_roll, armor, bonus;
+    
+    if(!objectp(target))
+        return 0;
+    
+    if(!intp(attack_num))
+        attack_num = 1;
+    
+    armor = 0;
+    armor = flag ? target->ac_bonus(this_object()) : target->ac_bonus(this_object()) + (20 - target->query_ac());
+    armor = armor > 80 ? armor + (armor - 80) / 2 : armor;
+    armor = armor > 90 ? armor + (armor - 90) / 4 : armor;
+    armor += target->query_property("sundered");
+    
+    bonus = hit_bonus(target, attack_num, weapon, flag);
+    
+    if(intp(weapon))
+        bonus += weapon;
+    
+    if(target->is_vulnerable_to(this_object()))
+        attack_roll = roll_dice(1, 20, 1);
+    else
+        attack_roll = roll_dice(1, 20);
+    
+    if(attack_roll == 1 || attack_roll == 20 || (attack_roll + bonus) >= armor)
+        return attack_roll;
+    
+    return 0;
+}

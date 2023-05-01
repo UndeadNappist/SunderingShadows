@@ -133,7 +133,7 @@ void execute_attack()
 
     if(sizeof(foes))
     {
-        tell_room("LIGHNING MESSAGE");
+        tell_room("%^C238%^The aura %^C220%^c%^C221%^r%^C222%^a%^C223%^ck%^C222%^l%^C221%^e%^C220%^s %^C238%^with bursts of %^C025%^s%^C031%^c%^C037%^r%^C043%^e%^C037%^a%^C031%^m%^C025%^i%^C031%^n%^C037%^g %^C043%^l%^C037%^i%^C031%^g%^C025%^h%^C031%^t%^C037%^n%^C043%^i%^C037%^n%^C031%^g%^C238%^, %^C240%^c%^C242%^l%^C244%^a%^C243%^w%^C244%^i%^C246%^n%^C248%^g %^C238%^and %^C252%^r%^C250%^i%^C248%^p%^C246%^p%^C244%^i%^C242%^n%^C240%^g %^C238%^at the very essence of all the %^C025%^s%^C031%^o%^C037%^u%^C043%^l%^C049%^s %^C238%^in its reach.%^RESET%^");
             
         foreach(object ob in foes)
         {
