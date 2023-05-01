@@ -10,7 +10,6 @@
 #include <daemons.h>
 #include <magic.h>
 
-#define COREPARTY 4
 #define HEALER_WAVE 5
 
 inherit "/d/common/bosses/avatar_boss.c";
@@ -71,7 +70,7 @@ void create()
     set_hp(125000);
     //set_property("add quest", "Faced the Krasus, The Great Golden Defender!");
     
-    set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved shieldbash", "improved rush" }) );
+    set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved shieldbash", "improved rush", "perfect caster" }) );
     
     set_spell_chance(25);
     
@@ -276,7 +275,7 @@ void spear(object room)
             weapon->move(this_object());
             weapon->set_property("monster weapon", 1);
             set_spell_chance(15);
-            set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved rush", "sweepingblow", "strength of arm", "light weapon", "impale" }) );
+            set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved rush", "sweepingblow", "strength of arm", "light weapon", "impale", "perfect caster" }) );
             command("powerattack max");
         }
         
@@ -358,7 +357,7 @@ void dragon()
         set_short("DRAGONKIN SHORT DESC");
         set_long("DRAGONKIN LONG DESC");
         set_spells( ({ "bolt of force", "overwhelming presence", "dictum", "slow", "holy smite", "crushing hand" }) );
-        set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess" }) );
+        set_monster_feats( ({ "perfect caster", "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess" }) );
         set_spells( ({ "obsidian flow", "overwhelming presence", "fear", "powerword kill", "earthquake", "bolt of force" }) );
         set_spell_chance(50);
         command("dragon_aspect");
@@ -380,7 +379,10 @@ void dragon()
         for(int x = 0; x < HEALER_WAVE)
         {
             if(objectp(healer = new("/d/common/bosses/krey/healer")))
+            {
                 healer->move(environment());
+                this_object()->add_protector(healer);
+            }
         }
     }
     
