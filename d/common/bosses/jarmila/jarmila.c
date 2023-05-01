@@ -96,7 +96,7 @@ void create()
 
    }));
    
-    set_spells(({ "holy aura", "daylight", "celestial brilliance", "wall of fire", "fireball", "sunburst", "meteor swarm", "repel the profane", "cleansing flames", "overwhelming presence" }));
+    set_spells(({ "holy aura", "daylight", "celestial brilliance", "sunburst", "meteor swarm", "repel the profane", "cleansing flames", "overwhelming presence", }));
     set_func_chance(50);
     set_spell_chance(50);
 

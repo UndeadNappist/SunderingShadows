@@ -91,7 +91,7 @@ int hit_func(object target)
     tell_room(environment(holder), "%^C240%^When the warhammer strikes its target, it unleashes a %^C220%^t%^C226%^h%^C220%^underous s%^C226%^h%^C220%^ockwave%^C240%^ that tears through the air, leaving behind a trail of %^C253%^c%^C195%^r%^C153%^a%^C111%^c%^C075%^k%^C253%^ling e%^C195%^n%^C153%^e%^C253%^rgy%^C240%^ that scorches the earth and leaves %^C159%^" + target->query_cap_name() + "%^C240%^ reeling in agony!%^CRST%^");
     target->cause_typed_damage(target, "torso", roll_dice(6, 10) + 10, "electricity");
 
-    objectp(target) && new("/cmds/spells/l/_lightning_arc")->use_spell(holder, target, 50, 100, "druid");
+    objectp(target) && new("/cmds/spells/l/_lightning_arc")->use_spell(holder, target, 50, 100, "mage");
     
     return 0;
 }

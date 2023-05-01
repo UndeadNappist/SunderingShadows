@@ -59,6 +59,7 @@ void die()
         new("/d/common/bosses/loot/" + file)->move(this_object());
         
     catch(this_object()->boss_death_event());
+    environment(this_object())->set_had_players(288);
     
     /*
     attackers = all_living(environment(this_object()));
