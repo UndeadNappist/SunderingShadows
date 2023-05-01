@@ -11,6 +11,7 @@
 #include <magic.h>
 
 #define COREPARTY 4
+#define HEALER_WAVE 5
 
 inherit "/d/common/bosses/avatar_boss.c";
 
@@ -114,7 +115,7 @@ void init()
         command("enhance add light fortification")
         command("enhance armor");
         command("defenders_presence");
-        new("/cmds/spells/2/_shield_of_dawn.c")->use_spell(this_object(), 0, 70, 100, "paladin");
+        new("/cmds/spells/s/_shield_of_dawn.c")->use_spell(this_object(), 0, 70, 100, "paladin");
         new("/cmds/spells/a/_angelic_aspect.c")->use_spell(this_object(), 0, 70, 100, "paladin");
         new("/cmds/spells/a/_archon_aura.c")->use_spell(this_object(), 0, 70, 100, "paladin");
         new("/cmds/spells/s/_seeking_sword.c")->use_spell(this_object(), 0, 70, 100, "paladin");
@@ -322,7 +323,7 @@ void barrage()
             tell_object(ob, "BLEEDING MESSAGE");
         }
         
-        ob && ob->cause_typed_damage(ob, "torso", roll_dice(10, 10) + 200, "piercing");
+        ob && ob->cause_typed_damage(ob, "torso", roll_dice(10, 10) + 200 + (enrage * 100), "piercing");
     }
     
     target = pick_random_target("user");
@@ -349,6 +350,9 @@ void barrage()
 
 void dragon()
 {
+    int num_healer;
+    object healer;
+    
     if(!objectp(room))
         return;
     
@@ -359,11 +363,31 @@ void dragon()
         set_race("dragonkin");
         set_short("DRAGONKIN SHORT DESC");
         set_long("DRAGONKIN LONG DESC");
+        set_spells( ({ "bolt of force", "overwhelming presence", "dictum", "slow", "holy smite", "crushing hand" }) );
         set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess" }) );
         set_spells( ({ "obsidian flow", "overwhelming presence", "fear", "powerword kill", "earthquake", "bolt of force" }) );
         set_spell_chance(50);
         command("dragon_aspect");
         checkpoints["dragon"] = 1;
+    }
+
+    if(num_healer = present("krey_healer", room))
+    {
+        if((query_hp() * 100) / query_max_hp() < 100)
+        {
+            tell_room(room, "KRASUS GETTING HEALED MESSAGE");
+            add_hp(100 * num_healer);
+        }
+    }
+    else if(!random(10))
+    {
+        tell_room(room, "KRASUS CALLS FOR HEALERS MESSAGE");
+        
+        for(int x = 0; x < HEALER_WAVE)
+        {
+            if(objectp(healer = new("/d/common/bosses/krey/healer")))
+                healer->move(environment());
+        }
     }
     
     switch(random(2))
@@ -388,7 +412,9 @@ void waves()
         set_race("dragon");
         set_short("DRAGON SHORT DESC");
         set_long("DRAGON LONG DESC");
+        set_spells( ({ "bolt of force", "overwhelming presence", "dictum", "clashing rocks", "crushing hand", "fire storm", "globe of invulnerability" }) );
         set_spell_chance(100);
+        new("/cmds/spells/g/_globe_of_invulnerability.c")->use_spell(this_object(), 0, 70, 100, "cleric");
         checkpoints["waves"] = 1;
     }
 }   
