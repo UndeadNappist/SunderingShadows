@@ -45,7 +45,7 @@ void create()
     set_property("able to cast", 1);
     set_property("enchantment", 7);
     
-    set_item_bonus("caster level bonus", 5);
+    set_item_bonus("caster level", 5);
     set_item_bonus("fire resistance percent", 25);
     
     set_wield( (: this_object(), "wield_func" :) );

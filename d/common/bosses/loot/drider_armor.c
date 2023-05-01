@@ -9,11 +9,11 @@ void create()
     ::create();
     set_name("Arachnid's Embrace");
     set_id(({ "body armor", "armor", "banded", "drider armor", "arachnids embrace", "embrace" }));
-    set_short("%^C233%^Arachnid's %^C124%^Embrace%^RESET%^");
+    set_short("%^C059%^Arachnid's %^C124%^Embrace%^RESET%^");
     set_obvious_short("%^BOLD%^%^BLACK%^Banded armor with protruding spider legs%^RESET%^");
     set_long("%^BOLD%^%^BLACK%^This suit of body armor is made of plates of a strange metal, banded together with thick leather.  All pieces of it fit perfectly together and allow completely free movement. Spiderweb designs cover the armor, almost seeming to extend outward slightly from the actual armor.  Eight legs are curled up in a mass on the back of the armor, seeming ready to unfurl. As you pay closer attention to the web design you realize it is real web, enchanted to sit on the armor permanently.%^RESET%^\n");
     set_value(150000);
-    set_lore("%^C233%^This armor has been rumored to have been from a matriarch drow in the underdark. It helped her gain immense power within her house, however, when she disappeared on an envoy mission, supposedly she was assassinated - it was seemingly lost forever.%^RESET%^");
+    set_lore("%^C059%^This armor has been rumored to have been from a matriarch drow in the underdark. It helped her gain immense power within her house, however, when she disappeared on an envoy mission, supposedly she was assassinated - it was seemingly lost forever.%^RESET%^");
     set_property("no curse", 1);
     set_property("enchantment", 7);
     set_item_bonus("wisdom", 6);
@@ -29,7 +29,7 @@ void create()
 int wear_func()
 {
 	tell_room(EETO, "%^BOLD%^%^BLACK%^The spider legs on the armor lifts " + ETO->QCN + " off the grorund as they wear it and then retract into place eerily.%^RESET%^", ETO);
-    tell_object(ETO,"%^C233%^You can feel the nature of the armor fill you as you slip on the armor.%^RESET%^");
+    tell_object(ETO,"%^C059%^You can feel the nature of the armor fill you as you slip on the armor.%^RESET%^");
     return 1;
 }
 
