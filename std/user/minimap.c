@@ -24,6 +24,9 @@ string query_blocked_exit(object what, string direction)
     if(!dest)
         return "#";
     
+    if(!stringp(dest))
+        return "#";
+    
     if(clonep(find_object(dest)))
         return "*";
 
