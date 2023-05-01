@@ -58,7 +58,7 @@ void create()
     set_true_seeing(1);
 
     set_hd(75, 10);
-    set_max_hp(100000);
+    set_max_hp(125000);
     set_hp(this_object()->query_max_hp());
     set_new_exp(75, "boss");
     set_overall_ac(-75);
@@ -190,7 +190,7 @@ void comet (object targ){
    //dam = random(500)+100;
    dam = roll_dice(25, 20) + 200;
 
-   if(!"/daemon/saving_throw_d.c"->dex_save(targ,80)){
+   if(!"/daemon/saving_throw_d.c"->dex_save(targ,85)){
 
    tell_room(ETO,"%^C178%^The phoenix spreads its massive wings wide "+
    "and calls down a single massive commet on "+targ->QCN+"%^C178%^ which "+
@@ -249,7 +249,7 @@ void light (object targ){
     //dam = random(300)+100;
 	dam = roll_dice(15, 20) + 200;
 
-   if(!"/daemon/saving_throw_d.c"->will_save(targ,80)){
+   if(!"/daemon/saving_throw_d.c"->will_save(targ,85)){
 
    tell_room(ETO,"%^C127%^The phoenix grabs "+targ->QCN+"%^C127%^ "+
    "and lifts them up to their face. It's eyes blaze "+
@@ -319,10 +319,10 @@ int dam;
    if(!objectp(targ))
        return;
    
-//dam = random(500)+100;
-dam = roll_dice(25, 20) + 200;
+   //dam = random(500)+100;
+   dam = roll_dice(25, 20) + 200;
 
-   if(!"/daemon/saving_throw_d.c"->fort_save(targ,40)){
+   if(!"/daemon/saving_throw_d.c"->fort_save(targ,85)){
 
    tell_room(ETO,"%^C225%^A blast of holy energy from the phoenix's "+
    "eyes blasts towards "+targ->QCN+"%^C225%^ which "+
