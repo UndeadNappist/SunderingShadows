@@ -59,17 +59,21 @@ with its powerful claws.
 OLI
       );
       set_hd(40+random(4),10);
-      ob = new(OBJ+"faxe");
-      if(random(3)) { ob->set_property("monsterweapon",1); }
-      ob->move(TO);
-      command("wield axe");
-      add_money("gold",random(600));
-      add_money("platinum",random(100));
+     
+      if(clonep())
+      {
+          ob = new(OBJ+"faxe");
+          if(random(3)) { ob->set_property("monsterweapon",1); }
+          ob->move(TO);
+          command("wield axe");
+          add_money("gold",random(600));
+          add_money("platinum",random(100));
 
-      ob = new("/d/shadow/obj/weapon/bastard");
-      ob->set_property("monsterweapon",1);
-      ob->move(TO);
-      command("wield sword");
+          ob = new("/d/shadow/obj/weapon/bastard");
+          ob->set_property("monsterweapon",1);
+          ob->move(TO);
+          command("wield sword");
+      }
       set_overall_ac(-20);
          set_monster_feats(({
         "spell reflection",

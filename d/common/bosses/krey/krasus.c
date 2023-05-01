@@ -69,6 +69,7 @@ void create()
     set_sight_bonus(10);
     set_max_hp(125000);
     set_hp(125000);
+    //set_property("add quest", "Faced the Krasus, The Great Golden Defender!");
     
     set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "shield focus", "shieldbash", "resistance", "improved resistance", "increased resistance", "expertise", "parry", "shieldwall", "counter", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved shieldbash", "improved rush" }) );
     
