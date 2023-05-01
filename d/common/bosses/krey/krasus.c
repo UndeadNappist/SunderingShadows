@@ -11,6 +11,7 @@
 #include <magic.h>
 
 #define HEALER_WAVE 5
+#define ENRAGE_TIMER 300
 
 inherit "/d/common/bosses/avatar_boss.c";
 
@@ -28,17 +29,18 @@ mapping checkpoints = ([
                         "waves"   : 0,
                       ]);
                       
-object barrage_room;
-
 void create()
 {
     object obj;
+    
+    ::create();
     
     set_name("krasus");
     set_id( ({ "dragonkin", "defender", "warrior", "golden defender" }) );
     set_short("Krasus, the Great Golden Defender");
     set_long("");
     set_race("human");
+    set_body_type("humanoid");
     set_gender("male");
     set_hd(75, 10);
     set_class("paladin");
@@ -74,7 +76,7 @@ void create()
     
     set_spell_chance(25);
     
-    set_spells( ({ "shield of dawn", "angelic aspect", "archon aura", "prayer", "seeking sword" }) );
+    set_spells( ({ "shield of dawn", "angelic aspect", "archon aura", "prayer", "seeking sword", "true seeing" }) );
     
     if(!clonep())
         return;
@@ -104,9 +106,11 @@ void init()
     if(!player || !room)
         return;
     
+    /* commented for testing purposes
     if (wizardp(player) || player->query_true_invis()) {
         return;
     }
+    */
     
     if(!buffed)
     {
@@ -121,6 +125,7 @@ void init()
         new("/cmds/spells/a/_angelic_aspect.c")->use_spell(this_object(), 0, 70, 100, "paladin");
         new("/cmds/spells/a/_archon_aura.c")->use_spell(this_object(), 0, 70, 100, "paladin");
         new("/cmds/spells/s/_seeking_sword.c")->use_spell(this_object(), 0, 70, 100, "paladin");
+        new("/cmds/spells/t/_true_seeing.c")->use_spell(this_object(), 0, 70, 100, "oracle");
         buffed = 1;
     }        
 }
@@ -246,7 +251,7 @@ void shield(object room)
         command("shieldbash " + target->query_name());
         break;
         case 2:
-        command("rush " target->query_name());
+        command("rush " + target->query_name());
         break;
         case 3:
         command("shield_charge");
@@ -304,7 +309,7 @@ void spear(object room)
 //BARRAGE PHASE
 void barrage()
 {
-    object *targets;
+    object *targets, target;
     
     if(!checkpoints["barrage"])
     {
@@ -344,7 +349,7 @@ void barrage()
 void dragon()
 {
     int num_healer;
-    object healer;
+    object healer, target;
     
     if(!objectp(room))
         return;
@@ -354,6 +359,7 @@ void dragon()
         tell_room(room, "MESSAGE START DRAGONKIN PHASE");
         command("unwield weapon");
         set_race("dragonkin");
+        set_body_type("humanoid");
         set_short("DRAGONKIN SHORT DESC");
         set_long("DRAGONKIN LONG DESC");
         set_spells( ({ "bolt of force", "overwhelming presence", "dictum", "slow", "holy smite", "crushing hand" }) );
@@ -366,7 +372,7 @@ void dragon()
 
     if(num_healer = present("krey_healer", room))
     {
-        if((query_hp() * 100) / query_max_hp() < 100)
+        if((this_object()->query_hp() * 100) / this_object()->query_max_hp() < 100)
         {
             tell_room(room, "KRASUS GETTING HEALED MESSAGE");
             add_hp(100 * num_healer);
@@ -376,7 +382,7 @@ void dragon()
     {
         tell_room(room, "KRASUS CALLS FOR HEALERS MESSAGE");
         
-        for(int x = 0; x < HEALER_WAVE)
+        for(int x = 0; x < HEALER_WAVE; x++)
         {
             if(objectp(healer = new("/d/common/bosses/krey/healer")))
             {
@@ -406,6 +412,7 @@ void waves()
     {
         tell_room(room, "MESSAGE START DRAGON/WAVES PHASE");
         set_race("dragon");
+        set_body_type("dragon");
         set_short("DRAGON SHORT DESC");
         set_long("DRAGON LONG DESC");
         set_spells( ({ "bolt of force", "overwhelming presence", "dictum", "clashing rocks", "crushing hand", "fire storm", "globe of invulnerability" }) );
@@ -433,7 +440,7 @@ void wing_flap()
 {
     object *attackers;
     
-    attackers = query_attackers;
+    attackers = query_attackers();
     
     if(!sizeof(attackers))
         return;
@@ -442,7 +449,7 @@ void wing_flap()
     
     foreach(object ob in attackers)
     {
-        if(!SAVING_THROW_D->reflex_save(ob, 85);
+        if(!SAVING_THROW_D->reflex_save(ob, 85))
         {
             tell_object(ob, "YOURE THROWN ON YOUR ASS");
             tell_room(room, ob->query_cap_name() + " IS THROWN ON " + ob->query_possessive() + " ASS!", ob);
@@ -458,7 +465,7 @@ void fire_breath()
     object *attackers;
     int dam;
     
-    attackers = query_attackers;
+    attackers = query_attackers();
     
     if(!sizeof(attackers))
         return;
@@ -471,7 +478,7 @@ void fire_breath()
         tell_object(ob, "YOURE BURNED TO A CRISP");
         tell_room(room, ob->query_cap_name() + " IS BURNED TO A CRISP!", ob);
         
-        if(!SAVING_THROW_D->reflex_save(ob, 85);
+        if(!SAVING_THROW_D->reflex_save(ob, 85))
             ob->cause_typed_damage(ob, "torso", dam, "fire");
         else
             ob->cause_typed_damage(ob, "torso", dam / 2, "fire");        

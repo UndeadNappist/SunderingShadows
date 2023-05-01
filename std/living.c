@@ -161,6 +161,7 @@ string query_visual_race()
 void set_race(string str)
 {
     set("race", str);
+    //!userp() && init_limb_data();
     add_id(str);
 }
 
