@@ -229,7 +229,7 @@ void shield(object room)
     
     if(!checkpoints["shield"])
     {
-        tell_room(room, "MESSAGE START SHIELD PHASE (gold)");
+        tell_room(room, "Krasus bangs his weapon against his shield and slams it into the ground, daring you to attack!");
         set_spells( ({ "earthquake", "prayer", "seeking sword", "overwhelming presence", "earth reaver" }) );
         set_spell_chance(10);
         checkpoints["shield"] = 1;
@@ -267,11 +267,11 @@ void spear(object room)
     
     if(!checkpoints["spear"])
     {
-        tell_room(room, "YOU FACE THE INDOMITABLE MIGHT OF THE GREAT GOLDEN DRAGON EMPEROR HIMSELF! (gold)");
+        tell_room(room, "Krasus tosses his shield and kopesh aside and extends his hand.");
         
         if(objectp(weapon = new("/d/common/bosses/loot/new/regalith")))
         {
-            tell_room(room, "A GREAT GOLDEN SPEAR APPEARS IN KRASUS'S HANDS, AND MIGHTY CLAWS APPEAR ON HIS HANDS (black/gold/red)");
+            tell_room(room, "A great golden spear appear in his hand, covered in menacing barbs.");
             command("shieldwall min");
             command("unwield weapon");
             command("remove shield");
@@ -311,7 +311,7 @@ void barrage()
     
     if(!checkpoints["barrage"])
     {
-        tell_room(room, "MESSAGE START BARRAGE PHASE (black/red)");
+        tell_room(room, "Krasus raises his spear and cries to the heavens, and the sky becomes filled with spinning blades.");
         set_spells( ({ "bolt of force", "prayer", "overwhelming presence", "dictum", "slow" }) );
         set_spell_chance(50);
         checkpoints["barrage"] = 1;
@@ -354,7 +354,7 @@ void dragon()
     
     if(!checkpoints["dragon"])
     {
-        tell_room(room, "MESSAGE START DRAGONKIN PHASE (gold)");
+        tell_room(room, "Krasus's skin becomes scales, his hands become claws and from his back sprout mighty wings!");
         command("unwield weapon");
         set_race("dragonkin");
         set_body_type("humanoid");
@@ -379,7 +379,7 @@ void dragon()
     }
     else if(!random(10))
     {
-        tell_room(room, "KRASUS CALLS FOR HEALERS MESSAGE (white or gold)");
+        tell_room(room, "Krasus calls for the might of the Clergy of Kreysneothosies to aid him in battle!");
         
         for(int x = 0; x < HEALER_WAVE; x++)
         {
@@ -413,7 +413,7 @@ void waves()
     
     if(!checkpoints["waves"])
     {
-        tell_room(room, "MESSAGE START DRAGON/WAVES PHASE");
+        tell_room(room, "Krasus grows in size and transforms into a great and powerful golden dragon!");
         set_race("dragon");
         set_body_type("dragon");
         set_short("DRAGON SHORT DESC");
