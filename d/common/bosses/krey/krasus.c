@@ -507,7 +507,7 @@ void boss_death_event()
     
     tell_room(environment(this_object()), "KRASUS DIES ROOM MESSAGE");
     //broadcast_area("/d/common/bosses/faceless/rooms/", "FLASHY KRASUS DIES MESSAGE");
-    message("broadcast", "%^BLACK%^BOLD%^The balance of power in the world shifts towards %^CYAN%^EVIL%^RESET%^", users());
+    message("broadcast", "%^BLACK%^BOLD%^The balance of power in the world shifts towards %^CYAN%^CHAOTIC EVIL%^RESET%^", users());
     WORLD_EVENTS_D->kill_event("Krasus has been defeated");
     WORLD_EVENTS_D->inject_event((["Krasus has been defeated" : (["start message" : "%^BOLD%^%^BLACK%^Krasus has been defeated!", "event type" : "exp bonus", "length" : 720, "notification" : "5% Bonus Exp", "event name" : "Krasus has been defeated", "modifier" : 5, "announce" : 1, "announce to" : "world", "alignments" : ({ 6, 7, 9 }) ]), ]));
 }  
