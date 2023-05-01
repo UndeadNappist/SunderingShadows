@@ -25,7 +25,7 @@ void create()
 
 string query_cast_string()
 {
-    return "%^RESET^%^C244%^" + caster->QCN + " %^RESET%^%^C244%^speaks words of %^RESET%^%^C052%^a%^C053%^r%^C054%^c%^C055%^a%^C053%^n%^C052%^e %^RESET%^%^C052%^h%^C053%^o%^C054%^r%^C055%^r%^C053%^o%^C052%^r%^RESET%^%^C244%^.%^CRST%^";
+    return "%^RESET%^%^C244%^" + caster->QCN + " %^RESET%^%^C244%^speaks words of %^RESET%^%^C052%^a%^C053%^r%^C054%^c%^C055%^a%^C053%^n%^C052%^e %^RESET%^%^C052%^h%^C053%^o%^C054%^r%^C055%^r%^C053%^o%^C052%^r%^RESET%^%^C244%^.%^CRST%^";
 }
 
 int preSpell()

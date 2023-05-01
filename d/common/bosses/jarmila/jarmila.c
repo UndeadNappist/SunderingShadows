@@ -178,7 +178,7 @@ void comet (object targ){
    if(!"/daemon/saving_throw_d.c"->dex_save(targ,85)){
 
    tell_room(ETO,"%^C178%^The phoenix spreads its massive wings wide "+
-   "and calls down a single massive commet on "+targ->QCN+"%^C178%^ which "+
+   "and calls down a single massive comet on "+targ->QCN+"%^C178%^ which "+
    "engulfs them!%^CRST%^",targ);
    tell_object(targ,"%^C178%^The phoenix spreads its wings and it calls a "+
    "massive comet that plummets towards you!%^CRST%^");
@@ -195,7 +195,7 @@ void comet (object targ){
    
    dam = dam/2;
    tell_room(ETO,"%^C178%^The phoenix spreads its massive wings wide and "+
-   "calls down a single massive commet on "+targ->QCN+"%^C178%^!%^CRST%^",targ);
+   "calls down a single massive comet on "+targ->QCN+"%^C178%^!%^CRST%^",targ);
    tell_object(targ,"%^C178%^The phoenix spreads its wings and it calls a "+
    "massive comet that plummets towards you!%^CRST%^");
    tell_object(targ,"%^C178%^You jump out of the way just in time, "+

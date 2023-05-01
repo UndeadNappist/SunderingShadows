@@ -60,7 +60,7 @@ void rushit(object targ)
 
 	tell_object(targ,"%^C093%^The rat charges at you and covers you in a cloud of fell liquid.%^CRST%^");
 			tell_room(ETO,"%^C093%^"+targ->query_cap_name()+" %^C093%^screams in"+
-			" pain as the rat covers "+targ->query_objective()+"%^C093%^with poisonous liquid.%^CRST%^",targ);
+			" pain as the rat covers "+targ->query_objective()+"%^C093%^ with poisonous liquid.%^CRST%^",targ);
 	if(!PLAYER_D->immunity_check(targ, "poison")) targ->add_poisoning(50);
     TO->force_me("rush " + targ->query_name());
 }

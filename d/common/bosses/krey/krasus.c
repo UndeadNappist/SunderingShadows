@@ -71,7 +71,7 @@ void create()
     
     set_spell_chance(25);
     
-    set_spells( ({ "shield of dawn", "stone body", "angelic aspect", "archon aura", "prayer", "seeking sword" }) );
+    set_spells( ({ "shield of dawn", "angelic aspect", "archon aura", "prayer", "seeking sword" }) );
     
     if(!clonep())
         return;
@@ -120,6 +120,16 @@ void init()
         new("/cmds/spells/s/_seeking_sword.c")->use_spell(this_object(), 0, 70, 100, "paladin");
         buffed = 1;
     }        
+}
+
+void enrage(object room)
+{   
+    if(!objectp(room))
+        return;
+    
+    tell_room(room, "%^YELLOW%^Krasus says : %^RED%^%^BOLD%^Your time is up, foolish mortals...%^RESET%^");
+    tell_room(room, "%^RED%^BOLD%^KRASUS ENRAGES!%^RESET%^");
+    enrage = 1;
 }
 
 void heart_beat()
@@ -212,7 +222,8 @@ void shield(object room)
     if(!checkpoints["shield"])
     {
         tell_room(room, "MESSAGE START SHIELD PHASE");
-        set_spell_chance(0);
+        set_spells( ({ "earthquake", "prayer", "seeking sword", "overwhelming presence", "earth reaver" }) );
+        set_spell_chance(10);
         checkpoints["shield"] = 1;
     }
     
@@ -258,7 +269,7 @@ void spear(object room)
             command("remove shield");
             weapon->move(this_object());
             weapon->set_property("monster weapon", 1);
-            set_spell_chance(0);
+            set_spell_chance(15);
             set_monster_feats( ({ "damage resistance", "improved damage resistance", "weapon focus", "rush", "resistance", "improved resistance", "increased resistance", "parry", "weapon bond", "armor bond", "penetrating strike", "layonhands", "smite", "dreadful carnage", "cornugon smash", "shatter defenses", "intimidating prowess", "dazzling display", "improved rush", "sweepingblow", "strength of arm", "light weapon", "impale" }) );
             command("powerattack max");
         }
@@ -293,14 +304,15 @@ void barrage()
     if(!checkpoints["barrage"])
     {
         tell_room(room, "MESSAGE START BARRAGE PHASE");
-        set_spell_chance(0);
+        set_spells( ({ "bolt of force", "prayer", "overwhelming presence", "dictum", "slow" }) );
+        set_spell_chance(50);
         checkpoints["barrage"] = 1;
     }
 
     if(!sizeof(targets = this_object()->query_attackers()))
         return;
     
-    tell_room(room, "BARRAGE MESSAGE");
+    tell_room(room, "SPEAR BARRAGE MESSAGE");
     
     foreach(object ob in targets)
     {
@@ -342,7 +354,7 @@ void dragon()
     
     if(!checkpoints["dragon"])
     {
-        tell_room(room, "MESSAGE START DRAGON PHASE");
+        tell_room(room, "MESSAGE START DRAGONKIN PHASE");
         command("unwield weapon");
         set_race("dragonkin");
         set_short("DRAGONKIN SHORT DESC");
@@ -372,7 +384,7 @@ void waves()
     
     if(!checkpoints["waves"])
     {
-        tell_room(room, "MESSAGE START WAVES PHASE");
+        tell_room(room, "MESSAGE START DRAGON/WAVES PHASE");
         set_race("dragon");
         set_short("DRAGON SHORT DESC");
         set_long("DRAGON LONG DESC");

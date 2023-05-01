@@ -9,7 +9,7 @@ void create() {
 void special_tier1(object wielder,object victim) {
     tell_object(wielder,"%^RESET%^%^MAGENTA%^A precisely directed hint of %^RESET%^pow%^BOLD%^%^BLACK%^e%^RESET%^r %^MAGENTA%^leaves the arrow as it plunges into "+victim->QCN+", and "+victim->QS+" blinks sightlessly!%^RESET%^");
     tell_object(victim,"%^RESET%^%^MAGENTA%^"+wielder->QCN+" lands a shot "+wielder->QP+", and a %^RESET%^ha%^BOLD%^%^BLACK%^z%^RESET%^e %^MAGENTA%^of darkness briefly blurs your vision!%^RESET%^");
-    tell_room(environment(wielder),"%^RESET%^%^MAGENTA%^"+wielder->QCN+" plunges "+wielder->QP+" arrow it into "+victim->QCN+", and "+victim->QS+" blinks sightlessly!%^RESET%^",({wielder,victim}));
+    tell_room(environment(wielder),"%^RESET%^%^MAGENTA%^"+wielder->QCN+" plunges "+wielder->QP+" arrow into "+victim->QCN+", and "+victim->QS+" blinks sightlessly!%^RESET%^",({wielder,victim}));
     victim->set_temporary_blinded(1);
     victim->do_damage(victim->return_target_limb(),roll_dice(tier,4));
 }
