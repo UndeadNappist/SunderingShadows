@@ -74,15 +74,15 @@ void create()
     set_property("no steal", 1);
     set_property("no dominate", 1);
     set_property("no hold", 1);
-    set_property("no paralyze", 0);
-    set_property("no stun", 0);
+    set_property("no paralyze", 1);
+    set_property("no stun", 1);
     set_property("no bows", 1);
 	set_property("no fear", 1);
     set_property("cast and attack", 1);
     set_property("function and attack", 1);
 
     set_monster_feats(({
-	        "spell penetration", "greater spell penetration", "perfect caster"
+	        "spell penetration", "greater spell penetration", "perfect caster", "spell power", "greater spell power"
     }));
 
    set_funcs(({
@@ -96,7 +96,7 @@ void create()
 
    }));
    
-    set_spells(({ "holy aura", "daylight", "celestial brilliance", "sunburst", "meteor swarm", "repel the profane", "cleansing flames", "overwhelming presence", }));
+    set_spells(({ "holy aura", "daylight", "celestial brilliance", "sunburst", "repel the profane", "cleansing flames", "overwhelming presence", "eye of the sun" }));
     set_func_chance(50);
     set_spell_chance(50);
 
@@ -145,6 +145,20 @@ void init()
     }
 }
 
+object pick_random_target()
+{
+    object* attackers;
+    if (!objectp(TO)) {
+        return 0;
+    }
+
+    attackers = this_object()->query_attackers();
+
+    if (!sizeof(attackers)) {
+        return 0;
+    }
+    return attackers[random(sizeof(attackers))];
+}
 
 int query_paralyzed()
 {
@@ -166,9 +180,15 @@ new("/cmds/spells/s/_sunburst.c")->use_spell(TO, targ, 80, 100, "cleric");
 
 void comet (object targ){
 
-int dam;
-//dam = random(500)+100;
-	dam = roll_dice(25, 20) + 200;
+   int dam;
+   
+   targ = pick_random_target("user");
+   
+   if(!objectp(targ))
+       return;
+   
+   //dam = random(500)+100;
+   dam = roll_dice(25, 20) + 200;
 
    if(!"/daemon/saving_throw_d.c"->dex_save(targ,80)){
 
@@ -219,8 +239,14 @@ void fire (object targ){
 
 void light (object targ){
 
-int dam;
-//dam = random(300)+100;
+   int dam;
+    
+   targ = pick_random_target("user");
+   
+   if(!objectp(targ))
+       return;
+   
+    //dam = random(300)+100;
 	dam = roll_dice(15, 20) + 200;
 
    if(!"/daemon/saving_throw_d.c"->will_save(targ,80)){
@@ -287,6 +313,12 @@ void reinforce(object ob){
 void holy (object targ){
 
 int dam;
+
+   targ = pick_random_target("user");
+   
+   if(!objectp(targ))
+       return;
+   
 //dam = random(500)+100;
 dam = roll_dice(25, 20) + 200;
 
