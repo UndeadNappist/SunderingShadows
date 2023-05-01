@@ -14,9 +14,9 @@ void create(){
 
 void reset(){
    ::reset();
-   if(!present("avatar")){
-      new("/d/common/bosses/jarmila/jarmila.c")->move(TO);
-   }
+   //if(!present("avatar")){
+   //   new("/d/common/bosses/jarmila/jarmila.c")->move(TO);
+   //}
 }
 
 void pick_critters(){

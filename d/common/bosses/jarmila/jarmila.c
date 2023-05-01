@@ -16,25 +16,8 @@ void create()
     ::create();
     set_name("Avatar of Jarmila");
     set_id(({ "great golden pheonix", "pheonix", "avatar", "jarmila" }));
-    set_short("%^C226%^Gre%^C196%^a%^C226%^t G%^C230%^"+
-		"o%^C226%^lden Phoe%^C230%^n%^C226%^ix%^C226%^, "+
-		"%^C160%^Av%^C124%^a%^C160%^tar of J%^C124%^"+
-		"a%^C160%^rmila%^CRST%^");
-    set_long("%^C197%^This immense beast is almost beyond "+
-	    "all mortal %^C088%^comprehension%^C197%^ and %^C226%^power%^C197%^. "+
-	    "Its entire body is formed from %^C124%^blazing divine fire%^C197%^ "+
-        "and looks like a giant bird. Its %^C166%^two feet%^C197%^ are each "+
-	    "the size of %^C058%^large wagons%^C197%^ and extend to "+
-	    "%^C244%^wicked claws%^C197%^ each the size of a man. "+
-	    "Its %^C124%^two wings%^C197%^ extend two hundred feet in "+
-	    "either direction and when they beat the whole area is "+
-	    "bathed in %^C220%^insufferable heat%^C197%^. Long tendrils "+
-	    "of %^C124%^flame%^C197%^ extend to form a tail. The most "+
-	    "%^C124%^ferocious fire%^C197%^ is reserved for its face, "+
-	    "where two eyes as %^C228%^bright as the sun%^C197%^ regard "+
-	    "the area with unknowable amounts of wisdom. Overall this "+
-	    "avatar is a beast none but the most daring would dare to "+
-	    "face.%^CRST%^\n");
+    set_short("%^C226%^Gre%^C196%^a%^C226%^t G%^C230%^o%^C226%^lden Phoe%^C230%^n%^C226%^ix%^C226%^%^C160%^Av%^C124%^a%^C160%^tar of J%^C124%^a%^C160%^rmila%^CRST%^");
+    set_long("%^C197%^This immense beast is almost beyond all mortal %^C088%^comprehension%^C197%^ and %^C226%^power%^C197%^. Its entire body is formed from %^C124%^blazing divine fire%^C197%^ and looks like a giant bird. Its %^C166%^two feet%^C197%^ are each the size of %^C058%^large wagons%^C197%^ and extend to %^C244%^wicked claws%^C197%^ each the size of a man. Its %^C124%^two wings%^C197%^ extend two hundred feet in either direction and when they beat the whole area is bathed in %^C220%^insufferable heat%^C197%^. Long tendrils of %^C124%^flame%^C197%^ extend to form a tail. The most %^C124%^ferocious fire%^C197%^ is reserved for its face, where two eyes as %^C228%^bright as the sun%^C197%^ regard the area with unknowable amounts of wisdom. Overall this avatar is a beast none but the most daring would dare to face.%^CRST%^\n");
 
     set_gender("female");
     set_race("phoenix");
@@ -78,6 +61,8 @@ void create()
     set_property("no stun", 1);
     set_property("no bows", 1);
 	set_property("no fear", 1);
+    set_property("confusion_immunity", 1);
+    set_property("fear_immunity", 1);
     set_property("cast and attack", 1);
     set_property("function and attack", 1);
 
