@@ -104,6 +104,7 @@
     "/d/magic/obj/shields/ashra", \
     "/d/magic/obj/shields/callamir", \
     "/d/magic/obj/shields/cevahir", \
+    "/d/magic/obj/shields/edea", \
     "/d/magic/obj/shields/jarmila", \
     "/d/magic/obj/shields/khyron", \
     "/d/magic/obj/shields/kismet", \
