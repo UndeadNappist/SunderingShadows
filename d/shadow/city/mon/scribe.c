@@ -35,7 +35,7 @@ void create() {
     set_stats("constitution",7);
     set_max_mp(0);
     set_mp(query_max_mp());
-    set_hd(1, 1);
+    set_hd(19, 3);
     set_exp(10);
     set_max_hp(query_hp());
     set_max_sp(query_hp());
