@@ -21,7 +21,7 @@ void create() {
     set_smell("default","%^C136%^You smell the odors of pen ink and paper.%^CRST%^");
     set_listen("default","%^C130%^You hear the sounds of papers being shuffled.%^CRST%^");
     set_exits( ([
-      //"lobby": ROOMS"serpentnest"
+      //"southeast": ROOMS"serpentnest"
         ]) );
     set_items(([
 	({"bookshelf","books"}) : "%^C143%^This built-in %^C240%^bookshelf %^C143%^contains a number of reference books on subjects ranging from languages and geography to math and science. It also appears to hold some of the scribe’s own personal collection.%^CRST%^",

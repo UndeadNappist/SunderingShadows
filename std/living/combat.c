@@ -947,3 +947,90 @@ varargs int process_hit(object target, int attack_num, mixed weapon, int flag, i
     
     return 0;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// This section is migrated from combat_d.c for purposes of optimization.
+//
+// -- Tlaloc --
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+int sneak_attack_damage(object targ, object weapon)
+{
+    int sneak;
+    
+    if(!objectp(targ))
+        return 0;
+
+    sneak = 0;
+
+
+    if(is_class("thief") || is_class("peerless_archer") || is_class("crimson_templar"))
+    {
+        float red, total_red;
+
+        //Sneak attack dice section
+        sneak = query_prestige_level("thief") / 2;
+        //Arcane trickster sneak attack progression
+        sneak += (query_class_level("arcane_trickster") / 3);
+        sneak += (1 + query_class_level("crimson_templar") / 4);
+        if(objectp(weapon) && weapon->is_lrweapon())
+            sneak += (1 + query_class_level("peerless_archer") / 4);
+
+        if(targ->has_feat("mighty resilience"))
+            red += 1.00;
+            //sneak = 0;
+
+        //Armor bond sneak attack resistance
+        if(targ->query_property("fortification 75"))
+            red += 0.75;
+            //sneak /= 4;
+        else if(targ->query_property("fortification 50"))
+            red += 0.50;
+            //sneak /= 2;
+        else if(targ->query_property("fortification 25"))
+            red += 0.25;
+            //sneak = (sneak * 3) / 4;
+
+        if(targ->has_feat("undead graft"))
+            red += 0.50;
+            //sneak /= 2;
+
+        //Barbarians/Thieves with danger sense gain resistance to sneak attacks
+        if(targ->has_feat("danger sense") && targ->query_level() + 4 > query_level())
+            red += 0.50;
+            //sneak /= 2;
+
+        //Hexblades gain slight resistance to sneak attacks
+        if(targ->is_class("hexblade"))
+            red += 0.25;
+            //sneak = (sneak * 3) / 4;
+
+        if(this_object()->query_blind() || this_object()->light_blind())
+        {
+            if(has_feat("blindfight"))
+                red += 0.50;
+                //sneak /= 2;
+            else
+                red = 1.00;
+                //sneak = 0;
+        }
+
+        if(red >= 1.00)
+        {
+            sneak = 0;
+        }
+        else
+        {
+            total_red = to_float(sneak) * red;
+            sneak -= to_int(total_red);
+            sneak = sneak < 0 ? 0 : sneak;
+        }
+    }
+    
+    if(!sneak)
+        return 0;
+    
+    return roll_dice(sneak, 6);
+}
