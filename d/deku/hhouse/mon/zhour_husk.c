@@ -155,6 +155,7 @@ void rush_em()
         if(vics[x]->query_true_invis()) continue;
         if(!interactive(vics[x])) continue;
         TO->force_me("rush "+vics[x]->query_name());
+        TO->force_me("kill "+vics[x]->query_name());
         return;
     }
 } 
