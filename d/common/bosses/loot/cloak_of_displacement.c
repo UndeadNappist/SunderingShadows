@@ -48,10 +48,11 @@ int wear_fun()
             owner = holder->query_true_name();
             tell_object(holder, "%^C159%^You feel an otherworldly power suffusing your body as you attune to the cloak, granting you mastery over stealth and deception.%^CRST%^");
         }
-        else
-        {
-            tell_object(holder, "%^C135%^You sense that the cloak is not meant for you, and that its power could overwhelm and consume you if you are not careful.%^CRST%^");
-            return 0;
+        else{
+            if(owner != holder->query_true_name()){
+                tell_object(holder, "%^C135%^You sense that the cloak is not meant for you, and that its power could overwhelm and consume you if you are not careful.%^CRST%^");
+                return 0;
+            }
         }
     }
     
