@@ -12,7 +12,7 @@ void create(){
     set_body_type("quadruped");
     set_gender("neuter");
     set_property("full attacks",1);
-    set("aggressive", "sicem");
+    set("aggressive", "aggro_check");
     set_alignment(1);
     set_race("foo creature");
     set_attack_limbs(({"mouth", "right claw", "left claw"}));
@@ -84,10 +84,10 @@ void create(){
     set_property("spell damage resistance", 20);
 }
 
-void init(){
+void aggro_check(){
     object player = this_player();
-    ::init();
     if(avatarp(player)) return;
-    if(player->query_alignment()%3 == 0) force_me("kill "+player->query_name());
+    if(!player->query_alignment()%3) force_me("kill "+player->query_name());
+    return;
 }
 

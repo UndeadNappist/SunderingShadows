@@ -19,8 +19,8 @@ void create(){
    set_exits(([
       "library" : "/d/islands/serakii/rooms/caer/library",
       "lounge" : "/d/dagger/avalounge",
-      "depths" : "/d/avrooms/eilistraee/thedepths",
-      "depths2" : "/d/avrooms/eilistraee/thedepths2",
+      "depths" : "/d/av_rooms/eilistraee/thedepths",
+      "depths2" : "/d/av_rooms/eilistraee/thedepths2",
    ]));
 }
 

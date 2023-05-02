@@ -14,7 +14,7 @@ void create() {
         set_smell("default","You smell nothing but the brine of the depths and taste only salt water.");
         set_listen("default","You hear nothing but the water as it thunders relentlessly against your ear drums.");
         set_exits(([
-            "down" : "/d/av_rooms/eilistraee/thedepths2";
-		    set_search("default","You find water.");
+            "down" : "/d/av_rooms/eilistraee/thedepths2",
 		]));
+		    set_search("default","You find water.");
 }
