@@ -612,7 +612,7 @@ int is_vulnerable_to(object source)
     if(attacker && attacker != source)
         return 1;
 
-    if(attacker && attacker == source && has_feat("shatter defenses"))
+    if(attacker && attacker == source && attacker->has_feat("shatter defenses"))
     {
         if(this_object()->query_property("effect_frightened") || this_object()->query_property("effect_panicked") || this_object()->query_property("effect_shaken"))
             return 1;
@@ -971,7 +971,7 @@ int sneak_attack_damage(object targ, object weapon)
         float red, total_red;
 
         //Sneak attack dice section
-        sneak = query_prestige_level("thief") / 2;
+        sneak = query_prestige_level("thief") / 3;
         //Arcane trickster sneak attack progression
         sneak += (query_class_level("arcane_trickster") / 3);
         sneak += (1 + query_class_level("crimson_templar") / 4);
