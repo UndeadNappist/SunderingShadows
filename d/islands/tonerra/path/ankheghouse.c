@@ -38,6 +38,9 @@ int GoThroughDoor(){
 void reset(){
 	object ob;
 	::reset();
+    
+    if(!clonep())
+        return;
 
 	if(!present("ankheg")){
 		ob = new(MON+"ankheg");
