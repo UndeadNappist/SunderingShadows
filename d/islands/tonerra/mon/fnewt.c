@@ -31,11 +31,15 @@ hind legs, he wields weapons in the powerful clawed hands.
 OLI
       );
       set_hd(36 + random(6), 10);
-      ob = new("/d/shadow/obj/weapon/bastard");
-      ob->set_property("monsterweapon", 1);
-      ob->set_property("enchantment", 5);
-      ob->move(TO);
-      command("wield sword");
+      
+      if(clonep())
+      {
+          ob = new("/d/shadow/obj/weapon/bastard");
+          ob->set_property("monsterweapon", 1);
+          ob->set_property("enchantment", 5);
+          ob->move(TO);
+          command("wield sword");
+      }
       add_money("gold", random(500));
       add_money("platinum", random(50));
       set_damage_bonus(8);
@@ -113,10 +117,14 @@ with its powerful claws.
 OLI
       );
       set_hd(34+random(10),10);
-      ob = new("/d/shadow/obj/weapon/mace");
-      ob->set_property("monsterweapon",1);
-      ob->move(TO);
-      command("wield mace");
+      
+      if(clonep())
+      {
+          ob = new("/d/shadow/obj/weapon/mace");
+          ob->set_property("monsterweapon",1);
+          ob->move(TO);
+          command("wield mace");
+      }
       set_overall_ac(-55);
       set_damage_bonus(7);
       set_guild_level("cleric",44);
@@ -157,7 +165,8 @@ OLI
     if(!clonep())
         return;
     
-    if(!random(20)) {
+    
+    if(clonep() && !random(20)) {
       ob = new("/d/common/obj/brewing/herb_special_inherit");
       ob->set_herb_name("eye of newt");
       ob->move(TO);

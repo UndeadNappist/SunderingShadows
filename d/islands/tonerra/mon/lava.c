@@ -122,8 +122,10 @@ int newt()
         }
     }
 
-    tmp = new("/d/common/obj/weapon/spear_lg");
-    tmp->set_property("enchantment",3);
+    if(clonep())
+    {
+        tmp = new("/d/common/obj/weapon/spear_lg");
+        tmp->set_property("enchantment",3);
 
     for(i=0;i<roll_dice(3,4);i++)
     {
@@ -147,6 +149,8 @@ int newt()
             ob->do_hits(targ, tmp, "torso");
             if(objectp(targ) && objectp(ob)) { targ->remove_attacker(ob); }            
         }
+    }
+    
     }
 
     tell_room(TO,"%^BOLD%^%^BLUE%^Mounted firenewts appear from the rocks and "

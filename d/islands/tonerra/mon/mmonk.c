@@ -29,9 +29,12 @@ void create()
     if (random(2)) {
         set_property("no stab", 1);
     }
-    new(OBJ + "mrobe")->move(TO);
-    command("wear robe");
-    new(OBJ + "mask")->move(TO);
+    if(clonep())
+    {
+        new(OBJ + "mrobe")->move(TO);
+        command("wear robe");
+        new(OBJ + "mask")->move(TO);
+    }
     if (random(2)) {
         set_property("no rush", 1);
     }

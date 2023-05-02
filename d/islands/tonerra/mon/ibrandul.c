@@ -67,9 +67,13 @@ void create()
     set_spell_chance(100);
     add_money("platinum", random(100000));
     set_property("no paralyze", 1);
-    ob = new("/d/common/obj/brewing/herb_special_inherit");
-    ob->set_herb_name("divine essence");
-    ob->move(TO);
+    
+    if(clonep())
+    {
+        ob = new("/d/common/obj/brewing/herb_special_inherit");
+        ob->set_herb_name("divine essence");
+        ob->move(TO);
+    }
     set_resistance_percent("divine", 100);
     set_resistance_percent("negative energy", 100);
     set_resistance_percent("fire", 50);

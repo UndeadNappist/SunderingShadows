@@ -39,7 +39,7 @@ void create()
     summoned = ({});
     set_property("swarm", 1);
     set_new_exp(25, "normal");
-    if (!random(2)) {
+    if (clonep() && !random(2)) {
         ob = new("/d/common/obj/brewing/herb_special_inherit");
         ob->set_herb_name("living stone");
         ob->move(TO);

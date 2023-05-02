@@ -37,7 +37,7 @@ void create()
     set_overall_ac(-6 - random(13));
     set_stats("strength", 20);
     set("aggressive", 25);
-    if (!random(2)) {
+    if (clonep() && !random(2)) {
         ob = new("/d/common/obj/brewing/herb_special_inherit");
         ob->set_herb_name("tendril of flame");
         ob->move(TO);
