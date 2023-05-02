@@ -13,6 +13,7 @@ void create(){
       "west" : ROOMS"east2",
       "south" : ROOMS"thief_tailor",
    ]));
+   
    set_invis_exits(({"south"}));
 }
 
