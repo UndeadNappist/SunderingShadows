@@ -1,6 +1,9 @@
 #include <std.h>
 #include "../tharis.h"
+
 inherit STORAGE"boroughs";
+
+int fruit;
 
 void create(){
    ::create();
