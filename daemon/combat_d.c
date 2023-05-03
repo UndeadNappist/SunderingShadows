@@ -3279,8 +3279,7 @@ void ok_to_wield(object who)
 
             if (((wielded[0]->query_size() > Size) &&
                     (wielded[1]->query_size() > Size) &&
-                    who->validate_combat_stance("dual wield")) ||
-                who->validate_combat_stance("double weapon")) {
+                    who->validate_combat_stance("dual wield"))) {
                 if (FEATS_D->usable_feat(who, "ambidexterity")) {
                     /*
                     //Removes the light armor requirement for Ambidexterity. Per PFSRD.
