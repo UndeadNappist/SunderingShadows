@@ -3277,38 +3277,20 @@ void ok_to_wield(object who)
                 Size = 1;
             }
 
-            if (((wielded[0]->query_size() > Size) &&
-                    (wielded[1]->query_size() > Size) &&
-                    who->validate_combat_stance("dual wield"))) {
-                if (FEATS_D->usable_feat(who, "ambidexterity")) {
-                    /*
-                    //Removes the light armor requirement for Ambidexterity. Per PFSRD.
-                    if (sizeof(worn)) {
-                        tell_object(who, "You scramble to hang on to your " + wielded[0]->query_name() + " and "
-                                    "your " + wielded[1]->query_name() + " but all that armor makes it impossible!");
-                        tell_room(environment(who), "" + who->QCN + " scrambles to hang on to " + who->QP + " " + wielded[0]->query_name() + " "
-                                  "and " + who->QP + " " + wielded[1]->query_name() + " but fumbles and drops them!", who);
-
-                        if (!wielded[0]->query_property("enchantment") || (int)wielded[0]->query_property("enchantment") > 0) {
-                            wielded[0]->move(environment(who));
-                        }
-                        if (!wielded[1]->query_property("enchantment") || (int)wielded[1]->query_property("enchantment") > 0) {
-                            wielded[1]->move(environment(who));
-                        }
-
-                    }
-                    */
+            if (wielded[0]->query_size() > Size && 
+		wielded[1]->query_size() > Size && 
+		who->validate_combat_stance("dual wield") &&
+		!FEATS_D->usable_feat(who, "ambidexterity") &&
+		!who->validate_combat_stance("double weapon")) 
+	    {
+                tell_object(who, "In your attempt to wield two such weapons, you fumble and drop them.");
+                tell_room(environment(who), who->query_cap_name() + " fumbles with " + who->QP + " " + wielded[0]->query_name() + " and "
+                    "" + who->query_possessive() + " " + wielded[1]->query_name() + " and then drops them.", who);
+                if (!wielded[0]->query_property("enchantment") || (int)wielded[0]->query_property("enchantment") > 0) {
+                    wielded[0]->move(environment(who));
                 }
-                else {
-                    tell_object(who, "In your attempt to wield two such weapons, you fumble and drop them.");
-                    tell_room(environment(who), who->query_cap_name() + " fumbles with " + who->QP + " " + wielded[0]->query_name() + " and "
-                              "" + who->query_possessive() + " " + wielded[1]->query_name() + " and then drops them.", who);
-                    if (!wielded[0]->query_property("enchantment") || (int)wielded[0]->query_property("enchantment") > 0) {
-                        wielded[0]->move(environment(who));
-                    }
-                    if (!wielded[1]->query_property("enchantment") || (int)wielded[1]->query_property("enchantment") > 0) {
-                        wielded[1]->move(environment(who));
-                    }
+                if (!wielded[1]->query_property("enchantment") || (int)wielded[1]->query_property("enchantment") > 0) {
+                    wielded[1]->move(environment(who));
                 }
             }
         }
