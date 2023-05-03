@@ -30,7 +30,7 @@ string query_blocked_exit(object what, string direction)
     if(clonep(find_object(dest)))
         return "*";
 
-    if(file_size(dest) != -1 || !objectp(room = load_object(dest)))
+    if(file_size(dest) != -1 || catch(room = load_object(dest)))
         return "#";
     
     return "*";
