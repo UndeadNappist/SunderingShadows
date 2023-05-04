@@ -79,7 +79,7 @@ void spell_effect(int prof)
         if(!objectp(hits[i])) { continue; }
 
         tell_object(caster,"%^GREEN%^The acid droplets fall onto "+ hits[i]->QCN+".");
-        tell_object(hits[i],"%^GREEN%^The acid dropslets fall onto you, burning your skin!");
+        tell_object(hits[i],"%^GREEN%^The acid droplets fall onto you, burning your skin!");
         tell_room(place,"%^GREEN%^The acid droplets fall onto "+hits[i]->QCN+".",({caster,hits[i]}));
 
         if(do_save(hits[i])) { damage_targ(hits[i],"torso",sdamage / 2,"acid"); }

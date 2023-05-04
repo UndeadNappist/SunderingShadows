@@ -248,7 +248,7 @@ void zapper(){
                     tell_room(place, "%^RESET%^%^CRST%^%^C039%^"+hits[i]->query_cap_name()+"%^RESET%^%^CRST%^%^C039%^ is caught by a wisp of frosty vapor!%^CRST%^", hits[i]);
                     break;
             }
-
+            
             if(do_save(hits[i])){
                 damage_targ(hits[i],"torso",sdamage/2,element);
             }
@@ -280,7 +280,7 @@ void zapper(){
             tell_room(place, "%^RESET%^%^CRST%^%^C039%^The frosty vapor slams into "+HIM+"%^RESET%^%^CRST%^%^C039%^, draining heat, strength, and life!%^CRST%^", target);
         break;
     }
-
+    
     if(do_save(target)) { sdamage = sdamage/2; }
     damage_targ(target, "torso", sdamage, element);
     dest_effect();
