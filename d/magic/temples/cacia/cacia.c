@@ -37,7 +37,7 @@ void create(){
 		({ "private chambers", "chambers", "alcoves", "curtains", "pillars" }) : "%^C255%^The %^C243%^towering pillars%^C255%^ are impressive feats of craftsmanship. The smooth surface of each one is polished to a high shine, reflecting the warm glow of the chandeliers above. The arched entrances that lead deeper into private chambers are draped in %^C089%^d%^C090%^a%^C089%^rk mau%^C090%^v%^C089%^e c%^C090%^u%^C089%^rtai%^C090%^n%^C089%^s%^C255%^, their %^C250%^sheerness%^C255%^ allowing a glimpse of the mysteries beyond. As you approach each alcove, you can feel the weight of temptation bearing down upon you. The curtains create a sense of mystery and anticipation, drawing you in and encouraging you to indulge in your desires.%^CRST%^",
         ]));
     set_exits(([
-        "out" : "/d/dagger/yniam/room/courtyard",
+        "out" : ROOMS"courtyard",
         "west" : ROOMS"euphoria",
         "southwest" : ROOMS"gluttony",
         "south" : ROOMS"flesh",
