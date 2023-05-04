@@ -4066,13 +4066,20 @@ object* target_filter(object* targets)
  * Hostile target selector.
  * Only for hostile effects!
  */
-object *target_selector()
+object *target_selector(int flag)
 {
     object * foes = caster->query_attackers();
     object * everyone = all_living(place);
     object * slctd = ({});
-    int aff, max, statbonus, enlarge, spmod;
+    int aff, max, statbonus, enlarge, maxmod;
     int slevel = query_spell_level(spell_type);
+
+    // flag = 1 if the target of the spell is dealt with elsewhere in the spell
+    if(flag){
+        foes -= ({ target });
+        everyone -= ({ target });
+        maxmod = 1;
+    }
 
     if(sizeof(foes))
         shuffle(foes);
@@ -4080,7 +4087,7 @@ object *target_selector()
         shuffle(everyone);
 
     slevel = slevel < 1 ? 1 : slevel;
-    max = 6 + BONUS_D->query_stat_bonus(caster, query_casting_stat());
+    max = 6 + BONUS_D->query_stat_bonus(caster, query_casting_stat()) - maxmod;
 
     enlarge = caster->query_property("enlarge spell");
 

@@ -87,9 +87,7 @@ void spell_effect(int prof){
     if(spell_type == "monk") { MAGIC_D->elemental_opportunist(caster, target); }
     spell_successful();
 
-    foes = target_selector();
-
-    foes -= ({ target});
+    foes = target_selector(1);
 
     if(interactive(caster)) { tmp = "'s finger"; }
 
@@ -122,13 +120,6 @@ void spell_effect(int prof){
             break;
     }
 
-    if(do_save(target)){
-        damage_targ(target, "torso", to_int(sdamage / 2),element);
-    }
-    else{
-        damage_targ(target, "torso", sdamage,element);
-    }
-
     switch(element)
     {
     case "acid":
@@ -153,6 +144,12 @@ void spell_effect(int prof){
         break;
     }
 
+    if(do_save(target)){
+        if(!evade_splash(target)) damage_targ(target, "torso", to_int(sdamage / 2), element);
+    }
+    else{
+        damage_targ(target, "torso", sdamage, element);
+    }
 
     for(i=0;i<sizeof(foes);i++){
         if(!objectp(foes[i])) { continue; }

@@ -203,7 +203,7 @@ void zapper(){
             break;
     }
 
-    inven = target_selector();
+    inven = target_selector(1);
 
 
     if(sizeof(inven)){
@@ -281,8 +281,12 @@ void zapper(){
         break;
     }
     
-    if(do_save(target)) { sdamage = sdamage/2; }
-    damage_targ(target, "torso", sdamage, element);
+    if(do_save(target)){
+        if(!evade_splash(target)){
+            damage_targ(target, "torso", sdamage / 2, element);
+        }
+    }
+    else damage_targ(target, "torso", sdamage, element);
     dest_effect();
 }
 
