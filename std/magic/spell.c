@@ -4091,34 +4091,30 @@ object *target_selector()
         aff = random(slevel) + 1;
         aff = aff > max ? max : aff;
         aff *= (1 + enlarge);
-        foes = target_filter(foes);
         slctd += foes[0..aff];
     } else if (splash_spell == 3 || aoe_spell) {
         aff = random(slevel) + 1;
         aff = aff > max ? max : aff;
         aff *= (1 + enlarge);
-        everyone = target_filter(everyone);
         slctd += everyone[0..aff];
     } else if (traveling_spell || traveling_aoe_spell) {
         aff = random(slevel) + 1;
         aff = aff > max ? max : aff;
         aff *= (1 + enlarge);
-        foes = target_filter(foes);
         slctd += foes[0..aff];
     } else {
         aff = random(slevel) + 1;
         aff = aff > max ? max : aff;
         aff *= (1 + enlarge);
-        foes = target_filter(foes);
         slctd += foes[0..aff];
         if (roll_dice(1, 20) > (clevel / 3)) {
-            everyone = target_filter(everyone);
             slctd += everyone[0..(48 / clevel + 1)];
         }
     }
 
     caster->remove_property("enlarge spell");
     slctd = distinct_array(slctd);
+    slctd = target_filter(slctd);
 
     if(sizeof(slctd))
     {

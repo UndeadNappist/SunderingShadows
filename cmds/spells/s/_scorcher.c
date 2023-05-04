@@ -139,7 +139,6 @@ void spell_effect(int prof) {
         damage_targ(hits[i], hits[i]->return_target_limb(), sdamage,element);
     }
 
-    if(evade_splash(target)) { dest_effect(); return; }
     switch(element) {
       case "acid":
         tell_object(target,"%^BOLD%^%^GREEN%^The searing blast strikes you, coating you in acid!");
