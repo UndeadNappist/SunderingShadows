@@ -248,7 +248,7 @@ int query_weight()
 
 int query_no_clean()
 {
-    if(query_property("no_clean"))
+    if(this_object()->query_property("no_clean"))
         return 1;
     
     return no_clean;
