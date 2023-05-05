@@ -122,7 +122,7 @@ int hit_func(object victim) {
                 tell_object(ETO,"%^BOLD%^Time seems to slow down for you,"+
                 " allowing you to hammer into "+victim->QCN+" "+
                 "with a series of attacks, bashing the pillar "+
-                " into "+victim->QP+" repeatedly.");
+                " into "+victim->query_objective()+" repeatedly.");
                 tell_object(victim,"%^BOLD%^"+ETO->QCN+" suddenly moves"+
                 " swiftly, hammering the pillar into you with unnatural speed.",);
                 tell_room(EETO,"%^BOLD%^"+ETO->QCN+" suddenly"+

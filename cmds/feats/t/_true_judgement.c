@@ -162,8 +162,8 @@ void execute_attack()
     caster->remove_property("using true judgement");
     caster->set_property("using true judgement", tempmap);
 
-    tell_object(caster, "%^BLUE%^A ray of deadly raw power releases of your finger and hits " + target->QCN + "!");
-    tell_room(place, "%^BLUE%^A ray of death releases of " + caster->QCN + "'s finger and hits " + target->QCN + "!", caster);
+    tell_object(caster, "%^BLUE%^A ray of deadly raw power releases from your finger and hits " + target->QCN + "!");
+    tell_room(place, "%^BLUE%^A ray of death releases from " + caster->QCN + "'s finger and hits " + target->QCN + "!", caster);
 
     //bonusdc = clevel;
     bonusdc = BONUS_D->query_stat_bonus(caster, "wisdom");
