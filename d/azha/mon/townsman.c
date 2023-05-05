@@ -57,7 +57,8 @@ void create() {
 	set_max_mp(0);
 	set_mp(query_max_mp());
 	set_hd(1, 1);
-	set_max_hp(query_hp());
+	set_max_hp(20);
+    set_hp(query_max_hp());
 	set_max_sp(query_hp());
 	set_sp(query_max_sp());
 	add_money("silver",random(10));

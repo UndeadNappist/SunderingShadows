@@ -27,6 +27,8 @@ void create(){
    set_race("half-drow");
    set_gender("male");
    set_hd(1,1);
+   set_max_hp(20);
+   set_hp(query_max_hp());
    set_exp(1);
    set_stats("intelligence",25);
    set_body_type("human");
