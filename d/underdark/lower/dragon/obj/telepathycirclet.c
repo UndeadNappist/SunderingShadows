@@ -34,7 +34,7 @@ void create() {
    set_size(-1);
    set_ac(0);
    set_value(2000);
-   set_type("clothing");
+   set_type("ring");
    set_wear((:TO,"wear_fun":));
    charges = 30+ random(11);
 }
