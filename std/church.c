@@ -512,9 +512,11 @@ int select_domain(string str)
             possible_domains += SPELL_DOMAINS[lower_case(player_deity)];
         }
 
+        /*
         if (TP->is_class("druid")) {
             possible_domains += ({ "air", "animal", "earth", "fire", "plant", "cold", "renewal", "plague", "storms" });
         }
+        */
 
         possible_domains = distinct_array(possible_domains);
         num_classes = sizeof(TP->query_classes());
