@@ -6,6 +6,7 @@ void create(){
    set_property("indoors", 1);
    set_property("light", 1);
    set_property("no teleport",1);
+   set_property("no pocket space",1);
    set_smell("default", "The air smells strangely flat.");
    set_listen("default", "You can't hear anything.");
    set_short("%^BOLD%^%^WHITE%^Inside white void");
