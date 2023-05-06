@@ -9,7 +9,6 @@ void create(){
    set_id( ({"statue","satue of energy"}) );
    set_short("%^BOLD%^Statue of energy");
    set_long("This is a strange statue vaguely resembling humanoid figure. It seems to be made out of pure energy.");
-   set_property("no pocket space",1);
    set_weight(450);
 }
 
