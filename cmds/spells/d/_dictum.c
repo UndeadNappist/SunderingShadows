@@ -51,6 +51,8 @@ void spell_effect()
     caster->force_me("yell %^WHITE%^%^BOLD%^DIE!");
     
     targs = target_selector();
+    targs += ({target});
+    targs = distinct_array(targs);
     targs = filter_array(targs, (: ($1->query_true_align() != 1 && $1->query_true_align() != 2 && $1->query_true_align() != 3) :));
     
     foreach(object ob in targs)
