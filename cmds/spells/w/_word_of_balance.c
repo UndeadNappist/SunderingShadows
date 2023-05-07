@@ -42,6 +42,8 @@ void spell_effect()
     object *targs;
     
     targs = target_selector();
+    targs += ({target});
+    targs = distinct_array(targs);
     targs = filter_array(targs, (: ($1->query_true_align() != 1 && $1->query_true_align() != 3 && $1->query_true_align() != 6 && $1->query_true_align() != 9) :));
     
     tell_object(caster, "%^C243%^You utter the %^C075%^words%^C243%^ of %^C075%^balance%^C243%^, shunning all %^C196%^extremism%^C243%^!%^CRST%^");
