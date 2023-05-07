@@ -84,6 +84,8 @@ void spell_effect()
     caster->force_me("yell %^WHITE%^%^BOLD%^"+GIBBERISH[random(sizeof(GIBBERISH))]);
     
     targs = target_selector();
+    targs += ({target});
+    targs = distinct_array(targs);
     targs = filter_array(targs, (: ($1->query_true_align() != 7 && $1->query_true_align() != 8 && $1->query_true_align() != 9) :));
     
     foreach(object ob in targs)
