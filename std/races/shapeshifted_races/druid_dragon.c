@@ -125,7 +125,7 @@ int init_shape(object obj,string mysubrace)
         shape->set_shape_bonus("attack bonus", 5 + (lvl / 10));
         shape->set_shape_bonus("damage bonus", 5 + (lvl / 10));
     }
-
+    shape->set_shape_mastery_feat("impale");
     shape->apply_bonuses(shape->query_owner());
     obj->set_hp( to_int(  hp_percent * to_float((int)obj->query_max_hp())) );
     shape->set_old_attack_limbs((string*)obj->query_attack_limbs()); //

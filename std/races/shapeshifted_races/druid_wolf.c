@@ -109,7 +109,7 @@ int init_shape(object obj,string mysubrace)
         shape->set_shape_bonus("athletics", 4);
         shape->set_ac_bonus(-(2 + lvl / 12));
     }
-
+    shape->set_shape_mastery_feat("knockdown");
     shape->apply_bonuses(shape->query_owner());
     obj->set_hp( to_int(  hp_percent * to_float((int)obj->query_max_hp())) );
     shape->set_old_attack_limbs((string*)obj->query_attack_limbs()); //
