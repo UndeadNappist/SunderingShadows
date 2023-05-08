@@ -8,7 +8,7 @@ void create() {
     feat_category("DivineSpellcraft");
     feat_name("divine domain");
     feat_prereq("Cleric L1");
-    feat_desc("This feat represents the connection with divinity that each priest has, and grants a small number of specialty spells that are specific to their own deity. The cleric must select a domain specific to their god in a temple. Druids may choose from air, animal, earth, fire, plant, cold, or renewal regardless of the deity they follow. Multiclass characters gain the ability to choose from any domain available to them. Clerics will gain both the passive benefits and the granted spells. Druids ONLY gain the granted spells from their domain.");
+    feat_desc("This feat represents the connection with divinity that each priest has, and grants a small number of specialty spells that are specific to their own deity. The cleric must select a domain specific to their god in a temple. Multiclass characters gain the ability to choose from any domain available to them. Clerics will gain both the passive benefits and the granted spells.");
     permanent(1);
 }
 
