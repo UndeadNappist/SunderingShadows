@@ -661,7 +661,10 @@ void eject()
     if (objectp(room)) {
         room->remove_exit("east");
     }
-    remove_exit("west");
+    // If the room fails to reset properly and a character gets in the room again they become trapped. 
+    // There is no reason this exit needs to be removed when the one on the other side being removed already bars access.
+    // -Yves 5/8/2023
+    //remove_exit("west");
     return;
 }
 
