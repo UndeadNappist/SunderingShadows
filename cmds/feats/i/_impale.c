@@ -25,7 +25,7 @@ A druid with the 'mastery of fang and claw' feat may also use this feat while in
 
 int allow_shifted()
 {
-    return 0;
+    return 1;
 }
 
 int prerequisites(object ob)
