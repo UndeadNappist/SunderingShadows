@@ -97,7 +97,7 @@ int hit_func(object target) {
 			"name on "+target->query_cap_name()+"%^BLACK%^%^BOLD%^!%^RESET%^",({environment(ETO),target}));
             tell_object(target, "%^BLACK%^%^BOLD%^With a smirk, "+ETO->query_cap_name()+" %^BLACK%^%^BOLD%^steps "+
 			"forward and.. signs their name on you?!?%^RESET%^",({environment(ETO),ETO}));
-            new("/cmds/spells/c/_charm_monster")->use_spell(ETO,target,20,100,"bard");
+            new("/cmds/spells/c/_charm_monster")->use_spell(ETO,target,50,100,"mage");
             break;
       }
    }
