@@ -17,6 +17,7 @@ void create() {
    set_value(50);
    set_wc(1,8);
    set_type("bludgeoning");
+   set_prof_type("hammer"); 
    set_large_wc(1,8);
    set_weapon_prof("exotic");
    set_weapon_speed(10);

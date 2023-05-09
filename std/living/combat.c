@@ -141,6 +141,8 @@ int has_feat(string temp)
     if(userp(this_object()))
     {
         tmp = this_object()->query_player_feats();
+        tmp += this_object()->query_temporary_feats();        
+        tmp = distinct_array(tmp);
         
         if(!arrayp(tmp))
             return 0;
