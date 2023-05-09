@@ -973,7 +973,7 @@ int sneak_attack_damage(object targ, object weapon)
         float red, total_red;
 
         //Sneak attack dice section
-        sneak = query_prestige_level("thief") / 3;
+        sneak = query_prestige_level("thief") / 2;
         //Arcane trickster sneak attack progression
         sneak += (query_class_level("arcane_trickster") / 3);
         sneak += (1 + query_class_level("crimson_templar") / 4);
@@ -1018,6 +1018,9 @@ int sneak_attack_damage(object targ, object weapon)
                 red = 1.00;
                 //sneak = 0;
         }
+        
+        if(userp(targ))
+            red += 0.20;
 
         if(red >= 1.00)
         {

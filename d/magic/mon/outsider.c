@@ -403,6 +403,11 @@ void defend()
     return;
 }
 
+int dest_effect()
+{
+    return remove();
+}
+    
 int remove()
 {
     reset_all_status_effects();
@@ -411,7 +416,7 @@ int remove()
     if (objectp(this_object()))
         all_inventory(this_object())->remove();
 
-    ::remove();
+    return ::remove();
 }
 
 void heart_beat()
