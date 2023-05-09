@@ -1,5 +1,4 @@
 #include <std.h>
-#include "../antioch.h"
 inherit MONSTER;
 
 int head_home;
