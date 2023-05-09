@@ -139,7 +139,7 @@ void sleep3()
   tell_room(TP,"%^CYAN%^"+
 	"You try "+
 	"to move, but your feet feel like lead...the shadow beast closes in "+
-	"on you, the mouth headed straight for you face.  Just as the you can "+
+	"on you, the mouth headed straight for your face.  Just as you can "+
 	"smell the hot breath, feel the teeth brush against your cheeks, "+
 	"everything goes black.\n\n");
   TP->set_paralyzed(0, "%^GREEN%^You wake up suddenly and look around you.");

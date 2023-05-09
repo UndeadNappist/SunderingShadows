@@ -17,7 +17,7 @@ void create()
     feat_category("Psionics");
     feat_name("psychic vampire");
     feat_prereq("Psion (Telepath) L11");
-    feat_desc("Once a telepath has gained a certain amount of power, they begin to almost automatically make connections with minds around them. With this feat, the telepath will slowly harvest power points from other intelligent minds around them. While focused the telepath slowly gains power point regen, increasing the more minds there are in the area. Additionally, the telepath will begin to randomy pick up the thoughts of those around them, getting pieces of telepathic conversation.");
+    feat_desc("Once a telepath has gained a certain amount of power, they begin to almost automatically make connections with minds around them. With this feat, the telepath will slowly harvest power points from other intelligent minds around them. While focused the telepath slowly gains power point regen, increasing the more minds there are in the area. Additionally, the telepath will begin to randomly pick up the thoughts of those around them, getting pieces of telepathic conversation.");
     permanent(1);
     psionic(1);
 }

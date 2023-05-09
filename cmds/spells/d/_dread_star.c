@@ -76,8 +76,8 @@ void spell_effect(int prof)
     if(do_save(target, 0))
         return;
     
-    tell_object(target, "%^RESET%^%^CRST%^%^C243%^"+your_name+"%^RESET%^%^CRST%^%^C243%^ stumbles about in a %^C220%^d%^C226%^a%^C220%^z%^C214%^e %^RESET%^%^C243%^as the %^C255%^li%^C254%^g%^C252%^h%^C251%^t %^C250%^f%^C249%^a%^C248%^d%^C247%^e%^C246%^s a%^C245%^w%^C244%^a%^C243%^y.%^CRST%^");
-    tell_object(caster, "%^RESET%^%^CRST%^%^C243%^You stumble about in a %^C220%^d%^C226%^a%^C220%^z%^C214%^e %^RESET%^%^C243%^as the %^C255%^li%^C254%^g%^C252%^h%^C251%^t %^C250%^f%^C249%^a%^C248%^d%^C247%^e%^C246%^s a%^C245%^w%^C244%^a%^C243%^y.%^CRST%^");
+    tell_room(place, "%^RESET%^%^CRST%^%^C243%^"+your_name+"%^RESET%^%^CRST%^%^C243%^ stumbles about in a %^C220%^d%^C226%^a%^C220%^z%^C214%^e %^RESET%^%^C243%^as the %^C255%^li%^C254%^g%^C252%^h%^C251%^t %^C250%^f%^C249%^a%^C248%^d%^C247%^e%^C246%^s a%^C245%^w%^C244%^a%^C243%^y.%^CRST%^", target);
+    tell_object(target, "%^RESET%^%^CRST%^%^C243%^You stumble about in a %^C220%^d%^C226%^a%^C220%^z%^C214%^e %^RESET%^%^C243%^as the %^C255%^li%^C254%^g%^C252%^h%^C251%^t %^C250%^f%^C249%^a%^C248%^d%^C247%^e%^C246%^s a%^C245%^w%^C244%^a%^C243%^y.%^CRST%^");
     target->set_paralyzed(6);    
     
     dest_effect();

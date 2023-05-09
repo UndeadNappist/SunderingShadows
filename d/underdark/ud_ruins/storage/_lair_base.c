@@ -30,7 +30,7 @@ void create() {
         "g%^BOLD%^%^WHITE%^r%^RESET%^a%^ORANGE%^v%^BOLD%^%^BLACK%^e"
         "%^RESET%^%^ORANGE%^l %^BOLD%^%^BLACK%^and "
         "%^RESET%^%^ORANGE%^dirt%^BOLD%^%^BLACK%^, and the walls tower up "
-        "above you, reaching so high that it is difficult to see the cavern"
+        "above you, reaching so high that it is difficult to see the cavern "
         "ceiling. Much of the terrain is covered with strange coarse "
         "%^RESET%^spiderwebs%^BOLD%^%^BLACK%^."
     );

@@ -13,14 +13,14 @@ void create(){
   set_short("Piles of Junk");
   set_long(
 @DESC
-   %^RED%^%^BOLD%^Piles of collected junks%^RESET%^
+   %^RED%^%^BOLD%^Piles of collected junk%^RESET%^
 This room is full of piles of stuff. Stone work, bits of
 broken sculpture. Mixed in you might find some supplies,
 but what else might be in this room? Who put this stuff here?
 DESC
   );
   set_items(([
-   "piles":"These are piles of broken stone and wood. Wonder what's burried in them."
+   "piles":"These are piles of broken stone and wood. Wonder what's buried in them."
    ]));
   set_search("default","Search what");
   set_search("piles",(:TO,"search_em":));
@@ -35,7 +35,7 @@ int found;
 
 int search_em(string str){
    if(!found){
-      tell_room(TO,"BOLD%^"+TPQCN+" has found something",TP);
+      tell_room(TO,"%^BOLD%^"+TPQCN+" has found something",TP);
       write("You find a single slightly chipped silver ring.");
       new(OBJ+"ring1")->move(TO);
       found = 1;
