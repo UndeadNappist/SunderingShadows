@@ -30,7 +30,8 @@ public string convertFromInput(string str){
    str = replace_string(str,"%^B_BLACK%^","");
    str = replace_string(str,"%^B_WHITE%^","");
    str = replace_string(str,"%^FLASH%^","");
-   str = replace_string(str,"\n\n","\n<br>");
+   str = replace_string(str,"\n\n","\n<br>"); //not removing this because spaghetti
+   str = replace_string(str,"%^BR^","<br>");
 
    return str;
 }
@@ -51,6 +52,7 @@ public string convertToInput(string str){
    str = replace_string(str,"</font><font color=\"#00BBBB\">","%^CYAN%^");
    str = replace_string(str,"<b>","%^BOLD%^");
    str = replace_string(str,"\n<br>","\n\n");
+   str = replace_string(str,"<br>","%^BR^");
 
    return str;
 }
