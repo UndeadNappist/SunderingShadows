@@ -244,6 +244,10 @@ void set_profs_map(mapping map);
 void use_prof(string skill);
 void remove_ignored(string str);
 void add_ignored(string str);
+void remove_allowed_give(string str);
+void add_allowed_give(string str);
+void reset_allowed_give();
+string *query_allowed_give();
 string query_my_ip_name();
 void reset_ignored();
 string *query_ignored();
@@ -3941,6 +3945,26 @@ void remove_ignored(string str) {
 string *query_ignored() {
   if (!static_user["ignored_people"]) static_user["ignored_people"] = ({});
   return static_user["ignored_people"];
+}
+
+void reset_allowed_give() { static_user["allowed_give_people"] = ({}); }
+
+void add_allowed_give(string str) {
+  if (!static_user["allowed_give_people"]) static_user["allowed_give_people"] = ({});
+  static_user["allowed_give_people"] += ({str});
+  static_user["allowed_give_people"] = distinct_array(static_user["allowed_give_people"]);
+}
+
+void remove_allowed_give(string str) {
+  if (!static_user["allowed_give_people"]) static_user["allowed_give_people"] = ({});
+  if (member_array(str, static_user["allowed_give_people"]) != -1)
+    static_user["allowed_give_people"] -= ({str});
+  static_user["allowed_give_people"] = distinct_array(static_user["allowed_give_people"]);
+}
+
+string *query_allowed_give() {
+  if (!static_user["allowed_give_people"]) static_user["allowed_give_people"] = ({});
+  return static_user["allowed_give_people"];
 }
 
 void reset_age() {

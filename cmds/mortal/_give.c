@@ -42,6 +42,11 @@ cmd_give(string str) {
       notify_fail("Give "+what+" to who?\n");
       return 0;
    }
+   if(!list_allowed_give(this_player())) {
+      notify_fail(to->query_cap_name()+" refuses to accept your item, as you are not in their allowed_give list.\n");
+      tell_object(to,this_player()->query_cap_name()+" attempted to give you "+ ob->query_short() + ", but you didn't want it, they're not in your allowed_give list.");
+      return 0;
+  }
   if(to == TP) return notify_fail("Just keep it.\n");
    ob = present(what, this_player());
    if(!ob) {

@@ -4172,6 +4172,26 @@ string *query_ignored() {
   return static_user["ignored_people"];
 }
 
+void reset_allowed_give() { static_user["allowed_give_people"] = ({}); }
+
+void add_allowed_give(string str) {
+  if (!static_user["allowed_give_people"]) static_user["allowed_give_people"] = ({});
+  static_user["allowed_give_people"] += ({str});
+  static_user["allowed_give_people"] = distinct_array(static_user["allowed_give_people"]);
+}
+
+void remove_allowed_give(string str) {
+  if (!static_user["allowed_give_people"]) static_user["allowed_give_people"] = ({});
+  if (member_array(str, static_user["allowed_give_people"]) != -1)
+    static_user["allowed_give_people"] -= ({str});
+  static_user["allowed_give_people"] = distinct_array(static_user["allowed_give_people"]);
+}
+
+string *query_allowed_give() {
+  if (!static_user["allowed_give_people"]) static_user["allowed_give_people"] = ({});
+  return static_user["allowed_give_people"];
+}
+
 void reset_age() {
   start_age = 0;
 //  real_age=0;
